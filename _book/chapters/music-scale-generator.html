@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>5&nbsp; Random Melody Generator – Creative Coding with Pure Data</title>
+<title>3&nbsp; Random Melody Generator – Creative Coding with Pure Data</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,7 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../chapters/conclusion.html" rel="prev">
+<link href="../chapters/chapter.html" rel="next">
+<link href="../chapters/introduction.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -253,7 +254,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/music-scale-generator.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Random Melody Generator</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/music-scale-generator.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Random Melody Generator</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -295,20 +296,20 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../chapters/music-scale-generator.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Random Melody Generator</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../chapters/chapter.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Chapter 2: Specific Subjects or Themes</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Chapter 2: Specific Subjects or Themes</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/conclusion.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Conclusion</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../chapters/music-scale-generator.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Random Melody Generator</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Conclusion</span></span></a>
   </div>
 </li>
     </ul>
@@ -317,20 +318,20 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#patch-overview" id="toc-patch-overview" class="nav-link active" data-scroll-target="#patch-overview"><span class="header-section-number">5.1</span> Patch Overview</a></li>
-  <li><a href="#scale-and-melody-generation" id="toc-scale-and-melody-generation" class="nav-link" data-scroll-target="#scale-and-melody-generation"><span class="header-section-number">5.2</span> Scale and Melody Generation</a>
+  <li><a href="#patch-overview" id="toc-patch-overview" class="nav-link active" data-scroll-target="#patch-overview"><span class="header-section-number">3.1</span> Patch Overview</a></li>
+  <li><a href="#scale-and-melody-generation" id="toc-scale-and-melody-generation" class="nav-link" data-scroll-target="#scale-and-melody-generation"><span class="header-section-number">3.2</span> Scale and Melody Generation</a>
   <ul class="collapse">
-  <li><a href="#scale-definition" id="toc-scale-definition" class="nav-link" data-scroll-target="#scale-definition"><span class="header-section-number">5.2.1</span> Scale Definition</a></li>
-  <li><a href="#random-note-selection" id="toc-random-note-selection" class="nav-link" data-scroll-target="#random-note-selection"><span class="header-section-number">5.2.2</span> Random Note Selection</a></li>
-  <li><a href="#melody-construction" id="toc-melody-construction" class="nav-link" data-scroll-target="#melody-construction"><span class="header-section-number">5.2.3</span> Melody Construction</a></li>
+  <li><a href="#scale-definition" id="toc-scale-definition" class="nav-link" data-scroll-target="#scale-definition"><span class="header-section-number">3.2.1</span> Scale Definition</a></li>
+  <li><a href="#random-note-selection" id="toc-random-note-selection" class="nav-link" data-scroll-target="#random-note-selection"><span class="header-section-number">3.2.2</span> Random Note Selection</a></li>
+  <li><a href="#melody-construction" id="toc-melody-construction" class="nav-link" data-scroll-target="#melody-construction"><span class="header-section-number">3.2.3</span> Melody Construction</a></li>
   </ul></li>
-  <li><a href="#melody-storage" id="toc-melody-storage" class="nav-link" data-scroll-target="#melody-storage"><span class="header-section-number">5.3</span> Melody Storage</a></li>
-  <li><a href="#playback-control" id="toc-playback-control" class="nav-link" data-scroll-target="#playback-control"><span class="header-section-number">5.4</span> Playback Control</a></li>
-  <li><a href="#midi-output" id="toc-midi-output" class="nav-link" data-scroll-target="#midi-output"><span class="header-section-number">5.5</span> MIDI Output</a></li>
-  <li><a href="#step-by-step-data-flow" id="toc-step-by-step-data-flow" class="nav-link" data-scroll-target="#step-by-step-data-flow"><span class="header-section-number">5.6</span> Step-by-Step Data Flow</a></li>
-  <li><a href="#key-objects-and-their-roles" id="toc-key-objects-and-their-roles" class="nav-link" data-scroll-target="#key-objects-and-their-roles"><span class="header-section-number">5.7</span> Key Objects and Their Roles</a></li>
-  <li><a href="#diagram-melody-generation-and-playback" id="toc-diagram-melody-generation-and-playback" class="nav-link" data-scroll-target="#diagram-melody-generation-and-playback"><span class="header-section-number">5.8</span> Diagram: Melody Generation and Playback</a></li>
-  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">5.9</span> Summary</a></li>
+  <li><a href="#melody-storage" id="toc-melody-storage" class="nav-link" data-scroll-target="#melody-storage"><span class="header-section-number">3.3</span> Melody Storage</a></li>
+  <li><a href="#playback-control" id="toc-playback-control" class="nav-link" data-scroll-target="#playback-control"><span class="header-section-number">3.4</span> Playback Control</a></li>
+  <li><a href="#midi-output" id="toc-midi-output" class="nav-link" data-scroll-target="#midi-output"><span class="header-section-number">3.5</span> MIDI Output</a></li>
+  <li><a href="#step-by-step-data-flow" id="toc-step-by-step-data-flow" class="nav-link" data-scroll-target="#step-by-step-data-flow"><span class="header-section-number">3.6</span> Step-by-Step Data Flow</a></li>
+  <li><a href="#key-objects-and-their-roles" id="toc-key-objects-and-their-roles" class="nav-link" data-scroll-target="#key-objects-and-their-roles"><span class="header-section-number">3.7</span> Key Objects and Their Roles</a></li>
+  <li><a href="#diagram-melody-generation-and-playback" id="toc-diagram-melody-generation-and-playback" class="nav-link" data-scroll-target="#diagram-melody-generation-and-playback"><span class="header-section-number">3.8</span> Diagram: Melody Generation and Playback</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">3.9</span> Summary</a></li>
   </ul>
 </nav>
 </nav>
@@ -344,7 +345,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Random Melody Generator</span></h1>
+<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Random Melody Generator</span></h1>
 </div>
 
 
@@ -372,8 +373,8 @@ ul.task-list li input[type="checkbox"] {
 
 <div class="no-row-height column-margin column-container"><div class="">
 <p>This patch is designed to be a simple yet effective tool for generating random melodies based on a defined scale. It can be used for various applications, including music composition, sound design, and algorithmic music generation.</p>
-</div></div><section id="patch-overview" class="level2" data-number="5.1">
-<h2 data-number="5.1" class="anchored" data-anchor-id="patch-overview"><span class="header-section-number">5.1</span> Patch Overview</h2>
+</div></div><section id="patch-overview" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="patch-overview"><span class="header-section-number">3.1</span> Patch Overview</h2>
 <p>The patch is organized into several functional blocks:</p>
 <ul>
 <li><strong>Scale and Melody Generation</strong></li>
@@ -400,10 +401,10 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <hr>
 </section>
-<section id="scale-and-melody-generation" class="level2" data-number="5.2">
-<h2 data-number="5.2" class="anchored" data-anchor-id="scale-and-melody-generation"><span class="header-section-number">5.2</span> Scale and Melody Generation</h2>
-<section id="scale-definition" class="level3" data-number="5.2.1">
-<h3 data-number="5.2.1" class="anchored" data-anchor-id="scale-definition"><span class="header-section-number">5.2.1</span> Scale Definition</h3>
+<section id="scale-and-melody-generation" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="scale-and-melody-generation"><span class="header-section-number">3.2</span> Scale and Melody Generation</h2>
+<section id="scale-definition" class="level3" data-number="3.2.1">
+<h3 data-number="3.2.1" class="anchored" data-anchor-id="scale-definition"><span class="header-section-number">3.2.1</span> Scale Definition</h3>
 <p>The patch starts with a message box containing the scale intervals:</p>
 <p><code>0 2 4 5 7 9 11</code></p>
 <p>For example, this represents a major scale in semitones accordding to the following mapping:</p>
@@ -470,20 +471,20 @@ ul.task-list li input[type="checkbox"] {
 <p>&nbsp;</p>
 <p>The scale is appended to a list and processed to determine its length.</p>
 </section>
-<section id="random-note-selection" class="level3" data-number="5.2.2">
-<h3 data-number="5.2.2" class="anchored" data-anchor-id="random-note-selection"><span class="header-section-number">5.2.2</span> Random Note Selection</h3>
+<section id="random-note-selection" class="level3" data-number="3.2.2">
+<h3 data-number="3.2.2" class="anchored" data-anchor-id="random-note-selection"><span class="header-section-number">3.2.2</span> Random Note Selection</h3>
 <p>A random number between 0 and 47 is generated (<code>random 48</code>), then shifted up by 60 to get a MIDI note in a typical range.</p>
 <p>The note is then mapped to the scale using modulo operations and list indexing.</p>
 </section>
-<section id="melody-construction" class="level3" data-number="5.2.3">
-<h3 data-number="5.2.3" class="anchored" data-anchor-id="melody-construction"><span class="header-section-number">5.2.3</span> Melody Construction</h3>
+<section id="melody-construction" class="level3" data-number="3.2.3">
+<h3 data-number="3.2.3" class="anchored" data-anchor-id="melody-construction"><span class="header-section-number">3.2.3</span> Melody Construction</h3>
 <p>The patch uses a loop (<code>until</code>, <code>i</code>, <code>+ 1</code>) to generate a sequence of notes.</p>
 <p>Each note is calculated based on the scale and stored in a list.</p>
 <hr>
 </section>
 </section>
-<section id="melody-storage" class="level2" data-number="5.3">
-<h2 data-number="5.3" class="anchored" data-anchor-id="melody-storage"><span class="header-section-number">5.3</span> Melody Storage</h2>
+<section id="melody-storage" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="melody-storage"><span class="header-section-number">3.3</span> Melody Storage</h2>
 <p>The generated melody is stored in a Pure Data array called <code>melody</code>.</p>
 <p>The array is visualized in the patch for reference.</p>
 <div class="cell" data-layout-align="default">
@@ -501,20 +502,20 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <hr>
 </section>
-<section id="playback-control" class="level2" data-number="5.4">
-<h2 data-number="5.4" class="anchored" data-anchor-id="playback-control"><span class="header-section-number">5.4</span> Playback Control</h2>
+<section id="playback-control" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="playback-control"><span class="header-section-number">3.4</span> Playback Control</h2>
 <p>A <code>metro</code> object (metronome) triggers playback at a tempo set by a horizontal slider.</p>
 <p>Each bang from the metronome advances an index, which reads the next note from the <code>melody</code> array.</p>
 <hr>
 </section>
-<section id="midi-output" class="level2" data-number="5.5">
-<h2 data-number="5.5" class="anchored" data-anchor-id="midi-output"><span class="header-section-number">5.5</span> MIDI Output</h2>
+<section id="midi-output" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="midi-output"><span class="header-section-number">3.5</span> MIDI Output</h2>
 <p>The note value is sent to a <code>makenote</code> object, which creates a MIDI note with velocity and duration.</p>
 <p>The note is then sent to the <code>noteout</code> object, which outputs the MIDI note to your system’s MIDI device.</p>
 <hr>
 </section>
-<section id="step-by-step-data-flow" class="level2" data-number="5.6">
-<h2 data-number="5.6" class="anchored" data-anchor-id="step-by-step-data-flow"><span class="header-section-number">5.6</span> Step-by-Step Data Flow</h2>
+<section id="step-by-step-data-flow" class="level2" data-number="3.6">
+<h2 data-number="3.6" class="anchored" data-anchor-id="step-by-step-data-flow"><span class="header-section-number">3.6</span> Step-by-Step Data Flow</h2>
 <ol type="1">
 <li><strong>Initialize Scale</strong>: The scale intervals are defined and appended to a list.</li>
 <li><strong>Generate Melody</strong>: A loop generates random notes mapped to the scale, storing them in the <code>melody</code> array.</li>
@@ -523,8 +524,8 @@ ul.task-list li input[type="checkbox"] {
 </ol>
 <hr>
 </section>
-<section id="key-objects-and-their-roles" class="level2" data-number="5.7">
-<h2 data-number="5.7" class="anchored" data-anchor-id="key-objects-and-their-roles"><span class="header-section-number">5.7</span> Key Objects and Their Roles</h2>
+<section id="key-objects-and-their-roles" class="level2" data-number="3.7">
+<h2 data-number="3.7" class="anchored" data-anchor-id="key-objects-and-their-roles"><span class="header-section-number">3.7</span> Key Objects and Their Roles</h2>
 <div style="width: 50%;">
 <table class="caption-top table">
 <thead>
@@ -575,8 +576,8 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <hr>
 </section>
-<section id="diagram-melody-generation-and-playback" class="level2" data-number="5.8">
-<h2 data-number="5.8" class="anchored" data-anchor-id="diagram-melody-generation-and-playback"><span class="header-section-number">5.8</span> Diagram: Melody Generation and Playback</h2>
+<section id="diagram-melody-generation-and-playback" class="level2" data-number="3.8">
+<h2 data-number="3.8" class="anchored" data-anchor-id="diagram-melody-generation-and-playback"><span class="header-section-number">3.8</span> Diagram: Melody Generation and Playback</h2>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
 <div>
@@ -598,8 +599,8 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <hr>
 </section>
-<section id="summary" class="level2" data-number="5.9">
-<h2 data-number="5.9" class="anchored" data-anchor-id="summary"><span class="header-section-number">5.9</span> Summary</h2>
+<section id="summary" class="level2" data-number="3.9">
+<h2 data-number="3.9" class="anchored" data-anchor-id="summary"><span class="header-section-number">3.9</span> Summary</h2>
 <p>This patch demonstrates how to algorithmically generate a melody using a musical scale, store it, and play it back via MIDI in Pure Data. The modular structure allows for easy experimentation with different scales, lengths, and playback parameters.</p>
 <hr>
 
@@ -1021,11 +1022,14 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation column-body">
   <div class="nav-page nav-page-previous">
-      <a href="../chapters/conclusion.html" class="pagination-link" aria-label="Conclusion">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Conclusion</span></span>
+      <a href="../chapters/introduction.html" class="pagination-link" aria-label="Introduction">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introduction</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="../chapters/chapter.html" class="pagination-link" aria-label="Chapter 2: Specific Subjects or Themes">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Chapter 2: Specific Subjects or Themes</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->

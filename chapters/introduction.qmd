@@ -7,22 +7,14 @@ Pure Data offers a radically different approach by introducing a graphical progr
 The design of Pure Data echoes the modular synthesis systems of the 20th century, where sound was shaped by routing audio through a network of physical devices linked with patch cables. This historical reference not only grounds Pure Data in a legacy of experimental electronic music but also makes it intuitive for users familiar with analog workflows. By visually "patching" connections, users can simulate and extend these traditional processes in a digital context.
 
 To fully engage with the creative potential of Pure Data, one can develop or modify algorithms for digital audio using imaginative coding strategies. For instance, building a real-time audio granulator that reinterprets live microphone input can offer both technical challenge and artistic reward. Through this lens, programming becomes a form of creative expression, blending logical structures with aesthetic decisions. By experimenting with signal flow, modulation techniques, or interactive sensors, users cultivate a mindset that is both inventive and analytical—unlocking new possibilities in digital sound design and performance.
-
-
-::: {.column-margin}
-:::
-
-## Objectives
-
-- Understand the basic concepts of Pure Data and its graphical programming environment.
-- Learn how to create and manipulate audio and visual elements using Pure Data.
-- Explore the use of Pure Data for interactive installations and performances.
-- Gain hands-on experience with various Pure Data objects and techniques.
-- Develop the skills to create your own interactive projects using Pure Data.
   
 ## What is Pure Data?
 
 Pure Data (or Pd) is a real-time graphical programming environment for audio, video, and graphical processing. Pure Data is commonly used for live music performance, VeeJaying, sound effects, composition, audio analysis, interfacing with sensors, using cameras, controlling robots or even interacting with websites.  Because all of these various media are handled as digital data within the program, many fascinating opportunities for cross-synthesis between them exist. Sound can be used to manipulate video, which could then be streamed over the internet to another computer which might analyze that video and use it to control a motor-driven installation.
+
+::: {.column-margin}
+![](/assets/images/pd_2.png)
+:::
 
 Programming with Pure Data is a unique interaction that is much closer to the experience of manipulating things in the physical world.  The most basic unit of functionality is a box, and the program is formed by connecting these boxes together into diagrams that both represent the flow of data while actually performing the operations mapped out in the diagram.  The program itself is always running, there is no separation between writing the program and running the program, and each action takes effect the moment it is completed.
 
@@ -116,3 +108,76 @@ Pure Data is available in the package repositories of most major Linux distribut
 sudo apt update
 sudo apt install puredata
 ```
+#### Fedora
+```bash
+sudo dnf install puredata
+```
+#### Arch Linux
+```bash
+sudo pacman -S puredata
+```
+#### Verify Installation
+- Open a terminal and type `pd`.
+- The Pure Data GUI should launch, displaying a blank patch.
+- If you encounter issues, check your package manager or consult the Pure Data community for troubleshooting.
+
+### Installing Externals
+
+Pure Data's functionality can be extended through the use of **externals**—additional libraries that provide new objects and features. These externals are created by the Pd community and can add everything from new audio effects to advanced data processing tools. Installing externals is straightforward thanks to Pure Data’s built-in package manager.
+
+#### Step 1: Open Pure Data
+
+- Launch Pure Data (Pd) on your computer.
+- Make sure you are using the **Vanilla** version for best compatibility with the package manager.
+
+#### Step 2: Access the "Find Externals" Tool
+
+- In the Pure Data menu, go to **Help → Find Externals...**  
+  This opens the Deken package manager, which allows you to search for and install externals directly from within Pd.
+
+#### Step 3: Search for an External
+
+- In the search bar, type the name of the external or library you want to install (for example, `zexy`, `cyclone`, or `iemlib`).
+- Press **Enter** or click the **Search** button.
+- A list of matching externals will appear, showing available versions for your platform.
+
+#### Step 4: Install the External
+
+- Click on the desired external in the list.
+- Choose the version that matches your operating system and Pd version.
+- Click **Install**.
+- The external will be downloaded and placed in your Pd externals folder (typically `~/Documents/Pd/externals` on macOS and Linux, or `C:\Users\<YourName>\Documents\Pd\externals` on Windows).
+
+#### Step 5: Add the External to Your Pd Path (if needed)
+
+- Most externals are automatically available after installation.
+- If Pd cannot find the external, you may need to add its folder to Pd’s search path:
+  - Go to **Preferences → Path...**
+  - Click **New** and add the path to the external’s folder (for example, `~/Documents/Pd/externals/cyclone`).
+  - Click **OK** and restart Pd.
+
+#### Step 6: Use the External in Your Patch
+
+- In your patch, create an object with the name of the external’s library, followed by the object you want to use.  
+  For example, to use the `counter` object from the `cyclone` library:
+  ```
+  [cyclone/counter]
+  ```
+- Some libraries require you to load them with a special object, such as `[declare -lib cyclone]` at the top of your patch.
+
+#### Step 7: Verify Installation
+
+- If the object appears without errors (no red box), the external is installed correctly.
+- If you see errors, double-check the installation path and that you are using the correct object/library name.
+
+#### Manual Installation (Advanced)
+
+If you need to install an external manually:
+
+- Download the external from [https://deken.puredata.info/](https://deken.puredata.info/) or the developer’s website.
+- Extract the files to your Pd externals folder.
+- Add the folder to Pd’s path as described above.
+
+> **Tip:** Always check the documentation for each external, as installation steps or requirements may vary.
+
+For more details, see the [official Pure Data documentation on externals](https://msp.ucsd.edu/Pd_documentation/resources/chapter4.htm).

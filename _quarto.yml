@@ -8,9 +8,9 @@ book:
   chapters:
     - index.qmd
     - chapters/introduction.qmd
+    - chapters/music-scale-generator.qmd
     - chapters/chapter.qmd
     - chapters/conclusion.qmd
-    - chapters/music-scale-generator.qmd
 
 #bibliography: references.bib
 
