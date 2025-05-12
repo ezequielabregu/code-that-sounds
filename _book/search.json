@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Creative Coding with Pure Data",
     "section": "",
-    "text": "1 Preface\nThe goal of this book is to provide a comprehensive guide to creative coding using Pure Data (Pd). The book will cover various aspects of Pd, including sound synthesis, data visualization, and interactive installations. The content will be structured into chapters, each focusing on a specific topic or project. The chapters will include code examples, explanations, and visualizations to help readers understand the concepts and techniques used in PD.",
+    "text": "1 Preface\nThis book was born out of the classroom—but it does not stay there. It is the result of many years of teaching creative coding and interactive media at public universities, engaging with students from a wide range of disciplines, backgrounds, and interests. Over time, a common thread emerged: the desire to bridge artistic expression and technical skill, to write code not just as a means to an end, but as a space of exploration, experimentation, and play.\nIn these pages, you’ll find the distilled insights, exercises, and creative strategies that have shaped countless workshops and academic programs. The goal has always been twofold: to equip readers with the tools to build interactive digital systems, and to nurture a mindset where sound, movement, code, and structure can be explored as artistic materials. Whether it’s a generative soundscape, a data-driven artwork, or a custom tool built from scratch, the projects in this book are designed to foster technical growth while encouraging individual expression.\nThis is not a manual in the traditional sense, nor is it a fixed curriculum. Instead, this book invites you to engage with Pure Data on your own terms, navigating its chapters in whatever order best suits your curiosity. The modular structure is intentional: it supports creative detours, sudden insights, and unexpected connections between ideas. You are encouraged to experiment, remix, and stretch the boundaries of the examples presented. Treat the book as both a guide and a sandbox—one where art, sound, code, and interactivity come alive through your engagement.\nWhether you’re an artist exploring new tools, a programmer seeking creative outlets, or a student diving into the world of interactive media, I hope this book helps you discover how code can become a language for imagination.",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Preface</span>"
     ]
@@ -13,8 +13,8 @@
     "objectID": "index.html#what-are-you-going-to-learn",
     "href": "index.html#what-are-you-going-to-learn",
     "title": "Creative Coding with Pure Data",
-    "section": "1.1 What are you going to learn?",
-    "text": "1.1 What are you going to learn?\nIn this book, you will learn how to use Pure Data to create interactive audio-visual projects. You will explore various techniques for sound synthesis, data visualization, and interactive installations. The book will also cover best practices for organizing and managing your Pd projects, as well as tips for debugging and optimizing your code.",
+    "section": "1.4 What are you going to learn?",
+    "text": "1.4 What are you going to learn?\nIn this book, you will learn how to use Pure Data to create interactive audio-visual projects. You will explore various techniques for sound synthesis, data visualization, and interactive installations. The book will also cover best practices for organizing and managing your Pd projects, as well as tips for debugging and optimizing your code.",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Preface</span>"
     ]
@@ -23,8 +23,8 @@
     "objectID": "index.html#who-is-this-book-for",
     "href": "index.html#who-is-this-book-for",
     "title": "Creative Coding with Pure Data",
-    "section": "1.2 Who is this book for?",
-    "text": "1.2 Who is this book for?\nThis book is intended for anyone interested in learning about creative coding using Pure Data. It is suitable for beginners who are new to programming and want to explore the world of interactive media, as well as for experienced programmers looking to expand their skills in sound synthesis and data visualization.",
+    "section": "1.3 Who is this book for?",
+    "text": "1.3 Who is this book for?\nThis book is intended for anyone interested in learning about creative coding using Pure Data. It is suitable for beginners who are new to programming and want to explore the world of interactive media, as well as for experienced programmers looking to expand their skills in sound synthesis and data visualization.",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Preface</span>"
     ]
@@ -33,8 +33,8 @@
     "objectID": "index.html#what-are-you-dont-going-to-learn",
     "href": "index.html#what-are-you-dont-going-to-learn",
     "title": "Creative Coding with Pure Data",
-    "section": "1.3 What are you don’t going to learn?",
-    "text": "1.3 What are you don’t going to learn?\nThis book is not intended to be a comprehensive guide to all aspects of Pure Data. Instead, it focuses on specific topics and projects that are relevant to creative coding. While the book will cover a wide range of techniques and concepts, it will not delve into every detail or aspect of Pure Data. This book is not a substitute for the official Pure Data documentation or other resources. It is meant to complement these resources and provide a practical, hands-on approach to learning Pure Data.",
+    "section": "1.5 What are you don’t going to learn?",
+    "text": "1.5 What are you don’t going to learn?\nThis book is not intended to be a comprehensive guide to all aspects of Pure Data. Instead, it focuses on specific topics and projects that are relevant to creative coding. While the book will cover a wide range of techniques and concepts, it will not delve into every detail or aspect of Pure Data. This book is not a substitute for the official Pure Data documentation or other resources. It is meant to complement these resources and provide a practical, hands-on approach to learning Pure Data.",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Preface</span>"
     ]
@@ -43,8 +43,8 @@
     "objectID": "index.html#pre-requisites",
     "href": "index.html#pre-requisites",
     "title": "Creative Coding with Pure Data",
-    "section": "1.4 Pre-requisites",
-    "text": "1.4 Pre-requisites\nTo get the most out of this book, you should have a basic understanding of programming and some familiarity with the Pure Data language.\nIf you are new to Pure Data or programming, there are several free online resources that can help you get started:\n\nPure Data FLOSS Manual – A beginner-friendly and comprehensive guide to Pure Data.\nOfficial Pure Data Documentation – The official manuals and reference materials for Pure Data.\nMiller Puckette’s “Theory and Techniques of Electronic Music” – A comprehensive book by the creator of Pure Data, covering both theory and practical techniques.\n\nThese resources can be consulted before or alongside this book to strengthen your foundational knowledge.",
+    "section": "1.6 Pre-requisites",
+    "text": "1.6 Pre-requisites\nTo get the most out of this book, you should have a basic understanding of programming and some familiarity with the Pure Data language.\nIf you are new to Pure Data or programming, there are several free online resources that can help you get started:\n\nPure Data FLOSS Manual – A beginner-friendly and comprehensive guide to Pure Data.\nOfficial Pure Data Documentation – The official manuals and reference materials for Pure Data.\nMiller Puckette’s “Theory and Techniques of Electronic Music” – A comprehensive book by the creator of Pure Data, covering both theory and practical techniques.\nProgramming Electronic Music in Pd - Designed for self-study, principally for composers. It begins with explanations of basic programming and acoustic principles then gradually builds up to the most advanced electronic music processing techniques.\n\nThese resources can be consulted before or alongside this book to strengthen your foundational knowledge.\n\n1.6.1 Recommended Pure Data distributions\nThis book is based on the Vanilla1 distribution of Pure Data, which is the most widely used version. However, there are several other distributions that you may find useful for specific projects or needs:\n1 puredata.info/downloads/pure-data\nPurr Data – A fork of Pd-l2ork that focuses on usability and accessibility, with a more polished interface and additional features. Purr Data serves the same purpose, but offers a new and much improved graphical user interface and includes many 3rd party plug-ins. Like Pd, it runs on Linux, macOS and Windows, and is open-source throughout.\nPlugdata – plugdata is a plugin wrapper designed for Miller Puckette’s Pure Data (Pd), featuring an enhanced graphical user interface (GUI) created using JUCE, headed by Timothy Schoen. this project is still a work in progress, and may still have some bugs. By default, plugdata comes with the cyclone and ELSE collections of externals and abstractions.",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Preface</span>"
     ]
@@ -53,8 +53,8 @@
     "objectID": "index.html#acknowledgements",
     "href": "index.html#acknowledgements",
     "title": "Creative Coding with Pure Data",
-    "section": "1.5 Acknowledgements",
-    "text": "1.5 Acknowledgements\nI would like to express my gratitude to the following individuals and organizations for their support and contributions to this book:\n\nPure Data for providing a powerful and flexible platform for creative coding.\nThe Pd community for their invaluable resources, tutorials, and support.\nThe open-source community for their dedication to sharing knowledge and tools for creative coding.",
+    "section": "1.7 Acknowledgements",
+    "text": "1.7 Acknowledgements\nI would like to express my gratitude to the following individuals and organizations for their support and contributions to this book:\n\nPure Data for providing a powerful and flexible platform for creative coding.\nThe Pd community for their invaluable resources, tutorials, and support.\nThe open-source community for their dedication to sharing knowledge and tools for creative coding.",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Preface</span>"
     ]
@@ -63,8 +63,8 @@
     "objectID": "index.html#license",
     "href": "index.html#license",
     "title": "Creative Coding with Pure Data",
-    "section": "1.6 License",
-    "text": "1.6 License\nThis book is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License. You are free to share and adapt the material, provided you give appropriate credit, do not use it for commercial purposes, and distribute your contributions under the same license.",
+    "section": "1.8 License",
+    "text": "1.8 License\nThis book is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License. You are free to share and adapt the material, provided you give appropriate credit, do not use it for commercial purposes, and distribute your contributions under the same license.",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Preface</span>"
     ]
@@ -297,6 +297,106 @@
     "text": "5.9 Summary\nThis patch demonstrates how to algorithmically generate a melody using a musical scale, store it, and play it back via MIDI in Pure Data. The modular structure allows for easy experimentation with different scales, lengths, and playback parameters.",
     "crumbs": [
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Random Melody Generator</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#section",
+    "href": "index.html#section",
+    "title": "Creative Coding with Pure Data",
+    "section": "1.1 ",
+    "text": "1.1",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Preface</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#what",
+    "href": "index.html#what",
+    "title": "Creative Coding with Pure Data",
+    "section": "1.1 What",
+    "text": "1.1 What",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Preface</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#what-is-thi",
+    "href": "index.html#what-is-thi",
+    "title": "Creative Coding with Pure Data",
+    "section": "1.1 What is thi",
+    "text": "1.1 What is thi",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Preface</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#what-is-this-book-about",
+    "href": "index.html#what-is-this-book-about",
+    "title": "Creative Coding with Pure Data",
+    "section": "1.2 What is this book about?",
+    "text": "1.2 What is this book about?\nThis book is the result of years of teaching undergraduate and postgraduate courses at several public universities, where I had the opportunity to explore the intersection of creativity and technology with students from diverse backgrounds. The central aim of these courses—and now this book—has been to blend a creative mindset with programming skills to develop original tools, algorithms, and artworks. Through this synthesis, we also seek to deepen our understanding of sound, interactivity, and control protocols in both technical and expressive ways.\nRather than offering a fixed, linear progression, the structure of this book is deliberately open and modular. Readers are encouraged to navigate the content according to their interests, needs, or curiosity. This flexibility supports an experimental approach to learning, where exploration and play are not only welcome but essential.\nBy approaching programming as a creative practice, this book invites you to think, make, and reflect through code. Whether you’re building an interactive sound installation, prototyping a digital instrument, or simply experimenting with new ideas, the goal is to empower you with the tools and concepts to express yourself in the digital domain—and to enjoy the process along the way.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Preface</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#h",
+    "href": "index.html#h",
+    "title": "Creative Coding with Pure Data",
+    "section": "1.1 H",
+    "text": "1.1 H",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Preface</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#hho",
+    "href": "index.html#hho",
+    "title": "Creative Coding with Pure Data",
+    "section": "1.1 Hho",
+    "text": "1.1 Hho",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Preface</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#hho-am",
+    "href": "index.html#hho-am",
+    "title": "Creative Coding with Pure Data",
+    "section": "1.1 Hho am",
+    "text": "1.1 Hho am",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Preface</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#hho-am-i",
+    "href": "index.html#hho-am-i",
+    "title": "Creative Coding with Pure Data",
+    "section": "1.1 Hho am I?",
+    "text": "1.1 Hho am I?",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Preface</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#who-am-i",
+    "href": "index.html#who-am-i",
+    "title": "Creative Coding with Pure Data",
+    "section": "1.1 Who am I?",
+    "text": "1.1 Who am I?\nMy name is Ezequiel Abregú, and I am a sound artist, composer, multi-instrumentalist, and researcher originally from Buenos Aires, Argentina. My artistic practice encompasses sound recordings, audio installations, performances, sound sculptures, sound design, and compositions for chamber music, choreography, and theater. I am particularly interested in the interplay between music, performance, sound art, live electronics, auditory and visual perception, interactive media, and the application of technology in art.\n\n\n\n\n\nDr. Ezequiel Abregú\n\n\nI hold a Ph.D. focusing on the relationship between visual and auditory perception in sound art, and a degree in Composition with Electroacoustic Media from the National University of Quilmes (UNQ). My academic career includes teaching positions at several institutions: I am a professor at the University of Quilmes (Computing Applied to Music area), the National University of Arts (Multimedia Arts area), and the University of Tres de Febrero (Electronic Arts area).\nMy passion for programming and digital audio applications has led me to explore various programming languages and tools over the past two decades, including C, C++, Python, and Pure Data. I am an advocate of the open-source philosophy, regularly working with Linux and sharing my projects in publicly accessible repositories. My technical expertise extends to hardware development using microcontrollers and single-board computers, enabling me to adopt a hands-on approach in both my artistic and research endeavors.\nMore information about my work can be found on my personal website ezequielabregu.net.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Preface</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#footnotes",
+    "href": "index.html#footnotes",
+    "title": "Creative Coding with Pure Data",
+    "section": "",
+    "text": "See photo in the margin.↩︎",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Preface</span>"
     ]
   }
 ]

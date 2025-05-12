@@ -33,3 +33,7 @@ website:
   page-navigation: true
   repo-url: https://github.com/ezequielabregu/creative-code-with-pd
   repo-actions: [edit, issue]
+
+reference-location: margin
+citation-location: margin
+caption-location: margin
