@@ -1,0 +1,118 @@
+# Introduction
+
+Traditionally, the process of creating software applications has relied heavily on text-based programming languages. Developers would write code manually in text files and execute them later to observe the outcome. While this method is efficient for those trained in programming, it often presents a steep learning curve for artists, musicians, and other creatives without a technical background. The abstract nature of text-based coding can act as a barrier to entry, especially for those more accustomed to working in visual or tactile media.
+
+Pure Data offers a radically different approach by introducing a graphical programming environment tailored to creative exploration. Instead of writing lines of code, users work with visual representations of functions—called objects—that are placed and connected on a canvas. This paradigm allows users to construct interactive programs, known as "patches," by literally drawing connections between elements. Each object can receive messages that modify its behavior in real time, creating a highly responsive and accessible system for building audio, visual, or multimedia tools.
+
+The design of Pure Data echoes the modular synthesis systems of the 20th century, where sound was shaped by routing audio through a network of physical devices linked with patch cables. This historical reference not only grounds Pure Data in a legacy of experimental electronic music but also makes it intuitive for users familiar with analog workflows. By visually "patching" connections, users can simulate and extend these traditional processes in a digital context.
+
+To fully engage with the creative potential of Pure Data, one can develop or modify algorithms for digital audio using imaginative coding strategies. For instance, building a real-time audio granulator that reinterprets live microphone input can offer both technical challenge and artistic reward. Through this lens, programming becomes a form of creative expression, blending logical structures with aesthetic decisions. By experimenting with signal flow, modulation techniques, or interactive sensors, users cultivate a mindset that is both inventive and analytical—unlocking new possibilities in digital sound design and performance.
+
+
+::: {.column-margin}
+:::
+
+## Objectives
+
+- Understand the basic concepts of Pure Data and its graphical programming environment.
+- Learn how to create and manipulate audio and visual elements using Pure Data.
+- Explore the use of Pure Data for interactive installations and performances.
+- Gain hands-on experience with various Pure Data objects and techniques.
+- Develop the skills to create your own interactive projects using Pure Data.
+  
+## What is Pure Data?
+
+Pure Data (or Pd) is a real-time graphical programming environment for audio, video, and graphical processing. Pure Data is commonly used for live music performance, VeeJaying, sound effects, composition, audio analysis, interfacing with sensors, using cameras, controlling robots or even interacting with websites.  Because all of these various media are handled as digital data within the program, many fascinating opportunities for cross-synthesis between them exist. Sound can be used to manipulate video, which could then be streamed over the internet to another computer which might analyze that video and use it to control a motor-driven installation.
+
+Programming with Pure Data is a unique interaction that is much closer to the experience of manipulating things in the physical world.  The most basic unit of functionality is a box, and the program is formed by connecting these boxes together into diagrams that both represent the flow of data while actually performing the operations mapped out in the diagram.  The program itself is always running, there is no separation between writing the program and running the program, and each action takes effect the moment it is completed.
+
+The community of users and programmers around Pure Data have created additional functions (called "externals" or "external libraries") which are used for a wide variety of other purposes, such as video processing, the playback and streaming of MP3s or Quicktime video, the manipulation and display of 3-dimensional objects and the modeling of virtual physical objects. There is a wide range of external libraries available which give Pure Data additional features. Just about any kind of programming is feasible using Pure Data as long as there are externals libraries which provide the most basic units of functionality required.
+
+The core of Pure Data written and maintained by [Miller S. Puckette](http://crca.ucsd.edu/~msp/) and includes the work of [many developers](http://www.puredata.org/), making the whole package very much a community effort. 
+
+## Why Pure Data?
+
+Pure Data (Pd) is a powerful, open-source environment for creative coding, offering a uniquely visual approach to programming that is especially suited for artists, musicians, and interactive media designers. Its intuitive interface and modular structure make it a flexible and accessible tool for developing real-time audio and visual projects—from live performances to experimental installations.
+
+One of Pure Data’s standout features is its **graphical programming interface**, which replaces traditional lines of code with visual objects and patch cords. This allows users to construct complex behaviors by connecting elements on screen, making it easier to prototype and refine creative ideas. **Real-time processing** capabilities mean that audio and visual data can be generated, modified, and responded to instantly—ideal for performances, generative art, or interactive systems that react to sensors or user input.
+
+Beyond its creative potential, Pure Data offers practical advantages: it is **cross-platform**, running on Windows, macOS, and Linux, and integrates easily with tools like **Arduino**, **Raspberry Pi**, and **Max/MSP**, enabling hybrid systems that combine digital and physical components. A rich ecosystem of **external libraries** supports advanced functions like synthesis, visualization, and computer vision. Its **open-source nature** encourages exploration and collaboration, with a supportive community, extensive documentation, and countless tutorials available. Because it’s **free and widely used in education**, Pd is not only an effective tool for artistic expression but also a valuable learning resource for developing a strong foundation in programming and multimedia design.
+
+
+
+
+## What is Creative Coding?
+
+Creative coding is the practice of using programming as a tool for artistic expression. It transforms code from a purely functional medium into a creative one, enabling the development of visual art, music, interactive experiences, and experimental media. This approach encourages artists, designers, and technologists to explore beyond the limits of traditional art forms, embracing code as a flexible and dynamic means of invention and communication.
+
+The applications of creative coding are diverse, ranging from generative visuals and algorithmic design to responsive installations and live audiovisual performances. Creators often use languages and environments specifically designed to support creative work, such as Processing, OpenFrameworks, Max/MSP, and Pure Data. These platforms make it easier to manipulate data, control media in real time, and experiment with unconventional interfaces and outputs.
+
+Importantly, creative coding transcends the boundaries of specific disciplines. It can intersect with visual art, music, dance, theater, architecture, and even narrative writing. What unites these practices is the use of code as an expressive tool—one that invites innovation, play, and conceptual exploration. Closely tied to the values of the open-source movement, creative coding thrives in a culture of sharing, where artists and developers freely exchange code, tutorials, and ideas. This collaborative ecosystem fosters continuous learning and reinvention, empowering creators to expand what is possible through digital technology.
+
+## Getting Started
+
+This section will guide you through the installation of Pure Data Vanilla, the official and minimal distribution of Pure Data, on Windows, macOS, and Linux systems. The installation process is straightforward and will have you up and running in no time. 
+
+### Installing Pure Data Vanilla
+
+The following is a step-by-step installation of **Pure Data Vanilla**, the official and minimal distribution of Pure Data, on Windows, macOS, and Linux systems.
+
+### What is Pure Data "Vanilla"?
+
+Pure Data (Pd) `Vanilla` is the standard version maintained by its original creator, **Miller Puckette**. It is lightweight, highly stable, and the most recommended version for beginners and experienced users alike.
+
+---
+
+### Installing on Windows
+
+#### Download the Installer
+- Visit the official Pure Data website: [https://puredata.info/downloads/pure-data](https://puredata.info/downloads/pure-data)
+- Scroll down to the **Windows** section.
+- Click the latest version link (e.g., `pd-0.55-2.windows-installer.exe`).
+
+#### Run the Installer
+- Locate the downloaded `.exe` file in your Downloads folder.
+- Double-click to run the installer.
+- Follow the installation wizard:
+  - Choose the installation location (default is fine).
+  - Allow the program to create a Start Menu shortcut.
+
+#### Verify Installation
+- After installation, open Pure Data from the Start Menu or desktop shortcut.
+- The main Pd window should appear with a blank patch ready.
+
+---
+
+### Installing on macOS
+
+#### Download the Disk Image
+- Visit: [https://msp.ucsd.edu/software.html](https://msp.ucsd.edu/software.html)
+- Scroll to the **macOS** section.
+- Download the `.dmg` file (e.g., `Pd-0.54-1.dmg`).
+
+#### Install the Application
+- Open the downloaded `.dmg` file.
+- Drag the Pure Data icon into the `Applications` folder.
+
+#### Open Pure Data
+- Open your `Applications` folder.
+- Right-click (or Ctrl + click) the Pure Data icon and select **Open**.
+  - The first time, macOS may warn that the app is from an unidentified developer.
+  - Confirm to proceed.
+
+#### Optional: Enable Audio Permissions
+- If prompted, allow Pure Data to access the microphone.
+- Open `System Preferences > Security & Privacy > Microphone` and ensure Pure Data is enabled.
+
+---
+
+### Installing on Linux
+
+Pure Data is available in the package repositories of most major Linux distributions. Below are instructions for popular systems.
+
+#### Debian/Ubuntu-based Systems
+
+```bash
+sudo apt update
+sudo apt install puredata
+```

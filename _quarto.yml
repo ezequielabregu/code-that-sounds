@@ -1,0 +1,35 @@
+project:
+  type: book
+
+book:
+  title: "Creative Coding with Pure Data"
+  author: "Ezequiel Abregú"
+  date: "2025-05-11"
+  chapters:
+    - index.qmd
+    - chapters/introduction.qmd
+    - chapters/chapter.qmd
+    - chapters/conclusion.qmd
+    - chapters/music-scale-generator.qmd
+
+#bibliography: references.bib
+
+format:
+  html:
+    mermaid: {}
+    theme:
+      light: cosmo
+      dark: darkly
+    toc: true
+    toc-location: left
+    code-copy: true
+    code-overflow: wrap
+    sidebar: true
+    page-layout: full
+    lightbox: true
+
+website:
+  navbar: false
+  page-navigation: true
+  repo-url: https://github.com/yourusername/puredata_course
+  repo-actions: [edit, issue]

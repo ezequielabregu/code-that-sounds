@@ -1,0 +1,29 @@
+{
+  "index.qmd": {
+    "index.html": "8ee5f0f8"
+  },
+  "chapters/01-introduction.qmd": {
+    "01-introduction.html": "883b170b"
+  },
+  "chapters/02-chapter.qmd": {
+    "02-chapter.html": "30d1d010"
+  },
+  "chapters/03-conclusion.qmd": {
+    "03-conclusion.html": "f4c5be87"
+  },
+  "chapters/04-music-scale-generator.qmd": {
+    "04-music-scale-generator.html": "37071a61"
+  },
+  "chapters/music-scale-generator.qmd": {
+    "music-scale-generator.html": "6f1008f2"
+  },
+  "chapters/introduction.qmd": {
+    "introduction.html": "d78b0bde"
+  },
+  "chapters/chapter.qmd": {
+    "chapter.html": "943cdf9b"
+  },
+  "chapters/conclusion.qmd": {
+    "conclusion.html": "0044c7ce"
+  }
+}
