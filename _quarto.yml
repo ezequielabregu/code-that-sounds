@@ -31,5 +31,5 @@ format:
 website:
   navbar: false
   page-navigation: true
-  repo-url: https://github.com/yourusername/puredata_course
+  repo-url: https://github.com/ezequielabregu/creative-code-with-pd
   repo-actions: [edit, issue]

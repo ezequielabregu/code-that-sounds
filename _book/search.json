@@ -10,78 +10,138 @@
     ]
   },
   {
-    "objectID": "index.html#title-my-quarto-book",
-    "href": "index.html#title-my-quarto-book",
+    "objectID": "index.html#what-are-you-going-to-learn",
+    "href": "index.html#what-are-you-going-to-learn",
     "title": "Creative Coding with Pure Data",
-    "section": "1.1 Title: My Quarto Book",
-    "text": "1.1 Title: My Quarto Book",
+    "section": "1.1 What are you going to learn?",
+    "text": "1.1 What are you going to learn?\nIn this book, you will learn how to use Pure Data to create interactive audio-visual projects. You will explore various techniques for sound synthesis, data visualization, and interactive installations. The book will also cover best practices for organizing and managing your Pd projects, as well as tips for debugging and optimizing your code.",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Preface</span>"
     ]
   },
   {
-    "objectID": "index.html#author-your-name",
-    "href": "index.html#author-your-name",
+    "objectID": "index.html#who-is-this-book-for",
+    "href": "index.html#who-is-this-book-for",
     "title": "Creative Coding with Pure Data",
-    "section": "1.2 Author: Your Name",
-    "text": "1.2 Author: Your Name",
+    "section": "1.2 Who is this book for?",
+    "text": "1.2 Who is this book for?\nThis book is intended for anyone interested in learning about creative coding using Pure Data. It is suitable for beginners who are new to programming and want to explore the world of interactive media, as well as for experienced programmers looking to expand their skills in sound synthesis and data visualization.",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Preface</span>"
     ]
   },
   {
-    "objectID": "index.html#table-of-contents",
-    "href": "index.html#table-of-contents",
+    "objectID": "index.html#what-are-you-dont-going-to-learn",
+    "href": "index.html#what-are-you-dont-going-to-learn",
     "title": "Creative Coding with Pure Data",
-    "section": "1.3 Table of Contents",
-    "text": "1.3 Table of Contents\n\nIntroduction\nChapter 2\nConclusion",
+    "section": "1.3 What are you don’t going to learn?",
+    "text": "1.3 What are you don’t going to learn?\nThis book is not intended to be a comprehensive guide to all aspects of Pure Data. Instead, it focuses on specific topics and projects that are relevant to creative coding. While the book will cover a wide range of techniques and concepts, it will not delve into every detail or aspect of Pure Data. This book is not a substitute for the official Pure Data documentation or other resources. It is meant to complement these resources and provide a practical, hands-on approach to learning Pure Data.",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Preface</span>"
     ]
   },
   {
-    "objectID": "chapters/01-introduction.html",
-    "href": "chapters/01-introduction.html",
-    "title": "2  Introduction to the Pure Data Course",
+    "objectID": "index.html#pre-requisites",
+    "href": "index.html#pre-requisites",
+    "title": "Creative Coding with Pure Data",
+    "section": "1.4 Pre-requisites",
+    "text": "1.4 Pre-requisites\nTo get the most out of this book, you should have a basic understanding of programming and some familiarity with the Pure Data language.\nIf you are new to Pure Data or programming, there are several free online resources that can help you get started:\n\nPure Data FLOSS Manual – A beginner-friendly and comprehensive guide to Pure Data.\nOfficial Pure Data Documentation – The official manuals and reference materials for Pure Data.\nMiller Puckette’s “Theory and Techniques of Electronic Music” – A comprehensive book by the creator of Pure Data, covering both theory and practical techniques.\n\nThese resources can be consulted before or alongside this book to strengthen your foundational knowledge.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Preface</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#acknowledgements",
+    "href": "index.html#acknowledgements",
+    "title": "Creative Coding with Pure Data",
+    "section": "1.5 Acknowledgements",
+    "text": "1.5 Acknowledgements\nI would like to express my gratitude to the following individuals and organizations for their support and contributions to this book:\n\nPure Data for providing a powerful and flexible platform for creative coding.\nThe Pd community for their invaluable resources, tutorials, and support.\nThe open-source community for their dedication to sharing knowledge and tools for creative coding.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Preface</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#license",
+    "href": "index.html#license",
+    "title": "Creative Coding with Pure Data",
+    "section": "1.6 License",
+    "text": "1.6 License\nThis book is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License. You are free to share and adapt the material, provided you give appropriate credit, do not use it for commercial purposes, and distribute your contributions under the same license.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Preface</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#how-to-use-this-book",
+    "href": "index.html#how-to-use-this-book",
+    "title": "Creative Coding with Pure Data",
+    "section": "1.7 How to use this book",
+    "text": "1.7 How to use this book\nThis book is designed to be read sequentially, but you can also jump to specific chapters or sections that interest you. Each chapter includes code examples and exercises to help you practice and apply what you’ve learned.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Preface</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/introduction.html",
+    "href": "chapters/introduction.html",
+    "title": "2  Introduction",
     "section": "",
-    "text": "2.1 Course Objectives\nWelcome to the Pure Data Course! This chapter will introduce you to the main topics and objectives of the course.",
+    "text": "2.1 Objectives\nTraditionally, the process of creating software applications has relied heavily on text-based programming languages. Developers would write code manually in text files and execute them later to observe the outcome. While this method is efficient for those trained in programming, it often presents a steep learning curve for artists, musicians, and other creatives without a technical background. The abstract nature of text-based coding can act as a barrier to entry, especially for those more accustomed to working in visual or tactile media.\nPure Data offers a radically different approach by introducing a graphical programming environment tailored to creative exploration. Instead of writing lines of code, users work with visual representations of functions—called objects—that are placed and connected on a canvas. This paradigm allows users to construct interactive programs, known as “patches,” by literally drawing connections between elements. Each object can receive messages that modify its behavior in real time, creating a highly responsive and accessible system for building audio, visual, or multimedia tools.\nThe design of Pure Data echoes the modular synthesis systems of the 20th century, where sound was shaped by routing audio through a network of physical devices linked with patch cables. This historical reference not only grounds Pure Data in a legacy of experimental electronic music but also makes it intuitive for users familiar with analog workflows. By visually “patching” connections, users can simulate and extend these traditional processes in a digital context.\nTo fully engage with the creative potential of Pure Data, one can develop or modify algorithms for digital audio using imaginative coding strategies. For instance, building a real-time audio granulator that reinterprets live microphone input can offer both technical challenge and artistic reward. Through this lens, programming becomes a form of creative expression, blending logical structures with aesthetic decisions. By experimenting with signal flow, modulation techniques, or interactive sensors, users cultivate a mindset that is both inventive and analytical—unlocking new possibilities in digital sound design and performance.",
     "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Introduction to the Pure Data Course</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Introduction</span>"
     ]
   },
   {
-    "objectID": "chapters/01-introduction.html#course-objectives",
-    "href": "chapters/01-introduction.html#course-objectives",
-    "title": "2  Introduction to the Pure Data Course",
+    "objectID": "chapters/introduction.html#objectives",
+    "href": "chapters/introduction.html#objectives",
+    "title": "2  Introduction",
     "section": "",
-    "text": "Understand the basics of Pure Data (Pd)\nLearn how to create and manipulate audio and visual data\nExplore various applications of Pure Data in music and multimedia",
+    "text": "Understand the basic concepts of Pure Data and its graphical programming environment.\nLearn how to create and manipulate audio and visual elements using Pure Data.\nExplore the use of Pure Data for interactive installations and performances.\nGain hands-on experience with various Pure Data objects and techniques.\nDevelop the skills to create your own interactive projects using Pure Data.",
     "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Introduction to the Pure Data Course</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Introduction</span>"
     ]
   },
   {
-    "objectID": "chapters/01-introduction.html#what-is-pure-data",
-    "href": "chapters/01-introduction.html#what-is-pure-data",
-    "title": "2  Introduction to the Pure Data Course",
+    "objectID": "chapters/introduction.html#what-is-pure-data",
+    "href": "chapters/introduction.html#what-is-pure-data",
+    "title": "2  Introduction",
     "section": "2.2 What is Pure Data?",
-    "text": "2.2 What is Pure Data?\nPure Data is an open-source visual programming language developed for creating interactive computer music and multimedia works. It allows users to build complex audio and visual applications through a graphical interface.",
+    "text": "2.2 What is Pure Data?\nPure Data (or Pd) is a real-time graphical programming environment for audio, video, and graphical processing. Pure Data is commonly used for live music performance, VeeJaying, sound effects, composition, audio analysis, interfacing with sensors, using cameras, controlling robots or even interacting with websites. Because all of these various media are handled as digital data within the program, many fascinating opportunities for cross-synthesis between them exist. Sound can be used to manipulate video, which could then be streamed over the internet to another computer which might analyze that video and use it to control a motor-driven installation.\nProgramming with Pure Data is a unique interaction that is much closer to the experience of manipulating things in the physical world. The most basic unit of functionality is a box, and the program is formed by connecting these boxes together into diagrams that both represent the flow of data while actually performing the operations mapped out in the diagram. The program itself is always running, there is no separation between writing the program and running the program, and each action takes effect the moment it is completed.\nThe community of users and programmers around Pure Data have created additional functions (called “externals” or “external libraries”) which are used for a wide variety of other purposes, such as video processing, the playback and streaming of MP3s or Quicktime video, the manipulation and display of 3-dimensional objects and the modeling of virtual physical objects. There is a wide range of external libraries available which give Pure Data additional features. Just about any kind of programming is feasible using Pure Data as long as there are externals libraries which provide the most basic units of functionality required.\nThe core of Pure Data written and maintained by Miller S. Puckette and includes the work of many developers, making the whole package very much a community effort.",
     "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Introduction to the Pure Data Course</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Introduction</span>"
     ]
   },
   {
-    "objectID": "chapters/01-introduction.html#getting-started",
-    "href": "chapters/01-introduction.html#getting-started",
-    "title": "2  Introduction to the Pure Data Course",
-    "section": "2.3 Getting Started",
-    "text": "2.3 Getting Started\nIn this course, we will cover the following key areas:\n\nInstallation and setup of Pure Data\nBasic concepts and components of Pure Data\nCreating your first patch\nAdvanced techniques and applications\n\nBy the end of this course, you will have a solid foundation in Pure Data and be able to create your own interactive projects. Let’s get started!",
+    "objectID": "chapters/introduction.html#why-pure-data",
+    "href": "chapters/introduction.html#why-pure-data",
+    "title": "2  Introduction",
+    "section": "2.3 Why Pure Data?",
+    "text": "2.3 Why Pure Data?\nPure Data (Pd) is a powerful, open-source environment for creative coding, offering a uniquely visual approach to programming that is especially suited for artists, musicians, and interactive media designers. Its intuitive interface and modular structure make it a flexible and accessible tool for developing real-time audio and visual projects—from live performances to experimental installations.\nOne of Pure Data’s standout features is its graphical programming interface, which replaces traditional lines of code with visual objects and patch cords. This allows users to construct complex behaviors by connecting elements on screen, making it easier to prototype and refine creative ideas. Real-time processing capabilities mean that audio and visual data can be generated, modified, and responded to instantly—ideal for performances, generative art, or interactive systems that react to sensors or user input.\nBeyond its creative potential, Pure Data offers practical advantages: it is cross-platform, running on Windows, macOS, and Linux, and integrates easily with tools like Arduino, Raspberry Pi, and Max/MSP, enabling hybrid systems that combine digital and physical components. A rich ecosystem of external libraries supports advanced functions like synthesis, visualization, and computer vision. Its open-source nature encourages exploration and collaboration, with a supportive community, extensive documentation, and countless tutorials available. Because it’s free and widely used in education, Pd is not only an effective tool for artistic expression but also a valuable learning resource for developing a strong foundation in programming and multimedia design.",
     "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Introduction to the Pure Data Course</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Introduction</span>"
     ]
   },
   {
-    "objectID": "chapters/02-chapter.html",
-    "href": "chapters/02-chapter.html",
+    "objectID": "chapters/introduction.html#what-is-creative-coding",
+    "href": "chapters/introduction.html#what-is-creative-coding",
+    "title": "2  Introduction",
+    "section": "2.4 What is Creative Coding?",
+    "text": "2.4 What is Creative Coding?\nCreative coding is the practice of using programming as a tool for artistic expression. It transforms code from a purely functional medium into a creative one, enabling the development of visual art, music, interactive experiences, and experimental media. This approach encourages artists, designers, and technologists to explore beyond the limits of traditional art forms, embracing code as a flexible and dynamic means of invention and communication.\nThe applications of creative coding are diverse, ranging from generative visuals and algorithmic design to responsive installations and live audiovisual performances. Creators often use languages and environments specifically designed to support creative work, such as Processing, OpenFrameworks, Max/MSP, and Pure Data. These platforms make it easier to manipulate data, control media in real time, and experiment with unconventional interfaces and outputs.\nImportantly, creative coding transcends the boundaries of specific disciplines. It can intersect with visual art, music, dance, theater, architecture, and even narrative writing. What unites these practices is the use of code as an expressive tool—one that invites innovation, play, and conceptual exploration. Closely tied to the values of the open-source movement, creative coding thrives in a culture of sharing, where artists and developers freely exchange code, tutorials, and ideas. This collaborative ecosystem fosters continuous learning and reinvention, empowering creators to expand what is possible through digital technology.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/introduction.html#getting-started",
+    "href": "chapters/introduction.html#getting-started",
+    "title": "2  Introduction",
+    "section": "2.5 Getting Started",
+    "text": "2.5 Getting Started\nThis section will guide you through the installation of Pure Data Vanilla, the official and minimal distribution of Pure Data, on Windows, macOS, and Linux systems. The installation process is straightforward and will have you up and running in no time.\n\n2.5.1 Installing Pure Data Vanilla\nThe following is a step-by-step installation of Pure Data Vanilla, the official and minimal distribution of Pure Data, on Windows, macOS, and Linux systems.\n\n\n2.5.2 What is Pure Data “Vanilla”?\nPure Data (Pd) Vanilla is the standard version maintained by its original creator, Miller Puckette. It is lightweight, highly stable, and the most recommended version for beginners and experienced users alike.\n\n\n\n2.5.3 Installing on Windows\n\n2.5.3.1 Download the Installer\n\nVisit the official Pure Data website: https://puredata.info/downloads/pure-data\nScroll down to the Windows section.\nClick the latest version link (e.g., pd-0.55-2.windows-installer.exe).\n\n\n\n2.5.3.2 Run the Installer\n\nLocate the downloaded .exe file in your Downloads folder.\nDouble-click to run the installer.\nFollow the installation wizard:\n\nChoose the installation location (default is fine).\nAllow the program to create a Start Menu shortcut.\n\n\n\n\n2.5.3.3 Verify Installation\n\nAfter installation, open Pure Data from the Start Menu or desktop shortcut.\nThe main Pd window should appear with a blank patch ready.\n\n\n\n\n\n2.5.4 Installing on macOS\n\n2.5.4.1 Download the Disk Image\n\nVisit: https://msp.ucsd.edu/software.html\nScroll to the macOS section.\nDownload the .dmg file (e.g., Pd-0.54-1.dmg).\n\n\n\n2.5.4.2 Install the Application\n\nOpen the downloaded .dmg file.\nDrag the Pure Data icon into the Applications folder.\n\n\n\n2.5.4.3 Open Pure Data\n\nOpen your Applications folder.\nRight-click (or Ctrl + click) the Pure Data icon and select Open.\n\nThe first time, macOS may warn that the app is from an unidentified developer.\nConfirm to proceed.\n\n\n\n\n2.5.4.4 Optional: Enable Audio Permissions\n\nIf prompted, allow Pure Data to access the microphone.\nOpen System Preferences &gt; Security & Privacy &gt; Microphone and ensure Pure Data is enabled.\n\n\n\n\n\n2.5.5 Installing on Linux\nPure Data is available in the package repositories of most major Linux distributions. Below are instructions for popular systems.\n\n2.5.5.1 Debian/Ubuntu-based Systems\nsudo apt update\nsudo apt install puredata",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/chapter.html",
+    "href": "chapters/chapter.html",
     "title": "3  Chapter 2: Specific Subjects or Themes",
     "section": "",
     "text": "3.1 Topic 1: Overview\nIn this chapter, we will explore various specific subjects or themes that are relevant to our book.\nProvide an overview of the first topic, discussing its significance and relevance.",
@@ -90,8 +150,8 @@
     ]
   },
   {
-    "objectID": "chapters/02-chapter.html#topic-2-in-depth-analysis",
-    "href": "chapters/02-chapter.html#topic-2-in-depth-analysis",
+    "objectID": "chapters/chapter.html#topic-2-in-depth-analysis",
+    "href": "chapters/chapter.html#topic-2-in-depth-analysis",
     "title": "3  Chapter 2: Specific Subjects or Themes",
     "section": "3.2 Topic 2: In-Depth Analysis",
     "text": "3.2 Topic 2: In-Depth Analysis\nDelve deeper into the second topic, presenting detailed information and insights.",
@@ -100,8 +160,8 @@
     ]
   },
   {
-    "objectID": "chapters/02-chapter.html#topic-3-case-studies",
-    "href": "chapters/02-chapter.html#topic-3-case-studies",
+    "objectID": "chapters/chapter.html#topic-3-case-studies",
+    "href": "chapters/chapter.html#topic-3-case-studies",
     "title": "3  Chapter 2: Specific Subjects or Themes",
     "section": "3.3 Topic 3: Case Studies",
     "text": "3.3 Topic 3: Case Studies\nInclude case studies or examples that illustrate the concepts discussed in this chapter.",
@@ -110,8 +170,8 @@
     ]
   },
   {
-    "objectID": "chapters/02-chapter.html#conclusion",
-    "href": "chapters/02-chapter.html#conclusion",
+    "objectID": "chapters/chapter.html#conclusion",
+    "href": "chapters/chapter.html#conclusion",
     "title": "3  Chapter 2: Specific Subjects or Themes",
     "section": "3.4 Conclusion",
     "text": "3.4 Conclusion\nSummarize the key points covered in this chapter and their implications for the overall theme of the book.",
@@ -120,8 +180,8 @@
     ]
   },
   {
-    "objectID": "chapters/03-conclusion.html",
-    "href": "chapters/03-conclusion.html",
+    "objectID": "chapters/conclusion.html",
+    "href": "chapters/conclusion.html",
     "title": "4  Conclusion",
     "section": "",
     "text": "4.1 Key Takeaways\nIn this chapter, we summarize the key points discussed throughout the book. We reflect on the main topics introduced in the first chapter and the detailed discussions in the second chapter.\nThank you for reading! We hope this book has provided valuable insights and knowledge.",
@@ -130,123 +190,13 @@
     ]
   },
   {
-    "objectID": "chapters/03-conclusion.html#key-takeaways",
-    "href": "chapters/03-conclusion.html#key-takeaways",
+    "objectID": "chapters/conclusion.html#key-takeaways",
+    "href": "chapters/conclusion.html#key-takeaways",
     "title": "4  Conclusion",
     "section": "",
     "text": "Highlight the main objectives of the book.\nDiscuss the significance of the topics covered.\nEncourage further exploration and learning in the subject area.",
     "crumbs": [
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Conclusion</span>"
-    ]
-  },
-  {
-    "objectID": "chapters/04-music-scale-generator.html",
-    "href": "chapters/04-music-scale-generator.html",
-    "title": "5  Random Melody Generator",
-    "section": "",
-    "text": "5.1 Patch Overview\nThis chapter provides a step-by-step explanation of the music_scale_B.pd Pure Data patch. The patch demonstrates how to generate a melody using a musical scale, store it in an array, and play it back using MIDI.\nThe patch is organized into several functional blocks:\nBelow is a simplified diagram of the main data flow:\nflowchart TD\n    A[Scale Input] --&gt; B[Melody Generation]\n    B --&gt; C[Store in Array]\n    C --&gt; D[Playback Control]\n    D --&gt; E[MIDI Output]",
-    "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Random Melody Generator</span>"
-    ]
-  },
-  {
-    "objectID": "chapters/04-music-scale-generator.html#patch-overview",
-    "href": "chapters/04-music-scale-generator.html#patch-overview",
-    "title": "5  Random Melody Generator",
-    "section": "",
-    "text": "Scale and Melody Generation\nMelody Storage\nPlayback Control\nMIDI Output",
-    "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Random Melody Generator</span>"
-    ]
-  },
-  {
-    "objectID": "chapters/04-music-scale-generator.html#scale-and-melody-generation",
-    "href": "chapters/04-music-scale-generator.html#scale-and-melody-generation",
-    "title": "5  Random Melody Generator",
-    "section": "5.2 Scale and Melody Generation",
-    "text": "5.2 Scale and Melody Generation\n\n5.2.1 Scale Definition\nThe patch starts with a message box containing the scale intervals:\n0 2 4 5 7 9 11\nFor example, this represents a major scale in semitones accordding to the following mapping:\n\n\n\n\nNote\nInterval\n\n\n\n\nC\n0\n\n\nC# / Db\n1\n\n\nD\n2\n\n\nD# / Eb\n3\n\n\nE\n4\n\n\nF\n5\n\n\nF# / Gb\n6\n\n\nG\n7\n\n\nG# / Ab\n8\n\n\nA\n9\n\n\nA# / Bb\n10\n\n\nB\n11\n\n\n\n\n \nThe scale is appended to a list and processed to determine its length.\n\n\n5.2.2 Random Note Selection\nA random number between 0 and 47 is generated (random 48), then shifted up by 60 to get a MIDI note in a typical range.\nThe note is then mapped to the scale using modulo operations and list indexing.\n\n\n5.2.3 Melody Construction\nThe patch uses a loop (until, i, + 1) to generate a sequence of notes.\nEach note is calculated based on the scale and stored in a list.",
-    "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Random Melody Generator</span>"
-    ]
-  },
-  {
-    "objectID": "chapters/04-music-scale-generator.html#melody-storage",
-    "href": "chapters/04-music-scale-generator.html#melody-storage",
-    "title": "5  Random Melody Generator",
-    "section": "5.3 Melody Storage",
-    "text": "5.3 Melody Storage\nThe generated melody is stored in a Pure Data array called melody.\nThe array is visualized in the patch for reference.\n\n\n\n\n\ngraph LR\n    MelodyList --&gt;|tabwrite| MelodyArray",
-    "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Random Melody Generator</span>"
-    ]
-  },
-  {
-    "objectID": "chapters/04-music-scale-generator.html#playback-control",
-    "href": "chapters/04-music-scale-generator.html#playback-control",
-    "title": "5  Random Melody Generator",
-    "section": "5.4 Playback Control",
-    "text": "5.4 Playback Control\nA metro object (metronome) triggers playback at a tempo set by a horizontal slider.\nEach bang from the metronome advances an index, which reads the next note from the melody array.",
-    "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Random Melody Generator</span>"
-    ]
-  },
-  {
-    "objectID": "chapters/04-music-scale-generator.html#midi-output",
-    "href": "chapters/04-music-scale-generator.html#midi-output",
-    "title": "5  Random Melody Generator",
-    "section": "5.5 MIDI Output",
-    "text": "5.5 MIDI Output\nThe note value is sent to a makenote object, which creates a MIDI note with velocity and duration.\nThe note is then sent to the noteout object, which outputs the MIDI note to your system’s MIDI device.",
-    "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Random Melody Generator</span>"
-    ]
-  },
-  {
-    "objectID": "chapters/04-music-scale-generator.html#step-by-step-data-flow",
-    "href": "chapters/04-music-scale-generator.html#step-by-step-data-flow",
-    "title": "5  Random Melody Generator",
-    "section": "5.6 Step-by-Step Data Flow",
-    "text": "5.6 Step-by-Step Data Flow\n\nInitialize Scale: The scale intervals are defined and appended to a list.\nGenerate Melody: A loop generates random notes mapped to the scale, storing them in the melody array.\nPlayback: A metronome triggers reading from the array, sending notes to MIDI output.\nVisualization: The melody array is displayed as a graph in the patch.",
-    "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Random Melody Generator</span>"
-    ]
-  },
-  {
-    "objectID": "chapters/04-music-scale-generator.html#key-objects-and-their-roles",
-    "href": "chapters/04-music-scale-generator.html#key-objects-and-their-roles",
-    "title": "5  Random Melody Generator",
-    "section": "5.7 Key Objects and Their Roles",
-    "text": "5.7 Key Objects and Their Roles\n\n\n\n\nObject\nPurpose\n\n\n\n\nrandom 48\nGenerates random note indices\n\n\n+ 60\nShifts notes to a higher MIDI octave\n\n\nmod 12\nMaps notes to scale degrees\n\n\nlist-idx\nRetrieves scale degree from the list\n\n\ntabwrite\nWrites notes to the melody array\n\n\nmetro\nControls playback timing\n\n\ntabread\nReads notes from the melody array\n\n\nmakenote\nCreates MIDI notes with velocity/duration\n\n\nnoteout\nSends MIDI notes to output",
-    "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Random Melody Generator</span>"
-    ]
-  },
-  {
-    "objectID": "chapters/04-music-scale-generator.html#diagram-melody-generation-and-playback",
-    "href": "chapters/04-music-scale-generator.html#diagram-melody-generation-and-playback",
-    "title": "5  Random Melody Generator",
-    "section": "5.8 Diagram: Melody Generation and Playback",
-    "text": "5.8 Diagram: Melody Generation and Playback\n\n\n\n\n\nflowchart TD\n    S[Scale Message] --&gt; L[list Append]\n    L --&gt; R[random + Offset]\n    R --&gt; M[Modulo/Indexing]\n    M --&gt; A[Melody Array]\n    A --&gt; P[Playback - metro, tabread]\n    P --&gt; MN[makenote]\n    MN --&gt; NO[noteout]",
-    "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Random Melody Generator</span>"
-    ]
-  },
-  {
-    "objectID": "chapters/04-music-scale-generator.html#summary",
-    "href": "chapters/04-music-scale-generator.html#summary",
-    "title": "5  Random Melody Generator",
-    "section": "5.9 Summary",
-    "text": "5.9 Summary\nThis patch demonstrates how to algorithmically generate a melody using a musical scale, store it, and play it back via MIDI in Pure Data. The modular structure allows for easy experimentation with different scales, lengths, and playback parameters.",
-    "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Random Melody Generator</span>"
-    ]
-  },
-  {
-    "objectID": "chapters/04-music-scale-generator.html#random-melody-generator",
-    "href": "chapters/04-music-scale-generator.html#random-melody-generator",
-    "title": "5  Random Melody Generator",
-    "section": "",
-    "text": "This patch is designed to be a simple yet effective tool for generating random melodies based on a defined scale. It can be used for various applications, including music composition, sound design, and algorithmic music generation.",
-    "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Random Melody Generator</span>"
     ]
   },
   {
@@ -347,356 +297,6 @@
     "text": "5.9 Summary\nThis patch demonstrates how to algorithmically generate a melody using a musical scale, store it, and play it back via MIDI in Pure Data. The modular structure allows for easy experimentation with different scales, lengths, and playback parameters.",
     "crumbs": [
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Random Melody Generator</span>"
-    ]
-  },
-  {
-    "objectID": "chapters/introduction.html",
-    "href": "chapters/introduction.html",
-    "title": "2  Introduction",
-    "section": "",
-    "text": "2.1 Objectives\nTraditionally, the process of creating software applications has relied heavily on text-based programming languages. Developers would write code manually in text files and execute them later to observe the outcome. While this method is efficient for those trained in programming, it often presents a steep learning curve for artists, musicians, and other creatives without a technical background. The abstract nature of text-based coding can act as a barrier to entry, especially for those more accustomed to working in visual or tactile media.\nPure Data offers a radically different approach by introducing a graphical programming environment tailored to creative exploration. Instead of writing lines of code, users work with visual representations of functions—called objects—that are placed and connected on a canvas. This paradigm allows users to construct interactive programs, known as “patches,” by literally drawing connections between elements. Each object can receive messages that modify its behavior in real time, creating a highly responsive and accessible system for building audio, visual, or multimedia tools.\nThe design of Pure Data echoes the modular synthesis systems of the 20th century, where sound was shaped by routing audio through a network of physical devices linked with patch cables. This historical reference not only grounds Pure Data in a legacy of experimental electronic music but also makes it intuitive for users familiar with analog workflows. By visually “patching” connections, users can simulate and extend these traditional processes in a digital context.\nTo fully engage with the creative potential of Pure Data, one can develop or modify algorithms for digital audio using imaginative coding strategies. For instance, building a real-time audio granulator that reinterprets live microphone input can offer both technical challenge and artistic reward. Through this lens, programming becomes a form of creative expression, blending logical structures with aesthetic decisions. By experimenting with signal flow, modulation techniques, or interactive sensors, users cultivate a mindset that is both inventive and analytical—unlocking new possibilities in digital sound design and performance.",
-    "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Introduction</span>"
-    ]
-  },
-  {
-    "objectID": "chapters/introduction.html#course-objectives",
-    "href": "chapters/introduction.html#course-objectives",
-    "title": "2  Introduction",
-    "section": "",
-    "text": "Understand the basic concepts of Pure Data and its graphical programming environment.\nLearn how to create and manipulate audio and visual elements using Pure Data.\nExplore the use of Pure Data for interactive installations and performances.\nGain hands-on experience with various Pure Data objects and techniques.\nDevelop the skills to create your own interactive projects using Pure Data.",
-    "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Introduction</span>"
-    ]
-  },
-  {
-    "objectID": "chapters/introduction.html#what-is-pure-data",
-    "href": "chapters/introduction.html#what-is-pure-data",
-    "title": "2  Introduction",
-    "section": "2.2 What is Pure Data?",
-    "text": "2.2 What is Pure Data?\nPure Data (or Pd) is a real-time graphical programming environment for audio, video, and graphical processing. Pure Data is commonly used for live music performance, VeeJaying, sound effects, composition, audio analysis, interfacing with sensors, using cameras, controlling robots or even interacting with websites. Because all of these various media are handled as digital data within the program, many fascinating opportunities for cross-synthesis between them exist. Sound can be used to manipulate video, which could then be streamed over the internet to another computer which might analyze that video and use it to control a motor-driven installation.\nProgramming with Pure Data is a unique interaction that is much closer to the experience of manipulating things in the physical world. The most basic unit of functionality is a box, and the program is formed by connecting these boxes together into diagrams that both represent the flow of data while actually performing the operations mapped out in the diagram. The program itself is always running, there is no separation between writing the program and running the program, and each action takes effect the moment it is completed.\nThe community of users and programmers around Pure Data have created additional functions (called “externals” or “external libraries”) which are used for a wide variety of other purposes, such as video processing, the playback and streaming of MP3s or Quicktime video, the manipulation and display of 3-dimensional objects and the modeling of virtual physical objects. There is a wide range of external libraries available which give Pure Data additional features. Just about any kind of programming is feasible using Pure Data as long as there are externals libraries which provide the most basic units of functionality required.\nThe core of Pure Data written and maintained by Miller S. Puckette and includes the work of many developers, making the whole package very much a community effort.",
-    "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Introduction</span>"
-    ]
-  },
-  {
-    "objectID": "chapters/introduction.html#getting-started",
-    "href": "chapters/introduction.html#getting-started",
-    "title": "2  Introduction",
-    "section": "2.5 Getting Started",
-    "text": "2.5 Getting Started\nThis section will guide you through the installation of Pure Data Vanilla, the official and minimal distribution of Pure Data, on Windows, macOS, and Linux systems. The installation process is straightforward and will have you up and running in no time.\n\n2.5.1 Installing Pure Data Vanilla\nThe following is a step-by-step installation of Pure Data Vanilla, the official and minimal distribution of Pure Data, on Windows, macOS, and Linux systems.\n\n\n2.5.2 What is Pure Data “Vanilla”?\nPure Data (Pd) Vanilla is the standard version maintained by its original creator, Miller Puckette. It is lightweight, highly stable, and the most recommended version for beginners and experienced users alike.\n\n\n\n2.5.3 Installing on Windows\n\n2.5.3.1 Download the Installer\n\nVisit the official Pure Data website: https://puredata.info/downloads/pure-data\nScroll down to the Windows section.\nClick the latest version link (e.g., pd-0.55-2.windows-installer.exe).\n\n\n\n2.5.3.2 Run the Installer\n\nLocate the downloaded .exe file in your Downloads folder.\nDouble-click to run the installer.\nFollow the installation wizard:\n\nChoose the installation location (default is fine).\nAllow the program to create a Start Menu shortcut.\n\n\n\n\n2.5.3.3 Verify Installation\n\nAfter installation, open Pure Data from the Start Menu or desktop shortcut.\nThe main Pd window should appear with a blank patch ready.\n\n\n\n\n\n2.5.4 Installing on macOS\n\n2.5.4.1 Download the Disk Image\n\nVisit: https://msp.ucsd.edu/software.html\nScroll to the macOS section.\nDownload the .dmg file (e.g., Pd-0.54-1.dmg).\n\n\n\n2.5.4.2 Install the Application\n\nOpen the downloaded .dmg file.\nDrag the Pure Data icon into the Applications folder.\n\n\n\n2.5.4.3 Open Pure Data\n\nOpen your Applications folder.\nRight-click (or Ctrl + click) the Pure Data icon and select Open.\n\nThe first time, macOS may warn that the app is from an unidentified developer.\nConfirm to proceed.\n\n\n\n\n2.5.4.4 Optional: Enable Audio Permissions\n\nIf prompted, allow Pure Data to access the microphone.\nOpen System Preferences &gt; Security & Privacy &gt; Microphone and ensure Pure Data is enabled.\n\n\n\n\n\n2.5.5 Installing on Linux\nPure Data is available in the package repositories of most major Linux distributions. Below are instructions for popular systems.\n\n2.5.5.1 Debian/Ubuntu-based Systems\nsudo apt update\nsudo apt install puredata",
-    "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Introduction</span>"
-    ]
-  },
-  {
-    "objectID": "chapters/chapter.html",
-    "href": "chapters/chapter.html",
-    "title": "3  Chapter 2: Specific Subjects or Themes",
-    "section": "",
-    "text": "3.1 Topic 1: Overview\nIn this chapter, we will explore various specific subjects or themes that are relevant to our book.\nProvide an overview of the first topic, discussing its significance and relevance.",
-    "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Chapter 2: Specific Subjects or Themes</span>"
-    ]
-  },
-  {
-    "objectID": "chapters/chapter.html#topic-2-in-depth-analysis",
-    "href": "chapters/chapter.html#topic-2-in-depth-analysis",
-    "title": "3  Chapter 2: Specific Subjects or Themes",
-    "section": "3.2 Topic 2: In-Depth Analysis",
-    "text": "3.2 Topic 2: In-Depth Analysis\nDelve deeper into the second topic, presenting detailed information and insights.",
-    "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Chapter 2: Specific Subjects or Themes</span>"
-    ]
-  },
-  {
-    "objectID": "chapters/chapter.html#topic-3-case-studies",
-    "href": "chapters/chapter.html#topic-3-case-studies",
-    "title": "3  Chapter 2: Specific Subjects or Themes",
-    "section": "3.3 Topic 3: Case Studies",
-    "text": "3.3 Topic 3: Case Studies\nInclude case studies or examples that illustrate the concepts discussed in this chapter.",
-    "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Chapter 2: Specific Subjects or Themes</span>"
-    ]
-  },
-  {
-    "objectID": "chapters/chapter.html#conclusion",
-    "href": "chapters/chapter.html#conclusion",
-    "title": "3  Chapter 2: Specific Subjects or Themes",
-    "section": "3.4 Conclusion",
-    "text": "3.4 Conclusion\nSummarize the key points covered in this chapter and their implications for the overall theme of the book.",
-    "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Chapter 2: Specific Subjects or Themes</span>"
-    ]
-  },
-  {
-    "objectID": "chapters/conclusion.html",
-    "href": "chapters/conclusion.html",
-    "title": "4  Conclusion",
-    "section": "",
-    "text": "4.1 Key Takeaways\nIn this chapter, we summarize the key points discussed throughout the book. We reflect on the main topics introduced in the first chapter and the detailed discussions in the second chapter.\nThank you for reading! We hope this book has provided valuable insights and knowledge.",
-    "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Conclusion</span>"
-    ]
-  },
-  {
-    "objectID": "chapters/conclusion.html#key-takeaways",
-    "href": "chapters/conclusion.html#key-takeaways",
-    "title": "4  Conclusion",
-    "section": "",
-    "text": "Highlight the main objectives of the book.\nDiscuss the significance of the topics covered.\nEncourage further exploration and learning in the subject area.",
-    "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Conclusion</span>"
-    ]
-  },
-  {
-    "objectID": "index.html#section",
-    "href": "index.html#section",
-    "title": "Creative Coding with Pure Data",
-    "section": "1.4 ",
-    "text": "1.4",
-    "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
-    ]
-  },
-  {
-    "objectID": "index.html#what",
-    "href": "index.html#what",
-    "title": "Creative Coding with Pure Data",
-    "section": "1.2 What",
-    "text": "1.2 What",
-    "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
-    ]
-  },
-  {
-    "objectID": "index.html#what-are",
-    "href": "index.html#what-are",
-    "title": "Creative Coding with Pure Data",
-    "section": "1.2 What are",
-    "text": "1.2 What are",
-    "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
-    ]
-  },
-  {
-    "objectID": "index.html#what-are-we-going-to-learn",
-    "href": "index.html#what-are-we-going-to-learn",
-    "title": "Creative Coding with Pure Data",
-    "section": "1.1 What are we going to learn?",
-    "text": "1.1 What are we going to learn?",
-    "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
-    ]
-  },
-  {
-    "objectID": "index.html#what-are-you-going-to-learn",
-    "href": "index.html#what-are-you-going-to-learn",
-    "title": "Creative Coding with Pure Data",
-    "section": "1.1 What are you going to learn?",
-    "text": "1.1 What are you going to learn?\nIn this book, you will learn how to use Pure Data to create interactive audio-visual projects. You will explore various techniques for sound synthesis, data visualization, and interactive installations. The book will also cover best practices for organizing and managing your Pd projects, as well as tips for debugging and optimizing your code.",
-    "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Preface</span>"
-    ]
-  },
-  {
-    "objectID": "index.html#what-are-you",
-    "href": "index.html#what-are-you",
-    "title": "Creative Coding with Pure Data",
-    "section": "1.2 What are you",
-    "text": "1.2 What are you",
-    "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
-    ]
-  },
-  {
-    "objectID": "index.html#what-are-you-d",
-    "href": "index.html#what-are-you-d",
-    "title": "Creative Coding with Pure Data",
-    "section": "1.2 What are you d",
-    "text": "1.2 What are you d",
-    "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
-    ]
-  },
-  {
-    "objectID": "index.html#what-are-you-don",
-    "href": "index.html#what-are-you-don",
-    "title": "Creative Coding with Pure Data",
-    "section": "1.2 What are you don",
-    "text": "1.2 What are you don",
-    "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
-    ]
-  },
-  {
-    "objectID": "index.html#what-are-you-dont-going-to-learn",
-    "href": "index.html#what-are-you-dont-going-to-learn",
-    "title": "Creative Coding with Pure Data",
-    "section": "1.3 What are you don’t going to learn?",
-    "text": "1.3 What are you don’t going to learn?\nThis book is not intended to be a comprehensive guide to all aspects of Pure Data. Instead, it focuses on specific topics and projects that are relevant to creative coding. While the book will cover a wide range of techniques and concepts, it will not delve into every detail or aspect of Pure Data. This book is not a substitute for the official Pure Data documentation or other resources. It is meant to complement these resources and provide a practical, hands-on approach to learning Pure Data.",
-    "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Preface</span>"
-    ]
-  },
-  {
-    "objectID": "index.html#who-is-this-book-for",
-    "href": "index.html#who-is-this-book-for",
-    "title": "Creative Coding with Pure Data",
-    "section": "1.2 Who is this book for?",
-    "text": "1.2 Who is this book for?\nThis book is intended for anyone interested in learning about creative coding using Pure Data. It is suitable for beginners who are new to programming and want to explore the world of interactive media, as well as for experienced programmers looking to expand their skills in sound synthesis and data visualization.",
-    "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Preface</span>"
-    ]
-  },
-  {
-    "objectID": "index.html#pre-requisites",
-    "href": "index.html#pre-requisites",
-    "title": "Creative Coding with Pure Data",
-    "section": "1.4 Pre-requisites",
-    "text": "1.4 Pre-requisites\nTo get the most out of this book, you should have a basic understanding of programming and some familiarity with the Pure Data language.\nIf you are new to Pure Data or programming, there are several free online resources that can help you get started:\n\nPure Data FLOSS Manual – A beginner-friendly and comprehensive guide to Pure Data.\nOfficial Pure Data Documentation – The official manuals and reference materials for Pure Data.\nMiller Puckette’s “Theory and Techniques of Electronic Music” – A comprehensive book by the creator of Pure Data, covering both theory and practical techniques.\n\nThese resources can be consulted before or alongside this book to strengthen your foundational knowledge.",
-    "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Preface</span>"
-    ]
-  },
-  {
-    "objectID": "index.html#acknowledgements",
-    "href": "index.html#acknowledgements",
-    "title": "Creative Coding with Pure Data",
-    "section": "1.5 Acknowledgements",
-    "text": "1.5 Acknowledgements\nI would like to express my gratitude to the following individuals and organizations for their support and contributions to this book:\n\nPure Data for providing a powerful and flexible platform for creative coding.\nThe Pd community for their invaluable resources, tutorials, and support.\nThe open-source community for their dedication to sharing knowledge and tools for creative coding.",
-    "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Preface</span>"
-    ]
-  },
-  {
-    "objectID": "index.html#license",
-    "href": "index.html#license",
-    "title": "Creative Coding with Pure Data",
-    "section": "1.6 License",
-    "text": "1.6 License\nThis book is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License. You are free to share and adapt the material, provided you give appropriate credit, do not use it for commercial purposes, and distribute your contributions under the same license.",
-    "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Preface</span>"
-    ]
-  },
-  {
-    "objectID": "index.html#how-to-use-this-book",
-    "href": "index.html#how-to-use-this-book",
-    "title": "Creative Coding with Pure Data",
-    "section": "1.7 How to use this book",
-    "text": "1.7 How to use this book\nThis book is designed to be read sequentially, but you can also jump to specific chapters or sections that interest you. Each chapter includes code examples and exercises to help you practice and apply what you’ve learned.",
-    "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Preface</span>"
-    ]
-  },
-  {
-    "objectID": "index.html#pre-requisites-1",
-    "href": "index.html#pre-requisites-1",
-    "title": "Creative Coding with Pure Data",
-    "section": "1.5 Pre-requisites",
-    "text": "1.5 Pre-requisites",
-    "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
-    ]
-  },
-  {
-    "objectID": "index.html#pre-requisites-2",
-    "href": "index.html#pre-requisites-2",
-    "title": "Creative Coding with Pure Data",
-    "section": "1.6 Pre-requisites",
-    "text": "1.6 Pre-requisites\nTo get the most out of this book, you should have a basic understanding of programming and some familiarity with the Pure Data language.\nIf you are new to Pure Data or programming, there are several free online resources that can help you get started:\n\nPure Data FLOSS Manual – A beginner-friendly and comprehensive guide to Pure Data.\nOfficial Pure Data Documentation – The official manuals and reference materials for Pure Data.\nMiller Puckette’s “Theory and Techniques of Electronic Music” – A comprehensive book by the creator of Pure Data, covering both theory and practical techniques.\n\nThese resources can be consulted before or alongside this book to strengthen your foundational knowledge.",
-    "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
-    ]
-  },
-  {
-    "objectID": "chapters/introduction.html#what-is-creative-coding",
-    "href": "chapters/introduction.html#what-is-creative-coding",
-    "title": "2  Introduction",
-    "section": "2.4 What is Creative Coding?",
-    "text": "2.4 What is Creative Coding?\nCreative coding is the practice of using programming as a tool for artistic expression. It transforms code from a purely functional medium into a creative one, enabling the development of visual art, music, interactive experiences, and experimental media. This approach encourages artists, designers, and technologists to explore beyond the limits of traditional art forms, embracing code as a flexible and dynamic means of invention and communication.\nThe applications of creative coding are diverse, ranging from generative visuals and algorithmic design to responsive installations and live audiovisual performances. Creators often use languages and environments specifically designed to support creative work, such as Processing, OpenFrameworks, Max/MSP, and Pure Data. These platforms make it easier to manipulate data, control media in real time, and experiment with unconventional interfaces and outputs.\nImportantly, creative coding transcends the boundaries of specific disciplines. It can intersect with visual art, music, dance, theater, architecture, and even narrative writing. What unites these practices is the use of code as an expressive tool—one that invites innovation, play, and conceptual exploration. Closely tied to the values of the open-source movement, creative coding thrives in a culture of sharing, where artists and developers freely exchange code, tutorials, and ideas. This collaborative ecosystem fosters continuous learning and reinvention, empowering creators to expand what is possible through digital technology.",
-    "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Introduction</span>"
-    ]
-  },
-  {
-    "objectID": "chapters/introduction.html#section",
-    "href": "chapters/introduction.html#section",
-    "title": "2  Introduction",
-    "section": "2.3 ",
-    "text": "2.3",
-    "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Introduction</span>"
-    ]
-  },
-  {
-    "objectID": "chapters/introduction.html#why",
-    "href": "chapters/introduction.html#why",
-    "title": "2  Introduction",
-    "section": "2.3 Why",
-    "text": "2.3 Why",
-    "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Introduction</span>"
-    ]
-  },
-  {
-    "objectID": "chapters/introduction.html#why-pure-data",
-    "href": "chapters/introduction.html#why-pure-data",
-    "title": "2  Introduction",
-    "section": "2.3 Why Pure Data?",
-    "text": "2.3 Why Pure Data?\nPure Data (Pd) is a powerful, open-source environment for creative coding, offering a uniquely visual approach to programming that is especially suited for artists, musicians, and interactive media designers. Its intuitive interface and modular structure make it a flexible and accessible tool for developing real-time audio and visual projects—from live performances to experimental installations.\nOne of Pure Data’s standout features is its graphical programming interface, which replaces traditional lines of code with visual objects and patch cords. This allows users to construct complex behaviors by connecting elements on screen, making it easier to prototype and refine creative ideas. Real-time processing capabilities mean that audio and visual data can be generated, modified, and responded to instantly—ideal for performances, generative art, or interactive systems that react to sensors or user input.\nBeyond its creative potential, Pure Data offers practical advantages: it is cross-platform, running on Windows, macOS, and Linux, and integrates easily with tools like Arduino, Raspberry Pi, and Max/MSP, enabling hybrid systems that combine digital and physical components. A rich ecosystem of external libraries supports advanced functions like synthesis, visualization, and computer vision. Its open-source nature encourages exploration and collaboration, with a supportive community, extensive documentation, and countless tutorials available. Because it’s free and widely used in education, Pd is not only an effective tool for artistic expression but also a valuable learning resource for developing a strong foundation in programming and multimedia design.",
-    "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Introduction</span>"
-    ]
-  },
-  {
-    "objectID": "chapters/introduction.html#what-is-pure-data-vanilla",
-    "href": "chapters/introduction.html#what-is-pure-data-vanilla",
-    "title": "2  Introduction",
-    "section": "2.6 What is Pure Data Vanilla?",
-    "text": "2.6 What is Pure Data Vanilla?\nPure Data (Pd) Vanilla is the standard version maintained by its original creator, Miller Puckette. It is lightweight, highly stable, and the most recommended version for beginners and experienced users alike.",
-    "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Introduction</span>"
-    ]
-  },
-  {
-    "objectID": "chapters/introduction.html#installing-on-windows",
-    "href": "chapters/introduction.html#installing-on-windows",
-    "title": "2  Introduction",
-    "section": "2.6 Installing on Windows",
-    "text": "2.6 Installing on Windows\n\n2.6.1 1. Download the Installer\n\nVisit the official Pure Data website: https://msp.ucsd.edu/software.html\nScroll down to the Windows section.\nClick the latest version link (e.g., pd-0.54-1.windows-installer.exe).\n\n\n\n2.6.2 2. Run the Installer\n\nLocate the downloaded .exe file in your Downloads folder.\nDouble-click to run the installer.\nFollow the installation wizard:\n\nChoose the installation location (default is fine).\nAllow the program to create a Start Menu shortcut.\n\n\n\n\n2.6.3 3. Verify Installation\n\nAfter installation, open Pure Data from the Start Menu or desktop shortcut.\nThe main Pd window should appear with a blank patch ready.",
-    "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Introduction</span>"
-    ]
-  },
-  {
-    "objectID": "chapters/introduction.html#installing-on-macos",
-    "href": "chapters/introduction.html#installing-on-macos",
-    "title": "2  Introduction",
-    "section": "2.6 Installing on macOS",
-    "text": "2.6 Installing on macOS\n\n2.6.1 1. Download the Disk Image\n\nVisit: https://msp.ucsd.edu/software.html\nScroll to the macOS section.\nDownload the .dmg file (e.g., Pd-0.54-1.dmg).\n\n\n\n2.6.2 2. Install the Application\n\nOpen the downloaded .dmg file.\nDrag the Pure Data icon into the Applications folder.\n\n\n\n2.6.3 3. Open Pure Data\n\nOpen your Applications folder.\nRight-click (or Ctrl + click) the Pure Data icon and select Open.\n\nThe first time, macOS may warn that the app is from an unidentified developer.\nConfirm to proceed.\n\n\n\n\n2.6.4 4. Optional: Enable Audio Permissions\n\nIf prompted, allow Pure Data to access the microphone.\nOpen System Preferences &gt; Security & Privacy &gt; Microphone and ensure Pure Data is enabled.",
-    "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Introduction</span>"
-    ]
-  },
-  {
-    "objectID": "chapters/introduction.html#installing-on-linux",
-    "href": "chapters/introduction.html#installing-on-linux",
-    "title": "2  Introduction",
-    "section": "2.6 🐧 Installing on Linux",
-    "text": "2.6 🐧 Installing on Linux\nPure Data is available in the package repositories of most major Linux distributions. Below are instructions for popular systems.\n\n2.6.1 Debian/Ubuntu-based Systems\nsudo apt update\nsudo apt install puredata",
-    "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Introduction</span>"
-    ]
-  },
-  {
-    "objectID": "chapters/introduction.html#objectives",
-    "href": "chapters/introduction.html#objectives",
-    "title": "2  Introduction",
-    "section": "",
-    "text": "Understand the basic concepts of Pure Data and its graphical programming environment.\nLearn how to create and manipulate audio and visual elements using Pure Data.\nExplore the use of Pure Data for interactive installations and performances.\nGain hands-on experience with various Pure Data objects and techniques.\nDevelop the skills to create your own interactive projects using Pure Data.",
-    "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Introduction</span>"
     ]
   }
 ]
