@@ -1,0 +1,23 @@
+# macOS system files
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon?
+._*
+
+# Quarto build output
+_quarto/
+*.html
+*.pdf
+*.docx
+
+# VS Code settings
+.vscode/
+
+# Logs and environments
+*.log
+.env
+
+# Python cache (if using Python)
+__pycache__/
+*.pyc
