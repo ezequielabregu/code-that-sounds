@@ -90,6 +90,16 @@
     ]
   },
   {
+    "objectID": "index.html#footnotes",
+    "href": "index.html#footnotes",
+    "title": "Creative Coding with Pure Data",
+    "section": "",
+    "text": "puredata.info/downloads/pure-data↩︎",
+    "crumbs": [
+      "Preface"
+    ]
+  },
+  {
     "objectID": "chapters/introduction.html",
     "href": "chapters/introduction.html",
     "title": "1  Introduction",
@@ -130,276 +140,6 @@
     ]
   },
   {
-    "objectID": "chapters/music-scale-generator.html",
-    "href": "chapters/music-scale-generator.html",
-    "title": "5  Random Melody Generator",
-    "section": "",
-    "text": "5.1 Patch Overview\nThis chapter provides a step-by-step explanation of the music_scale_B.pd Pure Data patch. The patch demonstrates how to generate a melody using a musical scale, store it in an array, and play it back using MIDI.\nThe patch is organized into several functional blocks:\nBelow is a simplified diagram of the main data flow:\nflowchart TD\n    A[Scale Input] --&gt; B[Melody Generation]\n    B --&gt; C[Store in Array]\n    C --&gt; D[Playback Control]\n    D --&gt; E[MIDI Output]",
-    "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Random Melody Generator</span>"
-    ]
-  },
-  {
-    "objectID": "chapters/music-scale-generator.html#patch-overview",
-    "href": "chapters/music-scale-generator.html#patch-overview",
-    "title": "5  Random Melody Generator",
-    "section": "",
-    "text": "Scale and Melody Generation\nMelody Storage\nPlayback Control\nMIDI Output",
-    "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Random Melody Generator</span>"
-    ]
-  },
-  {
-    "objectID": "chapters/music-scale-generator.html#scale-and-melody-generation",
-    "href": "chapters/music-scale-generator.html#scale-and-melody-generation",
-    "title": "5  Random Melody Generator",
-    "section": "5.2 Scale and Melody Generation",
-    "text": "5.2 Scale and Melody Generation\n\n5.2.1 Scale Definition\nThe patch starts with a message box containing the scale intervals:\n0 2 4 5 7 9 11\nFor example, this represents a major scale in semitones accordding to the following mapping:\n\n\n\n\nNote\nInterval\n\n\n\n\nC\n0\n\n\nC# / Db\n1\n\n\nD\n2\n\n\nD# / Eb\n3\n\n\nE\n4\n\n\nF\n5\n\n\nF# / Gb\n6\n\n\nG\n7\n\n\nG# / Ab\n8\n\n\nA\n9\n\n\nA# / Bb\n10\n\n\nB\n11\n\n\n\n\n \nThe scale is appended to a list and processed to determine its length.\n\n\n5.2.2 Random Note Selection\nA random number between 0 and 47 is generated (random 48), then shifted up by 60 to get a MIDI note in a typical range.\nThe note is then mapped to the scale using modulo operations and list indexing.\n\n\n5.2.3 Melody Construction\nThe patch uses a loop (until, i, + 1) to generate a sequence of notes.\nEach note is calculated based on the scale and stored in a list.",
-    "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Random Melody Generator</span>"
-    ]
-  },
-  {
-    "objectID": "chapters/music-scale-generator.html#melody-storage",
-    "href": "chapters/music-scale-generator.html#melody-storage",
-    "title": "5  Random Melody Generator",
-    "section": "5.3 Melody Storage",
-    "text": "5.3 Melody Storage\nThe generated melody is stored in a Pure Data array called melody.\nThe array is visualized in the patch for reference.\n\n\n\n\n\ngraph LR\n    MelodyList --&gt;|tabwrite| MelodyArray",
-    "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Random Melody Generator</span>"
-    ]
-  },
-  {
-    "objectID": "chapters/music-scale-generator.html#playback-control",
-    "href": "chapters/music-scale-generator.html#playback-control",
-    "title": "5  Random Melody Generator",
-    "section": "5.4 Playback Control",
-    "text": "5.4 Playback Control\nA metro object (metronome) triggers playback at a tempo set by a horizontal slider.\nEach bang from the metronome advances an index, which reads the next note from the melody array.",
-    "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Random Melody Generator</span>"
-    ]
-  },
-  {
-    "objectID": "chapters/music-scale-generator.html#midi-output",
-    "href": "chapters/music-scale-generator.html#midi-output",
-    "title": "5  Random Melody Generator",
-    "section": "5.5 MIDI Output",
-    "text": "5.5 MIDI Output\nThe note value is sent to a makenote object, which creates a MIDI note with velocity and duration.\nThe note is then sent to the noteout object, which outputs the MIDI note to your system’s MIDI device.",
-    "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Random Melody Generator</span>"
-    ]
-  },
-  {
-    "objectID": "chapters/music-scale-generator.html#step-by-step-data-flow",
-    "href": "chapters/music-scale-generator.html#step-by-step-data-flow",
-    "title": "5  Random Melody Generator",
-    "section": "5.6 Step-by-Step Data Flow",
-    "text": "5.6 Step-by-Step Data Flow\n\nInitialize Scale: The scale intervals are defined and appended to a list.\nGenerate Melody: A loop generates random notes mapped to the scale, storing them in the melody array.\nPlayback: A metronome triggers reading from the array, sending notes to MIDI output.\nVisualization: The melody array is displayed as a graph in the patch.",
-    "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Random Melody Generator</span>"
-    ]
-  },
-  {
-    "objectID": "chapters/music-scale-generator.html#key-objects-and-their-roles",
-    "href": "chapters/music-scale-generator.html#key-objects-and-their-roles",
-    "title": "5  Random Melody Generator",
-    "section": "5.7 Key Objects and Their Roles",
-    "text": "5.7 Key Objects and Their Roles\n\n\n\n\nObject\nPurpose\n\n\n\n\nrandom 48\nGenerates random note indices\n\n\n+ 60\nShifts notes to a higher MIDI octave\n\n\nmod 12\nMaps notes to scale degrees\n\n\nlist-idx\nRetrieves scale degree from the list\n\n\ntabwrite\nWrites notes to the melody array\n\n\nmetro\nControls playback timing\n\n\ntabread\nReads notes from the melody array\n\n\nmakenote\nCreates MIDI notes with velocity/duration\n\n\nnoteout\nSends MIDI notes to output",
-    "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Random Melody Generator</span>"
-    ]
-  },
-  {
-    "objectID": "chapters/music-scale-generator.html#diagram-melody-generation-and-playback",
-    "href": "chapters/music-scale-generator.html#diagram-melody-generation-and-playback",
-    "title": "5  Random Melody Generator",
-    "section": "5.8 Diagram: Melody Generation and Playback",
-    "text": "5.8 Diagram: Melody Generation and Playback\n\n\n\n\n\nflowchart TD\n    S[Scale Message] --&gt; L[list Append]\n    L --&gt; R[random + Offset]\n    R --&gt; M[Modulo/Indexing]\n    M --&gt; A[Melody Array]\n    A --&gt; P[Playback - metro, tabread]\n    P --&gt; MN[makenote]\n    MN --&gt; NO[noteout]",
-    "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Random Melody Generator</span>"
-    ]
-  },
-  {
-    "objectID": "chapters/music-scale-generator.html#summary",
-    "href": "chapters/music-scale-generator.html#summary",
-    "title": "5  Random Melody Generator",
-    "section": "5.9 Summary",
-    "text": "5.9 Summary\nThis patch demonstrates how to algorithmically generate a melody using a musical scale, store it, and play it back via MIDI in Pure Data. The modular structure allows for easy experimentation with different scales, lengths, and playback parameters.",
-    "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Random Melody Generator</span>"
-    ]
-  },
-  {
-    "objectID": "chapters/chapter.html",
-    "href": "chapters/chapter.html",
-    "title": "4  Chapter 2: Specific Subjects or Themes",
-    "section": "",
-    "text": "4.1 Topic 1: Overview\nIn this chapter, we will explore various specific subjects or themes that are relevant to our book.\nProvide an overview of the first topic, discussing its significance and relevance.",
-    "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Chapter 2: Specific Subjects or Themes</span>"
-    ]
-  },
-  {
-    "objectID": "chapters/chapter.html#topic-2-in-depth-analysis",
-    "href": "chapters/chapter.html#topic-2-in-depth-analysis",
-    "title": "4  Chapter 2: Specific Subjects or Themes",
-    "section": "4.2 Topic 2: In-Depth Analysis",
-    "text": "4.2 Topic 2: In-Depth Analysis\nDelve deeper into the second topic, presenting detailed information and insights.",
-    "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Chapter 2: Specific Subjects or Themes</span>"
-    ]
-  },
-  {
-    "objectID": "chapters/chapter.html#topic-3-case-studies",
-    "href": "chapters/chapter.html#topic-3-case-studies",
-    "title": "4  Chapter 2: Specific Subjects or Themes",
-    "section": "4.3 Topic 3: Case Studies",
-    "text": "4.3 Topic 3: Case Studies\nInclude case studies or examples that illustrate the concepts discussed in this chapter.",
-    "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Chapter 2: Specific Subjects or Themes</span>"
-    ]
-  },
-  {
-    "objectID": "chapters/chapter.html#conclusion",
-    "href": "chapters/chapter.html#conclusion",
-    "title": "4  Chapter 2: Specific Subjects or Themes",
-    "section": "4.4 Conclusion",
-    "text": "4.4 Conclusion\nSummarize the key points covered in this chapter and their implications for the overall theme of the book.",
-    "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Chapter 2: Specific Subjects or Themes</span>"
-    ]
-  },
-  {
-    "objectID": "chapters/conclusion.html",
-    "href": "chapters/conclusion.html",
-    "title": "5  Conclusion",
-    "section": "",
-    "text": "5.1 Key Takeaways\nIn this chapter, we summarize the key points discussed throughout the book. We reflect on the main topics introduced in the first chapter and the detailed discussions in the second chapter.\nThank you for reading! We hope this book has provided valuable insights and knowledge.",
-    "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Conclusion</span>"
-    ]
-  },
-  {
-    "objectID": "chapters/conclusion.html#key-takeaways",
-    "href": "chapters/conclusion.html#key-takeaways",
-    "title": "5  Conclusion",
-    "section": "",
-    "text": "Highlight the main objectives of the book.\nDiscuss the significance of the topics covered.\nEncourage further exploration and learning in the subject area.",
-    "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Conclusion</span>"
-    ]
-  },
-  {
-    "objectID": "chapters/tools/music-scale-generator.html",
-    "href": "chapters/tools/music-scale-generator.html",
-    "title": "4  Random Melody Generator",
-    "section": "",
-    "text": "4.1 Patch Overview\nThis chapter provides a step-by-step explanation of the music_scale_B.pd Pure Data patch. The patch demonstrates how to generate a melody using a musical scale, store it in an array, and play it back using MIDI.\nThe patch is organized into several functional blocks:\nBelow is a simplified diagram of the main data flow:\nflowchart TD\n    A[Scale Input] --&gt; B[Melody Generation]\n    B --&gt; C[Store in Array]\n    C --&gt; D[Playback Control]\n    D --&gt; E[MIDI Output]",
-    "crumbs": [
-      "Tools",
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Random Melody Generator</span>"
-    ]
-  },
-  {
-    "objectID": "chapters/tools/music-scale-generator.html#patch-overview",
-    "href": "chapters/tools/music-scale-generator.html#patch-overview",
-    "title": "4  Random Melody Generator",
-    "section": "",
-    "text": "Scale and Melody Generation\nMelody Storage\nPlayback Control\nMIDI Output",
-    "crumbs": [
-      "Tools",
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Random Melody Generator</span>"
-    ]
-  },
-  {
-    "objectID": "chapters/tools/music-scale-generator.html#scale-and-melody-generation",
-    "href": "chapters/tools/music-scale-generator.html#scale-and-melody-generation",
-    "title": "4  Random Melody Generator",
-    "section": "4.2 Scale and Melody Generation",
-    "text": "4.2 Scale and Melody Generation\n\n4.2.1 Scale Definition\nThe patch starts with a message box containing the scale intervals:\n0 2 4 5 7 9 11\nFor example, this represents a major scale in semitones accordding to the following mapping:\n\n\n\n\nNote\nInterval\n\n\n\n\nC\n0\n\n\nC# / Db\n1\n\n\nD\n2\n\n\nD# / Eb\n3\n\n\nE\n4\n\n\nF\n5\n\n\nF# / Gb\n6\n\n\nG\n7\n\n\nG# / Ab\n8\n\n\nA\n9\n\n\nA# / Bb\n10\n\n\nB\n11\n\n\n\n\n \nThe scale is appended to a list and processed to determine its length.\n\n\n4.2.2 Random Note Selection\nA random number between 0 and 47 is generated (random 48), then shifted up by 60 to get a MIDI note in a typical range.\nThe note is then mapped to the scale using modulo operations and list indexing.\n\n\n4.2.3 Melody Construction\nThe patch uses a loop (until, i, + 1) to generate a sequence of notes.\nEach note is calculated based on the scale and stored in a list.",
-    "crumbs": [
-      "Tools",
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Random Melody Generator</span>"
-    ]
-  },
-  {
-    "objectID": "chapters/tools/music-scale-generator.html#melody-storage",
-    "href": "chapters/tools/music-scale-generator.html#melody-storage",
-    "title": "4  Random Melody Generator",
-    "section": "4.3 Melody Storage",
-    "text": "4.3 Melody Storage\nThe generated melody is stored in a Pure Data array called melody.\nThe array is visualized in the patch for reference.\n\n\n\n\n\ngraph LR\n    MelodyList --&gt;|tabwrite| MelodyArray",
-    "crumbs": [
-      "Tools",
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Random Melody Generator</span>"
-    ]
-  },
-  {
-    "objectID": "chapters/tools/music-scale-generator.html#playback-control",
-    "href": "chapters/tools/music-scale-generator.html#playback-control",
-    "title": "4  Random Melody Generator",
-    "section": "4.4 Playback Control",
-    "text": "4.4 Playback Control\nA metro object (metronome) triggers playback at a tempo set by a horizontal slider.\nEach bang from the metronome advances an index, which reads the next note from the melody array.",
-    "crumbs": [
-      "Tools",
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Random Melody Generator</span>"
-    ]
-  },
-  {
-    "objectID": "chapters/tools/music-scale-generator.html#midi-output",
-    "href": "chapters/tools/music-scale-generator.html#midi-output",
-    "title": "4  Random Melody Generator",
-    "section": "4.5 MIDI Output",
-    "text": "4.5 MIDI Output\nThe note value is sent to a makenote object, which creates a MIDI note with velocity and duration.\nThe note is then sent to the noteout object, which outputs the MIDI note to your system’s MIDI device.",
-    "crumbs": [
-      "Tools",
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Random Melody Generator</span>"
-    ]
-  },
-  {
-    "objectID": "chapters/tools/music-scale-generator.html#step-by-step-data-flow",
-    "href": "chapters/tools/music-scale-generator.html#step-by-step-data-flow",
-    "title": "4  Random Melody Generator",
-    "section": "4.6 Step-by-Step Data Flow",
-    "text": "4.6 Step-by-Step Data Flow\n\nInitialize Scale: The scale intervals are defined and appended to a list.\nGenerate Melody: A loop generates random notes mapped to the scale, storing them in the melody array.\nPlayback: A metronome triggers reading from the array, sending notes to MIDI output.\nVisualization: The melody array is displayed as a graph in the patch.",
-    "crumbs": [
-      "Tools",
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Random Melody Generator</span>"
-    ]
-  },
-  {
-    "objectID": "chapters/tools/music-scale-generator.html#key-objects-and-their-roles",
-    "href": "chapters/tools/music-scale-generator.html#key-objects-and-their-roles",
-    "title": "4  Random Melody Generator",
-    "section": "4.7 Key Objects and Their Roles",
-    "text": "4.7 Key Objects and Their Roles\n\n\n\n\nObject\nPurpose\n\n\n\n\nrandom 48\nGenerates random note indices\n\n\n+ 60\nShifts notes to a higher MIDI octave\n\n\nmod 12\nMaps notes to scale degrees\n\n\nlist-idx\nRetrieves scale degree from the list\n\n\ntabwrite\nWrites notes to the melody array\n\n\nmetro\nControls playback timing\n\n\ntabread\nReads notes from the melody array\n\n\nmakenote\nCreates MIDI notes with velocity/duration\n\n\nnoteout\nSends MIDI notes to output",
-    "crumbs": [
-      "Tools",
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Random Melody Generator</span>"
-    ]
-  },
-  {
-    "objectID": "chapters/tools/music-scale-generator.html#diagram-melody-generation-and-playback",
-    "href": "chapters/tools/music-scale-generator.html#diagram-melody-generation-and-playback",
-    "title": "4  Random Melody Generator",
-    "section": "4.8 Diagram: Melody Generation and Playback",
-    "text": "4.8 Diagram: Melody Generation and Playback\n\n\n\n\n\nflowchart TD\n    S[Scale Message] --&gt; L[list Append]\n    L --&gt; R[random + Offset]\n    R --&gt; M[Modulo/Indexing]\n    M --&gt; A[Melody Array]\n    A --&gt; P[Playback - metro, tabread]\n    P --&gt; MN[makenote]\n    MN --&gt; NO[noteout]",
-    "crumbs": [
-      "Tools",
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Random Melody Generator</span>"
-    ]
-  },
-  {
-    "objectID": "chapters/tools/music-scale-generator.html#summary",
-    "href": "chapters/tools/music-scale-generator.html#summary",
-    "title": "4  Random Melody Generator",
-    "section": "4.9 Summary",
-    "text": "4.9 Summary\nThis patch demonstrates how to algorithmically generate a melody using a musical scale, store it, and play it back via MIDI in Pure Data. The modular structure allows for easy experimentation with different scales, lengths, and playback parameters.",
-    "crumbs": [
-      "Tools",
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Random Melody Generator</span>"
-    ]
-  },
-  {
     "objectID": "chapters/sequencers.html",
     "href": "chapters/sequencers.html",
     "title": "3  Sequencers",
@@ -407,96 +147,6 @@
     "text": "3.1 Random Melody Generator\nThis chapter provides a step-by-step explanation of the music-scale-B.pd Pure Data patch. The patch demonstrates how to generate a melody using a musical scale, store it in an array, and play it back using MIDI.",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Sequencers</span>"
-    ]
-  },
-  {
-    "objectID": "chapters/sequencers.html#patch-overview",
-    "href": "chapters/sequencers.html#patch-overview",
-    "title": "4  Sequencers",
-    "section": "4.2 Patch Overview",
-    "text": "4.2 Patch Overview\nThe patch is organized into several functional blocks:\n\nScale and Melody Generation\nMelody Storage\nPlayback Control\nMIDI Output\n\nBelow is a simplified diagram of the main data flow:\n\n\n\n\n\nflowchart TD\n    A[Scale Input] --&gt; B[Melody Generation]\n    B --&gt; C[Store in Array]\n    C --&gt; D[Playback Control]\n    D --&gt; E[MIDI Output]",
-    "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Sequencers</span>"
-    ]
-  },
-  {
-    "objectID": "chapters/sequencers.html#scale-and-melody-generation",
-    "href": "chapters/sequencers.html#scale-and-melody-generation",
-    "title": "4  Sequencers",
-    "section": "4.2 Scale and Melody Generation",
-    "text": "4.2 Scale and Melody Generation\n\n4.2.1 Scale Definition\nThe patch starts with a message box containing the scale intervals:\n0 2 4 5 7 9 11\nFor example, this represents a major scale in semitones accordding to the following mapping:\n\n\n\n\nNote\nInterval\n\n\n\n\nC\n0\n\n\nC# / Db\n1\n\n\nD\n2\n\n\nD# / Eb\n3\n\n\nE\n4\n\n\nF\n5\n\n\nF# / Gb\n6\n\n\nG\n7\n\n\nG# / Ab\n8\n\n\nA\n9\n\n\nA# / Bb\n10\n\n\nB\n11\n\n\n\n\n \nThe scale is appended to a list and processed to determine its length.\n\n\n4.2.2 Random Note Selection\nA random number between 0 and 47 is generated (random 48), then shifted up by 60 to get a MIDI note in a typical range.\nThe note is then mapped to the scale using modulo operations and list indexing.\n\n\n4.2.3 Melody Construction\nThe patch uses a loop (until, i, + 1) to generate a sequence of notes.\nEach note is calculated based on the scale and stored in a list.",
-    "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Sequencers</span>"
-    ]
-  },
-  {
-    "objectID": "chapters/sequencers.html#melody-storage",
-    "href": "chapters/sequencers.html#melody-storage",
-    "title": "4  Sequencers",
-    "section": "4.2 Melody Storage",
-    "text": "4.2 Melody Storage\nThe generated melody is stored in a Pure Data array called melody.\nThe array is visualized in the patch for reference.\n\n\n\n\n\ngraph LR\n    MelodyList --&gt;|tabwrite| MelodyArray",
-    "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Sequencers</span>"
-    ]
-  },
-  {
-    "objectID": "chapters/sequencers.html#playback-control",
-    "href": "chapters/sequencers.html#playback-control",
-    "title": "4  Sequencers",
-    "section": "4.2 Playback Control",
-    "text": "4.2 Playback Control\nA metro object (metronome) triggers playback at a tempo set by a horizontal slider.\nEach bang from the metronome advances an index, which reads the next note from the melody array.",
-    "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Sequencers</span>"
-    ]
-  },
-  {
-    "objectID": "chapters/sequencers.html#midi-output",
-    "href": "chapters/sequencers.html#midi-output",
-    "title": "4  Sequencers",
-    "section": "4.2 MIDI Output",
-    "text": "4.2 MIDI Output\nThe note value is sent to a makenote object, which creates a MIDI note with velocity and duration.\nThe note is then sent to the noteout object, which outputs the MIDI note to your system’s MIDI device.",
-    "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Sequencers</span>"
-    ]
-  },
-  {
-    "objectID": "chapters/sequencers.html#step-by-step-data-flow",
-    "href": "chapters/sequencers.html#step-by-step-data-flow",
-    "title": "4  Sequencers",
-    "section": "4.2 Step-by-Step Data Flow",
-    "text": "4.2 Step-by-Step Data Flow\n\nInitialize Scale: The scale intervals are defined and appended to a list.\nGenerate Melody: A loop generates random notes mapped to the scale, storing them in the melody array.\nPlayback: A metronome triggers reading from the array, sending notes to MIDI output.\nVisualization: The melody array is displayed as a graph in the patch.",
-    "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Sequencers</span>"
-    ]
-  },
-  {
-    "objectID": "chapters/sequencers.html#key-objects-and-their-roles",
-    "href": "chapters/sequencers.html#key-objects-and-their-roles",
-    "title": "4  Sequencers",
-    "section": "4.2 Key Objects and Their Roles",
-    "text": "4.2 Key Objects and Their Roles\n\n\n\n\nObject\nPurpose\n\n\n\n\nrandom 48\nGenerates random note indices\n\n\n+ 60\nShifts notes to a higher MIDI octave\n\n\nmod 12\nMaps notes to scale degrees\n\n\nlist-idx\nRetrieves scale degree from the list\n\n\ntabwrite\nWrites notes to the melody array\n\n\nmetro\nControls playback timing\n\n\ntabread\nReads notes from the melody array\n\n\nmakenote\nCreates MIDI notes with velocity/duration\n\n\nnoteout\nSends MIDI notes to output",
-    "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Sequencers</span>"
-    ]
-  },
-  {
-    "objectID": "chapters/sequencers.html#diagram-melody-generation-and-playback",
-    "href": "chapters/sequencers.html#diagram-melody-generation-and-playback",
-    "title": "4  Sequencers",
-    "section": "4.2 Diagram: Melody Generation and Playback",
-    "text": "4.2 Diagram: Melody Generation and Playback\n\n\n\n\n\nflowchart TD\n    S[Scale Message] --&gt; L[list Append]\n    L --&gt; R[random + Offset]\n    R --&gt; M[Modulo/Indexing]\n    M --&gt; A[Melody Array]\n    A --&gt; P[Playback - metro, tabread]\n    P --&gt; MN[makenote]\n    MN --&gt; NO[noteout]",
-    "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Sequencers</span>"
-    ]
-  },
-  {
-    "objectID": "chapters/sequencers.html#summary",
-    "href": "chapters/sequencers.html#summary",
-    "title": "4  Sequencers",
-    "section": "4.2 Summary",
-    "text": "4.2 Summary\nThis patch demonstrates how to algorithmically generate a melody using a musical scale, store it, and play it back via MIDI in Pure Data. The modular structure allows for easy experimentation with different scales, lengths, and playback parameters.",
-    "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Sequencers</span>"
     ]
   },
   {
@@ -510,16 +160,6 @@
     ]
   },
   {
-    "objectID": "chapters/sequencers.html#section",
-    "href": "chapters/sequencers.html#section",
-    "title": "4  Sequencers",
-    "section": "4.3 ",
-    "text": "4.3",
-    "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Sequencers</span>"
-    ]
-  },
-  {
     "objectID": "chapters/sequencers.html#euclidean-sequencer",
     "href": "chapters/sequencers.html#euclidean-sequencer",
     "title": "3  Sequencers",
@@ -530,13 +170,23 @@
     ]
   },
   {
-    "objectID": "index.html#footnotes",
-    "href": "index.html#footnotes",
-    "title": "Creative Coding with Pure Data",
+    "objectID": "chapters/conclusion.html",
+    "href": "chapters/conclusion.html",
+    "title": "7  Conclusion",
     "section": "",
-    "text": "puredata.info/downloads/pure-data↩︎",
+    "text": "7.1 Key Takeaways\nIn this chapter, we summarize the key points discussed throughout the book. We reflect on the main topics introduced in the first chapter and the detailed discussions in the second chapter.\nThank you for reading! We hope this book has provided valuable insights and knowledge.",
     "crumbs": [
-      "Preface"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Conclusion</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/conclusion.html#key-takeaways",
+    "href": "chapters/conclusion.html#key-takeaways",
+    "title": "7  Conclusion",
+    "section": "",
+    "text": "Highlight the main objectives of the book.\nDiscuss the significance of the topics covered.\nEncourage further exploration and learning in the subject area.",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Conclusion</span>"
     ]
   }
 ]
