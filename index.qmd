@@ -1,10 +1,8 @@
-# Preface
+![](/assets/images/cover_1.png)
+
+# Preface {.unnumbered}
 
 This book was born out of the classroom—but it does not stay there. It is the result of many years of teaching creative coding and interactive media at public universities, engaging with students from a wide range of disciplines, backgrounds, and interests. Over time, a common thread emerged: the desire to bridge artistic expression and technical skill, to write code not just as a means to an end, but as a space of exploration, experimentation, and play.
-
-::: {.column-margin}
-![](/assets/images/cover_3.png){#cover .cover}
-:::
 
 In these pages, you’ll find the distilled insights, exercises, and creative strategies that have shaped countless workshops and academic programs. The goal has always been twofold: to equip readers with the tools to build interactive digital systems, and to nurture a mindset where sound, movement, code, and structure can be explored as artistic materials. Whether it's a generative soundscape, a data-driven artwork, or a custom tool built from scratch, the projects in this book are designed to foster technical growth while encouraging individual expression.
 
@@ -16,9 +14,7 @@ Whether you're an artist exploring new tools, a programmer seeking creative outl
 
 My name is **Ezequiel Abregú**, and I am a sound artist, composer, multi-instrumentalist, and researcher originally from Buenos Aires, Argentina. My artistic practice encompasses sound recordings, audio installations, performances, sound sculptures, sound design, and compositions for chamber music, choreography, and theater. I am particularly interested in the interplay between music, performance, sound art, live electronics, auditory and visual perception, interactive media, and the application of technology in art.
 
-::: {.column-margin}
-![Dr. Ezequiel Abregú](/assets/images/eabregu-pic.jpg){#cover .cover}
-:::
+![Dr. Ezequiel Abregú](/assets/images/eabregu-pic.jpg)
 
 I hold a Ph.D. focusing on the relationship between visual and auditory perception in sound art, and a degree in Composition with Electroacoustic Media from the National University of Quilmes (UNQ). My academic career includes teaching positions at several institutions: I am a professor at the University of Quilmes (Computing Applied to Music area), the National University of Arts (Multimedia Arts area), and the University of Tres de Febrero (Electronic Arts area).
 

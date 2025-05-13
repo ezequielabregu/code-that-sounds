@@ -25,5 +25,44 @@
   },
   "chapters/conclusion.qmd": {
     "conclusion.html": "0044c7ce"
+  },
+  "chapters/recplay/recplay.qmd": {
+    "recplay.html": "c280953d"
+  },
+  "chapters/recplay/sittinginaroom.qmd": {
+    "sittinginaroom.html": "f67b16d9"
+  },
+  "chapters/tools/tools.qmd": {
+    "tools.html": "81377a1e"
+  },
+  "chapters/tools/music-scale-generator.qmd": {
+    "music-scale-generator.html": "50a2abca"
+  },
+  "chapters/synthesis/synthesis.qmd": {
+    "synthesis.html": "43dde592"
+  },
+  "chapters/synthesis/additive.qmd": {
+    "additive.html": "9337f969"
+  },
+  "chapters/synthesis/modulation.qmd": {
+    "modulation.html": "2a93338c"
+  },
+  "chapters/synthesis/sustractive.qmd": {
+    "sustractive.html": "55d7c431"
+  },
+  "chapters/playrec.qmd": {
+    "playrec.html": "5f0fae1b"
+  },
+  "chapters/tools.qmd": {
+    "tools.html": "b82a4863"
+  },
+  "chapters/synthesis.qmd": {
+    "synthesis.html": "63231204"
+  },
+  "chapters/sequencers.qmd": {
+    "sequencers.html": "823a9490"
+  },
+  "chapters/sonification.qmd": {
+    "sonification.html": "b332a6b7"
   }
 }

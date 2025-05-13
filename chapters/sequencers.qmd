@@ -1,16 +1,14 @@
-# Random Melody Generator
+# Sequencers
 
-This chapter provides a step-by-step explanation of the [music_scale_B.pd](code/music_scale/music_scale_B.pd) Pure Data patch. The patch demonstrates how to generate a melody using a musical scale, store it in an array, and play it back using MIDI.
+## Random Melody Generator
+
+This chapter provides a step-by-step explanation of the [music-scale-B.pd](/assets/code/sequencers/music-scale-B.pd) Pure Data patch. The patch demonstrates how to generate a melody using a musical scale, store it in an array, and play it back using MIDI.
 
 ![Random Melody Generator](/assets/images/random_melody.png)
 
 ---
 
-::: {.column-margin}
-This patch is designed to be a simple yet effective tool for generating random melodies based on a defined scale. It can be used for various applications, including music composition, sound design, and algorithmic music generation.
-:::
-
-## Patch Overview
+### Patch Overview
 
 The patch is organized into several functional blocks:
 
@@ -31,9 +29,9 @@ flowchart TD
 
 ---
 
-## Scale and Melody Generation
+### Scale and Melody Generation
 
-### Scale Definition
+#### Scale Definition
 
 The patch starts with a message box containing the scale intervals:
   
@@ -62,13 +60,13 @@ For example, this represents a major scale in semitones accordding to the follow
 
 The scale is appended to a list and processed to determine its length.
 
-### Random Note Selection
+#### Random Note Selection
 
 A random number between 0 and 47 is generated (`random 48`), then shifted up by 60 to get a MIDI note in a typical range.
 
 The note is then mapped to the scale using modulo operations and list indexing.
 
-### Melody Construction
+#### Melody Construction
 
 The patch uses a loop (`until`, `i`, `+ 1`) to generate a sequence of notes.
 
@@ -76,7 +74,7 @@ Each note is calculated based on the scale and stored in a list.
 
 ---
 
-## Melody Storage
+### Melody Storage
 
 The generated melody is stored in a Pure Data array called `melody`.
 
@@ -89,7 +87,7 @@ graph LR
 
 ---
 
-## Playback Control
+### Playback Control
 
 A `metro` object (metronome) triggers playback at a tempo set by a horizontal slider.
 
@@ -97,7 +95,7 @@ Each bang from the metronome advances an index, which reads the next note from t
 
 ---
 
-## MIDI Output
+### MIDI Output
 
 The note value is sent to a `makenote` object, which creates a MIDI note with velocity and duration.
 
@@ -105,7 +103,7 @@ The note is then sent to the `noteout` object, which outputs the MIDI note to yo
 
 ---
 
-## Step-by-Step Data Flow
+### Step-by-Step Data Flow
 
 1. **Initialize Scale**: The scale intervals are defined and appended to a list.
 2. **Generate Melody**: A loop generates random notes mapped to the scale, storing them in the `melody` array.
@@ -114,7 +112,7 @@ The note is then sent to the `noteout` object, which outputs the MIDI note to yo
 
 ---
 
-## Key Objects and Their Roles
+### Key Objects and Their Roles
 
 :::{style="width: 50%;"}
 | Object         | Purpose                                      |
@@ -132,7 +130,7 @@ The note is then sent to the `noteout` object, which outputs the MIDI note to yo
 
 ---
 
-## Diagram: Melody Generation and Playback
+### Diagram: Melody Generation and Playback
 
 ```{mermaid}
 flowchart TD
@@ -147,8 +145,19 @@ flowchart TD
 
 ---
 
-## Summary
+### Summary
 
 This patch demonstrates how to algorithmically generate a melody using a musical scale, store it, and play it back via MIDI in Pure Data. The modular structure allows for easy experimentation with different scales, lengths, and playback parameters.
 
 ---
+
+## Euclidean Sequencer
+This chapter provides a step-by-step explanation of the [euclidean_sequencer.pd](code/euclidean_sequencer/euclidean_sequencer.pd) Pure Data patch. The patch demonstrates how to create a Euclidean sequencer that generates rhythmic patterns based on the Euclidean algorithm.
+
+### Patch Overview
+The patch is organized into several functional blocks:
+- **Euclidean Algorithm**
+- **Rhythm Generation**
+- **Playback Control**
+- **MIDI Output**
+Below is a simplified diagram of the main data flow

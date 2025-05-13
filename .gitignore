@@ -22,3 +22,5 @@ _quarto/
 __pycache__/
 *.pyc
 /.quarto/
+
+chapters/00-test_files/

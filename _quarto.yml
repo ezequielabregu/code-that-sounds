@@ -8,8 +8,11 @@ book:
   chapters:
     - index.qmd
     - chapters/introduction.qmd
-    - chapters/music-scale-generator.qmd
-    - chapters/chapter.qmd
+    - chapters/playrec.qmd
+    - chapters/sequencers.qmd
+    - chapters/synthesis.qmd
+    - chapters/tools.qmd
+    - chapters/sonification.qmd
     - chapters/conclusion.qmd
 
 #bibliography: references.bib
@@ -21,7 +24,7 @@ format:
       light: cosmo
       dark: darkly
     toc: true
-    toc-location: left
+    #toc-location: left
     code-copy: true
     code-overflow: wrap
     sidebar: true
@@ -34,6 +37,6 @@ website:
   repo-url: https://github.com/ezequielabregu/creative-code-with-pd
   repo-actions: [edit, issue]
 
-reference-location: margin
-citation-location: margin
-caption-location: margin
+#reference-location: margin
+#citation-location: margin
+#caption-location: margin
