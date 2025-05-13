@@ -1,12 +1,252 @@
 # Sequencers
 
+In this chapter, we will explore the concept of sequencers and how they can be implemented in Pure Data.
+
+## Arrays and Sequencers
+
+Sequencer is a tool for organizing and controlling the playback of `events` in a temporally ordered sequence. This sequence consists of a series of discrete steps, where each step represents a regular time interval and can contain information about event activation or deactivation.
+
+In addition to controlling musical events such as notes, chords, and percussions, a step sequencer can also manage a variety of other events. This includes parameter changes in virtual instruments or audio/video synthesizers, real-time effect automation, lighting control in live performances or multimedia installations, triggering of samples to create patterns and effect sequences, as well as firing MIDI control events to operate external hardware or software.
+
+ 
+
+| P1 | P2 | P3 | P4 | P5 | P6 | P7 | P8 |
+| -- | -- | -- | -- | -- | -- | -- | -- |
+| x  | x  | x  | x  | x  | x  | x  | x  |
+| i0 | i1 | i2 | i3 | i4 | i5 | i6 | i7 |
+
+&nbsp;
+
+* Each cell represents a step in the sequencer.
+* "P1" to "P8" indicate the steps numbered 1 to 8.
+* Empty cells represent steps without events or notes.
+* You can fill each cell with notes or events to represent the desired sequence.
+
+### Represent an 8-step sequencer using pseudo code 
+
+#### Formulation (pseudo code)
+
+```bash
+Data Structures:
+- Define a data structure to represent each step of the sequence (e.g., array, list).
+
+Variables:
+- Define an array to store the MIDI note values for each step.
+- Initialize the sequencer parameters:
+  - CurrentStep = 0
+  - Tempo
+  - NumberOfSteps = 8
+
+Algorithm:
+1. Initialization:
+   a. Set CurrentStep to 0.
+   b. Ask the user to input the Tempo.
+   c. Set NumberOfSteps to 8.
+
+2. Loop:
+   a. While true:
+      i. Calculate the time duration for each step based on the Tempo.
+      ii. Play the MIDI note corresponding to the CurrentStep.
+      iii. Increment CurrentStep.
+      iv. If CurrentStep exceeds NumberOfSteps, reset it to 0.
+      v. Wait the calculated duration before moving to the next step.
+```
+
+ 
+
+### Python Implementation of the 8-Step Sequencer
+
+```python
+import time
+import mido
+
+# 1. Define a data structure to represent each step in the sequence (8 steps)
+secuencia = [None] * 8
+
+# 2. Define an array to store MIDI note values for each step
+notas_midi = [60, 62, 64, 65, 67, 69, 71, 72]  # C major scale
+
+# 3. Initialize the sequencer parameters
+paso_actual = 0
+tempo = 120  # beats per minute
+num_pasos = len(secuencia)
+
+# Open the virtual MIDI port (use the correct port name, see MIDI_port_name.py)
+puerto_salida = mido.open_output('IAC Driver Bus 1')
+
+# 4. Start a loop to continuously play the sequence
+while True:
+    # a. Calculate the time duration for each step based on the tempo
+    duracion_paso = 60.0 / tempo  # beat duration in seconds
+
+    # b. "Play" the MIDI note corresponding to the current step
+    nota_actual = int(notas_midi[paso_actual])  # Ensure it's an integer
+    secuencia[paso_actual] = nota_actual
+    print(f"Step: {paso_actual} --- Note: {secuencia[paso_actual]}")
+
+    # Send the MIDI message
+    mensaje = mido.Message('note_on', note=nota_actual)
+    puerto_salida.send(mensaje)
+
+    # c. Increment the current step
+    paso_actual += 1
+
+    # d. If current step exceeds the number of steps, reset it to 0
+    if paso_actual >= num_pasos:
+        paso_actual = 0
+
+    # e. Wait for the calculated duration before moving to the next step
+    time.sleep(duracion_paso)
+
+    # Turn off the MIDI note
+    mensaje = mido.Message('note_off', note=nota_actual)
+    puerto_salida.send(mensaje)
+```
+
+This is a simple step sequencer for MIDI. It uses the `mido` library to send MIDI messages and the `time` library to control the timing of the sequence.
+
+The script starts by importing the necessary libraries and defining some data structures and initial variables. The `secuencia` list will hold the sequence of notes to be played, and is initially filled with `None` values. The `notas_midi` list contains the MIDI note values for each step in the sequence, representing a C Major scale.
+
+Then, the script initializes some sequencer parameters. The `paso_actual` variable tracks the current step in the sequence, `tempo` sets the tempo in beats per minute, and `num_pasos` stores the total number of steps in the sequence.
+
+The script opens a virtual MIDI output port using `mido.open_output()`. You may need to change the port name 'IAC Driver Bus 1' depending on your system setup.
+
+The main part of the script is a `while` loop that continuously plays the sequence. For each step, it calculates the step duration based on the tempo, plays the corresponding MIDI note, increments the current step, and waits for the calculated duration before moving to the next step. If the current step exceeds the number of steps in the sequence, it resets to 0. After each note is played, a `note_off` MIDI message is sent to stop the note.
+
+ 
+
+### Represent a random sequencer using pseudo code
+
+ 
+
+### Random Step Sequencer Implementation
+
+```python
+import time
+import mido
+import random
+
+# 1. Define a data structure to represent each step of the sequence (8 steps)
+secuencia = [None] * 8
+
+# 2. Define an array to store MIDI note values for each step
+notas_midi = [60, 62, 64, 65, 67, 69, 71, 72]  # C major scale
+
+# 3. Initialize the sequencer parameters
+paso_actual = random.randint(0, 7)
+tempo = 120  # beats per minute
+num_pasos = len(secuencia)
+
+# Open the virtual MIDI port (use the correct port name, see MIDI_port_name.py)
+puerto_salida = mido.open_output('IAC Driver Bus 1')
+
+# 4. Start a loop to continuously play the sequence
+while True:
+    # a. Calculate the time duration for each step based on the tempo
+    duracion_paso = 60.0 / tempo  # beat duration in seconds
+
+    # b. "Play" the MIDI note corresponding to the current step
+    nota_actual = int(notas_midi[paso_actual])  # Ensure it's an integer
+    secuencia[paso_actual] = nota_actual
+    print(f"Step: {paso_actual} --- Note: {secuencia[paso_actual]}")
+
+    # Send the MIDI message
+    mensaje = mido.Message('note_on', note=nota_actual)
+    puerto_salida.send(mensaje)
+
+    # c. Randomize the next step
+    paso_actual = random.randint(0, 7)
+
+    # d. If current step exceeds the number of steps, reset it to 0
+    if paso_actual >= num_pasos:
+        paso_actual = 0
+
+    # e. Wait for the calculated duration before moving to the next step
+    time.sleep(duracion_paso)
+
+    # Turn off the MIDI note
+    mensaje = mido.Message('note_off', note=nota_actual)
+    puerto_salida.send(mensaje)
+```
+
+This Python script is a modified version of the step-by-step MIDI sequencer from the previous example. The main difference lies in how the current step (`paso_actual`) is incremented.
+
+In the original script, the current step increased sequentially, creating a predictable pattern of notes. In this modified version, the current step is set to a random integer between 0 and 7 (inclusive). This means that the note sequence will be played in a random order, creating a more unpredictable pattern.
+
+--- 
+
+## Piano Phase (Steve Reich)
+
+![](https://payload.cargocollective.com/1/2/82587/8130024/reich_gif_432x432_b_crop_pixel_fixed.gif)
+
+[View Piano Phase Score (S. Reich)](./Biblio%20/SteveReich-PianoPhase.pdf)
+
+*Piano Phase* can be conceived as an algorithm. Starting with two pianos playing the same sequence of notes at the same speed, one of the pianists begins to gradually accelerate their tempo.
+
+When the separation between the notes played by both pianos reaches a fraction of a note's duration, the phase is shifted and the cycle repeats. This process continues endlessly, creating a hypnotic effect of rhythmic phasing that evolves over time as an infinite sequence of iterations.
+
+![Phase Difference](https://www.nist.gov/sites/default/files/images/2022/01/27/phase-difference.gif)
+
+::: {#fig-cern}
+{{< video https://youtu.be/Jqoieg0Vqag >}} 
+Performance and visualization of the first section from Steve Reich's 1967 piece Piano Phase
+:::
+
+### Piano Phase process as an algorithm.
+
+
+#### Algorithm Formulation (pseudo code)
+
+```bash
+1. Initialize two pianists with the same note sequence.
+2. Set an initial tempo for both pianists.
+3. Repeat until the desired phase is reached:
+     a. Gradually increase the second pianist's tempo.
+     b. Compare note positions between both pianists.
+     c. When the separation between the notes reaches a fraction of a note’s duration, invert the phase.
+     d. Continue playback.
+4. Repeat the cycle indefinitely to create a continuous and evolving rhythmic phasing effect.
+```
+
+### Piano Phase Implementation in Python (single sequencer)
+
+```python
+import time
+import mido
+
+# Define a MIDI note sequence to represent the musical part
+notas_midi = [64, 66, 71, 73, 74, 66, 64, 73, 71, 66, 74, 73]  # C major scale
+
+# Open two MIDI output ports
+puerto_salida1 = mido.open_output('IAC Driver Bus 1')
+
+# Initialize the sequencer parameters
+tempo = int(120 * 4)  # beats per minute
+duracion_paso = 60.0 / tempo  # beat duration in seconds
+
+# Start a loop to continuously play the sequence
+paso_actual = 0
+while True:
+    # "Play" the MIDI note corresponding to the current step
+    nota_actual = notas_midi[paso_actual]
+    mensaje_on = mido.Message('note_on', note=nota_actual)
+    mensaje_off = mido.Message('note_off', note=nota_actual)
+
+    puerto_salida1.send(mensaje_on)
+    time.sleep(duracion_paso)  # Wait one beat before going to the next step
+    puerto_salida1.send(mensaje_off)  # Send 'note_off' message
+
+    # Increment the current step
+    paso_actual += 1
+    if paso_actual >= len(notas_midi):
+        paso_actual = 0
+```
+
 ## Random Melody Generator
 
 This chapter provides a step-by-step explanation of the [music-scale-B.pd](/assets/code/sequencers/music-scale-B.pd) Pure Data patch. The patch demonstrates how to generate a melody using a musical scale, store it in an array, and play it back using MIDI.
 
 ![Random Melody Generator](/assets/images/random_melody.png)
-
----
 
 ### Patch Overview
 
@@ -72,8 +312,6 @@ The patch uses a loop (`until`, `i`, `+ 1`) to generate a sequence of notes.
 
 Each note is calculated based on the scale and stored in a list.
 
----
-
 ### Melody Storage
 
 The generated melody is stored in a Pure Data array called `melody`.
@@ -85,15 +323,11 @@ graph LR
     MelodyList -->|tabwrite| MelodyArray
 ```
 
----
-
 ### Playback Control
 
 A `metro` object (metronome) triggers playback at a tempo set by a horizontal slider.
 
 Each bang from the metronome advances an index, which reads the next note from the `melody` array.
-
----
 
 ### MIDI Output
 
@@ -101,16 +335,12 @@ The note value is sent to a `makenote` object, which creates a MIDI note with ve
 
 The note is then sent to the `noteout` object, which outputs the MIDI note to your system's MIDI device.
 
----
-
 ### Step-by-Step Data Flow
 
 1. **Initialize Scale**: The scale intervals are defined and appended to a list.
 2. **Generate Melody**: A loop generates random notes mapped to the scale, storing them in the `melody` array.
 3. **Playback**: A metronome triggers reading from the array, sending notes to MIDI output.
 4. **Visualization**: The melody array is displayed as a graph in the patch.
-
----
 
 ### Key Objects and Their Roles
 
@@ -128,8 +358,6 @@ The note is then sent to the `noteout` object, which outputs the MIDI note to yo
 | `noteout`      | Sends MIDI notes to output                   |
 :::
 
----
-
 ### Diagram: Melody Generation and Playback
 
 ```{mermaid}
@@ -143,21 +371,666 @@ flowchart TD
     MN --> NO[noteout]
 ```
 
----
-
 ### Summary
 
 This patch demonstrates how to algorithmically generate a melody using a musical scale, store it, and play it back via MIDI in Pure Data. The modular structure allows for easy experimentation with different scales, lengths, and playback parameters.
 
 ---
 
-## Euclidean Sequencer
-This chapter provides a step-by-step explanation of the [euclidean_sequencer.pd](code/euclidean_sequencer/euclidean_sequencer.pd) Pure Data patch. The patch demonstrates how to create a Euclidean sequencer that generates rhythmic patterns based on the Euclidean algorithm.
+Here is the translated version of your Markdown text with the code, links, and format preserved:
 
-### Patch Overview
-The patch is organized into several functional blocks:
-- **Euclidean Algorithm**
-- **Rhythm Generation**
-- **Playback Control**
-- **MIDI Output**
-Below is a simplified diagram of the main data flow
+---
+
+## The Euclidean Algorithm Generates Traditional Musical Rhythms
+
+Godfried Toussaint (2005)
+
+![Eucliden image](https://idmmag.com/wp-content/uploads/2019/02/Euclidean-R-1.jpg)
+
+[Link to the original article](https://cgm.cs.mcgill.ca/~godfried/publications/banff.pdf)
+
+### Summary
+
+The Euclidean algorithm (as presented in *Euclid's Elements*) calculates the greatest common divisor of two given integers. It is shown here that the structure of the Euclidean algorithm can be used to efficiently generate a wide variety of rhythms used as timelines (ostinatos) in sub-Saharan African music in particular, and world music in general. These rhythms, here called *Euclidean rhythms*, have the property that their onset patterns are distributed as evenly as possible. Euclidean rhythms also find application in nuclear physics accelerators and computer science and are closely related to several families of words and sequences of interest in the combinatorics of words, such as Euclidean strings, with which the rhythms are compared.
+
+### Hypothesis
+
+Several researchers have observed that rhythms in traditional world music tend to exhibit patterns distributed as regularly or evenly as possible.
+
+**Patterns of maximal evenness can be described using the Euclidean algorithm on the greatest common divisor of two integers.**
+
+### Patterns of Maximal Evenness
+
+The Pattern of Maximal Evenness is a concept used in music theory to create Euclidean rhythms. Euclidean rhythms are rhythmic patterns that evenly distribute beats over a time cycle.
+
+In essence, the Pattern of Maximal Evenness seeks to **distribute a specific number of beats evenly** within a given time span. This is achieved by dividing the time into equal parts and assigning beats to these divisions uniformly.
+
+Example:
+
+x = beat
+
+· = rest
+
+\[×· ×· ×· ×· ] → \[1 0 1 0 1 0 1 0]
+(8,4) = 4 beats evenly distributed over 8 pulses
+
+\[×· ·×· ·×·] → \[1 0 0 1 0 0 1 0]
+(8,3) = 3 beats evenly distributed over 8 pulses
+
+### Euclidean Algorithm
+
+One of the oldest known algorithms, described in *Euclid's Elements* (around 300 BCE) in Proposition 2 of Book VII, now known as the Euclidean algorithm, calculates the greatest common divisor of two given integers.
+
+The idea is very simple. The smaller number is repeatedly subtracted from the larger until the larger becomes zero or smaller than the smaller one, in which case it becomes the remainder. This remainder is then repeatedly subtracted from the smaller number to obtain a new remainder. This process continues until the remainder is zero.
+
+To be more precise, consider the numbers 5 and 8 as an example:
+
+* First, we divide 8 by 5. This gives a quotient of 1 and a remainder of 3.
+* Then, we divide 5 by 3, which gives a quotient of 1 and a remainder of 2.
+* Next, we divide 3 by 2, which gives a quotient of 1 and a remainder of 1.
+* Finally, we divide 2 by 1, which gives a quotient of 2 and a remainder of 0.
+
+The idea is to keep dividing the previous divisor by the remainder obtained in each step until the remainder is 0. When we reach a remainder of 0, the previous divisor is the greatest common divisor of the two numbers.
+
+In short, the process can be seen as a sequence of equations:
+
+```text
+8 = (1)(5) + 3
+5 = (1)(3) + 2
+3 = (1)(2) + 1
+2 = (1)(2) + 0
+```
+
+*Note: 8 = (1)(5) + 3 means that 8 is divided by 5 once, yielding a quotient of 1 and a remainder of 3.*
+
+ 
+
+In essence, it involves successive divisions to find the `greatest common divisor` of two positive numbers (GCD from now on).
+
+The `GCD` of two numbers a and b, assuming a > b, is found by first dividing a by b, and obtaining the remainder r.
+
+The GCD of a and b is the same as that of b and r.
+When we divide a by b, we obtain a quotient c and a remainder r such that:
+
+`a = c · b + r`
+
+**Examples:**
+
+Let’s compute the GCD of 17 and 7.
+
+Since `17 = 7 · 2 + 3`, then GCD(17, 7) is equal to GCD(7, 3).
+Again, since 7 = 3 · 2 + 1, then GCD(7, 3) is equal to GCD(3, 1).
+Here, it is clear that the GCD between 3 and 1 is simply 1.
+Therefore, the GCD between 17 and 7 is also 1.
+
+```text
+GCD(17,7) = 1
+
+17 = 7 · 2 + 3
+
+7 = 3 · 2 + 1
+
+3 = 1 · 3 + 0
+```
+
+ 
+
+**Another example:**
+
+```text
+GCD(8,3) = 1
+
+8 = 3 · 2 + 2
+
+3 = 2 · 1 + 1
+
+2 = 1 · 2 + 0
+```
+
+### How does computing the GCD turn into maximally even distributed patterns?
+
+Represent a binary sequence of k ones \[1] and n − k zeros \[0], where each \[0] bit represents a time interval and the ones \[1] indicate signal triggers.
+
+The problem then reduces to:
+
+`Construct a binary sequence of n bits with k ones such that the ones are distributed as evenly as possible among the zeros.`
+
+A simple case is when k evenly divides n (with no remainder), in which case we should place ones every n/k bits.
+For example, if n = 16 and k = 4, then the solution is:
+
+`[1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0]`
+
+This case corresponds to n and k having a common divisor of k (in this case 4).
+
+More generally, if the greatest common divisor between n and k is g, we would expect the solution to decompose into g repetitions of a sequence of n/g bits.
+
+**This connection with greatest common divisors suggests that we could compute a maximally even rhythm using an algorithm like Euclid’s.**
+
+ 
+
+### Example (13, 5)
+
+Let’s consider a sequence with
+n = 13 and k = 5.
+
+Since 13 − 5 = 8, we start with a sequence consisting of 5 ones, followed by 8 zeros, which can be thought of as 13 one-bit sequences:
+
+\[1 1 1 1 1 0 0 0 0 0 0 0 0]
+
+We begin moving zeros by placing one zero after each one, creating five 2-bit sequences, with three remaining zeros:
+
+\[10] \[10] \[10] \[10] \[10] \[0] \[0] \[0]
+
+`13 = 5 · 2 + 3`
+
+Then we distribute the three remaining zeros similarly, placing a \[0] after each \[10] sequence:
+
+\[100] \[100] \[100] \[10] \[10]
+
+`5 = 3 · 1 + 2`
+
+We now have three 3-bit sequences, and a remainder of two 2-bit sequences.
+So we continue the same way, placing one \[10] after each \[100]:
+
+\[10010] \[10010] \[100]
+
+`3 = 2 · 1 + 1`
+
+The process stops when the remainder consists of a single sequence (here, \[100]), or we run out of zeros.
+
+The final sequence is, therefore, the concatenation of \[10010], \[10010], and \[100]:
+
+**\[1 0 0 1 0 1 0 0 1 0 1 0 0]**
+
+`2 = 1 · 2 + 0`
+
+ 
+
+### Example (17, 7)
+
+Suppose we have 17 pulses and want to evenly distribute 7 beats over them.
+
+**1.** We align the number of beats and silences (7 ones and 10 zeros):
+
+\[1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0]
+
+| 1 1 1 1 1 1 1 | 0 0 0 0 0 0 0 0 0 0 |
+| ------------- | ------------------- |
+
+**2.** We form 7 groups, corresponding to the division of 17 by 7; we get 7 groups of `[1 0]` and 3 remaining zeros `[000]`, which means the next step forms 3 groups until only one or zero groups remain.
+
+\[1 0] \[1 0] \[1 0] \[1 0] \[1 0] \[1 0] \[1 0] \[0] \[0] \[0]
+
+`17 = 7 · 2 + 3`
+
+| 1 | 1 | 1 | 1 | 1 | 1 | 1 | 0 0 0 |
+| - | - | - | - | - | - | - | ----- |
+| 0 | 0 | 0 | 0 | 0 | 0 | 0 |       |
+
+ 
+
+**3.** Again, this corresponds to dividing 7 by 3. In our case, we are left with only one group and we are done.
+
+ 
+
+\[1 0 0] \[1 0 0] \[1 0 0] \[1 0] \[1 0] \[1 0] \[1 0]
+
+| 1 | 1 | 1 | 1 | 1 | 1 | 1 |
+| - | - | - | - | - | - | - |
+| 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| 0 | 0 | 0 |   |   |   |   |
+
+\[1 0 0 1 0] \[1 0 1 0 0] \[1 0 0 1 0] \[1 0]
+
+`7 = 3 · 2 + 1`
+
+| 1 | 1 | 1 | 1 |   |   |   |
+| - | - | - | - | - | - | - |
+| 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| 0 | 0 | 0 |   |   |   |   |
+| 1 | 1 | 1 |   |   |   |   |
+| 0 | 0 | 0 |   |   |   |   |
+
+ 
+
+**4.** Finally, the rhythm is obtained by reading the grouping column by column, from left to right, step by step.
+
+**`[1 0 0 1 0 1 0 0 1 0 1 0 0 1 0 1 0]`**
+
+`3 = 1 · 3 + 0`
+
+ 
+
+### Implementation in Pure Data - Euclidean sequencer
+
+```text
+(index * hits ) % steps
+↓
+[< notes]
+```
+
+where:
+
+index = index of the Euclidean series (array)
+
+hits = number of notes to be played
+
+steps = array size
+
+### References
+
+* [The Euclidean Algorithm Generates Traditional Musical Rhythms](https://cgm.cs.mcgill.ca/~godfried/publications/banff.pdf)
+* [Piano-Phase](https://www.chenalexander.com/Piano-Phase)
+
+---
+
+Here is the full English translation of your markdown document, keeping the code, links, and formatting as requested:
+
+---
+
+## Cellular Automata
+
+![Cellular Automaton](https://mathworld.wolfram.com/images/eps-svg/Code0912_450.svg)
+
+A cellular automaton is a mathematical and computational model for a dynamic system that evolves in discrete steps. It is suitable for modeling natural systems that can be described as a massive collection of simple objects interacting locally with each other.
+
+A cellular automaton is a collection of "colored" cells on a grid of specified shape that evolves through a series of discrete time steps according to a set of rules based on the states of neighboring cells. The rules are then applied iteratively over as many time steps as desired.
+
+Cellular automata come in a variety of forms and types. One of the most fundamental properties of a cellular automaton is the type of grid on which it is computed. The simplest such grid is a `one-dimensional` line. In two dimensions, square, triangular, and hexagonal grids can be considered.
+
+One must also specify the number of colors (or distinct states) *k* that a cellular automaton can assume. This number is typically an integer, with k=2 (binary, `[1]` or `[0]`) being the simplest choice. For a binary automaton, color 0 is commonly referred to as "white" and color 1 as "black". However, cellular automata with a continuous range of possible values can also be considered.
+
+In addition to the grid on which a cellular automaton resides and the colors its cells can assume, one must also specify the `neighborhood` over which the cells influence each other.
+
+### One-Dimensional Cellular Automata (1DCA)
+
+The simplest option is `"nearest neighbors"`, where only the cells directly adjacent to a given cell can influence it at each time step. Two common neighborhoods in the case of a two-dimensional cellular automaton on a square grid are the so-called Moore neighborhood (a square neighborhood) and the von Neumann neighborhood (a diamond-shaped neighborhood).
+
+Cellular automata are considered as a vector. Each component of the vector is called a cell. Each cell is assumed to take only two states:
+
+* [0] (white)
+* [1] (black)
+
+This type of automaton is known as an elementary one-dimensional cellular automaton (1DCA). A dynamic process is performed, starting from an initial configuration C(0) of each of the cells (stage 0), and at each new stage, the state of each cell is calculated based on the state of the neighboring cells and the cell itself in the previous stage.
+
+### The Case of Rule 30
+
+Rule 30 is a binary one-dimensional cellular automaton introduced by [Stephen Wolfram](https://en.wikipedia.org/wiki/Stephen_Wolfram) in 1983.
+It considers an infinite one-dimensional array of cellular automaton cells with only two states, with each cell in some initial state.
+
+At discrete time intervals, each cell changes state spontaneously based on its current state and the state of its two neighbors.
+
+What it consists of:
+
+1. Each cell can be in one of two states: alive or dead.
+
+2. The next generation of a cell is determined by the current state of the cell and the state of its two neighboring cells.
+
+3. There are 8 possible configurations of neighboring states (3^2), and for each, Rule 30 defines whether the cell lives or dies in the next generation.
+
+For Rule 30, the set of rules that governs the automaton's next state is:
+
+| Configuration | Next State | Binary Code |
+| ------------- | ---------- | ----------- |
+| 000           | Dead       | 000         |
+| 001           | Alive      | 011         |
+| 010           | Dead       | 000         |
+| 011           | Alive      | 011         |
+| 100           | Alive      | 011         |
+| 101           | Dead       | 000         |
+| 110           | Alive      | 011         |
+| 111           | Dead       | 000         |
+
+In the following diagram, the top row shows the state of the central cell (cell *i*) and its two neighboring cells at a given stage, and the bottom row shows the state of the central cell in the next stage.
+
+For example, in the first case of the figure:
+
+* if the state of a cell at a given stage is `[1]` (black) and
+* its two neighbors at that stage are also `[1]` (black),
+* then the cell's state in the next stage will be `[0]` (white).
+
+![Rule 30](https://mathworld.wolfram.com/images/eps-svg/ElementaryCARule030_700.svg)
+[Source](https://mathworld.wolfram.com/CellularAutomaton.html)
+
+It is called Rule 30 because in binary, 00011110<sub>2</sub> = 30.
+
+Let's break down the procedure for determining the next state in the 8 combinations:
+
+**Input configurations:** Consider the 8 possible input combinations of the three cells (a central cell and its left and right neighbors). Since each cell can be in one of two possible states (0 or 1), the combinations are 000, 001, 010, 011, 100, 101, 110, and 111.
+
+**Binary representation of the rule:** Rule 30 is represented by the number 30 in binary, which is 00011110. This binary representation determines the rules for the next state of the central cell for each of the 8 possible combinations.
+
+**Bit correspondence:** The 8 bits of the binary representation (00011110) correspond to the 8 input combinations in order. From right to left, the bits represent the next state of the central cell for each input combination.
+
+For example, the least significant bit of 00011110 (the rightmost bit) is 0. This means that when the input combination is 000, the next state of the central cell will be 0.
+
+**Next state determination:** For each input combination (e.g., 000, 001, 010, 011, 100, 101, 110, 111), the corresponding bit in the binary representation of Rule 30 \[00011110] indicates the next state of the central cell.
+
+| Input Configuration | Next State |
+| ------------------- | ---------- |
+| 000                 | 0          |
+| 001                 | 1          |
+| 010                 | 1          |
+| 011                 | 1          |
+| 100                 | 1          |
+| 101                 | 0          |
+| 110                 | 0          |
+| 111                 | 0          |
+
+For example, if the input combination is 000 and the corresponding bit in Rule 30 is 0, then the next state of the central cell will be 0.
+
+Therefore, the rules are not arbitrary but are determined by the binary representation of Rule 30, which specifies the next state of the central cell for each input combination of its neighbors.
+
+### Rule 30 Implementation in Python
+
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+
+def rule30(cells):
+    """Applies Rule 30 to the input cells."""
+    new_cells = np.zeros_like(cells)
+    extended_cells = np.concatenate(([cells[-1]], cells, [cells[0]]))  # Apply periodic boundary conditions
+    for i in range(1, len(extended_cells) - 1):
+        neighborhood = extended_cells[i-1:i+2]
+        if np.array_equal(neighborhood, [1, 1, 1]) or np.array_equal(neighborhood, [1, 1, 0]) or \
+           np.array_equal(neighborhood, [1, 0, 1]) or np.array_equal(neighborhood, [0, 0, 0]):
+            new_cells[i-1] = 0
+        else:
+            new_cells[i-1] = 1
+    return new_cells
+
+def main():
+    # Initialize the cells
+    cells = np.zeros(100)
+    cells[50] = 1  # Start with one cell in the middle
+
+    # Apply Rule 30 for 100 steps
+    history = [cells]
+    for i in range(100):
+        cells = rule30(cells)
+        history.append(cells)
+
+    # Display the history as an image
+    plt.imshow(history, cmap='binary')
+    plt.show()
+
+if __name__ == "__main__":
+    main()
+```
+
+This Python script uses the numpy and matplotlib libraries to simulate and visualize the evolution of a cellular automaton using Rule 30.
+
+The `rule30` function is the core of this script. It takes a one-dimensional array of cells as input, where each cell is either 0 or 1. The function first creates a new array `new_cells` with the same shape as the input, filled with zeros. It then extends the input array at both ends to apply periodic boundary conditions, meaning that the first cell is considered a neighbor of the last cell and vice versa.
+
+Next, the function iterates over each cell in the extended array (excluding the added boundary cells). For each cell, it considers the cell and its two neighbors as a neighborhood. If the neighborhood matches one of four specific patterns (\[1, 1, 1], \[1, 1, 0], \[1, 0, 1], or \[0, 0, 0]), the corresponding cell in `new_cells` is set to 0. Otherwise, it is set to 1. This is the implementation of Rule 30. Finally, the function returns the new array of cells.
+
+The main function initializes a one-dimensional array of 100 cells, all set to 0 except the middle cell, which is set to 1. It then applies the `rule30` function to this array 100 times, storing each resulting array in a list called `history`. This list is then visualized as a binary image using matplotlib's `imshow` function, where each row corresponds to one step in the cellular automaton's evolution.
+
+The script is designed to run as a standalone program. The line `if __name__ == "__main__":` ensures that the main function is called only when the script is run directly, not when imported as a module.
+
+### Two-Dimensional Cellular Automata (2DCA)
+
+Two-dimensional cellular automata are an extension of one-dimensional cellular automata, where cells not only have neighbors to the left and right, but also above and below. This allows modeling of more complex and structurally rich systems, such as two-dimensional phenomena like wave propagation, growth patterns in biology, fire spread, fluid simulation, among others.
+
+Two-dimensional cellular automata (2DCA) are computational models that simulate dynamic systems on a two-dimensional grid.
+
+They consist of:
+
+1. *Cells*: Each cell in the grid can have a finite state, such as alive or dead, and can change state according to the automaton’s rules.
+
+2. *Neighborhood*: Each cell has a neighborhood, which is a set of adjacent cells that influence its state. The neighborhood can be rectangular, hexagonal, circular, or of any other shape.
+
+3. *Transition rule*: The transition rule defines how the state of a cell changes based on its current state and the state of the cells in its neighborhood. The rule can be deterministic or probabilistic.
+
+4. *Evolution*: The cellular automaton evolves through iterations. In each iteration, the state of each cell is updated according to the transition rule.
+
+
+Here is the full translation of your markdown file into English, with all code, links, and formatting preserved:
+
+---
+
+### Case Study: Conway's Game of Life
+
+![Game of life](https://images.squarespace-cdn.com/content/v1/59413d96e6f2e1c6837c7ecd/1592233649594-7UQA8NZSNXMZWX86FIWN/JB_Game_of_Life.gif?format=2500w)
+
+[Source](https://www.artnome.com/news/2020/7/12/the-game-of-life-emergence-in-generative-art)
+
+Conway's Game of Life, also known simply as the Game of Life, is a cellular automaton devised by British mathematician John Horton Conway in 1970. It is the best-known example of a cellular automaton.
+
+The "game" is actually a zero-player game, meaning its evolution is determined by its initial state, requiring no further input from human players. One interacts with the Game of Life by creating an initial configuration and observing how it evolves.
+
+[View Original Article - MATHEMATICAL GAMES - The fantastic combinations of John Conway's new solitaire game life (Martin Gardner)](https://ballyalley.com/articles_and_news/LIFE_Article_%28Scientific_American%29%28October_1970%29.pdf)
+
+`GOL` (Game of Life) and `CGOL` (Conway's Game of Life) are commonly used acronyms.
+
+[![Game of Life](https://img.youtube.com/vi/xP5-iIeKXE8/0.jpg)](https://www.youtube.com/watch?v=xP5-iIeKXE8)
+
+[Source](https://www.youtube.com/watch?v=xP5-iIeKXE8)
+
+#### Rules
+
+The universe of the Game of Life is an infinite two-dimensional orthogonal grid of square cells, each of which (at any given time) is in one of two possible states, `alive` (alternatively "on") or `dead` (alternatively "off"). At each time step, the following transitions occur:
+
+**The four rules of Conway's Game of Life:**
+
+**1. Overpopulation**: Any live cell with more than three live neighbors dies due to overpopulation.
+
+**2. Underpopulation**: Any live cell with fewer than two live neighbors dies due to underpopulation.
+
+**3. Stability**: Any live cell with two or three live neighbors survives to the next generation.
+
+**4. Reproduction**: Any dead cell with exactly three live neighbors becomes a live cell.
+
+ 
+
+We can also summarize the rules in a table:
+
+| Rule            | Description           | Current State | Live Neighbors | Next State |
+| --------------- | --------------------- | ------------- | -------------- | ---------- |
+| Overpopulation  | Death by overcrowding | Alive         | More than 3    | Dead       |
+| Underpopulation | Death by isolation    | Alive         | Fewer than 2   | Dead       |
+| Stability       | Survival              | Alive         | 2 or 3         | Alive      |
+| Reproduction    | Birth                 | Dead          | 3              | Alive      |
+
+ 
+
+Or summarized as:
+
+0 → 3 live neighbors → 1
+1 → < 2 or > 3 live neighbors → 0
+
+Where 0 represents a dead cell and 1 a live cell.
+
+ 
+
+![Game of life rules](https://the-mvm.github.io/assets/img/posts/20210210/GameOfLife.gif)
+
+[Source](https://the-mvm.github.io/conways-game-of-life.html)
+
+ 
+
+![Game of life rules](https://d2r55xnwy6nx47.cloudfront.net/uploads/2024/01/TheRulesOfLifebyMerrillSherman_560-Desktop.svg)
+
+[Source](https://www.quantamagazine.org/maths-game-of-life-reveals-long-sought-repeating-patterns-20240118/)
+
+The initial pattern constitutes the system's 'seed'. The first generation is created by applying the above rules simultaneously to each cell in the seed; births and deaths occur simultaneously, and the discrete moment in which this occurs is sometimes called a step. (In other words, each generation is a pure function of the previous one.) The rules continue to be applied repeatedly to create more generations.
+
+### Origins
+
+Conway was interested in a problem presented in the 1940s by renowned mathematician John von Neumann, who was trying to find a hypothetical machine that could build copies of itself and succeeded when he found a mathematical model for such a machine with very complicated rules on a rectangular grid. The Game of Life emerged as Conway’s successful attempt to simplify von Neumann’s ideas.
+
+The game made its first public appearance in the October 1970 issue of Scientific American, in Martin Gardner’s "Mathematical Games" column, under the title "The fantastic combinations of John Conway’s new solitaire game 'Life'".
+
+Since its publication, Conway’s Game of Life has attracted significant interest due to the surprising ways patterns can evolve.
+
+Life is an example of emergence and self-organization. It is of interest to physicists, biologists, economists, mathematicians, philosophers, generative scientists, and others, as it shows how complex patterns can emerge from the implementation of very simple rules. The game can also serve as a didactic analogy, used to convey the somewhat counterintuitive notion that "design" and "organization" can spontaneously arise in the absence of a designer.
+
+Conway carefully selected the rules, after considerable experimentation, to meet three criteria:
+
+1. There should be no initial pattern for which a simple proof exists that the population can grow without limit.
+2. There must be initial patterns that appear to grow indefinitely.
+3. There should be simple initial patterns that evolve and change for a considerable period before ending in one of the following ways:
+
+   * dying out completely (due to overcrowding or becoming too sparse); or
+   * settling into a stable configuration that remains unchanged thereafter, or entering an oscillating phase in which they repeat a cycle endlessly of two or more periods.
+
+### Patterns
+
+Many different types of patterns occur in the Game of Life, including static patterns ("still lifes"), repeating patterns ("oscillators" – a superset of still lifes), and patterns that move across the board ("spaceships"). Common examples of these three classes are shown below, with live cells in black and dead cells in white.
+
+![Gosper glider gun](https://blog.xojo.com/wp-content/uploads/2022/05/CleanShot-2022-05-02-at-14.25.12@2x.png)
+
+Using the provided rules, you can investigate the evolution of simple patterns:
+
+![3 cells](https://pi.math.cornell.edu/~lipa/mec/lifep.png)
+
+![4 cells](https://pi.math.cornell.edu/~lipa/mec/4life2.png)
+
+[Source](https://pi.math.cornell.edu/~lipa/mec/lesson6.html)
+
+Patterns that evolve for long periods before stabilizing are called `Methuselahs`, the first of which discovered was the `R-pentomino`.
+
+![R-pendomino](https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Game_of_life_fpento.svg/164px-Game_of_life_fpento.svg.png)
+
+`Diehard` is a pattern that eventually disappears, rather than stabilizing, after 130 generations, which is believed to be the maximum for initial patterns with seven or fewer cells.
+
+![Diehard](https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Game_of_life_diehard.svg/324px-Game_of_life_diehard.svg.png)
+
+`Acorn` takes 5,206 generations to produce 633 cells, including 13 escaping gliders.
+
+![Acorn](https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Game_of_life_acorn.svg/292px-Game_of_life_acorn.svg.png)
+
+Conway originally conjectured that no pattern could grow indefinitely; that is, for any initial configuration with a finite number of live cells, the population could not grow beyond some finite upper bound. The `Gosper glider gun` pattern produces its first glider in the 15th generation, and another every 30 generations thereafter.
+
+![Gosper's glider gun](https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Game_of_life_glider_gun.svg/1000px-Game_of_life_glider_gun.svg.png)
+
+![Gosper glider gun](https://upload.wikimedia.org/wikipedia/commons/e/e5/Gospers_glider_gun.gif)
+
+For many years, this pattern was the smallest known. In 2015, a gun called `Simkin glider gun` was discovered, which emits a glider every 120 generations, and has fewer live cells but is spread across a larger bounding box at its ends.
+
+![Simkin glider gun](https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Game_of_life_Simkin_glider_gun.svg/1000px-Game_of_life_Simkin_glider_gun.svg.png)
+
+[Source](https://medium.com/@swarajkalbande123/conways-game-of-life-life-on-computer-b7edfc85d21a)
+![Glider Patterns](https://miro.medium.com/v2/resize\:fit:1024/format\:webp/0*7nf3iKnIaVET4mnr)
+
+[Source](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life)
+
+
+### Python Implementation of Game of Life
+
+
+```python
+import time
+import pygame
+import numpy as np
+
+COLOR_BG = (10, 10, 10,)  # Color de fondo
+COLOR_GRID = (40, 40, 40)  # Color de la cuadrícula
+COLOR_DIE_NEXT = (170, 170, 170)  # Color de las células que mueren en la siguiente generación
+COLOR_ALIVE_NEXT = (255, 255, 255)  # Color de las células que siguen vivas en la siguiente generación
+
+pygame.init()
+pygame.display.set_caption("conway's game of life")  # Título de la ventana del juego
+
+# Función para actualizar la pantalla con las células
+def update(screen, cells, size, with_progress=False):
+    updated_cells = np.zeros((cells.shape[0], cells.shape[1]))  # Matriz para almacenar las células actualizadas
+
+    for row, col in np.ndindex(cells.shape):
+        alive = np.sum(cells[row-1:row+2, col-1:col+2]) - cells[row, col]  # Cálculo de células vecinas vivas
+        color = COLOR_BG if cells[row, col] == 0 else COLOR_ALIVE_NEXT  # Color de la célula actual
+
+        if cells[row, col] == 1:  # Si la célula actual está viva
+            if alive < 2 or alive > 3:  # Si tiene menos de 2 o más de 3 vecinos vivos, muere
+                if with_progress:
+                    color = COLOR_DIE_NEXT
+            elif 2 <= alive <= 3:  # Si tiene 2 o 3 vecinos vivos, sigue viva
+                updated_cells[row, col] = 1
+                if with_progress:
+                    color = COLOR_ALIVE_NEXT
+        else:  # Si la célula actual está muerta
+            if alive == 3:  # Si tiene exactamente 3 vecinos vivos, revive
+                updated_cells[row, col] = 1
+                if with_progress:
+                    color = COLOR_ALIVE_NEXT
+
+        pygame.draw.rect(screen, color, (col * size, row * size, size - 1, size - 1))  # Dibuja la célula en la pantalla
+
+    return updated_cells  # Devuelve las células actualizadas
+
+# Función principal del programa
+def main():
+    pygame.init()
+    screen = pygame.display.set_mode((800, 600))  # Crea la ventana del juego
+
+    cells = np.zeros((60, 80))  # Crea una matriz de células muertas
+    screen.fill(COLOR_GRID)  # Rellena la pantalla con el color de la cuadrícula
+    update(screen, cells, 10)  # Actualiza la pantalla con las células
+
+    pygame.display.flip()
+    pygame.display.update()
+
+    running = False  # Variable para controlar si el juego está en ejecución
+
+    while True:
+        for Q in pygame.event.get():
+            if Q.type == pygame.QUIT:  # Si se cierra la ventana, termina el programa
+                pygame.quit()
+                return
+            elif Q.type == pygame.KEYDOWN:
+                if Q.key == pygame.K_SPACE:  # Si se presiona la tecla espacio, se inicia o pausa el juego
+                    running = not running
+                    update(screen, cells, 10)
+                    pygame.display.update()
+            if pygame.mouse.get_pressed()[0]:  # Si se presiona el botón izquierdo del ratón
+                pos = pygame.mouse.get_pos()  # Obtiene la posición del ratón
+                cells[pos[1] // 10, pos[0] // 10] = 1  # Marca la célula correspondiente como viva
+                update(screen, cells, 10)
+                pygame.display.update()
+
+        screen.fill(COLOR_GRID)  # Rellena la pantalla con el color de la cuadrícula
+
+        if running:  # Si el juego está en ejecución
+            cells = update(screen, cells, 10, with_progress=True)  # Actualiza las células con progreso
+            pygame.display.update()
+
+        time.sleep(0.001)  # Espera un breve tiempo para controlar la velocidad del juego
+
+if __name__ == "__main__":
+    main()
+```
+
+---
+
+This Python script implements Conway’s Game of Life, a cellular automaton devised by British mathematician John Horton Conway. It is a zero-player game, meaning its evolution is determined entirely by its initial state, with no further input required.
+
+The script begins by importing the necessary modules: `time`, `pygame` for the graphical interface, and `numpy` to handle the game grid as a 2D matrix. It then defines color constants used for visualizing the game.
+
+The `pygame.init()` function is called to initialize all imported Pygame modules. The window title is set to “Conway’s Game of Life” using `pygame.display.set_caption()`.
+
+The `update()` function updates the game state and redraws the grid. It takes four arguments: `screen` (the Pygame surface to draw on), `cells` (the current game state as a 2D `numpy` array), `size` (the pixel size of each cell), and `with_progress` (a boolean indicating whether to display cells that will change in the next generation).
+
+The function creates a new 2D matrix `updated_cells` filled with zeros, matching the shape of `cells`. It then iterates over each cell, calculates the number of live neighbors, and applies the game rules to determine whether the cell will be alive in the next generation. The function draws each cell on the screen using the appropriate color and returns `updated_cells`.
+
+The `main()` function initializes Pygame, creates the game window, and initializes the game state as a 2D `numpy` array of zeros (representing dead cells). It then enters the main loop, which handles Pygame events (such as closing the window or key presses), updates the game state if it is running, and redraws the grid. The game can be started or paused by pressing the spacebar, and cells can be toggled manually by clicking on them.
+
+Finally, the script calls `main()` to launch the game. Press the spacebar to begin.
+
+### Further Reading
+
+* [The Game Of Life – Emergence In Generative Art (2020)](https://www.artnome.com/news/2020/7/12/the-game-of-life-emergence-in-generative-art)
+* [Conway’s Game of Life – Life on Computer by Swaraj Kalbande](https://medium.com/@swarajkalbande123/conways-game-of-life-life-on-computer-b7edfc85d21a)
+* [Wikipedia – Conway's Game of Life](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life)
+
+### Interactive Websites
+
+* [John Conway’s Game of Life – An Introduction to Cellular Automata](https://beltoforion.de/en/game_of_life/)
+* [conwaylife.com](https://conwaylife.com/)
+* [Cellular Automata Megathread](https://nga.178.com/read.php?tid=21761699&rand=998)
+
+---
+
+
+
+
