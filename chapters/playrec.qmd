@@ -11,7 +11,7 @@ We will also consider the artistic implications of recording and playback, inclu
 
 > "...I am recording the sound of my speaking voice and I am going to play it back into the room again and again..."
 
-As listeners, we know what is going to happen, but we don’t know **how** it will happen. We listen, following Lucier’s recorded voice. Then, Lucier plays the recording into the room and re-records it. This time, we begin to hear more of the room’s acoustic characteristics. He continues to play back and re-record his voice—over and over—until his speech becomes softened, almost dissolved, into the sonic reflections of the room in which the piece was recorded and re-recorded.
+As listeners, we know what is going to happen, but we don’t know **how** it will happen [@hasse2012]. We listen, following Lucier’s recorded voice. Then, Lucier plays the recording into the room and re-records it. This time, we begin to hear more of the room’s acoustic characteristics. He continues to play back and re-record his voice—over and over—until his speech becomes softened, almost dissolved, into the sonic reflections of the room in which the piece was recorded and re-recorded.
 
 One effective way to study a piece is to replicate its technical aspects and the devices involved. The aim of this activity is to recreate the technical setup of *I'm Sitting in a Room*, focusing on the processes of recording, playback, and automation. 
 
@@ -46,7 +46,7 @@ All the recorded generations, presented in chronological order, create a tape co
 &nbsp;
 ![Pure Data implementation of I am sitting in a room](/assets/screenshots/playrec/sitting.png)
 
-In this section, we will break down the Pure Data patch `I-am-sitting-in-a-room.pd` step by step. This patch is inspired by Alvin Lucier’s iconic piece and demonstrates how to recursively record and play back sound to reveal the resonant frequencies of a room.
+In this section, we will break down the Pure Data patch [`I-am-sitting-in-a-room.pd`](/assets/code/playrec/I-am-sitting-in-a-room.pd) step by step. This patch is inspired by Alvin Lucier’s iconic piece and demonstrates how to recursively record and play back sound to reveal the resonant frequencies of a room.
 
 ---
 
@@ -191,3 +191,170 @@ flowchart TD
 ---
 
 This patch is a practical and creative way to explore acoustic phenomena and the transformation of sound through recursive recording, echoing the spirit of Lucier’s original work.
+
+
+## I am sitting in a [freeverb~] — Patch Walkthrough
+
+The patch [I-am-sitting-in-a-room-freeverb.pd](/assets/code/playrec/I-am-sitting-in-a-room-freeverb.pd) extends the original *I am sitting in a room* concept by introducing a **virtual acoustic environment** using reverb and allowing for **pre-recorded audio input** instead of just live microphone input. This adaptation provides more creative flexibility and consistent results compared to using a physical room.
+
+![Pure Data implementation of I am sitting in a room with freeverb](/assets/screenshots/playrec/sitting-freeverb.png)
+
+This patch is designed to simulate the recursive recording process of Lucier's piece while allowing for more control over the sound environment. It uses the `freeverb~` object to create a virtual room effect, enabling you to manipulate the acoustic characteristics of the sound without relying on a physical space.
+
+### Conceptual Overview
+
+The patch enables you to:
+- Use a pre-recorded audio file OR live input as your source material
+- Add artificial reverb to simulate room characteristics
+- Follow the same recursive recording process as the original
+- Achieve more controlled, repeatable results
+
+### System Diagram
+
+```{mermaid}
+flowchart TD
+    AudioFile[Audio File<br>readsf~] --> Reverb1[freeverb~] --> AudioInput[s~ audio.input]
+    AudioInput --> RecordA[Record A<br>writesf~ record-A.wav]
+    RecordA --> PlayA[Play A<br>readsf~ record-A.wav]
+    PlayA --> Reverb2[freeverb~] 
+    PlayA --> PlayerA[s~ player.A]
+    Reverb2 --> ThrowAudio1[throw~ audio]
+    PlayerA --> RecordB[Record B<br>writesf~ record-B.wav]
+    RecordB --> PlayB[Play B<br>readsf~ record-B.wav]
+    PlayB --> Reverb3[freeverb~]
+    PlayB --> PlayerB[s~ player.B]
+    Reverb3 --> ThrowAudio2[throw~ audio]
+    PlayerB --> RecordA
+    ThrowAudio1 --> CatchAudio[catch~ audio]
+    ThrowAudio2 --> CatchAudio
+    CatchAudio --> Output[out~]
+    
+    classDef reverb fill:#e1f5fe,stroke:#0277bd
+    classDef files fill:#e8f5e9,stroke:#2e7d32
+    classDef audio fill:#fff3e0,stroke:#e65100
+    
+    class Reverb1,Reverb2,Reverb3 reverb
+    class AudioFile,RecordA,PlayA,RecordB,PlayB files
+    class AudioInput,PlayerA,PlayerB,ThrowAudio1,ThrowAudio2,CatchAudio audio
+```
+
+---
+
+### Unique Features of the [freeverb~] Version
+
+#### 1. Audio File Input
+
+Unlike the original patch that only uses microphone input, this version can:
+
+- Play a pre-recorded audio file (`speech.wav`) as the initial source
+- Process this file through reverb before recording
+- Trigger playback with a button (labeled "2. Playback audio")
+
+```{mermaid}
+flowchart LR
+    Bang((bng)) --> Msg[/msg open speech.wav, 1/]
+    Msg --> Reader[readsf~]
+    Reader --> Reverb[freeverb~]
+    Reverb --> Send[s~ audio.input]
+    
+    style Bang fill:#f9f,stroke:#333,stroke-width:2px
+    style Msg fill:#fff,stroke:#333
+    style Reader fill:#e8f5e9,stroke:#333
+    style Reverb fill:#e1f5fe,stroke:#333
+    style Send fill:#fff3e0,stroke:#333
+```
+
+#### 2. Virtual Acoustic Environment
+
+Instead of relying on a physical room's acoustics, this patch uses `freeverb~` objects to create a simulated acoustic space:
+
+- Every audio signal (input and playback) passes through a `freeverb~` object
+- This creates consistent reverberation that can be adjusted and controlled
+- Multiple `freeverb~` objects process different stages of the audio for cumulative effects
+
+#### 3. Enhanced Control Flow
+
+The patch includes numbered controls for better workflow:
+
+| Button | Label | Function |
+|--------|-------|----------|
+| 1 | Start recording | Begins recording the input source to record-A.wav |
+| 2 | Playback audio | Plays the speech.wav file through reverb into the system |
+| 3 | Stop recording | Stops the current recording process |
+
+#### 4. Multiple Send/Receive Paths
+
+The patch uses additional send/receive pairs to manage signal routing:
+
+- `s~/r~ audio.input` - Routes input signals to the recording object
+- `s~/r~ player.A` - Routes playback from file A to recorder B
+- `s~/r~ player.B` - Routes playback from file B back to recorder A
+- `throw~/catch~ audio` - Collects all signals to be sent to the output
+
+
+### Step-by-Step Explanation
+
+#### Step 1: Initial Audio Source Options
+
+This patch provides two possible sources for the initial recording:
+
+1. **Pre-recorded file input:**
+   - Click "2. Playback audio" button to play `speech.wav`
+   - The file is played through `readsf~`, processed by `freeverb~`, and sent to `s~ audio.input`
+
+2. **Live input:** (not explicitly shown in this version but could be added using `adc~`)
+   - Any signal sent to `s~ audio.input` will be recorded when recording starts
+
+#### Step 2: Recording the First Generation
+
+- Click "1. Start recording" to begin recording to `record-A.wav`
+- The signal from `s~ audio.input` is captured by `r~ audio.input` and sent to `writesf~`
+- The resulting file contains your source material with initial reverb applied
+
+#### Step 3: Playback and Re-recording
+
+- After stopping recording with "3. Stop recording", the patch automatically:
+  - Opens and plays `record-A.wav` through `readsf~`
+  - Processes it through another `freeverb~` for additional reverb
+  - Sends it to both `throw~ audio` (for monitoring) and `s~ player.A`
+  - The `player.A` signal is received and recorded to `record-B.wav`
+
+#### Step 4: Recursive Process
+
+- When `record-B.wav` is created, it can be played back through another `readsf~`
+- This signal is also processed by `freeverb~`
+- The output is sent to both `throw~ audio` and `s~ player.B`
+- The `player.B` signal could be received and recorded back to `record-A.wav`
+- This cycle can continue, with each generation accumulating more of the virtual room's characteristics
+
+#### Step 5: Output
+
+- All audio signals sent to `throw~ audio` are collected by `catch~ audio`
+- The mixed signal is sent to `out~` for playback through speakers/headphones
+
+---
+
+### Key Objects Table
+
+| Object | Purpose in This Patch |
+|--------|----------------------|
+| `freeverb~` | Creates virtual room acoustics by adding reverberation |
+| `readsf~` | Plays audio files (source material or previous generations) |
+| `writesf~` | Records audio to file (for each generation) |
+| `s~/r~` | Routes audio between different parts of the patch |
+| `throw~/catch~` | Mixes and outputs all audio signals |
+| `del` | Adds small delays to ensure proper sequencing of operations |
+| `bng` | Provides buttons for user interaction |
+| `out~` | Sends audio to speakers/headphones |
+
+### Creative Applications
+
+- **Experiment with reverb settings:** Try different room sizes, damping, and wet/dry mix
+- **Use different source materials:** Test various speech samples, musical phrases, or sound effects
+- **Create hybrid processes:** Record the first generation in a real room, then switch to the virtual environment
+- **Build compositional sequences:** Layer different generations to create evolving textures
+- **Compare real vs. virtual:** Process the same source through both the original and freeverb patches to contrast physical and virtual acoustics
+
+This virtual approach offers a controlled laboratory for exploring the core concepts of Lucier's piece, making it accessible even without an ideal acoustic space, while also opening new creative possibilities that wouldn't be possible in a physical implementation.
+
+## References{.unnumbered}

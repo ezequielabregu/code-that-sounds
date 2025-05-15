@@ -15,7 +15,7 @@ book:
     - chapters/sonification.qmd
     - chapters/conclusion.qmd
 
-#bibliography: references.bib
+bibliography: references.bib
 
 format:
   html:
@@ -30,6 +30,7 @@ format:
     sidebar: true
     page-layout: full
     lightbox: true
+    css: styles.css
 
 website:
   navbar: false

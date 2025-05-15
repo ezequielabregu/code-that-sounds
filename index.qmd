@@ -1,4 +1,4 @@
-![](/assets/images/cover_1.png)
+![](/assets/images/index/cover_1.png)
 
 # Preface {.unnumbered}
 
@@ -14,15 +14,15 @@ Whether you're an artist exploring new tools, a programmer seeking creative outl
 
 My name is **Ezequiel Abregú**, and I am a sound artist, composer, multi-instrumentalist, and researcher originally from Buenos Aires, Argentina. My artistic practice encompasses sound recordings, audio installations, performances, sound sculptures, sound design, and compositions for chamber music, choreography, and theater. I am particularly interested in the interplay between music, performance, sound art, live electronics, auditory and visual perception, interactive media, and the application of technology in art.
 
-:::{style="text-align:center;"}
-![Dr. Ezequiel Abregú](/assets/images/eabregu-pic.jpg){width=70%}
+::: {style="text-align:center;"}
+![Dr. Ezequiel Abregú](/assets/images/index/eabregu-pic.jpg){width="70%"}
 :::
 
 I hold a Ph.D. focusing on the relationship between visual and auditory perception in sound art, and a degree in Composition with Electroacoustic Media from the National University of Quilmes (UNQ). My academic career includes teaching positions at several institutions: I am a professor at the University of Quilmes (Computing Applied to Music area), the National University of Arts (Multimedia Arts area), and the University of Tres de Febrero (Electronic Arts area).
 
 My passion for programming and digital audio applications has led me to explore various programming languages and tools over the past two decades, including C, C++, Python, and Pure Data. I am an advocate of the open-source philosophy, regularly working with Linux and sharing my projects in publicly accessible repositories. My technical expertise extends to hardware development using microcontrollers and single-board computers, enabling me to adopt a hands-on approach in both my artistic and research endeavors.
 
-More information about my work can be found on my personal website [ezequielabregu.net](https://ezequielabregu.net). 
+More information about my work can be found on my personal website [ezequielabregu.net](https://ezequielabregu.net).
 
 ## What is this book about?
 
@@ -44,44 +44,71 @@ In this book, you will learn how to use Pure Data to create interactive audio-vi
 
 ## What are you don't going to learn?
 
-This book is not intended to be a comprehensive guide to all aspects of Pure Data. Instead, it focuses on specific topics and projects that are relevant to creative coding. While the book will cover a wide range of techniques and concepts, it will not delve into every detail or aspect of Pure Data.
-This book is not a substitute for the official Pure Data documentation or other resources. It is meant to complement these resources and provide a practical, hands-on approach to learning Pure Data.
+This book is not intended to be a comprehensive guide to all aspects of Pure Data. Instead, it focuses on specific topics and projects that are relevant to creative coding. While the book will cover a wide range of techniques and concepts, it will not delve into every detail or aspect of Pure Data. This book is not a substitute for the official Pure Data documentation or other resources. It is meant to complement these resources and provide a practical, hands-on approach to learning Pure Data.
 
 ## Pre-requisites
 
-To get the most out of this book, you should have a basic understanding of programming and some familiarity with the Pure Data language. 
+To get the most out of this book, you should have a basic understanding of programming and some familiarity with the Pure Data language.
 
 If you are new to Pure Data or programming, there are several free online resources that can help you get started:
 
-- [Pure Data FLOSS Manual](http://floss.booktype.pro/pure-data/introduction2/) – A beginner-friendly and comprehensive guide to Pure Data.
-- [Official Pure Data Documentation](https://msp.ucsd.edu/Pd_documentation/index.htm) – The official manuals and reference materials for Pure Data.
-- [Miller Puckette's "Theory and Techniques of Electronic Music"](https://msp.ucsd.edu/techniques/latest/book.pdf) – A comprehensive book by the creator of Pure Data, covering both theory and practical techniques.
-- [Programming Electronic Music in Pd](http://www.pd-tutorial.com/english/index.html) - Designed for self-study, principally for composers. It begins with explanations of basic programming and acoustic principles then gradually builds up to the most advanced electronic music processing techniques.
-- [Patchstorage](https://patchstorage.com/platform/pd-vanilla/) - A community-driven platform for sharing and discovering Pure Data patches. It features a wide range of projects, from simple examples to complex installations, and serves as a valuable resource for learning and inspiration.
+-   [Pure Data FLOSS Manual](http://floss.booktype.pro/pure-data/introduction2/) – A beginner-friendly and comprehensive guide to Pure Data.
+-   [Official Pure Data Documentation](https://msp.ucsd.edu/Pd_documentation/index.htm) – The official manuals and reference materials for Pure Data.
+-   [Miller Puckette's "Theory and Techniques of Electronic Music"](https://msp.ucsd.edu/techniques/latest/book.pdf) – A comprehensive book by the creator of Pure Data, covering both theory and practical techniques.
+-   [Programming Electronic Music in Pd](http://www.pd-tutorial.com/english/index.html) - Designed for self-study, principally for composers. It begins with explanations of basic programming and acoustic principles then gradually builds up to the most advanced electronic music processing techniques.
+-   [Patchstorage](https://patchstorage.com/platform/pd-vanilla/) - A community-driven platform for sharing and discovering Pure Data patches. It features a wide range of projects, from simple examples to complex installations, and serves as a valuable resource for learning and inspiration.
 
 These resources can be consulted before or alongside this book to strengthen your foundational knowledge.
 
-
-:::{.callout-warning icon="false"}
 ### Recommended Pure Data distributions
-This book is based on the `Vanilla`[^2] distribution of Pure Data, which is the most widely used version. However, there are several other distributions that you may find useful for specific projects or needs:
-:::
-[^2]: [puredata.info/downloads/pure-data](https://puredata.info/downloads/pure-data)
 
-- [Purr Data](https://agraef.github.io/purr-data/) – A fork of Pd-l2ork that focuses on usability and accessibility, with a more polished interface and additional features. Purr Data serves the same purpose, but offers a new and much improved graphical user interface and includes many 3rd party plug-ins. Like Pd, it runs on Linux, macOS and Windows, and is open-source throughout.
+This book is based on **Pure Data Vanilla** distribution, which is the most widely used version. You can download it from the official website: 
 
-- [Plugdata](https://plugdata.org/) – plugdata is a plugin wrapper designed for Miller Puckette's Pure Data (Pd), featuring an enhanced graphical user interface (GUI) created using JUCE, headed by Timothy Schoen. this project is still a work in progress, and may still have some bugs. By default, plugdata comes with the cyclone and ELSE collections of externals and abstractions. 
+[https://puredata.info/downloads/pure-data](https://puredata.info/downloads/pure-data) 
 
-## Acknowledgements
-I would like to express my gratitude to the following individuals and organizations for their support and contributions to this book:
+This version is maintained by the original author, Miller Puckette, and is the most stable supported version of Pure Data. It includes all the core features and libraries needed for most projects, making it a great starting point for beginners and experienced users alike. Pure Data Vanilla is a free and open-source visual programming language for multimedia applications, widely used in the fields of sound synthesis, interactive installations, and live performance. It is available for Windows, macOS, and Linux operating systems.
 
-- [Pure Data](https://puredata.info/) for providing a powerful and flexible platform for creative coding.
-- [The Pd community](https://puredata.info/community) for their invaluable resources, tutorials, and support.
-- [The open-source community](https://opensource.org/) for their dedication to sharing knowledge and tools for creative coding.
+However, there are several other distributions that you may find useful for specific projects or needs:
 
+-   [Purr Data](https://agraef.github.io/purr-data/) – A fork of Pd-l2ork that focuses on usability and accessibility, with a more polished interface and additional features. Purr Data serves the same purpose, but offers a new and much improved graphical user interface and includes many 3rd party plug-ins. Like Pd, it runs on Linux, macOS and Windows, and is open-source throughout.
+
+-   [Plugdata](https://plugdata.org/) – plugdata is a plugin wrapper designed for Miller Puckette's Pure Data (Pd), featuring an enhanced graphical user interface (GUI) created using JUCE, headed by Timothy Schoen. this project is still a work in progress, and may still have some bugs. By default, plugdata comes with the cyclone and ELSE collections of externals and abstractions.
+
+### Recommended libraries and externals
+
+The following libraries are recommended to be used with Pure Data. They are not included in the Pure Data Vanilla distribution, but they can be easily installed and used with it:
+
+- cyclone
+- ELSE
+- iemlib
+- list-abs
+- zexy
+- Gem
+- ceammc
+- comport
+- mrpeach
+- freeverb~
+- jmmmp
+- mapping
+
+These libraries provide additional objects and features that can enhance your projects and make it easier to work with sound synthesis, data visualization, and interactive installations. 
+
+## Contributing
+
+If you would like to contribute to this book, please feel free to fork the repository and submit a pull request. I welcome any suggestions, corrections, or improvements to the content. You can also report issues or request features by opening an issue in the repository. You can find the source code for this book on [GitHub](https://github.com/ezequielabregu/creative-code-with-pd).
 
 ## Contact
+
 If you have any questions, comments, or feedback about this book, please feel free to reach out to me at [eabregu.dev@gmail.com](mailto:eabregu.dev@gmail.com). I would love to hear from you!
 
+## Acknowledgements
+
+I would like to express my gratitude to the following individuals and organizations for their support and contributions to this book:
+
+-   [Pure Data](https://puredata.info/) for providing a powerful and flexible platform for creative coding.
+-   [The Pd community](https://puredata.info/community) for their invaluable resources, tutorials, and support.
+-   [The open-source community](https://opensource.org/) for their dedication to sharing knowledge and tools for creative coding.
+
 ## License
+
 This book is licensed under the [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-nc-sa/4.0/). You are free to share and adapt the material, provided you give appropriate credit, do not use it for commercial purposes, and distribute your contributions under the same license.

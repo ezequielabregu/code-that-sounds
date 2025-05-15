@@ -8,7 +8,7 @@ The design of Pure Data echoes the modular synthesis systems of the 20th century
 
 To fully engage with the creative potential of Pure Data, one can develop or modify algorithms for digital audio using imaginative coding strategies. For instance, building a real-time audio granulator that reinterprets live microphone input can offer both technical challenge and artistic reward. Through this lens, programming becomes a form of creative expression, blending logical structures with aesthetic decisions. By experimenting with signal flow, modulation techniques, or interactive sensors, users cultivate a mindset that is both inventive and analytical—unlocking new possibilities in digital sound design and performance.
   
-## What is Pure Data?  ![](/assets/images/pd_2.png){ width=8%}
+## What is Pure Data?  ![](/assets/images/introduction/pd_2.png){ width=8%}
 
 
 Pure Data (or Pd) is a real-time graphical programming environment for audio, video, and graphical processing. Pure Data is commonly used for live music performance, VeeJaying, sound effects, composition, audio analysis, interfacing with sensors, using cameras, controlling robots or even interacting with websites.  Because all of these various media are handled as digital data within the program, many fascinating opportunities for cross-synthesis between them exist. Sound can be used to manipulate video, which could then be streamed over the internet to another computer which might analyze that video and use it to control a motor-driven installation.
@@ -27,9 +27,6 @@ One of Pure Data’s standout features is its **graphical programming interface*
 
 Beyond its creative potential, Pure Data offers practical advantages: it is **cross-platform**, running on Windows, macOS, and Linux, and integrates easily with tools like **Arduino**, **Raspberry Pi**, and **Max/MSP**, enabling hybrid systems that combine digital and physical components. A rich ecosystem of **external libraries** supports advanced functions like synthesis, visualization, and computer vision. Its **open-source nature** encourages exploration and collaboration, with a supportive community, extensive documentation, and countless tutorials available. Because it’s **free and widely used in education**, Pd is not only an effective tool for artistic expression but also a valuable learning resource for developing a strong foundation in programming and multimedia design.
 
-
-
-
 ## What is Creative Coding?
 
 Creative coding is the practice of using programming as a tool for artistic expression. It transforms code from a purely functional medium into a creative one, enabling the development of visual art, music, interactive experiences, and experimental media. This approach encourages artists, designers, and technologists to explore beyond the limits of traditional art forms, embracing code as a flexible and dynamic means of invention and communication.
@@ -37,6 +34,11 @@ Creative coding is the practice of using programming as a tool for artistic expr
 The applications of creative coding are diverse, ranging from generative visuals and algorithmic design to responsive installations and live audiovisual performances. Creators often use languages and environments specifically designed to support creative work, such as Processing, OpenFrameworks, Max/MSP, and Pure Data. These platforms make it easier to manipulate data, control media in real time, and experiment with unconventional interfaces and outputs.
 
 Importantly, creative coding transcends the boundaries of specific disciplines. It can intersect with visual art, music, dance, theater, architecture, and even narrative writing. What unites these practices is the use of code as an expressive tool—one that invites innovation, play, and conceptual exploration. Closely tied to the values of the open-source movement, creative coding thrives in a culture of sharing, where artists and developers freely exchange code, tutorials, and ideas. This collaborative ecosystem fosters continuous learning and reinvention, empowering creators to expand what is possible through digital technology.
+
+For an in-depth exploration of creative coding, consider checking out these resources:
+
+- [Awesome Creative coding ](https://github.com/terkelg/awesome-creative-coding) - A curated list of resources, libraries, and tools for creative coding.
+- [Creative Code Berlin](https://github.com/CreativeCodeBerlin/creative-coding-minilist) - A collection of creative coding resources, tutorials, and projects.
 
 ## Getting Started
 
