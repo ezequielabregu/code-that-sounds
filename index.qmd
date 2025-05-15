@@ -14,7 +14,9 @@ Whether you're an artist exploring new tools, a programmer seeking creative outl
 
 My name is **Ezequiel Abregú**, and I am a sound artist, composer, multi-instrumentalist, and researcher originally from Buenos Aires, Argentina. My artistic practice encompasses sound recordings, audio installations, performances, sound sculptures, sound design, and compositions for chamber music, choreography, and theater. I am particularly interested in the interplay between music, performance, sound art, live electronics, auditory and visual perception, interactive media, and the application of technology in art.
 
-![Dr. Ezequiel Abregú](/assets/images/eabregu-pic.jpg)
+:::{style="text-align:center;"}
+![Dr. Ezequiel Abregú](/assets/images/eabregu-pic.jpg){width=70%}
+:::
 
 I hold a Ph.D. focusing on the relationship between visual and auditory perception in sound art, and a degree in Composition with Electroacoustic Media from the National University of Quilmes (UNQ). My academic career includes teaching positions at several institutions: I am a professor at the University of Quilmes (Computing Applied to Music area), the National University of Arts (Multimedia Arts area), and the University of Tres de Febrero (Electronic Arts area).
 
@@ -24,7 +26,9 @@ More information about my work can be found on my personal website [ezequielabre
 
 ## What is this book about?
 
-This book is the result of years of teaching undergraduate and postgraduate courses at several public universities, where I had the opportunity to explore the intersection of creativity and technology with students from diverse backgrounds. The central aim of these courses—and now this book—has been to blend a creative mindset with programming skills to develop original tools, algorithms, and artworks. Through this synthesis, we also seek to deepen our understanding of sound, interactivity, and control protocols in both technical and expressive ways.
+The goal of this book is to support undergraduate and postgraduate students in exploring the intersection of creativity and technology alongside peers from diverse backgrounds. Building on years of teaching experience at several public universities[^1], this work encourages the integration of a creative mindset with programming skills to design original tools, algorithms, and artworks. Through this synthesis, the book invites students to engage with sound, interactivity, and control protocols in both technical and expressive dimensions.
+
+[^1]: [Multimedia Arts UNA](https://multimedia.una.edu.ar/), [Electronic Arts UNTREF](https://untref.edu.ar/carrera/artes-electronicas), [Bachelor of Music and Technology UNQ](https://euda.unq.edu.ar/), [Master's Degree in Sound Art UNQ](https://www.unq.edu.ar/carrera/91-maestria-en-arte-sonoro/), [Doctorate in Arts UNA](https://una.edu.ar/carreras/doctorado-en-artes_16702)
 
 Rather than offering a fixed, linear progression, the structure of this book is deliberately open and modular. Readers are encouraged to navigate the content according to their interests, needs, or curiosity. This flexibility supports an experimental approach to learning, where exploration and play are not only welcome but essential.
 
@@ -60,9 +64,9 @@ These resources can be consulted before or alongside this book to strengthen you
 
 :::{.callout-warning icon="false"}
 ### Recommended Pure Data distributions
-This book is based on the `Vanilla`[^1] distribution of Pure Data, which is the most widely used version. However, there are several other distributions that you may find useful for specific projects or needs:
+This book is based on the `Vanilla`[^2] distribution of Pure Data, which is the most widely used version. However, there are several other distributions that you may find useful for specific projects or needs:
 :::
-[^1]: [puredata.info/downloads/pure-data](https://puredata.info/downloads/pure-data)
+[^2]: [puredata.info/downloads/pure-data](https://puredata.info/downloads/pure-data)
 
 - [Purr Data](https://agraef.github.io/purr-data/) – A fork of Pd-l2ork that focuses on usability and accessibility, with a more polished interface and additional features. Purr Data serves the same purpose, but offers a new and much improved graphical user interface and includes many 3rd party plug-ins. Like Pd, it runs on Linux, macOS and Windows, and is open-source throughout.
 
@@ -75,6 +79,9 @@ I would like to express my gratitude to the following individuals and organizati
 - [The Pd community](https://puredata.info/community) for their invaluable resources, tutorials, and support.
 - [The open-source community](https://opensource.org/) for their dedication to sharing knowledge and tools for creative coding.
 
+
+## Contact
+If you have any questions, comments, or feedback about this book, please feel free to reach out to me at [eabregu.dev@gmail.com](mailto:eabregu.dev@gmail.com). I would love to hear from you!
 
 ## License
 This book is licensed under the [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-nc-sa/4.0/). You are free to share and adapt the material, provided you give appropriate credit, do not use it for commercial purposes, and distribute your contributions under the same license.

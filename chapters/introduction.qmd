@@ -8,11 +8,10 @@ The design of Pure Data echoes the modular synthesis systems of the 20th century
 
 To fully engage with the creative potential of Pure Data, one can develop or modify algorithms for digital audio using imaginative coding strategies. For instance, building a real-time audio granulator that reinterprets live microphone input can offer both technical challenge and artistic reward. Through this lens, programming becomes a form of creative expression, blending logical structures with aesthetic decisions. By experimenting with signal flow, modulation techniques, or interactive sensors, users cultivate a mindset that is both inventive and analytical—unlocking new possibilities in digital sound design and performance.
   
-## What is Pure Data?
+## What is Pure Data?  ![](/assets/images/pd_2.png){ width=8%}
+
 
 Pure Data (or Pd) is a real-time graphical programming environment for audio, video, and graphical processing. Pure Data is commonly used for live music performance, VeeJaying, sound effects, composition, audio analysis, interfacing with sensors, using cameras, controlling robots or even interacting with websites.  Because all of these various media are handled as digital data within the program, many fascinating opportunities for cross-synthesis between them exist. Sound can be used to manipulate video, which could then be streamed over the internet to another computer which might analyze that video and use it to control a motor-driven installation.
-
-![](/assets/images/pd_2.png)
 
 Programming with Pure Data is a unique interaction that is much closer to the experience of manipulating things in the physical world.  The most basic unit of functionality is a box, and the program is formed by connecting these boxes together into diagrams that both represent the flow of data while actually performing the operations mapped out in the diagram.  The program itself is always running, there is no separation between writing the program and running the program, and each action takes effect the moment it is completed.
 
