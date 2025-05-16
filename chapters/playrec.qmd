@@ -64,35 +64,36 @@ The following diagram illustrates the recursive nature of the recording and play
 flowchart TB
   %% Top level source
   Input[Microphone]
-  
-  %% Horizontal arrangement of recorders A and B
+
   subgraph PLAYBACK RECORDERS
     direction LR
     subgraph RecorderA [DEVICE A]
-      RecordA[writesf~ A.wav]
-      PlayA[readsf~ A.wav]
+      RecordA[Record A.wav]
+      PlayA[Play A.wav]
       RecordA -.-> PlayA
     end
     
     subgraph RecorderB [DEVICE B]
-      RecordB[writesf~ B.wav]
-      PlayB[readsf~ B.wav]
+      RecordB[Record B.wav]
+      PlayB[Play B.wav]
       RecordB -.->PlayB
     end
   end
   
   %% Output at the bottom  
-  Output[Speaker]
+  Output((Speaker))
   
   %% Clear connections showing signal flow
-  Input --> RecordA
-  Input ==> Output
-  
-  PlayA --> Output
-  PlayB --> Output
-  
-  PlayA --> RecordB
-  PlayB --> RecordA
+  start([1-start]) --> RecordA
+  stop([2-stop]) --> RecordA
+  stop([2-stop]) --> RecordB
+  stop([2-stop]) --> PlayA
+
+  Input ==> RecordA
+  Input ==> RecordB
+
+  PlayA ==> Output
+  PlayB ==> Output
   
   %% Feedback path showing recursion
   PlayB -.->|"Trigger to<br> start recording"| RecordA
@@ -102,6 +103,127 @@ flowchart TB
   classDef roomStyle fill:#f5f5f5,stroke:#333,stroke-dasharray:5 5 
 ```
 
+&nbsp;
+
+```{mermaid}
+sequenceDiagram
+    participant Start as Start
+    participant Stop as Stop
+    participant Input as Mic
+    participant RecA as Rec A.wav
+    participant PlayA as Play A.wav
+    participant RecB as Rec B.wav
+    participant PlayB as Play B.wav
+    participant Output as Speaker
+    participant Room as Room
+
+    %% Generation 1
+    activate Input
+    Start-->>RecA: Start button
+    activate RecA
+    Input->>RecA: Mic input
+
+
+    Stop-->>RecA: Stop Rec A  
+    deactivate RecA   
+    Stop-->>RecB: Start Rec B
+    activate RecB 
+    Input->>RecB: Mic input          
+    Stop-->>PlayA: Start Play A
+    activate PlayA
+
+    PlayA->>Output: Playback A.wav
+    Output->>Room: Sound travels through room
+    Room->>Input: Acoustic reflections captured
+    PlayA-->>RecB: Trigger Stop Rec B
+    deactivate RecB
+    deactivate PlayA
+
+    PlayA-->>RecA: Trigger Start Rec B
+    activate RecA
+    Input->>RecA: Mic input 
+    PlayA-->>PlayB: Trigger Start Play A
+    activate PlayB
+
+    %% Generation 2
+    PlayB->>Output: Playback B.wav
+    Output->>Room: Sound travels through room
+    Room->>Input: Acoustic reflections captured
+
+    %% Generation 3 (process repeats)
+    PlayB-->>RecA: Trigger Stop Rec A
+    deactivate RecA
+    deactivate PlayB
+    PlayB-->>RecB: Trigger Start Rec B
+    activate RecB 
+    Input->>RecB: Mic input
+    PlayB-->>PlayA: Trigger Start Play A
+    activate PlayA
+    PlayA->>Output: Playback
+    Output->>Room: Sound travels through room
+    Room->>Input: Acoustic reflections captured
+
+    Note over Input,Room: The process continues, alternating between devices and reinforcing the room's resonances.
+    deactivate Input
+    deactivate PlayA
+    deactivate RecB
+```
+
+&nbsp;
+
+```{mermaid}
+sequenceDiagram
+    participant Input as Microphone
+    participant RecA as RecordA.wav
+    participant PlayA as PlayA.wav
+    participant RecB as RecordB.wav 
+    participant PlayB as PlayB.wav
+    participant Output as Speaker
+    participant Room as Room's Reflections
+    
+    Note over Input,Room: Generation 1
+    Input->>RecA: Record voice
+    activate RecA
+    RecA->>PlayA: Transfer recording
+    deactivate RecA
+    activate PlayA
+    PlayA->>Output: Play recording
+    PlayA->>RecB: Start recording
+    deactivate PlayA
+    
+    Output->>Room: Sound travels
+    activate Room
+    Room->>Input: Captures reflections
+    deactivate Room
+    
+    Note over Input,Room: Generation 2
+    Input->>RecB: Record voice
+    activate RecB
+    RecB->>PlayB: Transfer recording
+    deactivate RecB
+    activate PlayB
+    PlayB->>Output: Play recording
+    PlayB->>RecA: Start recording
+    deactivate PlayB
+    
+    Output->>Room: Sound travels
+    activate Room
+    Room->>Input: Captures reflections
+    deactivate Room
+    
+    Note over Input,Room: Process repeats for multiple generations
+    
+    activate RecA
+    RecA->>PlayA: Transfer recording
+    deactivate RecA
+    activate PlayA
+    PlayA->>Output: Play recording
+    PlayA->>RecB: Start recording
+    deactivate PlayA
+    
+    Output->>Room: Sound travels
+    Room->>Input: Captures reflections
+```
 
 ### Step 1: Audio Input and Routing
 
