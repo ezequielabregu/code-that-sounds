@@ -48,8 +48,6 @@ All the recorded generations, presented in chronological order, create a tape co
 
 In this section, we will break down the Pure Data patch [`I-am-sitting-in-a-room.pd`](/assets/code/playrec/I-am-sitting-in-a-room.pd) step by step. This patch is inspired by Alvin Lucier’s iconic piece and demonstrates how to recursively record and play back sound to reveal the resonant frequencies of a room.
 
----
-
 #### Conceptual Overview
 
 The patch enables you to:
@@ -57,8 +55,6 @@ The patch enables you to:
 - Record your voice or any sound in a room.
 - Play back the recording into the room and re-record it.
 - Repeat this process, so the room’s resonances become more pronounced with each generation.
-
----
 
 ### System Diagram
 
@@ -113,8 +109,6 @@ flowchart TB
 - The signal is sent to **`s~ audio.input`**, making it available to other parts of the patch.
 - This modular routing allows the same input to be used for both recording and playback chains.
 
----
-
 ### Step 2: Recording Your Voice (record-A.wav)
 
 - Press the **Start Recording** button (`bng` labeled "Start Recording").
@@ -122,8 +116,6 @@ flowchart TB
   `open record-A.wav, start` → **`writesf~`**
 - The incoming audio from your microphone is now being recorded to `record-A.wav`.
 - Press the **Stop Recording** button (`bng` labeled "Stop Recording") to send the `stop` message, ending the recording.
-
----
 
 ### Step 3: Playback and Re-recording (record-B.wav)
 
@@ -134,21 +126,15 @@ flowchart TB
   - **`writesf~`** (recording to `record-B.wav`)
 - This means the playback of your first recording is re-recorded, capturing both the original sound and the room’s response.
 
----
-
 ### Step 4: Recursive Process
 
 - You can repeat the process:
   - Play back `record-B.wav` and record it again, each time reinforcing the room’s resonances.
 - Each iteration makes the speech less intelligible and the room’s resonant frequencies more prominent, just like in Lucier’s piece.
 
----
-
 ### Step 5: Output
 
 - All audio routed to **`throw~ audio`** is collected by **`catch~ audio`** and sent to **`dac~`** for playback through your speakers or headphones.
-
----
 
 ### Key Objects Table
 
@@ -162,8 +148,6 @@ flowchart TB
 | `bng`          | Button for triggering actions                |
 | `msg`          | Send commands to objects (open, start, stop) |
 
----
-
 ### How to Use the Patch
 
 1. **Start Recording:**  
@@ -174,8 +158,6 @@ flowchart TB
    Use the playback button to play your recording into the room and simultaneously re-record it.
 4. **Repeat:**  
    Repeat the playback and re-recording process as many times as you like to hear the room’s resonances emerge.
-
----
 
 This patch is a practical and creative way to explore acoustic phenomena and the transformation of sound through recursive recording, echoing the spirit of Lucier’s original work.
 
@@ -219,8 +201,10 @@ flowchart TB
     end
   end
   
+  subgraph VIRTUAL ROOM
   %% Reverb block in the middle
-  VirtualRoom[freeverb~<br><br>Virtual<br><br>Room's<br><br>Reflections]
+    VirtualRoom(((freeverb~<br>Virtual Room)))
+  end  
   
   %% Output at the bottom  
   Output[dac~]
@@ -240,6 +224,8 @@ flowchart TB
   PlayB -.->|"Trigger to<br> start recording"| RecordA
   PlayA -.->|"Trigger to<br> start recording"| RecordB
 ```
+
+This diagram illustrates the recursive nature of the recording and playback process, similar to how Lucier's piece unfolds. Each generation of tape recorders captures the previous one, creating a feedback loop that emphasizes the room's resonances.
 
 ### Unique Features of the [freeverb~] Version
 
@@ -326,8 +312,6 @@ This patch provides two possible sources for the initial recording:
 
 - All audio signals sent to `throw~ audio` are collected by `catch~ audio`
 - The mixed signal is sent to `out~` for playback through speakers/headphones
-
----
 
 ### Key Objects Table
 
