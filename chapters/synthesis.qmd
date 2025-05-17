@@ -1,1 +1,191 @@
 # Synthesis
+
+## Introduction
+
+
+
+## Oscillatory Movements
+
+Oscillatory motion will be analyzed in detail—not only in terms of technical implementation but also through its creative and conceptual applications. Using example patches provided in both Pure Data and VCV Rack, we will explore how oscillation becomes an expressive tool in interactive works and live sound experiments. This approach will form the core of the module’s practical component, where students are encouraged to adapt the exercises to their own interests: whether by replicating existing works, developing new compositions, or analyzing the results of comparative experiments between different oscillators and their spectral behaviors.
+
+### Between Technique and Aesthetics
+
+This chapter begins with the idea of delving deeper into oscillatory movements from both a technical and aesthetic perspective. Building upon tools introduced in previous chapters we will work with oscillators and explore their many applications. Drawing on the text The Poetics of Signal Processing by Jonathan Sterne and Tara Rodgers, we will approach signal processing not merely as a set of mathematical operations, but as a form of artistic expression. In this context, signal manipulation becomes more than just a means to produce sound—it becomes a way to articulate broader cultural ideas about sound in the digital age.
+
+We will explore what could be described as the “rawness” of analog oscillators—that tangible, organic quality inherent in their operation. We will examine how this rawness both contrasts with and complements the digital techniques we’ve developed so far. The use of oscillators in their various forms will serve as a starting point for a series of hands-on exercises, where theory and practice are deeply intertwined.
+
+Through this combination of theory, practice, and critical reflection on signal processing, the module aims to open up new sonic possibilities. The references provided are intended not only to contextualize student work, but also to inspire expanded thinking about how these principles might inform personal projects.
+
+This practical and flexible framework is reflected in the module’s initial activity on oscillatory movement. Students will have the freedom to choose their working environment and the context in which they wish to develop their experiments. Oscillator implementation can be approached from multiple angles: waveform manipulation, waveshaper design, or even the creation of interactive sound pieces. Each student will be invited to present a short description of their process, along with their code or patch, in order to foster dialogue between theory and practice.
+
+In this way, the module not only deepens our understanding of the technical aspects of signal processing, but also invites critical reflection on the role of these technologies in shaping meaning and sonic aesthetics. Special emphasis is placed on the oscillator’s capacity to act as a driver of creativity and expression.
+
+### Poetics of Signal Processing
+
+One of the most important aspects of this chapter is the idea of “poetics” in signal processing. This concept is not just about the technical aspects of sound manipulation, but also about the cultural and artistic implications of these processes. The term “poetics” suggests a deeper engagement with the materiality of sound and its representation in various contexts.
+I’m going to talk a bit about my reflections and observations on the text Poetics of Signal Processing [@sterne2011]. First, I want to mention the authors, who I find very interesting. The first is Jonathan Sterne, a professor and director of the Culture and Technology program at McGill University in Canada. His work focuses on the cultural dimension of communication technologies, and he specializes in the history and theory of sound in the modern Western world. Then we have another author, a sound artist and musician named Tara Rodgers. She’s an electronic music composer, programmer, and historian of electronic music. She holds a PhD in Communication and has worked in the field of Women’s Studies. She created the platform [Pink Noises](http://www.pinknoises.com/), which is worth checking out—especially because it gathers a series of interviews with improvisers, composers, and instrument builders. There’s a cross-section of gender, sexuality, feminism, music, sound studies, theater, performance, and performative arts in general.
+
+Let’s get into some comments on specific sections of the article. The first is “The Sonic Turn,” which describes the emergence of a new culture of listening beginning in the second half of the 20th century. This is discussed through the work of authors like Cox and Kahn. There's also a growing interest in oral history and anthropology among social scientists, and the emergence of sound art within the art world during the 20th century.Another key point is the growing interest in listening itself, and in the creative possibilities enabled by recording, reproduction, and other forms of sound transmission. This leads us to ask: where do today’s sound technologies come from? What are we going to address in this course?
+
+We can start by discussing the “audible past,” or what the article refers to as the "auditory past." The text mentions that between 1900 and 1925, sound becomes an object of thought and practice. Before this period, sound was thought of in more idealized terms—mainly through the lens of voice and music, along with all the structures they imply. During this period, there were significant socioeconomic and cultural shifts—capitalism, rationalism, science, and colonialism—that influenced ideas and practices related to sound and listening. These changes were not only cultural but social as well. In this "audible past," even the most basic mechanical elements of sound reproduction technologies were shaped by how they had been used up until then. In this way, sound technologies are tied to habits—they sometimes enable new habits, like new ways of listening, or sometimes they solidify and reinforce existing ones.
+
+So let’s reflect on the “poetics” of signal processing. At first, that might sound surprising—poetics? But we can start with a very basic unit: the signal. Signals have a certain materiality. Sound has materiality—it occupies space in a transmission, recording, or playback channel. It exists in a medium and can be manipulated in various ways. There’s a clear distinction between analog electrical signals, electronic signals, and digital ones. Each implies different content and meanings. So, signal processing occurs in the medium of sound transmission, but in a technologized era—that is, the present. This involves manipulating sound in what we might call a “translucent state.” Here, the transducer becomes central: we’ll talk a lot in the course about this idea of converting one form of energy—measurable by a certain magnitude—into another. This concerns almost everything in sound or image that reaches our senses through electronic media. This also exists in the domains of the musician, the playback device, the listener, and the interstices between them.
+
+Regarding the poetics of signal processing as signal [music plays briefly], the article refers mostly to the figurative dimensions of the process itself. These are the ways that processing is represented in the discourse of audio technology, particularly from a technical or engineering perspective. Signal processing carries cultural meanings—it’s not an isolated technical fact. It has cultural significance. Two metaphorical frameworks commonly used in everyday language among users and creators are discussed in the article: cooking and travel. These are two metaphors I find fascinating.
+
+Let’s begin with cooking—specifically, “the raw and the cooked.” This draws from the work of anthropologist Claude  [@levistrauss1964], who analyzed the raw, the cooked, and the rotten. The axis of raw/cooked belongs to culture, while fresh/rotten relates more to nature. This is a very important reference: cooking is a cultural operation. Fire—the act of cooking—is the basis of a social order, of stability.
+
+In this sense, when we talk about the raw and the cooked in relation to sound, rawness doesn’t mean purity. It’s a relative condition—it refers to the availability of audio for further processing. This is very useful when thinking in opposition to the Hi-Fi culture. We might even think of a scale of rawness, or various degrees of it, which relate to how sound can be manipulated and used.
+
+Within this raw/cooked metaphor, terms like slicing (cutting into slices) and dicing (cutting into cubes) appear—these are actual signal processing terms and very fitting metaphors.
+
+Thinking further with this metaphor: raw audio might be seen as passive, something that must be “cooked” through technological processes. This reveals the technologized nature of music technologies, where composition becomes a kind of masculine performance of technological mastery. And I want to stress this point again: composition is often framed as a male-dominated act of technical skill.
+
+Paul Théberge [@theberge1997] analyzes musicians as consumers within the sound tech industry. In one chapter of his book, he studies advertising in music tech magazines, showing how the marketing of music technologies has been directed predominantly at men. Fortunately, this is changing slowly. In the raw/cooked metaphor, the idea of sound as a material to be processed and preserved for future use emerges in the late 19th century—just like technologies developed to preserve and can food. It’s a very strong metaphor: processed food and processed sound were both invented to extend and control organic life through technological preservation.
+
+Now let’s move to the other metaphor—travel. Signal processing can be thought of as a journey, which I find very exciting. We can connect this to topology—a mathematical field that studies spatial relationships. The term topos refers to place. In this sense, we can think of electronics as the arrangement and interaction of various components. A synthesizer circuit, or an oscillator, can be conceived as a space in itself—a map. Early texts in electroacoustics from the late 19th and early 20th centuries started to describe sound and electricity as fluid media. They used water metaphors—talking about waves, oscillations, flow, and current. This “processing as travel” metaphor involves the idea of particles moving through space, with the destination originally being the human ear. Today, that destination could be a transducer—or a computer.
+
+Even the inner ear was once conceptualized as a terrain made up of interconnected parts through which vibrations would travel. These metaphors matter: sea voyages during the historical periods mentioned in the article also symbolized scientific exploration and the conquest of the unknown. One example I love is that in the 1800s, Lord Kelvin created what could be considered the first synthesizer—but it didn’t produce sound. It was a mechanical device designed to predict tides. I’ll share some images to illustrate this. It essentially summed simple waves into one more complex waveform.
+
+So, to conclude this idea of processing as travel, the text also reflects on how maritime metaphors privilege a particular kind of subject—a white, Western male as the ideal “navigator” of synthetic sound waves. This is a clearly colonial and masculinist rhetoric. Generating and controlling electronic sounds becomes associated with a kind of pleasure aligned with capitalism, and also with danger—of disobedient or unruly sounds.
+
+Switching to a less metaphorical aspect, the text discusses Helmholtz’s On the Sensations of Tone [@helmholtz1860]. It laid the epistemological foundations for synthesis techniques. Helmholtz argued that any sound could be broken down into volume, pitch, and timbre. For him, sound was a material with clearly defined properties. These properties could be analyzed and then mimicked using synthesis techniques. However, other researchers, like Jessica Roland, explored different approaches. She compared sound to things like rain and wind. Her approach emphasized experience, memory, and the use of synthesis as a kind of onomatopoeia—imitation of natural phenomena. For Roland, unpredictability and chaos are at the heart of synthesis.
+
+In conclusion, one of the key points of the article is that metaphors in audio-technical discourse—supposedly neutral or instrumental—are actually shaped by the cultural positions of specific subjects living in specific societies. They are deeply entangled with issues of gender, race, class, and culture. The language of technical culture is highly metaphorical and filled with implicit assumptions.
+
+## Sound Sources
+
+Oscillators are a fundamental component of sound synthesis and play a crucial role in the creation of electronic music. They generate periodic waveforms, which can be manipulated to produce a wide range of sounds. In this section, we will explore the different types of oscillators, their characteristics, and how they can be used creatively in sound design.
+
+### Oscillators
+
+Sound sources in synthesizers are largely based on mathematics. There are two fundamental types: waveforms and random signals. Waveforms are typically described as simple geometric shapes—sawtooth, square, pulse, sine, and triangle being the most common. These shapes are mathematically straightforward and electronically feasible to generate. On the other hand, random waveforms produce noise, a constantly shifting mixture of all frequencies.
+
+Oscillators are one of the core building blocks of synthesizers, often implemented as function generators. A function generator produces a waveform that may be continuous or triggered and can take arbitrary shapes. In a basic analog subtractive synthesizer, an oscillator usually outputs a few continuous waveforms, with frequency controlled by voltage. Since these sources typically output a continuous signal, modifiers must be applied to shape timbre or envelope the sound.
+
+### Sine & Cosine
+
+A "pure tone" consists of a single frequency and is produced by a sine wave oscillator, which can be implemented using either the sine or cosine function. These functions take an angle value, or "phase," as input. Below, we see the angle "alpha," the sine’s amplitude value, and the cosine's output denoted as `x`.
+
+In the resulting graph, amplitude is on the vertical axis and angle on the horizontal axis. The cosine output traces the same function as the sine but starts at 1, meaning it has a different initial phase. Sine and cosine are essentially the same waveform offset by 90 degrees of phase.
+
+Pure Data's native `[sin]` and `[cos]` objects take angle values in radians (0 to 2π). However, the audio object `[cos~]` uses a linear range from 0 to 1 to represent a full cycle. The ELSE library provides the `[pi]` object, which outputs the constant π. This can be stored in a `[value]` object and accessed within `[expr]`. To convert a linear 0–1 range into radians, multiply it by `2 * pi`. Then, `[cos]` and `[sin]` yield amplitude values accordingly.
+
+### Phasor
+
+In the following example, we implement a sine oscillator using the `[sin~]` object and the native `[phasor~]` object.
+
+Two graphs illustrate this: in the top one, the horizontal axis is time, and the vertical axis shows a steadily increasing phase, forming a linear ramp. In the bottom graph, this ramp is transformed into a sine waveform, with amplitude on the vertical axis.
+
+The `[phasor~]` object outputs a linear ramp from 0 to just under 1, representing a complete cycle. It is ideal for driving objects like `[cos~]` and `[sin~]`, which expect a 0–1 input representing phase progression.
+
+The input to `[phasor~]` is frequency, expressed in cycles per second (hertz). This defines how many full 0–1 cycles occur per second.
+
+Note that `[phasor~]` never actually reaches 1—it wraps around to 0. Due to its cyclic nature, 1 is functionally equivalent to 0, just like 360° equals 0° in circular geometry.
+
+* The output of `[phasor~]` can be described as a “running phase.” It defines the angular increment applied to the phase at every audio sample.
+
+### Oscillator
+
+In the analog domain, oscillators are commonly referred to as VCOs (Voltage Controlled Oscillators). VCOs allow frequency or pitch to be controlled via voltage. Some VCOs also feature voltage control inputs for modulation (typically FM) and for altering the waveform shape—usually the pulse width of square waves, although some VCOs allow shaping other waveforms as well.
+
+Many VCOs include an additional input for synchronization with another VCO's signal. Phase sync forces the VCO to reset its phase in sync with the incoming signal, limiting operation to harmonics of the input frequency. This results in a harsh, buzzy tone. Softer sync techniques can yield timbral variations rather than locking to an exact frequency.
+
+A typical VCO offers controls for coarse and fine tuning, waveform selection (often sine, triangle, square, sawtooth, and pulse), pulse width modulation (PWM), and output level. Some VCOs also provide multiple simultaneous waveform outputs and sub-octave outputs one or two octaves below the main signal. Pulse width modulation (PWM) allows dynamic alteration of the pulse waveform shape.
+
+To summarize, an oscillator is typically defined by:
+
+- Waveform function (sine, sawtooth, square, triangle)
+- Frequency (Hz)
+- Initial phase (degrees)
+- Peak amplitude (optional)
+
+How do we control these parameters in our model?
+
+### VCO
+
+In this example, `[phasor~]` and `[cos~]` form an oscillator. The `[cos~]` object outputs amplitude values from -1 to 1, yielding a maximum amplitude of 1 without additional gain control.
+
+The waveform produced is a cosine. While `[phasor~]` sets the frequency, it can also define the initial phase. Since sine and cosine are essentially phase-shifted versions of the same function, we can easily produce sine waves as well. However, the initial phase does not affect the perceived pitch of a pure tone.
+
+Try this patch with different phase offsets. Note that `[phasor~]` also accepts negative frequencies, reversing the phase direction.
+
+Connecting `[phasor~]` to `[cos~]` replicates the functionality of the `[osc~]` object.
+
+### Waveforms
+
+The sine wave is the simplest oscillator, generating a pure tone. Other basic and musically useful waveforms include triangle, sawtooth, and square.
+
+The sine wave is a smooth, rounded waveform based on the sine function. It contains only one harmonic—the fundamental—which makes it less suitable for subtractive synthesis as it lacks overtones to filter.
+
+A triangle wave consists of two linear slopes. It contains small amounts of odd harmonics, providing just enough spectral content for filtering.
+
+A square wave contains only odd harmonics and produces a hollow, synthetic sound. A sawtooth wave contains both odd and even harmonics and sounds bright. Some pulse waves may contain even more harmonic content than basic sawtooth waves. Variants like "super-saw" replace linear slopes with exponential ones and alternate teeth with gaps, producing an even richer harmonic spectrum.
+
+### Waveshapers
+
+This section focuses on creating oscillators in Pure Data (Pd) using the `[phasor~]` object. The only true oscillator in Pd Vanilla is `[osc~]`, a sine wave oscillator. Even standard waveforms must be built manually.
+
+As mentioned earlier, `[osc~]` is essentially `[phasor~]` connected to `[cos~]`. The `[phasor~]` object outputs a 0–1 ramp, functionally similar to a sawtooth wave with half the amplitude and an offset. `[cos~]` multiplies this ramp by 2π and computes its cosine. The result is a sine wave oscillator.
+
+Another way to construct this oscillator is by using `[expr~]` and `[value]`. Here we use the `[pi]` abstraction to calculate π (or approximate it by sending 1 to `[atan]` and multiplying the result by 4). We then multiply by 2 and store it in a `[value]` object. `[value]` acts like a global variable: any object using the same name accesses the same value. `[expr~]` can then use this to calculate the cosine, just like `[cos~]`. While this approach may be more CPU-intensive, it helps deepen understanding of oscillator construction in Pd.
+
+#### Sawtooth Oscillator
+
+Since `[phasor~]` already produces a ramp, generating a sawtooth wave is straightforward. Simply multiply `[phasor~]` by 2 to get the correct amplitude, then subtract 1 to shift the range to -1 to 1.
+
+#### Square Wave Oscillator
+
+To create a square wave, you can use `[expr~]` (included in Pd Vanilla), but `[>~]` is faster and more CPU-efficient. A square wave toggles between -1 and 1. The `[>~]` object compares its left input signal to a threshold (right input or argument). It outputs 1 if the input is greater than the threshold, and 0 otherwise. Using 0.5 as the threshold with a `[phasor~]` input yields a square wave: 0 for half the cycle, 1 for the other half.
+
+#### Triangle Wave Oscillator
+
+Among standard waveforms, the triangle wave is the most complex to construct. Starting with `[phasor~]`, which is an upward ramp from 0 to 1, we create an inverted version by multiplying it by -1 and then adding 1. This gives us a descending ramp from 1 to 0.
+
+Now we have both ascending and descending ramps. Sending both to `[min~]` (which outputs the smaller of two values) gives us a triangle waveform spanning 0 to 0.5. `[min~]` effectively splices the ascending and descending ramps to form a symmetric triangle wave.
+
+### Frequency
+
+Frequency is presented here in terms of *angular velocity*! One common unit of measurement is the hertz (Hz), which equals "cycles per second." Frequency also determines a period of oscillation, which is simply the inverse of frequency. For example, a frequency of 100 Hz corresponds to a period of 0.01 seconds (or 10 milliseconds).
+
+We can convert between Hz and milliseconds using this same relationship. Another way to express period is in number of samples, which requires the sampling rate to perform the conversion.
+
+Angular velocity units require both an angle and a time unit. One cycle per second defines a full cycle (360 degrees) as the angular unit, and seconds as the time unit. Other units are also possible. For example, the angle may be expressed in radians and the time unit as a single sample, yielding a unit of "radians per sample."
+
+To convert Hz to radians per sample, multiply by 2π and divide by the sampling rate. See below for this conversion and the [hz2rad] and [rad2hz] objects from the ELSE library that handle it.
+
+### Phase
+
+The term *phase* can be used in various contexts, often making it ambiguous and potentially confusing. A useful strategy is to adopt more specific terminology instead of simply referring to "phase" in isolation. On its own, "phase" refers to a stage within a cycle—much like the four phases of the moon. Sound waveforms are cyclical, and we can speak of a positive or negative phase, as shown below. However, this original meaning is rarely used in music theory. Here, we focus on other more relevant applications and interpretations of phase (see right and below).
+
+**Initial phase** refers to the point in the cycle where the oscillation begins.
+
+**Instantaneous phase**: In music theory, "phase" often refers to the *instantaneous phase*—a specific point in time, not a stage in a sequence. It's helpful to adopt the term *instantaneous* explicitly to denote a single position within a given cycle.
+
+Since instantaneous phase refers to a single position within a cycle, it can also be represented as an angle. This leads to a synonymous relationship between phase and angle, though it's important to stress that both denote a position within the cycle.
+
+Two oscillators operating at the same frequency can be *in phase* or *out of phase*. Being in phase means they are synchronized—there is no phase difference. Being out of phase indicates a lack of synchronization, i.e., a phase difference. This difference can take many forms, but two specific cases are of particular interest: **quadrature phase** and **phase opposition**.
+
+**Quadrature phase** is the phase difference between sine and cosine waves, which equals a quarter of a cycle (90 degrees).  
+**Phase opposition** is the maximum possible phase difference—half a cycle or 180 degrees.
+
+### Polarity
+
+As we've seen, phase opposition leads to signal cancellation—but only under certain waveform conditions! This occurs with sine waves, for instance, but not with all waveforms or signals. Note how, in the figure to the right, inverting the sign of every amplitude value in a waveform results in cancellation when added to the original signal.
+
+**Inverting polarity** means changing the sign, or multiplying by -1. For sine waves, this results in the same effect as a 180-degree phase opposition. However, a true *phase inversion* is different, as it involves a time or phase shift.
+
+Despite this distinction, the term *phase inversion* is often misused when it really refers to a polarity inversion—which is neither a time shift nor a phase shift.
+
+Yes, this can be very confusing and requires careful attention. That’s why this tutorial prefers the term *polarity inversion*, although many audio devices refer to a 180-degree phase shift when they are, in fact, performing a polarity inversion.
+
+Both phase and polarity inversion produce the same result for sine waves due to their symmetrical waveforms, where the second half of the cycle mirrors the first with opposite sign. Other waveforms with this property include triangle and square waves (with a 0.5 pulse width).
+
+Sawtooth waves, however, do not share this symmetry. Therefore, phase opposition is not equivalent to polarity inversion in this case. The only way to achieve full cancellation of a sawtooth wave is through polarity inversion. Refer to the graphs below: only the original sawtooth combined with its polarity-inverted version results in complete cancellation.
+
+The native [phasor~] and [osc~] objects include a right inlet that accepts control data to reset the phase. Whenever the inlet receives a number from 0 to 1, the waveform resets to that initial phase position. Note that this is unrelated to phase modulation techniques discussed earlier.
+
+The [osc~] object does not support phase modulation; we implemented it using [phasor~] in the previous examples. Hence, using a [phasor~] together with a [cos~] enables both phase modulation and oscillator resetting.
+
+
+## References{.unnumbered}

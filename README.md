@@ -1,26 +1,48 @@
-# My Quarto Book
+# Creative Coding with Pure Data
 
-This is a Quarto book project that includes several chapters covering various topics. Below is a brief overview of the contents:
+This repository contains the source files for the Quarto book "Creative Coding with Pure Data." This book aims to introduce readers to the fundamentals and creative applications of Pure Data for audio synthesis, algorithmic composition, and interactive installations.
 
 ## Project Structure
 
-- **chapters/**: Contains the individual chapters of the book.
-  - **01-introduction.qmd**: Introduction to the main topics and objectives.
-  - **02-chapter.qmd**: Detailed exploration of specific subjects or themes.
-  - **03-conclusion.qmd**: Summary of key points discussed throughout the book.
+The project is organized as follows:
 
-- **_quarto.yml**: Configuration file for the Quarto project, specifying the book's title, author, output formats, and chapter order.
+- **`_quarto.yml`**: The main configuration file for the Quarto book. It defines the book's metadata, chapter order, formatting options, and website settings.
+- **`index.qmd`**: The landing page or main introduction of the book.
+- **`chapters/`**: This directory contains the individual chapters of the book as Quarto Markdown (`.qmd`) files.
 
-- **README.md**: Documentation for the project, providing an overview and instructions for building the book.
+- **`references.bib`**: The bibliography file for managing citations and references used throughout the book.
+- **`styles.css`**: Custom CSS file for additional styling beyond the selected Quarto theme.
+- **`assets/`**: Directory for storing static assets like images, audio examples, Pure Data patches (`.pd` files), or other supplementary materials.
+- **`README.md`**: This file, providing an overview of the project.
 
-- **index.qmd**: Main entry point for the book, containing the title, author information, and a table of contents or introduction.
+## Prerequisites
 
-## Instructions
+To build and render this book, you need to have [Quarto CLI](https://quarto.org/docs/get-started/) installed on your system.
 
-To build the book, use the Quarto command line interface. Ensure you have Quarto installed and run the following command in the project directory:
+## Building the Book
 
-```
+To render the book from the source files, navigate to the project's root directory in your terminal and run:
+
+```bash
 quarto render
 ```
 
-This will generate the book in the specified output formats as defined in the `_quarto.yml` file.
+This command will process all the `.qmd` files and generate the book in the output format(s) specified in `_quarto.yml` (typically HTML by default, located in the `_book/` directory).
+
+## Previewing the Book
+
+To preview the book locally with live reloading as you make changes, run:
+
+```bash
+quarto preview
+```
+
+This will start a local web server, and the book will automatically update in your browser whenever you save changes to the source files.
+
+## Contributing
+
+Contributions to this project are welcome! If you have suggestions, improvements, or bug fixes, please feel free to open an issue or submit a pull request.
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
