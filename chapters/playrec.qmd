@@ -44,6 +44,7 @@ All the recorded generations, presented in chronological order, create a tape co
 ### Pure Data implementation of *I'm sitting in a room*
 
 &nbsp;
+
 ![Pure Data implementation of I am sitting in a room](/assets/screenshots/playrec/sitting.png)
 
 In this section, we will break down the Pure Data patch [`I-am-sitting-in-a-room.pd`](/assets/code/playrec/I-am-sitting-in-a-room.pd) step by step. This patch is inspired by Alvin Lucier’s iconic piece and demonstrates how to recursively record and play back sound to reveal the resonant frequencies of a room.
@@ -105,7 +106,21 @@ flowchart TB
 
 &nbsp;
 
+The following sequence diagram illustrates the process of recording and playback in the patch. It shows how the audio input is captured, recorded, played back, and re-recorded in a loop, emphasizing the room's resonances.
+
+:::{.column-page-inset}
 ```{mermaid}
+%%{
+  init: {
+    'theme': 'default',
+    'themeVariables': {
+      'fontSize': '16px', // Default is usually 14px, increase as needed
+      'actorFontSize': '16px',
+      'messageFontSize': '15px', // Font size for messages on arrows
+      'noteFontSize': '15px'
+    }
+  }
+}%%
 sequenceDiagram
     participant Start as Start
     participant Stop as Stop
@@ -124,7 +139,7 @@ sequenceDiagram
     Input->>RecA: Mic input
 
 
-    Stop-->>RecA: Stop Rec A  
+    Stop--xRecA: Stop Rec A  
     deactivate RecA   
     Stop-->>RecB: Start Rec B
     activate RecB 
@@ -133,9 +148,9 @@ sequenceDiagram
     activate PlayA
 
     PlayA->>Output: Playback A.wav
-    Output->>Room: Sound travels through room
+    Output->>Room: Acoustic Space
     Room->>Input: Acoustic reflections captured
-    PlayA-->>RecB: Trigger Stop Rec B
+    PlayA--xRecB: Trigger Stop Rec B
     deactivate RecB
     deactivate PlayA
 
@@ -147,11 +162,11 @@ sequenceDiagram
 
     %% Generation 2
     PlayB->>Output: Playback B.wav
-    Output->>Room: Sound travels through room
+    Output->>Room: Acoustic Space
     Room->>Input: Acoustic reflections captured
 
     %% Generation 3 (process repeats)
-    PlayB-->>RecA: Trigger Stop Rec A
+    PlayB--xRecA: Trigger Stop Rec A
     deactivate RecA
     deactivate PlayB
     PlayB-->>RecB: Trigger Start Rec B
@@ -160,7 +175,7 @@ sequenceDiagram
     PlayB-->>PlayA: Trigger Start Play A
     activate PlayA
     PlayA->>Output: Playback
-    Output->>Room: Sound travels through room
+    Output->>Room: Acoustic Space
     Room->>Input: Acoustic reflections captured
 
     Note over Input,Room: The process continues, alternating between devices and reinforcing the room's resonances.
@@ -168,62 +183,7 @@ sequenceDiagram
     deactivate PlayA
     deactivate RecB
 ```
-
-&nbsp;
-
-```{mermaid}
-sequenceDiagram
-    participant Input as Microphone
-    participant RecA as RecordA.wav
-    participant PlayA as PlayA.wav
-    participant RecB as RecordB.wav 
-    participant PlayB as PlayB.wav
-    participant Output as Speaker
-    participant Room as Room's Reflections
-    
-    Note over Input,Room: Generation 1
-    Input->>RecA: Record voice
-    activate RecA
-    RecA->>PlayA: Transfer recording
-    deactivate RecA
-    activate PlayA
-    PlayA->>Output: Play recording
-    PlayA->>RecB: Start recording
-    deactivate PlayA
-    
-    Output->>Room: Sound travels
-    activate Room
-    Room->>Input: Captures reflections
-    deactivate Room
-    
-    Note over Input,Room: Generation 2
-    Input->>RecB: Record voice
-    activate RecB
-    RecB->>PlayB: Transfer recording
-    deactivate RecB
-    activate PlayB
-    PlayB->>Output: Play recording
-    PlayB->>RecA: Start recording
-    deactivate PlayB
-    
-    Output->>Room: Sound travels
-    activate Room
-    Room->>Input: Captures reflections
-    deactivate Room
-    
-    Note over Input,Room: Process repeats for multiple generations
-    
-    activate RecA
-    RecA->>PlayA: Transfer recording
-    deactivate RecA
-    activate PlayA
-    PlayA->>Output: Play recording
-    PlayA->>RecB: Start recording
-    deactivate PlayA
-    
-    Output->>Room: Sound travels
-    Room->>Input: Captures reflections
-```
+:::
 
 ### Step 1: Audio Input and Routing
 
