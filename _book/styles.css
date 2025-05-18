@@ -1,0 +1,5 @@
+/* Reduce font size for footnotes */
+.footnotes, .footnote, .footnote-ref {
+  font-size: 0.85em;
+}
+
