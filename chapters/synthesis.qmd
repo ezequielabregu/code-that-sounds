@@ -61,7 +61,7 @@ Oscillators are a fundamental component of sound synthesis and play a crucial ro
 
 Sound sources in synthesizers are largely based on mathematics. There are two fundamental types: waveforms and random signals. Waveforms are typically described as simple geometric shapes—sawtooth, square, pulse, sine, and triangle being the most common. These shapes are mathematically straightforward and electronically feasible to generate. On the other hand, random waveforms produce noise, a constantly shifting mixture of all frequencies.
 
-![Fig. Sine Oscillator & White Noise Generator](/assets/screenshots/synthesis/Oscillators/sources.png)
+![Fig. Sine Oscillator & White Noise Generator](/assets/screenshots/synthesis/vco/sources.png)
 
 Oscillators are one of the core building blocks of synthesizers, often implemented as function generators. A function generator produces a waveform that may be continuous or triggered and can take arbitrary shapes. In a basic analog subtractive synthesizer, an oscillator usually outputs a few continuous waveforms, with frequency controlled by voltage. Since these sources typically output a continuous signal, modifiers must be applied to shape timbre or envelope the sound.
 
@@ -69,23 +69,23 @@ Oscillators are one of the core building blocks of synthesizers, often implement
 
 A "pure tone" consists of a single frequency and is produced by a sine wave oscillator, which can be implemented using either the sine or cosine function. These functions take an angle value, or "phase," as input. Below, we see the angle "alpha," the sine’s amplitude value, and the cosine's output denoted as `x`.
 
-![](/assets/screenshots/synthesis/oscillators/angle.gif)
+![](/assets/screenshots/synthesis/vco/angle.gif)
 
 In the resulting graph, amplitude is on the vertical axis and angle on the horizontal axis. The cosine output traces the same function as the sine but starts at 1, meaning it has a different initial phase. Sine and cosine are essentially the same waveform offset by 90 degrees of phase.
 
-![Fig.](/assets/screenshots/synthesis/oscillators/sine.gif)
+![Fig.](/assets/screenshots/synthesis/vco/sine.gif)
 
 Pure Data's native `[sin]` and `[cos]` objects take angle values in radians (0 to 2π). However, the audio object `[cos~]` uses a linear range from 0 to 1 to represent a full cycle. The ELSE library provides the `[pi]` object, which outputs the constant π. This can be stored in a `[value]` object and accessed within `[expr]`. To convert a linear 0–1 range into radians, multiply it by `2 * pi`. Then, `[cos]` and `[sin]` yield amplitude values accordingly.
 
 :::{style="text-align:center;"}
-![Fig. ](/assets/screenshots/synthesis/oscillators/sine-cosine.gif){width="70%"}
+![Fig. ](/assets/screenshots/synthesis/vco/sine-cosine.gif){width="70%"}
 :::
 
 ### Phasor
 
 In the following example, we implement a sine oscillator using the `[sin~]` object and the native `[phasor~]` object.
 
-![Fig. ](/assets/screenshots/synthesis/oscillators/phasor-1.png)
+![Fig. ](/assets/screenshots/synthesis/vco/phasor-1.png)
 
 Two graphs illustrate this: in the top one, the horizontal axis is time, and the vertical axis shows a steadily increasing phase, forming a linear ramp. In the bottom graph, this ramp is transformed into a sine waveform, with amplitude on the vertical axis.
 
@@ -98,7 +98,7 @@ Note that `[phasor~]` never actually reaches 1—it wraps around to 0. Due to it
 The output of `[phasor~]` can be described as a “running phase.” It defines the angular increment applied to the phase at every audio sample.
 
 :::{style="text-align:center;"}
-![Fig. ](/assets/screenshots/synthesis/oscillators/phasor-2.gif){width="70%"}
+![Fig. ](/assets/screenshots/synthesis/vco/phasor-2.gif){width="70%"}
 :::
 
 ### Oscillator
@@ -118,13 +118,13 @@ To summarize, an oscillator is typically defined by:
 
 How do we control these parameters in our model?
 
-![Fig. ](/assets/screenshots/synthesis/oscillators/oscillator.png){width="30%"}
+![Fig. ](/assets/screenshots/synthesis/vco/oscillator.png){width="30%"}
 
 ### VCO
 
 In this example, `[phasor~]` and `[cos~]` form an oscillator. The `[cos~]` object outputs amplitude values from -1 to 1, yielding a maximum amplitude of 1 without additional gain control.
 
-![Fig. ](/assets/screenshots/synthesis/oscillators/vco-1.png)
+![Fig. ](/assets/screenshots/synthesis/vco/vco-1.png)
 
 The waveform produced is a cosine. While `[phasor~]` sets the frequency, it can also define the initial phase. Since sine and cosine are essentially phase-shifted versions of the same function, we can easily produce sine waves as well. However, the initial phase does not affect the perceived pitch of a pure tone.
 
@@ -132,7 +132,7 @@ Try this patch with different phase offsets. Note that `[phasor~]` also accepts 
 
 Connecting `[phasor~]` to `[cos~]` replicates the functionality of the `[osc~]` object.
 
-![Fig. ](/assets/screenshots/synthesis/oscillators/vco-2.png){width=50%}
+![Fig. ](/assets/screenshots/synthesis/vco/vco-2.png){width=50%}
 
 ### Waveforms
 
@@ -150,23 +150,23 @@ This section focuses on creating oscillators in Pure Data (Pd) using the `[phaso
 
 As mentioned earlier, `[osc~]` is essentially `[phasor~]` connected to `[cos~]`. The `[phasor~]` object outputs a 0–1 ramp, functionally similar to a sawtooth wave with half the amplitude and an offset. `[cos~]` multiplies this ramp by 2π and computes its cosine. The result is a sine wave oscillator.
 
-![Fig. ](/assets/screenshots/synthesis/oscillators/waveshapers-sine.png){width=70%}
+![Fig. ](/assets/screenshots/synthesis/vco/waveshapers-sine.png){width=70%}
 
 Another way to construct this oscillator is by using `[expr~]` and `[value]`. Here we use the `[pi]` abstraction to calculate π (or approximate it by sending 1 to `[atan]` and multiplying the result by 4). We then multiply by 2 and store it in a `[value]` object. `[value]` acts like a global variable: any object using the same name accesses the same value. `[expr~]` can then use this to calculate the cosine, just like `[cos~]`. While this approach may be more CPU-intensive, it helps deepen understanding of oscillator construction in Pd.
 
-![Fig. ](/assets/screenshots/synthesis/oscillators/waveshapers-cosine.png){width=70%}
+![Fig. ](/assets/screenshots/synthesis/vco/waveshapers-cosine.png){width=70%}
 
 #### Sawtooth Oscillator
 
 Since `[phasor~]` already produces a ramp, generating a sawtooth wave is straightforward. Simply multiply `[phasor~]` by 2 to get the correct amplitude, then subtract 1 to shift the range to -1 to 1.
 
-![Fig. ](/assets/screenshots/synthesis/oscillators/waveshapers-saw.png){width=70%}
+![Fig. ](/assets/screenshots/synthesis/vco/waveshapers-saw.png){width=70%}
 
 #### Square Wave Oscillator
 
 To create a square wave, you can use `[expr~]` (included in Pd Vanilla), but `[>~]` is faster and more CPU-efficient. A square wave toggles between -1 and 1. The `[>~]` object compares its left input signal to a threshold (right input or argument). It outputs 1 if the input is greater than the threshold, and 0 otherwise. Using 0.5 as the threshold with a `[phasor~]` input yields a square wave: 0 for half the cycle, 1 for the other half.
 
-![Fig. ](/assets/screenshots/synthesis/oscillators/waveshapers-square.png){width=70%}
+![Fig. ](/assets/screenshots/synthesis/vco/waveshapers-square.png){width=70%}
 
 #### Triangle Wave Oscillator
 
@@ -174,7 +174,7 @@ Among standard waveforms, the triangle wave is the most complex to construct. St
 
 Now we have both ascending and descending ramps. Sending both to `[min~]` (which outputs the smaller of two values) gives us a triangle waveform spanning 0 to 0.5. `[min~]` effectively splices the ascending and descending ramps to form a symmetric triangle wave.
 
-![Fig. ](/assets/screenshots/synthesis/oscillators/waveshapers-triangle.png){width=70%}
+![Fig. ](/assets/screenshots/synthesis/vco/waveshapers-triangle.png){width=70%}
 
 ### Frequency
 
@@ -185,11 +185,11 @@ Period = 1 / Frequency
 Period = 1 / 100 Hz = 0.01 s = 10 ms
 ```
 
-![Fig. ](/assets/screenshots/synthesis/oscillators/frequency-1.png){width=70%}
+![Fig. ](/assets/screenshots/synthesis/vco/frequency-1.png){width=70%}
 
 We can convert between Hz and milliseconds using this same relationship. Another way to express period is in number of samples, which requires the sampling rate to perform the conversion:
 
-![Fig. ](/assets/screenshots/synthesis/oscillators/frequency-2.png){width=70%}
+![Fig. ](/assets/screenshots/synthesis/vco/frequency-2.png){width=70%}
 
 Angular velocity units require both an angle and a time unit. One cycle per second defines a full cycle (360 degrees) as the angular unit, and seconds as the time unit. Other units are also possible. For example, the angle may be expressed in radians and the time unit as a single sample, yielding a unit of "radians per sample."
 
@@ -199,7 +199,7 @@ To convert Hz to radians per sample, multiply by 2π and divide by the sampling 
 
 The term *phase* can be used in various contexts, often making it ambiguous and potentially confusing. A useful strategy is to adopt more specific terminology instead of simply referring to "phase" in isolation. On its own, "phase" refers to a stage within a cycle—much like the four phases of the moon. Sound waveforms are cyclical, and we can speak of a positive or negative phase, as shown below. However, this original meaning is rarely used in music theory. Here, we focus on other more relevant applications and interpretations of phase (see right and below).
 
-![Fig. ](/assets/screenshots/synthesis/oscillators/phase-1.png){width=70%}
+![Fig. ](/assets/screenshots/synthesis/vco/phase-1.png){width=70%}
 
 **Initial phase** refers to the point in the cycle where the oscillation begins.
 
@@ -207,7 +207,7 @@ The term *phase* can be used in various contexts, often making it ambiguous and 
 
 Since instantaneous phase refers to a single position within a cycle, it can also be represented as an angle. This leads to a synonymous relationship between phase and angle, though it's important to stress that both denote a position within the cycle.
 
-![Fig. ](/assets/screenshots/synthesis/oscillators/phase-2.gif){width=70%}
+![Fig. ](/assets/screenshots/synthesis/vco/phase-2.gif){width=70%}
 
 Two oscillators operating at the same frequency can be *in phase* or *out of phase*. Being in phase means they are synchronized—there is no phase difference. Being out of phase indicates a lack of synchronization, i.e., a phase difference. This difference can take many forms, but two specific cases are of particular interest: **quadrature phase** and **phase opposition**.
 
@@ -226,13 +226,13 @@ Yes, this can be very confusing and requires careful attention. That’s why thi
 
 Both phase and polarity inversion produce the same result for sine waves due to their symmetrical waveforms, where the second half of the cycle mirrors the first with opposite sign. Other waveforms with this property include triangle and square waves (with a 0.5 pulse width).
 
-![Fig. ](/assets/screenshots/synthesis/oscillators/polarity-1.png){width=50%}
+![Fig. ](/assets/screenshots/synthesis/vco/polarity-1.png){width=50%}
 
 Sawtooth waves, however, do not share this symmetry. Therefore, phase opposition is not equivalent to polarity inversion in this case. The only way to achieve full cancellation of a sawtooth wave is through polarity inversion. Refer to the graphs below: only the original sawtooth combined with its polarity-inverted version results in complete cancellation.
 
 The native [phasor~] and [osc~] objects include a right inlet that accepts control data to reset the phase. Whenever the inlet receives a number from 0 to 1, the waveform resets to that initial phase position. Note that this is unrelated to phase modulation techniques discussed earlier.
 
-![Fig. ](/assets/screenshots/synthesis/oscillators/polarity-2.png){width=50%}
+![Fig. ](/assets/screenshots/synthesis/vco/polarity-2.png){width=50%}
 
 The [osc~] object does not support phase modulation; we implemented it using [phasor~] in the previous examples. Hence, using a [phasor~] together with a [cos~] enables both phase modulation and oscillator resetting.
 
