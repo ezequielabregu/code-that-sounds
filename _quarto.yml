@@ -12,13 +12,13 @@ book:
     - chapters/playrec.qmd
     - chapters/sequencers.qmd
     - chapters/synthesis.qmd
-    - chapters/tools.qmd
     - chapters/sonification.qmd
+    - chapters/tools.qmd
     - chapters/conclusion.qmd  
   
   page-footer:
     center: 
-    - text: "Creative Coding with Pure Data - Ezequiel Abregú - 2025"
+    - text: "Creative Coding with Pure Data ::: Ezequiel Abregú"
 
   reader-mode: true
   repo-url: https://github.com/ezequielabregu/creative-code-with-pd
