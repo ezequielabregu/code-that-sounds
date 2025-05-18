@@ -66,6 +66,8 @@ div.csl-indent {
 <link href="../site_libs/bootstrap/bootstrap-1e81d527365e20b3495763033adbcf98.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="../site_libs/bootstrap/bootstrap-dark-8ab8b311eebd604b8865a9cbc6c08092.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <link href="../site_libs/bootstrap/bootstrap-1e81d527365e20b3495763033adbcf98.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-contrib/videojs/video.min.js"></script>
+<link href="../site_libs/quarto-contrib/videojs/video-js.css" rel="stylesheet">
 <script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
 <link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
 <link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
@@ -287,9 +289,14 @@ div.csl-indent {
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="../">Creative Coding with Pure Data</a> 
-        <div class="sidebar-tools-main">
+        <div class="sidebar-tools-main tools-wide">
     <a href="https://github.com/ezequielabregu/creative-code-with-pd" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
 </div>
     </div>
       </div>
@@ -683,17 +690,35 @@ Period = 1 / 100 Hz = 0.01 s = 10 ms</code></pre>
 <section id="amplitude-modulation" class="level3" data-number="4.5.1">
 <h3 data-number="4.5.1" class="anchored" data-anchor-id="amplitude-modulation"><span class="header-section-number">4.5.1</span> Amplitude Modulation</h3>
 <p>We can modulate the amplitude of any signal—referred to as the <em>carrier</em>—by multiplying it with an oscillating signal, called the <em>modulator</em>. The modulator is typically another oscillator, and its frequency determines the <em>modulation frequency</em>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../assets/screenshots/synthesis/am-rm/am.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-21" title="Amplitude Modulation"><img src="../assets/screenshots/synthesis/am-rm/am.gif" class="img-fluid figure-img" alt="Amplitude Modulation"></a></p>
+<figcaption>Amplitude Modulation</figcaption>
+</figure>
+</div>
 <p>In the example provided, both the carrier and modulator are sine wave oscillators. This is what we call “classic” amplitude modulation (AM), where the modulator signal includes a DC offset, making it <em>unipolar</em>, ranging only from 0 to 1. This unipolarity ensures that the carrier’s amplitude is scaled without ever becoming negative.</p>
 </section>
 <section id="ring-modulation" class="level3" data-number="4.5.2">
 <h3 data-number="4.5.2" class="anchored" data-anchor-id="ring-modulation"><span class="header-section-number">4.5.2</span> Ring Modulation</h3>
 <p>Ring modulation is a particular form of amplitude modulation where both the carrier and modulator signals are <em>bipolar</em>, meaning they oscillate between -1 and 1 without any DC offset. In this configuration, there’s no functional distinction between carrier and modulator—both behave symmetrically.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../assets/screenshots/synthesis/am-rm/rm.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-22" title="Ring Modulation"><img src="../assets/screenshots/synthesis/am-rm/rm.gif" class="img-fluid figure-img" alt="Ring Modulation"></a></p>
+<figcaption>Ring Modulation</figcaption>
+</figure>
+</div>
 <p>Nonetheless, in practical terms, the carrier is usually an audio signal such as a musical instrument, while the modulator remains a simple oscillator. A key technical detail is that when the modulator signal is negative, it inverts the polarity of the carrier signal—producing a unique and often metallic timbre.</p>
 </section>
 <section id="dc-offset" class="level3" data-number="4.5.3">
 <h3 data-number="4.5.3" class="anchored" data-anchor-id="dc-offset"><span class="header-section-number">4.5.3</span> DC Offset</h3>
 <p>Amplitude modulation schemes can involve various DC offset settings—not just limited to AM or RM. In our example, preset configurations for AM and RM are available, but one can also manually adjust peak levels and DC offset using sliders.</p>
 <p>Observe how, in the frequency spectrum of classic AM, we see two sidebands—above and below the carrier frequency—each at half the amplitude of the original carrier. These sidebands are spaced apart by the modulation frequency.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../assets/screenshots/synthesis/am-rm/dc-offset.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-23" title="Fig."><img src="../assets/screenshots/synthesis/am-rm/dc-offset.gif" class="img-fluid figure-img" alt="Fig."></a></p>
+<figcaption>Fig.</figcaption>
+</figure>
+</div>
 <p>In contrast, ring modulation removes the original carrier frequency entirely from the spectrum, leaving only the sidebands, which typically carry more energy than in AM.</p>
 <p>By adjusting amplitude and DC offset with sliders, we can morph continuously between AM and RM modes, gaining nuanced control over the presence of the original frequency component and the energy distribution in the sidebands.</p>
 </section>
@@ -701,41 +726,74 @@ Period = 1 / 100 Hz = 0.01 s = 10 ms</code></pre>
 <h3 data-number="4.5.4" class="anchored" data-anchor-id="audio-samples-modulation"><span class="header-section-number">4.5.4</span> Audio Samples &amp; Modulation</h3>
 <p>In this example, an audio sample replaces the oscillator as the carrier signal. This demonstrates how amplitude modulation can function as an <em>audio effect processor</em> rather than just a <em>synthesis technique</em>. In fact, much of what we traditionally associate with synthesis techniques is often more accurately described as audio processing.</p>
 <p>Conversely, many effects processors—such as filters—are integral to sound synthesis. The boundary between synthesis and processing is thus fluid and contextual.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../assets/screenshots/synthesis/am-rm/sample.png" class="lightbox" data-gallery="quarto-lightbox-gallery-24" title="Fig."><img src="../assets/screenshots/synthesis/am-rm/sample.png" class="img-fluid figure-img" alt="Fig."></a></p>
+<figcaption>Fig.</figcaption>
+</figure>
+</div>
 <p>Try both the classic AM and RM examples. In both cases, sidebands are generated for each sine wave component within the carrier signal. AM retains the carrier’s original sine components, which coexist and interact with the generated sidebands. For this reason, AM is commonly used for tremolo effects (which we’ll examine later). On the other hand, RM removes the original sine components entirely, yielding a more sonically distinctive result.</p>
 </section>
 <section id="other-waveforms" class="level3" data-number="4.5.5">
 <h3 data-number="4.5.5" class="anchored" data-anchor-id="other-waveforms"><span class="header-section-number">4.5.5</span> Other Waveforms</h3>
 <p>Using more complex waveforms for the modulator signal leads to the creation of additional partials within any amplitude modulation patch—including ring modulation. Sine waves are typically favored as modulators since they offer clean and controlled results, especially when applying AM as an audio effect.</p>
+<div class="quarto-video"><video id="video_shortcode_videojs_video1" class="video-js vjs-default-skin vjs-fluid" controls="" preload="auto" data-setup="{}" title=""><source src="../assets/screenshots/synthesis/am-rm/other-waveforms.mov"></video></div>
 <p>However, in synthesis contexts, more intricate and harmonically rich methods—such as <em>frequency</em> and <em>phase</em> modulation—offer more efficient and versatile approaches for generating complex timbres. We’ll explore these in the following sections.</p>
 </section>
 <section id="tremolo" class="level3" data-number="4.5.6">
 <h3 data-number="4.5.6" class="anchored" data-anchor-id="tremolo"><span class="header-section-number">4.5.6</span> Tremolo</h3>
 <p>Tremolo is essentially amplitude modulation using a <em>low-frequency</em> modulator. The key addition is a <em>depth</em> parameter, ranging from 0 to 1, which determines the modulation intensity. At 0, no modulation occurs (dry signal), while a depth of 1 results in full tremolo, where the carrier’s amplitude is modulated across its full range.</p>
+<div class="quarto-video"><video id="video_shortcode_videojs_video2" class="video-js vjs-default-skin vjs-fluid" controls="" preload="auto" data-setup="{}" title=""><source src="../assets/screenshots/synthesis/am-rm/tremolo.mov"></video></div>
 </section>
 </section>
 <section id="frequency-modulation" class="level2" data-number="4.6">
 <h2 data-number="4.6" class="anchored" data-anchor-id="frequency-modulation"><span class="header-section-number">4.6</span> Frequency Modulation</h2>
 <p>In general terms, to <em>modulate</em> a signal means to alter it in some way. In the context of this course, however, we refer specifically to using a <em>modulating signal</em> to control a parameter—such as amplitude, as previously discussed. We now turn to the basic structure of <em>frequency modulation</em> (FM), where an oscillator acts as the modulator.</p>
-<p>The signal being modulated is called the <em>carrier</em>; in the case of frequency modulation, it is also referred to as the <em>carrier frequency</em>. In contrast, we have the <em>modulating frequency</em>, which corresponds to the frequency of the modulating oscillator. The depth of frequency variation is determined by the amplitude of the modulator and is commonly referred to as the <em>modulation index</em>. The modulation process itself is straightforward: we add the modulating signal to the frequency input of the carrier oscillator. See the example on the right.</p>
+<p>The signal being modulated is called the <em>carrier</em>; in the case of frequency modulation, it is also referred to as the <em>carrier frequency</em>. In contrast, we have the <em>modulating frequency</em>, which corresponds to the frequency of the modulating oscillator. The depth of frequency variation is determined by the amplitude of the modulator and is commonly referred to as the <em>modulation index</em>. The modulation process itself is straightforward: we add the modulating signal to the frequency input of the carrier oscillator. See the example on the right</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../assets/screenshots/synthesis/fm/intro.png" class="lightbox" data-gallery="quarto-lightbox-gallery-25" title="Fig."><img src="../assets/screenshots/synthesis/fm/intro.png" class="img-fluid figure-img" style="width:50.0%" alt="Fig."></a></p>
+<figcaption>Fig.</figcaption>
+</figure>
+</div>
 <p>By default, we have a carrier frequency of 400 Hz, a low modulation frequency of 1 Hz, and a modulation index of 100. This means the modulating signal oscillates between -100 and +100 Hz, causing the carrier frequency to vary between 300 and 500 Hz. Note that when the modulation frequency is low, the result is a vibrato-like effect.</p>
 <section id="fm-simple" class="level3" data-number="4.6.1">
 <h3 data-number="4.6.1" class="anchored" data-anchor-id="fm-simple"><span class="header-section-number">4.6.1</span> FM Simple</h3>
 <p>We apply the same structure as before. Besides a vibrato example, this section includes fully developed FM examples. As with amplitude modulation, FM produces <em>sidebands</em> spaced by intervals equal to the modulation frequency. However, FM can generate many more sidebands, potentially resulting in a much richer spectrum.</p>
+<div class="quarto-video"><video id="video_shortcode_videojs_video3" class="video-js vjs-default-skin vjs-fluid" controls="" preload="auto" data-setup="{}" title=""><source src="../assets/screenshots/synthesis/fm/fm.mov"></video></div>
 <p>The higher the modulation index, the greater the number of resulting partials—enabling the creation of dense and complex waveforms. When the carrier and modulator frequencies share a simple harmonic ratio, the resulting waveform is harmonic. Otherwise, it tends to be inharmonic. Click on the message boxes to hear the preset examples.</p>
 </section>
 <section id="other-waveforms-1" class="level3" data-number="4.6.2">
 <h3 data-number="4.6.2" class="anchored" data-anchor-id="other-waveforms-1"><span class="header-section-number">4.6.2</span> Other Waveforms</h3>
 <p>In this patch, we experiment with different oscillator combinations. Waveforms are arranged according to spectral complexity—from simple sine waves to rich sawtooth waves (the only waveform here containing both even and odd harmonics). The more complex the waveform used, the more intricate the FM result becomes.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../assets/screenshots/synthesis/fm/other-waveforms.png" class="lightbox" data-gallery="quarto-lightbox-gallery-26" title="Fig."><img src="../assets/screenshots/synthesis/fm/other-waveforms.png" class="img-fluid figure-img" alt="Fig."></a></p>
+<figcaption>Fig.</figcaption>
+</figure>
+</div>
 <p>On the modulator side, the waveforms are idealized and band-unlimited—perfect in theory. However, the frequency-modulated oscillator has a limited bandwidth, which imposes practical constraints on the resulting spectrum.</p>
 </section>
 <section id="exponential-frequency" class="level3" data-number="4.6.3">
 <h3 data-number="4.6.3" class="anchored" data-anchor-id="exponential-frequency"><span class="header-section-number">4.6.3</span> Exponential Frequency</h3>
 <p>We can also use exponential pitch values (such as MIDI note numbers) instead of linear frequency input. The key difference here is that <em>frequency deviation</em>—the modulation index—is now expressed in <em>semitones</em>, not Hertz. This shift affects the entire modulation behavior.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../assets/screenshots/synthesis/fm/exponential-freq.png" class="lightbox" data-gallery="quarto-lightbox-gallery-27" title="Fig."><img src="../assets/screenshots/synthesis/fm/exponential-freq.png" class="img-fluid figure-img" alt="Fig."></a></p>
+<figcaption>Fig.</figcaption>
+</figure>
+</div>
 <p>As a result, the output waveform becomes asymmetrical and significantly different in character. The main change in the patch is the use of <code>[mtof~]</code> to convert MIDI pitch to frequency in Hz.</p>
 </section>
 <section id="ratio" class="level3" data-number="4.6.4">
 <h3 data-number="4.6.4" class="anchored" data-anchor-id="ratio"><span class="header-section-number">4.6.4</span> Ratio</h3>
 <p>It is common practice to define the modulating frequency as a <em>ratio</em> of the carrier frequency. This allows us to work with a single frequency input while maintaining a consistent sonic character across different pitches.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../assets/screenshots/synthesis/fm/ratio.png" class="lightbox" data-gallery="quarto-lightbox-gallery-28" title="Fig."><img src="../assets/screenshots/synthesis/fm/ratio.png" class="img-fluid figure-img" alt="Fig."></a></p>
+<figcaption>Fig.</figcaption>
+</figure>
+</div>
 <p>This approach preserves the relationship between the carrier and modulator frequencies, which is crucial since this ratio determines how the additional spectral components—partials—are distributed. Harmonic ratios (such as 0.5 or 2) yield harmonic results, while non-integer ratios lead to inharmonic spectra.</p>
 </section>
 </section>
@@ -1185,6 +1243,26 @@ Théberge, Paul. 1997. <em>Any Sound You Can Imagine: Making Music/Consuming Tec
   </div>
 </nav>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+ Creative Coding with Pure Data - Ezequiel Abregú - 2025
+  </li>  
+</ul>
+    </div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+<script>videojs(video_shortcode_videojs_video1);</script>
+<script>videojs(video_shortcode_videojs_video2);</script>
+<script>videojs(video_shortcode_videojs_video3);</script>
 <script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
 (function() {
   let previousOnload = window.onload;

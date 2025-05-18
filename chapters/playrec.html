@@ -291,9 +291,14 @@ div.csl-indent {
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="../">Creative Coding with Pure Data</a> 
-        <div class="sidebar-tools-main">
+        <div class="sidebar-tools-main tools-wide">
     <a href="https://github.com/ezequielabregu/creative-code-with-pd" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
 </div>
     </div>
       </div>
@@ -413,16 +418,16 @@ div.csl-indent {
 <p>In this chapter, we will explore the relationship between recording and playback. We will look at how these two processes can be used to create new sounds and compositions. We will also discuss the technical aspects of recording and playback, including the equipment and techniques used in the process. We will also consider the artistic implications of recording and playback, including how these processes can be used to create new forms of expression and communication.</p>
 <section id="im-sitting-in-a-room-alvin-lucier" class="level2 page-columns page-full" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="im-sitting-in-a-room-alvin-lucier"><span class="header-section-number">2.1</span> <em>I’m Sitting in a Room</em> – Alvin Lucier</h2>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="https://www.moma.org/wp/inside_out/wp-content/uploads/2015/01/LucierMoMA_122014_005.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Alvin Lucier performing I’m sitting in a room"><img src="https://www.moma.org/wp/inside_out/wp-content/uploads/2015/01/LucierMoMA_122014_005.jpg" class="img-fluid figure-img" alt="Alvin Lucier performing I’m sitting in a room"></a></p>
-<figcaption>Alvin Lucier performing <em>I’m sitting in a room</em></figcaption>
-</figure>
-</div>
 <p><em>I’m Sitting in a Room</em> (Alvin Lucier) consists of a 15-minute and 23-second sound recording. The piece opens with Lucier’s voice as he declares he is sitting in a room different from ours. His voice trembles slightly as he delivers the text, describing what will unfold over the next 15 minutes:</p>
 <blockquote class="blockquote">
 <p>“…I am recording the sound of my speaking voice and I am going to play it back into the room again and again…”</p>
 </blockquote>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../assets/images/play-rec/lucier-diagram.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="I am sitting in a room design"><img src="../assets/images/play-rec/lucier-diagram.jpg" class="img-fluid figure-img" alt="I am sitting in a room design"></a></p>
+<figcaption><em>I am sitting in a room</em> design</figcaption>
+</figure>
+</div>
 <p>As listeners, we know what is going to happen, but we don’t know <strong>how</strong> it will happen <span class="citation" data-cites="hasse2012">(<a href="#ref-hasse2012" role="doc-biblioref">Hasse 2012</a>)</span>. We listen, following Lucier’s recorded voice. Then, Lucier plays the recording into the room and re-records it. This time, we begin to hear more of the room’s acoustic characteristics. He continues to play back and re-record his voice—over and over—until his speech becomes softened, almost dissolved, into the sonic reflections of the room in which the piece was recorded and re-recorded.</p>
 <p>One effective way to study a piece is to replicate its technical aspects and the devices involved. The aim of this activity is to recreate the technical setup of <em>I’m Sitting in a Room</em>, focusing on the processes of recording, playback, and automation.</p>
 <p>There are many ways to implement this technical system. Just to mention two environments we’re currently working with: it’s relatively straightforward in <strong>Pure Data</strong>.</p>
@@ -445,18 +450,12 @@ div.csl-indent {
 <li>Continue this process through multiple generations.</li>
 </ul>
 <p>All the recorded generations, presented in chronological order, create a tape composition whose duration is determined by the length of the original statement and the number of generations produced. Make versions in which a single statement is recycled through different rooms. Create versions using one or more speakers in different languages and spaces. Try versions where, for each generation, the microphone is moved to different parts of the room(s). You may also develop versions that can be performed in real time.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="https://www.fuqianhua.cn/wp-content/uploads/2020/01/lucier-diagram-scaled.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="I am sitting in a room design"><img src="https://www.fuqianhua.cn/wp-content/uploads/2020/01/lucier-diagram-scaled.jpg" class="img-fluid figure-img" alt="I am sitting in a room design"></a></p>
-<figcaption><em>I am sitting in a room</em> design</figcaption>
-</figure>
-</div>
 <section id="pure-data-implementation-of-im-sitting-in-a-room" class="level3" data-number="2.1.1">
 <h3 data-number="2.1.1" class="anchored" data-anchor-id="pure-data-implementation-of-im-sitting-in-a-room"><span class="header-section-number">2.1.1</span> Pure Data implementation of <em>I’m sitting in a room</em></h3>
 <p>&nbsp;</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="../assets/screenshots/playrec/sitting.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Pure Data implementation of I am sitting in a room"><img src="../assets/screenshots/playrec/sitting.png" class="img-fluid figure-img" alt="Pure Data implementation of I am sitting in a room"></a></p>
+<p><a href="../assets/screenshots/playrec/sitting.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Pure Data implementation of I am sitting in a room"><img src="../assets/screenshots/playrec/sitting.png" class="img-fluid figure-img" alt="Pure Data implementation of I am sitting in a room"></a></p>
 <figcaption>Pure Data implementation of I am sitting in a room</figcaption>
 </figure>
 </div>
@@ -710,7 +709,7 @@ Repeat the playback and re-recording process as many times as you like to hear t
 <p>The patch <a href="../assets/code/playrec/I-am-sitting-in-a-room-freeverb.pd">I-am-sitting-in-a-room-freeverb.pd</a> extends the original <em>I am sitting in a room</em> concept by introducing a <strong>virtual acoustic environment</strong> using reverb and allowing for <strong>pre-recorded audio input</strong> instead of just live microphone input. This adaptation provides more creative flexibility and consistent results compared to using a physical room.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="../assets/screenshots/playrec/sitting-freeverb.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="Pure Data implementation of I am sitting in a room with freeverb"><img src="../assets/screenshots/playrec/sitting-freeverb.png" class="img-fluid figure-img" alt="Pure Data implementation of I am sitting in a room with freeverb"></a></p>
+<p><a href="../assets/screenshots/playrec/sitting-freeverb.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Pure Data implementation of I am sitting in a room with freeverb"><img src="../assets/screenshots/playrec/sitting-freeverb.png" class="img-fluid figure-img" alt="Pure Data implementation of I am sitting in a room with freeverb"></a></p>
 <figcaption>Pure Data implementation of I am sitting in a room with freeverb</figcaption>
 </figure>
 </div>
@@ -1411,6 +1410,23 @@ Hasse, Sarah. 2012. <span>“I Am Sitting in a Room.”</span> <em>Body, Space &
   </div>
 </nav>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+ Creative Coding with Pure Data - Ezequiel Abregú - 2025
+  </li>  
+</ul>
+    </div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
 <script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
 (function() {
   let previousOnload = window.onload;
