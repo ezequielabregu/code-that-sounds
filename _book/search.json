@@ -330,41 +330,11 @@
     ]
   },
   {
-    "objectID": "chapters/conclusion.html",
-    "href": "chapters/conclusion.html",
-    "title": "7  Conclusion",
-    "section": "",
-    "text": "7.1 Key Takeaways\nIn this chapter, we summarize the key points discussed throughout the book. We reflect on the main topics introduced in the first chapter and the detailed discussions in the second chapter.\nThank you for reading! We hope this book has provided valuable insights and knowledge.",
-    "crumbs": [
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Conclusion</span>"
-    ]
-  },
-  {
-    "objectID": "chapters/conclusion.html#key-takeaways",
-    "href": "chapters/conclusion.html#key-takeaways",
-    "title": "7  Conclusion",
-    "section": "",
-    "text": "Highlight the main objectives of the book.\nDiscuss the significance of the topics covered.\nEncourage further exploration and learning in the subject area.",
-    "crumbs": [
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Conclusion</span>"
-    ]
-  },
-  {
     "objectID": "chapters/sonification.html",
     "href": "chapters/sonification.html",
     "title": "5  Sonification",
     "section": "",
     "text": "5.1 Introduction\nIn this chapter, we will explore the concept of sonification, its applications, and how it can be implemented using Pure Data (Pd). We will also discuss the importance of understanding data types and classifications in the context of sonification.\nImagine hearing the changes in global temperature over the past thousand years. What does a brainwave sound like? How can sound be used to enhance a pilot’s performance in the cockpit? These intriguing questions, among many others, fall within the realm of auditory display and sonification.\nResearchers in Auditory Display explore how the human auditory system can serve as a primary interface channel for communicating and conveying information. The goal of auditory display is to foster a deeper understanding or appreciation of the patterns and structures embedded in data beyond what is visible on the screen.\nAuditory display encompasses all aspects of human-computer interaction systems, including the hardware setup (speakers or headphones), modes of interaction with the display system, and any technical solutions for data collection, processing, and computation needed to generate sound in response to data.\nIn contrast, sonification is a core technique within auditory display: the process of rendering sound from data and interactions. Unlike voice interfaces or artistic soundscapes, auditory displays have gained increasing attention in recent years and are becoming a standard method alongside visualization for presenting data across diverse contexts.\nThe international research effort to understand every aspect of auditory display began with the founding of the International Community for Auditory Display (ICAD) in 1992. It is fascinating to observe how sonification and auditory display techniques have evolved in the relatively short time since their formal definition, with development accelerating steadily since 2011.\nAuditory display and sonification are now employed across a wide range of fields. Applications include chaos theory, biomedicine, interfaces for visually impaired users, data mining, seismology, desktop and mobile computing interaction, among many others.\nEqually diverse is the set of research disciplines required for successful sonification: physics, acoustics, psychoacoustics, perceptual research, sound engineering, and computer science form the core technical foundations. However, psychology, musicology, cognitive science, linguistics, pedagogy, social sciences, and philosophy are also essential for a comprehensive, multifaceted understanding of the description, technical implementation, usage, training, comprehension, acceptance, evaluation, and ergonomics of auditory displays and sonification in particular.\nIt is clear that in such an interdisciplinary field, a narrow focus on any single discipline risks “seeing the trees but missing the forest.” As with all interdisciplinary research efforts, auditory display and sonification face significant challenges, ranging from differing theoretical orientations across fields to even the very vocabulary used to describe our work.\nInterdisciplinary dialogue is crucial to advancing auditory display and sonification. However, the field must overcome the challenge of developing and employing a shared language that integrates many divergent disciplinary ways of speaking, thinking, and approaching problems. On the other hand, this very challenge often unlocks great creative potential and new ideas, as these varied perspectives can spark innovation and fresh insights.",
-    "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Sonification</span>"
-    ]
-  },
-  {
-    "objectID": "chapters/sonification.html#section",
-    "href": "chapters/sonification.html#section",
-    "title": "5  Sonification",
-    "section": "",
-    "text": "Category\nSubcategory\nDetails / Examples\n\n\n\n\nStatic\nStructured\n\n\n\n\n\nDataset: CSV, XLS\n\n\n\n\nFields: numeric, string, date/time\n\n\n\n\nClass: binary, multiclass\n\n\n\n\nSources: Kaggle datasets, City government\n\n\n\nImage(s)\nCompressed image (JPG) vs BMP\n\n\n\n\nSources: Instagram, Reddit, Flickr, Unsplash\n\n\n\nMIDI files\n\n\n\n\nAudio(s)\nRaw, descriptors, Fourier\n\n\n\n\nCompression type: MP3 vs FLAC vs WAV\n\n\n\n\nSources: Freesound, Audio Commons\n\n\n\nSemi-structured\n\n\n\n\n\nMarkup languages: HTML (web scraping), XML, JSON, YAML\n\n\n\n\nSources: The web itself, APIs\n\n\n\nUnstructured\n\n\n\n\n\nText(s): Huffman compression\n\n\nStream / Realtime / Signals\nAudio stream\nOnline radios, surveillance cameras\n\n\n\nVideo stream\nSurveillance cameras, Self-driving cars\n\n\n\nSensors\nArduino\n\n\n\nMIDI\n\n\n\n\nOSC",
     "crumbs": [
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Sonification</span>"
     ]
@@ -380,61 +350,11 @@
     ]
   },
   {
-    "objectID": "chapters/sonification.html#static-data",
-    "href": "chapters/sonification.html#static-data",
-    "title": "5  Sonification",
-    "section": "5.2 1. Static Data",
-    "text": "5.2 1. Static Data\nStatic data refers to data that is stored and remains unchanged until explicitly modified. It is typically collected, stored, and then analyzed or processed offline or asynchronously. This type of data is fundamental in many computational tasks, including machine learning, data mining, and archival storage.\n\n5.2.1 1.1 Structured Data\nStructured data is organized in a predefined manner, typically conforming to a schema or model that allows easy querying and manipulation.\nExamples:\n\nDatasets (CSV, XLS): Tabular data with rows and columns, where each column has a defined datatype (e.g., numeric, string, datetime).\nFields: The basic elements of structured data that have specific data types, such as integers, floating-point numbers, text strings, or timestamps.\nClasses: Labels used in supervised learning, often binary (two classes) or multiclass (multiple categories).\nImages: Digital images can be structured if stored with metadata or standardized file formats. Examples include compressed formats like JPG and uncompressed formats like BMP.\nMIDI Files: Musical Instrument Digital Interface files encode structured note and control information.\nAudio: Raw waveforms or extracted descriptors (e.g., Mel-frequency cepstral coefficients - MFCCs, Fourier transforms) represent audio signals in structured formats.\nAudio Formats: Common audio file formats such as MP3 (compressed), FLAC (lossless compressed), and WAV (uncompressed).\n\nSources: Data portals (e.g., Kaggle, UCI Machine Learning Repository), social media platforms like Instagram, Reddit, Flickr (for images), and audio repositories.\n\n\n\n5.2.2 1.2 Semi-structured Data\nSemi-structured data does not conform to a rigid schema like structured data but still contains tags or markers to separate semantic elements.\nExamples:\n\nMarkup Languages: HTML, XML, JSON, and YAML files are examples of semi-structured data because they contain hierarchical tags and attributes describing the data, but the content may be variable.\n\nSources: Web content, APIs that deliver data in JSON or XML formats.\n\n\n\n5.2.3 1.3 Unstructured Data\nUnstructured data lacks a predefined data model or schema. It is the most common form of data generated and can be more challenging to analyze without preprocessing.\nExamples:\n\nTexts: Documents, emails, articles, or social media posts are typical unstructured data examples.\n\nSources: Document collections, text corpora, email archives.",
-    "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Sonification</span>"
-    ]
-  },
-  {
-    "objectID": "chapters/sonification.html#stream-realtime-data",
-    "href": "chapters/sonification.html#stream-realtime-data",
-    "title": "5  Sonification",
-    "section": "5.2 Stream / Realtime Data",
-    "text": "5.2 Stream / Realtime Data\nStream or realtime data refers to continuous data generated in real-time, often requiring immediate or near-immediate processing. These data types are crucial in applications like live monitoring, interactive systems, and real-time analytics.\nExamples:\n\nAudio Streams: Continuous audio feeds such as online radio broadcasts.\nVideo Streams: Live video feeds from CCTV cameras or autonomous vehicles.\nSensor Data: Real-time telemetry or environmental data from IoT devices, Arduino boards, or embedded systems.\nLive MIDI: Streaming musical performance data, used in live concerts or interactive installations.\nOSC (Open Sound Control): A protocol used for networking sound synthesizers, computers, and other multimedia devices, enabling real-time control.\n\nSources: Online radio platforms, surveillance systems, smart vehicles, embedded IoT devices, live music performance setups.",
-    "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Sonification</span>"
-    ]
-  },
-  {
-    "objectID": "chapters/sonification.html#discussion",
-    "href": "chapters/sonification.html#discussion",
-    "title": "5  Sonification",
-    "section": "5.2 Discussion",
-    "text": "5.2 Discussion\nThe classification of data into static and stream/realtime reflects fundamentally different operational paradigms in digital systems. Static data often allows batch processing, archival, and complex analysis without stringent timing constraints. In contrast, stream data demands continuous, low-latency processing to support live feedback, monitoring, or interaction.\nThe structured / semi-structured / unstructured distinction highlights the complexity of dealing with data formats:\n\nStructured data is well-suited for traditional databases and straightforward analysis.\nSemi-structured data requires flexible parsers and understanding of nested or tagged data.\nUnstructured data often necessitates advanced techniques such as natural language processing or computer vision for meaningful extraction.",
-    "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Sonification</span>"
-    ]
-  },
-  {
-    "objectID": "chapters/sonification.html#references",
-    "href": "chapters/sonification.html#references",
-    "title": "5  Sonification",
-    "section": "5.4 References",
-    "text": "5.4 References\nStonebraker, M., & Çetintemel, U. (2005). “One size fits all”: an idea whose time has come and gone. Proceedings of the 21st International Conference on Data Engineering (ICDE).\nGantz, J., & Reinsel, D. (2012). The Digital Universe in 2020: Big Data, Bigger Digital Shadows, and Biggest Growth in the Far East. IDC iView.\nHunter, J., & Kelly, S. (2006). XML and databases: technologies and applications. The VLDB Journal.\nMarr, B. (2016). Big Data in Practice: How 45 Successful Companies Used Big Data Analytics to Deliver Extraordinary Results. Wiley.",
-    "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Sonification</span>"
-    ]
-  },
-  {
     "objectID": "chapters/sonification.html#data-classification",
     "href": "chapters/sonification.html#data-classification",
     "title": "5  Sonification",
     "section": "5.3 Data Classification",
     "text": "5.3 Data Classification\nThe classification of data into static and stream/realtime reflects fundamentally different operational paradigms in digital systems. Static data often allows batch processing, archival, and complex analysis without stringent timing constraints. In contrast, stream data demands continuous, low-latency processing to support live feedback, monitoring, or interaction.\nThe structured / semi-structured / unstructured distinction highlights the complexity of dealing with data formats:\n\nStructured data is well-suited for traditional databases and straightforward analysis.\nSemi-structured data requires flexible parsers and understanding of nested or tagged data.\nUnstructured data often necessitates advanced techniques such as natural language processing or computer vision for meaningful extraction.\n\nUnderstanding these data types and their sources is critical when designing systems for data ingestion, storage, processing, and analysis — especially in fields such as machine learning, multimedia processing, and IoT applications.\n\n\n\n\n\n\n\n\n\nType\nSubtype\nExamples\nSources\n\n\n\n\nStatic\nStructured\nSemi-structured Unstructured\n\nDatasets (CSV, XLS)\nFields: numeric, string, datetime\nClasses: binary, multiclass\nImages (compressed: JPG, uncompressed: BMP)\nMIDI files\nAudio: raw, descriptors, Fourier\nAudio formats: MP3, FLAC, WAV\nMarkup languages: HTML, XML, JSON, YAML\nTexts\n\n\nData portals\nInstagram, Reddit, Flickr\nAudio repositories\nWeb, APIs\nDocument collections\n\n\n\nStream / Realtime\n—\n\nAudio streams (e.g. online radio)\nVideo streams (e.g. CCTV, autonomous vehicles)\nSensor data (e.g. Arduino, real-time telemetry)\nLive MIDI\nOSC (Open Sound Control)\n\n\nOnline radio platforms\nSurveillance systems, smart vehicles\nIoT devices, embedded systems\nLive performance setups\nInteractive art and media systems\n\n\n\n\n\n5.3.1 References\nGantz, J., & Reinsel, D. (2012). The Digital Universe in 2020: Big Data, Bigger Digital Shadows, and Biggest Growth in the Far East. IDC iView.\nMarr, B. (2016). Big Data in Practice: How 45 Successful Companies Used Big Data Analytics to Deliver Extraordinary Results. Wiley.",
-    "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Sonification</span>"
-    ]
-  },
-  {
-    "objectID": "chapters/sonification.html#sonification-as-a-creative-framework-in-pure-data",
-    "href": "chapters/sonification.html#sonification-as-a-creative-framework-in-pure-data",
-    "title": "5  Sonification",
-    "section": "5.4 Sonification as a Creative Framework in Pure Data",
-    "text": "5.4 Sonification as a Creative Framework in Pure Data\n\n5.4.1 The Art-Science Continuum in Sonification\nSonification, traditionally defined as the systematic, objective, and reproducible translation of data into sound, finds itself at a dynamic intersection between scientific inquiry and creative expression. While often framed within the methodological rigor of data representation, its deeper potential lies equally in its artistic embodiment—an expressive convergence of logic, perception, and auditory imagination. This duality is vital when considering the use of Pure Data (Pd) in the development of creative code practices for sonification.\nIn its essence, sonification provides a means to explore and interpret data temporally. It transforms static information into dynamic sonic experiences, revealing patterns not just to the analytical mind but to the aesthetic ear. As Gresham-Lancaster argues, the field must extend beyond scientific formalism to embrace a broader spectrum of cultural and musical meaning. Pd, as an open-source visual programming environment, uniquely supports this hybridity, enabling the construction of both direct (first-order) sonification and more abstract, form-driven (second-order) approaches.\n\n\n5.4.2 First-Order and Second-Order Sonification in Pd\nA foundational concept introduced by Gresham-Lancaster is the distinction between first-order and second-order sonification. In Pd, first-order sonification typically involves straightforward mapping of data points to sound parameters—e.g., a numerical value controlling oscillator frequency or filter cutoff. This direct translation preserves the integrity of the data but may lack emotional resonance or contextual clarity for listeners unfamiliar with the dataset or mappings.\nSecond-order sonification introduces a higher level of abstraction. Here, data is not merely converted to sound but is used to control compositional structures such as rhythm, harmony, timbre, and formal development. In Pd, this could manifest through patch designs that incorporate statistical analysis of datasets to determine musical motifs or drive stochastic processes that evolve over time. By embedding data within culturally familiar or stylistically resonant frameworks—be it ambient textures, rhythmic patterns, or harmonic progressions—Pd allows the sonification to become more legible and emotionally impactful.\n\n\n5.4.3 The Role of Style, Taste, and Perception\nA key insight is that listeners inevitably interpret sound within a cultural and stylistic frame. Whether intentional or not, a Pd patch that maps data to sonic outputs will be perceived through the lens of genre conventions—ambient, noise, glitch, minimalism, etc. This reinforces the necessity for designers of sonification systems to consciously engage with aesthetic decisions. Rather than viewing these as distractions from scientific rigor, they should be recognized as essential design variables that determine how well the sonification communicates.\nFor instance, in designing a Pd patch for environmental data, layering the sonified stream within an evolving drone texture or embedding it in rhythmic pulses tied to diurnal cycles may enhance the intelligibility of subtle shifts. These choices, while extramusical, profoundly affect the user’s ability to detect and interpret meaningful changes.\n\n\n5.4.4 Toward a Craft of Musical Sonification\nThe expressive capacity of Pd invites an analogy with sculpture, as cited in Xenakis’ conception of raw mathematical outputs as “virtual stones” to be artistically shaped. The creative coder working in Pd similarly refines the raw outputs of data-driven patches, sculpting auditory forms through iterative experimentation, parameter tuning, and aesthetic discernment. This process reveals sonification not as a deterministic output of data, but as a collaboration between the structure of information and the intuition of the artist-programmer.\nMoreover, by incorporating techniques such as timbral mapping, adaptive filtering, and data-driven granular synthesis, Pd becomes a laboratory for crafting sonic experiences that honor both the source data and the listener’s perceptual world. This is particularly effective when the goal is to embed sonification within broader artistic or performative contexts—installations, interactive systems, or generative concerts—where expressivity and audience engagement are critical.\n\n\n5.4.5 The Future of Sonification in Creative Coding\nThe evolution of sonification within the creative coding domain—particularly in Pure Data—demands a reconceptualization of what constitutes success in sonification. Beyond reproducibility, the true measure lies in perceptual clarity, aesthetic engagement, and communicative power. As Gresham-Lancaster asserts, the inclusion of musical form, stylistic awareness, and cultural embedding are not luxuries, but necessities for sonification to become a widely adopted and meaningful practice.\nPure Data, with its flexibility, open-ended structure, and visual coding paradigm, provides an ideal environment to develop and test both first-order and second-order sonification systems. By embracing both scientific precision and artistic insight, Pd-based sonification becomes a model for interdisciplinary practice—where the auditory exploration of data is not just informative but transformative.\nIn sum, to cultivate a rich ecosystem of creative code in Pd, we must embrace sonification not merely as a technical mapping, but as a musical and perceptual act—a way of listening anew to the world’s data, rendered beautifully and meaningfully into sound.",
     "crumbs": [
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Sonification</span>"
     ]
@@ -470,23 +390,23 @@
     ]
   },
   {
-    "objectID": "chapters/sonification.html#references.",
-    "href": "chapters/sonification.html#references.",
-    "title": "5  Sonification",
-    "section": "5.6 References{.}",
-    "text": "5.6 References{.}\n\n\n\n\nGresham-Lancaster, Scot. 2012. “Relationships of Sonification to Music and Sound Art.” AI and Society 27 (2): 207–12.",
+    "objectID": "chapters/conclusion.html",
+    "href": "chapters/conclusion.html",
+    "title": "7  Conclusion",
+    "section": "",
+    "text": "7.1 Key Takeaways\nIn this chapter, we summarize the key points discussed throughout the book. We reflect on the main topics introduced in the first chapter and the detailed discussions in the second chapter.\nThank you for reading! We hope this book has provided valuable insights and knowledge.",
     "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Sonification</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Conclusion</span>"
     ]
   },
   {
-    "objectID": "chapters/sonification.html#references..unnumbered",
-    "href": "chapters/sonification.html#references..unnumbered",
-    "title": "5  Sonification",
-    "section": "5.6 References{..unnumbered}",
-    "text": "5.6 References{..unnumbered}\n\n\n\n\nGresham-Lancaster, Scot. 2012. “Relationships of Sonification to Music and Sound Art.” AI and Society 27 (2): 207–12.",
+    "objectID": "chapters/conclusion.html#key-takeaways",
+    "href": "chapters/conclusion.html#key-takeaways",
+    "title": "7  Conclusion",
+    "section": "",
+    "text": "Highlight the main objectives of the book.\nDiscuss the significance of the topics covered.\nEncourage further exploration and learning in the subject area.",
     "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Sonification</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Conclusion</span>"
     ]
   }
 ]
