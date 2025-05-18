@@ -248,11 +248,15 @@ In this section, we will explore the differences between AM and RM, their applic
 
 We can modulate the amplitude of any signal—referred to as the *carrier*—by multiplying it with an oscillating signal, called the *modulator*. The modulator is typically another oscillator, and its frequency determines the *modulation frequency*.
 
+![Amplitude Modulation](/assets/screenshots/synthesis/am-rm/am.gif)
+
 In the example provided, both the carrier and modulator are sine wave oscillators. This is what we call "classic" amplitude modulation (AM), where the modulator signal includes a DC offset, making it *unipolar*, ranging only from 0 to 1. This unipolarity ensures that the carrier’s amplitude is scaled without ever becoming negative.
 
 ### Ring Modulation
 
 Ring modulation is a particular form of amplitude modulation where both the carrier and modulator signals are *bipolar*, meaning they oscillate between -1 and 1 without any DC offset. In this configuration, there's no functional distinction between carrier and modulator—both behave symmetrically.
+
+![Ring Modulation](/assets/screenshots/synthesis/am-rm/rm.gif)
 
 Nonetheless, in practical terms, the carrier is usually an audio signal such as a musical instrument, while the modulator remains a simple oscillator. A key technical detail is that when the modulator signal is negative, it inverts the polarity of the carrier signal—producing a unique and often metallic timbre.
 
@@ -261,6 +265,8 @@ Nonetheless, in practical terms, the carrier is usually an audio signal such as 
 Amplitude modulation schemes can involve various DC offset settings—not just limited to AM or RM. In our example, preset configurations for AM and RM are available, but one can also manually adjust peak levels and DC offset using sliders.
 
 Observe how, in the frequency spectrum of classic AM, we see two sidebands—above and below the carrier frequency—each at half the amplitude of the original carrier. These sidebands are spaced apart by the modulation frequency.
+
+![Fig. ](/assets/screenshots/synthesis/am-rm/dc-offset.gif)
 
 In contrast, ring modulation removes the original carrier frequency entirely from the spectrum, leaving only the sidebands, which typically carry more energy than in AM.
 
@@ -272,11 +278,15 @@ In this example, an audio sample replaces the oscillator as the carrier signal. 
 
 Conversely, many effects processors—such as filters—are integral to sound synthesis. The boundary between synthesis and processing is thus fluid and contextual.
 
+![Fig. ](/assets/screenshots/synthesis/am-rm/sample.png)
+
 Try both the classic AM and RM examples. In both cases, sidebands are generated for each sine wave component within the carrier signal. AM retains the carrier's original sine components, which coexist and interact with the generated sidebands. For this reason, AM is commonly used for tremolo effects (which we’ll examine later). On the other hand, RM removes the original sine components entirely, yielding a more sonically distinctive result.
 
 ### Other Waveforms
 
 Using more complex waveforms for the modulator signal leads to the creation of additional partials within any amplitude modulation patch—including ring modulation. Sine waves are typically favored as modulators since they offer clean and controlled results, especially when applying AM as an audio effect.
+
+{{< video /assets/screenshots/synthesis/am-rm/other-waveforms.mov>}}
 
 However, in synthesis contexts, more intricate and harmonically rich methods—such as *frequency* and *phase* modulation—offer more efficient and versatile approaches for generating complex timbres. We’ll explore these in the following sections.
 
@@ -284,12 +294,15 @@ However, in synthesis contexts, more intricate and harmonically rich methods—s
 
 Tremolo is essentially amplitude modulation using a *low-frequency* modulator. The key addition is a *depth* parameter, ranging from 0 to 1, which determines the modulation intensity. At 0, no modulation occurs (dry signal), while a depth of 1 results in full tremolo, where the carrier's amplitude is modulated across its full range.
 
+{{< video /assets/screenshots/synthesis/am-rm/tremolo.mov>}}
 
 ## Frequency Modulation
 
 In general terms, to *modulate* a signal means to alter it in some way. In the context of this course, however, we refer specifically to using a *modulating signal* to control a parameter—such as amplitude, as previously discussed. We now turn to the basic structure of *frequency modulation* (FM), where an oscillator acts as the modulator.
 
-The signal being modulated is called the *carrier*; in the case of frequency modulation, it is also referred to as the *carrier frequency*. In contrast, we have the *modulating frequency*, which corresponds to the frequency of the modulating oscillator. The depth of frequency variation is determined by the amplitude of the modulator and is commonly referred to as the *modulation index*. The modulation process itself is straightforward: we add the modulating signal to the frequency input of the carrier oscillator. See the example on the right.
+The signal being modulated is called the *carrier*; in the case of frequency modulation, it is also referred to as the *carrier frequency*. In contrast, we have the *modulating frequency*, which corresponds to the frequency of the modulating oscillator. The depth of frequency variation is determined by the amplitude of the modulator and is commonly referred to as the *modulation index*. The modulation process itself is straightforward: we add the modulating signal to the frequency input of the carrier oscillator. See the example on the right
+
+![Fig. ](/assets/screenshots/synthesis/fm/intro.png){width=50%}
 
 By default, we have a carrier frequency of 400 Hz, a low modulation frequency of 1 Hz, and a modulation index of 100. This means the modulating signal oscillates between -100 and +100 Hz, causing the carrier frequency to vary between 300 and 500 Hz. Note that when the modulation frequency is low, the result is a vibrato-like effect.
 
@@ -297,11 +310,15 @@ By default, we have a carrier frequency of 400 Hz, a low modulation frequency of
 
 We apply the same structure as before. Besides a vibrato example, this section includes fully developed FM examples. As with amplitude modulation, FM produces *sidebands* spaced by intervals equal to the modulation frequency. However, FM can generate many more sidebands, potentially resulting in a much richer spectrum.
 
+{{< video /assets/screenshots/synthesis/fm/fm.mov>}}
+
 The higher the modulation index, the greater the number of resulting partials—enabling the creation of dense and complex waveforms. When the carrier and modulator frequencies share a simple harmonic ratio, the resulting waveform is harmonic. Otherwise, it tends to be inharmonic. Click on the message boxes to hear the preset examples.
 
 ### Other Waveforms
 
 In this patch, we experiment with different oscillator combinations. Waveforms are arranged according to spectral complexity—from simple sine waves to rich sawtooth waves (the only waveform here containing both even and odd harmonics). The more complex the waveform used, the more intricate the FM result becomes.
+
+![Fig. ](/assets/screenshots/synthesis/fm/other-waveforms.png)
 
 On the modulator side, the waveforms are idealized and band-unlimited—perfect in theory. However, the frequency-modulated oscillator has a limited bandwidth, which imposes practical constraints on the resulting spectrum.
 
@@ -309,11 +326,15 @@ On the modulator side, the waveforms are idealized and band-unlimited—perfect 
 
 We can also use exponential pitch values (such as MIDI note numbers) instead of linear frequency input. The key difference here is that *frequency deviation*—the modulation index—is now expressed in *semitones*, not Hertz. This shift affects the entire modulation behavior.
 
+![Fig. ](/assets/screenshots/synthesis/fm/exponential-freq.png)
+
 As a result, the output waveform becomes asymmetrical and significantly different in character. The main change in the patch is the use of `[mtof~]` to convert MIDI pitch to frequency in Hz.
 
 ### Ratio
 
 It is common practice to define the modulating frequency as a *ratio* of the carrier frequency. This allows us to work with a single frequency input while maintaining a consistent sonic character across different pitches.
+
+![Fig. ](/assets/screenshots/synthesis/fm/ratio.png)
 
 This approach preserves the relationship between the carrier and modulator frequencies, which is crucial since this ratio determines how the additional spectral components—partials—are distributed. Harmonic ratios (such as 0.5 or 2) yield harmonic results, while non-integer ratios lead to inharmonic spectra.
 

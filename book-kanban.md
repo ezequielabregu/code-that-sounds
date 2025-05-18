@@ -10,23 +10,43 @@
 
 ## To do
 
+###
+
+#### General
+
 - Think and Add more creative examples and exercises in synthesis chapter.
 - Add image captions.
 - Reference images from internet or with third-party owners.
 - Create a better cover image for the book.
+
+#### Sequencers
+
+- Transcribe Python code examples to Pure Data.
+- Add audio samples.
+- Download all images from the internet and add them to the book.
+  - or use a python script to generate them.
+- 
+
+#### Synthesis
+
+- Add link to each pd example.
 - See Campus --> Add art works reference to synthesis chapter (oscillators, additive, subtractive, modulation).
-- Add Arrays and Tables in Play and Record chapter.
-- Add Risset's bell on the additivity synthesis section.
+- - Add Risset's bell on the additivity synthesis section.
 - Add Poem for 100 metronomes and explain dinamic patching.
 - Summary of the [Phil Niblock paper](https://www.straebel.com/files/Straebel%202008_Niblock.pdf)
+
+#### Play and Rec
+
+- Add Arrays and Tables.
+- Intro and review basic concepts of readsf and writesf~ in 
 
 ## In Progress
 
 - [x] Write Synthesis: Advanced Audio Processing Techniques.
-  - [x] OScillators
+  - [x] Oscillators
   - [ ] Additive
   - [ ] Subtractive
-  - [ ] Modulation
+  - [x] Modulation
 
 ## Done
 

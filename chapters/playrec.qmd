@@ -5,11 +5,11 @@ We will also consider the artistic implications of recording and playback, inclu
 
 ## *I'm Sitting in a Room* – Alvin Lucier
 
-![Alvin Lucier performing *I'm sitting in a room*](https://www.moma.org/wp/inside_out/wp-content/uploads/2015/01/LucierMoMA_122014_005.jpg)
-
 *I'm Sitting in a Room* (Alvin Lucier) consists of a 15-minute and 23-second sound recording. The piece opens with Lucier’s voice as he declares he is sitting in a room different from ours. His voice trembles slightly as he delivers the text, describing what will unfold over the next 15 minutes:
 
 > "...I am recording the sound of my speaking voice and I am going to play it back into the room again and again..."
+
+![*I am sitting in a room* design](/assets/images/play-rec/lucier-diagram.jpg)
 
 As listeners, we know what is going to happen, but we don’t know **how** it will happen [@hasse2012]. We listen, following Lucier’s recorded voice. Then, Lucier plays the recording into the room and re-records it. This time, we begin to hear more of the room’s acoustic characteristics. He continues to play back and re-record his voice—over and over—until his speech becomes softened, almost dissolved, into the sonic reflections of the room in which the piece was recorded and re-recorded.
 
@@ -38,8 +38,6 @@ The following steps outline the process:
 - Continue this process through multiple generations.
 
 All the recorded generations, presented in chronological order, create a tape composition whose duration is determined by the length of the original statement and the number of generations produced. Make versions in which a single statement is recycled through different rooms. Create versions using one or more speakers in different languages and spaces. Try versions where, for each generation, the microphone is moved to different parts of the room(s). You may also develop versions that can be performed in real time.
-
-![*I am sitting in a room* design](https://www.fuqianhua.cn/wp-content/uploads/2020/01/lucier-diagram-scaled.jpg)
 
 ### Pure Data implementation of *I'm sitting in a room*
 
