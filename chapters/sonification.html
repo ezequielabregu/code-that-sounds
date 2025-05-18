@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>6&nbsp; Sonification – Creative Coding with Pure Data</title>
+<title>5&nbsp; Sonification – Creative Coding with Pure Data</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,7 +20,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -30,8 +50,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../chapters/conclusion.html" rel="next">
-<link href="../chapters/tools.html" rel="prev">
+<link href="../chapters/tools.html" rel="next">
+<link href="../chapters/synthesis.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -46,6 +66,9 @@ ul.task-list li input[type="checkbox"] {
 <link href="../site_libs/bootstrap/bootstrap-1e81d527365e20b3495763033adbcf98.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="../site_libs/bootstrap/bootstrap-dark-8ab8b311eebd604b8865a9cbc6c08092.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <link href="../site_libs/bootstrap/bootstrap-1e81d527365e20b3495763033adbcf98.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -248,7 +271,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/sonification.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Sonification</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/sonification.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Sonification</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -314,14 +337,14 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/tools.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Tools</span></span></a>
+  <a href="../chapters/sonification.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Sonification</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/sonification.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Sonification</span></span></a>
+  <a href="../chapters/tools.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Tools</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -335,21 +358,39 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">5.1</span> Introduction</a></li>
+  <li><a href="#data-types" id="toc-data-types" class="nav-link" data-scroll-target="#data-types"><span class="header-section-number">5.2</span> Data Types</a>
+  <ul class="collapse">
+  <li><a href="#static-data" id="toc-static-data" class="nav-link" data-scroll-target="#static-data"><span class="header-section-number">5.2.1</span> Static Data</a></li>
+  <li><a href="#stream-realtime-data" id="toc-stream-realtime-data" class="nav-link" data-scroll-target="#stream-realtime-data"><span class="header-section-number">5.2.2</span> Stream / Realtime Data</a></li>
+  </ul></li>
+  <li><a href="#data-classification" id="toc-data-classification" class="nav-link" data-scroll-target="#data-classification"><span class="header-section-number">5.3</span> Data Classification</a>
+  <ul class="collapse">
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">5.3.1</span> References</a></li>
+  </ul></li>
+  <li><a href="#sonification-as-a-creative-framework" id="toc-sonification-as-a-creative-framework" class="nav-link" data-scroll-target="#sonification-as-a-creative-framework"><span class="header-section-number">5.4</span> Sonification as a Creative Framework</a></li>
+  <li><a href="#data-humanism-a-visual-manifesto-of-giorgia-lupi" id="toc-data-humanism-a-visual-manifesto-of-giorgia-lupi" class="nav-link" data-scroll-target="#data-humanism-a-visual-manifesto-of-giorgia-lupi"><span class="header-section-number">5.5</span> Data Humanism: A Visual Manifesto of Giorgia Lupi</a></li>
+  <li><a href="#references-1" id="toc-references-1" class="nav-link" data-scroll-target="#references-1">References</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
-<main class="content column-page-right" id="quarto-document-content">
+<main class="content column-body" id="quarto-document-content">
 
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Sonification</span></h1>
+<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Sonification</span></h1>
 </div>
 
 
 
-<div class="quarto-title-meta column-page-right">
+<div class="quarto-title-meta column-body">
 
     
   
@@ -361,8 +402,184 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<p>In this chapter, we will explore the concept of sonification, its applications, and how it can be implemented using Pure Data (Pd). We will also discuss the importance of understanding data types and classifications in the context of sonification.</p>
+<section id="introduction" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">5.1</span> Introduction</h2>
+<p>Imagine hearing the changes in global temperature over the past thousand years. What does a brainwave sound like? How can sound be used to enhance a pilot’s performance in the cockpit? These intriguing questions, among many others, fall within the realm of <strong>auditory display</strong> and <strong>sonification</strong>.</p>
+<p>Researchers in Auditory Display explore how the human auditory system can serve as a primary interface channel for communicating and conveying information. The goal of auditory display is to foster a deeper understanding or appreciation of the patterns and structures embedded in data beyond what is visible on the screen.</p>
+<p>Auditory display encompasses all aspects of human-computer interaction systems, including the hardware setup (speakers or headphones), modes of interaction with the display system, and any technical solutions for data collection, processing, and computation needed to generate sound in response to data.</p>
+<p>In contrast, <strong>sonification</strong> is a core technique within auditory display: the process of rendering sound from data and interactions. Unlike voice interfaces or artistic soundscapes, auditory displays have gained increasing attention in recent years and are becoming a standard method alongside visualization for presenting data across diverse contexts.</p>
+<p>The international research effort to understand every aspect of auditory display began with the founding of the <strong>International Community for Auditory Display (ICAD)</strong> in 1992. It is fascinating to observe how sonification and auditory display techniques have evolved in the relatively short time since their formal definition, with development accelerating steadily since 2011.</p>
+<p>Auditory display and sonification are now employed across a wide range of fields. Applications include chaos theory, biomedicine, interfaces for visually impaired users, data mining, seismology, desktop and mobile computing interaction, among many others.</p>
+<p>Equally diverse is the set of research disciplines required for successful sonification: physics, acoustics, psychoacoustics, perceptual research, sound engineering, and computer science form the core technical foundations. However, psychology, musicology, cognitive science, linguistics, pedagogy, social sciences, and philosophy are also essential for a comprehensive, multifaceted understanding of the description, technical implementation, usage, training, comprehension, acceptance, evaluation, and ergonomics of auditory displays and sonification in particular.</p>
+<p>It is clear that in such an interdisciplinary field, a narrow focus on any single discipline risks “seeing the trees but missing the forest.” As with all interdisciplinary research efforts, auditory display and sonification face significant challenges, ranging from differing theoretical orientations across fields to even the very vocabulary used to describe our work.</p>
+<p>Interdisciplinary dialogue is crucial to advancing auditory display and sonification. However, the field must overcome the challenge of developing and employing a shared language that integrates many divergent disciplinary ways of speaking, thinking, and approaching problems. On the other hand, this very challenge often unlocks great creative potential and new ideas, as these varied perspectives can spark innovation and fresh insights.</p>
+</section>
+<section id="data-types" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="data-types"><span class="header-section-number">5.2</span> Data Types</h2>
+<p>In the realm of digital data, understanding the nature and classification of data types is essential for their effective processing, storage, and analysis. The table above presents a detailed taxonomy of data types broadly categorized into <strong>Static</strong> and <strong>Stream / Realtime</strong> data, further subdivided into various subtypes. This section will unpack these classifications, elaborating on their characteristics, common formats, and sources.</p>
+<section id="static-data" class="level3" data-number="5.2.1">
+<h3 data-number="5.2.1" class="anchored" data-anchor-id="static-data"><span class="header-section-number">5.2.1</span> Static Data</h3>
+<p>Static data refers to data that is stored and remains unchanged until explicitly modified. It is typically collected, stored, and then analyzed or processed offline or asynchronously. This type of data is fundamental in many computational tasks, including machine learning, data mining, and archival storage.</p>
+<section id="structured-data" class="level4" data-number="5.2.1.1">
+<h4 data-number="5.2.1.1" class="anchored" data-anchor-id="structured-data"><span class="header-section-number">5.2.1.1</span> Structured Data</h4>
+<p>Structured data is organized in a predefined manner, typically conforming to a schema or model that allows easy querying and manipulation.</p>
+<p><strong>Examples:</strong></p>
+<ul>
+<li><strong>Datasets (CSV, XLS):</strong> Tabular data with rows and columns, where each column has a defined datatype (e.g., numeric, string, datetime).</li>
+<li><strong>Fields:</strong> The basic elements of structured data that have specific data types, such as integers, floating-point numbers, text strings, or timestamps.</li>
+<li><strong>Classes:</strong> Labels used in supervised learning, often binary (two classes) or multiclass (multiple categories).</li>
+<li><strong>Images:</strong> Digital images can be structured if stored with metadata or standardized file formats. Examples include compressed formats like JPG and uncompressed formats like BMP.</li>
+<li><strong>MIDI Files:</strong> Musical Instrument Digital Interface files encode structured note and control information.</li>
+<li><strong>Audio:</strong> Raw waveforms or extracted descriptors (e.g., Mel-frequency cepstral coefficients - MFCCs, Fourier transforms) represent audio signals in structured formats.</li>
+<li><strong>Audio Formats:</strong> Common audio file formats such as MP3 (compressed), FLAC (lossless compressed), and WAV (uncompressed).</li>
+</ul>
+<p><strong>Sources:</strong> Data portals (e.g., Kaggle, UCI Machine Learning Repository), social media platforms like Instagram, Reddit, Flickr (for images), and audio repositories.</p>
+</section>
+<section id="semi-structured-data" class="level4" data-number="5.2.1.2">
+<h4 data-number="5.2.1.2" class="anchored" data-anchor-id="semi-structured-data"><span class="header-section-number">5.2.1.2</span> Semi-structured Data</h4>
+<p>Semi-structured data does not conform to a rigid schema like structured data but still contains tags or markers to separate semantic elements.</p>
+<p><strong>Examples:</strong></p>
+<ul>
+<li><strong>Markup Languages:</strong> HTML, XML, JSON, and YAML files are examples of semi-structured data because they contain hierarchical tags and attributes describing the data, but the content may be variable.</li>
+</ul>
+<p><strong>Sources:</strong> Web content, APIs that deliver data in JSON or XML formats.</p>
+</section>
+<section id="unstructured-data" class="level4" data-number="5.2.1.3">
+<h4 data-number="5.2.1.3" class="anchored" data-anchor-id="unstructured-data"><span class="header-section-number">5.2.1.3</span> Unstructured Data</h4>
+<p>Unstructured data lacks a predefined data model or schema. It is the most common form of data generated and can be more challenging to analyze without preprocessing.</p>
+<p><strong>Examples:</strong></p>
+<ul>
+<li><strong>Texts:</strong> Documents, emails, articles, or social media posts are typical unstructured data examples.</li>
+</ul>
+<p><strong>Sources:</strong> Document collections, text corpora, email archives.</p>
+</section>
+</section>
+<section id="stream-realtime-data" class="level3" data-number="5.2.2">
+<h3 data-number="5.2.2" class="anchored" data-anchor-id="stream-realtime-data"><span class="header-section-number">5.2.2</span> Stream / Realtime Data</h3>
+<p>Stream or realtime data refers to continuous data generated in real-time, often requiring immediate or near-immediate processing. These data types are crucial in applications like live monitoring, interactive systems, and real-time analytics.</p>
+<p><strong>Examples:</strong></p>
+<ul>
+<li><strong>Audio Streams:</strong> Continuous audio feeds such as online radio broadcasts.</li>
+<li><strong>Video Streams:</strong> Live video feeds from CCTV cameras or autonomous vehicles.</li>
+<li><strong>Sensor Data:</strong> Real-time telemetry or environmental data from IoT devices, Arduino boards, or embedded systems.</li>
+<li><strong>Live MIDI:</strong> Streaming musical performance data, used in live concerts or interactive installations.</li>
+<li><strong>OSC (Open Sound Control):</strong> A protocol used for networking sound synthesizers, computers, and other multimedia devices, enabling real-time control.</li>
+</ul>
+<p><strong>Sources:</strong> Online radio platforms, surveillance systems, smart vehicles, embedded IoT devices, live music performance setups.</p>
+</section>
+</section>
+<section id="data-classification" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="data-classification"><span class="header-section-number">5.3</span> Data Classification</h2>
+<p>The classification of data into <strong>static</strong> and <strong>stream/realtime</strong> reflects fundamentally different operational paradigms in digital systems. Static data often allows batch processing, archival, and complex analysis without stringent timing constraints. In contrast, stream data demands continuous, low-latency processing to support live feedback, monitoring, or interaction.</p>
+<p>The <strong>structured / semi-structured / unstructured</strong> distinction highlights the complexity of dealing with data formats:</p>
+<ul>
+<li><strong>Structured data</strong> is well-suited for traditional databases and straightforward analysis.</li>
+<li><strong>Semi-structured data</strong> requires flexible parsers and understanding of nested or tagged data.</li>
+<li><strong>Unstructured data</strong> often necessitates advanced techniques such as natural language processing or computer vision for meaningful extraction.</li>
+</ul>
+<p>Understanding these data types and their sources is critical when designing systems for data ingestion, storage, processing, and analysis — especially in fields such as machine learning, multimedia processing, and IoT applications.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 14%">
+<col style="width: 13%">
+<col style="width: 43%">
+<col style="width: 27%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Type</th>
+<th>Subtype</th>
+<th>Examples</th>
+<th>Sources</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Static</td>
+<td><p>Structured</p>
+<p>Semi-structured Unstructured</p></td>
+<td><ul>
+<li>Datasets (CSV, XLS)</li>
+<li>Fields: numeric, string, datetime</li>
+<li>Classes: binary, multiclass</li>
+<li>Images (compressed: JPG, uncompressed: BMP)</li>
+<li>MIDI files</li>
+<li>Audio: raw, descriptors, Fourier</li>
+<li>Audio formats: MP3, FLAC, WAV</li>
+<li>Markup languages: HTML, XML, JSON, YAML</li>
+<li>Texts</li>
+</ul></td>
+<td><ul>
+<li><p>Data portals</p></li>
+<li><p>Instagram, Reddit, Flickr</p></li>
+<li><p>Audio repositories</p></li>
+<li><p>Web, APIs</p></li>
+<li><p>Document collections</p></li>
+</ul></td>
+</tr>
+<tr class="even">
+<td>Stream / Realtime</td>
+<td>—</td>
+<td><ul>
+<li>Audio streams (e.g.&nbsp;online radio)</li>
+<li>Video streams (e.g.&nbsp;CCTV, autonomous vehicles)</li>
+<li>Sensor data (e.g.&nbsp;Arduino, real-time telemetry)</li>
+<li>Live MIDI</li>
+<li>OSC (Open Sound Control)</li>
+</ul></td>
+<td><ul>
+<li>Online radio platforms</li>
+<li>Surveillance systems, smart vehicles</li>
+<li>IoT devices, embedded systems</li>
+<li>Live performance setups</li>
+<li>Interactive art and media systems</li>
+</ul></td>
+</tr>
+</tbody>
+</table>
+<section id="references" class="level3" data-number="5.3.1">
+<h3 data-number="5.3.1" class="anchored" data-anchor-id="references"><span class="header-section-number">5.3.1</span> References</h3>
+<p>Gantz, J., &amp; Reinsel, D. (2012). The Digital Universe in 2020: Big Data, Bigger Digital Shadows, and Biggest Growth in the Far East. <em>IDC iView</em>.</p>
+<p>Marr, B. (2016). Big Data in Practice: How 45 Successful Companies Used Big Data Analytics to Deliver Extraordinary Results. Wiley.</p>
+</section>
+</section>
+<section id="sonification-as-a-creative-framework" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="sonification-as-a-creative-framework"><span class="header-section-number">5.4</span> Sonification as a Creative Framework</h2>
+<p>Sonification, traditionally defined as the systematic, objective, and reproducible translation of data into sound, finds itself at a dynamic intersection between scientific inquiry and creative expression. While often framed within the methodological rigor of data representation, its deeper potential lies equally in its artistic embodiment—an expressive convergence of logic, perception, and auditory imagination. This duality is vital when considering the use of software in the development of creative code practices for sonification. In its essence, sonification provides a means to explore and interpret data temporally. It transforms static information into dynamic sonic experiences, revealing patterns not just to the analytical mind but to the aesthetic ear. As Gresham-Lancaster <span class="citation" data-cites="greshamlancaster2012">(<a href="#ref-greshamlancaster2012" role="doc-biblioref">Gresham-Lancaster 2012</a>)</span> argues, the field must extend beyond scientific formalism to embrace a broader spectrum of cultural and musical meaning.</p>
+<p>A foundational concept introduced by Gresham-Lancaster is the distinction between first-order and second-order sonification. First-order sonification typically involves straightforward mapping of data points to sound parameters—e.g., a numerical value controlling oscillator frequency or filter cutoff. This direct translation preserves the integrity of the data but may lack emotional resonance or contextual clarity for listeners unfamiliar with the dataset or mappings. Second-order sonification introduces a higher level of abstraction. Here, data is not merely converted to sound but is used to control compositional structures such as rhythm, harmony, timbre, and formal development. This could manifest through software designs that incorporate statistical analysis of datasets to determine musical motifs or drive stochastic processes that evolve over time. By embedding data within culturally familiar or stylistically resonant frameworks—be it ambient textures, rhythmic patterns, or harmonic progressions allows the sonification to become more legible and emotionally impactful.</p>
+<p>A key insight is that listeners inevitably interpret sound within a cultural and stylistic frame. Whether intentional or not, sonification software maps data to sonic outputs will be perceived through the lens of genre conventions—ambient, noise, glitch, minimalism, etc. This reinforces the necessity for designers of sonification systems to consciously engage with aesthetic decisions. Rather than viewing these as distractions from scientific rigor, they should be recognized as essential design variables that determine how well the sonification communicates. For instance, layering the sonified stream within an evolving drone texture or embedding it in rhythmic pulses tied to diurnal cycles may enhance the intelligibility of subtle shifts. These choices, while extramusical, profoundly affect the user’s ability to detect and interpret meaningful changes.</p>
+<p>The expressive capacity of sonification technics invites an analogy with sculpture, as cited in Xenakis’ conception of raw mathematical outputs as “virtual stones” to be artistically shaped. The creative coder similarly refines the raw outputs of data-driven patches, sculpting auditory forms through iterative experimentation, parameter tuning, and aesthetic discernment. This process reveals sonification not as a deterministic output of data, but as a collaboration between the structure of information and the intuition of the artist-programmer. Moreover, by incorporating techniques such as timbral mapping, adaptive filtering, and data-driven granular synthesis, it becomes a laboratory for crafting sonic experiences that honor both the source data and the listener’s perceptual world. This is particularly effective when the goal is to embed sonification within broader artistic or performative contexts—installations, interactive systems, or generative concerts—where expressivity and audience engagement are critical.</p>
+<p>The evolution of sonification within the creative coding domain demands a reconceptualization of what constitutes success in sonification. Beyond reproducibility, the true measure lies in perceptual clarity, aesthetic engagement, and communicative power. As Gresham-Lancaster asserts, the inclusion of musical form, stylistic awareness, and cultural embedding are not luxuries, but necessities for sonification to become a widely adopted and meaningful practice Pure Data, with its flexibility, open-ended structure, and visual coding paradigm, provides an ideal environment to develop and test both first-order and second-order sonification systems. By embracing both scientific precision and artistic insight, Pd-based sonification becomes a model for interdisciplinary practice—where the auditory exploration of data is not just informative but transformative.</p>
+</section>
+<section id="data-humanism-a-visual-manifesto-of-giorgia-lupi" class="level2" data-number="5.5">
+<h2 data-number="5.5" class="anchored" data-anchor-id="data-humanism-a-visual-manifesto-of-giorgia-lupi"><span class="header-section-number">5.5</span> Data Humanism: A Visual Manifesto of Giorgia Lupi</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../assets/images/sonification/datahumanism.jpeg" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Humanism of Data"><img src="../assets/images/sonification/datahumanism.jpeg" class="img-fluid figure-img" alt="Humanism of Data"></a></p>
+<figcaption>Humanism of Data</figcaption>
+</figure>
+</div>
+<p>Data is now recognized as one of the foundational pillars of our economy, and the idea that the world is exponentially enriched with data every day has long ceased to be news.</p>
+<p>Big Data is no longer a distant dystopian future; it is a commodity and an intrinsic, iconic feature of our present—alongside dollars, concrete, automobiles, and Helvetica. The ways we relate to data are evolving faster than we realize, and our minds and bodies are naturally adapting to this new hybrid reality built from physical and informational structures. Visual design, with its unique power to reach deep into our subconscious instantly—bypassing language—and its inherent ability to convey vast amounts of structured and unstructured information across cultures, will play an even more central role in this quiet yet inevitable revolution.</p>
+<p>Pioneers of data visualization like William Playfair, John Snow, Florence Nightingale, and Charles Joseph Minard were the first to harness and codify this potential in the 18th and 19th centuries. Modern advocates such as Edward Tufte, Ben Shneiderman, Jeffrey Heer, and Alberto Cairo have been instrumental in the field’s renaissance over the past twenty years, supporting the transition of these principles into the world of Big Data.</p>
+<p>Thanks to this renewed interest, an initial wave of data visualization swept across the web, reaching a wider audience beyond the academic circles where it had previously been confined. Unfortunately, this wave was often ridden superficially—used as a linguistic shortcut to cope with the overwhelming nature of Big Data.</p>
+<p>“Cool” infographics promised a key to mastering this untamable complexity. When they inevitably failed to deliver on this overly optimistic expectation, we were left with gigabytes of illegible 3D pie charts and cheap, translucent user interfaces cluttered with widgets that even Tony Stark or John Anderton from <em>Minority Report</em> would struggle to understand.</p>
+<p>In reality, visual design is often applied to data merely as a cosmetic gloss over serious and complicated problems—an attempt to make them appear simpler than they truly are. What made cheap marketing infographics so popular is perhaps their greatest contradiction: the false claim that a few pictograms and large numbers inherently have the power to “simplify complexity.” The phenomena that govern our world are, by definition, complex, multifaceted, and often difficult to grasp. So why would anyone want to dumb them down when making critical decisions or delivering important messages?</p>
+<p>Yet, not all is bleak in this sudden craze for data visualization. We are becoming increasingly aware that there remains a considerable gap between the real potential hidden within vast datasets and the superficial images we typically use to represent them. More importantly, we now recognize that the first wave succeeded in familiarizing a broader audience with new visual languages and tools.</p>
+<p>Having moved past what we might call the peak of infographics, we are left with a general audience equipped with some of the necessary skills to welcome a second wave of more meaningful, thoughtful visualization.</p>
+<p>We are ready to question the impersonality of a purely technical approach to data and begin designing ways to connect numbers with what they truly represent: knowledge, behaviors, and people.</p>
+</section>
+<section id="references-1" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="references-1">References</h2>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-greshamlancaster2012" class="csl-entry" role="listitem">
+Gresham-Lancaster, Scot. 2012. <span>“Relationships of Sonification to Music and Sound Art.”</span> <em>AI and Society</em> 27 (2): 207–12.
+</div>
+</div>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -777,15 +994,15 @@ ul.task-list li input[type="checkbox"] {
     }
   });
   </script>
-<nav class="page-navigation column-page-right">
+<nav class="page-navigation column-body">
   <div class="nav-page nav-page-previous">
-      <a href="../chapters/tools.html" class="pagination-link" aria-label="Tools">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Tools</span></span>
+      <a href="../chapters/synthesis.html" class="pagination-link" aria-label="Synthesis">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Synthesis</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../chapters/conclusion.html" class="pagination-link" aria-label="Conclusion">
-        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Conclusion</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../chapters/tools.html" class="pagination-link" aria-label="Tools">
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Tools</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -798,7 +1015,7 @@ ul.task-list li input[type="checkbox"] {
     <div class="nav-footer-center">
       <ul class="footer-items list-unstyled">
     <li class="nav-item">
- Creative Coding with Pure Data - Ezequiel Abregú - 2025
+ Creative Coding with Pure Data - Ezequiel Abregú
   </li>  
 </ul>
     </div>
@@ -807,6 +1024,38 @@ ul.task-list li input[type="checkbox"] {
     </div>
   </div>
 </footer>
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
 
 
 
