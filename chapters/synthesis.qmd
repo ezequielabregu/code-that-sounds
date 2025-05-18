@@ -61,7 +61,7 @@ Oscillators are a fundamental component of sound synthesis and play a crucial ro
 
 Sound sources in synthesizers are largely based on mathematics. There are two fundamental types: waveforms and random signals. Waveforms are typically described as simple geometric shapes—sawtooth, square, pulse, sine, and triangle being the most common. These shapes are mathematically straightforward and electronically feasible to generate. On the other hand, random waveforms produce noise, a constantly shifting mixture of all frequencies.
 
-![Fig. Sine Oscillator & White Noise Generator](/assets/screenshots/Synthesis/Oscillators/sources.png)
+![Fig. Sine Oscillator & White Noise Generator](/assets/screenshots/synthesis/Oscillators/sources.png)
 
 Oscillators are one of the core building blocks of synthesizers, often implemented as function generators. A function generator produces a waveform that may be continuous or triggered and can take arbitrary shapes. In a basic analog subtractive synthesizer, an oscillator usually outputs a few continuous waveforms, with frequency controlled by voltage. Since these sources typically output a continuous signal, modifiers must be applied to shape timbre or envelope the sound.
 
