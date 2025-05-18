@@ -1,0 +1,1224 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.29">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>4&nbsp; Synthesis – Creative Coding with Pure Data</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../chapters/tools.html" rel="next">
+<link href="../chapters/sequencers.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-0815c480559380816a4d1ea211a47e91.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-748b535e376f14d4692bf2b2e5fd6380.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-0815c480559380816a4d1ea211a47e91.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-1e81d527365e20b3495763033adbcf98.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-8ab8b311eebd604b8865a9cbc6c08092.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-1e81d527365e20b3495763033adbcf98.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-sidebar floating quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/synthesis.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Synthesis</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Creative Coding with Pure Data</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/ezequielabregu/creative-code-with-pd" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/introduction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/playrec.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Rec &amp; Play</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/sequencers.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Sequencers</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/synthesis.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Synthesis</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/tools.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Tools</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/sonification.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Sonification</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/conclusion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Conclusion</span></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">4.1</span> Introduction</a></li>
+  <li><a href="#oscillatory-movements" id="toc-oscillatory-movements" class="nav-link" data-scroll-target="#oscillatory-movements"><span class="header-section-number">4.2</span> Oscillatory Movements</a>
+  <ul class="collapse">
+  <li><a href="#between-technique-and-aesthetics" id="toc-between-technique-and-aesthetics" class="nav-link" data-scroll-target="#between-technique-and-aesthetics"><span class="header-section-number">4.2.1</span> Between Technique and Aesthetics</a></li>
+  <li><a href="#poetics-of-signal-processing" id="toc-poetics-of-signal-processing" class="nav-link" data-scroll-target="#poetics-of-signal-processing"><span class="header-section-number">4.2.2</span> Poetics of Signal Processing</a></li>
+  </ul></li>
+  <li><a href="#sound-sources" id="toc-sound-sources" class="nav-link" data-scroll-target="#sound-sources"><span class="header-section-number">4.3</span> Sound Sources</a>
+  <ul class="collapse">
+  <li><a href="#oscillators" id="toc-oscillators" class="nav-link" data-scroll-target="#oscillators"><span class="header-section-number">4.3.1</span> Oscillators</a></li>
+  <li><a href="#sine-cosine" id="toc-sine-cosine" class="nav-link" data-scroll-target="#sine-cosine"><span class="header-section-number">4.3.2</span> Sine &amp; Cosine</a></li>
+  <li><a href="#phasor" id="toc-phasor" class="nav-link" data-scroll-target="#phasor"><span class="header-section-number">4.3.3</span> Phasor</a></li>
+  <li><a href="#oscillator" id="toc-oscillator" class="nav-link" data-scroll-target="#oscillator"><span class="header-section-number">4.3.4</span> Oscillator</a></li>
+  <li><a href="#vco" id="toc-vco" class="nav-link" data-scroll-target="#vco"><span class="header-section-number">4.3.5</span> VCO</a></li>
+  <li><a href="#waveforms" id="toc-waveforms" class="nav-link" data-scroll-target="#waveforms"><span class="header-section-number">4.3.6</span> Waveforms</a></li>
+  <li><a href="#waveshapers" id="toc-waveshapers" class="nav-link" data-scroll-target="#waveshapers"><span class="header-section-number">4.3.7</span> Waveshapers</a></li>
+  <li><a href="#frequency" id="toc-frequency" class="nav-link" data-scroll-target="#frequency"><span class="header-section-number">4.3.8</span> Frequency</a></li>
+  <li><a href="#phase" id="toc-phase" class="nav-link" data-scroll-target="#phase"><span class="header-section-number">4.3.9</span> Phase</a></li>
+  <li><a href="#polarity" id="toc-polarity" class="nav-link" data-scroll-target="#polarity"><span class="header-section-number">4.3.10</span> Polarity</a></li>
+  </ul></li>
+  <li><a href="#additivity" id="toc-additivity" class="nav-link" data-scroll-target="#additivity"><span class="header-section-number">4.4</span> Additivity</a></li>
+  <li><a href="#amplitude-ring-modulation" id="toc-amplitude-ring-modulation" class="nav-link" data-scroll-target="#amplitude-ring-modulation"><span class="header-section-number">4.5</span> Amplitude &amp; Ring Modulation</a>
+  <ul class="collapse">
+  <li><a href="#amplitude-modulation" id="toc-amplitude-modulation" class="nav-link" data-scroll-target="#amplitude-modulation"><span class="header-section-number">4.5.1</span> Amplitude Modulation</a></li>
+  <li><a href="#ring-modulation" id="toc-ring-modulation" class="nav-link" data-scroll-target="#ring-modulation"><span class="header-section-number">4.5.2</span> Ring Modulation</a></li>
+  <li><a href="#dc-offset" id="toc-dc-offset" class="nav-link" data-scroll-target="#dc-offset"><span class="header-section-number">4.5.3</span> DC Offset</a></li>
+  <li><a href="#audio-samples-modulation" id="toc-audio-samples-modulation" class="nav-link" data-scroll-target="#audio-samples-modulation"><span class="header-section-number">4.5.4</span> Audio Samples &amp; Modulation</a></li>
+  <li><a href="#other-waveforms" id="toc-other-waveforms" class="nav-link" data-scroll-target="#other-waveforms"><span class="header-section-number">4.5.5</span> Other Waveforms</a></li>
+  <li><a href="#tremolo" id="toc-tremolo" class="nav-link" data-scroll-target="#tremolo"><span class="header-section-number">4.5.6</span> Tremolo</a></li>
+  </ul></li>
+  <li><a href="#frequency-modulation" id="toc-frequency-modulation" class="nav-link" data-scroll-target="#frequency-modulation"><span class="header-section-number">4.6</span> Frequency Modulation</a>
+  <ul class="collapse">
+  <li><a href="#fm-simple" id="toc-fm-simple" class="nav-link" data-scroll-target="#fm-simple"><span class="header-section-number">4.6.1</span> FM Simple</a></li>
+  <li><a href="#other-waveforms-1" id="toc-other-waveforms-1" class="nav-link" data-scroll-target="#other-waveforms-1"><span class="header-section-number">4.6.2</span> Other Waveforms</a></li>
+  <li><a href="#exponential-frequency" id="toc-exponential-frequency" class="nav-link" data-scroll-target="#exponential-frequency"><span class="header-section-number">4.6.3</span> Exponential Frequency</a></li>
+  <li><a href="#ratio" id="toc-ratio" class="nav-link" data-scroll-target="#ratio"><span class="header-section-number">4.6.4</span> Ratio</a></li>
+  </ul></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content column-body" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Synthesis</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta column-body">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="introduction" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">4.1</span> Introduction</h2>
+</section>
+<section id="oscillatory-movements" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="oscillatory-movements"><span class="header-section-number">4.2</span> Oscillatory Movements</h2>
+<p>Oscillatory motion will be analyzed in detail—not only in terms of technical implementation but also through its creative and conceptual applications. Using example patches provided in both Pure Data and VCV Rack, we will explore how oscillation becomes an expressive tool in interactive works and live sound experiments. This approach will form the core of the module’s practical component, where students are encouraged to adapt the exercises to their own interests: whether by replicating existing works, developing new compositions, or analyzing the results of comparative experiments between different oscillators and their spectral behaviors.</p>
+<section id="between-technique-and-aesthetics" class="level3" data-number="4.2.1">
+<h3 data-number="4.2.1" class="anchored" data-anchor-id="between-technique-and-aesthetics"><span class="header-section-number">4.2.1</span> Between Technique and Aesthetics</h3>
+<p>This chapter begins with the idea of delving deeper into oscillatory movements from both a technical and aesthetic perspective. Building upon tools introduced in previous chapters we will work with oscillators and explore their many applications. Drawing on the text The Poetics of Signal Processing by Jonathan Sterne and Tara Rodgers, we will approach signal processing not merely as a set of mathematical operations, but as a form of artistic expression. In this context, signal manipulation becomes more than just a means to produce sound—it becomes a way to articulate broader cultural ideas about sound in the digital age.</p>
+<p>We will explore what could be described as the “rawness” of analog oscillators—that tangible, organic quality inherent in their operation. We will examine how this rawness both contrasts with and complements the digital techniques we’ve developed so far. The use of oscillators in their various forms will serve as a starting point for a series of hands-on exercises, where theory and practice are deeply intertwined.</p>
+<p>Through this combination of theory, practice, and critical reflection on signal processing, the module aims to open up new sonic possibilities. The references provided are intended not only to contextualize student work, but also to inspire expanded thinking about how these principles might inform personal projects.</p>
+<p>This practical and flexible framework is reflected in the module’s initial activity on oscillatory movement. Students will have the freedom to choose their working environment and the context in which they wish to develop their experiments. Oscillator implementation can be approached from multiple angles: waveform manipulation, waveshaper design, or even the creation of interactive sound pieces. Each student will be invited to present a short description of their process, along with their code or patch, in order to foster dialogue between theory and practice.</p>
+<p>In this way, the module not only deepens our understanding of the technical aspects of signal processing, but also invites critical reflection on the role of these technologies in shaping meaning and sonic aesthetics. Special emphasis is placed on the oscillator’s capacity to act as a driver of creativity and expression.</p>
+</section>
+<section id="poetics-of-signal-processing" class="level3" data-number="4.2.2">
+<h3 data-number="4.2.2" class="anchored" data-anchor-id="poetics-of-signal-processing"><span class="header-section-number">4.2.2</span> Poetics of Signal Processing</h3>
+<p>One of the most important aspects of this chapter is the idea of “poetics” in signal processing. This concept is not just about the technical aspects of sound manipulation, but also about the cultural and artistic implications of these processes. The term “poetics” suggests a deeper engagement with the materiality of sound and its representation in various contexts. I’m going to talk a bit about my reflections and observations on the text Poetics of Signal Processing <span class="citation" data-cites="sterne2011">(<a href="#ref-sterne2011" role="doc-biblioref">Sterne and Rodgers 2011</a>)</span>. First, I want to mention the authors, who I find very interesting. The first is Jonathan Sterne, a professor and director of the Culture and Technology program at McGill University in Canada. His work focuses on the cultural dimension of communication technologies, and he specializes in the history and theory of sound in the modern Western world. Then we have another author, a sound artist and musician named Tara Rodgers. She’s an electronic music composer, programmer, and historian of electronic music. She holds a PhD in Communication and has worked in the field of Women’s Studies. She created the platform <a href="http://www.pinknoises.com/">Pink Noises</a>, which is worth checking out—especially because it gathers a series of interviews with improvisers, composers, and instrument builders. There’s a cross-section of gender, sexuality, feminism, music, sound studies, theater, performance, and performative arts in general.</p>
+<p>Let’s get into some comments on specific sections of the article. The first is “The Sonic Turn,” which describes the emergence of a new culture of listening beginning in the second half of the 20th century. This is discussed through the work of authors like Cox and Kahn. There’s also a growing interest in oral history and anthropology among social scientists, and the emergence of sound art within the art world during the 20th century.Another key point is the growing interest in listening itself, and in the creative possibilities enabled by recording, reproduction, and other forms of sound transmission. This leads us to ask: where do today’s sound technologies come from? What are we going to address in this course?</p>
+<p>We can start by discussing the “audible past,” or what the article refers to as the “auditory past.” The text mentions that between 1900 and 1925, sound becomes an object of thought and practice. Before this period, sound was thought of in more idealized terms—mainly through the lens of voice and music, along with all the structures they imply. During this period, there were significant socioeconomic and cultural shifts—capitalism, rationalism, science, and colonialism—that influenced ideas and practices related to sound and listening. These changes were not only cultural but social as well. In this “audible past,” even the most basic mechanical elements of sound reproduction technologies were shaped by how they had been used up until then. In this way, sound technologies are tied to habits—they sometimes enable new habits, like new ways of listening, or sometimes they solidify and reinforce existing ones.</p>
+<p>So let’s reflect on the “poetics” of signal processing. At first, that might sound surprising—poetics? But we can start with a very basic unit: the signal. Signals have a certain materiality. Sound has materiality—it occupies space in a transmission, recording, or playback channel. It exists in a medium and can be manipulated in various ways. There’s a clear distinction between analog electrical signals, electronic signals, and digital ones. Each implies different content and meanings. So, signal processing occurs in the medium of sound transmission, but in a technologized era—that is, the present. This involves manipulating sound in what we might call a “translucent state.” Here, the transducer becomes central: we’ll talk a lot in the course about this idea of converting one form of energy—measurable by a certain magnitude—into another. This concerns almost everything in sound or image that reaches our senses through electronic media. This also exists in the domains of the musician, the playback device, the listener, and the interstices between them.</p>
+<p>Regarding the poetics of signal processing as signal [music plays briefly], the article refers mostly to the figurative dimensions of the process itself. These are the ways that processing is represented in the discourse of audio technology, particularly from a technical or engineering perspective. Signal processing carries cultural meanings—it’s not an isolated technical fact. It has cultural significance. Two metaphorical frameworks commonly used in everyday language among users and creators are discussed in the article: cooking and travel. These are two metaphors I find fascinating.</p>
+<p>Let’s begin with cooking—specifically, “the raw and the cooked.” This draws from the work of anthropologist Claude <span class="citation" data-cites="levistrauss1964">(<a href="#ref-levistrauss1964" role="doc-biblioref">Lévi-Strauss 1964</a>)</span>, who analyzed the raw, the cooked, and the rotten. The axis of raw/cooked belongs to culture, while fresh/rotten relates more to nature. This is a very important reference: cooking is a cultural operation. Fire—the act of cooking—is the basis of a social order, of stability.</p>
+<p>In this sense, when we talk about the raw and the cooked in relation to sound, rawness doesn’t mean purity. It’s a relative condition—it refers to the availability of audio for further processing. This is very useful when thinking in opposition to the Hi-Fi culture. We might even think of a scale of rawness, or various degrees of it, which relate to how sound can be manipulated and used.</p>
+<p>Within this raw/cooked metaphor, terms like slicing (cutting into slices) and dicing (cutting into cubes) appear—these are actual signal processing terms and very fitting metaphors.</p>
+<p>Thinking further with this metaphor: raw audio might be seen as passive, something that must be “cooked” through technological processes. This reveals the technologized nature of music technologies, where composition becomes a kind of masculine performance of technological mastery. And I want to stress this point again: composition is often framed as a male-dominated act of technical skill.</p>
+<p>Paul Théberge <span class="citation" data-cites="theberge1997">(<a href="#ref-theberge1997" role="doc-biblioref">Théberge 1997</a>)</span> analyzes musicians as consumers within the sound tech industry. In one chapter of his book, he studies advertising in music tech magazines, showing how the marketing of music technologies has been directed predominantly at men. Fortunately, this is changing slowly. In the raw/cooked metaphor, the idea of sound as a material to be processed and preserved for future use emerges in the late 19th century—just like technologies developed to preserve and can food. It’s a very strong metaphor: processed food and processed sound were both invented to extend and control organic life through technological preservation.</p>
+<p>Now let’s move to the other metaphor—travel. Signal processing can be thought of as a journey, which I find very exciting. We can connect this to topology—a mathematical field that studies spatial relationships. The term topos refers to place. In this sense, we can think of electronics as the arrangement and interaction of various components. A synthesizer circuit, or an oscillator, can be conceived as a space in itself—a map. Early texts in electroacoustics from the late 19th and early 20th centuries started to describe sound and electricity as fluid media. They used water metaphors—talking about waves, oscillations, flow, and current. This “processing as travel” metaphor involves the idea of particles moving through space, with the destination originally being the human ear. Today, that destination could be a transducer—or a computer.</p>
+<p>Even the inner ear was once conceptualized as a terrain made up of interconnected parts through which vibrations would travel. These metaphors matter: sea voyages during the historical periods mentioned in the article also symbolized scientific exploration and the conquest of the unknown. One example I love is that in the 1800s, Lord Kelvin created what could be considered the first synthesizer—but it didn’t produce sound. It was a mechanical device designed to predict tides. I’ll share some images to illustrate this. It essentially summed simple waves into one more complex waveform.</p>
+<p>So, to conclude this idea of processing as travel, the text also reflects on how maritime metaphors privilege a particular kind of subject—a white, Western male as the ideal “navigator” of synthetic sound waves. This is a clearly colonial and masculinist rhetoric. Generating and controlling electronic sounds becomes associated with a kind of pleasure aligned with capitalism, and also with danger—of disobedient or unruly sounds.</p>
+<p>Switching to a less metaphorical aspect, the text discusses Helmholtz’s On the Sensations of Tone <span class="citation" data-cites="helmholtz1860">(<a href="#ref-helmholtz1860" role="doc-biblioref">Helmholtz 1954</a>)</span>. It laid the epistemological foundations for synthesis techniques. Helmholtz argued that any sound could be broken down into volume, pitch, and timbre. For him, sound was a material with clearly defined properties. These properties could be analyzed and then mimicked using synthesis techniques. However, other researchers, like Jessica Roland, explored different approaches. She compared sound to things like rain and wind. Her approach emphasized experience, memory, and the use of synthesis as a kind of onomatopoeia—imitation of natural phenomena. For Roland, unpredictability and chaos are at the heart of synthesis.</p>
+<p>In conclusion, one of the key points of the article is that metaphors in audio-technical discourse—supposedly neutral or instrumental—are actually shaped by the cultural positions of specific subjects living in specific societies. They are deeply entangled with issues of gender, race, class, and culture. The language of technical culture is highly metaphorical and filled with implicit assumptions.</p>
+</section>
+</section>
+<section id="sound-sources" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="sound-sources"><span class="header-section-number">4.3</span> Sound Sources</h2>
+<p>Oscillators are a fundamental component of sound synthesis and play a crucial role in the creation of electronic music. They generate periodic waveforms, which can be manipulated to produce a wide range of sounds. In this section, we will explore the different types of oscillators, their characteristics, and how they can be used creatively in sound design.</p>
+<section id="oscillators" class="level3" data-number="4.3.1">
+<h3 data-number="4.3.1" class="anchored" data-anchor-id="oscillators"><span class="header-section-number">4.3.1</span> Oscillators</h3>
+<p>Sound sources in synthesizers are largely based on mathematics. There are two fundamental types: waveforms and random signals. Waveforms are typically described as simple geometric shapes—sawtooth, square, pulse, sine, and triangle being the most common. These shapes are mathematically straightforward and electronically feasible to generate. On the other hand, random waveforms produce noise, a constantly shifting mixture of all frequencies.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../assets/screenshots/synthesis/vco/sources.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Fig. Sine Oscillator &amp; White Noise Generator"><img src="../assets/screenshots/synthesis/vco/sources.png" class="img-fluid figure-img" alt="Fig. Sine Oscillator &amp; White Noise Generator"></a></p>
+<figcaption>Fig. Sine Oscillator &amp; White Noise Generator</figcaption>
+</figure>
+</div>
+<p>Oscillators are one of the core building blocks of synthesizers, often implemented as function generators. A function generator produces a waveform that may be continuous or triggered and can take arbitrary shapes. In a basic analog subtractive synthesizer, an oscillator usually outputs a few continuous waveforms, with frequency controlled by voltage. Since these sources typically output a continuous signal, modifiers must be applied to shape timbre or envelope the sound.</p>
+</section>
+<section id="sine-cosine" class="level3" data-number="4.3.2">
+<h3 data-number="4.3.2" class="anchored" data-anchor-id="sine-cosine"><span class="header-section-number">4.3.2</span> Sine &amp; Cosine</h3>
+<p>A “pure tone” consists of a single frequency and is produced by a sine wave oscillator, which can be implemented using either the sine or cosine function. These functions take an angle value, or “phase,” as input. Below, we see the angle “alpha,” the sine’s amplitude value, and the cosine’s output denoted as <code>x</code>.</p>
+<p><a href="../assets/screenshots/synthesis/vco/angle.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="../assets/screenshots/synthesis/vco/angle.gif" class="img-fluid"></a></p>
+<p>In the resulting graph, amplitude is on the vertical axis and angle on the horizontal axis. The cosine output traces the same function as the sine but starts at 1, meaning it has a different initial phase. Sine and cosine are essentially the same waveform offset by 90 degrees of phase.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../assets/screenshots/synthesis/vco/sine.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Fig."><img src="../assets/screenshots/synthesis/vco/sine.gif" class="img-fluid figure-img" alt="Fig."></a></p>
+<figcaption>Fig.</figcaption>
+</figure>
+</div>
+<p>Pure Data’s native <code>[sin]</code> and <code>[cos]</code> objects take angle values in radians (0 to 2π). However, the audio object <code>[cos~]</code> uses a linear range from 0 to 1 to represent a full cycle. The ELSE library provides the <code>[pi]</code> object, which outputs the constant π. This can be stored in a <code>[value]</code> object and accessed within <code>[expr]</code>. To convert a linear 0–1 range into radians, multiply it by <code>2 * pi</code>. Then, <code>[cos]</code> and <code>[sin]</code> yield amplitude values accordingly.</p>
+<div style="text-align:center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../assets/screenshots/synthesis/vco/sine-cosine.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="Fig."><img src="../assets/screenshots/synthesis/vco/sine-cosine.gif" class="img-fluid figure-img" style="width:70.0%" alt="Fig."></a></p>
+<figcaption>Fig.</figcaption>
+</figure>
+</div>
+</div>
+</section>
+<section id="phasor" class="level3" data-number="4.3.3">
+<h3 data-number="4.3.3" class="anchored" data-anchor-id="phasor"><span class="header-section-number">4.3.3</span> Phasor</h3>
+<p>In the following example, we implement a sine oscillator using the <code>[sin~]</code> object and the native <code>[phasor~]</code> object.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../assets/screenshots/synthesis/vco/phasor-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" title="Fig."><img src="../assets/screenshots/synthesis/vco/phasor-1.png" class="img-fluid figure-img" alt="Fig."></a></p>
+<figcaption>Fig.</figcaption>
+</figure>
+</div>
+<p>Two graphs illustrate this: in the top one, the horizontal axis is time, and the vertical axis shows a steadily increasing phase, forming a linear ramp. In the bottom graph, this ramp is transformed into a sine waveform, with amplitude on the vertical axis.</p>
+<p>The <code>[phasor~]</code> object outputs a linear ramp from 0 to just under 1, representing a complete cycle. It is ideal for driving objects like <code>[cos~]</code> and <code>[sin~]</code>, which expect a 0–1 input representing phase progression.</p>
+<p>The input to <code>[phasor~]</code> is frequency, expressed in cycles per second (hertz). This defines how many full 0–1 cycles occur per second.</p>
+<p>Note that <code>[phasor~]</code> never actually reaches 1—it wraps around to 0. Due to its cyclic nature, 1 is functionally equivalent to 0, just like 360° equals 0° in circular geometry.</p>
+<p>The output of <code>[phasor~]</code> can be described as a “running phase.” It defines the angular increment applied to the phase at every audio sample.</p>
+<div style="text-align:center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../assets/screenshots/synthesis/vco/phasor-2.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-6" title="Fig."><img src="../assets/screenshots/synthesis/vco/phasor-2.gif" class="img-fluid figure-img" style="width:70.0%" alt="Fig."></a></p>
+<figcaption>Fig.</figcaption>
+</figure>
+</div>
+</div>
+</section>
+<section id="oscillator" class="level3" data-number="4.3.4">
+<h3 data-number="4.3.4" class="anchored" data-anchor-id="oscillator"><span class="header-section-number">4.3.4</span> Oscillator</h3>
+<p>In the analog domain, oscillators are commonly referred to as VCOs (Voltage Controlled Oscillators). VCOs allow frequency or pitch to be controlled via voltage. Some VCOs also feature voltage control inputs for modulation (typically FM) and for altering the waveform shape—usually the pulse width of square waves, although some VCOs allow shaping other waveforms as well.</p>
+<p>Many VCOs include an additional input for synchronization with another VCO’s signal. Phase sync forces the VCO to reset its phase in sync with the incoming signal, limiting operation to harmonics of the input frequency. This results in a harsh, buzzy tone. Softer sync techniques can yield timbral variations rather than locking to an exact frequency.</p>
+<p>A typical VCO offers controls for coarse and fine tuning, waveform selection (often sine, triangle, square, sawtooth, and pulse), pulse width modulation (PWM), and output level. Some VCOs also provide multiple simultaneous waveform outputs and sub-octave outputs one or two octaves below the main signal. Pulse width modulation (PWM) allows dynamic alteration of the pulse waveform shape.</p>
+<p>To summarize, an oscillator is typically defined by:</p>
+<ul>
+<li>Waveform function (sine, sawtooth, square, triangle)</li>
+<li>Frequency (Hz)</li>
+<li>Initial phase (degrees)</li>
+<li>Peak amplitude (optional)</li>
+</ul>
+<p>How do we control these parameters in our model?</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../assets/screenshots/synthesis/vco/oscillator.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7" title="Fig."><img src="../assets/screenshots/synthesis/vco/oscillator.png" class="img-fluid figure-img" style="width:30.0%" alt="Fig."></a></p>
+<figcaption>Fig.</figcaption>
+</figure>
+</div>
+</section>
+<section id="vco" class="level3" data-number="4.3.5">
+<h3 data-number="4.3.5" class="anchored" data-anchor-id="vco"><span class="header-section-number">4.3.5</span> VCO</h3>
+<p>In this example, <code>[phasor~]</code> and <code>[cos~]</code> form an oscillator. The <code>[cos~]</code> object outputs amplitude values from -1 to 1, yielding a maximum amplitude of 1 without additional gain control.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../assets/screenshots/synthesis/vco/vco-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8" title="Fig."><img src="../assets/screenshots/synthesis/vco/vco-1.png" class="img-fluid figure-img" alt="Fig."></a></p>
+<figcaption>Fig.</figcaption>
+</figure>
+</div>
+<p>The waveform produced is a cosine. While <code>[phasor~]</code> sets the frequency, it can also define the initial phase. Since sine and cosine are essentially phase-shifted versions of the same function, we can easily produce sine waves as well. However, the initial phase does not affect the perceived pitch of a pure tone.</p>
+<p>Try this patch with different phase offsets. Note that <code>[phasor~]</code> also accepts negative frequencies, reversing the phase direction.</p>
+<p>Connecting <code>[phasor~]</code> to <code>[cos~]</code> replicates the functionality of the <code>[osc~]</code> object.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../assets/screenshots/synthesis/vco/vco-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-9" title="Fig."><img src="../assets/screenshots/synthesis/vco/vco-2.png" class="img-fluid figure-img" style="width:50.0%" alt="Fig."></a></p>
+<figcaption>Fig.</figcaption>
+</figure>
+</div>
+</section>
+<section id="waveforms" class="level3" data-number="4.3.6">
+<h3 data-number="4.3.6" class="anchored" data-anchor-id="waveforms"><span class="header-section-number">4.3.6</span> Waveforms</h3>
+<p>The sine wave is the simplest oscillator, generating a pure tone. Other basic and musically useful waveforms include triangle, sawtooth, and square.</p>
+<p>The sine wave is a smooth, rounded waveform based on the sine function. It contains only one harmonic—the fundamental—which makes it less suitable for subtractive synthesis as it lacks overtones to filter.</p>
+<p>A triangle wave consists of two linear slopes. It contains small amounts of odd harmonics, providing just enough spectral content for filtering.</p>
+<p>A square wave contains only odd harmonics and produces a hollow, synthetic sound. A sawtooth wave contains both odd and even harmonics and sounds bright. Some pulse waves may contain even more harmonic content than basic sawtooth waves. Variants like “super-saw” replace linear slopes with exponential ones and alternate teeth with gaps, producing an even richer harmonic spectrum.</p>
+</section>
+<section id="waveshapers" class="level3" data-number="4.3.7">
+<h3 data-number="4.3.7" class="anchored" data-anchor-id="waveshapers"><span class="header-section-number">4.3.7</span> Waveshapers</h3>
+<p>This section focuses on creating oscillators in Pure Data (Pd) using the <code>[phasor~]</code> object. The only true oscillator in Pd Vanilla is <code>[osc~]</code>, a sine wave oscillator. Even standard waveforms must be built manually.</p>
+<p>As mentioned earlier, <code>[osc~]</code> is essentially <code>[phasor~]</code> connected to <code>[cos~]</code>. The <code>[phasor~]</code> object outputs a 0–1 ramp, functionally similar to a sawtooth wave with half the amplitude and an offset. <code>[cos~]</code> multiplies this ramp by 2π and computes its cosine. The result is a sine wave oscillator.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../assets/screenshots/synthesis/vco/waveshapers-sine.png" class="lightbox" data-gallery="quarto-lightbox-gallery-10" title="Fig."><img src="../assets/screenshots/synthesis/vco/waveshapers-sine.png" class="img-fluid figure-img" style="width:70.0%" alt="Fig."></a></p>
+<figcaption>Fig.</figcaption>
+</figure>
+</div>
+<p>Another way to construct this oscillator is by using <code>[expr~]</code> and <code>[value]</code>. Here we use the <code>[pi]</code> abstraction to calculate π (or approximate it by sending 1 to <code>[atan]</code> and multiplying the result by 4). We then multiply by 2 and store it in a <code>[value]</code> object. <code>[value]</code> acts like a global variable: any object using the same name accesses the same value. <code>[expr~]</code> can then use this to calculate the cosine, just like <code>[cos~]</code>. While this approach may be more CPU-intensive, it helps deepen understanding of oscillator construction in Pd.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../assets/screenshots/synthesis/vco/waveshapers-cosine.png" class="lightbox" data-gallery="quarto-lightbox-gallery-11" title="Fig."><img src="../assets/screenshots/synthesis/vco/waveshapers-cosine.png" class="img-fluid figure-img" style="width:70.0%" alt="Fig."></a></p>
+<figcaption>Fig.</figcaption>
+</figure>
+</div>
+<section id="sawtooth-oscillator" class="level4" data-number="4.3.7.1">
+<h4 data-number="4.3.7.1" class="anchored" data-anchor-id="sawtooth-oscillator"><span class="header-section-number">4.3.7.1</span> Sawtooth Oscillator</h4>
+<p>Since <code>[phasor~]</code> already produces a ramp, generating a sawtooth wave is straightforward. Simply multiply <code>[phasor~]</code> by 2 to get the correct amplitude, then subtract 1 to shift the range to -1 to 1.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../assets/screenshots/synthesis/vco/waveshapers-saw.png" class="lightbox" data-gallery="quarto-lightbox-gallery-12" title="Fig."><img src="../assets/screenshots/synthesis/vco/waveshapers-saw.png" class="img-fluid figure-img" style="width:70.0%" alt="Fig."></a></p>
+<figcaption>Fig.</figcaption>
+</figure>
+</div>
+</section>
+<section id="square-wave-oscillator" class="level4" data-number="4.3.7.2">
+<h4 data-number="4.3.7.2" class="anchored" data-anchor-id="square-wave-oscillator"><span class="header-section-number">4.3.7.2</span> Square Wave Oscillator</h4>
+<p>To create a square wave, you can use <code>[expr~]</code> (included in Pd Vanilla), but <code>[&gt;~]</code> is faster and more CPU-efficient. A square wave toggles between -1 and 1. The <code>[&gt;~]</code> object compares its left input signal to a threshold (right input or argument). It outputs 1 if the input is greater than the threshold, and 0 otherwise. Using 0.5 as the threshold with a <code>[phasor~]</code> input yields a square wave: 0 for half the cycle, 1 for the other half.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../assets/screenshots/synthesis/vco/waveshapers-square.png" class="lightbox" data-gallery="quarto-lightbox-gallery-13" title="Fig."><img src="../assets/screenshots/synthesis/vco/waveshapers-square.png" class="img-fluid figure-img" style="width:70.0%" alt="Fig."></a></p>
+<figcaption>Fig.</figcaption>
+</figure>
+</div>
+</section>
+<section id="triangle-wave-oscillator" class="level4" data-number="4.3.7.3">
+<h4 data-number="4.3.7.3" class="anchored" data-anchor-id="triangle-wave-oscillator"><span class="header-section-number">4.3.7.3</span> Triangle Wave Oscillator</h4>
+<p>Among standard waveforms, the triangle wave is the most complex to construct. Starting with <code>[phasor~]</code>, which is an upward ramp from 0 to 1, we create an inverted version by multiplying it by -1 and then adding 1. This gives us a descending ramp from 1 to 0.</p>
+<p>Now we have both ascending and descending ramps. Sending both to <code>[min~]</code> (which outputs the smaller of two values) gives us a triangle waveform spanning 0 to 0.5. <code>[min~]</code> effectively splices the ascending and descending ramps to form a symmetric triangle wave.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../assets/screenshots/synthesis/vco/waveshapers-triangle.png" class="lightbox" data-gallery="quarto-lightbox-gallery-14" title="Fig."><img src="../assets/screenshots/synthesis/vco/waveshapers-triangle.png" class="img-fluid figure-img" style="width:70.0%" alt="Fig."></a></p>
+<figcaption>Fig.</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="frequency" class="level3" data-number="4.3.8">
+<h3 data-number="4.3.8" class="anchored" data-anchor-id="frequency"><span class="header-section-number">4.3.8</span> Frequency</h3>
+<p>Frequency is presented here in terms of <em>angular velocity</em>! One common unit of measurement is the hertz (Hz), which equals “cycles per second.” Frequency also determines a period of oscillation, which is simply the inverse of frequency. For example, a frequency of 100 Hz corresponds to a period of 0.01 seconds (or 10 milliseconds):</p>
+<pre class="plaintext"><code>Period = 1 / Frequency
+Period = 1 / 100 Hz = 0.01 s = 10 ms</code></pre>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../assets/screenshots/synthesis/vco/frequency-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-15" title="Fig."><img src="../assets/screenshots/synthesis/vco/frequency-1.png" class="img-fluid figure-img" style="width:70.0%" alt="Fig."></a></p>
+<figcaption>Fig.</figcaption>
+</figure>
+</div>
+<p>We can convert between Hz and milliseconds using this same relationship. Another way to express period is in number of samples, which requires the sampling rate to perform the conversion:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../assets/screenshots/synthesis/vco/frequency-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-16" title="Fig."><img src="../assets/screenshots/synthesis/vco/frequency-2.png" class="img-fluid figure-img" style="width:70.0%" alt="Fig."></a></p>
+<figcaption>Fig.</figcaption>
+</figure>
+</div>
+<p>Angular velocity units require both an angle and a time unit. One cycle per second defines a full cycle (360 degrees) as the angular unit, and seconds as the time unit. Other units are also possible. For example, the angle may be expressed in radians and the time unit as a single sample, yielding a unit of “radians per sample.”</p>
+<p>To convert Hz to radians per sample, multiply by 2π and divide by the sampling rate. See below for this conversion and the [hz2rad] and [rad2hz] objects from the ELSE library that handle it.</p>
+</section>
+<section id="phase" class="level3" data-number="4.3.9">
+<h3 data-number="4.3.9" class="anchored" data-anchor-id="phase"><span class="header-section-number">4.3.9</span> Phase</h3>
+<p>The term <em>phase</em> can be used in various contexts, often making it ambiguous and potentially confusing. A useful strategy is to adopt more specific terminology instead of simply referring to “phase” in isolation. On its own, “phase” refers to a stage within a cycle—much like the four phases of the moon. Sound waveforms are cyclical, and we can speak of a positive or negative phase, as shown below. However, this original meaning is rarely used in music theory. Here, we focus on other more relevant applications and interpretations of phase (see right and below).</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../assets/screenshots/synthesis/vco/phase-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-17" title="Fig."><img src="../assets/screenshots/synthesis/vco/phase-1.png" class="img-fluid figure-img" style="width:70.0%" alt="Fig."></a></p>
+<figcaption>Fig.</figcaption>
+</figure>
+</div>
+<p><strong>Initial phase</strong> refers to the point in the cycle where the oscillation begins.</p>
+<p><strong>Instantaneous phase</strong>: In music theory, “phase” often refers to the <em>instantaneous phase</em>—a specific point in time, not a stage in a sequence. It’s helpful to adopt the term <em>instantaneous</em> explicitly to denote a single position within a given cycle.</p>
+<p>Since instantaneous phase refers to a single position within a cycle, it can also be represented as an angle. This leads to a synonymous relationship between phase and angle, though it’s important to stress that both denote a position within the cycle.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../assets/screenshots/synthesis/vco/phase-2.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-18" title="Fig."><img src="../assets/screenshots/synthesis/vco/phase-2.gif" class="img-fluid figure-img" style="width:70.0%" alt="Fig."></a></p>
+<figcaption>Fig.</figcaption>
+</figure>
+</div>
+<p>Two oscillators operating at the same frequency can be <em>in phase</em> or <em>out of phase</em>. Being in phase means they are synchronized—there is no phase difference. Being out of phase indicates a lack of synchronization, i.e., a phase difference. This difference can take many forms, but two specific cases are of particular interest: <strong>quadrature phase</strong> and <strong>phase opposition</strong>.</p>
+<p><strong>Quadrature phase</strong> is the phase difference between sine and cosine waves, which equals a quarter of a cycle (90 degrees).<br>
+<strong>Phase opposition</strong> is the maximum possible phase difference—half a cycle or 180 degrees.</p>
+</section>
+<section id="polarity" class="level3" data-number="4.3.10">
+<h3 data-number="4.3.10" class="anchored" data-anchor-id="polarity"><span class="header-section-number">4.3.10</span> Polarity</h3>
+<p>As we’ve seen, phase opposition leads to signal cancellation—but only under certain waveform conditions! This occurs with sine waves, for instance, but not with all waveforms or signals. Note how, in the figure to the right, inverting the sign of every amplitude value in a waveform results in cancellation when added to the original signal.</p>
+<p><strong>Inverting polarity</strong> means changing the sign, or multiplying by -1. For sine waves, this results in the same effect as a 180-degree phase opposition. However, a true <em>phase inversion</em> is different, as it involves a time or phase shift.</p>
+<p>Despite this distinction, the term <em>phase inversion</em> is often misused when it really refers to a polarity inversion—which is neither a time shift nor a phase shift.</p>
+<p>Yes, this can be very confusing and requires careful attention. That’s why this tutorial prefers the term <em>polarity inversion</em>, although many audio devices refer to a 180-degree phase shift when they are, in fact, performing a polarity inversion.</p>
+<p>Both phase and polarity inversion produce the same result for sine waves due to their symmetrical waveforms, where the second half of the cycle mirrors the first with opposite sign. Other waveforms with this property include triangle and square waves (with a 0.5 pulse width).</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../assets/screenshots/synthesis/vco/polarity-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-19" title="Fig."><img src="../assets/screenshots/synthesis/vco/polarity-1.png" class="img-fluid figure-img" style="width:50.0%" alt="Fig."></a></p>
+<figcaption>Fig.</figcaption>
+</figure>
+</div>
+<p>Sawtooth waves, however, do not share this symmetry. Therefore, phase opposition is not equivalent to polarity inversion in this case. The only way to achieve full cancellation of a sawtooth wave is through polarity inversion. Refer to the graphs below: only the original sawtooth combined with its polarity-inverted version results in complete cancellation.</p>
+<p>The native [phasor~] and [osc~] objects include a right inlet that accepts control data to reset the phase. Whenever the inlet receives a number from 0 to 1, the waveform resets to that initial phase position. Note that this is unrelated to phase modulation techniques discussed earlier.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../assets/screenshots/synthesis/vco/polarity-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-20" title="Fig."><img src="../assets/screenshots/synthesis/vco/polarity-2.png" class="img-fluid figure-img" style="width:50.0%" alt="Fig."></a></p>
+<figcaption>Fig.</figcaption>
+</figure>
+</div>
+<p>The [osc~] object does not support phase modulation; we implemented it using [phasor~] in the previous examples. Hence, using a [phasor~] together with a [cos~] enables both phase modulation and oscillator resetting.</p>
+</section>
+</section>
+<section id="additivity" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="additivity"><span class="header-section-number">4.4</span> Additivity</h2>
+</section>
+<section id="amplitude-ring-modulation" class="level2" data-number="4.5">
+<h2 data-number="4.5" class="anchored" data-anchor-id="amplitude-ring-modulation"><span class="header-section-number">4.5</span> Amplitude &amp; Ring Modulation</h2>
+<p>Amplitude modulation (AM) and ring modulation (RM) are two techniques that manipulate the amplitude of a signal using another signal. While they share similarities, they produce distinct results and are used in different contexts. In this section, we will explore the differences between AM and RM, their applications, and how they can be implemented in sound synthesis.</p>
+<section id="amplitude-modulation" class="level3" data-number="4.5.1">
+<h3 data-number="4.5.1" class="anchored" data-anchor-id="amplitude-modulation"><span class="header-section-number">4.5.1</span> Amplitude Modulation</h3>
+<p>We can modulate the amplitude of any signal—referred to as the <em>carrier</em>—by multiplying it with an oscillating signal, called the <em>modulator</em>. The modulator is typically another oscillator, and its frequency determines the <em>modulation frequency</em>.</p>
+<p>In the example provided, both the carrier and modulator are sine wave oscillators. This is what we call “classic” amplitude modulation (AM), where the modulator signal includes a DC offset, making it <em>unipolar</em>, ranging only from 0 to 1. This unipolarity ensures that the carrier’s amplitude is scaled without ever becoming negative.</p>
+</section>
+<section id="ring-modulation" class="level3" data-number="4.5.2">
+<h3 data-number="4.5.2" class="anchored" data-anchor-id="ring-modulation"><span class="header-section-number">4.5.2</span> Ring Modulation</h3>
+<p>Ring modulation is a particular form of amplitude modulation where both the carrier and modulator signals are <em>bipolar</em>, meaning they oscillate between -1 and 1 without any DC offset. In this configuration, there’s no functional distinction between carrier and modulator—both behave symmetrically.</p>
+<p>Nonetheless, in practical terms, the carrier is usually an audio signal such as a musical instrument, while the modulator remains a simple oscillator. A key technical detail is that when the modulator signal is negative, it inverts the polarity of the carrier signal—producing a unique and often metallic timbre.</p>
+</section>
+<section id="dc-offset" class="level3" data-number="4.5.3">
+<h3 data-number="4.5.3" class="anchored" data-anchor-id="dc-offset"><span class="header-section-number">4.5.3</span> DC Offset</h3>
+<p>Amplitude modulation schemes can involve various DC offset settings—not just limited to AM or RM. In our example, preset configurations for AM and RM are available, but one can also manually adjust peak levels and DC offset using sliders.</p>
+<p>Observe how, in the frequency spectrum of classic AM, we see two sidebands—above and below the carrier frequency—each at half the amplitude of the original carrier. These sidebands are spaced apart by the modulation frequency.</p>
+<p>In contrast, ring modulation removes the original carrier frequency entirely from the spectrum, leaving only the sidebands, which typically carry more energy than in AM.</p>
+<p>By adjusting amplitude and DC offset with sliders, we can morph continuously between AM and RM modes, gaining nuanced control over the presence of the original frequency component and the energy distribution in the sidebands.</p>
+</section>
+<section id="audio-samples-modulation" class="level3" data-number="4.5.4">
+<h3 data-number="4.5.4" class="anchored" data-anchor-id="audio-samples-modulation"><span class="header-section-number">4.5.4</span> Audio Samples &amp; Modulation</h3>
+<p>In this example, an audio sample replaces the oscillator as the carrier signal. This demonstrates how amplitude modulation can function as an <em>audio effect processor</em> rather than just a <em>synthesis technique</em>. In fact, much of what we traditionally associate with synthesis techniques is often more accurately described as audio processing.</p>
+<p>Conversely, many effects processors—such as filters—are integral to sound synthesis. The boundary between synthesis and processing is thus fluid and contextual.</p>
+<p>Try both the classic AM and RM examples. In both cases, sidebands are generated for each sine wave component within the carrier signal. AM retains the carrier’s original sine components, which coexist and interact with the generated sidebands. For this reason, AM is commonly used for tremolo effects (which we’ll examine later). On the other hand, RM removes the original sine components entirely, yielding a more sonically distinctive result.</p>
+</section>
+<section id="other-waveforms" class="level3" data-number="4.5.5">
+<h3 data-number="4.5.5" class="anchored" data-anchor-id="other-waveforms"><span class="header-section-number">4.5.5</span> Other Waveforms</h3>
+<p>Using more complex waveforms for the modulator signal leads to the creation of additional partials within any amplitude modulation patch—including ring modulation. Sine waves are typically favored as modulators since they offer clean and controlled results, especially when applying AM as an audio effect.</p>
+<p>However, in synthesis contexts, more intricate and harmonically rich methods—such as <em>frequency</em> and <em>phase</em> modulation—offer more efficient and versatile approaches for generating complex timbres. We’ll explore these in the following sections.</p>
+</section>
+<section id="tremolo" class="level3" data-number="4.5.6">
+<h3 data-number="4.5.6" class="anchored" data-anchor-id="tremolo"><span class="header-section-number">4.5.6</span> Tremolo</h3>
+<p>Tremolo is essentially amplitude modulation using a <em>low-frequency</em> modulator. The key addition is a <em>depth</em> parameter, ranging from 0 to 1, which determines the modulation intensity. At 0, no modulation occurs (dry signal), while a depth of 1 results in full tremolo, where the carrier’s amplitude is modulated across its full range.</p>
+</section>
+</section>
+<section id="frequency-modulation" class="level2" data-number="4.6">
+<h2 data-number="4.6" class="anchored" data-anchor-id="frequency-modulation"><span class="header-section-number">4.6</span> Frequency Modulation</h2>
+<p>In general terms, to <em>modulate</em> a signal means to alter it in some way. In the context of this course, however, we refer specifically to using a <em>modulating signal</em> to control a parameter—such as amplitude, as previously discussed. We now turn to the basic structure of <em>frequency modulation</em> (FM), where an oscillator acts as the modulator.</p>
+<p>The signal being modulated is called the <em>carrier</em>; in the case of frequency modulation, it is also referred to as the <em>carrier frequency</em>. In contrast, we have the <em>modulating frequency</em>, which corresponds to the frequency of the modulating oscillator. The depth of frequency variation is determined by the amplitude of the modulator and is commonly referred to as the <em>modulation index</em>. The modulation process itself is straightforward: we add the modulating signal to the frequency input of the carrier oscillator. See the example on the right.</p>
+<p>By default, we have a carrier frequency of 400 Hz, a low modulation frequency of 1 Hz, and a modulation index of 100. This means the modulating signal oscillates between -100 and +100 Hz, causing the carrier frequency to vary between 300 and 500 Hz. Note that when the modulation frequency is low, the result is a vibrato-like effect.</p>
+<section id="fm-simple" class="level3" data-number="4.6.1">
+<h3 data-number="4.6.1" class="anchored" data-anchor-id="fm-simple"><span class="header-section-number">4.6.1</span> FM Simple</h3>
+<p>We apply the same structure as before. Besides a vibrato example, this section includes fully developed FM examples. As with amplitude modulation, FM produces <em>sidebands</em> spaced by intervals equal to the modulation frequency. However, FM can generate many more sidebands, potentially resulting in a much richer spectrum.</p>
+<p>The higher the modulation index, the greater the number of resulting partials—enabling the creation of dense and complex waveforms. When the carrier and modulator frequencies share a simple harmonic ratio, the resulting waveform is harmonic. Otherwise, it tends to be inharmonic. Click on the message boxes to hear the preset examples.</p>
+</section>
+<section id="other-waveforms-1" class="level3" data-number="4.6.2">
+<h3 data-number="4.6.2" class="anchored" data-anchor-id="other-waveforms-1"><span class="header-section-number">4.6.2</span> Other Waveforms</h3>
+<p>In this patch, we experiment with different oscillator combinations. Waveforms are arranged according to spectral complexity—from simple sine waves to rich sawtooth waves (the only waveform here containing both even and odd harmonics). The more complex the waveform used, the more intricate the FM result becomes.</p>
+<p>On the modulator side, the waveforms are idealized and band-unlimited—perfect in theory. However, the frequency-modulated oscillator has a limited bandwidth, which imposes practical constraints on the resulting spectrum.</p>
+</section>
+<section id="exponential-frequency" class="level3" data-number="4.6.3">
+<h3 data-number="4.6.3" class="anchored" data-anchor-id="exponential-frequency"><span class="header-section-number">4.6.3</span> Exponential Frequency</h3>
+<p>We can also use exponential pitch values (such as MIDI note numbers) instead of linear frequency input. The key difference here is that <em>frequency deviation</em>—the modulation index—is now expressed in <em>semitones</em>, not Hertz. This shift affects the entire modulation behavior.</p>
+<p>As a result, the output waveform becomes asymmetrical and significantly different in character. The main change in the patch is the use of <code>[mtof~]</code> to convert MIDI pitch to frequency in Hz.</p>
+</section>
+<section id="ratio" class="level3" data-number="4.6.4">
+<h3 data-number="4.6.4" class="anchored" data-anchor-id="ratio"><span class="header-section-number">4.6.4</span> Ratio</h3>
+<p>It is common practice to define the modulating frequency as a <em>ratio</em> of the carrier frequency. This allows us to work with a single frequency input while maintaining a consistent sonic character across different pitches.</p>
+<p>This approach preserves the relationship between the carrier and modulator frequencies, which is crucial since this ratio determines how the additional spectral components—partials—are distributed. Harmonic ratios (such as 0.5 or 2) yield harmonic results, while non-integer ratios lead to inharmonic spectra.</p>
+</section>
+</section>
+<section id="references" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="references">References</h2>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-helmholtz1860" class="csl-entry" role="listitem">
+Helmholtz, Hermann. 1954. <em>On the Sensations of Tone as a Physiological Basis for the Theory of Music</em>. 2nd ed. New York: Dover Publications.
+</div>
+<div id="ref-levistrauss1964" class="csl-entry" role="listitem">
+Lévi-Strauss, Claude. 1964. <em>Le Cru Et Le Cuit</em>. Vol. 1. Mythologiques. Paris: Plon.
+</div>
+<div id="ref-sterne2011" class="csl-entry" role="listitem">
+Sterne, Jonathan, and Tara Rodgers. 2011. <span>“Poetics of Signal Processing.”</span> <em>Differences</em> 22 (2-3): 31–53. <a href="https://doi.org/10.1215/10407391-1428834">https://doi.org/10.1215/10407391-1428834</a>.
+</div>
+<div id="ref-theberge1997" class="csl-entry" role="listitem">
+Théberge, Paul. 1997. <em>Any Sound You Can Imagine: Making Music/Consuming Technology</em>. Hanover &amp; London: Wesleyan University Press.
+</div>
+</div>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation column-body">
+  <div class="nav-page nav-page-previous">
+      <a href="../chapters/sequencers.html" class="pagination-link" aria-label="Sequencers">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Sequencers</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../chapters/tools.html" class="pagination-link" aria-label="Tools">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Tools</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
+
+
+
+
+</body></html>
