@@ -256,7 +256,7 @@ In the example provided, both the carrier and modulator are sine wave oscillator
 
 Ring modulation is a particular form of amplitude modulation where both the carrier and modulator signals are *bipolar*, meaning they oscillate between -1 and 1 without any DC offset. In this configuration, there's no functional distinction between carrier and modulator—both behave symmetrically.
 
-![Ring Modulation](/assets/screenshots/synthesis/am-rm/rm.gif)
+![Ring Modulation](/assets/screenshots/synthesis/am-rm/rm.png)
 
 Nonetheless, in practical terms, the carrier is usually an audio signal such as a musical instrument, while the modulator remains a simple oscillator. A key technical detail is that when the modulator signal is negative, it inverts the polarity of the carrier signal—producing a unique and often metallic timbre.
 
@@ -286,7 +286,8 @@ Try both the classic AM and RM examples. In both cases, sidebands are generated 
 
 Using more complex waveforms for the modulator signal leads to the creation of additional partials within any amplitude modulation patch—including ring modulation. Sine waves are typically favored as modulators since they offer clean and controlled results, especially when applying AM as an audio effect.
 
-{{< video /assets/screenshots/synthesis/am-rm/other-waveforms.mov>}}
+![Fig. ](/assets/screenshots/synthesis/am-rm/other-waveforms.png)
+
 
 However, in synthesis contexts, more intricate and harmonically rich methods—such as *frequency* and *phase* modulation—offer more efficient and versatile approaches for generating complex timbres. We’ll explore these in the following sections.
 
@@ -294,7 +295,7 @@ However, in synthesis contexts, more intricate and harmonically rich methods—s
 
 Tremolo is essentially amplitude modulation using a *low-frequency* modulator. The key addition is a *depth* parameter, ranging from 0 to 1, which determines the modulation intensity. At 0, no modulation occurs (dry signal), while a depth of 1 results in full tremolo, where the carrier's amplitude is modulated across its full range.
 
-{{< video /assets/screenshots/synthesis/am-rm/tremolo.mov>}}
+![Fig. ](/assets/screenshots/synthesis/am-rm/tremolo.gif)
 
 ## Frequency Modulation
 
@@ -310,7 +311,7 @@ By default, we have a carrier frequency of 400 Hz, a low modulation frequency of
 
 We apply the same structure as before. Besides a vibrato example, this section includes fully developed FM examples. As with amplitude modulation, FM produces *sidebands* spaced by intervals equal to the modulation frequency. However, FM can generate many more sidebands, potentially resulting in a much richer spectrum.
 
-{{< video /assets/screenshots/synthesis/fm/fm.mov>}}
+![Fig. ](/assets/screenshots/synthesis/fm/fm.gif)
 
 The higher the modulation index, the greater the number of resulting partials—enabling the creation of dense and complex waveforms. When the carrier and modulator frequencies share a simple harmonic ratio, the resulting waveform is harmonic. Otherwise, it tends to be inharmonic. Click on the message boxes to hear the preset examples.
 

@@ -3,10 +3,18 @@
 ## Ideas
 
 - Find a better screenshot application for Mac.
+- Check [QCGInteractiveMusic](https://www.youtube.com/playlist?list=PLuxj2jXSuTvt2P4TLVdnhHy2hnHNUMTqO) YT channel for some ideas.
 - Add Audio as a examples when possible.
 - Add wow to connect virtual MIDI ports to Pure Data.
 - Plot waveforms and spectrograms of audio files using Python.
 - Add a section on using Pure Data with Python.
+- Add spanish translation to the book
+  - [Babelquarto](https://docs.ropensci.org/babelquarto/)
+  - [Babeldown](https://docs.ropensci.org/babeldown/)
+  - [Tutorial 1](https://edenian-prince.github.io/blog/posts/2024-08-21-translate-md-files/)
+  - [Tutorial 2](https://docs.ropensci.org/babeldown/articles/quarto.html)
+  - [Example](https://github.com/joelnitta/multilingual_website)
+  - [Tutorial wihtout library](https://quarto-dev.marioangst.com/en/blog/posts/multi-language-quarto/)
 
 ## To do
 
@@ -25,10 +33,14 @@
 - Add audio samples.
 - Download all images from the internet and add them to the book.
   - or use a python script to generate them.
-- 
+- Check these examples: 
+  - [Pure Data quantize and sequencer](https://youtu.be/f2JyUFZ8FHU)
+  - [Scale Random Generator](https://github.com/YockanookanySound/Random-Generator/blob/main/GenSeq.pd)
 
 #### Synthesis
 
+- Write the sustractive synthesis chapter.
+  - use Gandini's example
 - Add link to each pd example.
 - See Campus --> Add art works reference to synthesis chapter (oscillators, additive, subtractive, modulation).
 - - Add Risset's bell on the additivity synthesis section.
@@ -46,7 +58,8 @@
   - [x] Oscillators
   - [ ] Additive
   - [ ] Subtractive
-  - [x] Modulation
+  - [x] Modulation (AM, RM, FM)
+- [ ] Sonification
 
 ## Done
 

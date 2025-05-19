@@ -85,7 +85,7 @@ Stream or realtime data refers to continuous data generated in real-time, often 
 **Sources:** Online radio platforms, surveillance systems, smart vehicles, embedded IoT devices, live music performance setups.
 
 
-## Data Classification
+### Data Classification
 
 The classification of data into **static** and **stream/realtime** reflects fundamentally different operational paradigms in digital systems. Static data often allows batch processing, archival, and complex analysis without stringent timing constraints. In contrast, stream data demands continuous, low-latency processing to support live feedback, monitoring, or interaction.
 
@@ -118,7 +118,7 @@ Understanding these data types and their sources is critical when designing syst
 |                       |                     | - OSC (Open Sound Control)                                             | - Interactive art and media systems        |
 +-----------------------+---------------------+------------------------------------------------------------------------+--------------------------------------------+
 
-### References
+#### References
 
 
 Gantz, J., & Reinsel, D. (2012). The Digital Universe in 2020: Big Data, Bigger Digital Shadows, and Biggest Growth in the Far East. *IDC iView*.
