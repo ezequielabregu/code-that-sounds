@@ -54,54 +54,9 @@ Algorithm:
 
  
 
-### Python Implementation of the 8-Step Sequencer
+### Pure Data Implementation of the 8-Step Sequencer
 
-```python
-import time
-import mido
-
-# 1. Define a data structure to represent each step in the sequence (8 steps)
-secuencia = [None] * 8
-
-# 2. Define an array to store MIDI note values for each step
-notas_midi = [60, 62, 64, 65, 67, 69, 71, 72]  # C major scale
-
-# 3. Initialize the sequencer parameters
-paso_actual = 0
-tempo = 120  # beats per minute
-num_pasos = len(secuencia)
-
-# Open the virtual MIDI port (use the correct port name, see MIDI_port_name.py)
-puerto_salida = mido.open_output('IAC Driver Bus 1')
-
-# 4. Start a loop to continuously play the sequence
-while True:
-    # a. Calculate the time duration for each step based on the tempo
-    duracion_paso = 60.0 / tempo  # beat duration in seconds
-
-    # b. "Play" the MIDI note corresponding to the current step
-    nota_actual = int(notas_midi[paso_actual])  # Ensure it's an integer
-    secuencia[paso_actual] = nota_actual
-    print(f"Step: {paso_actual} --- Note: {secuencia[paso_actual]}")
-
-    # Send the MIDI message
-    mensaje = mido.Message('note_on', note=nota_actual)
-    puerto_salida.send(mensaje)
-
-    # c. Increment the current step
-    paso_actual += 1
-
-    # d. If current step exceeds the number of steps, reset it to 0
-    if paso_actual >= num_pasos:
-        paso_actual = 0
-
-    # e. Wait for the calculated duration before moving to the next step
-    time.sleep(duracion_paso)
-
-    # Turn off the MIDI note
-    mensaje = mido.Message('note_off', note=nota_actual)
-    puerto_salida.send(mensaje)
-```
+![Fig. ](/assets/screenshots/sequencers/step-sequencer.png)
 
 This is a simple step sequencer for MIDI. It uses the `mido` library to send MIDI messages and the `time` library to control the timing of the sequence.
 
@@ -113,67 +68,13 @@ The script opens a virtual MIDI output port using `mido.open_output()`. You may 
 
 The main part of the script is a `while` loop that continuously plays the sequence. For each step, it calculates the step duration based on the tempo, plays the corresponding MIDI note, increments the current step, and waits for the calculated duration before moving to the next step. If the current step exceeds the number of steps in the sequence, it resets to 0. After each note is played, a `note_off` MIDI message is sent to stop the note.
 
- 
-
-### Represent a random sequencer using pseudo code
-
- 
-
 ### Random Step Sequencer Implementation
 
-```python
-import time
-import mido
-import random
-
-# 1. Define a data structure to represent each step of the sequence (8 steps)
-secuencia = [None] * 8
-
-# 2. Define an array to store MIDI note values for each step
-notas_midi = [60, 62, 64, 65, 67, 69, 71, 72]  # C major scale
-
-# 3. Initialize the sequencer parameters
-paso_actual = random.randint(0, 7)
-tempo = 120  # beats per minute
-num_pasos = len(secuencia)
-
-# Open the virtual MIDI port (use the correct port name, see MIDI_port_name.py)
-puerto_salida = mido.open_output('IAC Driver Bus 1')
-
-# 4. Start a loop to continuously play the sequence
-while True:
-    # a. Calculate the time duration for each step based on the tempo
-    duracion_paso = 60.0 / tempo  # beat duration in seconds
-
-    # b. "Play" the MIDI note corresponding to the current step
-    nota_actual = int(notas_midi[paso_actual])  # Ensure it's an integer
-    secuencia[paso_actual] = nota_actual
-    print(f"Step: {paso_actual} --- Note: {secuencia[paso_actual]}")
-
-    # Send the MIDI message
-    mensaje = mido.Message('note_on', note=nota_actual)
-    puerto_salida.send(mensaje)
-
-    # c. Randomize the next step
-    paso_actual = random.randint(0, 7)
-
-    # d. If current step exceeds the number of steps, reset it to 0
-    if paso_actual >= num_pasos:
-        paso_actual = 0
-
-    # e. Wait for the calculated duration before moving to the next step
-    time.sleep(duracion_paso)
-
-    # Turn off the MIDI note
-    mensaje = mido.Message('note_off', note=nota_actual)
-    puerto_salida.send(mensaje)
-```
+![Fig. ](/assets/screenshots/sequencers/random-step-sequencer.png)
 
 This Python script is a modified version of the step-by-step MIDI sequencer from the previous example. The main difference lies in how the current step (`paso_actual`) is incremented.
 
 In the original script, the current step increased sequentially, creating a predictable pattern of notes. In this modified version, the current step is set to a random integer between 0 and 7 (inclusive). This means that the note sequence will be played in a random order, creating a more unpredictable pattern.
-
---- 
 
 ## Piano Phase (Steve Reich)
 
@@ -208,45 +109,15 @@ Performance and visualization of the first section from Steve Reich's 1967 piece
 4. Repeat the cycle indefinitely to create a continuous and evolving rhythmic phasing effect.
 ```
 
-### Piano Phase Implementation in Python (single sequencer)
+### Piano Phase Implementation in PD (single sequencer)
 
-```python
-import time
-import mido
-
-# Define a MIDI note sequence to represent the musical part
-notas_midi = [64, 66, 71, 73, 74, 66, 64, 73, 71, 66, 74, 73]  # C major scale
-
-# Open two MIDI output ports
-puerto_salida1 = mido.open_output('IAC Driver Bus 1')
-
-# Initialize the sequencer parameters
-tempo = int(120 * 4)  # beats per minute
-duracion_paso = 60.0 / tempo  # beat duration in seconds
-
-# Start a loop to continuously play the sequence
-paso_actual = 0
-while True:
-    # "Play" the MIDI note corresponding to the current step
-    nota_actual = notas_midi[paso_actual]
-    mensaje_on = mido.Message('note_on', note=nota_actual)
-    mensaje_off = mido.Message('note_off', note=nota_actual)
-
-    puerto_salida1.send(mensaje_on)
-    time.sleep(duracion_paso)  # Wait one beat before going to the next step
-    puerto_salida1.send(mensaje_off)  # Send 'note_off' message
-
-    # Increment the current step
-    paso_actual += 1
-    if paso_actual >= len(notas_midi):
-        paso_actual = 0
-```
+![fig](/assets/screenshots/sequencers/piano-phase.png)
 
 ## Random Melody Generator
 
 This chapter provides a step-by-step explanation of the [music-scale-B.pd](/assets/code/sequencers/music-scale-B.pd) Pure Data patch. The patch demonstrates how to generate a melody using a musical scale, store it in an array, and play it back using MIDI.
 
-![Random Melody Generator](/assets/images/random_melody.png)
+![Random Melody Generator](/assets/screenshots/sequencers/random_melody.png)
 
 ### Patch Overview
 

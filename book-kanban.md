@@ -46,6 +46,7 @@
 - - Add Risset's bell on the additivity synthesis section.
 - Add Poem for 100 metronomes and explain dinamic patching.
 - Summary of the [Phil Niblock paper](https://www.straebel.com/files/Straebel%202008_Niblock.pdf)
+- Add AM-RM-FM synthesis examples patches.
 
 #### Play and Rec
 

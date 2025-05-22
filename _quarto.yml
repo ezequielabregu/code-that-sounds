@@ -14,7 +14,7 @@ book:
     - chapters/synthesis.qmd
     - chapters/sonification.qmd
     - chapters/tools.qmd
-    - chapters/conclusion.qmd  
+    - chapters/conclusion.qmd
   
   page-footer:
     center: 
