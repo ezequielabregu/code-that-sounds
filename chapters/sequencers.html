@@ -385,14 +385,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#arrays-and-sequencers" id="toc-arrays-and-sequencers" class="nav-link active" data-scroll-target="#arrays-and-sequencers"><span class="header-section-number">3.1</span> Arrays and Sequencers</a>
   <ul class="collapse">
   <li><a href="#represent-an-8-step-sequencer-using-pseudo-code" id="toc-represent-an-8-step-sequencer-using-pseudo-code" class="nav-link" data-scroll-target="#represent-an-8-step-sequencer-using-pseudo-code"><span class="header-section-number">3.1.1</span> Represent an 8-step sequencer using pseudo code&nbsp;</a></li>
-  <li><a href="#python-implementation-of-the-8-step-sequencer" id="toc-python-implementation-of-the-8-step-sequencer" class="nav-link" data-scroll-target="#python-implementation-of-the-8-step-sequencer"><span class="header-section-number">3.1.2</span> Python Implementation of the 8-Step Sequencer</a></li>
-  <li><a href="#represent-a-random-sequencer-using-pseudo-code" id="toc-represent-a-random-sequencer-using-pseudo-code" class="nav-link" data-scroll-target="#represent-a-random-sequencer-using-pseudo-code"><span class="header-section-number">3.1.3</span> Represent a random sequencer using pseudo code</a></li>
-  <li><a href="#random-step-sequencer-implementation" id="toc-random-step-sequencer-implementation" class="nav-link" data-scroll-target="#random-step-sequencer-implementation"><span class="header-section-number">3.1.4</span> Random Step Sequencer Implementation</a></li>
+  <li><a href="#pure-data-implementation-of-the-8-step-sequencer" id="toc-pure-data-implementation-of-the-8-step-sequencer" class="nav-link" data-scroll-target="#pure-data-implementation-of-the-8-step-sequencer"><span class="header-section-number">3.1.2</span> Pure Data Implementation of the 8-Step Sequencer</a></li>
+  <li><a href="#random-step-sequencer-implementation" id="toc-random-step-sequencer-implementation" class="nav-link" data-scroll-target="#random-step-sequencer-implementation"><span class="header-section-number">3.1.3</span> Random Step Sequencer Implementation</a></li>
   </ul></li>
   <li><a href="#piano-phase-steve-reich" id="toc-piano-phase-steve-reich" class="nav-link" data-scroll-target="#piano-phase-steve-reich"><span class="header-section-number">3.2</span> Piano Phase (Steve Reich)</a>
   <ul class="collapse">
   <li><a href="#piano-phase-process-as-an-algorithm." id="toc-piano-phase-process-as-an-algorithm." class="nav-link" data-scroll-target="#piano-phase-process-as-an-algorithm."><span class="header-section-number">3.2.1</span> Piano Phase process as an algorithm.</a></li>
-  <li><a href="#piano-phase-implementation-in-python-single-sequencer" id="toc-piano-phase-implementation-in-python-single-sequencer" class="nav-link" data-scroll-target="#piano-phase-implementation-in-python-single-sequencer"><span class="header-section-number">3.2.2</span> Piano Phase Implementation in Python (single sequencer)</a></li>
+  <li><a href="#piano-phase-implementation-in-pd-single-sequencer" id="toc-piano-phase-implementation-in-pd-single-sequencer" class="nav-link" data-scroll-target="#piano-phase-implementation-in-pd-single-sequencer"><span class="header-section-number">3.2.2</span> Piano Phase Implementation in PD (single sequencer)</a></li>
   </ul></li>
   <li><a href="#random-melody-generator" id="toc-random-melody-generator" class="nav-link" data-scroll-target="#random-melody-generator"><span class="header-section-number">3.3</span> Random Melody Generator</a>
   <ul class="collapse">
@@ -536,124 +535,41 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>&nbsp;</p>
 </section>
 </section>
-<section id="python-implementation-of-the-8-step-sequencer" class="level3" data-number="3.1.2">
-<h3 data-number="3.1.2" class="anchored" data-anchor-id="python-implementation-of-the-8-step-sequencer"><span class="header-section-number">3.1.2</span> Python Implementation of the 8-Step Sequencer</h3>
-<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> mido</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Define a data structure to represent each step in the sequence (8 steps)</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>secuencia <span class="op">=</span> [<span class="va">None</span>] <span class="op">*</span> <span class="dv">8</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Define an array to store MIDI note values for each step</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>notas_midi <span class="op">=</span> [<span class="dv">60</span>, <span class="dv">62</span>, <span class="dv">64</span>, <span class="dv">65</span>, <span class="dv">67</span>, <span class="dv">69</span>, <span class="dv">71</span>, <span class="dv">72</span>]  <span class="co"># C major scale</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Initialize the sequencer parameters</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>paso_actual <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>tempo <span class="op">=</span> <span class="dv">120</span>  <span class="co"># beats per minute</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>num_pasos <span class="op">=</span> <span class="bu">len</span>(secuencia)</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Open the virtual MIDI port (use the correct port name, see MIDI_port_name.py)</span></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>puerto_salida <span class="op">=</span> mido.open_output(<span class="st">'IAC Driver Bus 1'</span>)</span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. Start a loop to continuously play the sequence</span></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> <span class="va">True</span>:</span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>    <span class="co"># a. Calculate the time duration for each step based on the tempo</span></span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    duracion_paso <span class="op">=</span> <span class="fl">60.0</span> <span class="op">/</span> tempo  <span class="co"># beat duration in seconds</span></span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    <span class="co"># b. "Play" the MIDI note corresponding to the current step</span></span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>    nota_actual <span class="op">=</span> <span class="bu">int</span>(notas_midi[paso_actual])  <span class="co"># Ensure it's an integer</span></span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>    secuencia[paso_actual] <span class="op">=</span> nota_actual</span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Step: </span><span class="sc">{</span>paso_actual<span class="sc">}</span><span class="ss"> --- Note: </span><span class="sc">{</span>secuencia[paso_actual]<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Send the MIDI message</span></span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>    mensaje <span class="op">=</span> mido.Message(<span class="st">'note_on'</span>, note<span class="op">=</span>nota_actual)</span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>    puerto_salida.send(mensaje)</span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>    <span class="co"># c. Increment the current step</span></span>
-<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>    paso_actual <span class="op">+=</span> <span class="dv">1</span></span>
-<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>    <span class="co"># d. If current step exceeds the number of steps, reset it to 0</span></span>
-<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> paso_actual <span class="op">&gt;=</span> num_pasos:</span>
-<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>        paso_actual <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>    <span class="co"># e. Wait for the calculated duration before moving to the next step</span></span>
-<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>    time.sleep(duracion_paso)</span>
-<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Turn off the MIDI note</span></span>
-<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>    mensaje <span class="op">=</span> mido.Message(<span class="st">'note_off'</span>, note<span class="op">=</span>nota_actual)</span>
-<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>    puerto_salida.send(mensaje)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="pure-data-implementation-of-the-8-step-sequencer" class="level3" data-number="3.1.2">
+<h3 data-number="3.1.2" class="anchored" data-anchor-id="pure-data-implementation-of-the-8-step-sequencer"><span class="header-section-number">3.1.2</span> Pure Data Implementation of the 8-Step Sequencer</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../assets/screenshots/sequencers/step-sequencer.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Fig."><img src="../assets/screenshots/sequencers/step-sequencer.png" class="img-fluid figure-img" alt="Fig."></a></p>
+<figcaption>Fig.</figcaption>
+</figure>
+</div>
 <p>This is a simple step sequencer for MIDI. It uses the <code>mido</code> library to send MIDI messages and the <code>time</code> library to control the timing of the sequence.</p>
 <p>The script starts by importing the necessary libraries and defining some data structures and initial variables. The <code>secuencia</code> list will hold the sequence of notes to be played, and is initially filled with <code>None</code> values. The <code>notas_midi</code> list contains the MIDI note values for each step in the sequence, representing a C Major scale.</p>
 <p>Then, the script initializes some sequencer parameters. The <code>paso_actual</code> variable tracks the current step in the sequence, <code>tempo</code> sets the tempo in beats per minute, and <code>num_pasos</code> stores the total number of steps in the sequence.</p>
 <p>The script opens a virtual MIDI output port using <code>mido.open_output()</code>. You may need to change the port name ‘IAC Driver Bus 1’ depending on your system setup.</p>
 <p>The main part of the script is a <code>while</code> loop that continuously plays the sequence. For each step, it calculates the step duration based on the tempo, plays the corresponding MIDI note, increments the current step, and waits for the calculated duration before moving to the next step. If the current step exceeds the number of steps in the sequence, it resets to 0. After each note is played, a <code>note_off</code> MIDI message is sent to stop the note.</p>
-<p>&nbsp;</p>
 </section>
-<section id="represent-a-random-sequencer-using-pseudo-code" class="level3" data-number="3.1.3">
-<h3 data-number="3.1.3" class="anchored" data-anchor-id="represent-a-random-sequencer-using-pseudo-code"><span class="header-section-number">3.1.3</span> Represent a random sequencer using pseudo code</h3>
-<p>&nbsp;</p>
-</section>
-<section id="random-step-sequencer-implementation" class="level3" data-number="3.1.4">
-<h3 data-number="3.1.4" class="anchored" data-anchor-id="random-step-sequencer-implementation"><span class="header-section-number">3.1.4</span> Random Step Sequencer Implementation</h3>
-<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> mido</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Define a data structure to represent each step of the sequence (8 steps)</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>secuencia <span class="op">=</span> [<span class="va">None</span>] <span class="op">*</span> <span class="dv">8</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Define an array to store MIDI note values for each step</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>notas_midi <span class="op">=</span> [<span class="dv">60</span>, <span class="dv">62</span>, <span class="dv">64</span>, <span class="dv">65</span>, <span class="dv">67</span>, <span class="dv">69</span>, <span class="dv">71</span>, <span class="dv">72</span>]  <span class="co"># C major scale</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Initialize the sequencer parameters</span></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>paso_actual <span class="op">=</span> random.randint(<span class="dv">0</span>, <span class="dv">7</span>)</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>tempo <span class="op">=</span> <span class="dv">120</span>  <span class="co"># beats per minute</span></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>num_pasos <span class="op">=</span> <span class="bu">len</span>(secuencia)</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Open the virtual MIDI port (use the correct port name, see MIDI_port_name.py)</span></span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>puerto_salida <span class="op">=</span> mido.open_output(<span class="st">'IAC Driver Bus 1'</span>)</span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. Start a loop to continuously play the sequence</span></span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> <span class="va">True</span>:</span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>    <span class="co"># a. Calculate the time duration for each step based on the tempo</span></span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>    duracion_paso <span class="op">=</span> <span class="fl">60.0</span> <span class="op">/</span> tempo  <span class="co"># beat duration in seconds</span></span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>    <span class="co"># b. "Play" the MIDI note corresponding to the current step</span></span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>    nota_actual <span class="op">=</span> <span class="bu">int</span>(notas_midi[paso_actual])  <span class="co"># Ensure it's an integer</span></span>
-<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>    secuencia[paso_actual] <span class="op">=</span> nota_actual</span>
-<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Step: </span><span class="sc">{</span>paso_actual<span class="sc">}</span><span class="ss"> --- Note: </span><span class="sc">{</span>secuencia[paso_actual]<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Send the MIDI message</span></span>
-<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>    mensaje <span class="op">=</span> mido.Message(<span class="st">'note_on'</span>, note<span class="op">=</span>nota_actual)</span>
-<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>    puerto_salida.send(mensaje)</span>
-<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>    <span class="co"># c. Randomize the next step</span></span>
-<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>    paso_actual <span class="op">=</span> random.randint(<span class="dv">0</span>, <span class="dv">7</span>)</span>
-<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>    <span class="co"># d. If current step exceeds the number of steps, reset it to 0</span></span>
-<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> paso_actual <span class="op">&gt;=</span> num_pasos:</span>
-<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>        paso_actual <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>    <span class="co"># e. Wait for the calculated duration before moving to the next step</span></span>
-<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>    time.sleep(duracion_paso)</span>
-<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Turn off the MIDI note</span></span>
-<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>    mensaje <span class="op">=</span> mido.Message(<span class="st">'note_off'</span>, note<span class="op">=</span>nota_actual)</span>
-<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>    puerto_salida.send(mensaje)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="random-step-sequencer-implementation" class="level3" data-number="3.1.3">
+<h3 data-number="3.1.3" class="anchored" data-anchor-id="random-step-sequencer-implementation"><span class="header-section-number">3.1.3</span> Random Step Sequencer Implementation</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../assets/screenshots/sequencers/random-step-sequencer.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Fig."><img src="../assets/screenshots/sequencers/random-step-sequencer.png" class="img-fluid figure-img" alt="Fig."></a></p>
+<figcaption>Fig.</figcaption>
+</figure>
+</div>
 <p>This Python script is a modified version of the step-by-step MIDI sequencer from the previous example. The main difference lies in how the current step (<code>paso_actual</code>) is incremented.</p>
 <p>In the original script, the current step increased sequentially, creating a predictable pattern of notes. In this modified version, the current step is set to a random integer between 0 and 7 (inclusive). This means that the note sequence will be played in a random order, creating a more unpredictable pattern.</p>
-<p>—&nbsp;</p>
 </section>
 </section>
 <section id="piano-phase-steve-reich" class="level2" data-number="3.2">
 <h2 data-number="3.2" class="anchored" data-anchor-id="piano-phase-steve-reich"><span class="header-section-number">3.2</span> Piano Phase (Steve Reich)</h2>
-<p><a href="https://payload.cargocollective.com/1/2/82587/8130024/reich_gif_432x432_b_crop_pixel_fixed.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="https://payload.cargocollective.com/1/2/82587/8130024/reich_gif_432x432_b_crop_pixel_fixed.gif" class="img-fluid"></a></p>
+<p><a href="https://payload.cargocollective.com/1/2/82587/8130024/reich_gif_432x432_b_crop_pixel_fixed.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="https://payload.cargocollective.com/1/2/82587/8130024/reich_gif_432x432_b_crop_pixel_fixed.gif" class="img-fluid"></a></p>
 <p><a href="./Biblio /SteveReich-PianoPhase.pdf">View Piano Phase Score (S. Reich)</a></p>
 <p><em>Piano Phase</em> can be conceived as an algorithm. Starting with two pianos playing the same sequence of notes at the same speed, one of the pianists begins to gradually accelerate their tempo.</p>
 <p>When the separation between the notes played by both pianos reaches a fraction of a note’s duration, the phase is shifted and the cycle repeats. This process continues endlessly, creating a hypnotic effect of rhythmic phasing that evolves over time as an infinite sequence of iterations.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="https://www.nist.gov/sites/default/files/images/2022/01/27/phase-difference.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Phase Difference"><img src="https://www.nist.gov/sites/default/files/images/2022/01/27/phase-difference.gif" class="img-fluid figure-img" alt="Phase Difference"></a></p>
+<p><a href="https://www.nist.gov/sites/default/files/images/2022/01/27/phase-difference.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="Phase Difference"><img src="https://www.nist.gov/sites/default/files/images/2022/01/27/phase-difference.gif" class="img-fluid figure-img" alt="Phase Difference"></a></p>
 <figcaption>Phase Difference</figcaption>
 </figure>
 </div>
@@ -671,47 +587,24 @@ Figure&nbsp;3.1
 <h3 data-number="3.2.1" class="anchored" data-anchor-id="piano-phase-process-as-an-algorithm."><span class="header-section-number">3.2.1</span> Piano Phase process as an algorithm.</h3>
 <section id="algorithm-formulation-pseudo-code" class="level4" data-number="3.2.1.1">
 <h4 data-number="3.2.1.1" class="anchored" data-anchor-id="algorithm-formulation-pseudo-code"><span class="header-section-number">3.2.1.1</span> Algorithm Formulation (pseudo code)</h4>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">1.</span> Initialize two pianists with the same note sequence.</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">2.</span> Set an initial tempo for both pianists.</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="ex">3.</span> Repeat until the desired phase is reached:</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>     <span class="ex">a.</span> Gradually increase the second pianist<span class="st">'s tempo.</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="st">     b. Compare note positions between both pianists.</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="st">     c. When the separation between the notes reaches a fraction of a note’s duration, invert the phase.</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="st">     d. Continue playback.</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="st">4. Repeat the cycle indefinitely to create a continuous and evolving rhythmic phasing effect.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">1.</span> Initialize two pianists with the same note sequence.</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">2.</span> Set an initial tempo for both pianists.</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ex">3.</span> Repeat until the desired phase is reached:</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>     <span class="ex">a.</span> Gradually increase the second pianist<span class="st">'s tempo.</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="st">     b. Compare note positions between both pianists.</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="st">     c. When the separation between the notes reaches a fraction of a note’s duration, invert the phase.</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="st">     d. Continue playback.</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="st">4. Repeat the cycle indefinitely to create a continuous and evolving rhythmic phasing effect.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>
-<section id="piano-phase-implementation-in-python-single-sequencer" class="level3" data-number="3.2.2">
-<h3 data-number="3.2.2" class="anchored" data-anchor-id="piano-phase-implementation-in-python-single-sequencer"><span class="header-section-number">3.2.2</span> Piano Phase Implementation in Python (single sequencer)</h3>
-<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> mido</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Define a MIDI note sequence to represent the musical part</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>notas_midi <span class="op">=</span> [<span class="dv">64</span>, <span class="dv">66</span>, <span class="dv">71</span>, <span class="dv">73</span>, <span class="dv">74</span>, <span class="dv">66</span>, <span class="dv">64</span>, <span class="dv">73</span>, <span class="dv">71</span>, <span class="dv">66</span>, <span class="dv">74</span>, <span class="dv">73</span>]  <span class="co"># C major scale</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Open two MIDI output ports</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>puerto_salida1 <span class="op">=</span> mido.open_output(<span class="st">'IAC Driver Bus 1'</span>)</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize the sequencer parameters</span></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>tempo <span class="op">=</span> <span class="bu">int</span>(<span class="dv">120</span> <span class="op">*</span> <span class="dv">4</span>)  <span class="co"># beats per minute</span></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>duracion_paso <span class="op">=</span> <span class="fl">60.0</span> <span class="op">/</span> tempo  <span class="co"># beat duration in seconds</span></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Start a loop to continuously play the sequence</span></span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>paso_actual <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> <span class="va">True</span>:</span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>    <span class="co"># "Play" the MIDI note corresponding to the current step</span></span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>    nota_actual <span class="op">=</span> notas_midi[paso_actual]</span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>    mensaje_on <span class="op">=</span> mido.Message(<span class="st">'note_on'</span>, note<span class="op">=</span>nota_actual)</span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>    mensaje_off <span class="op">=</span> mido.Message(<span class="st">'note_off'</span>, note<span class="op">=</span>nota_actual)</span>
-<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>    puerto_salida1.send(mensaje_on)</span>
-<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>    time.sleep(duracion_paso)  <span class="co"># Wait one beat before going to the next step</span></span>
-<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>    puerto_salida1.send(mensaje_off)  <span class="co"># Send 'note_off' message</span></span>
-<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Increment the current step</span></span>
-<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>    paso_actual <span class="op">+=</span> <span class="dv">1</span></span>
-<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> paso_actual <span class="op">&gt;=</span> <span class="bu">len</span>(notas_midi):</span>
-<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>        paso_actual <span class="op">=</span> <span class="dv">0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="piano-phase-implementation-in-pd-single-sequencer" class="level3" data-number="3.2.2">
+<h3 data-number="3.2.2" class="anchored" data-anchor-id="piano-phase-implementation-in-pd-single-sequencer"><span class="header-section-number">3.2.2</span> Piano Phase Implementation in PD (single sequencer)</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../assets/screenshots/sequencers/piano-phase.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" title="fig"><img src="../assets/screenshots/sequencers/piano-phase.png" class="img-fluid figure-img" alt="fig"></a></p>
+<figcaption>fig</figcaption>
+</figure>
+</div>
 </section>
 </section>
 <section id="random-melody-generator" class="level2" data-number="3.3">
@@ -719,7 +612,7 @@ Figure&nbsp;3.1
 <p>This chapter provides a step-by-step explanation of the <a href="../assets/code/sequencers/music-scale-B.pd">music-scale-B.pd</a> Pure Data patch. The patch demonstrates how to generate a melody using a musical scale, store it in an array, and play it back using MIDI.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="../assets/images/random_melody.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Random Melody Generator"><img src="../assets/images/random_melody.png" class="img-fluid figure-img" alt="Random Melody Generator"></a></p>
+<p><a href="../assets/screenshots/sequencers/random_melody.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6" title="Random Melody Generator"><img src="../assets/screenshots/sequencers/random_melody.png" class="img-fluid figure-img" alt="Random Melody Generator"></a></p>
 <figcaption>Random Melody Generator</figcaption>
 </figure>
 </div>
@@ -955,7 +848,7 @@ Figure&nbsp;3.1
 <p>Godfried Toussaint (2005)</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="https://idmmag.com/wp-content/uploads/2019/02/Euclidean-R-1.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="Eucliden image"><img src="https://idmmag.com/wp-content/uploads/2019/02/Euclidean-R-1.jpg" class="img-fluid figure-img" alt="Eucliden image"></a></p>
+<p><a href="https://idmmag.com/wp-content/uploads/2019/02/Euclidean-R-1.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-7" title="Eucliden image"><img src="https://idmmag.com/wp-content/uploads/2019/02/Euclidean-R-1.jpg" class="img-fluid figure-img" alt="Eucliden image"></a></p>
 <figcaption>Eucliden image</figcaption>
 </figure>
 </div>
@@ -1219,7 +1112,7 @@ Figure&nbsp;3.1
 <h2 data-number="3.5" class="anchored" data-anchor-id="cellular-automata"><span class="header-section-number">3.5</span> Cellular Automata</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="https://mathworld.wolfram.com/images/eps-svg/Code0912_450.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-5" title="Cellular Automaton"><img src="https://mathworld.wolfram.com/images/eps-svg/Code0912_450.svg" class="img-fluid figure-img" alt="Cellular Automaton"></a></p>
+<p><a href="https://mathworld.wolfram.com/images/eps-svg/Code0912_450.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-8" title="Cellular Automaton"><img src="https://mathworld.wolfram.com/images/eps-svg/Code0912_450.svg" class="img-fluid figure-img" alt="Cellular Automaton"></a></p>
 <figcaption>Cellular Automaton</figcaption>
 </figure>
 </div>
@@ -1362,39 +1255,39 @@ Figure&nbsp;3.1
 </section>
 <section id="rule-30-implementation-in-python" class="level3" data-number="3.5.3">
 <h3 data-number="3.5.3" class="anchored" data-anchor-id="rule-30-implementation-in-python"><span class="header-section-number">3.5.3</span> Rule 30 Implementation in Python</h3>
-<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> rule30(cells):</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Applies Rule 30 to the input cells."""</span></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    new_cells <span class="op">=</span> np.zeros_like(cells)</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    extended_cells <span class="op">=</span> np.concatenate(([cells[<span class="op">-</span><span class="dv">1</span>]], cells, [cells[<span class="dv">0</span>]]))  <span class="co"># Apply periodic boundary conditions</span></span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="bu">len</span>(extended_cells) <span class="op">-</span> <span class="dv">1</span>):</span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>        neighborhood <span class="op">=</span> extended_cells[i<span class="op">-</span><span class="dv">1</span>:i<span class="op">+</span><span class="dv">2</span>]</span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> np.array_equal(neighborhood, [<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>]) <span class="kw">or</span> np.array_equal(neighborhood, [<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>]) <span class="kw">or</span> <span class="op">\</span></span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>           np.array_equal(neighborhood, [<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>]) <span class="kw">or</span> np.array_equal(neighborhood, [<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>]):</span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>            new_cells[i<span class="op">-</span><span class="dv">1</span>] <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>            new_cells[i<span class="op">-</span><span class="dv">1</span>] <span class="op">=</span> <span class="dv">1</span></span>
-<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> new_cells</span>
-<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> main():</span>
-<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Initialize the cells</span></span>
-<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>    cells <span class="op">=</span> np.zeros(<span class="dv">100</span>)</span>
-<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>    cells[<span class="dv">50</span>] <span class="op">=</span> <span class="dv">1</span>  <span class="co"># Start with one cell in the middle</span></span>
-<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Apply Rule 30 for 100 steps</span></span>
-<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>    history <span class="op">=</span> [cells]</span>
-<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">100</span>):</span>
-<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a>        cells <span class="op">=</span> rule30(cells)</span>
-<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a>        history.append(cells)</span>
-<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Display the history as an image</span></span>
-<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a>    plt.imshow(history, cmap<span class="op">=</span><span class="st">'binary'</span>)</span>
-<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a>    plt.show()</span>
-<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">"__main__"</span>:</span>
-<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a>    main()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> rule30(cells):</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Applies Rule 30 to the input cells."""</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    new_cells <span class="op">=</span> np.zeros_like(cells)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    extended_cells <span class="op">=</span> np.concatenate(([cells[<span class="op">-</span><span class="dv">1</span>]], cells, [cells[<span class="dv">0</span>]]))  <span class="co"># Apply periodic boundary conditions</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="bu">len</span>(extended_cells) <span class="op">-</span> <span class="dv">1</span>):</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>        neighborhood <span class="op">=</span> extended_cells[i<span class="op">-</span><span class="dv">1</span>:i<span class="op">+</span><span class="dv">2</span>]</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> np.array_equal(neighborhood, [<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>]) <span class="kw">or</span> np.array_equal(neighborhood, [<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>]) <span class="kw">or</span> <span class="op">\</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>           np.array_equal(neighborhood, [<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>]) <span class="kw">or</span> np.array_equal(neighborhood, [<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>]):</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>            new_cells[i<span class="op">-</span><span class="dv">1</span>] <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>            new_cells[i<span class="op">-</span><span class="dv">1</span>] <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> new_cells</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> main():</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Initialize the cells</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>    cells <span class="op">=</span> np.zeros(<span class="dv">100</span>)</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>    cells[<span class="dv">50</span>] <span class="op">=</span> <span class="dv">1</span>  <span class="co"># Start with one cell in the middle</span></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Apply Rule 30 for 100 steps</span></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>    history <span class="op">=</span> [cells]</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">100</span>):</span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>        cells <span class="op">=</span> rule30(cells)</span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>        history.append(cells)</span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Display the history as an image</span></span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>    plt.imshow(history, cmap<span class="op">=</span><span class="st">'binary'</span>)</span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>    plt.show()</span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">"__main__"</span>:</span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>    main()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>This Python script uses the numpy and matplotlib libraries to simulate and visualize the evolution of a cellular automaton using Rule 30.</p>
 <p>The <code>rule30</code> function is the core of this script. It takes a one-dimensional array of cells as input, where each cell is either 0 or 1. The function first creates a new array <code>new_cells</code> with the same shape as the input, filled with zeros. It then extends the input array at both ends to apply periodic boundary conditions, meaning that the first cell is considered a neighbor of the last cell and vice versa.</p>
 <p>Next, the function iterates over each cell in the extended array (excluding the added boundary cells). For each cell, it considers the cell and its two neighbors as a neighborhood. If the neighborhood matches one of four specific patterns ([1, 1, 1], [1, 1, 0], [1, 0, 1], or [0, 0, 0]), the corresponding cell in <code>new_cells</code> is set to 0. Otherwise, it is set to 1. This is the implementation of Rule 30. Finally, the function returns the new array of cells.</p>
@@ -1419,7 +1312,7 @@ Figure&nbsp;3.1
 <h3 data-number="3.5.5" class="anchored" data-anchor-id="case-study-conways-game-of-life"><span class="header-section-number">3.5.5</span> Case Study: Conway’s Game of Life</h3>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="https://images.squarespace-cdn.com/content/v1/59413d96e6f2e1c6837c7ecd/1592233649594-7UQA8NZSNXMZWX86FIWN/JB_Game_of_Life.gif?format=2500w" class="lightbox" data-gallery="quarto-lightbox-gallery-6" title="Game of life"><img src="https://images.squarespace-cdn.com/content/v1/59413d96e6f2e1c6837c7ecd/1592233649594-7UQA8NZSNXMZWX86FIWN/JB_Game_of_Life.gif?format=2500w" class="img-fluid figure-img" alt="Game of life"></a></p>
+<p><a href="https://images.squarespace-cdn.com/content/v1/59413d96e6f2e1c6837c7ecd/1592233649594-7UQA8NZSNXMZWX86FIWN/JB_Game_of_Life.gif?format=2500w" class="lightbox" data-gallery="quarto-lightbox-gallery-9" title="Game of life"><img src="https://images.squarespace-cdn.com/content/v1/59413d96e6f2e1c6837c7ecd/1592233649594-7UQA8NZSNXMZWX86FIWN/JB_Game_of_Life.gif?format=2500w" class="img-fluid figure-img" alt="Game of life"></a></p>
 <figcaption>Game of life</figcaption>
 </figure>
 </div>
@@ -1500,7 +1393,7 @@ Figure&nbsp;3.1
 <p>&nbsp;</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="https://the-mvm.github.io/assets/img/posts/20210210/GameOfLife.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-8" title="Game of life rules"><img src="https://the-mvm.github.io/assets/img/posts/20210210/GameOfLife.gif" class="img-fluid figure-img" alt="Game of life rules"></a></p>
+<p><a href="https://the-mvm.github.io/assets/img/posts/20210210/GameOfLife.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-11" title="Game of life rules"><img src="https://the-mvm.github.io/assets/img/posts/20210210/GameOfLife.gif" class="img-fluid figure-img" alt="Game of life rules"></a></p>
 <figcaption>Game of life rules</figcaption>
 </figure>
 </div>
@@ -1508,7 +1401,7 @@ Figure&nbsp;3.1
 <p>&nbsp;</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="https://d2r55xnwy6nx47.cloudfront.net/uploads/2024/01/TheRulesOfLifebyMerrillSherman_560-Desktop.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-9" title="Game of life rules"><img src="https://d2r55xnwy6nx47.cloudfront.net/uploads/2024/01/TheRulesOfLifebyMerrillSherman_560-Desktop.svg" class="img-fluid figure-img" alt="Game of life rules"></a></p>
+<p><a href="https://d2r55xnwy6nx47.cloudfront.net/uploads/2024/01/TheRulesOfLifebyMerrillSherman_560-Desktop.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-12" title="Game of life rules"><img src="https://d2r55xnwy6nx47.cloudfront.net/uploads/2024/01/TheRulesOfLifebyMerrillSherman_560-Desktop.svg" class="img-fluid figure-img" alt="Game of life rules"></a></p>
 <figcaption>Game of life rules</figcaption>
 </figure>
 </div>
@@ -1538,20 +1431,20 @@ Figure&nbsp;3.1
 <p>Many different types of patterns occur in the Game of Life, including static patterns (“still lifes”), repeating patterns (“oscillators” – a superset of still lifes), and patterns that move across the board (“spaceships”). Common examples of these three classes are shown below, with live cells in black and dead cells in white.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="https://blog.xojo.com/wp-content/uploads/2022/05/CleanShot-2022-05-02-at-14.25.12@2x.png" class="lightbox" data-gallery="quarto-lightbox-gallery-10" title="Gosper glider gun"><img src="https://blog.xojo.com/wp-content/uploads/2022/05/CleanShot-2022-05-02-at-14.25.12@2x.png" class="img-fluid figure-img" alt="Gosper glider gun"></a></p>
+<p><a href="https://blog.xojo.com/wp-content/uploads/2022/05/CleanShot-2022-05-02-at-14.25.12@2x.png" class="lightbox" data-gallery="quarto-lightbox-gallery-13" title="Gosper glider gun"><img src="https://blog.xojo.com/wp-content/uploads/2022/05/CleanShot-2022-05-02-at-14.25.12@2x.png" class="img-fluid figure-img" alt="Gosper glider gun"></a></p>
 <figcaption>Gosper glider gun</figcaption>
 </figure>
 </div>
 <p>Using the provided rules, you can investigate the evolution of simple patterns:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="https://pi.math.cornell.edu/~lipa/mec/lifep.png" class="lightbox" data-gallery="quarto-lightbox-gallery-11" title="3 cells"><img src="https://pi.math.cornell.edu/~lipa/mec/lifep.png" class="img-fluid figure-img" alt="3 cells"></a></p>
+<p><a href="https://pi.math.cornell.edu/~lipa/mec/lifep.png" class="lightbox" data-gallery="quarto-lightbox-gallery-14" title="3 cells"><img src="https://pi.math.cornell.edu/~lipa/mec/lifep.png" class="img-fluid figure-img" alt="3 cells"></a></p>
 <figcaption>3 cells</figcaption>
 </figure>
 </div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="https://pi.math.cornell.edu/~lipa/mec/4life2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-12" title="4 cells"><img src="https://pi.math.cornell.edu/~lipa/mec/4life2.png" class="img-fluid figure-img" alt="4 cells"></a></p>
+<p><a href="https://pi.math.cornell.edu/~lipa/mec/4life2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-15" title="4 cells"><img src="https://pi.math.cornell.edu/~lipa/mec/4life2.png" class="img-fluid figure-img" alt="4 cells"></a></p>
 <figcaption>4 cells</figcaption>
 </figure>
 </div>
@@ -1559,41 +1452,41 @@ Figure&nbsp;3.1
 <p>Patterns that evolve for long periods before stabilizing are called <code>Methuselahs</code>, the first of which discovered was the <code>R-pentomino</code>.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Game_of_life_fpento.svg/164px-Game_of_life_fpento.svg.png" class="lightbox" data-gallery="quarto-lightbox-gallery-13" title="R-pendomino"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Game_of_life_fpento.svg/164px-Game_of_life_fpento.svg.png" class="img-fluid figure-img" alt="R-pendomino"></a></p>
+<p><a href="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Game_of_life_fpento.svg/164px-Game_of_life_fpento.svg.png" class="lightbox" data-gallery="quarto-lightbox-gallery-16" title="R-pendomino"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Game_of_life_fpento.svg/164px-Game_of_life_fpento.svg.png" class="img-fluid figure-img" alt="R-pendomino"></a></p>
 <figcaption>R-pendomino</figcaption>
 </figure>
 </div>
 <p><code>Diehard</code> is a pattern that eventually disappears, rather than stabilizing, after 130 generations, which is believed to be the maximum for initial patterns with seven or fewer cells.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Game_of_life_diehard.svg/324px-Game_of_life_diehard.svg.png" class="lightbox" data-gallery="quarto-lightbox-gallery-14" title="Diehard"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Game_of_life_diehard.svg/324px-Game_of_life_diehard.svg.png" class="img-fluid figure-img" alt="Diehard"></a></p>
+<p><a href="https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Game_of_life_diehard.svg/324px-Game_of_life_diehard.svg.png" class="lightbox" data-gallery="quarto-lightbox-gallery-17" title="Diehard"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Game_of_life_diehard.svg/324px-Game_of_life_diehard.svg.png" class="img-fluid figure-img" alt="Diehard"></a></p>
 <figcaption>Diehard</figcaption>
 </figure>
 </div>
 <p><code>Acorn</code> takes 5,206 generations to produce 633 cells, including 13 escaping gliders.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Game_of_life_acorn.svg/292px-Game_of_life_acorn.svg.png" class="lightbox" data-gallery="quarto-lightbox-gallery-15" title="Acorn"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Game_of_life_acorn.svg/292px-Game_of_life_acorn.svg.png" class="img-fluid figure-img" alt="Acorn"></a></p>
+<p><a href="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Game_of_life_acorn.svg/292px-Game_of_life_acorn.svg.png" class="lightbox" data-gallery="quarto-lightbox-gallery-18" title="Acorn"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Game_of_life_acorn.svg/292px-Game_of_life_acorn.svg.png" class="img-fluid figure-img" alt="Acorn"></a></p>
 <figcaption>Acorn</figcaption>
 </figure>
 </div>
 <p>Conway originally conjectured that no pattern could grow indefinitely; that is, for any initial configuration with a finite number of live cells, the population could not grow beyond some finite upper bound. The <code>Gosper glider gun</code> pattern produces its first glider in the 15th generation, and another every 30 generations thereafter.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Game_of_life_glider_gun.svg/1000px-Game_of_life_glider_gun.svg.png" class="lightbox" data-gallery="quarto-lightbox-gallery-16" title="Gosper’s glider gun"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Game_of_life_glider_gun.svg/1000px-Game_of_life_glider_gun.svg.png" class="img-fluid figure-img" alt="Gosper’s glider gun"></a></p>
+<p><a href="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Game_of_life_glider_gun.svg/1000px-Game_of_life_glider_gun.svg.png" class="lightbox" data-gallery="quarto-lightbox-gallery-19" title="Gosper’s glider gun"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Game_of_life_glider_gun.svg/1000px-Game_of_life_glider_gun.svg.png" class="img-fluid figure-img" alt="Gosper’s glider gun"></a></p>
 <figcaption>Gosper’s glider gun</figcaption>
 </figure>
 </div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="https://upload.wikimedia.org/wikipedia/commons/e/e5/Gospers_glider_gun.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-17" title="Gosper glider gun"><img src="https://upload.wikimedia.org/wikipedia/commons/e/e5/Gospers_glider_gun.gif" class="img-fluid figure-img" alt="Gosper glider gun"></a></p>
+<p><a href="https://upload.wikimedia.org/wikipedia/commons/e/e5/Gospers_glider_gun.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-20" title="Gosper glider gun"><img src="https://upload.wikimedia.org/wikipedia/commons/e/e5/Gospers_glider_gun.gif" class="img-fluid figure-img" alt="Gosper glider gun"></a></p>
 <figcaption>Gosper glider gun</figcaption>
 </figure>
 </div>
 <p>For many years, this pattern was the smallest known. In 2015, a gun called <code>Simkin glider gun</code> was discovered, which emits a glider every 120 generations, and has fewer live cells but is spread across a larger bounding box at its ends.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Game_of_life_Simkin_glider_gun.svg/1000px-Game_of_life_Simkin_glider_gun.svg.png" class="lightbox" data-gallery="quarto-lightbox-gallery-18" title="Simkin glider gun"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Game_of_life_Simkin_glider_gun.svg/1000px-Game_of_life_Simkin_glider_gun.svg.png" class="img-fluid figure-img" alt="Simkin glider gun"></a></p>
+<p><a href="https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Game_of_life_Simkin_glider_gun.svg/1000px-Game_of_life_Simkin_glider_gun.svg.png" class="lightbox" data-gallery="quarto-lightbox-gallery-21" title="Simkin glider gun"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Game_of_life_Simkin_glider_gun.svg/1000px-Game_of_life_Simkin_glider_gun.svg.png" class="img-fluid figure-img" alt="Simkin glider gun"></a></p>
 <figcaption>Simkin glider gun</figcaption>
 </figure>
 </div>
@@ -1602,84 +1495,84 @@ Figure&nbsp;3.1
 </section>
 <section id="python-implementation-of-game-of-life" class="level3" data-number="3.5.8">
 <h3 data-number="3.5.8" class="anchored" data-anchor-id="python-implementation-of-game-of-life"><span class="header-section-number">3.5.8</span> Python Implementation of Game of Life</h3>
-<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pygame</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>COLOR_BG <span class="op">=</span> (<span class="dv">10</span>, <span class="dv">10</span>, <span class="dv">10</span>,)  <span class="co"># Color de fondo</span></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>COLOR_GRID <span class="op">=</span> (<span class="dv">40</span>, <span class="dv">40</span>, <span class="dv">40</span>)  <span class="co"># Color de la cuadrícula</span></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>COLOR_DIE_NEXT <span class="op">=</span> (<span class="dv">170</span>, <span class="dv">170</span>, <span class="dv">170</span>)  <span class="co"># Color de las células que mueren en la siguiente generación</span></span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>COLOR_ALIVE_NEXT <span class="op">=</span> (<span class="dv">255</span>, <span class="dv">255</span>, <span class="dv">255</span>)  <span class="co"># Color de las células que siguen vivas en la siguiente generación</span></span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>pygame.init()</span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>pygame.display.set_caption(<span class="st">"conway's game of life"</span>)  <span class="co"># Título de la ventana del juego</span></span>
-<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Función para actualizar la pantalla con las células</span></span>
-<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> update(screen, cells, size, with_progress<span class="op">=</span><span class="va">False</span>):</span>
-<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>    updated_cells <span class="op">=</span> np.zeros((cells.shape[<span class="dv">0</span>], cells.shape[<span class="dv">1</span>]))  <span class="co"># Matriz para almacenar las células actualizadas</span></span>
-<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> row, col <span class="kw">in</span> np.ndindex(cells.shape):</span>
-<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>        alive <span class="op">=</span> np.<span class="bu">sum</span>(cells[row<span class="op">-</span><span class="dv">1</span>:row<span class="op">+</span><span class="dv">2</span>, col<span class="op">-</span><span class="dv">1</span>:col<span class="op">+</span><span class="dv">2</span>]) <span class="op">-</span> cells[row, col]  <span class="co"># Cálculo de células vecinas vivas</span></span>
-<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>        color <span class="op">=</span> COLOR_BG <span class="cf">if</span> cells[row, col] <span class="op">==</span> <span class="dv">0</span> <span class="cf">else</span> COLOR_ALIVE_NEXT  <span class="co"># Color de la célula actual</span></span>
-<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> cells[row, col] <span class="op">==</span> <span class="dv">1</span>:  <span class="co"># Si la célula actual está viva</span></span>
-<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> alive <span class="op">&lt;</span> <span class="dv">2</span> <span class="kw">or</span> alive <span class="op">&gt;</span> <span class="dv">3</span>:  <span class="co"># Si tiene menos de 2 o más de 3 vecinos vivos, muere</span></span>
-<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> with_progress:</span>
-<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>                    color <span class="op">=</span> COLOR_DIE_NEXT</span>
-<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a>            <span class="cf">elif</span> <span class="dv">2</span> <span class="op">&lt;=</span> alive <span class="op">&lt;=</span> <span class="dv">3</span>:  <span class="co"># Si tiene 2 o 3 vecinos vivos, sigue viva</span></span>
-<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a>                updated_cells[row, col] <span class="op">=</span> <span class="dv">1</span></span>
-<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> with_progress:</span>
-<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a>                    color <span class="op">=</span> COLOR_ALIVE_NEXT</span>
-<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:  <span class="co"># Si la célula actual está muerta</span></span>
-<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> alive <span class="op">==</span> <span class="dv">3</span>:  <span class="co"># Si tiene exactamente 3 vecinos vivos, revive</span></span>
-<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a>                updated_cells[row, col] <span class="op">=</span> <span class="dv">1</span></span>
-<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> with_progress:</span>
-<span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a>                    color <span class="op">=</span> COLOR_ALIVE_NEXT</span>
-<span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-35"><a href="#cb11-35" aria-hidden="true" tabindex="-1"></a>        pygame.draw.rect(screen, color, (col <span class="op">*</span> size, row <span class="op">*</span> size, size <span class="op">-</span> <span class="dv">1</span>, size <span class="op">-</span> <span class="dv">1</span>))  <span class="co"># Dibuja la célula en la pantalla</span></span>
-<span id="cb11-36"><a href="#cb11-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-37"><a href="#cb11-37" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> updated_cells  <span class="co"># Devuelve las células actualizadas</span></span>
-<span id="cb11-38"><a href="#cb11-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-39"><a href="#cb11-39" aria-hidden="true" tabindex="-1"></a><span class="co"># Función principal del programa</span></span>
-<span id="cb11-40"><a href="#cb11-40" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> main():</span>
-<span id="cb11-41"><a href="#cb11-41" aria-hidden="true" tabindex="-1"></a>    pygame.init()</span>
-<span id="cb11-42"><a href="#cb11-42" aria-hidden="true" tabindex="-1"></a>    screen <span class="op">=</span> pygame.display.set_mode((<span class="dv">800</span>, <span class="dv">600</span>))  <span class="co"># Crea la ventana del juego</span></span>
-<span id="cb11-43"><a href="#cb11-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-44"><a href="#cb11-44" aria-hidden="true" tabindex="-1"></a>    cells <span class="op">=</span> np.zeros((<span class="dv">60</span>, <span class="dv">80</span>))  <span class="co"># Crea una matriz de células muertas</span></span>
-<span id="cb11-45"><a href="#cb11-45" aria-hidden="true" tabindex="-1"></a>    screen.fill(COLOR_GRID)  <span class="co"># Rellena la pantalla con el color de la cuadrícula</span></span>
-<span id="cb11-46"><a href="#cb11-46" aria-hidden="true" tabindex="-1"></a>    update(screen, cells, <span class="dv">10</span>)  <span class="co"># Actualiza la pantalla con las células</span></span>
-<span id="cb11-47"><a href="#cb11-47" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-48"><a href="#cb11-48" aria-hidden="true" tabindex="-1"></a>    pygame.display.flip()</span>
-<span id="cb11-49"><a href="#cb11-49" aria-hidden="true" tabindex="-1"></a>    pygame.display.update()</span>
-<span id="cb11-50"><a href="#cb11-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-51"><a href="#cb11-51" aria-hidden="true" tabindex="-1"></a>    running <span class="op">=</span> <span class="va">False</span>  <span class="co"># Variable para controlar si el juego está en ejecución</span></span>
-<span id="cb11-52"><a href="#cb11-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-53"><a href="#cb11-53" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="va">True</span>:</span>
-<span id="cb11-54"><a href="#cb11-54" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> Q <span class="kw">in</span> pygame.event.get():</span>
-<span id="cb11-55"><a href="#cb11-55" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> Q.<span class="bu">type</span> <span class="op">==</span> pygame.QUIT:  <span class="co"># Si se cierra la ventana, termina el programa</span></span>
-<span id="cb11-56"><a href="#cb11-56" aria-hidden="true" tabindex="-1"></a>                pygame.quit()</span>
-<span id="cb11-57"><a href="#cb11-57" aria-hidden="true" tabindex="-1"></a>                <span class="cf">return</span></span>
-<span id="cb11-58"><a href="#cb11-58" aria-hidden="true" tabindex="-1"></a>            <span class="cf">elif</span> Q.<span class="bu">type</span> <span class="op">==</span> pygame.KEYDOWN:</span>
-<span id="cb11-59"><a href="#cb11-59" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> Q.key <span class="op">==</span> pygame.K_SPACE:  <span class="co"># Si se presiona la tecla espacio, se inicia o pausa el juego</span></span>
-<span id="cb11-60"><a href="#cb11-60" aria-hidden="true" tabindex="-1"></a>                    running <span class="op">=</span> <span class="kw">not</span> running</span>
-<span id="cb11-61"><a href="#cb11-61" aria-hidden="true" tabindex="-1"></a>                    update(screen, cells, <span class="dv">10</span>)</span>
-<span id="cb11-62"><a href="#cb11-62" aria-hidden="true" tabindex="-1"></a>                    pygame.display.update()</span>
-<span id="cb11-63"><a href="#cb11-63" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> pygame.mouse.get_pressed()[<span class="dv">0</span>]:  <span class="co"># Si se presiona el botón izquierdo del ratón</span></span>
-<span id="cb11-64"><a href="#cb11-64" aria-hidden="true" tabindex="-1"></a>                pos <span class="op">=</span> pygame.mouse.get_pos()  <span class="co"># Obtiene la posición del ratón</span></span>
-<span id="cb11-65"><a href="#cb11-65" aria-hidden="true" tabindex="-1"></a>                cells[pos[<span class="dv">1</span>] <span class="op">//</span> <span class="dv">10</span>, pos[<span class="dv">0</span>] <span class="op">//</span> <span class="dv">10</span>] <span class="op">=</span> <span class="dv">1</span>  <span class="co"># Marca la célula correspondiente como viva</span></span>
-<span id="cb11-66"><a href="#cb11-66" aria-hidden="true" tabindex="-1"></a>                update(screen, cells, <span class="dv">10</span>)</span>
-<span id="cb11-67"><a href="#cb11-67" aria-hidden="true" tabindex="-1"></a>                pygame.display.update()</span>
-<span id="cb11-68"><a href="#cb11-68" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-69"><a href="#cb11-69" aria-hidden="true" tabindex="-1"></a>        screen.fill(COLOR_GRID)  <span class="co"># Rellena la pantalla con el color de la cuadrícula</span></span>
-<span id="cb11-70"><a href="#cb11-70" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-71"><a href="#cb11-71" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> running:  <span class="co"># Si el juego está en ejecución</span></span>
-<span id="cb11-72"><a href="#cb11-72" aria-hidden="true" tabindex="-1"></a>            cells <span class="op">=</span> update(screen, cells, <span class="dv">10</span>, with_progress<span class="op">=</span><span class="va">True</span>)  <span class="co"># Actualiza las células con progreso</span></span>
-<span id="cb11-73"><a href="#cb11-73" aria-hidden="true" tabindex="-1"></a>            pygame.display.update()</span>
-<span id="cb11-74"><a href="#cb11-74" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-75"><a href="#cb11-75" aria-hidden="true" tabindex="-1"></a>        time.sleep(<span class="fl">0.001</span>)  <span class="co"># Espera un breve tiempo para controlar la velocidad del juego</span></span>
-<span id="cb11-76"><a href="#cb11-76" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-77"><a href="#cb11-77" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">"__main__"</span>:</span>
-<span id="cb11-78"><a href="#cb11-78" aria-hidden="true" tabindex="-1"></a>    main()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pygame</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>COLOR_BG <span class="op">=</span> (<span class="dv">10</span>, <span class="dv">10</span>, <span class="dv">10</span>,)  <span class="co"># Color de fondo</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>COLOR_GRID <span class="op">=</span> (<span class="dv">40</span>, <span class="dv">40</span>, <span class="dv">40</span>)  <span class="co"># Color de la cuadrícula</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>COLOR_DIE_NEXT <span class="op">=</span> (<span class="dv">170</span>, <span class="dv">170</span>, <span class="dv">170</span>)  <span class="co"># Color de las células que mueren en la siguiente generación</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>COLOR_ALIVE_NEXT <span class="op">=</span> (<span class="dv">255</span>, <span class="dv">255</span>, <span class="dv">255</span>)  <span class="co"># Color de las células que siguen vivas en la siguiente generación</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>pygame.init()</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>pygame.display.set_caption(<span class="st">"conway's game of life"</span>)  <span class="co"># Título de la ventana del juego</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Función para actualizar la pantalla con las células</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> update(screen, cells, size, with_progress<span class="op">=</span><span class="va">False</span>):</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>    updated_cells <span class="op">=</span> np.zeros((cells.shape[<span class="dv">0</span>], cells.shape[<span class="dv">1</span>]))  <span class="co"># Matriz para almacenar las células actualizadas</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> row, col <span class="kw">in</span> np.ndindex(cells.shape):</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>        alive <span class="op">=</span> np.<span class="bu">sum</span>(cells[row<span class="op">-</span><span class="dv">1</span>:row<span class="op">+</span><span class="dv">2</span>, col<span class="op">-</span><span class="dv">1</span>:col<span class="op">+</span><span class="dv">2</span>]) <span class="op">-</span> cells[row, col]  <span class="co"># Cálculo de células vecinas vivas</span></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>        color <span class="op">=</span> COLOR_BG <span class="cf">if</span> cells[row, col] <span class="op">==</span> <span class="dv">0</span> <span class="cf">else</span> COLOR_ALIVE_NEXT  <span class="co"># Color de la célula actual</span></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> cells[row, col] <span class="op">==</span> <span class="dv">1</span>:  <span class="co"># Si la célula actual está viva</span></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> alive <span class="op">&lt;</span> <span class="dv">2</span> <span class="kw">or</span> alive <span class="op">&gt;</span> <span class="dv">3</span>:  <span class="co"># Si tiene menos de 2 o más de 3 vecinos vivos, muere</span></span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> with_progress:</span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>                    color <span class="op">=</span> COLOR_DIE_NEXT</span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>            <span class="cf">elif</span> <span class="dv">2</span> <span class="op">&lt;=</span> alive <span class="op">&lt;=</span> <span class="dv">3</span>:  <span class="co"># Si tiene 2 o 3 vecinos vivos, sigue viva</span></span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>                updated_cells[row, col] <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> with_progress:</span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>                    color <span class="op">=</span> COLOR_ALIVE_NEXT</span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:  <span class="co"># Si la célula actual está muerta</span></span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> alive <span class="op">==</span> <span class="dv">3</span>:  <span class="co"># Si tiene exactamente 3 vecinos vivos, revive</span></span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a>                updated_cells[row, col] <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> with_progress:</span>
+<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a>                    color <span class="op">=</span> COLOR_ALIVE_NEXT</span>
+<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a>        pygame.draw.rect(screen, color, (col <span class="op">*</span> size, row <span class="op">*</span> size, size <span class="op">-</span> <span class="dv">1</span>, size <span class="op">-</span> <span class="dv">1</span>))  <span class="co"># Dibuja la célula en la pantalla</span></span>
+<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> updated_cells  <span class="co"># Devuelve las células actualizadas</span></span>
+<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a><span class="co"># Función principal del programa</span></span>
+<span id="cb8-40"><a href="#cb8-40" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> main():</span>
+<span id="cb8-41"><a href="#cb8-41" aria-hidden="true" tabindex="-1"></a>    pygame.init()</span>
+<span id="cb8-42"><a href="#cb8-42" aria-hidden="true" tabindex="-1"></a>    screen <span class="op">=</span> pygame.display.set_mode((<span class="dv">800</span>, <span class="dv">600</span>))  <span class="co"># Crea la ventana del juego</span></span>
+<span id="cb8-43"><a href="#cb8-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-44"><a href="#cb8-44" aria-hidden="true" tabindex="-1"></a>    cells <span class="op">=</span> np.zeros((<span class="dv">60</span>, <span class="dv">80</span>))  <span class="co"># Crea una matriz de células muertas</span></span>
+<span id="cb8-45"><a href="#cb8-45" aria-hidden="true" tabindex="-1"></a>    screen.fill(COLOR_GRID)  <span class="co"># Rellena la pantalla con el color de la cuadrícula</span></span>
+<span id="cb8-46"><a href="#cb8-46" aria-hidden="true" tabindex="-1"></a>    update(screen, cells, <span class="dv">10</span>)  <span class="co"># Actualiza la pantalla con las células</span></span>
+<span id="cb8-47"><a href="#cb8-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-48"><a href="#cb8-48" aria-hidden="true" tabindex="-1"></a>    pygame.display.flip()</span>
+<span id="cb8-49"><a href="#cb8-49" aria-hidden="true" tabindex="-1"></a>    pygame.display.update()</span>
+<span id="cb8-50"><a href="#cb8-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-51"><a href="#cb8-51" aria-hidden="true" tabindex="-1"></a>    running <span class="op">=</span> <span class="va">False</span>  <span class="co"># Variable para controlar si el juego está en ejecución</span></span>
+<span id="cb8-52"><a href="#cb8-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-53"><a href="#cb8-53" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb8-54"><a href="#cb8-54" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> Q <span class="kw">in</span> pygame.event.get():</span>
+<span id="cb8-55"><a href="#cb8-55" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> Q.<span class="bu">type</span> <span class="op">==</span> pygame.QUIT:  <span class="co"># Si se cierra la ventana, termina el programa</span></span>
+<span id="cb8-56"><a href="#cb8-56" aria-hidden="true" tabindex="-1"></a>                pygame.quit()</span>
+<span id="cb8-57"><a href="#cb8-57" aria-hidden="true" tabindex="-1"></a>                <span class="cf">return</span></span>
+<span id="cb8-58"><a href="#cb8-58" aria-hidden="true" tabindex="-1"></a>            <span class="cf">elif</span> Q.<span class="bu">type</span> <span class="op">==</span> pygame.KEYDOWN:</span>
+<span id="cb8-59"><a href="#cb8-59" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> Q.key <span class="op">==</span> pygame.K_SPACE:  <span class="co"># Si se presiona la tecla espacio, se inicia o pausa el juego</span></span>
+<span id="cb8-60"><a href="#cb8-60" aria-hidden="true" tabindex="-1"></a>                    running <span class="op">=</span> <span class="kw">not</span> running</span>
+<span id="cb8-61"><a href="#cb8-61" aria-hidden="true" tabindex="-1"></a>                    update(screen, cells, <span class="dv">10</span>)</span>
+<span id="cb8-62"><a href="#cb8-62" aria-hidden="true" tabindex="-1"></a>                    pygame.display.update()</span>
+<span id="cb8-63"><a href="#cb8-63" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> pygame.mouse.get_pressed()[<span class="dv">0</span>]:  <span class="co"># Si se presiona el botón izquierdo del ratón</span></span>
+<span id="cb8-64"><a href="#cb8-64" aria-hidden="true" tabindex="-1"></a>                pos <span class="op">=</span> pygame.mouse.get_pos()  <span class="co"># Obtiene la posición del ratón</span></span>
+<span id="cb8-65"><a href="#cb8-65" aria-hidden="true" tabindex="-1"></a>                cells[pos[<span class="dv">1</span>] <span class="op">//</span> <span class="dv">10</span>, pos[<span class="dv">0</span>] <span class="op">//</span> <span class="dv">10</span>] <span class="op">=</span> <span class="dv">1</span>  <span class="co"># Marca la célula correspondiente como viva</span></span>
+<span id="cb8-66"><a href="#cb8-66" aria-hidden="true" tabindex="-1"></a>                update(screen, cells, <span class="dv">10</span>)</span>
+<span id="cb8-67"><a href="#cb8-67" aria-hidden="true" tabindex="-1"></a>                pygame.display.update()</span>
+<span id="cb8-68"><a href="#cb8-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-69"><a href="#cb8-69" aria-hidden="true" tabindex="-1"></a>        screen.fill(COLOR_GRID)  <span class="co"># Rellena la pantalla con el color de la cuadrícula</span></span>
+<span id="cb8-70"><a href="#cb8-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-71"><a href="#cb8-71" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> running:  <span class="co"># Si el juego está en ejecución</span></span>
+<span id="cb8-72"><a href="#cb8-72" aria-hidden="true" tabindex="-1"></a>            cells <span class="op">=</span> update(screen, cells, <span class="dv">10</span>, with_progress<span class="op">=</span><span class="va">True</span>)  <span class="co"># Actualiza las células con progreso</span></span>
+<span id="cb8-73"><a href="#cb8-73" aria-hidden="true" tabindex="-1"></a>            pygame.display.update()</span>
+<span id="cb8-74"><a href="#cb8-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-75"><a href="#cb8-75" aria-hidden="true" tabindex="-1"></a>        time.sleep(<span class="fl">0.001</span>)  <span class="co"># Espera un breve tiempo para controlar la velocidad del juego</span></span>
+<span id="cb8-76"><a href="#cb8-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-77"><a href="#cb8-77" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">"__main__"</span>:</span>
+<span id="cb8-78"><a href="#cb8-78" aria-hidden="true" tabindex="-1"></a>    main()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <hr>
 <p>This Python script implements Conway’s Game of Life, a cellular automaton devised by British mathematician John Horton Conway. It is a zero-player game, meaning its evolution is determined entirely by its initial state, with no further input required.</p>
 <p>The script begins by importing the necessary modules: <code>time</code>, <code>pygame</code> for the graphical interface, and <code>numpy</code> to handle the game grid as a 2D matrix. It then defines color constants used for visualizing the game.</p>

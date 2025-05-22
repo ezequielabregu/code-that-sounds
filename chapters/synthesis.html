@@ -66,8 +66,6 @@ div.csl-indent {
 <link href="../site_libs/bootstrap/bootstrap-1e81d527365e20b3495763033adbcf98.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="../site_libs/bootstrap/bootstrap-dark-8ab8b311eebd604b8865a9cbc6c08092.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <link href="../site_libs/bootstrap/bootstrap-1e81d527365e20b3495763033adbcf98.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
-<script src="../site_libs/quarto-contrib/videojs/video.min.js"></script>
-<link href="../site_libs/quarto-contrib/videojs/video-js.css" rel="stylesheet">
 <script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
 <link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
 <link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
@@ -703,7 +701,7 @@ Period = 1 / 100 Hz = 0.01 s = 10 ms</code></pre>
 <p>Ring modulation is a particular form of amplitude modulation where both the carrier and modulator signals are <em>bipolar</em>, meaning they oscillate between -1 and 1 without any DC offset. In this configuration, there’s no functional distinction between carrier and modulator—both behave symmetrically.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="../assets/screenshots/synthesis/am-rm/rm.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-22" title="Ring Modulation"><img src="../assets/screenshots/synthesis/am-rm/rm.gif" class="img-fluid figure-img" alt="Ring Modulation"></a></p>
+<p><a href="../assets/screenshots/synthesis/am-rm/rm.png" class="lightbox" data-gallery="quarto-lightbox-gallery-22" title="Ring Modulation"><img src="../assets/screenshots/synthesis/am-rm/rm.png" class="img-fluid figure-img" alt="Ring Modulation"></a></p>
 <figcaption>Ring Modulation</figcaption>
 </figure>
 </div>
@@ -737,13 +735,23 @@ Period = 1 / 100 Hz = 0.01 s = 10 ms</code></pre>
 <section id="other-waveforms" class="level3" data-number="4.5.5">
 <h3 data-number="4.5.5" class="anchored" data-anchor-id="other-waveforms"><span class="header-section-number">4.5.5</span> Other Waveforms</h3>
 <p>Using more complex waveforms for the modulator signal leads to the creation of additional partials within any amplitude modulation patch—including ring modulation. Sine waves are typically favored as modulators since they offer clean and controlled results, especially when applying AM as an audio effect.</p>
-<div class="quarto-video"><video id="video_shortcode_videojs_video1" class="video-js vjs-default-skin vjs-fluid" controls="" preload="auto" data-setup="{}" title=""><source src="../assets/screenshots/synthesis/am-rm/other-waveforms.mov"></video></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../assets/screenshots/synthesis/am-rm/other-waveforms.png" class="lightbox" data-gallery="quarto-lightbox-gallery-25" title="Fig."><img src="../assets/screenshots/synthesis/am-rm/other-waveforms.png" class="img-fluid figure-img" alt="Fig."></a></p>
+<figcaption>Fig.</figcaption>
+</figure>
+</div>
 <p>However, in synthesis contexts, more intricate and harmonically rich methods—such as <em>frequency</em> and <em>phase</em> modulation—offer more efficient and versatile approaches for generating complex timbres. We’ll explore these in the following sections.</p>
 </section>
 <section id="tremolo" class="level3" data-number="4.5.6">
 <h3 data-number="4.5.6" class="anchored" data-anchor-id="tremolo"><span class="header-section-number">4.5.6</span> Tremolo</h3>
 <p>Tremolo is essentially amplitude modulation using a <em>low-frequency</em> modulator. The key addition is a <em>depth</em> parameter, ranging from 0 to 1, which determines the modulation intensity. At 0, no modulation occurs (dry signal), while a depth of 1 results in full tremolo, where the carrier’s amplitude is modulated across its full range.</p>
-<div class="quarto-video"><video id="video_shortcode_videojs_video2" class="video-js vjs-default-skin vjs-fluid" controls="" preload="auto" data-setup="{}" title=""><source src="../assets/screenshots/synthesis/am-rm/tremolo.mov"></video></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../assets/screenshots/synthesis/am-rm/tremolo.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-26" title="Fig."><img src="../assets/screenshots/synthesis/am-rm/tremolo.gif" class="img-fluid figure-img" alt="Fig."></a></p>
+<figcaption>Fig.</figcaption>
+</figure>
+</div>
 </section>
 </section>
 <section id="frequency-modulation" class="level2" data-number="4.6">
@@ -752,7 +760,7 @@ Period = 1 / 100 Hz = 0.01 s = 10 ms</code></pre>
 <p>The signal being modulated is called the <em>carrier</em>; in the case of frequency modulation, it is also referred to as the <em>carrier frequency</em>. In contrast, we have the <em>modulating frequency</em>, which corresponds to the frequency of the modulating oscillator. The depth of frequency variation is determined by the amplitude of the modulator and is commonly referred to as the <em>modulation index</em>. The modulation process itself is straightforward: we add the modulating signal to the frequency input of the carrier oscillator. See the example on the right</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="../assets/screenshots/synthesis/fm/intro.png" class="lightbox" data-gallery="quarto-lightbox-gallery-25" title="Fig."><img src="../assets/screenshots/synthesis/fm/intro.png" class="img-fluid figure-img" style="width:50.0%" alt="Fig."></a></p>
+<p><a href="../assets/screenshots/synthesis/fm/intro.png" class="lightbox" data-gallery="quarto-lightbox-gallery-27" title="Fig."><img src="../assets/screenshots/synthesis/fm/intro.png" class="img-fluid figure-img" style="width:50.0%" alt="Fig."></a></p>
 <figcaption>Fig.</figcaption>
 </figure>
 </div>
@@ -760,7 +768,12 @@ Period = 1 / 100 Hz = 0.01 s = 10 ms</code></pre>
 <section id="fm-simple" class="level3" data-number="4.6.1">
 <h3 data-number="4.6.1" class="anchored" data-anchor-id="fm-simple"><span class="header-section-number">4.6.1</span> FM Simple</h3>
 <p>We apply the same structure as before. Besides a vibrato example, this section includes fully developed FM examples. As with amplitude modulation, FM produces <em>sidebands</em> spaced by intervals equal to the modulation frequency. However, FM can generate many more sidebands, potentially resulting in a much richer spectrum.</p>
-<div class="quarto-video"><video id="video_shortcode_videojs_video3" class="video-js vjs-default-skin vjs-fluid" controls="" preload="auto" data-setup="{}" title=""><source src="../assets/screenshots/synthesis/fm/fm.mov"></video></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../assets/screenshots/synthesis/fm/fm.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-28" title="Fig."><img src="../assets/screenshots/synthesis/fm/fm.gif" class="img-fluid figure-img" alt="Fig."></a></p>
+<figcaption>Fig.</figcaption>
+</figure>
+</div>
 <p>The higher the modulation index, the greater the number of resulting partials—enabling the creation of dense and complex waveforms. When the carrier and modulator frequencies share a simple harmonic ratio, the resulting waveform is harmonic. Otherwise, it tends to be inharmonic. Click on the message boxes to hear the preset examples.</p>
 </section>
 <section id="other-waveforms-1" class="level3" data-number="4.6.2">
@@ -768,7 +781,7 @@ Period = 1 / 100 Hz = 0.01 s = 10 ms</code></pre>
 <p>In this patch, we experiment with different oscillator combinations. Waveforms are arranged according to spectral complexity—from simple sine waves to rich sawtooth waves (the only waveform here containing both even and odd harmonics). The more complex the waveform used, the more intricate the FM result becomes.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="../assets/screenshots/synthesis/fm/other-waveforms.png" class="lightbox" data-gallery="quarto-lightbox-gallery-26" title="Fig."><img src="../assets/screenshots/synthesis/fm/other-waveforms.png" class="img-fluid figure-img" alt="Fig."></a></p>
+<p><a href="../assets/screenshots/synthesis/fm/other-waveforms.png" class="lightbox" data-gallery="quarto-lightbox-gallery-29" title="Fig."><img src="../assets/screenshots/synthesis/fm/other-waveforms.png" class="img-fluid figure-img" alt="Fig."></a></p>
 <figcaption>Fig.</figcaption>
 </figure>
 </div>
@@ -779,7 +792,7 @@ Period = 1 / 100 Hz = 0.01 s = 10 ms</code></pre>
 <p>We can also use exponential pitch values (such as MIDI note numbers) instead of linear frequency input. The key difference here is that <em>frequency deviation</em>—the modulation index—is now expressed in <em>semitones</em>, not Hertz. This shift affects the entire modulation behavior.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="../assets/screenshots/synthesis/fm/exponential-freq.png" class="lightbox" data-gallery="quarto-lightbox-gallery-27" title="Fig."><img src="../assets/screenshots/synthesis/fm/exponential-freq.png" class="img-fluid figure-img" alt="Fig."></a></p>
+<p><a href="../assets/screenshots/synthesis/fm/exponential-freq.png" class="lightbox" data-gallery="quarto-lightbox-gallery-30" title="Fig."><img src="../assets/screenshots/synthesis/fm/exponential-freq.png" class="img-fluid figure-img" alt="Fig."></a></p>
 <figcaption>Fig.</figcaption>
 </figure>
 </div>
@@ -790,7 +803,7 @@ Period = 1 / 100 Hz = 0.01 s = 10 ms</code></pre>
 <p>It is common practice to define the modulating frequency as a <em>ratio</em> of the carrier frequency. This allows us to work with a single frequency input while maintaining a consistent sonic character across different pitches.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="../assets/screenshots/synthesis/fm/ratio.png" class="lightbox" data-gallery="quarto-lightbox-gallery-28" title="Fig."><img src="../assets/screenshots/synthesis/fm/ratio.png" class="img-fluid figure-img" alt="Fig."></a></p>
+<p><a href="../assets/screenshots/synthesis/fm/ratio.png" class="lightbox" data-gallery="quarto-lightbox-gallery-31" title="Fig."><img src="../assets/screenshots/synthesis/fm/ratio.png" class="img-fluid figure-img" alt="Fig."></a></p>
 <figcaption>Fig.</figcaption>
 </figure>
 </div>
@@ -1260,9 +1273,6 @@ Théberge, Paul. 1997. <em>Any Sound You Can Imagine: Making Music/Consuming Tec
     </div>
   </div>
 </footer>
-<script>videojs(video_shortcode_videojs_video1);</script>
-<script>videojs(video_shortcode_videojs_video2);</script>
-<script>videojs(video_shortcode_videojs_video3);</script>
 <script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
 (function() {
   let previousOnload = window.onload;
