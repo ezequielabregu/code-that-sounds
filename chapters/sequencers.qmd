@@ -1,3 +1,8 @@
+---
+title: "Sequencers"
+jupyter: python3
+---
+
 # Sequencers
 
 In this chapter, we will explore the concept of sequencers and how they can be implemented in Pure Data.
@@ -76,17 +81,22 @@ In the original script, the current step increased sequentially, creating a pred
 
 [View Piano Phase Score (S. Reich)](./Biblio%20/SteveReich-PianoPhase.pdf)
 
-*Piano Phase* can be conceived as an algorithm. Starting with two pianos playing the same sequence of notes at the same speed, one of the pianists begins to gradually accelerate their tempo.
+Design patterns are abstractions that capture idiomatic tendencies of practices and processes. These
+abstractions are embedded in live coding languages as
+functions and syntax, allowing for the reuse of these
+practices in new projects. [@brown2023]
 
-When the separation between the notes played by both pianos reaches a fraction of a note's duration, the phase is shifted and the cycle repeats. This process continues endlessly, creating a hypnotic effect of rhythmic phasing that evolves over time as an infinite sequence of iterations.
-
-Piano Phase is an example of "music as a gradual process," as Reich stated in his essay from 1968.[@reich2002]. In it, Reich described his interest in using processes to generate music, particularly noting how the process is perceived by the listener. (Processes are deterministic: a description of the process can describe an entire whole composition.\[5\] In other words, once the basic pattern and the phase process have been defined, the music consists itself.)
+*Piano Phase* is an example of "music as a gradual process," as Reich stated in his essay from 1968.[@reich2002]. In it, Reich described his interest in using processes to generate music, particularly noting how the process is perceived by the listener. (Processes are deterministic: a description of the process can describe an entire whole composition.\[5\] In other words, once the basic pattern and the phase process have been defined, the music consists itself.)
 
 Reich called the unexpected ways change occurred via the process "by-products", formed by the superimposition of patterns. The superimpositions form sub-melodies, often spontaneously due to echo, resonance, dynamics, and tempo, and the general perception of the listener.[@epstein1986]
 
-According to musicologist Keith Potter, Piano Phase led to several breakthroughs that would mark Reich's future compositions. The first is the discovery of using simple but flexible harmonic material, which produces remarkable musical results when phasing occurs. The use of 12-note or 12-division patterns in Piano Phase proved to be successful, and Reich would re-use it in Clapping Music and Music for 18 Musicians. Another novelty is the appearance of rhythmic ambiguity during phasing of a basic pattern. The rhythmic perception during phasing can vary considerably, from being very simple (in-phase), to complex and intricate.
+Piano Phase led to several breakthroughs that would mark Reich's future compositions. The first is the discovery of using simple but flexible harmonic material, which produces remarkable musical results when phasing occurs. The use of 12-note or 12-division patterns in Piano Phase proved to be successful, and Reich would re-use it in Clapping Music and Music for 18 Musicians. Another novelty is the appearance of rhythmic ambiguity during phasing of a basic pattern. The rhythmic perception during phasing can vary considerably, from being very simple (in-phase), to complex and intricate.
 
 The first section of Piano Phase has been the section studied most by musicologists. A property of the first section of phase cycle is that it is symmetric, which results in identical patterns half-way through the phase cycle.[@epstein1986]
+
+*Piano Phase* can be conceived as an algorithm. Starting with two pianos playing the same sequence of notes at the same speed, one of the pianists begins to gradually accelerate their tempo.
+
+When the separation between the notes played by both pianos reaches a fraction of a note's duration, the phase is shifted and the cycle repeats. This process continues endlessly, creating a hypnotic effect of rhythmic phasing that evolves over time as an infinite sequence of iterations.
 
 ![Phase Difference](/assets/images/sequencers/piano-phase-animation-2.gif)
 
@@ -301,29 +311,23 @@ flowchart TD
 
 This patch demonstrates how to algorithmically generate a melody using a musical scale, store it, and play it back via MIDI in Pure Data. The modular structure allows for easy experimentation with different scales, lengths, and playback parameters.
 
-------------------------------------------------------------------------
-
-Here is the translated version of your Markdown text with the code, links, and format preserved:
-
-------------------------------------------------------------------------
 
 ## The Euclidean Algorithm Generates Traditional Musical Rhythms
 
 Godfried Toussaint (2005)
 
-![Eucliden image](https://idmmag.com/wp-content/uploads/2019/02/Euclidean-R-1.jpg)
+![Eucliden image](/assets/images/sequencers/euclidian-seq-1.png)
 
 [Link to the original article](https://cgm.cs.mcgill.ca/~godfried/publications/banff.pdf)
 
-### Summary
 
-The Euclidean algorithm (as presented in *Euclid's Elements*) calculates the greatest common divisor of two given integers. It is shown here that the structure of the Euclidean algorithm can be used to efficiently generate a wide variety of rhythms used as timelines (ostinatos) in sub-Saharan African music in particular, and world music in general. These rhythms, here called *Euclidean rhythms*, have the property that their onset patterns are distributed as evenly as possible. Euclidean rhythms also find application in nuclear physics accelerators and computer science and are closely related to several families of words and sequences of interest in the combinatorics of words, such as Euclidean strings, with which the rhythms are compared.
+The Euclidean rhythm in music was discovered by Godfried Toussaint in 2004 and is described in a 2005 paper *"The Euclidean Algorithm Generates Traditional Musical Rhythms"*.[@toussaint2005] The paper presents a method for generating rhythms that are evenly distributed over a given time span, using the Euclidean algorithm. This method is particularly relevant in the context of world music, where such rhythms are often found. The Euclidean algorithm (as presented in *Euclid's Elements*) calculates the greatest common divisor of two given integers. It is shown here that the structure of the Euclidean algorithm can be used to efficiently generate a wide variety of rhythms used as timelines (ostinatos) in sub-Saharan African music in particular, and world music in general. These rhythms, here called *Euclidean rhythms*, have the property that their onset patterns are distributed as evenly as possible. Euclidean rhythms also find application in nuclear physics accelerators and computer science and are closely related to several families of words and sequences of interest in the combinatorics of words, such as Euclidean strings, with which the rhythms are compared.[@toussaint2005]
 
 ### Hypothesis
 
-Several researchers have observed that rhythms in traditional world music tend to exhibit patterns distributed as regularly or evenly as possible.
+Several researchers have observed that rhythms in traditional world music tend to exhibit patterns distributed as regularly or evenly as possible. The hypothesis is that the Euclidean algorithm can be used to generate these rhythms. According to the hypothesis, the Euclidean algorithm can be used to generate rhythms that are evenly distributed over a given time span. This is particularly relevant in the context of world music, where such rhythms are often found. The following is a summary of the main points:
 
-**Patterns of maximal evenness can be described using the Euclidean algorithm on the greatest common divisor of two integers.**
+> **Patterns of maximal evenness can be described using the Euclidean algorithm on the greatest common divisor of two integers.**
 
 ### Patterns of Maximal Evenness
 
@@ -520,11 +524,20 @@ Suppose we have 17 pulses and want to evenly distribute 7 beats over them.
 
 ### Implementation in Pure Data - Euclidean sequencer
 
-``` text
+```default
 (index * hits ) % steps
 ↓
 [< notes]
 ```
+
+
+```{mermaid}
+flowchart TB
+    A[index * hits]
+    A --> B[% steps]
+    B --> C[< notes]
+```
+
 
 where:
 
@@ -534,26 +547,62 @@ hits = number of notes to be played
 
 steps = array size
 
-### References
+Yoy can check this [Euclidean rhythm demo](https://dbkaplun.github.io/euclidean-rhythm/) in order to interact and see how the algorithm works.
 
--   [The Euclidean Algorithm Generates Traditional Musical Rhythms](https://cgm.cs.mcgill.ca/~godfried/publications/banff.pdf)
--   [Piano-Phase](https://www.chenalexander.com/Piano-Phase)
 
-------------------------------------------------------------------------
 
-Here is the full English translation of your markdown document, keeping the code, links, and formatting as requested:
 
-------------------------------------------------------------------------
+#### Understanding the Mathematical Formula
+
+The formula `(index * hits) % steps < hits` provides a simple and efficient way to approximate the distribution of pulses (or beats) over a sequence of discrete steps. It works by multiplying the current position (represented by `index`) by the total number of hits (pulses) desired. This result is then taken modulo the total number of steps to ensure it wraps around properly in a cyclical pattern. Finally, the result of this modulo operation is compared to the number of hits. If the condition is true, we place a beat at that position; otherwise, we place a rest.
+
+This method produces a rhythm by relying on modular arithmetic. The result is a mathematically regular distribution of beats that often approximates what we expect from an even rhythmic distribution. However, it does so without any recursive logic or iteration—it simply applies a consistent rule to each step in isolation. This makes the formula extremely efficient: it runs in constant time for any position, and it does not require any memory to store the pattern.
+
+#### The Bjorklund Algorithm Explained
+
+In contrast, the Bjorklund algorithm is a more sophisticated procedure rooted in the Euclidean algorithm for computing the greatest common divisor (GCD). This algorithm begins with two values: the number of pulses (beats) and the number of rests (steps minus beats). It then recursively groups these elements in a way that maximizes the evenness of their distribution.
+
+The method proceeds by repeatedly pairing elements—first grouping pulses with rests, then regrouping the leftovers, and so on—until the sequence cannot be subdivided further. The final pattern emerges from this recursive grouping, and it is typically rotated so that it starts with a pulse. The result is a rhythm that is maximally even, meaning that the beats are spaced as equally as possible given the constraints.
+
+This process, while more computationally demanding and conceptually complex, produces the canonical Euclidean rhythms often cited in academic and musical literature.
+
+#### Comparing the Formula and the Algorithm
+
+The core difference between the two approaches lies in how they arrive at the rhythmic pattern. The mathematical formula provides a direct, position-based method for determining beat placement. It does not take into account the context of previous or future beats—it treats each step in isolation. This is why it is so fast and well-suited for real-time applications, such as live audio processing in Pure Data or other creative coding environments.
+
+The Bjorklund algorithm, on the other hand, is concerned with the global structure of the pattern. It ensures that beats are distributed with maximal evenness and follows a well-defined sequence of operations that are both recursive and stateful. This means it needs to store and manipulate arrays of data to arrive at the final rhythm. The computational complexity of this algorithm is higher, and it is not as straightforward to implement, but the results are musically and mathematically robust.
+
+One major distinction is that the formula often produces a rotated version of the Bjorklund rhythm. That is, while the number and spacing of beats may be similar, the starting position may differ. The Bjorklund rhythm always starts with a pulse, ensuring that it adheres to a particular musical convention, while the formula does not guarantee this.
+
+Another important distinction lies in the distribution logic. The formula uses a fixed mathematical rule to space out the beats, leading to regular but not necessarily optimal placement. The Bjorklund algorithm, however, iteratively rearranges beats and rests to achieve the best possible balance.
+
+#### A Concrete Example: (13, 5)
+
+Let’s consider the case of 13 steps with 5 beats.
+
+Using the mathematical formula, we apply `(index * 5) % 13 < 5` for each position:
+
+Pattern: 1 0 0 1 0 0 1 0 1 0 0 1 0
+
+In contrast, the Bjorklund algorithm produces:
+
+Pattern: 1 0 1 0 0 1 0 1 0 0 1 0 0
+
+
+Both patterns contain five beats. Both distribute them fairly evenly. But the Bjorklund version achieves a more perceptually even spacing and aligns with theoretical expectations. The formula result is essentially a rotated variant.
+
+In summary, the formula `(index * hits) % steps < hits` offers a pragmatic and computationally efficient way to generate rhythm patterns that resemble Euclidean rhythms. It is well-suited for real-time use cases and environments where simplicity and speed are more important than strict accuracy. In contrast, the Bjorklund algorithm provides a mathematically rigorous method for generating rhythms with maximal evenness. It aligns with canonical definitions and is favored in theoretical and compositional contexts.The choice between these methods depends on your priorities: use the formula for lightweight, real-time approximation, and use Bjorklund when you need precision and adherence to the canonical Euclidean model.
+
 
 ## Cellular Automata
-
-![Cellular Automaton](https://mathworld.wolfram.com/images/eps-svg/Code0912_450.svg)
 
 A cellular automaton is a mathematical and computational model for a dynamic system that evolves in discrete steps. It is suitable for modeling natural systems that can be described as a massive collection of simple objects interacting locally with each other.
 
 A cellular automaton is a collection of "colored" cells on a grid of specified shape that evolves through a series of discrete time steps according to a set of rules based on the states of neighboring cells. The rules are then applied iteratively over as many time steps as desired.
 
 Cellular automata come in a variety of forms and types. One of the most fundamental properties of a cellular automaton is the type of grid on which it is computed. The simplest such grid is a `one-dimensional` line. In two dimensions, square, triangular, and hexagonal grids can be considered.
+
+![Fig. Cellular Automaton](/assets/images/sequencers/cellular-automaton-rule30-1.png)
 
 One must also specify the number of colors (or distinct states) *k* that a cellular automaton can assume. This number is typically an integer, with k=2 (binary, `[1]` or `[0]`) being the simplest choice. For a binary automaton, color 0 is commonly referred to as "white" and color 1 as "black". However, cellular automata with a continuous range of possible values can also be considered.
 
@@ -700,9 +749,6 @@ They consist of:
 
 4.  *Evolution*: The cellular automaton evolves through iterations. In each iteration, the state of each cell is updated according to the transition rule.
 
-Here is the full translation of your markdown file into English, with all code, links, and formatting preserved:
-
-------------------------------------------------------------------------
 
 ### Case Study: Conway's Game of Life
 
