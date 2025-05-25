@@ -24,3 +24,5 @@ __pycache__/
 /.quarto/
 
 chapters/00-test_files/
+
+_freeze

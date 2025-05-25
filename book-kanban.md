@@ -31,6 +31,7 @@
 
 - Implement the Bjorklund algorithm in Pure Data
   - a. In a Pure Data patch, or
+    - still stocked in the list distribution and sublist creation.
   - b. Write a pd external in C.
 - Add audio samples.
 - Download all images from the internet and add them to the book.
