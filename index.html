@@ -351,11 +351,9 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#who-is-this-book-for" id="toc-who-is-this-book-for" class="nav-link" data-scroll-target="#who-is-this-book-for">Who is this book for?</a></li>
   <li><a href="#what-are-you-going-to-learn" id="toc-what-are-you-going-to-learn" class="nav-link" data-scroll-target="#what-are-you-going-to-learn">What are you going to learn?</a></li>
   <li><a href="#what-are-you-dont-going-to-learn" id="toc-what-are-you-dont-going-to-learn" class="nav-link" data-scroll-target="#what-are-you-dont-going-to-learn">What are you don’t going to learn?</a></li>
-  <li><a href="#pre-requisites" id="toc-pre-requisites" class="nav-link" data-scroll-target="#pre-requisites">Pre-requisites</a>
-  <ul class="collapse">
-  <li><a href="#recommended-pure-data-distributions" id="toc-recommended-pure-data-distributions" class="nav-link" data-scroll-target="#recommended-pure-data-distributions">Recommended Pure Data distributions</a></li>
-  <li><a href="#recommended-libraries-and-externals" id="toc-recommended-libraries-and-externals" class="nav-link" data-scroll-target="#recommended-libraries-and-externals">Recommended libraries and externals</a></li>
-  </ul></li>
+  <li><a href="#a-work-in-progress" id="toc-a-work-in-progress" class="nav-link" data-scroll-target="#a-work-in-progress">A Work in Progress</a></li>
+  <li><a href="#from-problem-to-algorithm" id="toc-from-problem-to-algorithm" class="nav-link" data-scroll-target="#from-problem-to-algorithm">From Problem to Algorithm</a></li>
+  <li><a href="#backend-first-leaving-the-gui-for-later" id="toc-backend-first-leaving-the-gui-for-later" class="nav-link" data-scroll-target="#backend-first-leaving-the-gui-for-later">Backend First: Leaving the GUI for Later</a></li>
   <li><a href="#contributing" id="toc-contributing" class="nav-link" data-scroll-target="#contributing">Contributing</a></li>
   <li><a href="#contact" id="toc-contact" class="nav-link" data-scroll-target="#contact">Contact</a></li>
   <li><a href="#acknowledgements" id="toc-acknowledgements" class="nav-link" data-scroll-target="#acknowledgements">Acknowledgements</a></li>
@@ -402,7 +400,7 @@ ul.task-list li input[type="checkbox"] {
 <p><a href="./assets/images/index/cover_1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="./assets/images/index/cover_1.png" class="img-fluid"></a></p>
 <section id="preface" class="level1 unnumbered">
 <h1 class="unnumbered">Preface</h1>
-<p>This book was born out of the classroom—but it does not stay there. It is the result of many years of teaching creative coding and interactive media at public universities, engaging with students from a wide range of disciplines, backgrounds, and interests. Over time, a common thread emerged: the desire to bridge artistic expression and technical skill, to write code not just as a means to an end, but as a space of exploration, experimentation, and play.</p>
+<p>This book was born out of the classroom—but it does not stay there. It is the result of years of teaching creative coding and interactive media at public universities, engaging with students from a wide range of disciplines, backgrounds, and interests. Over time, a common thread emerged: the desire to bridge artistic expression and technical skill, to write code not just as a means to an end, but as a space of exploration, experimentation, and play.</p>
 <p>In these pages, you’ll find the distilled insights, exercises, and creative strategies that have shaped countless workshops and academic programs. The goal has always been twofold: to equip readers with the tools to build interactive digital systems, and to nurture a mindset where sound, movement, code, and structure can be explored as artistic materials. Whether it’s a generative soundscape, a data-driven artwork, or a custom tool built from scratch, the projects in this book are designed to foster technical growth while encouraging individual expression.</p>
 <p>This is not a manual in the traditional sense, nor is it a fixed curriculum. Instead, this book invites you to engage with Pure Data on your own terms, navigating its chapters in whatever order best suits your curiosity. The modular structure is intentional: it supports creative detours, sudden insights, and unexpected connections between ideas. You are encouraged to experiment, remix, and stretch the boundaries of the examples presented. Treat the book as both a guide and a sandbox—one where art, sound, code, and interactivity come alive through your engagement.</p>
 <p>Whether you’re an artist exploring new tools, a programmer seeking creative outlets, or a student diving into the world of interactive media, I hope this book helps you discover how code can become a language for imagination.</p>
@@ -419,7 +417,16 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <p>I hold a Ph.D.&nbsp;focusing on the relationship between visual and auditory perception in sound art, and a degree in Composition with Electroacoustic Media from the National University of Quilmes (UNQ). My academic career includes teaching positions at several institutions: I am a professor at the University of Quilmes (Computing Applied to Music area), the National University of Arts (Multimedia Arts area), and the University of Tres de Febrero (Electronic Arts area).</p>
 <p>My passion for programming and digital audio applications has led me to explore various programming languages and tools over the past two decades, including C, C++, Python, and Pure Data. I am an advocate of the open-source philosophy, regularly working with Linux and sharing my projects in publicly accessible repositories. My technical expertise extends to hardware development using microcontrollers and single-board computers, enabling me to adopt a hands-on approach in both my artistic and research endeavors.</p>
+<div class="callout callout-style-simple callout-note no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
 <p>More information about my work can be found on my personal website <a href="https://ezequielabregu.net">ezequielabregu.net</a>.</p>
+</div>
+</div>
+</div>
 </section>
 <section id="what-is-this-book-about" class="level2">
 <h2 class="anchored" data-anchor-id="what-is-this-book-about">What is this book about?</h2>
@@ -439,49 +446,26 @@ ul.task-list li input[type="checkbox"] {
 <h2 class="anchored" data-anchor-id="what-are-you-dont-going-to-learn">What are you don’t going to learn?</h2>
 <p>This book is not intended to be a comprehensive guide to all aspects of Pure Data. Instead, it focuses on specific topics and projects that are relevant to creative coding. While the book will cover a wide range of techniques and concepts, it will not delve into every detail or aspect of Pure Data. This book is not a substitute for the official Pure Data documentation or other resources. It is meant to complement these resources and provide a practical, hands-on approach to learning Pure Data.</p>
 </section>
-<section id="pre-requisites" class="level2">
-<h2 class="anchored" data-anchor-id="pre-requisites">Pre-requisites</h2>
-<p>To get the most out of this book, you should have a basic understanding of programming and some familiarity with the Pure Data language.</p>
-<p>If you are new to Pure Data or programming, there are several free online resources that can help you get started:</p>
-<ul>
-<li><a href="http://floss.booktype.pro/pure-data/introduction2/">Pure Data FLOSS Manual</a> – A beginner-friendly and comprehensive guide to Pure Data.</li>
-<li><a href="https://msp.ucsd.edu/Pd_documentation/index.htm">Official Pure Data Documentation</a> – The official manuals and reference materials for Pure Data.</li>
-<li><a href="https://msp.ucsd.edu/techniques/latest/book.pdf">Miller Puckette’s “Theory and Techniques of Electronic Music”</a> – A comprehensive book by the creator of Pure Data, covering both theory and practical techniques.</li>
-<li><a href="http://www.pd-tutorial.com/english/index.html">Programming Electronic Music in Pd</a> - Designed for self-study, principally for composers. It begins with explanations of basic programming and acoustic principles then gradually builds up to the most advanced electronic music processing techniques.</li>
-<li><a href="https://pd.iem.sh/">Kunstuniversität Graz / Pure Data</a> – An extensive collection of tutorials and resources for learning Pure Data, including tutorials and example patches.</li>
-<li><a href="https://patchstorage.com/platform/pd-vanilla/">Patchstorage</a> - A community-driven platform for sharing and discovering Pure Data patches. It features a wide range of projects, from simple examples to complex installations, and serves as a valuable resource for learning and inspiration.</li>
-</ul>
-<p>These resources can be consulted before or alongside this book to strengthen your foundational knowledge.</p>
-<section id="recommended-pure-data-distributions" class="level3">
-<h3 class="anchored" data-anchor-id="recommended-pure-data-distributions">Recommended Pure Data distributions</h3>
-<p>This book is based on <strong>Pure Data Vanilla</strong> distribution, which is the most widely used version. You can download it from the official website:</p>
-<p><a href="https://puredata.info/downloads/pure-data">https://puredata.info/downloads/pure-data</a></p>
-<p>This version is maintained by the original author, Miller Puckette, and is the most stable supported version of Pure Data. It includes all the core features and libraries needed for most projects, making it a great starting point for beginners and experienced users alike. Pure Data Vanilla is a free and open-source visual programming language for multimedia applications, widely used in the fields of sound synthesis, interactive installations, and live performance. It is available for Windows, macOS, and Linux operating systems.</p>
-<p>However, there are several other distributions that you may find useful for specific projects or needs:</p>
-<ul>
-<li><p><a href="https://agraef.github.io/purr-data/">Purr Data</a> – A fork of Pd-l2ork that focuses on usability and accessibility, with a more polished interface and additional features. Purr Data serves the same purpose, but offers a new and much improved graphical user interface and includes many 3rd party plug-ins. Like Pd, it runs on Linux, macOS and Windows, and is open-source throughout.</p></li>
-<li><p><a href="https://plugdata.org/">Plugdata</a> – plugdata is a plugin wrapper designed for Miller Puckette’s Pure Data (Pd), featuring an enhanced graphical user interface (GUI) created using JUCE, headed by Timothy Schoen. this project is still a work in progress, and may still have some bugs. By default, plugdata comes with the cyclone and ELSE collections of externals and abstractions.</p></li>
-</ul>
+<section id="a-work-in-progress" class="level2">
+<h2 class="anchored" data-anchor-id="a-work-in-progress">A Work in Progress</h2>
+<p>Before we delve deeper into the subject, let it be clear from the outset:</p>
+<div style="text-align:center;">
+<blockquote class="blockquote">
+<p><strong>This book is, by design, a work in progress.</strong></p>
+</blockquote>
+</div>
+<p>The intention is not to present a definitive compendium or a closed collection of recipes. Instead, what I offer here is a growing body of materials, case studies, and conceptual tools that evolve in parallel with the creative and technical challenges faced by artists and researchers working at the intersection of code, sound, and interactivity. The choice of Pure Data as the primary platform reflects both its openness and its suitability for rapid prototyping and conceptual clarity. But beyond that, this book aims to serve as a <em>framework for thinking</em>, not just for coding.</p>
 </section>
-<section id="recommended-libraries-and-externals" class="level3">
-<h3 class="anchored" data-anchor-id="recommended-libraries-and-externals">Recommended libraries and externals</h3>
-<p>The following libraries are recommended to be used with Pure Data. They are not included in the Pure Data Vanilla distribution, but they can be easily installed and used with it:</p>
-<ul>
-<li>cyclone</li>
-<li>ELSE</li>
-<li>iemlib</li>
-<li>list-abs</li>
-<li>zexy</li>
-<li>Gem</li>
-<li>ceammc</li>
-<li>comport</li>
-<li>mrpeach</li>
-<li>freeverb~</li>
-<li>jmmmp</li>
-<li>mapping</li>
-</ul>
-<p>These libraries provide additional objects and features that can enhance your projects and make it easier to work with sound synthesis, data visualization, and interactive installations.</p>
+<section id="from-problem-to-algorithm" class="level2">
+<h2 class="anchored" data-anchor-id="from-problem-to-algorithm">From Problem to Algorithm</h2>
+<p>One of the central ideas guiding this book is that programming begins with a problem, not with a tool. In each chapter and example, we begin by carefully defining a problem: this might be technical (how to generate a sequence?), aesthetic (how to modulate a tone?), or conceptual (how do oscillators shape our understanding of time?). From there, we proceed to <em>analyze</em> the problem, understand its inner structure, and design an algorithmic strategy to address it.</p>
+<p>Only then do we concern ourselves with the details of implementation. The choice of programming language—Pure Data in this case—is important, but always secondary. The clarity of thought and the logic of the algorithm come first. In this spirit, we encourage you to reflect not just on <em>what</em> a patch does, but on <em>why</em> it works the way it does, and <em>how</em> it might be extended, modified, or reimagined.</p>
 </section>
+<section id="backend-first-leaving-the-gui-for-later" class="level2">
+<h2 class="anchored" data-anchor-id="backend-first-leaving-the-gui-for-later">Backend First: Leaving the GUI for Later</h2>
+<p>Another important methodological decision in this book is our emphasis on the <strong>backend</strong>. We begin by focusing on signal flow, algorithmic thinking, and control structures—those components that shape the inner workings of a patch. In many cases, the graphical interface (GUI) can be a distraction from the deeper mechanics at play.</p>
+<p>By concentrating first on backend logic, we build a strong foundation that can later support more refined user interactions. GUI design will certainly be addressed, but in future chapters, when we are equipped with a clearer understanding of how our systems behave and how we want them to evolve. In other words, we treat the visual layer as a representation of logic, not a replacement for it.</p>
+<p>This book is an invitation to approach creative coding not as a set of shortcuts or pre-made solutions, but as a <em>process of inquiry</em>. We will get our hands dirty, make mistakes, and revise along the way. In doing so, we learn not just how to build systems, but how to think with and through them. That is the deeper promise of creative code.</p>
 </section>
 <section id="contributing" class="level2">
 <h2 class="anchored" data-anchor-id="contributing">Contributing</h2>

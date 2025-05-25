@@ -416,7 +416,7 @@ div.csl-indent {
   <li><a href="#piano-phase-implementation-in-pd" id="toc-piano-phase-implementation-in-pd" class="nav-link" data-scroll-target="#piano-phase-implementation-in-pd"><span class="header-section-number">4.2.2</span> Piano Phase Implementation in PD</a></li>
   <li><a href="#patch-overview" id="toc-patch-overview" class="nav-link" data-scroll-target="#patch-overview"><span class="header-section-number">4.2.3</span> Patch Overview</a></li>
   <li><a href="#sequence-data" id="toc-sequence-data" class="nav-link" data-scroll-target="#sequence-data"><span class="header-section-number">4.2.4</span> Sequence Data</a></li>
-  <li><a href="#step-by-step-data-flow" id="toc-step-by-step-data-flow" class="nav-link" data-scroll-target="#step-by-step-data-flow"><span class="header-section-number">4.2.5</span> Step-by-Step Data Flow</a></li>
+  <li><a href="#data-flow" id="toc-data-flow" class="nav-link" data-scroll-target="#data-flow"><span class="header-section-number">4.2.5</span> Data Flow</a></li>
   <li><a href="#key-objects-and-their-roles" id="toc-key-objects-and-their-roles" class="nav-link" data-scroll-target="#key-objects-and-their-roles"><span class="header-section-number">4.2.6</span> Key Objects and Their Roles</a></li>
   </ul></li>
   <li><a href="#random-melody-generator" id="toc-random-melody-generator" class="nav-link" data-scroll-target="#random-melody-generator"><span class="header-section-number">4.3</span> Random Melody Generator</a>
@@ -426,7 +426,7 @@ div.csl-indent {
   <li><a href="#melody-storage" id="toc-melody-storage" class="nav-link" data-scroll-target="#melody-storage"><span class="header-section-number">4.3.3</span> Melody Storage</a></li>
   <li><a href="#playback-control" id="toc-playback-control" class="nav-link" data-scroll-target="#playback-control"><span class="header-section-number">4.3.4</span> Playback Control</a></li>
   <li><a href="#midi-output" id="toc-midi-output" class="nav-link" data-scroll-target="#midi-output"><span class="header-section-number">4.3.5</span> MIDI Output</a></li>
-  <li><a href="#step-by-step-data-flow-1" id="toc-step-by-step-data-flow-1" class="nav-link" data-scroll-target="#step-by-step-data-flow-1"><span class="header-section-number">4.3.6</span> Step-by-Step Data Flow</a></li>
+  <li><a href="#data-flow-1" id="toc-data-flow-1" class="nav-link" data-scroll-target="#data-flow-1"><span class="header-section-number">4.3.6</span> Data Flow</a></li>
   <li><a href="#key-objects-and-their-roles-1" id="toc-key-objects-and-their-roles-1" class="nav-link" data-scroll-target="#key-objects-and-their-roles-1"><span class="header-section-number">4.3.7</span> Key Objects and Their Roles</a></li>
   <li><a href="#diagram-melody-generation-and-playback" id="toc-diagram-melody-generation-and-playback" class="nav-link" data-scroll-target="#diagram-melody-generation-and-playback"><span class="header-section-number">4.3.8</span> Diagram: Melody Generation and Playback</a></li>
   <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">4.3.9</span> Summary</a></li>
@@ -662,8 +662,8 @@ div.csl-indent {
 <p><code>64 66 71 73 74 66 64 73 71 66 74 73</code></p>
 <p>This pattern is initialized at patch load.</p>
 </section>
-<section id="step-by-step-data-flow" class="level3" data-number="4.2.5">
-<h3 data-number="4.2.5" class="anchored" data-anchor-id="step-by-step-data-flow"><span class="header-section-number">4.2.5</span> Step-by-Step Data Flow</h3>
+<section id="data-flow" class="level3" data-number="4.2.5">
+<h3 data-number="4.2.5" class="anchored" data-anchor-id="data-flow"><span class="header-section-number">4.2.5</span> Data Flow</h3>
 <p><strong>Initialization</strong></p>
 <ul>
 <li>The sequence table is filled with 12 MIDI notes.</li>
@@ -876,8 +876,8 @@ div.csl-indent {
 <p>The note value is sent to a <code>makenote</code> object, which creates a MIDI note with velocity and duration.</p>
 <p>The note is then sent to the <code>noteout</code> object, which outputs the MIDI note to your system’s MIDI device.</p>
 </section>
-<section id="step-by-step-data-flow-1" class="level3" data-number="4.3.6">
-<h3 data-number="4.3.6" class="anchored" data-anchor-id="step-by-step-data-flow-1"><span class="header-section-number">4.3.6</span> Step-by-Step Data Flow</h3>
+<section id="data-flow-1" class="level3" data-number="4.3.6">
+<h3 data-number="4.3.6" class="anchored" data-anchor-id="data-flow-1"><span class="header-section-number">4.3.6</span> Data Flow</h3>
 <ol type="1">
 <li><strong>Initialize Scale</strong>: The scale intervals are defined and appended to a list.</li>
 <li><strong>Generate Melody</strong>: A loop generates random notes mapped to the scale, storing them in the <code>melody</code> array.</li>
@@ -1294,8 +1294,8 @@ div.csl-indent {
 </div>
 </div>
 </section>
-<section id="data-flow" class="level4" data-number="4.4.6.2">
-<h4 data-number="4.4.6.2" class="anchored" data-anchor-id="data-flow"><span class="header-section-number">4.4.6.2</span> Data Flow</h4>
+<section id="data-flow-2" class="level4" data-number="4.4.6.2">
+<h4 data-number="4.4.6.2" class="anchored" data-anchor-id="data-flow-2"><span class="header-section-number">4.4.6.2</span> Data Flow</h4>
 <p>The process begins with the user setting the number of steps in the sequence using a horizontal slider labeled “Steps.” This determines the total length of the rhythmic cycle. The user also sets the number of hits, or pulses, using another slider labeled “HITS.” These two values are stored and sent to the rest of the patch, where they are used to calculate the rhythmic pattern.</p>
 <p>Once the parameters are set, the patch uses a loop, implemented with the <code>until</code> object, to iterate through each step index from 0 up to one less than the total number of steps. For each index, the patch calculates a value using the formula <code>(index * hits) % steps</code>. This formula determines the position of each pulse within the cycle by multiplying the current index by the number of hits and taking the result modulo the total number of steps. The result of this calculation is then compared to the number of hits. If the result is less than the number of hits, a pulse (represented by a 1) is added to the pattern. Otherwise, a rest (represented by a 0) is added. This process is repeated for every step in the sequence, gradually building up the complete Euclidean rhythm as a list of ones and zeros.</p>
 <p>After the pattern has been calculated, it is displayed as a list, allowing you to see the sequence of pulses and rests. The patch also includes a reset mechanism, so that the pattern can be recalculated and updated whenever the user changes the number of steps or hits.</p>
@@ -1493,8 +1493,8 @@ div.csl-indent {
 </div>
 </div>
 </section>
-<section id="data-flow-1" class="level4" data-number="4.4.7.2">
-<h4 data-number="4.4.7.2" class="anchored" data-anchor-id="data-flow-1"><span class="header-section-number">4.4.7.2</span> Data Flow</h4>
+<section id="data-flow-3" class="level4" data-number="4.4.7.2">
+<h4 data-number="4.4.7.2" class="anchored" data-anchor-id="data-flow-3"><span class="header-section-number">4.4.7.2</span> Data Flow</h4>
 <p>The process begins with the user setting the number of steps, hits, and rotation using horizontal sliders. The steps slider determines the total length of the rhythmic cycle, the hits slider sets the number of pulses to be distributed, and the rotation slider specifies how many positions to shift the pattern.</p>
 <p>A loop, implemented with the <code>until</code> object and a counter, iterates through each step index. For each index, the patch calculates the value using the formula <code>((index + rotation) * hits) % steps</code>. This formula determines the position of each pulse within the cycle, taking into account the rotation. The result is then compared to the number of hits: if it is less than the number of hits, a pulse (represented by a 1) is added to the pattern; otherwise, a rest (represented by a 0) is added. This process is repeated for every step, building up the complete rotated Euclidean rhythm.</p>
 <p>The resulting pattern is displayed as a list, showing the sequence of pulses and rests after rotation. The patch also provides a reset mechanism to clear and recalculate the pattern when parameters change.</p>
@@ -1608,8 +1608,8 @@ div.csl-indent {
 </div>
 </div>
 </section>
-<section id="data-flow-2" class="level4" data-number="4.4.8.2">
-<h4 data-number="4.4.8.2" class="anchored" data-anchor-id="data-flow-2"><span class="header-section-number">4.4.8.2</span> Data Flow</h4>
+<section id="data-flow-4" class="level4" data-number="4.4.8.2">
+<h4 data-number="4.4.8.2" class="anchored" data-anchor-id="data-flow-4"><span class="header-section-number">4.4.8.2</span> Data Flow</h4>
 <p>The process begins with the user setting the number of steps, hits, and rotation for the main rhythm using horizontal sliders. These parameters determine the length of the sequence, the number of pulses, and the rotation (offset) of the pattern. The patch uses a loop (<code>until</code>) and a counter to iterate through each step index. For each step, it calculates the value using the formula <code>((index + rotation) * hits) % steps</code>. This value is compared to the number of hits; if it is less, a pulse (1) is added to the main pattern, otherwise a rest (0).</p>
 <p>In parallel, the user can set the number of accents and their rotation using additional sliders. The accent pattern is generated in the same way as the main rhythm, but with its own independent parameters. The formula <code>((index + acc_rotation) * accents) % steps</code> is used to determine the placement of accents. The result is a second pattern of 1s (accent) and 0s (no accent).</p>
 <p>After both patterns are generated, they are combined step by step. If both the main pattern and the accent pattern have a 1 at the same step, the output for that step is set to 2 (indicating an accented hit). If only the main pattern has a 1, the output is 1 (regular hit). If neither has a 1, the output is 0 (rest). The final combined pattern is written to an array and displayed, allowing for visualization and further use in sequencing.</p>

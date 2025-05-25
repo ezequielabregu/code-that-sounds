@@ -380,12 +380,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#what-is-creative-coding" id="toc-what-is-creative-coding" class="nav-link" data-scroll-target="#what-is-creative-coding"><span class="header-section-number">1.3</span> What is Creative Coding?</a></li>
   <li><a href="#getting-started" id="toc-getting-started" class="nav-link" data-scroll-target="#getting-started"><span class="header-section-number">1.4</span> Getting Started</a>
   <ul class="collapse">
-  <li><a href="#installing-pure-data-vanilla" id="toc-installing-pure-data-vanilla" class="nav-link" data-scroll-target="#installing-pure-data-vanilla"><span class="header-section-number">1.4.1</span> Installing Pure Data Vanilla</a></li>
-  <li><a href="#what-is-pure-data-vanilla" id="toc-what-is-pure-data-vanilla" class="nav-link" data-scroll-target="#what-is-pure-data-vanilla"><span class="header-section-number">1.4.2</span> What is Pure Data “Vanilla”?</a></li>
-  <li><a href="#installing-on-windows" id="toc-installing-on-windows" class="nav-link" data-scroll-target="#installing-on-windows"><span class="header-section-number">1.4.3</span> Installing on Windows</a></li>
-  <li><a href="#installing-on-macos" id="toc-installing-on-macos" class="nav-link" data-scroll-target="#installing-on-macos"><span class="header-section-number">1.4.4</span> Installing on macOS</a></li>
-  <li><a href="#installing-on-linux" id="toc-installing-on-linux" class="nav-link" data-scroll-target="#installing-on-linux"><span class="header-section-number">1.4.5</span> Installing on Linux</a></li>
-  <li><a href="#installing-externals" id="toc-installing-externals" class="nav-link" data-scroll-target="#installing-externals"><span class="header-section-number">1.4.6</span> Installing Externals</a></li>
+  <li><a href="#pre-requisites" id="toc-pre-requisites" class="nav-link" data-scroll-target="#pre-requisites"><span class="header-section-number">1.4.1</span> Pre-requisites</a></li>
+  <li><a href="#recommended-pure-data-distributions" id="toc-recommended-pure-data-distributions" class="nav-link" data-scroll-target="#recommended-pure-data-distributions"><span class="header-section-number">1.4.2</span> Recommended Pure Data distributions</a></li>
+  <li><a href="#recommended-libraries-and-externals" id="toc-recommended-libraries-and-externals" class="nav-link" data-scroll-target="#recommended-libraries-and-externals"><span class="header-section-number">1.4.3</span> Recommended libraries and externals</a></li>
+  <li><a href="#installing-pure-data-vanilla" id="toc-installing-pure-data-vanilla" class="nav-link" data-scroll-target="#installing-pure-data-vanilla"><span class="header-section-number">1.4.4</span> Installing Pure Data Vanilla</a></li>
+  <li><a href="#installing-on-windows" id="toc-installing-on-windows" class="nav-link" data-scroll-target="#installing-on-windows"><span class="header-section-number">1.4.5</span> Installing on Windows</a></li>
+  <li><a href="#installing-on-macos" id="toc-installing-on-macos" class="nav-link" data-scroll-target="#installing-on-macos"><span class="header-section-number">1.4.6</span> Installing on macOS</a></li>
+  <li><a href="#installing-on-linux" id="toc-installing-on-linux" class="nav-link" data-scroll-target="#installing-on-linux"><span class="header-section-number">1.4.7</span> Installing on Linux</a></li>
+  <li><a href="#installing-externals" id="toc-installing-externals" class="nav-link" data-scroll-target="#installing-externals"><span class="header-section-number">1.4.8</span> Installing Externals</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -444,27 +446,113 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="getting-started" class="level2" data-number="1.4">
 <h2 data-number="1.4" class="anchored" data-anchor-id="getting-started"><span class="header-section-number">1.4</span> Getting Started</h2>
 <p>This section will guide you through the installation of Pure Data Vanilla, the official and minimal distribution of Pure Data, on Windows, macOS, and Linux systems. The installation process is straightforward and will have you up and running in no time.</p>
-<section id="installing-pure-data-vanilla" class="level3" data-number="1.4.1">
-<h3 data-number="1.4.1" class="anchored" data-anchor-id="installing-pure-data-vanilla"><span class="header-section-number">1.4.1</span> Installing Pure Data Vanilla</h3>
+<section id="pre-requisites" class="level3" data-number="1.4.1">
+<h3 data-number="1.4.1" class="anchored" data-anchor-id="pre-requisites"><span class="header-section-number">1.4.1</span> Pre-requisites</h3>
+<p>To get the most out of this book, you should have a basic understanding of programming and some familiarity with the Pure Data language.</p>
+<p>If you are new to Pure Data or programming, there are several free online resources that can help you get started:</p>
+<ul>
+<li><a href="http://floss.booktype.pro/pure-data/introduction2/">Pure Data FLOSS Manual</a> – A beginner-friendly and comprehensive guide to Pure Data.</li>
+<li><a href="https://msp.ucsd.edu/Pd_documentation/index.htm">Official Pure Data Documentation</a> – The official manuals and reference materials for Pure Data.</li>
+<li><a href="https://msp.ucsd.edu/techniques/latest/book.pdf">Miller Puckette’s “Theory and Techniques of Electronic Music”</a> – A comprehensive book by the creator of Pure Data, covering both theory and practical techniques.</li>
+<li><a href="http://www.pd-tutorial.com/english/index.html">Programming Electronic Music in Pd</a> - Designed for self-study, principally for composers. It begins with explanations of basic programming and acoustic principles then gradually builds up to the most advanced electronic music processing techniques.</li>
+<li><a href="https://pd.iem.sh/">Kunstuniversität Graz / Pure Data</a> – An extensive collection of tutorials and resources for learning Pure Data, including tutorials and example patches.</li>
+<li><a href="https://patchstorage.com/platform/pd-vanilla/">Patchstorage</a> - A community-driven platform for sharing and discovering Pure Data patches. It features a wide range of projects, from simple examples to complex installations, and serves as a valuable resource for learning and inspiration.</li>
+</ul>
+<p>These resources can be consulted before or alongside this book to strengthen your foundational knowledge.</p>
+</section>
+<section id="recommended-pure-data-distributions" class="level3" data-number="1.4.2">
+<h3 data-number="1.4.2" class="anchored" data-anchor-id="recommended-pure-data-distributions"><span class="header-section-number">1.4.2</span> Recommended Pure Data distributions</h3>
+<p>This book is based on <strong>Pure Data Vanilla</strong> distribution, which is the most widely used version. You can download it from the <a href="https://puredata.info/downloads/pure-data"><strong>PD official website</strong></a>. This version is maintained by the original author, Miller Puckette<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>, and is the most stable supported version of Pure Data. It includes all the core features and libraries needed for most projects, making it a great starting point for beginners and experienced users alike. <strong>Pure Data Vanilla</strong> is a free, open-source and available for Windows, macOS, and Linux operating systems.</p>
+<p>In addition to Pure Data Vanilla, there are several other distributions and versions of Pure Data that you may find useful:</p>
+<ul>
+<li><p><a href="https://agraef.github.io/purr-data/">Purr Data</a> – A fork of Pd-l2ork that focuses on usability and accessibility, with a more polished interface and additional features. Purr Data serves the same purpose, but offers a new and much improved graphical user interface and includes many 3rd party plug-ins. Like Pd, it runs on Linux, macOS and Windows, and is open-source throughout.</p></li>
+<li><p><a href="https://plugdata.org/">Plugdata</a> – plugdata is a plugin wrapper designed for Miller Puckette’s Pure Data (Pd), featuring an enhanced graphical user interface (GUI) created using JUCE, headed by Timothy Schoen. this project is still a work in progress, and may still have some bugs. By default, plugdata comes with the cyclone and ELSE collections of externals and abstractions.</p></li>
+<li><p><a href="https://ceammc.github.io/pd-help/">PD Ceammc</a> - a general purpose Pd distribution and library that is used for performance, sound-design and education purposes in Centre of electroacoustic music of Moscow Conservatory (CEAM).</p></li>
+</ul>
+</section>
+<section id="recommended-libraries-and-externals" class="level3" data-number="1.4.3">
+<h3 data-number="1.4.3" class="anchored" data-anchor-id="recommended-libraries-and-externals"><span class="header-section-number">1.4.3</span> Recommended libraries and externals</h3>
+<p>The following libraries are recommended to be used with Pure Data. They are not included in the Pure Data Vanilla distribution, but they can be easily installed and used with it:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 11%">
+<col style="width: 88%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Library</th>
+<th>Description &amp; Usefulness</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>cyclone</td>
+<td>A large collection of Max/MSP-compatible objects. Useful for porting Max patches and advanced DSP tasks.</td>
+</tr>
+<tr class="even">
+<td>ELSE</td>
+<td>Extensive library for audio, control, math, and UI</td>
+</tr>
+<tr class="odd">
+<td>iemlib</td>
+<td>Collection of general purpose objects and filters for Pure Data</td>
+</tr>
+<tr class="even">
+<td>list-abs</td>
+<td>Tools for advanced list manipulation and data processing</td>
+</tr>
+<tr class="odd">
+<td>zexy</td>
+<td>Essential utilities for math, signal, and control operations. Adds many missing core features.</td>
+</tr>
+<tr class="even">
+<td>Gem</td>
+<td>Graphics Environment for Multimedia. Enables real-time visuals and video.</td>
+</tr>
+<tr class="odd">
+<td>ceammc</td>
+<td>library used for work and education purposes in Centre of electroacoustic music of Moscow Conservatory (CEAMMC) and ZIL-electro studio</td>
+</tr>
+<tr class="even">
+<td>comport</td>
+<td>Serial port communication. Useful for connecting Pd to Arduino, sensors, and hardware</td>
+</tr>
+<tr class="odd">
+<td>mrpeach</td>
+<td>Networking and OSC support. Essential for interactive and networked Pd projects</td>
+</tr>
+<tr class="even">
+<td>freeverb~</td>
+<td>High-quality reverb effect. Simple way to add spatialization to audio patches</td>
+</tr>
+<tr class="odd">
+<td>jmmmp</td>
+<td>Collection of GUI and utility objects. Enhances user interface design in Pd patches</td>
+</tr>
+<tr class="even">
+<td>mapping</td>
+<td>Tools for mapping data (e.g., sensors to sound). Useful for interactive installations and performances</td>
+</tr>
+</tbody>
+</table>
+<p>These libraries provide additional objects and features that can enhance your projects and make it easier to work with sound synthesis, data visualization, and interactive installations.</p>
+</section>
+<section id="installing-pure-data-vanilla" class="level3" data-number="1.4.4">
+<h3 data-number="1.4.4" class="anchored" data-anchor-id="installing-pure-data-vanilla"><span class="header-section-number">1.4.4</span> Installing Pure Data Vanilla</h3>
 <p>The following is a step-by-step installation of <strong>Pure Data Vanilla</strong>, the official and minimal distribution of Pure Data, on Windows, macOS, and Linux systems.</p>
 </section>
-<section id="what-is-pure-data-vanilla" class="level3" data-number="1.4.2">
-<h3 data-number="1.4.2" class="anchored" data-anchor-id="what-is-pure-data-vanilla"><span class="header-section-number">1.4.2</span> What is Pure Data “Vanilla”?</h3>
-<p>Pure Data (Pd) <code>Vanilla</code> is the standard version maintained by its original creator, <strong>Miller Puckette</strong>. It is lightweight, highly stable, and the most recommended version for beginners and experienced users alike.</p>
-<hr>
-</section>
-<section id="installing-on-windows" class="level3" data-number="1.4.3">
-<h3 data-number="1.4.3" class="anchored" data-anchor-id="installing-on-windows"><span class="header-section-number">1.4.3</span> Installing on Windows</h3>
-<section id="download-the-installer" class="level4" data-number="1.4.3.1">
-<h4 data-number="1.4.3.1" class="anchored" data-anchor-id="download-the-installer"><span class="header-section-number">1.4.3.1</span> Download the Installer</h4>
+<section id="installing-on-windows" class="level3" data-number="1.4.5">
+<h3 data-number="1.4.5" class="anchored" data-anchor-id="installing-on-windows"><span class="header-section-number">1.4.5</span> Installing on Windows</h3>
+<section id="download-the-installer" class="level4" data-number="1.4.5.1">
+<h4 data-number="1.4.5.1" class="anchored" data-anchor-id="download-the-installer"><span class="header-section-number">1.4.5.1</span> Download the Installer</h4>
 <ul>
 <li>Visit the official Pure Data website: <a href="https://puredata.info/downloads/pure-data">https://puredata.info/downloads/pure-data</a></li>
 <li>Scroll down to the <strong>Windows</strong> section.</li>
 <li>Click the latest version link (e.g., <code>pd-0.55-2.windows-installer.exe</code>).</li>
 </ul>
 </section>
-<section id="run-the-installer" class="level4" data-number="1.4.3.2">
-<h4 data-number="1.4.3.2" class="anchored" data-anchor-id="run-the-installer"><span class="header-section-number">1.4.3.2</span> Run the Installer</h4>
+<section id="run-the-installer" class="level4" data-number="1.4.5.2">
+<h4 data-number="1.4.5.2" class="anchored" data-anchor-id="run-the-installer"><span class="header-section-number">1.4.5.2</span> Run the Installer</h4>
 <ul>
 <li>Locate the downloaded <code>.exe</code> file in your Downloads folder.</li>
 <li>Double-click to run the installer.</li>
@@ -475,8 +563,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 </ul>
 </section>
-<section id="verify-installation" class="level4" data-number="1.4.3.3">
-<h4 data-number="1.4.3.3" class="anchored" data-anchor-id="verify-installation"><span class="header-section-number">1.4.3.3</span> Verify Installation</h4>
+<section id="verify-installation" class="level4" data-number="1.4.5.3">
+<h4 data-number="1.4.5.3" class="anchored" data-anchor-id="verify-installation"><span class="header-section-number">1.4.5.3</span> Verify Installation</h4>
 <ul>
 <li>After installation, open Pure Data from the Start Menu or desktop shortcut.</li>
 <li>The main Pd window should appear with a blank patch ready.</li>
@@ -484,25 +572,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <hr>
 </section>
 </section>
-<section id="installing-on-macos" class="level3" data-number="1.4.4">
-<h3 data-number="1.4.4" class="anchored" data-anchor-id="installing-on-macos"><span class="header-section-number">1.4.4</span> Installing on macOS</h3>
-<section id="download-the-disk-image" class="level4" data-number="1.4.4.1">
-<h4 data-number="1.4.4.1" class="anchored" data-anchor-id="download-the-disk-image"><span class="header-section-number">1.4.4.1</span> Download the Disk Image</h4>
+<section id="installing-on-macos" class="level3" data-number="1.4.6">
+<h3 data-number="1.4.6" class="anchored" data-anchor-id="installing-on-macos"><span class="header-section-number">1.4.6</span> Installing on macOS</h3>
+<section id="download-the-disk-image" class="level4" data-number="1.4.6.1">
+<h4 data-number="1.4.6.1" class="anchored" data-anchor-id="download-the-disk-image"><span class="header-section-number">1.4.6.1</span> Download the Disk Image</h4>
 <ul>
 <li>Visit: <a href="https://msp.ucsd.edu/software.html">https://msp.ucsd.edu/software.html</a></li>
 <li>Scroll to the <strong>macOS</strong> section.</li>
 <li>Download the <code>.dmg</code> file (e.g., <code>Pd-0.54-1.dmg</code>).</li>
 </ul>
 </section>
-<section id="install-the-application" class="level4" data-number="1.4.4.2">
-<h4 data-number="1.4.4.2" class="anchored" data-anchor-id="install-the-application"><span class="header-section-number">1.4.4.2</span> Install the Application</h4>
+<section id="install-the-application" class="level4" data-number="1.4.6.2">
+<h4 data-number="1.4.6.2" class="anchored" data-anchor-id="install-the-application"><span class="header-section-number">1.4.6.2</span> Install the Application</h4>
 <ul>
 <li>Open the downloaded <code>.dmg</code> file.</li>
 <li>Drag the Pure Data icon into the <code>Applications</code> folder.</li>
 </ul>
 </section>
-<section id="open-pure-data" class="level4" data-number="1.4.4.3">
-<h4 data-number="1.4.4.3" class="anchored" data-anchor-id="open-pure-data"><span class="header-section-number">1.4.4.3</span> Open Pure Data</h4>
+<section id="open-pure-data" class="level4" data-number="1.4.6.3">
+<h4 data-number="1.4.6.3" class="anchored" data-anchor-id="open-pure-data"><span class="header-section-number">1.4.6.3</span> Open Pure Data</h4>
 <ul>
 <li>Open your <code>Applications</code> folder.</li>
 <li>Right-click (or Ctrl + click) the Pure Data icon and select <strong>Open</strong>.
@@ -512,8 +600,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 </ul>
 </section>
-<section id="optional-enable-audio-permissions" class="level4" data-number="1.4.4.4">
-<h4 data-number="1.4.4.4" class="anchored" data-anchor-id="optional-enable-audio-permissions"><span class="header-section-number">1.4.4.4</span> Optional: Enable Audio Permissions</h4>
+<section id="optional-enable-audio-permissions" class="level4" data-number="1.4.6.4">
+<h4 data-number="1.4.6.4" class="anchored" data-anchor-id="optional-enable-audio-permissions"><span class="header-section-number">1.4.6.4</span> Optional: Enable Audio Permissions</h4>
 <ul>
 <li>If prompted, allow Pure Data to access the microphone.</li>
 <li>Open <code>System Preferences &gt; Security &amp; Privacy &gt; Microphone</code> and ensure Pure Data is enabled.</li>
@@ -521,24 +609,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <hr>
 </section>
 </section>
-<section id="installing-on-linux" class="level3" data-number="1.4.5">
-<h3 data-number="1.4.5" class="anchored" data-anchor-id="installing-on-linux"><span class="header-section-number">1.4.5</span> Installing on Linux</h3>
+<section id="installing-on-linux" class="level3" data-number="1.4.7">
+<h3 data-number="1.4.7" class="anchored" data-anchor-id="installing-on-linux"><span class="header-section-number">1.4.7</span> Installing on Linux</h3>
 <p>Pure Data is available in the package repositories of most major Linux distributions. Below are instructions for popular systems.</p>
-<section id="debianubuntu-based-systems" class="level4" data-number="1.4.5.1">
-<h4 data-number="1.4.5.1" class="anchored" data-anchor-id="debianubuntu-based-systems"><span class="header-section-number">1.4.5.1</span> Debian/Ubuntu-based Systems</h4>
+<section id="debianubuntu-based-systems" class="level4" data-number="1.4.7.1">
+<h4 data-number="1.4.7.1" class="anchored" data-anchor-id="debianubuntu-based-systems"><span class="header-section-number">1.4.7.1</span> Debian/Ubuntu-based Systems</h4>
 <div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt update</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install puredata</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="fedora" class="level4" data-number="1.4.5.2">
-<h4 data-number="1.4.5.2" class="anchored" data-anchor-id="fedora"><span class="header-section-number">1.4.5.2</span> Fedora</h4>
+<section id="fedora" class="level4" data-number="1.4.7.2">
+<h4 data-number="1.4.7.2" class="anchored" data-anchor-id="fedora"><span class="header-section-number">1.4.7.2</span> Fedora</h4>
 <div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> dnf install puredata</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="arch-linux" class="level4" data-number="1.4.5.3">
-<h4 data-number="1.4.5.3" class="anchored" data-anchor-id="arch-linux"><span class="header-section-number">1.4.5.3</span> Arch Linux</h4>
+<section id="arch-linux" class="level4" data-number="1.4.7.3">
+<h4 data-number="1.4.7.3" class="anchored" data-anchor-id="arch-linux"><span class="header-section-number">1.4.7.3</span> Arch Linux</h4>
 <div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> pacman <span class="at">-S</span> puredata</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="verify-installation-1" class="level4" data-number="1.4.5.4">
-<h4 data-number="1.4.5.4" class="anchored" data-anchor-id="verify-installation-1"><span class="header-section-number">1.4.5.4</span> Verify Installation</h4>
+<section id="verify-installation-1" class="level4" data-number="1.4.7.4">
+<h4 data-number="1.4.7.4" class="anchored" data-anchor-id="verify-installation-1"><span class="header-section-number">1.4.7.4</span> Verify Installation</h4>
 <ul>
 <li>Open a terminal and type <code>pd</code>.</li>
 <li>The Pure Data GUI should launch, displaying a blank patch.</li>
@@ -546,33 +634,33 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 </section>
 </section>
-<section id="installing-externals" class="level3" data-number="1.4.6">
-<h3 data-number="1.4.6" class="anchored" data-anchor-id="installing-externals"><span class="header-section-number">1.4.6</span> Installing Externals</h3>
+<section id="installing-externals" class="level3" data-number="1.4.8">
+<h3 data-number="1.4.8" class="anchored" data-anchor-id="installing-externals"><span class="header-section-number">1.4.8</span> Installing Externals</h3>
 <p>Pure Data’s functionality can be extended through the use of <strong>externals</strong>—additional libraries that provide new objects and features. These externals are created by the Pd community and can add everything from new audio effects to advanced data processing tools. Installing externals is straightforward thanks to Pure Data’s built-in package manager.</p>
-<section id="step-1-open-pure-data" class="level4" data-number="1.4.6.1">
-<h4 data-number="1.4.6.1" class="anchored" data-anchor-id="step-1-open-pure-data"><span class="header-section-number">1.4.6.1</span> Step 1: Open Pure Data</h4>
+<section id="step-1-open-pure-data" class="level4" data-number="1.4.8.1">
+<h4 data-number="1.4.8.1" class="anchored" data-anchor-id="step-1-open-pure-data"><span class="header-section-number">1.4.8.1</span> Step 1: Open Pure Data</h4>
 <ul>
 <li>Launch Pure Data (Pd) on your computer.</li>
 <li>Make sure you are using the <strong>Vanilla</strong> version for best compatibility with the package manager.</li>
 </ul>
 </section>
-<section id="step-2-access-the-find-externals-tool" class="level4" data-number="1.4.6.2">
-<h4 data-number="1.4.6.2" class="anchored" data-anchor-id="step-2-access-the-find-externals-tool"><span class="header-section-number">1.4.6.2</span> Step 2: Access the “Find Externals” Tool</h4>
+<section id="step-2-access-the-find-externals-tool" class="level4" data-number="1.4.8.2">
+<h4 data-number="1.4.8.2" class="anchored" data-anchor-id="step-2-access-the-find-externals-tool"><span class="header-section-number">1.4.8.2</span> Step 2: Access the “Find Externals” Tool</h4>
 <ul>
 <li>In the Pure Data menu, go to <strong>Help → Find Externals…</strong><br>
 This opens the Deken package manager, which allows you to search for and install externals directly from within Pd.</li>
 </ul>
 </section>
-<section id="step-3-search-for-an-external" class="level4" data-number="1.4.6.3">
-<h4 data-number="1.4.6.3" class="anchored" data-anchor-id="step-3-search-for-an-external"><span class="header-section-number">1.4.6.3</span> Step 3: Search for an External</h4>
+<section id="step-3-search-for-an-external" class="level4" data-number="1.4.8.3">
+<h4 data-number="1.4.8.3" class="anchored" data-anchor-id="step-3-search-for-an-external"><span class="header-section-number">1.4.8.3</span> Step 3: Search for an External</h4>
 <ul>
 <li>In the search bar, type the name of the external or library you want to install (for example, <code>zexy</code>, <code>cyclone</code>, or <code>iemlib</code>).</li>
 <li>Press <strong>Enter</strong> or click the <strong>Search</strong> button.</li>
 <li>A list of matching externals will appear, showing available versions for your platform.</li>
 </ul>
 </section>
-<section id="step-4-install-the-external" class="level4" data-number="1.4.6.4">
-<h4 data-number="1.4.6.4" class="anchored" data-anchor-id="step-4-install-the-external"><span class="header-section-number">1.4.6.4</span> Step 4: Install the External</h4>
+<section id="step-4-install-the-external" class="level4" data-number="1.4.8.4">
+<h4 data-number="1.4.8.4" class="anchored" data-anchor-id="step-4-install-the-external"><span class="header-section-number">1.4.8.4</span> Step 4: Install the External</h4>
 <ul>
 <li>Click on the desired external in the list.</li>
 <li>Choose the version that matches your operating system and Pd version.</li>
@@ -580,8 +668,8 @@ This opens the Deken package manager, which allows you to search for and install
 <li>The external will be downloaded and placed in your Pd externals folder (typically <code>~/Documents/Pd/externals</code> on macOS and Linux, or <code>C:\Users\&lt;YourName&gt;\Documents\Pd\externals</code> on Windows).</li>
 </ul>
 </section>
-<section id="step-5-add-the-external-to-your-pd-path-if-needed" class="level4" data-number="1.4.6.5">
-<h4 data-number="1.4.6.5" class="anchored" data-anchor-id="step-5-add-the-external-to-your-pd-path-if-needed"><span class="header-section-number">1.4.6.5</span> Step 5: Add the External to Your Pd Path (if needed)</h4>
+<section id="step-5-add-the-external-to-your-pd-path-if-needed" class="level4" data-number="1.4.8.5">
+<h4 data-number="1.4.8.5" class="anchored" data-anchor-id="step-5-add-the-external-to-your-pd-path-if-needed"><span class="header-section-number">1.4.8.5</span> Step 5: Add the External to Your Pd Path (if needed)</h4>
 <ul>
 <li>Most externals are automatically available after installation.</li>
 <li>If Pd cannot find the external, you may need to add its folder to Pd’s search path:
@@ -592,8 +680,8 @@ This opens the Deken package manager, which allows you to search for and install
 </ul></li>
 </ul>
 </section>
-<section id="step-6-use-the-external-in-your-patch" class="level4" data-number="1.4.6.6">
-<h4 data-number="1.4.6.6" class="anchored" data-anchor-id="step-6-use-the-external-in-your-patch"><span class="header-section-number">1.4.6.6</span> Step 6: Use the External in Your Patch</h4>
+<section id="step-6-use-the-external-in-your-patch" class="level4" data-number="1.4.8.6">
+<h4 data-number="1.4.8.6" class="anchored" data-anchor-id="step-6-use-the-external-in-your-patch"><span class="header-section-number">1.4.8.6</span> Step 6: Use the External in Your Patch</h4>
 <ul>
 <li><p>In your patch, create an object with the name of the external’s library, followed by the object you want to use.<br>
 For example, to use the <code>counter</code> object from the <code>cyclone</code> library:</p>
@@ -601,15 +689,15 @@ For example, to use the <code>counter</code> object from the <code>cyclone</code
 <li><p>Some libraries require you to load them with a special object, such as <code>[declare -lib cyclone]</code> at the top of your patch.</p></li>
 </ul>
 </section>
-<section id="step-7-verify-installation" class="level4" data-number="1.4.6.7">
-<h4 data-number="1.4.6.7" class="anchored" data-anchor-id="step-7-verify-installation"><span class="header-section-number">1.4.6.7</span> Step 7: Verify Installation</h4>
+<section id="step-7-verify-installation" class="level4" data-number="1.4.8.7">
+<h4 data-number="1.4.8.7" class="anchored" data-anchor-id="step-7-verify-installation"><span class="header-section-number">1.4.8.7</span> Step 7: Verify Installation</h4>
 <ul>
 <li>If the object appears without errors (no red box), the external is installed correctly.</li>
 <li>If you see errors, double-check the installation path and that you are using the correct object/library name.</li>
 </ul>
 </section>
-<section id="manual-installation-advanced" class="level4" data-number="1.4.6.8">
-<h4 data-number="1.4.6.8" class="anchored" data-anchor-id="manual-installation-advanced"><span class="header-section-number">1.4.6.8</span> Manual Installation (Advanced)</h4>
+<section id="manual-installation-advanced" class="level4" data-number="1.4.8.8">
+<h4 data-number="1.4.8.8" class="anchored" data-anchor-id="manual-installation-advanced"><span class="header-section-number">1.4.8.8</span> Manual Installation (Advanced)</h4>
 <p>If you need to install an external manually:</p>
 <ul>
 <li>Download the external from <a href="https://deken.puredata.info/">https://deken.puredata.info/</a> or the developer’s website.</li>
@@ -624,6 +712,12 @@ For example, to use the <code>counter</code> object from the <code>cyclone</code
 
 </section>
 </section>
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>Miller Puckette is a computer music researcher and the creator of Pure Data. He has been involved in the development of various software tools for music and multimedia, including Max/MSP and Pure Data. His work has had a significant impact on the field of computer music and interactive media. More information about Miller Puckette can be found on his <a href="https://msp.ucsd.edu/">website</a>.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
 </section>
 
 </main> <!-- /main -->
