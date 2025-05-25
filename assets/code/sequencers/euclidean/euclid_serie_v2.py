@@ -37,7 +37,7 @@ def euclidean(pulses, steps):
     return ' '.join(map(str, pattern))
 
 # Variables
-pulses = 5
-steps = 13
+pulses = 8
+steps = 11
 euclidean_rhythm = euclidean(pulses, steps)
 print(euclidean_rhythm)

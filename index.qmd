@@ -56,6 +56,7 @@ If you are new to Pure Data or programming, there are several free online resour
 -   [Official Pure Data Documentation](https://msp.ucsd.edu/Pd_documentation/index.htm) – The official manuals and reference materials for Pure Data.
 -   [Miller Puckette's "Theory and Techniques of Electronic Music"](https://msp.ucsd.edu/techniques/latest/book.pdf) – A comprehensive book by the creator of Pure Data, covering both theory and practical techniques.
 -   [Programming Electronic Music in Pd](http://www.pd-tutorial.com/english/index.html) - Designed for self-study, principally for composers. It begins with explanations of basic programming and acoustic principles then gradually builds up to the most advanced electronic music processing techniques.
+-   [Kunstuniversität Graz / Pure Data](https://pd.iem.sh/) – An extensive collection of tutorials and resources for learning Pure Data, including tutorials and example patches.
 -   [Patchstorage](https://patchstorage.com/platform/pd-vanilla/) - A community-driven platform for sharing and discovering Pure Data patches. It features a wide range of projects, from simple examples to complex installations, and serves as a valuable resource for learning and inspiration.
 
 These resources can be consulted before or alongside this book to strengthen your foundational knowledge.

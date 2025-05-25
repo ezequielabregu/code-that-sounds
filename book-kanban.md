@@ -29,7 +29,9 @@
 
 #### Sequencers
 
-- Transcribe Python code examples to Pure Data.
+- Implement the Bjorklund algorithm in Pure Data
+  - a. In a Pure Data patch, or
+  - b. Write a pd external in C.
 - Add audio samples.
 - Download all images from the internet and add them to the book.
   - or use a python script to generate them.
@@ -61,6 +63,7 @@
   - [ ] Subtractive
   - [x] Modulation (AM, RM, FM)
 - [ ] Sonification
+- [.] Transcribe Python code examples to Pure Data.
 
 ## Done
 

@@ -1,4 +1,4 @@
-#N canvas 405 34 1032 570 12;
+#N canvas 394 234 1032 570 12;
 #X obj 136 167 until;
 #X text 775 414 [< HITS];
 #X text 775 437 |;
@@ -11,13 +11,13 @@
 #X obj 339 261 s hits;
 #X obj 154 414 r hits;
 #X msg 136 464 add2 \$1;
-#X msg 136 533 1 0 1 0 1 0;
+#X msg 136 533 1 0 0 1 0 0 1 0 1 0 0 1 0;
 #X msg 197 488 set;
 #X floatatom 400 268 5 0 0 0 - - - 0;
 #X obj 197 462 r steps;
 #X obj 400 356 s resetH;
 #X obj 62 87 r resetH;
-#X obj 139 59 hsl 128 15 0 16 0 0 empty empty Steps -2 -8 0 10 #c4fcc4 #000000 #000000 0 1;
+#X obj 138 59 hsl 128 15 0 16 0 0 empty empty Steps -2 -8 0 10 #c4fcc4 #000000 #000000 0 1;
 #X floatatom 136 106 5 0 0 0 - - - 0;
 #X obj 136 81 i;
 #X obj 136 392 expr ($f1 * $f2) % $f3, f 89;
