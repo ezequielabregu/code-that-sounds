@@ -1,0 +1,79 @@
+#N canvas 9 23 1017 593 12;
+#X declare -lib ceammc;
+#X obj 114 177 nbx 5 14 0.01 1e+37 0 1 empty modulator Modulator 0
+-8 0 10 -228856 -1 -1 600 256;
+#X obj 26 433 *~, f 13;
+#X obj 28 211 osc~ 400;
+#X obj 28 177 nbx 5 14 0.01 1e+37 0 1 empty carrier Carrier 0 -8 0
+10 -228856 -1 -1 100 256;
+#X text 24 13 Aquí podemos tener diferentes opciones y ajustes de
+DC-Offset (no solo AM / RM). Hay ajustes preestablecidos para AM y
+RM \, pero puede establecer los picos y la compensación de CC con
+controles deslizantes.;
+#X text 509 6 Observe cómo en el espectro del AM clásico tenemos
+dos componentes de frecuencia hacia arriba y hacia abajo con la mitad
+de la amplitud de las señales de la portadora. Estas frecuencias están
+separadas por una banda de frecuencia definida por la frecuencia de
+modulación.;
+#X text 508 82 Por otro lado \, en RM \, la señal de la portadora
+desaparece y las frecuencias laterales todavía están allí con más
+energía en comparación con el ejemplo de AM.;
+#X text 509 144 Al cambiar la amplitud y la compensación de DC-offset
+con los controles deslizantes a continuación \, podemos variar entre
+AM y RM y controlar qué parte del componente de frecuencia original
+está presente \, así como los componentes laterales.;
+#X obj 451 395 ui.spectroscope~ @size 515 187 @fontname "Helvetica"
+@fontweight "normal" @fontslant "roman" @fontsize 11 @receive "(null)"
+@send "(null)" @pinned 0 @background_color 0.93 0.93 0.93 1 @border_color
+0.6 0.6 0.6 1 @active_color 0 0.75 1 1 @label_color 0.6 0.6 0.6 1 @refresh
+100 @log_scale 1;
+#X obj 451 368 r~ audio;
+#X obj 26 490 output~;
+#X obj 114 211 osc~ 400;
+#X obj 115 453 s~ audio;
+#X obj 114 306 expr~ ($v1 + $v2) * $v3, f 41;
+#X msg 395 257 0.5;
+#X obj 256 208 bng 15 250 50 0 empty empty AM 17 7 0 10 -203904 -1
+-1;
+#X obj 428 208 bng 15 250 50 0 empty empty RM 17 7 0 10 -203904 -1
+-1;
+#X msg 288 258 0;
+#X msg 428 257 1;
+#X text 394 312 --> DC Offset;
+#X obj 595 262 hsl 128 15 0 1 0 0 empty empty AM__________________RM
+-2 -8 0 10 -203904 -1 -1 0 1;
+#X obj 707 282 expr $f1*.5+.5;
+#X floatatom 708 304 5 0 0 0 - - -;
+#X floatatom 592 305 5 0 0 0 - - -;
+#X obj 592 328 s DC-off1;
+#X obj 708 326 s DC-off2;
+#X obj 265 278 r DC-off1;
+#X obj 423 287 r DC-off2;
+#X obj 22 554 declare -lib ceammc;
+#X msg 256 258 1;
+#X obj 592 283 expr (1-$f1);
+#X connect 0 0 11 0;
+#X connect 1 0 10 0;
+#X connect 1 0 10 1;
+#X connect 1 0 12 0;
+#X connect 2 0 1 0;
+#X connect 3 0 2 0;
+#X connect 9 0 8 0;
+#X connect 11 0 13 0;
+#X connect 13 0 1 1;
+#X connect 14 0 13 2;
+#X connect 15 0 29 0;
+#X connect 15 0 14 0;
+#X connect 16 0 17 0;
+#X connect 16 0 18 0;
+#X connect 17 0 13 1;
+#X connect 18 0 13 2;
+#X connect 20 0 21 0;
+#X connect 20 0 30 0;
+#X connect 21 0 22 0;
+#X connect 22 0 25 0;
+#X connect 23 0 24 0;
+#X connect 26 0 13 1;
+#X connect 27 0 13 2;
+#X connect 29 0 13 1;
+#X connect 30 0 23 0;

@@ -1,0 +1,31 @@
+#N canvas 24 23 932 623 12;
+#X text 115 291 =;
+#X obj 54 294 cos~;
+#X msg 197 233 0;
+#X obj 54 363 vsl 15 128 -1 1 0 0 empty empty empty 0 -9 0 10 -228856
+-1 -1 10129 1;
+#X obj 54 267 phasor~ 0.2;
+#X obj 144 293 osc~ 0.2;
+#X obj 144 363 vsl 15 128 -1 1 0 0 empty empty empty 0 -9 0 10 -228856
+-1 -1 10126 1;
+#X text 23 215 Reset the oscillator to the initial phase of cosine:
+, f 28;
+#X obj 144 330 s2f~;
+#X obj 54 330 s2f~;
+#X text 20 12 Los objetos nativos [fasor ~] y [osc ~] tienen una entrada
+derecha que acepta datos de control para restablecer la fase. De esta
+manera \, cada vez que la entrada recibe un número del 0 al 1 \, la
+forma de onda se restablece a esa fase inicial. Tenga en cuenta que
+esto no está relacionado con los ajustes de fase realizados previamente
+con la modulación de fase.;
+#X text 20 123 El objeto [osc ~] no permite la modulación de fase
+\, lo hicimos con [phasor ~] en los ejemplos anteriores. Por lo tanto
+\, la estructura wirh [phasor ~] y [cos ~] permite ambos procesos de
+modulación de la fase y reseteo del oscilador.;
+#X connect 1 0 9 0;
+#X connect 2 0 4 1;
+#X connect 2 0 5 1;
+#X connect 4 0 1 0;
+#X connect 5 0 8 0;
+#X connect 8 0 6 0;
+#X connect 9 0 3 0;

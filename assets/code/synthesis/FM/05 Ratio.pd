@@ -1,0 +1,50 @@
+#N canvas 10 23 1152 622 12;
+#X declare -lib ceammc;
+#X obj 211 387 +~;
+#X obj 229 351 *~;
+#X obj 295 338 nbx 5 14 -1e+37 1e+37 0 0 empty \$0-index empty 0 -8
+0 10 -228856 -1 -1 1051 256;
+#X text 352 336 Index;
+#X obj 229 266 *~;
+#X obj 247 212 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
+-228856 -1 -1 0.5 256;
+#X obj 161 212 nbx 5 14 -1e+37 1e+37 0 0 empty \$0-carrier empty 0
+-8 0 10 -228856 -1 -1 718 256;
+#X obj 250 189 hsl 128 15 0.5 2 0 0 empty \$0-ratio empty -2 -8 0 10
+-228856 -1 -1 0 1;
+#X text 164 189 Hz;
+#X text 108 317 carrier =>;
+#X text 241 289 <= modulator;
+#X text 307 208 Ratio;
+#X obj 842 14 declare -lib ceammc;
+#X obj 229 318 osc~;
+#X obj 211 425 osc~;
+#X obj 189 476 output~;
+#X text 34 19 Es común establecer la frecuencia del modulador como
+una relación de la frecuencia portadora. Al hacerlo \, solo tiene
+una entrada de frecuencia. Esta estructura también mantiene la misma
+sonoridad para diferentes imágenes \, ya que la relación de relación
+está intacta. Después de todo \, es esta relación la que determina
+cómo se espacian los parciales adicionales en el espectro. Tenga en
+cuenta que las relaciones armónicas (como 0.5) producen sonidos armónicos
+como resultado.;
+#X obj 513 220 ui.spectroscope~ @size 614 328 @fontname "Helvetica"
+@fontweight "normal" @fontslant "roman" @fontsize 11 @receive "(null)"
+@send "(null)" @pinned 0 @background_color 0.93 0.93 0.93 1 @border_color
+0.6 0.6 0.6 1 @active_color 0 0.75 1 1 @label_color 0.6 0.6 0.6 1 @refresh
+100 @log_scale 1;
+#X obj 252 444 s~ audio;
+#X obj 513 188 r~ audio;
+#X connect 0 0 14 0;
+#X connect 1 0 0 1;
+#X connect 2 0 1 1;
+#X connect 4 0 13 0;
+#X connect 5 0 4 1;
+#X connect 6 0 4 0;
+#X connect 6 0 0 0;
+#X connect 7 0 5 0;
+#X connect 13 0 1 0;
+#X connect 14 0 15 0;
+#X connect 14 0 15 1;
+#X connect 14 0 18 0;
+#X connect 19 0 17 0;

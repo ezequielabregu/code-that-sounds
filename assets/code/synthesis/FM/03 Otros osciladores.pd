@@ -1,0 +1,42 @@
+#N canvas 135 170 956 595 12;
+#X declare -lib ceammc;
+#X obj 200 322 *~;
+#X obj 243 302 nbx 4 20 -1e+37 1e+37 0 0 empty \$0-index empty 0 -8
+0 16 -228856 -1 -1 35 256;
+#X obj 105 341 +~;
+#X obj 105 285 nbx 5 20 -1e+37 1e+37 0 0 empty \$0-carrier empty 82
+9 0 15 -228856 -1 -1 316 256;
+#X text 319 302 Index;
+#X text 108 264 Carrier;
+#X text 39 22 En este parche podemos probar diferentes combinaciones
+de osciladores. Las formas de onda están ordenadas por contenido espectral
+desde una simple onda sinusoidal hasta un diente de sierra rico (el
+único que contiene armónicos pares e impares). Cuanto más complejo
+es el oscilador \, más complejo es el resultado.;
+#X text 465 30 Para la señal de modulación \, tenemos formas de onda
+no limitadas de banda \, es decir \, formas perfectas. Pero el oscilador
+que recibe la señal modulada en frecuencia tiene una banda limitada.
+;
+#X obj 200 176 waveforms~;
+#X obj 105 392 waveforms~;
+#X obj 105 512 output~;
+#X obj 200 143 nbx 5 20 -1e+37 1e+37 0 0 empty \$0-carrier Freq-Mod
+82 9 0 15 -228856 -1 -1 7 256;
+#X obj 728 105 declare -lib ceammc;
+#X obj 435 312 ui.spectroscope~ @size 460 233 @fontname "Helvetica"
+@fontweight "normal" @fontslant "roman" @fontsize 11 @receive "(null)"
+@send "(null)" @pinned 0 @background_color 0.93 0.93 0.93 1 @border_color
+0.6 0.6 0.6 1 @active_color 0 0.75 1 1 @label_color 0.6 0.6 0.6 1 @refresh
+100 @log_scale 1;
+#X obj 176 516 s~ audio;
+#X obj 435 286 r~ audio;
+#X connect 0 0 2 1;
+#X connect 1 0 0 1;
+#X connect 2 0 9 0;
+#X connect 3 0 2 0;
+#X connect 8 0 0 0;
+#X connect 9 0 10 0;
+#X connect 9 0 10 1;
+#X connect 9 0 14 0;
+#X connect 11 0 8 0;
+#X connect 15 0 13 0;

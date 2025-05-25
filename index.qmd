@@ -2,7 +2,7 @@
 
 # Preface {.unnumbered}
 
-This book was born out of the classroom—but it does not stay there. It is the result of many years of teaching creative coding and interactive media at public universities, engaging with students from a wide range of disciplines, backgrounds, and interests. Over time, a common thread emerged: the desire to bridge artistic expression and technical skill, to write code not just as a means to an end, but as a space of exploration, experimentation, and play.
+This book was born out of the classroom—but it does not stay there. It is the result of years of teaching creative coding and interactive media at public universities, engaging with students from a wide range of disciplines, backgrounds, and interests. Over time, a common thread emerged: the desire to bridge artistic expression and technical skill, to write code not just as a means to an end, but as a space of exploration, experimentation, and play.
 
 In these pages, you’ll find the distilled insights, exercises, and creative strategies that have shaped countless workshops and academic programs. The goal has always been twofold: to equip readers with the tools to build interactive digital systems, and to nurture a mindset where sound, movement, code, and structure can be explored as artistic materials. Whether it's a generative soundscape, a data-driven artwork, or a custom tool built from scratch, the projects in this book are designed to foster technical growth while encouraging individual expression.
 
@@ -22,7 +22,9 @@ I hold a Ph.D. focusing on the relationship between visual and auditory percepti
 
 My passion for programming and digital audio applications has led me to explore various programming languages and tools over the past two decades, including C, C++, Python, and Pure Data. I am an advocate of the open-source philosophy, regularly working with Linux and sharing my projects in publicly accessible repositories. My technical expertise extends to hardware development using microcontrollers and single-board computers, enabling me to adopt a hands-on approach in both my artistic and research endeavors.
 
+::: {.callout-note appearance="minimal"}
 More information about my work can be found on my personal website [ezequielabregu.net](https://ezequielabregu.net).
+:::
 
 ## What is this book about?
 
@@ -46,53 +48,30 @@ In this book, you will learn how to use Pure Data to create interactive audio-vi
 
 This book is not intended to be a comprehensive guide to all aspects of Pure Data. Instead, it focuses on specific topics and projects that are relevant to creative coding. While the book will cover a wide range of techniques and concepts, it will not delve into every detail or aspect of Pure Data. This book is not a substitute for the official Pure Data documentation or other resources. It is meant to complement these resources and provide a practical, hands-on approach to learning Pure Data.
 
-## Pre-requisites
+## A Work in Progress
 
-To get the most out of this book, you should have a basic understanding of programming and some familiarity with the Pure Data language.
+Before we delve deeper into the subject, let it be clear from the outset: 
 
-If you are new to Pure Data or programming, there are several free online resources that can help you get started:
+::: {style="text-align:center;"}
+> **This book is, by design, a work in progress.**
+:::
 
--   [Pure Data FLOSS Manual](http://floss.booktype.pro/pure-data/introduction2/) – A beginner-friendly and comprehensive guide to Pure Data.
--   [Official Pure Data Documentation](https://msp.ucsd.edu/Pd_documentation/index.htm) – The official manuals and reference materials for Pure Data.
--   [Miller Puckette's "Theory and Techniques of Electronic Music"](https://msp.ucsd.edu/techniques/latest/book.pdf) – A comprehensive book by the creator of Pure Data, covering both theory and practical techniques.
--   [Programming Electronic Music in Pd](http://www.pd-tutorial.com/english/index.html) - Designed for self-study, principally for composers. It begins with explanations of basic programming and acoustic principles then gradually builds up to the most advanced electronic music processing techniques.
--   [Kunstuniversität Graz / Pure Data](https://pd.iem.sh/) – An extensive collection of tutorials and resources for learning Pure Data, including tutorials and example patches.
--   [Patchstorage](https://patchstorage.com/platform/pd-vanilla/) - A community-driven platform for sharing and discovering Pure Data patches. It features a wide range of projects, from simple examples to complex installations, and serves as a valuable resource for learning and inspiration.
+The intention is not to present a definitive compendium or a closed collection of recipes. Instead, what I offer here is a growing body of materials, case studies, and conceptual tools that evolve in parallel with the creative and technical challenges faced by artists and researchers working at the intersection of code, sound, and interactivity. The choice of Pure Data as the primary platform reflects both its openness and its suitability for rapid prototyping and conceptual clarity. But beyond that, this book aims to serve as a *framework for thinking*, not just for coding.
 
-These resources can be consulted before or alongside this book to strengthen your foundational knowledge.
 
-### Recommended Pure Data distributions
+## From Problem to Algorithm
 
-This book is based on **Pure Data Vanilla** distribution, which is the most widely used version. You can download it from the official website: 
+One of the central ideas guiding this book is that programming begins with a problem, not with a tool. In each chapter and example, we begin by carefully defining a problem: this might be technical (how to generate a sequence?), aesthetic (how to modulate a tone?), or conceptual (how do oscillators shape our understanding of time?). From there, we proceed to *analyze* the problem, understand its inner structure, and design an algorithmic strategy to address it. 
 
-[https://puredata.info/downloads/pure-data](https://puredata.info/downloads/pure-data) 
+Only then do we concern ourselves with the details of implementation. The choice of programming language—Pure Data in this case—is important, but always secondary. The clarity of thought and the logic of the algorithm come first. In this spirit, we encourage you to reflect not just on *what* a patch does, but on *why* it works the way it does, and *how* it might be extended, modified, or reimagined.
 
-This version is maintained by the original author, Miller Puckette, and is the most stable supported version of Pure Data. It includes all the core features and libraries needed for most projects, making it a great starting point for beginners and experienced users alike. Pure Data Vanilla is a free and open-source visual programming language for multimedia applications, widely used in the fields of sound synthesis, interactive installations, and live performance. It is available for Windows, macOS, and Linux operating systems.
+## Backend First: Leaving the GUI for Later
 
-However, there are several other distributions that you may find useful for specific projects or needs:
+Another important methodological decision in this book is our emphasis on the **backend**. We begin by focusing on signal flow, algorithmic thinking, and control structures—those components that shape the inner workings of a patch. In many cases, the graphical interface (GUI) can be a distraction from the deeper mechanics at play.
 
--   [Purr Data](https://agraef.github.io/purr-data/) – A fork of Pd-l2ork that focuses on usability and accessibility, with a more polished interface and additional features. Purr Data serves the same purpose, but offers a new and much improved graphical user interface and includes many 3rd party plug-ins. Like Pd, it runs on Linux, macOS and Windows, and is open-source throughout.
+By concentrating first on backend logic, we build a strong foundation that can later support more refined user interactions. GUI design will certainly be addressed, but in future chapters, when we are equipped with a clearer understanding of how our systems behave and how we want them to evolve. In other words, we treat the visual layer as a representation of logic, not a replacement for it.
 
--   [Plugdata](https://plugdata.org/) – plugdata is a plugin wrapper designed for Miller Puckette's Pure Data (Pd), featuring an enhanced graphical user interface (GUI) created using JUCE, headed by Timothy Schoen. this project is still a work in progress, and may still have some bugs. By default, plugdata comes with the cyclone and ELSE collections of externals and abstractions.
-
-### Recommended libraries and externals
-
-The following libraries are recommended to be used with Pure Data. They are not included in the Pure Data Vanilla distribution, but they can be easily installed and used with it:
-
-- cyclone
-- ELSE
-- iemlib
-- list-abs
-- zexy
-- Gem
-- ceammc
-- comport
-- mrpeach
-- freeverb~
-- jmmmp
-- mapping
-
-These libraries provide additional objects and features that can enhance your projects and make it easier to work with sound synthesis, data visualization, and interactive installations. 
+This book is an invitation to approach creative coding not as a set of shortcuts or pre-made solutions, but as a *process of inquiry*. We will get our hands dirty, make mistakes, and revise along the way. In doing so, we learn not just how to build systems, but how to think with and through them. That is the deeper promise of creative code.
 
 ## Contributing
 

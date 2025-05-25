@@ -1,0 +1,50 @@
+#N canvas 10 23 973 647 12;
+#X obj 600 198 +~, f 13;
+#X obj 600 97 nbx 4 14 -1e+37 1e+37 0 1 empty portadora empty 0 -8
+0 10 -228856 -1 -1 400 256;
+#X obj 688 114 osc~;
+#X obj 688 136 *~;
+#X obj 688 91 nbx 4 14 -1e+37 1e+37 0 1 empty moduladora empty 0 -8
+0 10 -228856 -1 -1 1 256;
+#X obj 741 122 nbx 4 14 0 1e+37 0 1 empty indice empty 0 -8 0 10 -228856
+-1 -1 100 256;
+#X obj 600 123 sig~;
+#X obj 600 263 osc~;
+#X text 593 59 Carrier Frequency, f 9;
+#X text 684 56 Modulator Frequency, f 9;
+#X text 791 104 Modulating Index, f 10;
+#X text 695 168 <= modulating signal;
+#X text 517 160 carrier signal =>, f 9;
+#X text 611 227 <= Frequency Modulated (FM) signal;
+#X text 504 262 oscillator =>;
+#X text 19 303 Por defecto \, tenemos una señal portadora de 400 Hz
+\, una baja frecuencia de 1 como frecuencia de modulación y un índice
+de 100 \; esto significa que la señal de modulación oscila entre
+-100 y 100 por segundo \, y la señal de modulación de frecuencia
+resultante varía de 300 a 500 hz. Tenga en cuenta que un modulador
+de baja frecuencia genera vibrato como efectos.;
+#X text 21 18 En términos generales \, modular una señal significa
+solo aplicarle cualquier cambio \, pero en el contexto del curso \,
+estamos hablando de una señal moduladora que controla un parámetro
+\, como la amplitud como hemos visto. Veamos ahora la estructura básica
+de la modulación de frecuencia con un oscilador como el singular de
+modulación.;
+#X text 19 130 La señal a modular se llama "portadora" (carrier) \;
+en el caso de la modulación de frecuencia \, esto también se puede
+llamar "frecuencia portadora". Por el contrario \, también tenemos
+una frecuencia de modulador \, que es la frecuencia del oscilador de
+modulación. La desviación de frecuencia está controlada por la amplitud
+del oscilador \, y también suele denominarse "índice de modulación"
+(modulation index). El procedimiento de modulación es simple \, solo
+agregue la señal portadora a la señal de modulación \; vea el ejemplo
+a la derecha.;
+#X obj 600 303 output~;
+#X connect 0 0 7 0;
+#X connect 1 0 6 0;
+#X connect 2 0 3 0;
+#X connect 3 0 0 1;
+#X connect 4 0 2 0;
+#X connect 5 0 3 1;
+#X connect 6 0 0 0;
+#X connect 7 0 18 0;
+#X connect 7 0 18 1;

@@ -1,0 +1,47 @@
+#N canvas 22 27 1233 604 12;
+#X declare -lib ceammc;
+#X obj 43 399 +~, f 11;
+#X obj 43 433 mtof~;
+#X obj 43 244 nbx 5 14 24 90 0 0 empty \$0-carrier empty 0 -8 0 10
+-228856 -1 -1 90 256;
+#X obj 117 363 *~;
+#X obj 168 349 nbx 5 14 -1e+37 1e+37 0 0 empty \$0-index empty 0 -8
+0 10 -228856 -1 -1 1 256;
+#X obj 117 302 mtof~;
+#X text 38 221 Carrier;
+#X text 167 327 Index;
+#X obj 117 244 nbx 5 14 24 90 0 0 empty \$0-mod empty 0 -8 0 10 -228856
+-1 -1 60 256;
+#X text 120 221 Mod.;
+#X text 173 242 (deviation in MIDI values);
+#X text 34 50 También es posible trabajar con valores de tono MIDI
+exponenciales en lugar de una entrada de frecuencia lineal. Tenga en
+cuenta que la diferencia aquí es que la desviación de frecuencia
+(es decir \, el índice de modulación) ahora está en semitonos \,
+¡no en hercios! Esto cambia la señal de modulación general. Básicamente
+\, tenemos una forma de onda diferente y no simétrica como resultado
+\, lo que promueve un comportamiento y salida distintos. ¡La principal
+diferencia en el parche es usar [mtof ~] para convertir a hertz!;
+#X obj 43 498 output~;
+#X obj 117 330 osc~;
+#X obj 43 467 osc~;
+#X obj 1032 28 declare -lib ceammc;
+#X obj 487 281 ui.spectroscope~ @size 666 293 @fontname "Helvetica"
+@fontweight "normal" @fontslant "roman" @fontsize 11 @receive "(null)"
+@send "(null)" @pinned 0 @background_color 0.93 0.93 0.93 1 @border_color
+0.6 0.6 0.6 1 @active_color 0 0.75 1 1 @label_color 0.6 0.6 0.6 1 @refresh
+100 @log_scale 1;
+#X obj 115 486 s~ audio;
+#X obj 487 254 r~ audio;
+#X connect 0 0 1 0;
+#X connect 1 0 14 0;
+#X connect 2 0 0 0;
+#X connect 3 0 0 1;
+#X connect 4 0 3 1;
+#X connect 5 0 13 0;
+#X connect 8 0 5 0;
+#X connect 13 0 3 0;
+#X connect 14 0 12 0;
+#X connect 14 0 12 1;
+#X connect 14 0 17 0;
+#X connect 18 0 16 0;

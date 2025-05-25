@@ -42,17 +42,61 @@ For an in-depth exploration of creative coding, consider checking out these reso
 
 ## Getting Started
 
-This section will guide you through the installation of Pure Data Vanilla, the official and minimal distribution of Pure Data, on Windows, macOS, and Linux systems. The installation process is straightforward and will have you up and running in no time. 
+This section will guide you through the installation of Pure Data Vanilla, the official and minimal distribution of Pure Data, on Windows, macOS, and Linux systems. The installation process is straightforward and will have you up and running in no time.
+
+### Pre-requisites
+
+To get the most out of this book, you should have a basic understanding of programming and some familiarity with the Pure Data language.
+
+If you are new to Pure Data or programming, there are several free online resources that can help you get started:
+
+-   [Pure Data FLOSS Manual](http://floss.booktype.pro/pure-data/introduction2/) – A beginner-friendly and comprehensive guide to Pure Data.
+-   [Official Pure Data Documentation](https://msp.ucsd.edu/Pd_documentation/index.htm) – The official manuals and reference materials for Pure Data.
+-   [Miller Puckette's "Theory and Techniques of Electronic Music"](https://msp.ucsd.edu/techniques/latest/book.pdf) – A comprehensive book by the creator of Pure Data, covering both theory and practical techniques.
+-   [Programming Electronic Music in Pd](http://www.pd-tutorial.com/english/index.html) - Designed for self-study, principally for composers. It begins with explanations of basic programming and acoustic principles then gradually builds up to the most advanced electronic music processing techniques.
+-   [Kunstuniversität Graz / Pure Data](https://pd.iem.sh/) – An extensive collection of tutorials and resources for learning Pure Data, including tutorials and example patches.
+-   [Patchstorage](https://patchstorage.com/platform/pd-vanilla/) - A community-driven platform for sharing and discovering Pure Data patches. It features a wide range of projects, from simple examples to complex installations, and serves as a valuable resource for learning and inspiration.
+
+These resources can be consulted before or alongside this book to strengthen your foundational knowledge.
+
+### Recommended Pure Data distributions
+
+This book is based on **Pure Data Vanilla** distribution, which is the most widely used version. You can download it from the [**PD official website**](https://puredata.info/downloads/pure-data). This version is maintained by the original author, Miller Puckette[^1], and is the most stable supported version of Pure Data. It includes all the core features and libraries needed for most projects, making it a great starting point for beginners and experienced users alike. **Pure Data Vanilla** is a free, open-source and available for Windows, macOS, and Linux operating systems.
+
+[^1]: Miller Puckette is a computer music researcher and the creator of Pure Data. He has been involved in the development of various software tools for music and multimedia, including Max/MSP and Pure Data. His work has had a significant impact on the field of computer music and interactive media. More information about Miller Puckette can be found on his [website](https://msp.ucsd.edu/).
+
+In addition to Pure Data Vanilla, there are several other distributions and versions of Pure Data that you may find useful:
+
+-   [Purr Data](https://agraef.github.io/purr-data/) – A fork of Pd-l2ork that focuses on usability and accessibility, with a more polished interface and additional features. Purr Data serves the same purpose, but offers a new and much improved graphical user interface and includes many 3rd party plug-ins. Like Pd, it runs on Linux, macOS and Windows, and is open-source throughout.
+
+-   [Plugdata](https://plugdata.org/) – plugdata is a plugin wrapper designed for Miller Puckette's Pure Data (Pd), featuring an enhanced graphical user interface (GUI) created using JUCE, headed by Timothy Schoen. this project is still a work in progress, and may still have some bugs. By default, plugdata comes with the cyclone and ELSE collections of externals and abstractions.
+-   [PD Ceammc](https://ceammc.github.io/pd-help/) - a general purpose Pd distribution and library that is used for performance, sound-design and education purposes in Centre of electroacoustic music of Moscow Conservatory (CEAM). 
+
+### Recommended libraries and externals
+
+The following libraries are recommended to be used with Pure Data. They are not included in the Pure Data Vanilla distribution, but they can be easily installed and used with it:
+
+| Library      | Description & Usefulness                                                                                  |
+|--------------|----------------------------------------------------------------------------------------------------------|
+| cyclone      | A large collection of Max/MSP-compatible objects. Useful for porting Max patches and advanced DSP tasks. |
+| ELSE         | Extensive library for audio, control, math, and UI     |
+| iemlib       | Collection of general purpose objects and filters for Pure Data                |
+| list-abs     | Tools for advanced list manipulation and data processing                                          |
+| zexy         | Essential utilities for math, signal, and control operations. Adds many missing core features.           |
+| Gem          | Graphics Environment for Multimedia. Enables real-time visuals and video.                          |
+| ceammc       |  library used for work and education purposes in Centre of electroacoustic music of Moscow Conservatory (CEAMMC) and ZIL-electro studio              |
+| comport      | Serial port communication. Useful for connecting Pd to Arduino, sensors, and hardware                   |
+| mrpeach      | Networking and OSC support. Essential for interactive and networked Pd projects                         |
+| freeverb~    | High-quality reverb effect. Simple way to add spatialization to audio patches                          |
+| jmmmp        | Collection of GUI and utility objects. Enhances user interface design in Pd patches                     |
+| mapping      | Tools for mapping data (e.g., sensors to sound). Useful for interactive installations and performances   |
+
+These libraries provide additional objects and features that can enhance your projects and make it easier to work with sound synthesis, data visualization, and interactive installations. 
+
 
 ### Installing Pure Data Vanilla
 
 The following is a step-by-step installation of **Pure Data Vanilla**, the official and minimal distribution of Pure Data, on Windows, macOS, and Linux systems.
-
-### What is Pure Data "Vanilla"?
-
-Pure Data (Pd) `Vanilla` is the standard version maintained by its original creator, **Miller Puckette**. It is lightweight, highly stable, and the most recommended version for beginners and experienced users alike.
-
----
 
 ### Installing on Windows
 

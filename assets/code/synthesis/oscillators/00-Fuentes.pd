@@ -1,0 +1,78 @@
+#N canvas 146 23 481 717 12;
+#N canvas 0 22 450 278 (subpatch) 0;
+#X array noise 100 float 1;
+#A 0 -0.497586 -0.532758 -0.655661 0.267202 -0.5864 0.267234 0.134638
+0.770209 -0.018699 -0.211866 0.434365 -0.817712 -0.97501 -0.595074
+0.589115 0.717535 0.857792 -0.239339 0.50845 0.350298 -0.19789 -0.624167
+-0.0684782 0.674559 -0.79475 -0.24225 0.192695 0.263298 -0.0449548
+-0.990088 -0.512824 0.527879 0.495479 -0.0586132 -0.363365 -0.922585
+0.342315 0.676182 0.354832 -0.421847 -0.901283 -0.237378 -0.986757
+0.11284 0.970878 -0.217277 -0.093317 0.0401042 0.783642 -0.538433 -0.981069
+-0.646174 -0.50387 0.276679 0.288358 0.542516 -0.782634 -0.432603 -0.626452
+0.948688 -0.278098 0.144255 0.918925 -0.371765 0.465443 0.39835 -0.679621
+0.709803 0.100467 0.910722 0.990889 -0.74583 -0.50814 -0.438275 0.126149
+-0.386386 0.232532 -0.859591 -0.0298079 0.291293 0.659046 -0.546115
+-0.418982 -0.699379 -0.632757 -0.0632903 0.096214 0.0246391 0.227864
+0.760254 0.498584 -0.424608 0.902181 0.442081 0.881772 -0.346696 0.857616
+-0.0446802 -0.784115 -0.0934469;
+#X coords 0 1 99 -1 200 140 1 0 0;
+#X restore 250 341 graph;
+#N canvas 0 22 450 278 (subpatch) 0;
+#X array sine 100 float 1;
+#A 0 -0.634032 -0.717861 -0.792377 -0.85662 -0.909743 -0.951047 -0.980021
+-0.996288 -0.999599 -0.989946 -0.967459 -0.932409 -0.885248 -0.826611
+-0.757255 -0.678049 -0.590054 -0.494407 -0.392339 -0.285176 -0.174317
+-0.0611955 0.0527219 0.165954 0.277035 0.384518 0.487008 0.583183 0.671797
+0.751673 0.821804 0.881279 0.929306 0.965268 0.988716 0.999338 0.996968
+0.981673 0.953651 0.913236 0.860969 0.797539 0.723761 0.640575 0.549085
+0.450475 0.346009 0.237055 0.125027 0.0113754 -0.102424 -0.214893 -0.324578
+-0.430044 -0.52993 -0.622944 -0.707875 -0.783607 -0.849178 -0.90374
+-0.946553 -0.977086 -0.994951 -0.999901 -0.99186 -0.970959 -0.937469
+-0.891788 -0.834542 -0.766476 -0.688457 -0.601496 -0.506737 -0.405407
+-0.298804 -0.188327 -0.0754089 0.0384898 0.151888 0.263316 0.371332
+0.474517 0.571549 0.661171 0.742206 0.813603 0.874451 0.92396 0.961452
+0.986478 0.998715 0.997979 0.984287 0.957833 0.918956 0.86813 0.806049
+0.733517 0.651454 0.560936;
+#X coords 0 1 99 -1 200 140 1 0 0;
+#X restore 26 340 graph;
+#X obj 29 276 tabwrite~ sine;
+#X obj 36 228 tgl 15 0 empty metro-start empty 17 7 0 10 -262144 -1
+-1 0 1;
+#X obj 258 224 tgl 15 0 empty metro-start empty 17 7 0 10 -262144 -1
+-1 0 1;
+#X obj 251 192 noise~;
+#X obj 251 271 tabwrite~ noise;
+#X text 22 29 Las fuentes de sonido utilizadas en los sintetizadores
+tienden a basarse en la matemática. Hay dos tipos básicos de fuentes:
+formas de onda y aleatorias. Las formas de onda se describen típicamente
+como formas de onda simples: diente de sierra \, cuadrada \, pulso
+\, seno y triángulo son los más comunes. Las formas son las que son
+fáciles de describir matemáticamente y también de producir electrónicamente.
+Las formas de onda aleatorias producen ruido \, que contiene una mezcla
+en constante cambio de todas las frecuencias.;
+#X obj 29 196 osc~ 800;
+#X obj 37 247 metro 250;
+#X obj 258 244 metro 250;
+#X text 14 500 Los osciladores están relacionados con una de las partes
+componentes de los sintetizadores: los generadores de funciones. Un
+generador de funciones produce una forma de onda de salida \, que puede
+ser de forma arbitraria y puede ser continua o triggereada. Un oscilador
+destinado a ser utilizado en un sintetizador sustractivo analógico
+básico normalmente produce unas pocas formas de onda continuas \,
+y la frecuencia necesita ser controlada por un voltaje. También debe
+tenerse en cuenta que \, en general \, las fuentes producen salidas
+continuas. Debido a esto se debe usar un modificador para alterar el
+timbre o aplicar una envolvente al sonido.;
+#N canvas 0 23 198 167 dsp 0;
+#X msg 25 44 \; pd dsp 1;
+#X obj 19 22 loadbang;
+#X obj 20 83 s metro-start;
+#X connect 1 0 0 0;
+#X connect 1 0 2 0;
+#X restore 16 679 pd dsp;
+#X connect 3 0 9 0;
+#X connect 4 0 10 0;
+#X connect 5 0 6 0;
+#X connect 8 0 2 0;
+#X connect 9 0 2 0;
+#X connect 10 0 6 0;

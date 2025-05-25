@@ -143,7 +143,7 @@ The sequence is stored in a table named sequence with 12 MIDI note values:
 
 This pattern is initialized at patch load.
 
-### Step-by-Step Data Flow
+### Data Flow
 
 **Initialization**
 
@@ -271,7 +271,7 @@ The note value is sent to a `makenote` object, which creates a MIDI note with ve
 
 The note is then sent to the `noteout` object, which outputs the MIDI note to your system's MIDI device.
 
-### Step-by-Step Data Flow
+### Data Flow
 
 1.  **Initialize Scale**: The scale intervals are defined and appended to a list.
 2.  **Generate Melody**: A loop generates random notes mapped to the scale, storing them in the `melody` array.

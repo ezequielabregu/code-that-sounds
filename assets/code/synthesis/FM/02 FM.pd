@@ -1,0 +1,53 @@
+#N canvas 26 23 1061 557 12;
+#X declare -lib ceammc;
+#X obj 657 330 +~;
+#X obj 616 243 nbx 4 14 -1e+37 1e+37 0 1 empty carrier empty 0 -8 0
+10 -228856 -1 -1 200 256;
+#X obj 675 266 osc~;
+#X obj 675 298 *~;
+#X obj 675 243 nbx 4 14 -1e+37 1e+37 0 1 empty mod empty 0 -8 0 10
+-228856 -1 -1 1 256;
+#X obj 734 284 nbx 4 14 0 1e+37 0 1 empty index empty 0 -8 0 10 -228856
+-1 -1 10 256;
+#X text 500 75 Vibrato;
+#X obj 657 359 sine~;
+#X text 612 223 Carrier;
+#X text 679 224 Mod.;
+#X text 733 266 Index;
+#X msg 503 92 \; carrier 200 \; mod 1 \; index 10;
+#X msg 715 92 \; carrier 369 \; mod 100 \; index 400;
+#X msg 609 92 \; carrier 400 \; mod 100 \; index 100;
+#X text 713 75 Inharmonic;
+#X text 606 75 Harmonic;
+#X text 33 138 Cuanto mayor es el índice de modulación \, más parciales
+tenemos. Por lo tanto \, puede crear formas de onda ricas y complejas.
+Si la portadora y las frecuencias de modulación tienen una relación
+armónica simple \, el resultado es una forma de onda armónica e inarmónica
+de lo contrario. Haga clic en los cuadros de mensaje para ver los ejemplos
+preestablecidos.;
+#X obj 657 437 output~;
+#X text 22 492 Aumente el índice de modulación y vea la creación
+de parciales arriba, f 40;
+#X obj 750 10 declare -lib ceammc;
+#X obj 28 280 ui.spectroscope~ @size 514 201 @fontname "Helvetica"
+@fontweight "normal" @fontslant "roman" @fontsize 11 @receive "(null)"
+@send "(null)" @pinned 0 @background_color 0.93 0.93 0.93 1 @border_color
+0.6 0.6 0.6 1 @active_color 0 0.75 1 1 @label_color 0.6 0.6 0.6 1 @refresh
+100 @log_scale 1;
+#X obj 704 378 s~ audio;
+#X obj 28 252 r~ audio;
+#X text 31 25 Nuevamente tenemos la misma estructura. Además de un
+ejemplo de vibrato \, tenemos ejemplos de FM adecuados. De manera similar
+a la modulación de amplitud \, se crean parciales de banda lateral
+\, espaciados por bandas de frecuencia iguales a la frecuencia de modulación
+\, pero FM puede producir varias bandas laterales.;
+#X connect 0 0 7 0;
+#X connect 1 0 0 0;
+#X connect 2 0 3 0;
+#X connect 3 0 0 1;
+#X connect 4 0 2 0;
+#X connect 5 0 3 1;
+#X connect 7 0 17 0;
+#X connect 7 0 17 1;
+#X connect 7 0 21 0;
+#X connect 22 0 20 0;

@@ -1,0 +1,39 @@
+#N canvas 53 23 1021 707 12;
+#X text 17 20 En el ámbito analógico los osciladores suelen ser llamados
+VCO (Voltage Control Oscillator). Los VCO proporcionan control de voltaje
+de la frecuencia o tono de su salida. Algunos VCO también proporcionan
+entradas de control de voltaje para la modulación (generalmente FM)
+y para variar la forma de las formas de onda de salida (generalmente
+el ancho de pulso de la forma de onda rectangular \, aunque algunos
+VCO también permiten alterar la forma de otras formas de onda). Muchos
+VCO tienen una entrada adicional para otra señal de audio VCO \, con
+la cual el VCO puede sincronizarse. La sincronización de fase obliga
+al VCO a restablecer su salida para mantenerse sincronizado con la
+señal entrante \, lo que significa que el VCO solo puede operar en
+la misma o múltiples frecuencias de la frecuencia de entrada. Esto
+produce un sonido áspero característico. Se pueden usar otros esquemas
+de sincronización "más suaves" para producir cambios tímbricos en
+la salida en lugar de bloquear la frecuencia VCO. Un VCO típico tiene
+controles para la afinación gruesa (semitonos) y fina (centavos) de
+su tono \, algún tipo de selector de forma de onda (generalmente uno
+de seno \, triángulo \, cuadrado \, diente de sierra y pulso) \, un
+control de ancho de pulso para la forma del forma de onda de pulso
+y un control de nivel de salida. A veces \, hay disponibles múltiples
+formas de onda de salida simultáneas \, y algunos VCO también proporcionan
+salidas de "sub-octava" que tienen una o dos octavas más bajas en
+tono. Un CV para el ancho del pulso permite alterar la forma de la
+onda del pulso (y algunas veces también otras formas de onda). Esto
+se llama modulación de ancho de pulso (PWM) o modulación de forma.
+;
+#X text 565 16 En resumen \, podemos definir un oscilador con estos
+parámetros:;
+#X obj 621 390 cos~;
+#X text 561 328 Running phase =>, f 8;
+#X text 558 380 waveform function, f 8;
+#X obj 621 312 phasor~;
+#X text 560 191 ¿Cómo podemos controlar estos parámetros a partir
+de nuestro modelo?;
+#X text 551 79 - Waveform function (sine \, sawtooth \, square \, triangle)
+\; - Frequency (Hz) \; - Initial Phase (degrees) \; - Peak Amplitude
+(OPCIONAL);
+#X connect 5 0 2 0;
