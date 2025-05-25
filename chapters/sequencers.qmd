@@ -431,7 +431,7 @@ More generally, if the greatest common divisor between n and k is g, we would ex
 
  
 
-### Example (13, 5)
+#### Example (13, 5)
 
 Let’s consider a sequence with n = 13 and k = 5.
 
@@ -467,7 +467,7 @@ The final sequence is, therefore, the concatenation of \[10010\], \[10010\], and
 
  
 
-### Example (17, 7)
+#### Example (17, 7)
 
 Suppose we have 17 pulses and want to evenly distribute 7 beats over them.
 
@@ -524,6 +524,8 @@ Suppose we have 17 pulses and want to evenly distribute 7 beats over them.
 
 ### Implementation in Pure Data - Euclidean sequencer
 
+The following code implements the Euclidean algorithm in Pure Data to generate a Euclidean rhythm. The algorithm is based on the mathematical formula:
+
 ```default
 (index * hits ) % steps
 ↓
@@ -548,9 +550,6 @@ hits = number of notes to be played
 steps = array size
 
 Yoy can check this [Euclidean rhythm demo](https://dbkaplun.github.io/euclidean-rhythm/) in order to interact and see how the algorithm works.
-
-
-
 
 #### Understanding the Mathematical Formula
 
@@ -592,6 +591,212 @@ Pattern: 1 0 1 0 0 1 0 1 0 0 1 0 0
 Both patterns contain five beats. Both distribute them fairly evenly. But the Bjorklund version achieves a more perceptually even spacing and aligns with theoretical expectations. The formula result is essentially a rotated variant.
 
 In summary, the formula `(index * hits) % steps < hits` offers a pragmatic and computationally efficient way to generate rhythm patterns that resemble Euclidean rhythms. It is well-suited for real-time use cases and environments where simplicity and speed are more important than strict accuracy. In contrast, the Bjorklund algorithm provides a mathematically rigorous method for generating rhythms with maximal evenness. It aligns with canonical definitions and is favored in theoretical and compositional contexts.The choice between these methods depends on your priorities: use the formula for lightweight, real-time approximation, and use Bjorklund when you need precision and adherence to the canonical Euclidean model.
+
+
+### Euclidean Rhythm Generator
+
+This section provides a detailed explanation of the [Euclidean-basic-Serie.pd](/assets/code/sequencers/euclidean/00-Euclidean-basic-Serie.pd) patch. This Pure Data patch demonstrates how to generate Euclidean rhythms using a straightforward mathematical formula. 
+
+![Fig. ](/assets/screenshots/sequencers/euclid_00.png)
+
+#### Patch Overview
+
+The patch is structured into several functional blocks. First, there are controls for setting the number of steps and the number of hits (pulses). Next, the patch calculates the Euclidean pattern using a mathematical formula. Finally, the resulting pattern is output and visualized as a list of pulses and rests.
+
+To help visualize the flow of data through the patch, consider the following diagram:
+
+```{mermaid}
+flowchart TD
+    S[Steps Slider] --> A[Step Counter]
+    H[Hits Slider] --> B[Hits Value]
+    A --> C[Euclidean Formula: index * hits % steps]
+    B --> C
+    C --> D[Compare < hits]
+    D --> E[Pattern List]
+    E --> F[Output/Display]
+```
+
+#### Data Flow
+
+The process begins with the user setting the number of steps in the sequence using a horizontal slider labeled "Steps." This determines the total length of the rhythmic cycle. The user also sets the number of hits, or pulses, using another slider labeled "HITS." These two values are stored and sent to the rest of the patch, where they are used to calculate the rhythmic pattern.
+
+Once the parameters are set, the patch uses a loop, implemented with the `until` object, to iterate through each step index from 0 up to one less than the total number of steps. For each index, the patch calculates a value using the formula `(index * hits) % steps`. This formula determines the position of each pulse within the cycle by multiplying the current index by the number of hits and taking the result modulo the total number of steps. The result of this calculation is then compared to the number of hits. If the result is less than the number of hits, a pulse (represented by a 1) is added to the pattern. Otherwise, a rest (represented by a 0) is added. This process is repeated for every step in the sequence, gradually building up the complete Euclidean rhythm as a list of ones and zeros.
+
+After the pattern has been calculated, it is displayed as a list, allowing you to see the sequence of pulses and rests. The patch also includes a reset mechanism, so that the pattern can be recalculated and updated whenever the user changes the number of steps or hits.
+
+#### Example: (Steps = 13, Hits = 5)
+
+To illustrate how the patch works, consider the case where the number of steps is 13 and the number of hits is 5. The following table shows the calculation for each step:
+
+| Index | Calculation         | Result | < Hits? | Output |
+|-------|---------------------|--------|---------|--------|
+| 0     | (0 * 5) % 13 = 0    | 0      | Yes     | 1      |
+| 1     | (1 * 5) % 13 = 5    | 5      | Yes     | 1      |
+| 2     | (2 * 5) % 13 = 10   | 10     | No      | 0      |
+| 3     | (3 * 5) % 13 = 2    | 2      | Yes     | 1      |
+| 4     | (4 * 5) % 13 = 7    | 7      | No      | 0      |
+| 5     | (5 * 5) % 13 = 12   | 12     | No      | 0      |
+| 6     | (6 * 5) % 13 = 4    | 4      | Yes     | 1      |
+| 7     | (7 * 5) % 13 = 9    | 9      | No      | 0      |
+| 8     | (8 * 5) % 13 = 1    | 1      | Yes     | 1      |
+| 9     | (9 * 5) % 13 = 6    | 6      | No      | 0      |
+| 10    | (10 * 5) % 13 = 11  | 11     | No      | 0      |
+| 11    | (11 * 5) % 13 = 3   | 3      | Yes     | 1      |
+| 12    | (12 * 5) % 13 = 8   | 8      | No      | 0      |
+
+The resulting pattern is:  
+`1 1 0 1 0 0 1 0 1 0 0 1 0`
+
+This sequence distributes five pulses as evenly as possible across thirteen steps.
+
+#### Key Objects and Their Roles
+
+The following table summarizes the key objects used in the patch and their roles:
+
+| Object                | Purpose                                              |
+|-----------------------|-----------------------------------------------------|
+| `hsl` (slider)        | Sets number of steps and hits                       |
+| `until`               | Loops through each step index                       |
+| `expr`                | Calculates `(index * hits) % steps`                 |
+| `<`                   | Compares result to hits, outputs 1 or 0             |
+| `add2`                | Appends each result to the output pattern list      |
+| `set`                 | Resets the output list for new calculations         |
+| `mod`                 | Ensures index wraps around for correct calculation  |
+
+### Euclidean Rotation Generator
+
+This section explains the [Euclidean-Rotation.pd](/assets/code/sequencers/euclidean/Euclidean-Rotation.pd) patch. This Pure Data patch builds on the basic Euclidean rhythm generator by introducing a rotation parameter, allowing you to shift the starting point of the rhythm pattern. This feature is useful for exploring different phase relationships and rhythmic variations without changing the underlying distribution of pulses.
+
+![Fig. ](/assets/screenshots/sequencers/euclid_01.png)
+
+#### Patch Overview
+
+The patch allows you to set the number of steps, the number of hits (pulses), and the rotation amount. The rotation parameter shifts the pattern cyclically, so the rhythm can start at any point in the sequence. The patch calculates the Euclidean pattern using a formula that incorporates the rotation, and then outputs the resulting pattern for visualization and further use.
+
+The following diagram illustrates the data flow for the rhythm and rotation:
+
+```{mermaid}
+flowchart TD
+    Steps[Steps Slider] --> Counter[Step Counter]
+    Hits[Hits Slider] --> HitsVal[Hits Value]
+    Rot[Rotation Slider] --> RotVal[Rotation Value]
+    Counter --> Formula[Euclidean Formula: index_plus_rotation_times_hits_mod_steps]
+    RotVal --> Formula
+    HitsVal --> Formula
+    Formula --> Compare[Compare to Hits]
+    Compare --> Pattern[Pattern List]
+    Pattern --> Output[Output/Display]
+```
+
+#### Data Flow
+
+The process begins with the user setting the number of steps, hits, and rotation using horizontal sliders. The steps slider determines the total length of the rhythmic cycle, the hits slider sets the number of pulses to be distributed, and the rotation slider specifies how many positions to shift the pattern.
+
+A loop, implemented with the `until` object and a counter, iterates through each step index. For each index, the patch calculates the value using the formula `((index + rotation) * hits) % steps`. This formula determines the position of each pulse within the cycle, taking into account the rotation. The result is then compared to the number of hits: if it is less than the number of hits, a pulse (represented by a 1) is added to the pattern; otherwise, a rest (represented by a 0) is added. This process is repeated for every step, building up the complete rotated Euclidean rhythm.
+
+The resulting pattern is displayed as a list, showing the sequence of pulses and rests after rotation. The patch also provides a reset mechanism to clear and recalculate the pattern when parameters change.
+
+#### Example: Rotating a Euclidean Rhythm
+
+Suppose you set 8 steps, 3 hits, and a rotation of 2. The main rhythm without rotation might be:
+
+`1 0 0 1 0 0 1 0`
+
+Applying a rotation of 2 shifts the pattern two steps to the right, resulting in:
+
+`0 1 0 0 1 0 0 1`
+
+This allows you to experiment with different phase offsets and rhythmic feels.
+
+#### Key Objects and Their Roles
+
+| Object         | Purpose                                                        |
+|----------------|---------------------------------------------------------------|
+| `hsl` (slider) | Sets number of steps, hits, and rotation                      |
+| `until`        | Loops through each step index                                 |
+| `counter`      | Increments the step index for each iteration                  |
+| `expr`         | Calculates the Euclidean formula with rotation                |
+| `<`            | Compares the formula result to hits, outputs 1 or 0           |
+| `add2`         | Appends each result to the output pattern list                |
+| `set`          | Resets the output list for new calculations                   |
+| `mod`          | Ensures index wraps around for correct calculation            |
+| `tabwrite`     | Writes the final pattern to an array for visualization        |
+| `print`        | Prints the final pattern to the console (for debugging)       |
+
+
+### Euclidean Accents Generator
+
+This section explains the [Euclidean-Accents.pd](/assets/code/sequencers/euclidean/Euclidean-Accents.pd) patch. This Pure Data patch extends the basic Euclidean rhythm generator by adding a second, independent Euclidean pattern to control accents. The result is a two-layer sequencer: one layer for the main rhythm (hits) and another for accentuation, allowing for more expressive and dynamic rhythmic patterns.
+
+![Fig. ](/assets/screenshots/sequencers/euclid_02.png)
+
+#### Patch Overview
+
+The patch is organized into two parallel sections. The first section generates the main Euclidean rhythm, while the second section generates an accent pattern using the same mathematical approach. Both sections allow for independent control of steps, hits, rotation, and accents. The outputs of both patterns are then combined to produce a final sequence where steps can be silent, regular, or accented.
+
+The following diagram illustrates the data flow for both rhythm and accent layers:
+
+```{mermaid}
+flowchart TD
+    S[Steps Slider] --> A[Step Counter]
+    H[Hits Slider] --> B[Hits Value]
+    R[Rotation Slider] --> C[Rotation Value]
+    A --> D[Euclidean Formula: index+rotation*hits%steps]
+    B --> D
+    C --> D
+    D --> E[Compare < hits]
+    E --> F[Main Pattern List]
+    ACC[Accents Slider] --> ACCV[Accents Value]
+    ACCROT[Accents Rotation Slider] --> ACCROTVAL[Accents Rotation Value]
+    A2[Step Counter] --> D2[Euclidean Formula: index+acc_rotation*accents %steps]
+    ACCV --> D2
+    ACCROTVAL --> D2
+    D2 --> E2[Compare < accents]
+    E2 --> F2[Accent Pattern List]
+    F & F2 --> G[Combine Patterns]
+    G --> H[Output/Display]
+```
+
+#### Data Flow
+
+The process begins with the user setting the number of steps, hits, and rotation for the main rhythm using horizontal sliders. These parameters determine the length of the sequence, the number of pulses, and the rotation (offset) of the pattern. The patch uses a loop (`until`) and a counter to iterate through each step index. For each step, it calculates the value using the formula `((index + rotation) * hits) % steps`. This value is compared to the number of hits; if it is less, a pulse (1) is added to the main pattern, otherwise a rest (0).
+
+In parallel, the user can set the number of accents and their rotation using additional sliders. The accent pattern is generated in the same way as the main rhythm, but with its own independent parameters. The formula `((index + acc_rotation) * accents) % steps` is used to determine the placement of accents. The result is a second pattern of 1s (accent) and 0s (no accent).
+
+After both patterns are generated, they are combined step by step. If both the main pattern and the accent pattern have a 1 at the same step, the output for that step is set to 2 (indicating an accented hit). If only the main pattern has a 1, the output is 1 (regular hit). If neither has a 1, the output is 0 (rest). The final combined pattern is written to an array and displayed, allowing for visualization and further use in sequencing.
+
+#### Example: Combining Rhythm and Accents
+
+Suppose you set 8 steps, 3 hits, and 2 accents. The main rhythm might produce a pattern like:
+
+`1 0 0 1 0 0 1 0`
+
+The accent pattern, with its own rotation, might produce:
+
+`1 0 1 0 0 1 0 0`
+
+Combining these, the output would be:
+
+`2 0 1 1 0 1 1 0`
+
+Here, "2" indicates an accented hit, "1" a regular hit, and "0" a rest.
+
+#### Key Objects and Their Roles
+
+| Object         | Purpose                                                                 |
+|----------------|------------------------------------------------------------------------|
+| `hsl` (slider) | Sets number of steps, hits, rotation, accents, and accent rotation      |
+| `until`        | Loops through each step index                                           |
+| `counter`      | Increments the step index for each iteration                            |
+| `expr`         | Calculates the Euclidean formula for both rhythm and accent patterns    |
+| `<`            | Compares the formula result to hits or accents, outputs 1 or 0          |
+| `add2`         | Appends each result to the output pattern list                          |
+| `set`          | Resets the output list for new calculations                             |
+| `list-idx`     | Retrieves values from the generated lists for combination               |
+| `expr if($f1+$f2==2, 2, $f1)` | Combines main and accent patterns into a single output   |
+| `tabwrite`     | Writes the final pattern to an array for visualization                  |
+| `print`        | Prints the final pattern to the console (for debugging)                 |
+
 
 
 ## Cellular Automata

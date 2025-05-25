@@ -1,21 +1,19 @@
-#N canvas 0 23 1227 696 12;
+#N canvas 0 25 1227 696 12;
 #X obj 431 223 until;
 #X text 923 131 [< HITS];
 #X text 923 112 |;
 #X obj 431 304 mod, f 7;
 #X obj 695 309 expr int($f1*$f2);
-#X obj 698 286 hsl 128 15 0 1 0 0 empty \$0-hitsGUI HITS_(0-1) -2 -8
-0 10 -232576 -1 -1 0 1;
+#X obj 698 286 hsl 128 15 0 1 0 0 empty \$0-hitsGUI HITS_(0-1) -2 -8 0 10 #e0c4fc #000000 #000000 0 1;
 #X obj 431 497 <;
 #X msg 431 525 add2 \$1;
 #X msg 431 569 1 0 1 0;
 #X msg 507 533 set;
-#X floatatom 695 332 5 0 0 0 - - -;
+#X floatatom 695 332 5 0 0 0 - - - 0;
 #X obj 431 278 cup;
 #X obj 431 197 t f f f, f 14;
-#X obj 434 115 hsl 128 15 0 16 0 0 empty \$0-stepsGUI STEPS -2 -8 0
-10 -204786 -1 -1 0 1;
-#X floatatom 431 156 5 0 0 0 - - -;
+#X obj 434 115 hsl 128 15 0 16 0 0 empty \$0-stepsGUI STEPS -2 -8 0 10 #c4fcc4 #000000 #000000 0 1;
+#X floatatom 431 156 5 0 0 0 - - - 0;
 #X obj 431 133 i;
 #X obj 431 448 expr ($f1 * $f2) % $f3, f 89;
 #X obj 695 386 t b b f;
@@ -43,31 +41,26 @@
 #X obj 171 385 r \$0-steps;
 #X obj 140 429 tabread \$0-euclidSimple;
 #X obj 54 332 inlet;
-#X obj 109 236 hsl 128 15 0 1 0 0 \$0-hitsGUI empty HITS -2 -8 0 10
--232576 -1 -1 0 1;
-#X obj 108 202 hsl 128 15 0 16 0 0 \$0-stepsGUI empty STEPS -2 -8 0
-10 -204786 -1 -1 0 1;
-#X floatatom 239 199 5 0 0 0 - #0-steps -;
-#X floatatom 240 234 5 0 0 0 - #0-hits -;
-#X obj 109 164 hsl 128 15 100 1000 0 0 empty empty Duration_ms -2 -8
-0 10 -262130 -1 -1 0 1;
-#X floatatom 240 162 5 0 0 0 - - #0-dur;
+#X obj 109 236 hsl 128 15 0 1 0 0 \$0-hitsGUI empty HITS -2 -8 0 10 #e0c4fc #000000 #000000 0 1;
+#X obj 108 202 hsl 128 15 0 16 0 0 \$0-stepsGUI empty STEPS -2 -8 0 10 #c4fcc4 #000000 #000000 0 1;
+#X floatatom 239 199 5 0 0 0 - \$0-steps - 0;
+#X floatatom 240 234 5 0 0 0 - \$0-hits - 0;
+#X obj 109 164 hsl 128 15 100 1000 0 0 empty empty Duration_ms -2 -8 0 10 #fcfcc4 #000000 #000000 0 1;
+#X floatatom 240 162 5 0 0 0 - - \$0-dur 0;
 #X msg 69 567 43 0 312.598;
 #X obj 69 517 pack f f f, f 29;
 #X obj 237 489 t b f;
 #X msg 69 541 set \$1 \$2 \$3;
 #X obj 140 462 t b f;
-#X obj 108 130 hsl 128 15 0 127 0 0 empty empty MIDI_NOTE -2 -8 0 10
--261234 -1 -1 0 1;
-#X floatatom 239 128 5 0 0 0 - - #0-note;
+#X obj 108 130 hsl 128 15 0 127 0 0 empty empty MIDI_NOTE -2 -8 0 10 #fcc4c4 #000000 #000000 0 1;
+#X floatatom 239 128 5 0 0 0 - - \$0-note 0;
 #X obj 69 480 r \$0-note;
 #X obj 237 467 r \$0-dur;
 #X obj 416 612 tabwrite \$0-euclidSimple;
 #X obj 431 360 t f f, f 22;
 #X obj 171 488 * 100;
 #X obj 53 356 t b b;
-#X obj 119 318 hsl 150 10 0 4 0 0 empty \$0-seqGUI empty -2 -8 0 10
--228856 -1 -1 0 1;
+#X obj 119 318 hsl 150 10 0 4 0 0 empty \$0-seqGUI empty -2 -8 0 10 #dcdcdc #000000 #000000 0 1;
 #X obj 138 58 s \$0-seqGUI;
 #X obj 138 11 r \$0-steps;
 #X obj 173 408 s \$0-seqGUI;
