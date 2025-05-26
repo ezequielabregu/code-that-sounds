@@ -1,9 +1,4 @@
----
-title: "Sequencers"
-jupyter: python3
----
-
-# Sequencers
+# Sequencer
 
 In this chapter, we will explore the concept of sequencers and how they can be implemented in Pure Data.
 
@@ -801,6 +796,8 @@ Here, "2" indicates an accented hit, "1" a regular hit, and "0" a rest.
 
 ## Cellular Automata
 
+Cellular automata are simple machines consisting of cells that update in parallel at discrete time steps. In general, the state of a cell depends on the state of its local neighborhood at the previous time step. The earliest known examples were engineered for specific purposes, such as the two-dimensional cellular automaton constructed by von Neumann in 1951 to model biological self-replication [@brummitt2012]
+
 A cellular automaton is a mathematical and computational model for a dynamic system that evolves in discrete steps. It is suitable for modeling natural systems that can be described as a massive collection of simple objects interacting locally with each other.
 
 A cellular automaton is a collection of "colored" cells on a grid of specified shape that evolves through a series of discrete time steps according to a set of rules based on the states of neighboring cells. The rules are then applied iteratively over as many time steps as desired.
@@ -824,9 +821,20 @@ Cellular automata are considered as a vector. Each component of the vector is ca
 
 This type of automaton is known as an elementary one-dimensional cellular automaton (1DCA). A dynamic process is performed, starting from an initial configuration C(0) of each of the cells (stage 0), and at each new stage, the state of each cell is calculated based on the state of the neighboring cells and the cell itself in the previous stage.
 
+The cellular automata that we study in this section are one-dimensional. A one-dimensional cellular automaton consists of:
+
+- an alphabet `Σ` of size `k`,
+- a positive integer `d`,
+- a function `i` from the set of integers to `Σ`, and
+- a function `f` from Σ^d^ (d-tuples of elements in Σ) to S.
+  
+The function `i` is called the initial condition, and the function `f` is
+called the rule. We think of the initial condition as an infinite row of discrete cells, each assigned one of `k` colors. To evolve the cellular automaton, we update all cells in parallel, where each cell updates according to `f`, a function of d cells in its vicinity on the previous step.
+I adopt the usual convention of naming a cellular automaton’s rule by the number whose base-k digits consist of the outputs of the rule under the kd possible inputs of `d` cells, ordered reverse-lexicographically. For example, the two-color rule depending on three cells that maps the eight possible inputs according to the rule 00011110 = 30 in this numbering. Here we have identified 0 = [ ] and 1 = [x]. 
+
 ### The Case of Rule 30
 
-Rule 30 is a binary one-dimensional cellular automaton introduced by [Stephen Wolfram](https://en.wikipedia.org/wiki/Stephen_Wolfram) in 1983. It considers an infinite one-dimensional array of cellular automaton cells with only two states, with each cell in some initial state.
+Rule 30 is a binary one-dimensional cellular automaton introduced by Stephen Wolfram [@wolfram1983]. It considers an infinite one-dimensional array of cellular automaton cells with only two states, with each cell in some initial state.
 
 At discrete time intervals, each cell changes state spontaneously based on its current state and the state of its two neighbors.
 
@@ -838,18 +846,22 @@ What it consists of:
 
 3.  There are 8 possible configurations of neighboring states (3\^2), and for each, Rule 30 defines whether the cell lives or dies in the next generation.
 
+:::{.callout-note}
+**It is called Rule 30 because in binary, 00011110<sub>2</sub> = 30**
+:::
+
 For Rule 30, the set of rules that governs the automaton's next state is:
 
-| Configuration | Next State | Binary Code |
-|---------------|------------|-------------|
-| 000           | Dead       | 000         |
-| 001           | Alive      | 011         |
-| 010           | Dead       | 000         |
-| 011           | Alive      | 011         |
-| 100           | Alive      | 011         |
-| 101           | Dead       | 000         |
-| 110           | Alive      | 011         |
-| 111           | Dead       | 000         |
+| Pattern (decimal) | Pattern (binary) | Next State<br>(center cell) | New state<br>(center cell)|
+|---------|--------|------------|-------------|
+| 0       | 000    | Dead       | 000         |
+| 1       | 001    | Alive      | 011         |
+| 2       | 010    | Dead       | 000         |
+| 3       | 011    | Alive      | 011         |
+| 4       | 100    | Alive      | 011         |
+| 5       | 101    | Dead       | 000         |
+| 6       | 110    | Alive      | 011         |
+| 7       | 111    | Dead       | 000         |
 
 In the following diagram, the top row shows the state of the central cell (cell *i*) and its two neighboring cells at a given stage, and the bottom row shows the state of the central cell in the next stage.
 
@@ -859,9 +871,9 @@ For example, in the first case of the figure:
 -   its two neighbors at that stage are also `[1]` (black),
 -   then the cell's state in the next stage will be `[0]` (white).
 
-![Rule 30](https://mathworld.wolfram.com/images/eps-svg/ElementaryCARule030_700.svg) [Source](https://mathworld.wolfram.com/CellularAutomaton.html)
+![Fig. Rule 30](/assets/images/sequencers/Rule30_Automaton.gif) 
 
-It is called Rule 30 because in binary, 00011110<sub>2</sub> = 30.
+[Source](https://mathworld.wolfram.com/CellularAutomaton.html)
 
 Let's break down the procedure for determining the next state in the 8 combinations:
 
@@ -889,6 +901,8 @@ For example, the least significant bit of 00011110 (the rightmost bit) is 0. Thi
 For example, if the input combination is 000 and the corresponding bit in Rule 30 is 0, then the next state of the central cell will be 0.
 
 Therefore, the rules are not arbitrary but are determined by the binary representation of Rule 30, which specifies the next state of the central cell for each input combination of its neighbors.
+
+![Fig. Rule 30](/assets/images/sequencers/Rule-30--by-Stephen-Wolfram-for-Cellular-Automata.png)
 
 ### Rule 30 Implementation in Python
 

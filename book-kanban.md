@@ -26,6 +26,8 @@
 - Add image captions.
 - Reference images from internet or with third-party owners.
 - Create a better cover image for the book.
+- Numerate patches according to the chapter and section.
+- Numerate tables according to the chapter and section.
 
 #### Sequencers
 
@@ -47,7 +49,7 @@
   - use Gandini's example
 - Add link to each pd example.
 - See Campus --> Add art works reference to synthesis chapter (oscillators, additive, subtractive, modulation).
-- - Add Risset's bell on the additivity synthesis section.
+- Add Risset's bell on the additivity synthesis section.
 - Add Poem for 100 metronomes and explain dinamic patching.
 - Summary of the [Phil Niblock paper](https://www.straebel.com/files/Straebel%202008_Niblock.pdf)
 - Add AM-RM-FM synthesis examples patches.
@@ -56,6 +58,13 @@
 
 - Add Arrays and Tables.
 - Intro and review basic concepts of readsf and writesf~ in
+
+#### Space
+
+- Write space pure data examples. 
+  - Panning
+  - Distance
+  - Reverb
 
 ## In Progress
 
