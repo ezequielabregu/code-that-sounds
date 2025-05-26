@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.29">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>6&nbsp; Space – Creative Coding with Pure Data</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../chapters/tools.html" rel="next">
+<link href="../chapters/sonification.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-0815c480559380816a4d1ea211a47e91.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-748b535e376f14d4692bf2b2e5fd6380.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-0815c480559380816a4d1ea211a47e91.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-1e81d527365e20b3495763033adbcf98.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-8ab8b311eebd604b8865a9cbc6c08092.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-1e81d527365e20b3495763033adbcf98.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-sidebar floating quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/space.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Space</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Creative Coding with Pure Data</a> 
+        <div class="sidebar-tools-main tools-wide">
+    <a href="https://github.com/ezequielabregu/creative-code-with-pd" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/introduction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/playrec.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Rec &amp; Play</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/sequencers.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Sequencers</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/synthesis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Synthesis</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/sonification.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Sonification</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/space.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Space</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/tools.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Tools</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/conclusion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Conclusion</span></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#the-sound-space" id="toc-the-sound-space" class="nav-link active" data-scroll-target="#the-sound-space"><span class="header-section-number">6.1</span> The Sound Space</a>
+  <ul class="collapse">
+  <li><a href="#spatial-distribution-and-the-evolution-of-listening-spaces" id="toc-spatial-distribution-and-the-evolution-of-listening-spaces" class="nav-link" data-scroll-target="#spatial-distribution-and-the-evolution-of-listening-spaces"><span class="header-section-number">6.1.1</span> Spatial Distribution and the Evolution of Listening Spaces</a></li>
+  <li><a href="#spatial-recontextualization-and-auditory-expectation" id="toc-spatial-recontextualization-and-auditory-expectation" class="nav-link" data-scroll-target="#spatial-recontextualization-and-auditory-expectation"><span class="header-section-number">6.1.2</span> Spatial Recontextualization and Auditory Expectation</a></li>
+  <li><a href="#the-expanded-spatial-palette-of-electroacoustic-music" id="toc-the-expanded-spatial-palette-of-electroacoustic-music" class="nav-link" data-scroll-target="#the-expanded-spatial-palette-of-electroacoustic-music"><span class="header-section-number">6.1.3</span> The Expanded Spatial Palette of Electroacoustic Music</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content column-body" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Space</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta column-body">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>In the realm of music, the concept of space is often overlooked. Yet, it plays a crucial role in shaping our auditory experience. The spatial dimension of sound is not merely an acoustic phenomenon; it is a fundamental aspect of how we perceive and interpret music. This chapter explores the multifaceted nature of sound space, its historical evolution, and its implications for contemporary electroacoustic music.</p>
+<section id="the-sound-space" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="the-sound-space"><span class="header-section-number">6.1</span> The Sound Space</h2>
+<p>Sound always unfolds within a specific time and space. From the very moment sound is generated in music, space is implicitly present, enabling the possibility of organizing, reconstructing, and shaping that space to influence musical form. Thus, the use of space in music responds to concerns that go far beyond mere acoustic considerations.</p>
+<p>Conceiving space as a structural element in the construction of sonic discourse requires us to address a complex notion—one that touches on multiple dimensions of composition, performance, and perception. This idea rests on the argument that space is a composite musical element, one that can be integrated into a compositional structure and assume a significant role within the formal hierarchy of sound discourse.</p>
+<p>Spatiality in music represents a compositional variable with a long historical lineage. The treatment of sound space on stage can be traced back to classical Greek theatre, where actors and chorus members used masks to amplify vocal resonance and enhance vocal directionality (<span class="citation" data-cites="knudsen1932">Knudsen (<a href="#ref-knudsen1932" role="doc-biblioref">1932</a>)</span>). However, while compositional techniques addressing spatial sound have been developing for centuries, it is not until the early 20th century that a systematic use of spatial dimensions becomes central to musical structure. Landmark works such as <em>Universe Symphony</em> (1911–51) by Charles Ives, <em>Déserts</em> (1954) and <em>Poème électronique</em> (1958) by Edgard Varèse, <em>Gruppen</em> (1955–57) by Karlheinz Stockhausen, and <em>Persephassa</em> (1969) by Iannis Xenakis approach spatiality as an independent and structural dimension. In these works, space is interrelated with other sonic parameters such as timbre, dynamics, duration, and pitch.</p>
+<p>Particularly noteworthy is that these pieces do not merely establish sonic space as a new musical dimension—they also develop theoretical frameworks for the spatialization of sound. These theories consider physical, poetic, pictorial, and perceptual aspects of spatial sound. As a result, in recent decades the areas of research and application related to artistic-musical knowledge have expanded significantly, fostering interdisciplinary inquiry into sound space and its parameters.</p>
+<p>Beyond its central role in music, in recent years spatial sound has also become a subject of study across a variety of disciplines. One example of this is found in research into sound spatialization techniques in both real and virtual acoustic environments. These techniques have largely evolved based on principles of psychoacoustics, cognitive modeling, and technological advancements, leading to the development of specialized hardware and software for spatial sound processing. In the scientific realm, theses and research articles have explored, in great detail, the cues necessary to create an acoustic image of a virtual source and how these cues must be simulated—whether by electronic circuitry or computational algorithms.</p>
+<p>However, it must be noted that musical techniques for managing sound space have not yet fully integrated findings from perceptual science. As we will explore later, many artistic approaches rely on only a subset of the cues involved in auditory spatial perception, overlooking others that are essential for producing a convincing acoustic image.</p>
+<p>In general terms, the spatial dimension of a musical composition can function as the primary expressive and communicative attribute for the listener. For instance, from the very first moment, the acoustic characteristics of a venue—real or virtual—directly affect how we perceive the sonic discourse. This dimension of musical space is further shaped by the placement of sound sources, whether instrumentalists or loudspeakers. A historical precedent for this can be found in the Renaissance period through the use of divided choirs in the Basilica of San Marco in Venice. This stylistic practice, known as antiphonal music, represents a clear antecedent of the deep connection between musical construction and architectural space (<span class="citation" data-cites="stockhausen1959">Stockhausen (<a href="#ref-stockhausen1959" role="doc-biblioref">1959</a>)</span>). The style of Venetian composers was strongly influenced by the acoustics and architectural features of San Marco, involving spatially separated choirs or instrumental groups performing in alternation.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../assets/images/space/fig-1-san-marcos.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figure 1: Floor plan of the Basilica of San Marco in Venice (Italy)."><img src="../assets/images/space/fig-1-san-marcos.png" class="img-fluid figure-img" alt="Figure 1: Floor plan of the Basilica of San Marco in Venice (Italy)."></a></p>
+<figcaption><strong>Figure 1</strong>: Floor plan of the Basilica of San Marco in Venice (Italy).</figcaption>
+</figure>
+</div>
+<section id="spatial-distribution-and-the-evolution-of-listening-spaces" class="level3" data-number="6.1.1">
+<h3 data-number="6.1.1" class="anchored" data-anchor-id="spatial-distribution-and-the-evolution-of-listening-spaces"><span class="header-section-number">6.1.1</span> Spatial Distribution and the Evolution of Listening Spaces</h3>
+<p>During the European Classical and Romantic periods, the spatial distribution of musicians generally adhered to the French ideal inspired by 19th-century military band traditions. In this widely adopted setup, space was typically divided into two main zones: musicians arranged on a frontal stage and the audience seated facing them. This concert model—linear, frontal, and fixed—reflected a formalized, hierarchical approach to the musical experience.</p>
+<p>By the 20th century, this front-facing paradigm began to be reexamined and reimagined. Composers and sound artists started to question the limitations of conventional concert hall layouts. A notable example is found in 1962, when German composer Karlheinz Stockhausen proposed a radical redesign of the concert space to accommodate the evolving needs of contemporary composition. His vision included a circular venue without a fixed podium, flexible seating arrangements, adaptable ceiling and wall surfaces for mounting loudspeakers and microphones, suspended balconies for musicians, and configurable acoustic properties. These directives were not merely architectural; they were compositional in nature, meant to transform the listening experience by embedding spatiality into the core of musical structure.</p>
+<p>This reconceptualization of space enabled a new way of thinking about the sensations and experiences that could be elicited in the listener through the manipulation of spatial audio. The concert hall was no longer a passive container of sound, but an active participant in its articulation.</p>
+<p>In parallel developments, particularly in the field of electroacoustic music during the mid-20th century, spatial concerns were often shaped by the available technology of the time. Spatiality lacked a clearly defined theoretical vocabulary and was not yet integrated systematically with other familiar musical parameters. Nonetheless, from its inception, electroacoustic music leveraged technology to expand musical boundaries—either through electronic signal processing or by interacting with traditional instruments.</p>
+<p>However, the notion of space in electroacoustic music differs significantly from that of instrumental music. In this context, spatiality is broad, multidimensional, and inherently difficult to define. It encompasses not only the individual sonic identity of each source—typically reproduced through loudspeakers—but also the relationships between those sources and the acoustic space in which they are heard. Critically, the audible experience of space unfolds through the temporal evolution of the sonic discourse itself.</p>
+<p>Loudspeakers in electroacoustic music afford a uniquely flexible means of organizing space as a structural element. The spatial potential enabled by electroacoustic technologies has been, and continues to be, highly significant. With a single device (see Fig. 2), it is possible to transport the listener into a wide range of virtual environments, expanding the scope of musical space beyond the physical limitations of the performance venue. This opens the door to sonic representations of distance, movement, and directionality—factors that can be fully integrated into the musical structure and treated as compositional dimensions in their own right.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../assets/images/space/fig-2-multichannel-setup.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Figure 2: Multichannel electroacoustic concert hall. "><img src="../assets/images/space/fig-2-multichannel-setup.png" class="img-fluid figure-img" alt="Figure 2: Multichannel electroacoustic concert hall. "></a></p>
+<figcaption><strong>Figure 2</strong>: Multichannel electroacoustic concert hall.<br>
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="spatial-recontextualization-and-auditory-expectation" class="level3" data-number="6.1.2">
+<h3 data-number="6.1.2" class="anchored" data-anchor-id="spatial-recontextualization-and-auditory-expectation"><span class="header-section-number">6.1.2</span> Spatial Recontextualization and Auditory Expectation</h3>
+<p>One of the defining characteristics of electroacoustic music is its capacity to recontextualize sound. Through virtual spatialization, a sound can acquire new meaning depending on how it functions within diverse contexts. For example, two sounds that would never naturally coexist—such as a thunderstorm and a mechanical engine in the same acoustic scene—can be juxtaposed to create a landscape that defies ecological realism. This deliberate disjunction can trigger a complex interaction between what is heard and the listener’s prior knowledge of those sound sources, drawn from personal experience.</p>
+<p>Our ability to interpret spatial cues in sound is deeply shaped by the patterns of interpersonal communication we engage in, the lived experience of urban or rural environments, and the architectural features of our surroundings. These formative influences are so embedded in our perceptual systems that we are often unaware of their role in shaping how we understand sensory information. Spatial cues are constantly processed in our everyday auditory experience and play a vital role in shaping our listening behaviors.</p>
+<p>In the context of electroacoustic music, environmental cues may not only suggest associations with a physical location but also inform more abstract properties of the spatial discourse articulated by the piece. Jean-Claude Risset (<span class="citation" data-cites="risett1969">Risett (<a href="#ref-risett1969" role="doc-biblioref">1969</a>)</span>) noted a tension in using environmental recordings in electroacoustic composition: the recognizable identity of “natural” sounds resists transformation without diminishing their spatial content. Nevertheless, identifiable sounds remain central to electroacoustic works, particularly those aligned with the tradition of musique concrète.</p>
+<p>Under normal listening conditions, perception of a singular sound source is shaped by what Pierre Schaeffer (<span class="citation" data-cites="schaeffer2003">Schaeffer (<a href="#ref-schaeffer2003" role="doc-biblioref">2003</a>)</span>)defined as the “sound object”—a sonic phenomenon perceived as a coherent whole, grasped through a form of reduced listening that focuses on the sound itself, independent of its origin or meaning. Our auditory system has evolved to identify and locate such sound objects in space by mapping them according to the physical attributes of their sources. A barking sound is understood as coming from a dog; a voice is mapped to a human speaker. As a result, the spatial interpretation of sound is closely linked to the listener’s expectations, shaped not only by the inherent acoustic characteristics of the signal but also by the listener’s accumulated learning and experience.</p>
+<p>Unlike incidental listening in everyday life, attentive listening in electroacoustic music generally occurs from a fixed position. Apart from minor head movements, the spatial information available to the listener depends entirely on the acoustic cues encoded in the sound. While spatial hearing has been extensively researched in the field of psychoacoustics, its compositional potential as a carrier of musical form remains underexplored. In particular, the dimension of distance has received little attention compared to azimuth (horizontal angle) and elevation (vertical angle). These two spatial dimensions have been rigorously studied and well-documented, forming the basis of many standard models of spatial perception.</p>
+<p>By contrast, the auditory perception of distance remains one of the most enigmatic topics in both music and psychophysics. It involves a complex array of cues—many of which are still not fully understood or integrated into compositional practice. As such, distance remains an open and promising field of inquiry for creative and scientific exploration alike (<span class="citation" data-cites="abregu2012">Abregú, Calcagno, and Vergara (<a href="#ref-abregu2012" role="doc-biblioref">2012</a>)</span>).</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../assets/images/space/fig-3-space-xyz.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Figure 3: Schematic representation of the azimuth, elevation, and distance axes. "><img src="../assets/images/space/fig-3-space-xyz.png" class="img-fluid figure-img" alt="Figure 3: Schematic representation of the azimuth, elevation, and distance axes. "></a></p>
+<figcaption><strong>Figure 3</strong>: Schematic representation of the azimuth, elevation, and distance axes.<br>
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="the-expanded-spatial-palette-of-electroacoustic-music" class="level3" data-number="6.1.3">
+<h3 data-number="6.1.3" class="anchored" data-anchor-id="the-expanded-spatial-palette-of-electroacoustic-music"><span class="header-section-number">6.1.3</span> The Expanded Spatial Palette of Electroacoustic Music</h3>
+<p>Unlike instrumental music, which relies on the physicality of pre-existing sound sources, electroacoustic music is not constrained by such limitations. This fundamental distinction allows composers not only to design entirely new sounds tailored to their spatial intentions but also to explore acoustic environments that defy conventional physical logic. While a performance of acoustic music offers visual and sonic cues grounded in the material world—a stage, a hall, visible instruments—electroacoustic music invites a more abstract engagement, where the listener navigates a virtual sound world.</p>
+<p>In acoustic settings, physical space provides the listener with consistent spatial information. In contrast, electroacoustic environments—particularly those utilizing multichannel reproduction—radically extend the spatial canvas. These environments challenge and expand our auditory expectations, offering a broader spectrum of spatial strategies shaped by the interaction between sound diffusion technologies and the perceptual mechanisms of the listener.</p>
+<p>Yet, this very potential also brings complications. The ephemeral and immaterial nature of loudspeaker-based sound makes it difficult to generate a spatial image as vivid or intuitive as that encountered in the physical world. Despite technological precision, virtual spatial environments often lack the tactile immediacy of real acoustic spaces.</p>
+<p>Research in the field of computer music typically falls into two major domains: the study of spatial hearing and cognition, and the development of sound reproduction technologies. One of the advantages in electroacoustic contexts is the ability to isolate and manipulate spatial cues independently—a task nearly impossible with traditional acoustic instruments. This level of control opens up possibilities for treating space as a fully sculptable compositional parameter. However, practical results vary greatly, and many perceptual questions remain unresolved. It is within this intersection—where psychophysics, spatialization technologies, and compositional imagination meet—that the most fertile ground for innovation lies.</p>
+<p>A classic example is John Chowning’s <em>Turenas</em> (1972), which employed quadraphonic speaker arrangements and a mathematical model to simulate virtual spatial motion. Chowning implemented a distance-dependent intensity multiplier according to the inverse square law, applied independently to each channel. The outcome was a virtual “phantom source” whose movement through space was dynamically shaped and perceptually engaging. Interestingly, Chowning discovered that simple, well-structured paths—such as basic geometric curves—produced the most convincing spatial gestures. In <em>On Sonic Art</em> (<span class="citation" data-cites="wishart1996">Wishart (<a href="#ref-wishart1996" role="doc-biblioref">1996</a>)</span>), one finds multiple visual representations of two-dimensional spatial trajectories; however, these diagrams often fail to translate into equally perceptible auditory experiences. For instance, while Lissajous curves are visually complex and elegant, their perceptual distinctiveness can be minimal. Clarity, it turns out, is key to audible spatial expression.</p>
+<p>Since the mid-20th century, various spatialization systems have emerged to simulate acoustic spaces through loudspeaker arrays. Among the most notable are Intensity Panning, Ambisonics, and Dolby 5.1. Although a detailed technical comparison of these systems lies beyond the scope of this section (see <span class="citation" data-cites="basso2009">Basso, Di Liscia, and Pampin (<a href="#ref-basso2009" role="doc-biblioref">2009</a>)</span> for an extensive overview), it is worth noting that electroacoustic space only becomes meaningful if its structural characteristics—such as reverberation—can be clearly perceived. In orchestral music, spatial features are often inherent to the instrument layout and performance context. With fixed instrument positions, the spatial configuration is relatively stable. In virtual space, however, reverberation must be explicitly created and shaped to define the acoustic character of the environment in which sonic events unfold.</p>
+<p>Unlike the relatively fixed reverberation properties of physical rooms, virtual spaces offer remarkable plasticity. Composers can craft distinct acoustic identities for different sections of a piece, allowing each space to function as a compositional agent in its own right. This flexibility implies that in electroacoustic music, space must often be invented—not merely inherited from the sounding objects, as is typically the case with acoustic instruments.</p>
+<p>It becomes clear, then, that spatial design can be a powerful structural element in music. Sound space carries poetic, aesthetic, and expressive dimensions. At the same time, convincing spatial construction often depends on our embodied experience of real-world acoustics. This dual grounding—in perceptual realism and creative abstraction—opens new theoretical and practical avenues for artists. The potential to reconceptualize spatiality through an expanded compositional lens can empower creators to engage more fully with the multidimensionality of sonic art. In doing so, it enables the development of richer analytical and taxonomical criteria that extend beyond sound itself, embracing broader cultural, perceptual, and technological contexts.</p>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-abregu2012" class="csl-entry" role="listitem">
+Abregú, E. L., E. R. Calcagno, and R. O. Vergara. 2012. <span>“La Distancia Como Factor Estructural de La Música.”</span> <em>Revista Argentina de Musicología</em>, no. 12-13: 379–400.
+</div>
+<div id="ref-basso2009" class="csl-entry" role="listitem">
+Basso, Gustavo, Oscar Pablo Di Liscia, and Juan Pampin, eds. 2009. <em>Música y Espacio: Ciencia, Tecnología y Estética</em>. Buenos Aires: Editorial de la Universidad Nacional de Quilmes.
+</div>
+<div id="ref-knudsen1932" class="csl-entry" role="listitem">
+Knudsen, V. O. 1932. <em>Architectural Acoustics</em>. J. Wiley y Sons.
+</div>
+<div id="ref-risett1969" class="csl-entry" role="listitem">
+Risett, J. C. 1969. <span>“An Introductory Catalogue of Computer Synthesized Sounds.”</span> Nueva Jersey: Bell Telephone Laboratories.
+</div>
+<div id="ref-schaeffer2003" class="csl-entry" role="listitem">
+Schaeffer, Pierre. 2003. <em>Tratado de Los Objetos Musicales</em>. Translated by Araceli Cabezón de Diego. Alianza Editorial.
+</div>
+<div id="ref-stockhausen1959" class="csl-entry" role="listitem">
+Stockhausen, Karlheinz. 1959. <span>“Musik Im Raum.”</span> <em>Die Reihe</em>, no. 5.
+</div>
+<div id="ref-wishart1996" class="csl-entry" role="listitem">
+Wishart, Trevor. 1996. <em>On Sonic Art</em>. Amsterdam: Harwood Academic Publishers.
+</div>
+</div>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation column-body">
+  <div class="nav-page nav-page-previous">
+      <a href="../chapters/sonification.html" class="pagination-link" aria-label="Sonification">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Sonification</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../chapters/tools.html" class="pagination-link" aria-label="Tools">
+        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Tools</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+ Creative Coding with Pure Data - Ezequiel Abregú
+  </li>  
+</ul>
+    </div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
+
+
+
+
+</body></html>
