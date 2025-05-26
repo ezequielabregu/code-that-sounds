@@ -36,12 +36,13 @@
 - Add audio samples.
 - Download all images from the internet and add them to the book.
   - or use a python script to generate them.
-- Check these examples: 
+- Check these examples:
   - [Pure Data quantize and sequencer](https://youtu.be/f2JyUFZ8FHU)
   - [Scale Random Generator](https://github.com/YockanookanySound/Random-Generator/blob/main/GenSeq.pd)
 
 #### Synthesis
 
+- Write additive synthesis chapter.
 - Write the sustractive synthesis chapter.
   - use Gandini's example
 - Add link to each pd example.
@@ -54,7 +55,7 @@
 #### Play and Rec
 
 - Add Arrays and Tables.
-- Intro and review basic concepts of readsf and writesf~ in 
+- Intro and review basic concepts of readsf and writesf~ in
 
 ## In Progress
 

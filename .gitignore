@@ -25,4 +25,6 @@ __pycache__/
 
 chapters/00-test_files/
 
-_freeze
+_freeze/
+_book/
+resources/
