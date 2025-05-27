@@ -792,9 +792,12 @@ Here, "2" indicates an accented hit, "1" a regular hit, and "0" a rest.
 | `tabwrite`     | Writes the final pattern to an array for visualization                  |
 | `print`        | Prints the final pattern to the console (for debugging)                 |
 
-
+<br>
+<br>
 
 ## Cellular Automata
+
+![Fig. Cellular Automaton](/assets/images/sequencers/cellular-automaton-rule30-1.png)
 
 Cellular automata are simple machines consisting of cells that update in parallel at discrete time steps. In general, the state of a cell depends on the state of its local neighborhood at the previous time step. The earliest known examples were engineered for specific purposes, such as the two-dimensional cellular automaton constructed by von Neumann in 1951 to model biological self-replication [@brummitt2012]
 
@@ -803,8 +806,6 @@ A cellular automaton is a mathematical and computational model for a dynamic sys
 A cellular automaton is a collection of "colored" cells on a grid of specified shape that evolves through a series of discrete time steps according to a set of rules based on the states of neighboring cells. The rules are then applied iteratively over as many time steps as desired.
 
 Cellular automata come in a variety of forms and types. One of the most fundamental properties of a cellular automaton is the type of grid on which it is computed. The simplest such grid is a `one-dimensional` line. In two dimensions, square, triangular, and hexagonal grids can be considered.
-
-![Fig. Cellular Automaton](/assets/images/sequencers/cellular-automaton-rule30-1.png)
 
 One must also specify the number of colors (or distinct states) *k* that a cellular automaton can assume. This number is typically an integer, with k=2 (binary, `[1]` or `[0]`) being the simplest choice. For a binary automaton, color 0 is commonly referred to as "white" and color 1 as "black". However, cellular automata with a continuous range of possible values can also be considered.
 
@@ -872,8 +873,6 @@ For example, in the first case of the figure:
 -   then the cell's state in the next stage will be `[0]` (white).
 
 ![Fig. Rule 30](/assets/images/sequencers/Rule30_Automaton.gif) 
-
-[Source](https://mathworld.wolfram.com/CellularAutomaton.html)
 
 Let's break down the procedure for determining the next state in the 8 combinations:
 
@@ -971,21 +970,24 @@ They consist of:
 
 ### Case Study: Conway's Game of Life
 
-![Game of life](https://images.squarespace-cdn.com/content/v1/59413d96e6f2e1c6837c7ecd/1592233649594-7UQA8NZSNXMZWX86FIWN/JB_Game_of_Life.gif?format=2500w)
+![Game of life [Source](https://www.artnome.com/news/2020/7/12/the-game-of-life-emergence-in-generative-art)](/assets/images/sequencers/Game_of_Life-1.gif)
 
-[Source](https://www.artnome.com/news/2020/7/12/the-game-of-life-emergence-in-generative-art)
 
-Conway's Game of Life, also known simply as the Game of Life, is a cellular automaton devised by British mathematician John Horton Conway in 1970. It is the best-known example of a cellular automaton.
+The most well known cellular automaton is the Game of Life, a two-dimensional cellular
+automaton which has been invented by John Horton Conway in 1970. It is a simulation that
+describes the evolution of a population of cells across a two-dimensional grid of squares
+by three (or four, depending on the wording) simple rules. Every cell has one of the two
+states ”dead” and ”alive”, and the state changes of the cells depend on the number of living neighbor cells. When it was first published by Martin Gardner in the journal Scientific American in 1970, it was praised to have ”fantastic combinations” [@gardner1970]. Since its invention,
+thousands of patterns have been found by many people, and there seems to be no end in
+sight. Even after more than 50 years of history, interesting new patterns are still discovered.
 
 The "game" is actually a zero-player game, meaning its evolution is determined by its initial state, requiring no further input from human players. One interacts with the Game of Life by creating an initial configuration and observing how it evolves.
 
 [View Original Article - MATHEMATICAL GAMES - The fantastic combinations of John Conway's new solitaire game life (Martin Gardner)](https://ballyalley.com/articles_and_news/LIFE_Article_%28Scientific_American%29%28October_1970%29.pdf)
 
+:::{.callout-note}
 `GOL` (Game of Life) and `CGOL` (Conway's Game of Life) are commonly used acronyms.
-
-[![Game of Life](https://img.youtube.com/vi/xP5-iIeKXE8/0.jpg)](https://www.youtube.com/watch?v=xP5-iIeKXE8)
-
-[Source](https://www.youtube.com/watch?v=xP5-iIeKXE8)
+:::
 
 #### Rules
 
@@ -1022,15 +1024,12 @@ Where 0 represents a dead cell and 1 a live cell.
 
  
 
-![Game of life rules](https://the-mvm.github.io/assets/img/posts/20210210/GameOfLife.gif)
+![Game of life rules [Source](https://the-mvm.github.io/conways-game-of-life.html)](/assets/images/sequencers/GameOfLife-rules.gif)
 
-[Source](https://the-mvm.github.io/conways-game-of-life.html)
 
- 
 
-![Game of life rules](https://d2r55xnwy6nx47.cloudfront.net/uploads/2024/01/TheRulesOfLifebyMerrillSherman_560-Desktop.svg)
 
-[Source](https://www.quantamagazine.org/maths-game-of-life-reveals-long-sought-repeating-patterns-20240118/)
+![Fig. Game of life rules [Source](https://www.quantamagazine.org/maths-game-of-life-reveals-long-sought-repeating-patterns-20240118/)](/assets/images/sequencers/GameOfLife-rules-2.svg)
 
 The initial pattern constitutes the system's 'seed'. The first generation is created by applying the above rules simultaneously to each cell in the seed; births and deaths occur simultaneously, and the discrete moment in which this occurs is sometimes called a step. (In other words, each generation is a pure function of the previous one.) The rules continue to be applied repeatedly to create more generations.
 
@@ -1059,41 +1058,39 @@ Conway carefully selected the rules, after considerable experimentation, to meet
 
 Many different types of patterns occur in the Game of Life, including static patterns ("still lifes"), repeating patterns ("oscillators" – a superset of still lifes), and patterns that move across the board ("spaceships"). Common examples of these three classes are shown below, with live cells in black and dead cells in white.
 
-![Gosper glider gun](https://blog.xojo.com/wp-content/uploads/2022/05/CleanShot-2022-05-02-at-14.25.12@2x.png)
+![Gosper glider gun](/assets/images/sequencers/gosper-glider-gun.png)
 
 Using the provided rules, you can investigate the evolution of simple patterns:
 
-![3 cells](https://pi.math.cornell.edu/~lipa/mec/lifep.png)
+![3 cells [Source](https://pi.math.cornell.edu/~lipa/mec/lesson6.html)](/assets/images/sequencers/GOL-3-cells.png)
 
-![4 cells](https://pi.math.cornell.edu/~lipa/mec/4life2.png)
+![4 cells [Source](https://pi.math.cornell.edu/~lipa/mec/lesson6.html)](/assets/images/sequencers/GOL-4-cells.png)
 
-[Source](https://pi.math.cornell.edu/~lipa/mec/lesson6.html)
+
 
 Patterns that evolve for long periods before stabilizing are called `Methuselahs`, the first of which discovered was the `R-pentomino`.
 
-![R-pendomino](https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Game_of_life_fpento.svg/164px-Game_of_life_fpento.svg.png)
+![R-pendomino [source](https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Game_of_life_diehard.svg/324px-Game_of_life_diehard.svg.png)](/assets/images/sequencers/GOL-R-pendomino.png)
 
 `Diehard` is a pattern that eventually disappears, rather than stabilizing, after 130 generations, which is believed to be the maximum for initial patterns with seven or fewer cells.
 
-![Diehard](https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Game_of_life_diehard.svg/324px-Game_of_life_diehard.svg.png)
+![Diehard [source](https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Game_of_life_diehard.svg/324px-Game_of_life_diehard.svg.png)](/assets/images/sequencers/GOL-Diehard.png)
 
 `Acorn` takes 5,206 generations to produce 633 cells, including 13 escaping gliders.
 
-![Acorn](https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Game_of_life_acorn.svg/292px-Game_of_life_acorn.svg.png)
+![Acorn [source](https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Game_of_life_acorn.svg/292px-Game_of_life_acorn.svg.png)](/assets/images/sequencers/GOL-Acorn.png)   
 
 Conway originally conjectured that no pattern could grow indefinitely; that is, for any initial configuration with a finite number of live cells, the population could not grow beyond some finite upper bound. The `Gosper glider gun` pattern produces its first glider in the 15th generation, and another every 30 generations thereafter.
 
-![Gosper's glider gun](https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Game_of_life_glider_gun.svg/1000px-Game_of_life_glider_gun.svg.png)
+![Gosper's glider gun [source](https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Game_of_life_glider_gun.svg/1000px-Game_of_life_glider_gun.svg.png)](/assets/images/sequencers/GOL-gospers-glyder-gun.png)
 
 ![Gosper glider gun](https://upload.wikimedia.org/wikipedia/commons/e/e5/Gospers_glider_gun.gif)
 
 For many years, this pattern was the smallest known. In 2015, a gun called `Simkin glider gun` was discovered, which emits a glider every 120 generations, and has fewer live cells but is spread across a larger bounding box at its ends.
 
-![Simkin glider gun](https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Game_of_life_Simkin_glider_gun.svg/1000px-Game_of_life_Simkin_glider_gun.svg.png)
+![Simkin glider gun](/assets/images/sequencers/GOL-gospers-glyder-gun-2.gif)
 
-[Source](https://medium.com/@swarajkalbande123/conways-game-of-life-life-on-computer-b7edfc85d21a) ![Glider Patterns](https://miro.medium.com/v2/resize:fit:1024/format:webp/0*7nf3iKnIaVET4mnr)
-
-[Source](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life)
+For a more detailed overview of gliders and other patterns, you can refer [@kalbande2022].
 
 ### Python Implementation of Game of Life
 
