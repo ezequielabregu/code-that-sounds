@@ -1,6 +1,6 @@
-# Creative Coding with Pure Data
+# Code that Sounds
 
-This repository contains the source files for the Quarto book "Creative Coding with Pure Data." This book aims to introduce readers to the fundamentals and creative applications of Pure Data for audio synthesis, algorithmic composition, and interactive installations.
+This repository contains the source files for the Quarto book "Code that Sounds". This book aims to introduce readers to the fundamentals and creative applications of Pure Data for audio synthesis, algorithmic composition, and interactive installations.
 
 ## Project Structure
 
