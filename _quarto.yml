@@ -52,10 +52,10 @@ format:
     lightbox: true
     css: styles.css
 
-  pdf:
-    documentclass: scrreprt
-    toc: true
-    number-sections: true
+#  pdf:
+#    documentclass: scrreprt
+#    toc: true
+#    number-sections: true
 
 website:
   navbar: false
