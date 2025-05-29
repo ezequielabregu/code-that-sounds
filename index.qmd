@@ -23,7 +23,7 @@ I hold a Ph.D. focusing on the relationship between visual and auditory percepti
 My passion for programming and digital audio applications has led me to explore various programming languages and tools over the past two decades, including C, C++, Python, and Pure Data. I am an advocate of the open-source philosophy, regularly working with Linux and sharing my projects in publicly accessible repositories. My technical expertise extends to hardware development using microcontrollers and single-board computers, enabling me to adopt a hands-on approach in both my artistic and research endeavors.
 
 ::: {.callout-note appearance="minimal"}
-More information about my work can be found on my personal website [ezequielabregu.net](https://ezequielabregu.net).
+More information about my work can be found on my personal website [ezequielabregu.net](https://ezequielabregu.net)
 :::
 
 ## What is this book about?
