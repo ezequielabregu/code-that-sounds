@@ -30,9 +30,10 @@ book:
   reader-mode: true
   repo-url: https://github.com/ezequielabregu/code-that-sounds
   #repo-actions: [issue]
+
 #  sidebar: 
 #    #background: "#F5F5F5"
-#    logo: /assets/images/index/cover_1.png
+#    logo: /assets/images/index/cover-5.png
 #    search: true
 
 bibliography: references.bib
@@ -60,8 +61,8 @@ format:
 website:
   navbar: false
   page-navigation: true
-  repo-url: https://github.com/ezequielabregu/code-that-sounds
-  #repo-actions: [edit, issue]
+  #repo-url: https://github.com/ezequielabregu/code-that-sounds
+  #repo-actions: [issue]
 
 
 

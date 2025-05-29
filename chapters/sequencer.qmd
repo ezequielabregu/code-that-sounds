@@ -981,53 +981,106 @@ Therefore, the rules are not arbitrary but are determined by the binary represen
 
 ![Fig. Rule 30](/assets/images/sequencers/Rule-30--by-Stephen-Wolfram-for-Cellular-Automata.png)
 
-### Rule 30 Implementation in Python
+### One-Dimensional Cellular Automata Implementation
 
-``` python
-import numpy as np
-import matplotlib.pyplot as plt
+his implementation demonstrates how to construct a one-dimensional cellular automaton system that can generate intricate sequences based on elementary rule sets. The patch showcases advanced concepts including rule-based pattern generation, boundary condition handling, state evolution tracking, and data persistence mechanisms.
 
-def rule30(cells):
-    """Applies Rule 30 to the input cells."""
-    new_cells = np.zeros_like(cells)
-    extended_cells = np.concatenate(([cells[-1]], cells, [cells[0]]))  # Apply periodic boundary conditions
-    for i in range(1, len(extended_cells) - 1):
-        neighborhood = extended_cells[i-1:i+2]
-        if np.array_equal(neighborhood, [1, 1, 1]) or np.array_equal(neighborhood, [1, 1, 0]) or \
-           np.array_equal(neighborhood, [1, 0, 1]) or np.array_equal(neighborhood, [0, 0, 0]):
-            new_cells[i-1] = 0
-        else:
-            new_cells[i-1] = 1
-    return new_cells
+![Fig.](/assets/screenshots/sequencers/1DCA-Rule-30.png)
 
-def main():
-    # Initialize the cells
-    cells = np.zeros(100)
-    cells[50] = 1  # Start with one cell in the middle
 
-    # Apply Rule 30 for 100 steps
-    history = [cells]
-    for i in range(100):
-        cells = rule30(cells)
-        history.append(cells)
+::: {style="width: 50%;"}
+| Iteration | Binary Output |
+|-----------|---------------|
+| 0 | 0 0 0 0 0 0 1 0 0 0 0 0 |
+| 1 | 0 0 0 0 0 1 1 1 0 0 0 0 |
+| 2 | 0 0 0 0 1 1 0 0 1 0 0 0 |
+| 3 | 0 0 0 1 1 0 1 1 1 1 0 0 |
+| 4 | 0 0 1 1 0 0 1 0 0 0 1 0 |
+| 5 | 0 1 1 0 1 1 1 1 0 1 1 1 |
+| 6 | 0 1 0 0 1 0 0 0 0 1 0 0 |
+| 7 | 1 1 1 1 1 1 0 0 1 1 1 0 |
+| 8 | 1 0 0 0 0 0 1 1 1 0 0 0 |
+| 9 | 1 1 0 0 0 1 1 0 0 1 0 1 |
+| 10 | 0 0 1 0 1 1 0 1 1 1 0 1 |
+| 11 | 1 1 1 0 1 0 0 1 0 0 0 1 |
+| 12 | 0 0 0 0 1 1 1 1 1 0 1 1 |
+| 13 | 1 0 0 1 1 0 0 0 0 0 1 0 |
+| 14 | 1 1 1 1 0 1 0 0 0 1 1 0 |
+| 15 | 1 0 0 0 0 1 1 0 1 1 0 0 |
+| 16 | 1 1 0 0 1 1 0 0 1 0 1 1 |
+| 17 | 0 0 1 1 1 0 1 1 1 0 1 0 |
+| 18 | 0 1 1 0 0 0 1 0 0 0 1 1 |
+| 19 | 0 1 0 1 0 1 1 1 0 1 1 0 |
+| 20 | 1 1 0 1 0 1 0 0 0 1 0 1 |
+| 21 | 0 0 0 1 0 1 1 0 1 1 0 1 |
+| 22 | 1 0 1 1 0 1 0 0 1 0 0 1 |
+| 23 | 0 0 1 0 0 1 1 1 1 1 1 1 |
+:::
 
-    # Display the history as an image
-    plt.imshow(history, cmap='binary')
-    plt.show()
+#### Patch Overview
 
-if __name__ == "__main__":
-    main()
+The one-dimensional cellular automaton patch implements a comprehensive system for simulating elementary cellular automata, particularly focusing on Stephen Wolfram's classification of 256 possible rules. The system operates by maintaining a linear array of cells, each containing a binary state (0 or 1), and applying transformation rules based on local neighborhoods of three consecutive cells. The patch provides sophisticated control over initial conditions (axioms), boundary behaviors, rule selection, and iteration management, making it suitable for both educational exploration and practical generative applications.
+
+The architecture follows a modular design pattern with distinct functional subsystems that handle different aspects of the cellular automaton simulation. The rule management subsystem converts numerical rule codes into binary lookup tables that define state transitions for all possible three-cell neighborhoods. The boundary condition handler manages edge cases when the automaton reaches the limits of its defined space, supporting both loop-around and reflection modes. The iteration engine coordinates the step-by-step evolution of the cellular array, maintaining state history and providing real-time feedback on the generation process.
+
+The patch interface accommodates various input methods for configuring the automaton parameters, including direct rule code entry (0-255), symbolic mode specification (loop, reflect, or fixed), and custom axiom definition through list messages. The system provides multiple output streams for accessing generated data, including real-time state information, complete iteration histories, and formatted data suitable for external analysis or visualization tools.
+
+```{mermaid}
+flowchart TD
+    A[Rule Code Input] --> B[Binary Rule Generation]
+    C[Axiom Definition] --> D[Initial State Setup]
+    E[Mode Selection] --> F[Boundary Configuration]
+    B --> G[Rule Lookup Table]
+    D --> H[Current State Array]
+    F --> I[Edge Handler]
+    J[Iterate Bang] --> K[State Evolution Engine]
+    H --> K
+    G --> K
+    I --> K
+    K --> L[Next Generation]
+    L --> M[State History]
+    L --> N[Data Output]
+    L --> H
 ```
 
-This Python script uses the numpy and matplotlib libraries to simulate and visualize the evolution of a cellular automaton using Rule 30.
+#### Data Flow
 
-The `rule30` function is the core of this script. It takes a one-dimensional array of cells as input, where each cell is either 0 or 1. The function first creates a new array `new_cells` with the same shape as the input, filled with zeros. It then extends the input array at both ends to apply periodic boundary conditions, meaning that the first cell is considered a neighbor of the last cell and vice versa.
+The cellular automaton's operation begins with initialization phase where the rule code, boundary mode, and initial axiom are processed and stored in the system's internal data structures. The rule code undergoes binary conversion through a specialized subpatch that transforms decimal values (0-255) into their eight-bit binary representations, which correspond to the output states for all possible three-cell neighborhood configurations (000, 001, 010, 011, 100, 101, 110, 111).
 
-Next, the function iterates over each cell in the extended array (excluding the added boundary cells). For each cell, it considers the cell and its two neighbors as a neighborhood. If the neighborhood matches one of four specific patterns (\[1, 1, 1\], \[1, 1, 0\], \[1, 0, 1\], or \[0, 0, 0\]), the corresponding cell in `new_cells` is set to 0. Otherwise, it is set to 1. This is the implementation of Rule 30. Finally, the function returns the new array of cells.
+The axiom processing system accepts list-formatted initial conditions that define the starting configuration of the cellular array. This initial state is stored in a `text` object that serves as both the current generation reference and the foundation for subsequent iterations. The boundary mode configuration determines how the system handles edge conditions when calculating neighborhoods for cells at the array boundaries, with options for periodic (loop), reflective, or fixed boundary conditions.
 
-The main function initializes a one-dimensional array of 100 cells, all set to 0 except the middle cell, which is set to 1. It then applies the `rule30` function to this array 100 times, storing each resulting array in a list called `history`. This list is then visualized as a binary image using matplotlib's `imshow` function, where each row corresponds to one step in the cellular automaton's evolution.
+When an iteration is triggered through the iterate bang, the system enters its core evolution cycle. The current state array is processed through a neighborhood analysis routine that examines each cell in conjunction with its immediate neighbors. For each three-cell neighborhood, the system constructs a lookup key by treating the binary states as a three-bit number, which is then used to index into the previously generated rule table to determine the next state for the center cell.
 
-The script is designed to run as a standalone program. The line `if __name__ == "__main__":` ensures that the main function is called only when the script is run directly, not when imported as a module.
+The boundary condition handler plays a crucial role during this process, providing appropriate neighbor values for cells at the array edges based on the selected boundary mode. In loop mode, the array is treated as circular, with the leftmost and rightmost cells considered adjacent. Reflect mode mirrors the edge values inward, while fixed mode uses predetermined constant values for out-of-bounds references.
+
+The resulting next generation is simultaneously output for immediate access and stored in the iteration history system. This dual-path approach allows for real-time monitoring of the automaton's evolution while maintaining a complete record of all generated states. The history management system can accommodate both memory-efficient storage (retaining only the current state) and comprehensive archival (preserving all iterations) depending on the intended application.
+
+#### Key Objects and Their Roles
+
+The following table summarizes the essential objects and subsystems used in the cellular automaton implementation:
+
+::: {style="width: 80%;"}
+| Object/Subsystem | Purpose |
+|------------------|---------|
+| `make.code` subpatch | Converts rule codes to binary lookup tables and manages initialization |
+| `float.to.binary` subpatch | Transforms decimal rule codes into 8-bit binary representations |
+| `text define $0-rules` | Stores rule lookup table and configuration parameters |
+| `text define $0-outcome` | Maintains current generation state and iteration history |
+| `list-drip` | Processes cell arrays sequentially for neighborhood analysis |
+| `list split 3` | Extracts three-cell neighborhoods from the current state |
+| `text search` | Performs rule lookups based on neighborhood patterns |
+| `text get` | Retrieves rule outcomes and state information |
+| `boundary.mode` subpatch | Handles edge conditions and neighbor calculation |
+| `list append/prepend` | Manages array concatenation and state assembly |
+| `spigot` | Controls data flow during iteration cycles |
+| `route` | Directs messages to appropriate processing subsystems |
+| `v $0-iteration.n` | Tracks current iteration number and generation count |
+| `save` subpatch | Provides data export functionality for generated sequences |
+:::
+
+The patch demonstrates several advanced programming techniques, including dynamic text object manipulation for rule storage, sophisticated list processing for array operations, and modular subpatch design for complex algorithmic implementations. The use of local variables (`$0-` prefix) ensures proper encapsulation when multiple instances of the patch are used simultaneously, while the declare objects manage external file dependencies for rule and outcome storage.
+
+The cellular automaton implementation showcases how it can be used to create sophisticated algorithmic systems that bridge computational theory and practical creative applications. The modular architecture allows for easy experimentation with different rule sets, boundary conditions, and initial configurations, making it an excellent tool for exploring the rich behavioral space of elementary cellular automata and their potential applications in generative music, visual art, and algorithmic composition.
 
 ### Two-Dimensional Cellular Automata (2DCA)
 
