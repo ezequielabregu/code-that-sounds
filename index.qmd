@@ -36,17 +36,45 @@ Rather than offering a fixed, linear progression, the structure of this book is 
 
 By approaching programming as a creative practice, this book invites you to think, make, and reflect through code. Whether you're building an interactive sound installation, prototyping a digital instrument, or simply experimenting with new ideas, the goal is to empower you with the tools and concepts to express yourself in the digital domain—and to enjoy the process along the way.
 
+## Why *Code That Sounds*?
+
+The title may appear straightforward at first, but upon deeper reflection, it reveals a rich conceptual landscape that frames the entire approach of this book. More than a literal description of code that produces audio, it invites us to consider the interplay between computation, perception, and artistic expression. In this book, we explore how code becomes a medium for crafting sonic experiences—how it can be shaped, composed, and performed to produce not only functional systems, but also resonant and meaningful works of art.
+
+At the most immediate level, the phrase refers to the act of writing code that generates sound. Whether synthesizing a sine wave, constructing a step sequencer, or routing audio signals in real time, we are engaging with code as a tool for sonic creation. Tools like Pure Data make this direct connection between programming and audio particularly tangible: the act of connecting objects, defining behaviors, and mapping parameters becomes inseparable from the process of producing audible outcomes. In this sense, *Code That Sounds* expresses the essential relationship between the logical structure of algorithms and the materiality of sound.
+
+Yet the phrase also invites a more poetic interpretation. "Sounds," in English, can refer not only to audio but also to the way something resonates intellectually or emotionally. Code, then, is not merely a set of instructions—it is a language with its own voice, rhythm, and character. A piece of code can "sound right" in the same way that a musical phrase does. This expressive quality of code becomes especially relevant in the context of creative practice. As we will see throughout the book, the aesthetic choices embedded in code—its structure, logic, timing, and responsiveness—are as crucial as the sounds it ultimately produces. In this light, the act of programming becomes a compositional gesture, where syntax and semantics coalesce into a form of audible thinking.
+
+This perspective positions code as a bridge between traditionally separate domains: between the analytical and the intuitive, the procedural and the performative, the technical and the poetic. Sound has long been associated with music, art, and embodiment; code, with abstraction and logic. But when we write *Code That Sounds*, we dissolve these boundaries. We begin to treat code not as a rigid mechanism, but as a generative medium—capable of producing form, emotion, and experience. The phrase thus embodies the interdisciplinary ethos that guides this book, where creative coding is not merely about mastering a tool, but about exploring how different ways of knowing and making converge through sound.
+
+There is also a sense of agency embedded in the phrase. This is not just code that happens to produce sound—it is code that is designed to sound. The use of the active verb implies intention, purpose, and dynamism. It reminds us that the systems we build are not passive containers for sound, but active participants in shaping it. In interactive contexts especially, where the code responds to movement, sensors, or user input, the sounding becomes an emergent property of a living system. Here, the code is not simply a means to an end—it is the co-author of a sonic event.
+
+*Code That Sounds* gestures toward a methodology rooted in exploration and discovery. It encourages us to treat code as something to be listened to, not just debugged. What does a patch “sound like” when put into motion? What happens when you tweak a parameter or rewire a signal path? This book invites you to approach creative coding as a space of experimentation—where understanding emerges through making, and insight through listening. We embrace this attitude by providing examples, sketches, and exercises that are meant not to be followed blindly, but to be remixed, transformed, and extended.
+
+*Code That Sounds* captures the spirit of this book: it is about making sound with code, but also about listening to the voice of code itself. It is about finding resonance between systems and sensations, and about using programming as a medium for creative exploration. As you work through the following chapters, we encourage you to tune your ears not only to the sounds that emerge, but to the ideas, questions, and possibilities that those sounds carry with them. This is not just about learning how to code—this is about learning how to listen to what code can become.
+
+## From Problem to Algorithm
+
+One of the central ideas guiding this book is that programming begins not with a tool, but with a question. Before we concern ourselves with implementation, with lines of code or patching wires in Pure Data, we start by identifying a problem—something that needs to be understood, shaped, or transformed. This problem might be technical (how to generate a rhythm evenly distributed over time?), perceptual (how to spatialize a sound to suggest motion?), or poetic (how to evoke a sense of disorientation through modulation?). Each chapter begins with such a prompt, inviting us to investigate the mechanics and metaphors behind the systems we aim to build.
+
+From this point, the process becomes analytical and compositional. We break down the problem into its smallest components, identify the parameters and constraints at play, and explore the structures—logical, mathematical, sonic—that underpin it. This leads us to design an algorithm: a set of steps, a conceptual model, or a generative rule that connects the problem to a potential solution. The algorithm is not just a procedure—it is a form of reasoning, a translation of intuition into system.
+
+Only once this conceptual groundwork has been laid do we turn to implementation. The choice of environment—Pure Data, in our case—becomes relevant, but always in service of the larger question. It is not simply learning how to use a tool; you are using the tool to articulate a thought. This means thinking through code, not just writing it. It means seeing your patch not as an end, but as a hypothesis, a sketch, an evolving structure open to revision.
+
+Throughout the book, I invite you to cultivate this mindset. When studying an example patch, don’t ask only what it does—ask how it solves a problem. What are the assumptions embedded in its logic? Could the same result be achieved differently? What happens if you modify the rules, invert the process, or apply the algorithm in another context? 
+
+By working in this way, programming becomes more than an exercise in execution. It becomes a space of inquiry and invention—an extension of your thinking, your listening, your compositional practice.
+
 ## Who is this book for?
 
-This book is intended for anyone interested in learning about creative coding using Pure Data. It is suitable for beginners who are new to programming and want to explore the world of interactive media, as well as for experienced programmers looking to expand their skills in sound synthesis and data visualization.
+This book is for anyone drawn to the idea that code can become an expressive, sonic, and artistic material. It is designed for students, artists, educators, and curious minds—regardless of their technical background—who wish to explore programming as a medium for crafting sound, interactivity, and performance. Whether you're new to creative coding or already familiar with digital media, this book will guide you through approaches that treat code as more than just a set of instructions. Here, programming becomes a form of listening, composing, and experimenting. Pure Data serves as our primary environment, but our focus lies in cultivating a creative and critical practice with sound and code at its core.
 
 ## What are you going to learn?
 
-In this book, you will learn how to use Pure Data to create interactive audio-visual projects. You will explore various techniques for sound synthesis, data visualization, and interactive installations. The book will also cover best practices for organizing and managing your Pd projects, as well as tips for debugging and optimizing your code.
+Throughout this book, you will learn how to develop and shape sonic experiences using code. You will build interactive systems in Pure Data that respond, transform, and sound—systems that move beyond the screen and into space, time, and perception. Along the way, you will engage with fundamental techniques of sound synthesis, algorithmic thinking, and generative design, all within a context that values exploration, composition, and artistic intent. Beyond tools and syntax, you will learn to listen to your code, to let it surprise you, and to use it as a means for creative discovery and auditory expression.
 
-## What are you don't going to learn?
+## What are you not going to learn?
 
-This book is not intended to be a comprehensive guide to all aspects of Pure Data. Instead, it focuses on specific topics and projects that are relevant to creative coding. While the book will cover a wide range of techniques and concepts, it will not delve into every detail or aspect of Pure Data. This book is not a substitute for the official Pure Data documentation or other resources. It is meant to complement these resources and provide a practical, hands-on approach to learning Pure Data.
+This book does not attempt to provide exhaustive coverage of Pure Data or its many technical details. It is not a manual or reference guide. Rather than aiming for completeness, we prioritize depth over breadth: we focus on specific concepts, practices, and case studies that support an artistic and experimental approach. You won’t find here every object or external library documented, nor step-by-step instructions for GUI design or audio engineering. Instead, you will find a flexible, hands-on framework to begin crafting systems that sound, and from there, make them your own. This book works best in dialogue with other resources—especially the official Pure Data documentation—and invites you to learn by making, remixing, and listening.
 
 ## A Work in Progress
 
@@ -57,13 +85,6 @@ Before we delve deeper into the subject, let it be clear from the outset:
 :::
 
 The intention is not to present a definitive compendium or a closed collection of recipes. Instead, what I offer here is a growing body of materials, case studies, and conceptual tools that evolve in parallel with the creative and technical challenges faced by artists and researchers working at the intersection of code, sound, and interactivity. The choice of Pure Data as the primary platform reflects both its openness and its suitability for rapid prototyping and conceptual clarity. But beyond that, this book aims to serve as a *framework for thinking*, not just for coding.
-
-
-## From Problem to Algorithm
-
-One of the central ideas guiding this book is that programming begins with a problem, not with a tool. In each chapter and example, we begin by carefully defining a problem: this might be technical (how to generate a sequence?), aesthetic (how to modulate a tone?), or conceptual (how do oscillators shape our understanding of time?). From there, we proceed to *analyze* the problem, understand its inner structure, and design an algorithmic strategy to address it. 
-
-Only then do we concern ourselves with the details of implementation. The choice of programming language—Pure Data in this case—is important, but always secondary. The clarity of thought and the logic of the algorithm come first. In this spirit, we encourage you to reflect not just on *what* a patch does, but on *why* it works the way it does, and *how* it might be extended, modified, or reimagined.
 
 ## Backend First: Leaving the GUI for Later
 

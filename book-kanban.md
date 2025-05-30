@@ -8,6 +8,7 @@
 - Add wow to connect virtual MIDI ports to Pure Data.
 - Plot waveforms and spectrograms of audio files using Python.
 - Add a section on using Pure Data with Python.
+- Add a Interactivity section to the book.
 - Add spanish translation to the book
   - [Babelquarto](https://docs.ropensci.org/babelquarto/)
   - [Babeldown](https://docs.ropensci.org/babeldown/)
@@ -23,21 +24,14 @@
 #### General
 
 - Think and Add more creative examples and exercises in synthesis chapter.
-- Add image captions.
+- Add image captions and tables.
 - Reference images from internet or with third-party owners.
-- Create a better cover image for the book.
 - Numerate patches according to the chapter and section.
 - Numerate tables according to the chapter and section.
 
 #### Sequencers
 
-- Implement the Bjorklund algorithm in Pure Data
-  - a. In a Pure Data patch, or
-    - still stocked in the list distribution and sublist creation.
-  - b. Write a pd external in C.
 - Add audio samples.
-- Download all images from the internet and add them to the book.
-  - or use a python script to generate them.
 - Check these examples:
   - [Pure Data quantize and sequencer](https://youtu.be/f2JyUFZ8FHU)
   - [Scale Random Generator](https://github.com/YockanookanySound/Random-Generator/blob/main/GenSeq.pd)
@@ -58,6 +52,7 @@
 
 - Add Arrays and Tables.
 - Intro and review basic concepts of readsf and writesf~ in
+- make the bullets explanation more verbose.
 
 #### Space
 
@@ -73,8 +68,14 @@
   - [ ] Additive
   - [ ] Subtractive
   - [x] Modulation (AM, RM, FM)
-- [ ] Sonification
+- [.] Sonification
 - [.] Transcribe Python code examples to Pure Data.
+- [.]Implement the Bjorklund algorithm in Pure Data
+  - a. In a Pure Data patch, or
+    - still stocked in the list distribution and sublist creation.
+  - b. Write a pd external in C.
+- [x] Download all images from the internet and add them to the book.
+- [x] Create a better cover image for the book.
 
 ## Done
 
