@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.29">
+<meta name="generator" content="quarto-1.7.31">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -93,9 +93,9 @@ div.csl-indent {
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-0815c480559380816a4d1ea211a47e91.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-748b535e376f14d4692bf2b2e5fd6380.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-0815c480559380816a4d1ea211a47e91.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-8ef56b68f8fa1e9d2ba328e99e439f80.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap-1e81d527365e20b3495763033adbcf98.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
@@ -294,6 +294,7 @@ div.csl-indent {
       toggleColorMode(toAlternate);
       setStyleSentinel(toAlternate);
       toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
     };
     // Switch to dark mode if need be
     if (hasAlternateSentinel()) {
@@ -454,7 +455,7 @@ div.csl-indent {
   <ul class="collapse">
   <li><a href="#one-dimensional-cellular-automata-1dca" id="toc-one-dimensional-cellular-automata-1dca" class="nav-link" data-scroll-target="#one-dimensional-cellular-automata-1dca"><span class="header-section-number">3.7.1</span> One-Dimensional Cellular Automata (1DCA)</a></li>
   <li><a href="#the-case-of-rule-30" id="toc-the-case-of-rule-30" class="nav-link" data-scroll-target="#the-case-of-rule-30"><span class="header-section-number">3.7.2</span> The Case of Rule 30</a></li>
-  <li><a href="#rule-30-implementation-in-python" id="toc-rule-30-implementation-in-python" class="nav-link" data-scroll-target="#rule-30-implementation-in-python"><span class="header-section-number">3.7.3</span> Rule 30 Implementation in Python</a></li>
+  <li><a href="#one-dimensional-cellular-automata-implementation" id="toc-one-dimensional-cellular-automata-implementation" class="nav-link" data-scroll-target="#one-dimensional-cellular-automata-implementation"><span class="header-section-number">3.7.3</span> One-Dimensional Cellular Automata Implementation</a></li>
   <li><a href="#two-dimensional-cellular-automata-2dca" id="toc-two-dimensional-cellular-automata-2dca" class="nav-link" data-scroll-target="#two-dimensional-cellular-automata-2dca"><span class="header-section-number">3.7.4</span> Two-Dimensional Cellular Automata (2DCA)</a></li>
   <li><a href="#case-study-conways-game-of-life" id="toc-case-study-conways-game-of-life" class="nav-link" data-scroll-target="#case-study-conways-game-of-life"><span class="header-section-number">3.7.5</span> Case Study: Conway’s Game of Life</a></li>
   <li><a href="#origins" id="toc-origins" class="nav-link" data-scroll-target="#origins"><span class="header-section-number">3.7.6</span> Origins</a></li>
@@ -2059,46 +2060,241 @@ Note
 </figure>
 </div>
 </section>
-<section id="rule-30-implementation-in-python" class="level3" data-number="3.7.3">
-<h3 data-number="3.7.3" class="anchored" data-anchor-id="rule-30-implementation-in-python"><span class="header-section-number">3.7.3</span> Rule 30 Implementation in Python</h3>
-<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> rule30(cells):</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Applies Rule 30 to the input cells."""</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    new_cells <span class="op">=</span> np.zeros_like(cells)</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    extended_cells <span class="op">=</span> np.concatenate(([cells[<span class="op">-</span><span class="dv">1</span>]], cells, [cells[<span class="dv">0</span>]]))  <span class="co"># Apply periodic boundary conditions</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="bu">len</span>(extended_cells) <span class="op">-</span> <span class="dv">1</span>):</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>        neighborhood <span class="op">=</span> extended_cells[i<span class="op">-</span><span class="dv">1</span>:i<span class="op">+</span><span class="dv">2</span>]</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> np.array_equal(neighborhood, [<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>]) <span class="kw">or</span> np.array_equal(neighborhood, [<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>]) <span class="kw">or</span> <span class="op">\</span></span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>           np.array_equal(neighborhood, [<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>]) <span class="kw">or</span> np.array_equal(neighborhood, [<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>]):</span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>            new_cells[i<span class="op">-</span><span class="dv">1</span>] <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>            new_cells[i<span class="op">-</span><span class="dv">1</span>] <span class="op">=</span> <span class="dv">1</span></span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> new_cells</span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> main():</span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Initialize the cells</span></span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>    cells <span class="op">=</span> np.zeros(<span class="dv">100</span>)</span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>    cells[<span class="dv">50</span>] <span class="op">=</span> <span class="dv">1</span>  <span class="co"># Start with one cell in the middle</span></span>
-<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Apply Rule 30 for 100 steps</span></span>
-<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>    history <span class="op">=</span> [cells]</span>
-<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">100</span>):</span>
-<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>        cells <span class="op">=</span> rule30(cells)</span>
-<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>        history.append(cells)</span>
-<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Display the history as an image</span></span>
-<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>    plt.imshow(history, cmap<span class="op">=</span><span class="st">'binary'</span>)</span>
-<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>    plt.show()</span>
-<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">"__main__"</span>:</span>
-<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>    main()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>This Python script uses the numpy and matplotlib libraries to simulate and visualize the evolution of a cellular automaton using Rule 30.</p>
-<p>The <code>rule30</code> function is the core of this script. It takes a one-dimensional array of cells as input, where each cell is either 0 or 1. The function first creates a new array <code>new_cells</code> with the same shape as the input, filled with zeros. It then extends the input array at both ends to apply periodic boundary conditions, meaning that the first cell is considered a neighbor of the last cell and vice versa.</p>
-<p>Next, the function iterates over each cell in the extended array (excluding the added boundary cells). For each cell, it considers the cell and its two neighbors as a neighborhood. If the neighborhood matches one of four specific patterns ([1, 1, 1], [1, 1, 0], [1, 0, 1], or [0, 0, 0]), the corresponding cell in <code>new_cells</code> is set to 0. Otherwise, it is set to 1. This is the implementation of Rule 30. Finally, the function returns the new array of cells.</p>
-<p>The main function initializes a one-dimensional array of 100 cells, all set to 0 except the middle cell, which is set to 1. It then applies the <code>rule30</code> function to this array 100 times, storing each resulting array in a list called <code>history</code>. This list is then visualized as a binary image using matplotlib’s <code>imshow</code> function, where each row corresponds to one step in the cellular automaton’s evolution.</p>
-<p>The script is designed to run as a standalone program. The line <code>if __name__ == "__main__":</code> ensures that the main function is called only when the script is run directly, not when imported as a module.</p>
+<section id="one-dimensional-cellular-automata-implementation" class="level3" data-number="3.7.3">
+<h3 data-number="3.7.3" class="anchored" data-anchor-id="one-dimensional-cellular-automata-implementation"><span class="header-section-number">3.7.3</span> One-Dimensional Cellular Automata Implementation</h3>
+<p>his implementation demonstrates how to construct a one-dimensional cellular automaton system that can generate intricate sequences based on elementary rule sets. The patch showcases advanced concepts including rule-based pattern generation, boundary condition handling, state evolution tracking, and data persistence mechanisms.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../assets/screenshots/sequencers/1DCA-Rule-30.png" class="lightbox" data-gallery="quarto-lightbox-gallery-14" title="Fig."><img src="../assets/screenshots/sequencers/1DCA-Rule-30.png" class="img-fluid figure-img" alt="Fig."></a></p>
+<figcaption>Fig.</figcaption>
+</figure>
+</div>
+<div style="width: 50%;">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Iteration</th>
+<th>Binary Output</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>0 0 0 0 0 0 1 0 0 0 0 0</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>0 0 0 0 0 1 1 1 0 0 0 0</td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td>0 0 0 0 1 1 0 0 1 0 0 0</td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td>0 0 0 1 1 0 1 1 1 1 0 0</td>
+</tr>
+<tr class="odd">
+<td>4</td>
+<td>0 0 1 1 0 0 1 0 0 0 1 0</td>
+</tr>
+<tr class="even">
+<td>5</td>
+<td>0 1 1 0 1 1 1 1 0 1 1 1</td>
+</tr>
+<tr class="odd">
+<td>6</td>
+<td>0 1 0 0 1 0 0 0 0 1 0 0</td>
+</tr>
+<tr class="even">
+<td>7</td>
+<td>1 1 1 1 1 1 0 0 1 1 1 0</td>
+</tr>
+<tr class="odd">
+<td>8</td>
+<td>1 0 0 0 0 0 1 1 1 0 0 0</td>
+</tr>
+<tr class="even">
+<td>9</td>
+<td>1 1 0 0 0 1 1 0 0 1 0 1</td>
+</tr>
+<tr class="odd">
+<td>10</td>
+<td>0 0 1 0 1 1 0 1 1 1 0 1</td>
+</tr>
+<tr class="even">
+<td>11</td>
+<td>1 1 1 0 1 0 0 1 0 0 0 1</td>
+</tr>
+<tr class="odd">
+<td>12</td>
+<td>0 0 0 0 1 1 1 1 1 0 1 1</td>
+</tr>
+<tr class="even">
+<td>13</td>
+<td>1 0 0 1 1 0 0 0 0 0 1 0</td>
+</tr>
+<tr class="odd">
+<td>14</td>
+<td>1 1 1 1 0 1 0 0 0 1 1 0</td>
+</tr>
+<tr class="even">
+<td>15</td>
+<td>1 0 0 0 0 1 1 0 1 1 0 0</td>
+</tr>
+<tr class="odd">
+<td>16</td>
+<td>1 1 0 0 1 1 0 0 1 0 1 1</td>
+</tr>
+<tr class="even">
+<td>17</td>
+<td>0 0 1 1 1 0 1 1 1 0 1 0</td>
+</tr>
+<tr class="odd">
+<td>18</td>
+<td>0 1 1 0 0 0 1 0 0 0 1 1</td>
+</tr>
+<tr class="even">
+<td>19</td>
+<td>0 1 0 1 0 1 1 1 0 1 1 0</td>
+</tr>
+<tr class="odd">
+<td>20</td>
+<td>1 1 0 1 0 1 0 0 0 1 0 1</td>
+</tr>
+<tr class="even">
+<td>21</td>
+<td>0 0 0 1 0 1 1 0 1 1 0 1</td>
+</tr>
+<tr class="odd">
+<td>22</td>
+<td>1 0 1 1 0 1 0 0 1 0 0 1</td>
+</tr>
+<tr class="even">
+<td>23</td>
+<td>0 0 1 0 0 1 1 1 1 1 1 1</td>
+</tr>
+</tbody>
+</table>
+</div>
+<section id="patch-overview-7" class="level4" data-number="3.7.3.1">
+<h4 data-number="3.7.3.1" class="anchored" data-anchor-id="patch-overview-7"><span class="header-section-number">3.7.3.1</span> Patch Overview</h4>
+<p>The one-dimensional cellular automaton patch implements a comprehensive system for simulating elementary cellular automata, particularly focusing on Stephen Wolfram’s classification of 256 possible rules. The system operates by maintaining a linear array of cells, each containing a binary state (0 or 1), and applying transformation rules based on local neighborhoods of three consecutive cells. The patch provides sophisticated control over initial conditions (axioms), boundary behaviors, rule selection, and iteration management, making it suitable for both educational exploration and practical generative applications.</p>
+<p>The architecture follows a modular design pattern with distinct functional subsystems that handle different aspects of the cellular automaton simulation. The rule management subsystem converts numerical rule codes into binary lookup tables that define state transitions for all possible three-cell neighborhoods. The boundary condition handler manages edge cases when the automaton reaches the limits of its defined space, supporting both loop-around and reflection modes. The iteration engine coordinates the step-by-step evolution of the cellular array, maintaining state history and providing real-time feedback on the generation process.</p>
+<p>The patch interface accommodates various input methods for configuring the automaton parameters, including direct rule code entry (0-255), symbolic mode specification (loop, reflect, or fixed), and custom axiom definition through list messages. The system provides multiple output streams for accessing generated data, including real-time state information, complete iteration histories, and formatted data suitable for external analysis or visualization tools.</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart TD
+    A[Rule Code Input] --&gt; B[Binary Rule Generation]
+    C[Axiom Definition] --&gt; D[Initial State Setup]
+    E[Mode Selection] --&gt; F[Boundary Configuration]
+    B --&gt; G[Rule Lookup Table]
+    D --&gt; H[Current State Array]
+    F --&gt; I[Edge Handler]
+    J[Iterate Bang] --&gt; K[State Evolution Engine]
+    H --&gt; K
+    G --&gt; K
+    I --&gt; K
+    K --&gt; L[Next Generation]
+    L --&gt; M[State History]
+    L --&gt; N[Data Output]
+    L --&gt; H
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="data-flow-6" class="level4" data-number="3.7.3.2">
+<h4 data-number="3.7.3.2" class="anchored" data-anchor-id="data-flow-6"><span class="header-section-number">3.7.3.2</span> Data Flow</h4>
+<p>The cellular automaton’s operation begins with initialization phase where the rule code, boundary mode, and initial axiom are processed and stored in the system’s internal data structures. The rule code undergoes binary conversion through a specialized subpatch that transforms decimal values (0-255) into their eight-bit binary representations, which correspond to the output states for all possible three-cell neighborhood configurations (000, 001, 010, 011, 100, 101, 110, 111).</p>
+<p>The axiom processing system accepts list-formatted initial conditions that define the starting configuration of the cellular array. This initial state is stored in a <code>text</code> object that serves as both the current generation reference and the foundation for subsequent iterations. The boundary mode configuration determines how the system handles edge conditions when calculating neighborhoods for cells at the array boundaries, with options for periodic (loop), reflective, or fixed boundary conditions.</p>
+<p>When an iteration is triggered through the iterate bang, the system enters its core evolution cycle. The current state array is processed through a neighborhood analysis routine that examines each cell in conjunction with its immediate neighbors. For each three-cell neighborhood, the system constructs a lookup key by treating the binary states as a three-bit number, which is then used to index into the previously generated rule table to determine the next state for the center cell.</p>
+<p>The boundary condition handler plays a crucial role during this process, providing appropriate neighbor values for cells at the array edges based on the selected boundary mode. In loop mode, the array is treated as circular, with the leftmost and rightmost cells considered adjacent. Reflect mode mirrors the edge values inward, while fixed mode uses predetermined constant values for out-of-bounds references.</p>
+<p>The resulting next generation is simultaneously output for immediate access and stored in the iteration history system. This dual-path approach allows for real-time monitoring of the automaton’s evolution while maintaining a complete record of all generated states. The history management system can accommodate both memory-efficient storage (retaining only the current state) and comprehensive archival (preserving all iterations) depending on the intended application.</p>
+</section>
+<section id="key-objects-and-their-roles-7" class="level4" data-number="3.7.3.3">
+<h4 data-number="3.7.3.3" class="anchored" data-anchor-id="key-objects-and-their-roles-7"><span class="header-section-number">3.7.3.3</span> Key Objects and Their Roles</h4>
+<p>The following table summarizes the essential objects and subsystems used in the cellular automaton implementation:</p>
+<div style="width: 80%;">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 66%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Object/Subsystem</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>make.code</code> subpatch</td>
+<td>Converts rule codes to binary lookup tables and manages initialization</td>
+</tr>
+<tr class="even">
+<td><code>float.to.binary</code> subpatch</td>
+<td>Transforms decimal rule codes into 8-bit binary representations</td>
+</tr>
+<tr class="odd">
+<td><code>text define $0-rules</code></td>
+<td>Stores rule lookup table and configuration parameters</td>
+</tr>
+<tr class="even">
+<td><code>text define $0-outcome</code></td>
+<td>Maintains current generation state and iteration history</td>
+</tr>
+<tr class="odd">
+<td><code>list-drip</code></td>
+<td>Processes cell arrays sequentially for neighborhood analysis</td>
+</tr>
+<tr class="even">
+<td><code>list split 3</code></td>
+<td>Extracts three-cell neighborhoods from the current state</td>
+</tr>
+<tr class="odd">
+<td><code>text search</code></td>
+<td>Performs rule lookups based on neighborhood patterns</td>
+</tr>
+<tr class="even">
+<td><code>text get</code></td>
+<td>Retrieves rule outcomes and state information</td>
+</tr>
+<tr class="odd">
+<td><code>boundary.mode</code> subpatch</td>
+<td>Handles edge conditions and neighbor calculation</td>
+</tr>
+<tr class="even">
+<td><code>list append/prepend</code></td>
+<td>Manages array concatenation and state assembly</td>
+</tr>
+<tr class="odd">
+<td><code>spigot</code></td>
+<td>Controls data flow during iteration cycles</td>
+</tr>
+<tr class="even">
+<td><code>route</code></td>
+<td>Directs messages to appropriate processing subsystems</td>
+</tr>
+<tr class="odd">
+<td><code>v $0-iteration.n</code></td>
+<td>Tracks current iteration number and generation count</td>
+</tr>
+<tr class="even">
+<td><code>save</code> subpatch</td>
+<td>Provides data export functionality for generated sequences</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The patch demonstrates several advanced programming techniques, including dynamic text object manipulation for rule storage, sophisticated list processing for array operations, and modular subpatch design for complex algorithmic implementations. The use of local variables (<code>$0-</code> prefix) ensures proper encapsulation when multiple instances of the patch are used simultaneously, while the declare objects manage external file dependencies for rule and outcome storage.</p>
+<p>The cellular automaton implementation showcases how it can be used to create sophisticated algorithmic systems that bridge computational theory and practical creative applications. The modular architecture allows for easy experimentation with different rule sets, boundary conditions, and initial configurations, making it an excellent tool for exploring the rich behavioral space of elementary cellular automata and their potential applications in generative music, visual art, and algorithmic composition.</p>
+</section>
 </section>
 <section id="two-dimensional-cellular-automata-2dca" class="level3" data-number="3.7.4">
 <h3 data-number="3.7.4" class="anchored" data-anchor-id="two-dimensional-cellular-automata-2dca"><span class="header-section-number">3.7.4</span> Two-Dimensional Cellular Automata (2DCA)</h3>
@@ -2116,7 +2312,7 @@ Note
 <h3 data-number="3.7.5" class="anchored" data-anchor-id="case-study-conways-game-of-life"><span class="header-section-number">3.7.5</span> Case Study: Conway’s Game of Life</h3>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="../assets/images/sequencers/Game_of_Life-1.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-14" title="Game of life Source"><img src="../assets/images/sequencers/Game_of_Life-1.gif" class="img-fluid figure-img" alt="Game of life Source"></a></p>
+<p><a href="../assets/images/sequencers/Game_of_Life-1.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-15" title="Game of life Source"><img src="../assets/images/sequencers/Game_of_Life-1.gif" class="img-fluid figure-img" alt="Game of life Source"></a></p>
 <figcaption>Game of life <a href="https://www.artnome.com/news/2020/7/12/the-game-of-life-emergence-in-generative-art">Source</a></figcaption>
 </figure>
 </div>
@@ -2200,14 +2396,14 @@ Note
 <p>Where 0 represents a dead cell and 1 a live cell.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="../assets/images/sequencers/GameOfLife-rules.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-15" title="Game of life rules Source"><img src="../assets/images/sequencers/GameOfLife-rules.gif" class="img-fluid figure-img" alt="Game of life rules Source"></a></p>
+<p><a href="../assets/images/sequencers/GameOfLife-rules.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-16" title="Game of life rules Source"><img src="../assets/images/sequencers/GameOfLife-rules.gif" class="img-fluid figure-img" alt="Game of life rules Source"></a></p>
 <figcaption>Game of life rules <a href="https://the-mvm.github.io/conways-game-of-life.html">Source</a></figcaption>
 </figure>
 </div>
 <p>John Conway’s Game of Life is made of an infinite grid of square cells, each of which is alive or dead. The rules below govern the evolution of the system. Every cell has eight neighbors, and all cells update simultaneously as time advances.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="../assets/images/sequencers/GameOfLife_rules_bw.png" class="lightbox" data-gallery="quarto-lightbox-gallery-16" title="Fig. Game of life rules Source"><img src="../assets/images/sequencers/GameOfLife_rules_bw.png" class="img-fluid figure-img" alt="Fig. Game of life rules Source"></a></p>
+<p><a href="../assets/images/sequencers/GameOfLife_rules_bw.png" class="lightbox" data-gallery="quarto-lightbox-gallery-17" title="Fig. Game of life rules Source"><img src="../assets/images/sequencers/GameOfLife_rules_bw.png" class="img-fluid figure-img" alt="Fig. Game of life rules Source"></a></p>
 <figcaption>Fig. Game of life rules <a href="https://www.quantamagazine.org/maths-game-of-life-reveals-long-sought-repeating-patterns-20240118/">Source</a></figcaption>
 </figure>
 </div>
@@ -2236,61 +2432,61 @@ Note
 <p>Many different types of patterns occur in the Game of Life, including static patterns (“still lifes”), repeating patterns (“oscillators” – a superset of still lifes), and patterns that move across the board (“spaceships”). Common examples of these three classes are shown below, with live cells in black and dead cells in white.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="../assets/images/sequencers/gosper-glider-gun.png" class="lightbox" data-gallery="quarto-lightbox-gallery-17" title="Gosper glider gun"><img src="../assets/images/sequencers/gosper-glider-gun.png" class="img-fluid figure-img" alt="Gosper glider gun"></a></p>
+<p><a href="../assets/images/sequencers/gosper-glider-gun.png" class="lightbox" data-gallery="quarto-lightbox-gallery-18" title="Gosper glider gun"><img src="../assets/images/sequencers/gosper-glider-gun.png" class="img-fluid figure-img" alt="Gosper glider gun"></a></p>
 <figcaption>Gosper glider gun</figcaption>
 </figure>
 </div>
 <p>Using the provided rules, you can investigate the evolution of simple patterns:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="../assets/images/sequencers/GOL-3-cells.png" class="lightbox" data-gallery="quarto-lightbox-gallery-18" title="3 cells Source"><img src="../assets/images/sequencers/GOL-3-cells.png" class="img-fluid figure-img" alt="3 cells Source"></a></p>
+<p><a href="../assets/images/sequencers/GOL-3-cells.png" class="lightbox" data-gallery="quarto-lightbox-gallery-19" title="3 cells Source"><img src="../assets/images/sequencers/GOL-3-cells.png" class="img-fluid figure-img" alt="3 cells Source"></a></p>
 <figcaption>3 cells <a href="https://pi.math.cornell.edu/~lipa/mec/lesson6.html">Source</a></figcaption>
 </figure>
 </div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="../assets/images/sequencers/GOL-4-cells.png" class="lightbox" data-gallery="quarto-lightbox-gallery-19" title="4 cells Source"><img src="../assets/images/sequencers/GOL-4-cells.png" class="img-fluid figure-img" alt="4 cells Source"></a></p>
+<p><a href="../assets/images/sequencers/GOL-4-cells.png" class="lightbox" data-gallery="quarto-lightbox-gallery-20" title="4 cells Source"><img src="../assets/images/sequencers/GOL-4-cells.png" class="img-fluid figure-img" alt="4 cells Source"></a></p>
 <figcaption>4 cells <a href="https://pi.math.cornell.edu/~lipa/mec/lesson6.html">Source</a></figcaption>
 </figure>
 </div>
 <p>Patterns that evolve for long periods before stabilizing are called <code>Methuselahs</code>, the first of which discovered was the <code>R-pentomino</code>.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="../assets/images/sequencers/GOL-R-pendomino.png" class="lightbox" data-gallery="quarto-lightbox-gallery-20" title="R-pendomino source"><img src="../assets/images/sequencers/GOL-R-pendomino.png" class="img-fluid figure-img" alt="R-pendomino source"></a></p>
+<p><a href="../assets/images/sequencers/GOL-R-pendomino.png" class="lightbox" data-gallery="quarto-lightbox-gallery-21" title="R-pendomino source"><img src="../assets/images/sequencers/GOL-R-pendomino.png" class="img-fluid figure-img" alt="R-pendomino source"></a></p>
 <figcaption>R-pendomino <a href="https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Game_of_life_diehard.svg/324px-Game_of_life_diehard.svg.png">source</a></figcaption>
 </figure>
 </div>
 <p><code>Diehard</code> is a pattern that eventually disappears, rather than stabilizing, after 130 generations, which is believed to be the maximum for initial patterns with seven or fewer cells.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="../assets/images/sequencers/GOL-Diehard.png" class="lightbox" data-gallery="quarto-lightbox-gallery-21" title="Diehard source"><img src="../assets/images/sequencers/GOL-Diehard.png" class="img-fluid figure-img" alt="Diehard source"></a></p>
+<p><a href="../assets/images/sequencers/GOL-Diehard.png" class="lightbox" data-gallery="quarto-lightbox-gallery-22" title="Diehard source"><img src="../assets/images/sequencers/GOL-Diehard.png" class="img-fluid figure-img" alt="Diehard source"></a></p>
 <figcaption>Diehard <a href="https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Game_of_life_diehard.svg/324px-Game_of_life_diehard.svg.png">source</a></figcaption>
 </figure>
 </div>
 <p><code>Acorn</code> takes 5,206 generations to produce 633 cells, including 13 escaping gliders.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="../assets/images/sequencers/GOL-Acorn.png" class="lightbox" data-gallery="quarto-lightbox-gallery-22" title="Acorn source"><img src="../assets/images/sequencers/GOL-Acorn.png" class="img-fluid figure-img" alt="Acorn source"></a></p>
+<p><a href="../assets/images/sequencers/GOL-Acorn.png" class="lightbox" data-gallery="quarto-lightbox-gallery-23" title="Acorn source"><img src="../assets/images/sequencers/GOL-Acorn.png" class="img-fluid figure-img" alt="Acorn source"></a></p>
 <figcaption>Acorn <a href="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Game_of_life_acorn.svg/292px-Game_of_life_acorn.svg.png">source</a></figcaption>
 </figure>
 </div>
 <p>Conway originally conjectured that no pattern could grow indefinitely; that is, for any initial configuration with a finite number of live cells, the population could not grow beyond some finite upper bound. The <code>Gosper glider gun</code> pattern produces its first glider in the 15th generation, and another every 30 generations thereafter.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="../assets/images/sequencers/GOL-gospers-glyder-gun.png" class="lightbox" data-gallery="quarto-lightbox-gallery-23" title="Gosper’s glider gun source"><img src="../assets/images/sequencers/GOL-gospers-glyder-gun.png" class="img-fluid figure-img" alt="Gosper’s glider gun source"></a></p>
+<p><a href="../assets/images/sequencers/GOL-gospers-glyder-gun.png" class="lightbox" data-gallery="quarto-lightbox-gallery-24" title="Gosper’s glider gun source"><img src="../assets/images/sequencers/GOL-gospers-glyder-gun.png" class="img-fluid figure-img" alt="Gosper’s glider gun source"></a></p>
 <figcaption>Gosper’s glider gun <a href="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Game_of_life_glider_gun.svg/1000px-Game_of_life_glider_gun.svg.png">source</a></figcaption>
 </figure>
 </div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="https://upload.wikimedia.org/wikipedia/commons/e/e5/Gospers_glider_gun.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-24" title="Gosper glider gun"><img src="https://upload.wikimedia.org/wikipedia/commons/e/e5/Gospers_glider_gun.gif" class="img-fluid figure-img" alt="Gosper glider gun"></a></p>
+<p><a href="https://upload.wikimedia.org/wikipedia/commons/e/e5/Gospers_glider_gun.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-25" title="Gosper glider gun"><img src="https://upload.wikimedia.org/wikipedia/commons/e/e5/Gospers_glider_gun.gif" class="img-fluid figure-img" alt="Gosper glider gun"></a></p>
 <figcaption>Gosper glider gun</figcaption>
 </figure>
 </div>
 <p>For many years, this pattern was the smallest known. In 2015, a gun called <code>Simkin glider gun</code> was discovered, which emits a glider every 120 generations, and has fewer live cells but is spread across a larger bounding box at its ends.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="../assets/images/sequencers/GOL-Simkinglidergun.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-25" title="Simkin glider gun"><img src="../assets/images/sequencers/GOL-Simkinglidergun.gif" class="img-fluid figure-img" alt="Simkin glider gun"></a></p>
+<p><a href="../assets/images/sequencers/GOL-Simkinglidergun.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-26" title="Simkin glider gun"><img src="../assets/images/sequencers/GOL-Simkinglidergun.gif" class="img-fluid figure-img" alt="Simkin glider gun"></a></p>
 <figcaption>Simkin glider gun</figcaption>
 </figure>
 </div>
@@ -2298,84 +2494,84 @@ Note
 </section>
 <section id="python-implementation-of-game-of-life" class="level3" data-number="3.7.8">
 <h3 data-number="3.7.8" class="anchored" data-anchor-id="python-implementation-of-game-of-life"><span class="header-section-number">3.7.8</span> Python Implementation of Game of Life</h3>
-<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pygame</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>COLOR_BG <span class="op">=</span> (<span class="dv">10</span>, <span class="dv">10</span>, <span class="dv">10</span>,)  <span class="co"># Color de fondo</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>COLOR_GRID <span class="op">=</span> (<span class="dv">40</span>, <span class="dv">40</span>, <span class="dv">40</span>)  <span class="co"># Color de la cuadrícula</span></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>COLOR_DIE_NEXT <span class="op">=</span> (<span class="dv">170</span>, <span class="dv">170</span>, <span class="dv">170</span>)  <span class="co"># Color de las células que mueren en la siguiente generación</span></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>COLOR_ALIVE_NEXT <span class="op">=</span> (<span class="dv">255</span>, <span class="dv">255</span>, <span class="dv">255</span>)  <span class="co"># Color de las células que siguen vivas en la siguiente generación</span></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>pygame.init()</span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>pygame.display.set_caption(<span class="st">"conway's game of life"</span>)  <span class="co"># Título de la ventana del juego</span></span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Función para actualizar la pantalla con las células</span></span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> update(screen, cells, size, with_progress<span class="op">=</span><span class="va">False</span>):</span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>    updated_cells <span class="op">=</span> np.zeros((cells.shape[<span class="dv">0</span>], cells.shape[<span class="dv">1</span>]))  <span class="co"># Matriz para almacenar las células actualizadas</span></span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> row, col <span class="kw">in</span> np.ndindex(cells.shape):</span>
-<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>        alive <span class="op">=</span> np.<span class="bu">sum</span>(cells[row<span class="op">-</span><span class="dv">1</span>:row<span class="op">+</span><span class="dv">2</span>, col<span class="op">-</span><span class="dv">1</span>:col<span class="op">+</span><span class="dv">2</span>]) <span class="op">-</span> cells[row, col]  <span class="co"># Cálculo de células vecinas vivas</span></span>
-<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>        color <span class="op">=</span> COLOR_BG <span class="cf">if</span> cells[row, col] <span class="op">==</span> <span class="dv">0</span> <span class="cf">else</span> COLOR_ALIVE_NEXT  <span class="co"># Color de la célula actual</span></span>
-<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> cells[row, col] <span class="op">==</span> <span class="dv">1</span>:  <span class="co"># Si la célula actual está viva</span></span>
-<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> alive <span class="op">&lt;</span> <span class="dv">2</span> <span class="kw">or</span> alive <span class="op">&gt;</span> <span class="dv">3</span>:  <span class="co"># Si tiene menos de 2 o más de 3 vecinos vivos, muere</span></span>
-<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> with_progress:</span>
-<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>                    color <span class="op">=</span> COLOR_DIE_NEXT</span>
-<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>            <span class="cf">elif</span> <span class="dv">2</span> <span class="op">&lt;=</span> alive <span class="op">&lt;=</span> <span class="dv">3</span>:  <span class="co"># Si tiene 2 o 3 vecinos vivos, sigue viva</span></span>
-<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>                updated_cells[row, col] <span class="op">=</span> <span class="dv">1</span></span>
-<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> with_progress:</span>
-<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>                    color <span class="op">=</span> COLOR_ALIVE_NEXT</span>
-<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:  <span class="co"># Si la célula actual está muerta</span></span>
-<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> alive <span class="op">==</span> <span class="dv">3</span>:  <span class="co"># Si tiene exactamente 3 vecinos vivos, revive</span></span>
-<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a>                updated_cells[row, col] <span class="op">=</span> <span class="dv">1</span></span>
-<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> with_progress:</span>
-<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a>                    color <span class="op">=</span> COLOR_ALIVE_NEXT</span>
-<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a>        pygame.draw.rect(screen, color, (col <span class="op">*</span> size, row <span class="op">*</span> size, size <span class="op">-</span> <span class="dv">1</span>, size <span class="op">-</span> <span class="dv">1</span>))  <span class="co"># Dibuja la célula en la pantalla</span></span>
-<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> updated_cells  <span class="co"># Devuelve las células actualizadas</span></span>
-<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a><span class="co"># Función principal del programa</span></span>
-<span id="cb8-40"><a href="#cb8-40" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> main():</span>
-<span id="cb8-41"><a href="#cb8-41" aria-hidden="true" tabindex="-1"></a>    pygame.init()</span>
-<span id="cb8-42"><a href="#cb8-42" aria-hidden="true" tabindex="-1"></a>    screen <span class="op">=</span> pygame.display.set_mode((<span class="dv">800</span>, <span class="dv">600</span>))  <span class="co"># Crea la ventana del juego</span></span>
-<span id="cb8-43"><a href="#cb8-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-44"><a href="#cb8-44" aria-hidden="true" tabindex="-1"></a>    cells <span class="op">=</span> np.zeros((<span class="dv">60</span>, <span class="dv">80</span>))  <span class="co"># Crea una matriz de células muertas</span></span>
-<span id="cb8-45"><a href="#cb8-45" aria-hidden="true" tabindex="-1"></a>    screen.fill(COLOR_GRID)  <span class="co"># Rellena la pantalla con el color de la cuadrícula</span></span>
-<span id="cb8-46"><a href="#cb8-46" aria-hidden="true" tabindex="-1"></a>    update(screen, cells, <span class="dv">10</span>)  <span class="co"># Actualiza la pantalla con las células</span></span>
-<span id="cb8-47"><a href="#cb8-47" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-48"><a href="#cb8-48" aria-hidden="true" tabindex="-1"></a>    pygame.display.flip()</span>
-<span id="cb8-49"><a href="#cb8-49" aria-hidden="true" tabindex="-1"></a>    pygame.display.update()</span>
-<span id="cb8-50"><a href="#cb8-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-51"><a href="#cb8-51" aria-hidden="true" tabindex="-1"></a>    running <span class="op">=</span> <span class="va">False</span>  <span class="co"># Variable para controlar si el juego está en ejecución</span></span>
-<span id="cb8-52"><a href="#cb8-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-53"><a href="#cb8-53" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="va">True</span>:</span>
-<span id="cb8-54"><a href="#cb8-54" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> Q <span class="kw">in</span> pygame.event.get():</span>
-<span id="cb8-55"><a href="#cb8-55" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> Q.<span class="bu">type</span> <span class="op">==</span> pygame.QUIT:  <span class="co"># Si se cierra la ventana, termina el programa</span></span>
-<span id="cb8-56"><a href="#cb8-56" aria-hidden="true" tabindex="-1"></a>                pygame.quit()</span>
-<span id="cb8-57"><a href="#cb8-57" aria-hidden="true" tabindex="-1"></a>                <span class="cf">return</span></span>
-<span id="cb8-58"><a href="#cb8-58" aria-hidden="true" tabindex="-1"></a>            <span class="cf">elif</span> Q.<span class="bu">type</span> <span class="op">==</span> pygame.KEYDOWN:</span>
-<span id="cb8-59"><a href="#cb8-59" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> Q.key <span class="op">==</span> pygame.K_SPACE:  <span class="co"># Si se presiona la tecla espacio, se inicia o pausa el juego</span></span>
-<span id="cb8-60"><a href="#cb8-60" aria-hidden="true" tabindex="-1"></a>                    running <span class="op">=</span> <span class="kw">not</span> running</span>
-<span id="cb8-61"><a href="#cb8-61" aria-hidden="true" tabindex="-1"></a>                    update(screen, cells, <span class="dv">10</span>)</span>
-<span id="cb8-62"><a href="#cb8-62" aria-hidden="true" tabindex="-1"></a>                    pygame.display.update()</span>
-<span id="cb8-63"><a href="#cb8-63" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> pygame.mouse.get_pressed()[<span class="dv">0</span>]:  <span class="co"># Si se presiona el botón izquierdo del ratón</span></span>
-<span id="cb8-64"><a href="#cb8-64" aria-hidden="true" tabindex="-1"></a>                pos <span class="op">=</span> pygame.mouse.get_pos()  <span class="co"># Obtiene la posición del ratón</span></span>
-<span id="cb8-65"><a href="#cb8-65" aria-hidden="true" tabindex="-1"></a>                cells[pos[<span class="dv">1</span>] <span class="op">//</span> <span class="dv">10</span>, pos[<span class="dv">0</span>] <span class="op">//</span> <span class="dv">10</span>] <span class="op">=</span> <span class="dv">1</span>  <span class="co"># Marca la célula correspondiente como viva</span></span>
-<span id="cb8-66"><a href="#cb8-66" aria-hidden="true" tabindex="-1"></a>                update(screen, cells, <span class="dv">10</span>)</span>
-<span id="cb8-67"><a href="#cb8-67" aria-hidden="true" tabindex="-1"></a>                pygame.display.update()</span>
-<span id="cb8-68"><a href="#cb8-68" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-69"><a href="#cb8-69" aria-hidden="true" tabindex="-1"></a>        screen.fill(COLOR_GRID)  <span class="co"># Rellena la pantalla con el color de la cuadrícula</span></span>
-<span id="cb8-70"><a href="#cb8-70" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-71"><a href="#cb8-71" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> running:  <span class="co"># Si el juego está en ejecución</span></span>
-<span id="cb8-72"><a href="#cb8-72" aria-hidden="true" tabindex="-1"></a>            cells <span class="op">=</span> update(screen, cells, <span class="dv">10</span>, with_progress<span class="op">=</span><span class="va">True</span>)  <span class="co"># Actualiza las células con progreso</span></span>
-<span id="cb8-73"><a href="#cb8-73" aria-hidden="true" tabindex="-1"></a>            pygame.display.update()</span>
-<span id="cb8-74"><a href="#cb8-74" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-75"><a href="#cb8-75" aria-hidden="true" tabindex="-1"></a>        time.sleep(<span class="fl">0.001</span>)  <span class="co"># Espera un breve tiempo para controlar la velocidad del juego</span></span>
-<span id="cb8-76"><a href="#cb8-76" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-77"><a href="#cb8-77" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">"__main__"</span>:</span>
-<span id="cb8-78"><a href="#cb8-78" aria-hidden="true" tabindex="-1"></a>    main()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pygame</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>COLOR_BG <span class="op">=</span> (<span class="dv">10</span>, <span class="dv">10</span>, <span class="dv">10</span>,)  <span class="co"># Color de fondo</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>COLOR_GRID <span class="op">=</span> (<span class="dv">40</span>, <span class="dv">40</span>, <span class="dv">40</span>)  <span class="co"># Color de la cuadrícula</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>COLOR_DIE_NEXT <span class="op">=</span> (<span class="dv">170</span>, <span class="dv">170</span>, <span class="dv">170</span>)  <span class="co"># Color de las células que mueren en la siguiente generación</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>COLOR_ALIVE_NEXT <span class="op">=</span> (<span class="dv">255</span>, <span class="dv">255</span>, <span class="dv">255</span>)  <span class="co"># Color de las células que siguen vivas en la siguiente generación</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>pygame.init()</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>pygame.display.set_caption(<span class="st">"conway's game of life"</span>)  <span class="co"># Título de la ventana del juego</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Función para actualizar la pantalla con las células</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> update(screen, cells, size, with_progress<span class="op">=</span><span class="va">False</span>):</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    updated_cells <span class="op">=</span> np.zeros((cells.shape[<span class="dv">0</span>], cells.shape[<span class="dv">1</span>]))  <span class="co"># Matriz para almacenar las células actualizadas</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> row, col <span class="kw">in</span> np.ndindex(cells.shape):</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>        alive <span class="op">=</span> np.<span class="bu">sum</span>(cells[row<span class="op">-</span><span class="dv">1</span>:row<span class="op">+</span><span class="dv">2</span>, col<span class="op">-</span><span class="dv">1</span>:col<span class="op">+</span><span class="dv">2</span>]) <span class="op">-</span> cells[row, col]  <span class="co"># Cálculo de células vecinas vivas</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>        color <span class="op">=</span> COLOR_BG <span class="cf">if</span> cells[row, col] <span class="op">==</span> <span class="dv">0</span> <span class="cf">else</span> COLOR_ALIVE_NEXT  <span class="co"># Color de la célula actual</span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> cells[row, col] <span class="op">==</span> <span class="dv">1</span>:  <span class="co"># Si la célula actual está viva</span></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> alive <span class="op">&lt;</span> <span class="dv">2</span> <span class="kw">or</span> alive <span class="op">&gt;</span> <span class="dv">3</span>:  <span class="co"># Si tiene menos de 2 o más de 3 vecinos vivos, muere</span></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> with_progress:</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>                    color <span class="op">=</span> COLOR_DIE_NEXT</span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>            <span class="cf">elif</span> <span class="dv">2</span> <span class="op">&lt;=</span> alive <span class="op">&lt;=</span> <span class="dv">3</span>:  <span class="co"># Si tiene 2 o 3 vecinos vivos, sigue viva</span></span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>                updated_cells[row, col] <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> with_progress:</span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>                    color <span class="op">=</span> COLOR_ALIVE_NEXT</span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:  <span class="co"># Si la célula actual está muerta</span></span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> alive <span class="op">==</span> <span class="dv">3</span>:  <span class="co"># Si tiene exactamente 3 vecinos vivos, revive</span></span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>                updated_cells[row, col] <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> with_progress:</span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>                    color <span class="op">=</span> COLOR_ALIVE_NEXT</span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a>        pygame.draw.rect(screen, color, (col <span class="op">*</span> size, row <span class="op">*</span> size, size <span class="op">-</span> <span class="dv">1</span>, size <span class="op">-</span> <span class="dv">1</span>))  <span class="co"># Dibuja la célula en la pantalla</span></span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> updated_cells  <span class="co"># Devuelve las células actualizadas</span></span>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a><span class="co"># Función principal del programa</span></span>
+<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> main():</span>
+<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a>    pygame.init()</span>
+<span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a>    screen <span class="op">=</span> pygame.display.set_mode((<span class="dv">800</span>, <span class="dv">600</span>))  <span class="co"># Crea la ventana del juego</span></span>
+<span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-44"><a href="#cb7-44" aria-hidden="true" tabindex="-1"></a>    cells <span class="op">=</span> np.zeros((<span class="dv">60</span>, <span class="dv">80</span>))  <span class="co"># Crea una matriz de células muertas</span></span>
+<span id="cb7-45"><a href="#cb7-45" aria-hidden="true" tabindex="-1"></a>    screen.fill(COLOR_GRID)  <span class="co"># Rellena la pantalla con el color de la cuadrícula</span></span>
+<span id="cb7-46"><a href="#cb7-46" aria-hidden="true" tabindex="-1"></a>    update(screen, cells, <span class="dv">10</span>)  <span class="co"># Actualiza la pantalla con las células</span></span>
+<span id="cb7-47"><a href="#cb7-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-48"><a href="#cb7-48" aria-hidden="true" tabindex="-1"></a>    pygame.display.flip()</span>
+<span id="cb7-49"><a href="#cb7-49" aria-hidden="true" tabindex="-1"></a>    pygame.display.update()</span>
+<span id="cb7-50"><a href="#cb7-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-51"><a href="#cb7-51" aria-hidden="true" tabindex="-1"></a>    running <span class="op">=</span> <span class="va">False</span>  <span class="co"># Variable para controlar si el juego está en ejecución</span></span>
+<span id="cb7-52"><a href="#cb7-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-53"><a href="#cb7-53" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb7-54"><a href="#cb7-54" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> Q <span class="kw">in</span> pygame.event.get():</span>
+<span id="cb7-55"><a href="#cb7-55" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> Q.<span class="bu">type</span> <span class="op">==</span> pygame.QUIT:  <span class="co"># Si se cierra la ventana, termina el programa</span></span>
+<span id="cb7-56"><a href="#cb7-56" aria-hidden="true" tabindex="-1"></a>                pygame.quit()</span>
+<span id="cb7-57"><a href="#cb7-57" aria-hidden="true" tabindex="-1"></a>                <span class="cf">return</span></span>
+<span id="cb7-58"><a href="#cb7-58" aria-hidden="true" tabindex="-1"></a>            <span class="cf">elif</span> Q.<span class="bu">type</span> <span class="op">==</span> pygame.KEYDOWN:</span>
+<span id="cb7-59"><a href="#cb7-59" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> Q.key <span class="op">==</span> pygame.K_SPACE:  <span class="co"># Si se presiona la tecla espacio, se inicia o pausa el juego</span></span>
+<span id="cb7-60"><a href="#cb7-60" aria-hidden="true" tabindex="-1"></a>                    running <span class="op">=</span> <span class="kw">not</span> running</span>
+<span id="cb7-61"><a href="#cb7-61" aria-hidden="true" tabindex="-1"></a>                    update(screen, cells, <span class="dv">10</span>)</span>
+<span id="cb7-62"><a href="#cb7-62" aria-hidden="true" tabindex="-1"></a>                    pygame.display.update()</span>
+<span id="cb7-63"><a href="#cb7-63" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> pygame.mouse.get_pressed()[<span class="dv">0</span>]:  <span class="co"># Si se presiona el botón izquierdo del ratón</span></span>
+<span id="cb7-64"><a href="#cb7-64" aria-hidden="true" tabindex="-1"></a>                pos <span class="op">=</span> pygame.mouse.get_pos()  <span class="co"># Obtiene la posición del ratón</span></span>
+<span id="cb7-65"><a href="#cb7-65" aria-hidden="true" tabindex="-1"></a>                cells[pos[<span class="dv">1</span>] <span class="op">//</span> <span class="dv">10</span>, pos[<span class="dv">0</span>] <span class="op">//</span> <span class="dv">10</span>] <span class="op">=</span> <span class="dv">1</span>  <span class="co"># Marca la célula correspondiente como viva</span></span>
+<span id="cb7-66"><a href="#cb7-66" aria-hidden="true" tabindex="-1"></a>                update(screen, cells, <span class="dv">10</span>)</span>
+<span id="cb7-67"><a href="#cb7-67" aria-hidden="true" tabindex="-1"></a>                pygame.display.update()</span>
+<span id="cb7-68"><a href="#cb7-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-69"><a href="#cb7-69" aria-hidden="true" tabindex="-1"></a>        screen.fill(COLOR_GRID)  <span class="co"># Rellena la pantalla con el color de la cuadrícula</span></span>
+<span id="cb7-70"><a href="#cb7-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-71"><a href="#cb7-71" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> running:  <span class="co"># Si el juego está en ejecución</span></span>
+<span id="cb7-72"><a href="#cb7-72" aria-hidden="true" tabindex="-1"></a>            cells <span class="op">=</span> update(screen, cells, <span class="dv">10</span>, with_progress<span class="op">=</span><span class="va">True</span>)  <span class="co"># Actualiza las células con progreso</span></span>
+<span id="cb7-73"><a href="#cb7-73" aria-hidden="true" tabindex="-1"></a>            pygame.display.update()</span>
+<span id="cb7-74"><a href="#cb7-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-75"><a href="#cb7-75" aria-hidden="true" tabindex="-1"></a>        time.sleep(<span class="fl">0.001</span>)  <span class="co"># Espera un breve tiempo para controlar la velocidad del juego</span></span>
+<span id="cb7-76"><a href="#cb7-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-77"><a href="#cb7-77" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">"__main__"</span>:</span>
+<span id="cb7-78"><a href="#cb7-78" aria-hidden="true" tabindex="-1"></a>    main()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <hr>
 <p>This Python script implements Conway’s Game of Life, a cellular automaton devised by British mathematician John Horton Conway. It is a zero-player game, meaning its evolution is determined entirely by its initial state, with no further input required.</p>
 <p>The script begins by importing the necessary modules: <code>time</code>, <code>pygame</code> for the graphical interface, and <code>numpy</code> to handle the game grid as a 2D matrix. It then defines color constants used for visualizing the game.</p>
