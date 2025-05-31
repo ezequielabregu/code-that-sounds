@@ -37,7 +37,7 @@ However, the notion of space in electroacoustic music differs significantly from
 Loudspeakers in electroacoustic music afford a uniquely flexible means of organizing space as a structural element. The spatial potential enabled by electroacoustic technologies has been, and continues to be, highly significant. With a single device (see Fig. 2), it is possible to transport the listener into a wide range of virtual environments, expanding the scope of musical space beyond the physical limitations of the performance venue. This opens the door to sonic representations of distance, movement, and directionality—factors that can be fully integrated into the musical structure and treated as compositional dimensions in their own right.
 
 ![**Figure 2**: Multichannel electroacoustic concert hall.  
-](/assets/images/space/fig-2-multichannel-setup.png)
+](/assets/images/space/fig-2-multichannel-setup-AI.png)
 
 
 ### Spatial Recontextualization and Auditory Expectation
@@ -55,7 +55,7 @@ Unlike incidental listening in everyday life, attentive listening in electroacou
 By contrast, the auditory perception of distance remains one of the most enigmatic topics in both music and psychophysics. It involves a complex array of cues—many of which are still not fully understood or integrated into compositional practice. As such, distance remains an open and promising field of inquiry for creative and scientific exploration alike [@abregu2012].
 
 ![**Figure 3**: Schematic representation of the azimuth, elevation, and distance axes.  
-](/assets/images/space/fig-3-space-xyz.png)
+](/assets/images/space/fig-3-space-xyz-cervino.png)
 
 ### The Expanded Spatial Palette of Electroacoustic Music
 
