@@ -395,6 +395,8 @@ Digital images contain vast amounts of visual information encoded as pixel data,
 
 The sonification process reveals hidden patterns and textures within images that may not be immediately apparent through visual inspection alone. By treating pixel data as audio samples, we can explore the rhythmic, harmonic, and textural qualities inherent in visual compositions, creating a synesthetic bridge between sight and sound.
 
+![Fig. ](/assets/screenshots/sonification/sonification-rgba.png)
+
 ### Patch Overview
 
 The RGBA image sonification system consists of three main components working in concert:
