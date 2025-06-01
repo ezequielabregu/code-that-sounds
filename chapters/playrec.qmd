@@ -354,6 +354,93 @@ The output stage serves as the central collection and distribution point for all
 
 This virtual approach offers a controlled laboratory for exploring the core concepts of Lucier's piece, making it accessible even without an ideal acoustic space, while also opening new creative possibilities that wouldn't be possible in a physical implementation.
 
+## Simple Audio Player
+
+The simple audio player represents a streamlined approach to audio file playback that emphasizes ease of use while providing essential control over playback parameters. This Pure Data implementation demonstrates how to create an intuitive audio player interface that combines file loading, visual feedback, and precise playback control in a single cohesive system. The patch showcases fundamental concepts including automatic file loading, visual waveform display, start/stop position control, playback speed manipulation, and smooth parameter interpolation.
+
+![Fig. Pure Data implementation of simple audio player](/assets/screenshots/playrec/audioplayer.png)
+
+### Patch Overview
+
+The simple audio player patch implements a user-friendly playback system that automatically loads an audio file into a visual array and provides comprehensive control over playback parameters through an intuitive slider-based interface. The system operates by calculating playback positions based on normalized start and stop points, which are then converted to sample-accurate indices for precise audio retrieval. The architecture emphasizes visual feedback through multiple display elements that show both the raw sample data and the calculated playback parameters in real-time.
+
+The design philosophy centers around immediate usability, where a single "play!" button triggers playback of a predefined segment with user-controlled speed and timing parameters. The visual interface provides dual representation of the audio content through both a large waveform display that shows the entire audio file and smaller numeric displays that provide precise feedback on calculated values. The playback engine employs interpolated table reading to ensure high-quality audio reproduction across all speed settings, while the parameter calculation system converts user-friendly interface values into the sample-accurate indices required for proper audio playback.
+
+The patch incorporates automatic initialization through a loadbang mechanism that ensures the audio file is loaded immediately when the patch opens, eliminating the need for manual file loading procedures. The control system provides independent manipulation of start position, stop position, playback speed, and interpolation timing, with all parameters working together to create a flexible and responsive playback environment suitable for both educational exploration and practical audio playback applications.
+
+```{mermaid}
+flowchart TD
+    A[Loadbang] --> B[File Loading]
+    B --> C[Soundfiler]
+    C --> D[Array Storage]
+    D --> E[Sample Count]
+    F[Start Slider] --> G[Position Calculation]
+    H[Stop Slider] --> G
+    I[Speed Slider] --> J[Duration Calculation]
+    E --> K[Sample Index Conversion]
+    G --> K
+    J --> L[Interpolation Parameters]
+    K --> L
+    M[Play Button] --> N[Line~ Object]
+    L --> N
+    N --> O[Tabread4~]
+    D --> O
+    O --> P[Audio Output]
+```
+
+### Data Flow
+
+The audio player system begins its operation with an automatic initialization sequence triggered by the `loadbang` object at patch startup. This initialization sends a message to the `soundfiler` object instructing it to load the file "speech.wav" into the "audio" array with automatic resizing enabled. The soundfiler responds by reading the entire audio file into the array and returning the total number of samples, which becomes the fundamental reference value for all subsequent position and timing calculations. This sample count is immediately displayed in a numeric box and distributed throughout the system to serve as the basis for converting normalized slider positions into actual sample indices.
+
+The position control system operates through two horizontal sliders that represent the start and stop positions as normalized values between 0 and 1. These normalized positions are processed through expression objects that multiply them by the total sample count, converting the user-friendly slider positions into precise sample indices that correspond to actual locations within the audio file. The start position calculation uses the expression `int($f1*$f2)` where the first input is the normalized slider value and the second is the total sample count, ensuring that the resulting index points to an exact sample location within the array.
+
+The timing and speed control mechanism calculates the duration and interpolation parameters necessary for smooth playback transitions. The duration calculation subtracts the start sample index from the stop sample index using the expression `$f2 - $f1`, providing the total number of samples that will be played during the current playback segment. This duration value is then converted from samples to milliseconds using the expression `abs(int(($f1 / 44100) * 1000))`, which divides by the standard sample rate and multiplies by 1000 to produce a time value suitable for the interpolation system.
+
+The speed control system modifies the calculated duration by multiplying it with the speed slider value through the expression `int($f1*$f2)`. This calculation allows users to control playback speed, where values less than 1 produce slower playback and values greater than 1 produce faster playback. The resulting modified duration becomes the interpolation time parameter that determines how quickly the playback position moves from the start index to the stop index.
+
+When the "play!" button is triggered, all calculated parameters are combined into a message that drives the `line~` object. The `pack f f f` object consolidates the start position, stop position, and interpolation time into a single list, which is then formatted by a message object into the proper syntax for the `line~` object. This formatted message instructs the `line~` to smoothly interpolate from the start sample index to the stop sample index over the calculated time duration, creating a continuously changing index value that scans through the selected portion of the audio file.
+
+The final audio generation stage employs the `tabread4~` object to retrieve audio samples from the array using the continuously changing index values provided by the `line~` object. The fourth-order interpolation ensures smooth audio reproduction even when the playback speed produces non-integer index values or when rapid parameter changes occur. The interpolated audio output is then routed to the `output~` object for final amplification and speaker routing, completing the signal path from stored audio data to audible output.
+
+### Key Objects and Their Roles
+
+The following table summarizes the essential objects used in the simple audio player implementation:
+
+::: {style="width: 80%;"}
+| Object | Purpose |
+|--------|---------|
+| `loadbang` | Automatically initiates file loading when patch opens |
+| `soundfiler` | Loads audio files into arrays and reports sample count |
+| `array audio` | Stores audio waveform data with visual display |
+| `tabread4~` | Performs interpolated audio reading from the array |
+| `line~` | Generates smooth ramp signals for position scanning |
+| `pack f f f` | Combines start, stop, and time parameters |
+| `expr` | Performs mathematical calculations for position and timing |
+| `hsl` | Horizontal sliders for start, stop, and speed control |
+| `nbx` | Numeric boxes for parameter display and precise input |
+| `bng` | Play button for triggering playback |
+| `t f f` | Trigger objects for distributing values to multiple destinations |
+| `output~` | Provides stereo audio output with level control |
+| `f` | Float storage for maintaining current sample count |
+:::
+
+The patch demonstrates several key Pure Data programming concepts, including automatic patch initialization through loadbang, visual array management for waveform display, mathematical expression evaluation for parameter conversion, and smooth audio-rate interpolation for high-quality playback. The modular design separates user interface elements from audio processing components, making the system easy to understand and modify.
+
+This implementation serves as an excellent foundation for understanding basic audio playback principles and can be easily extended with additional features such as looping, multiple file support, or external control integration. The visual feedback provided by the waveform display and numeric readouts makes it particularly suitable for educational applications where understanding the relationship between interface controls and audio parameters is important.
+
+### Creative Applications
+
+- **Extreme time stretching:** Push the speed control to very low values (0.1 or lower) to create drone-like textures from short audio snippets
+- **Rhythmic patterns:** Use rapid speed changes and phase jumps to generate percussive sequences from sustained tones
+- **Reverse archaeology:** Load full songs and use reverse playback to discover hidden melodic content and create backwards reveals
+- **Granular-style effects:** Combine fast phase position changes with short loop lengths to simulate granular synthesis behaviors
+- **Live performance tools:** Map MIDI controllers to speed and phase parameters for real-time manipulation during performances
+- **Sound design layers:** Layer multiple instances with different source materials and speed relationships to create complex evolving textures
+- **Pitch-shifting alternative:** Use speed control as a creative pitch-shifting tool, embracing the tempo changes as part of the aesthetic
+- **Micro-sampling:** Load very short sounds (vocal consonants, instrument attacks) and stretch them to reveal internal acoustic details
+- **Cross-fading narratives:** Use position control to jump between different parts of spoken word recordings, creating non-linear storytelling
+- **Rhythmic displacement:** Sync multiple samplers to the same clock but with different phase offsets to create polyrhythmic patterns
+
 ## Audio Sampler with [phasor~]
 
 The audio sampler represents a fundamental tool in digital audio processing and musical performance, enabling the capture, manipulation, and playback of recorded audio material. This Pure Data implementation demonstrates how to create a comprehensive sampling system that provides real-time control over playback speed, direction, position, and interpolation. The patch showcases essential concepts including array-based audio storage, variable-speed playback, phase control, and temporal interpolation for smooth parameter transitions.
