@@ -529,7 +529,7 @@ This sonification approach opens new possibilities for cross-modal artistic expr
 
 
 
-## Linear Image Scanner
+## Image Scanner
 
 This patch implements a linear scanning sonification system that transforms visual image data into audio through systematic pixel sampling. By creating multiple scan points that traverse an image from left to right, the patch converts spatial color information into frequency-controlled oscillators, creating a real-time audio representation of visual content. This approach enables users to "hear" images through systematic exploration of pixel data across defined scan lines.
 
@@ -650,5 +650,103 @@ The patch implements sophisticated coordinate management that ensures proper spa
 - **Educational Tools**: Teach concepts of frequency, spatial relationship, and data representation by demonstrating direct correlations between visual and audio domains
 - **Live Performance Integration**: Use the scanner with live video feeds or real-time image manipulation to create dynamic audio responses to visual performance elements
 - **Astronomical Data Exploration**: Scan telescope images, star charts, or planetary surfaces to create audio representations of cosmic phenomena and celestial structures
+
+## Camera Scanner
+
+This patch extends the linear image scanning concept to real-time video input, creating dynamic sonification of live camera feeds. Unlike the static image scanner previously discussed, this system processes continuous video streams from web cameras, enabling real-time exploration of moving visual content through audio. The patch maintains the core scanning methodology while introducing temporal dynamics that reflect the changing nature of live video input.
+
+The live camera scanner transforms the temporal dimension of video into immediate sonic feedback, where movements, lighting changes, and scene transitions become audible through frequency modulation across multiple scan lines. This creates an interactive relationship between the physical environment captured by the camera and the generated audio landscape.
+
+![Fig. ](/assets/screenshots/sonification/scan-camera.png)
+
+### Patch Overview
+
+The live camera scanner builds upon the established linear scanning framework while incorporating several enhancements specific to real-time video processing:
+
+1. **Live Video Capture**: Continuous camera input with adjustable contrast and color inversion
+2. **Enhanced Scanning Controls**: Random scanning modes and interpolated scan transitions
+3. **Real-time Processing**: Immediate response to visual changes in the camera feed
+4. **Extended User Interface**: Additional controls for camera manipulation and scanning behavior
+
+The system maintains the same dynamic patching architecture and frequency mapping strategies established in the static image scanner, ensuring consistency in the sonification approach while adapting to the temporal nature of video input.
+
+### Key Objects and Their Roles
+
+Building upon the previously established scanning framework, the live camera scanner introduces several additional components:
+
+| Object | Function | Role in Live Scanning |
+|--------|----------|----------------------|
+| `pix_video` | Camera input capture | Provides continuous video stream from webcam |
+| `pix_contrast` | Image enhancement | Adjusts pixel intensity for better scanning contrast |
+| `pix_invert` | Color inversion | Creates alternative visual representations |
+| `pix_2grey` | Grayscale conversion | Simplifies color data for processing |
+| `random` | Stochastic positioning | Generates unpredictable scan patterns |
+| `spigot` | Control gating | Enables/disables random scanning behavior |
+
+#### Live Video Processing Components
+
+**pix_video Object**: Captures real-time video input from connected cameras, providing the continuous data stream that replaces static image loading. The object supports multiple camera devices and delivers frame-by-frame pixel data to the scanning system.
+
+**Image Enhancement Chain**: The `pix_2grey` → `pix_contrast` → `pix_invert` processing chain offers real-time image manipulation capabilities that enhance the scanning process by adjusting visual characteristics to optimize sonic output.
+
+**Random Scanning System**: Unlike static image scanning, the live camera scanner includes stochastic elements that introduce unpredictability to the scanning patterns, creating evolving audio textures that respond to both visual content and algorithmic variation.
+
+### Data Flow
+
+The live camera scanner orchestrates a continuous real-time processing pipeline that transforms streaming video data into dynamic audio representations. While maintaining the core scanning methodology established in the static image scanner, this system introduces temporal continuity and enhanced control mechanisms that respond to the evolving nature of live video input.
+
+The live video capture and preprocessing stage establishes a continuous data source through integrated camera management and image enhancement systems. The `pix_video` object maintains a persistent connection to the selected camera device, delivering frame-by-frame pixel data at standard video refresh rates. This continuous stream undergoes real-time preprocessing through a sophisticated image enhancement chain that optimizes the visual content for effective sonification. The `pix_2grey` object converts color video to grayscale, reducing computational complexity while preserving luminance information essential for frequency mapping. The `pix_contrast` object provides real-time contrast adjustment, enabling users to emphasize or diminish visual details based on scanning requirements. The optional `pix_invert` stage creates alternative visual representations that can reveal hidden patterns or provide aesthetic variations in the sonic output. This preprocessing chain ensures that the video data reaches the scanning system in an optimized format that maximizes the effectiveness of the pixel-to-frequency mapping process.
+
+The enhanced scanning control stage introduces sophisticated temporal management systems that extend beyond the basic left-to-right scanning pattern. The system maintains the established dynamic scan point generation methodology while incorporating additional control mechanisms for temporal behavior. The random scanning subsystem employs `random` and `spigot` objects to introduce stochastic elements into the scanning pattern, creating unpredictable position variations that generate evolving audio textures independent of visual content changes. The scan interpolation system provides smooth transitions between scanning positions, reducing audio artifacts that might result from abrupt position changes in the video stream. The temporal coordination mechanisms ensure that all scan lines maintain synchronized motion while accommodating the additional complexity introduced by random positioning and interpolated movement patterns.
+
+The real-time frequency mapping stage adapts the established pixel-to-frequency conversion methodology to accommodate the continuous nature of video input. Each scan line continuously samples pixels at its assigned y-coordinate while the x-coordinate evolves through the scanning pattern, creating ongoing frequency modulation that reflects both spatial relationships within the current video frame and temporal changes across successive frames. The frequency distribution system maintains the vertical mapping where scan lines at the bottom of the image control lower frequencies while scan lines at the top control higher frequencies, preserving the spatial-to-spectral correspondence established in the static scanner. However, the continuous nature of video input introduces temporal frequency modulation that creates evolving harmonic textures as visual content changes over time. The amplitude and frequency controls provide real-time adjustment capabilities that enable users to respond to changing lighting conditions, scene transitions, or desired aesthetic effects during live performance or analysis situations.
+
+```{mermaid}
+flowchart LR
+    A[Live Video Input] --> B[Image Enhancement]
+    B --> C[Dynamic Scanning]
+    C --> D[Frequency Mapping]
+    D --> E[Real-time Audio]
+```
+
+### Processing Chain Details
+
+The live camera scanner maintains the established processing architecture while incorporating real-time enhancements:
+
+| Stage | Input | Process | Output |
+|-------|-------|---------|--------|
+| 1 | Camera Stream | Video capture and preprocessing | Enhanced video frames |
+| 2 | Enhanced Frames | Dynamic scan point coordination | Synchronized scan positions |
+| 3 | Scan Positions | Real-time pixel sampling | Continuous color values |
+| 4 | Color Values | Live frequency mapping | Dynamic oscillator control |
+| 5 | Audio Signals | Real-time mixing and output | Live audio stream |
+
+#### Enhanced Control Parameters
+
+| Parameter | Control Range | Live Scanning Effect |
+|-----------|---------------|---------------------|
+| Contrast | 0-10 | Visual enhancement for improved frequency mapping |
+| Random Scan | On/Off | Stochastic scanning pattern generation |
+| Invert Colors | On/Off | Alternative visual representation |
+| Scan Interpolation | Smooth/Linear | Transition quality between scan positions |
+
+#### Real-time Performance Considerations
+
+**Frame Rate Coordination**: The scanning system synchronizes with video frame rates to ensure smooth audio generation without dropouts or artifacts caused by timing mismatches between video capture and audio processing.
+
+**Adaptive Frequency Scaling**: Real-time adjustment capabilities enable the system to respond to varying lighting conditions and scene content, maintaining optimal frequency mapping across different visual environments.
+
+**Computational Efficiency**: The live processing requirements demand efficient algorithms that can maintain real-time performance while processing multiple scan lines simultaneously across continuous video streams.
+
+### Creative Applications
+
+- **Live Performance Visualization**: Create real-time audio responses to performer movements, gestures, or choreographed actions captured by the camera system
+- **Environmental Sonification**: Transform ambient visual environments into evolving soundscapes that reflect changing lighting, weather conditions, or natural phenomena
+- **Interactive Installation Experiences**: Enable gallery visitors to influence the sonic environment through their physical presence and movements within the camera's field of view
+- **Surveillance Audio**: Convert security camera feeds into audio monitoring systems that provide auditory alerts for visual changes or movement detection
+- **Accessibility Applications**: Provide real-time audio descriptions of visual environments for visually impaired users, translating spatial and temporal visual information into sonic representations
+- **Dance and Movement Analysis**: Create audio feedback systems for movement training where dancers can hear the sonic representation of their spatial positioning and temporal dynamics
+- **Telepresence Audio**: Enable remote participants to experience distant visual environments through real-time sonification of camera feeds from other locations
+- **Machine Vision Integration**: Combine computer vision algorithms with live scanning to create responsive systems that sonify specific detected objects, faces, or movement patterns
 
 ## References{.unnumbered}
