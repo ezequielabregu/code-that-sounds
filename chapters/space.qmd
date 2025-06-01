@@ -55,7 +55,7 @@ Unlike incidental listening in everyday life, attentive listening in electroacou
 By contrast, the auditory perception of distance remains one of the most enigmatic topics in both music and psychophysics. It involves a complex array of cues—many of which are still not fully understood or integrated into compositional practice. As such, distance remains an open and promising field of inquiry for creative and scientific exploration alike [@abregu2012].
 
 ![**Figure 3**: Schematic representation of the azimuth, elevation, and distance axes.  
-](/assets/images/space/fig-3-space-xyz-cervino.png)
+](/assets/images/space/fig-3-space-xyz-2.png)
 
 ### The Expanded Spatial Palette of Electroacoustic Music
 
@@ -74,6 +74,173 @@ Since the mid-20th century, various spatialization systems have emerged to simul
 Unlike the relatively fixed reverberation properties of physical rooms, virtual spaces offer remarkable plasticity. Composers can craft distinct acoustic identities for different sections of a piece, allowing each space to function as a compositional agent in its own right. This flexibility implies that in electroacoustic music, space must often be invented—not merely inherited from the sounding objects, as is typically the case with acoustic instruments.
 
 It becomes clear, then, that spatial design can be a powerful structural element in music. Sound space carries poetic, aesthetic, and expressive dimensions. At the same time, convincing spatial construction often depends on our embodied experience of real-world acoustics. This dual grounding—in perceptual realism and creative abstraction—opens new theoretical and practical avenues for artists. The potential to reconceptualize spatiality through an expanded compositional lens can empower creators to engage more fully with the multidimensionality of sonic art. In doing so, it enables the development of richer analytical and taxonomical criteria that extend beyond sound itself, embracing broader cultural, perceptual, and technological contexts.
+
+
+## Spatial Localization of Sound
+
+
+### Psychoacoustic Factors in Sound Localization
+
+When we perceive a sound event, we rely on a variety of auditory cues to infer the position of its source. These cues are associated with both **direction** and **distance**, and are typically classified into two main categories: **binaural cues**, which arise from comparisons between the two ears, and **monaural cues**, which are perceived by a single ear and are still critical for spatial localization.
+
+To illustrate the binaural mechanism, consider a point sound source moving in a horizontal circular path around a listener's head. At any given moment, the distance from the source to each ear will differ depending on the angular position of the source. This spatial configuration results in **time and intensity differences** between the two ears. These discrepancies are key to our spatial perception of sound.
+
+When a sound wave reaches the right ear before the left, the slight delay in arrival time is known as the **Interaural Time Difference (ITD)**, while the difference in loudness is called the **Interaural Level Difference (ILD)**. These cues are extremely subtle—at 90°, the maximum ITD is around **630 microseconds**—yet the brain is remarkably adept at interpreting them to infer the lateral position of the source.
+
+The ILD is largely caused by the **acoustic shadowing effect of the head**. For higher frequencies (with wavelengths shorter than the head's diameter), the sound cannot diffract around the head, leading to more pronounced differences in intensity between the ears, depending on the angle of incidence.
+
+These binaural cues work together most effectively between **800 Hz and 1600 Hz**. Below 800 Hz, ITD is the dominant cue; above 1600 Hz, ILD becomes more effective. The distance between the listener and the sound source also affects these cues, with ILD being particularly sensitive to distance changes, while ITD remains relatively stable.
+
+Binaural localization does not require prior knowledge of the sound source. In contrast, **monaural localization**—when only one ear is used—often depends on recognizing the sound in advance. One key monaural cue is the **Spectral Cue (also called the Monaural Spectral Cue)**, which arises from changes in the sound spectrum caused by interactions with the outer ear (the pinna).
+
+Even slight modifications in the signals reaching the auditory system can lead to significant shifts in the perceived spatial image. From an acoustic perspective, the **pinna acts as a directional filter**, primarily affecting high frequencies. It introduces spectral and temporal modifications to the signal depending on its angle of incidence and distance. These effects help the listener distinguish between sounds originating in front versus behind, and also assist in determining the **elevation** of the source.
+
+Historically, the role of the pinnae in spatial hearing was underestimated, often seen merely as protective structures. Contemporary research, however, confirms their essential role in spatial perception and in reducing environmental noise, such as wind.
+
+When it comes to estimating **source distance**, familiarity with the sound plays a significant role. For example, spoken voice at a normal volume provides a relatively accurate cue for distance perception. Like light intensity or visual size, **sound intensity decreases with distance**, following the **inverse square law**. But intensity is not the only factor: **air acts as a low-pass filter**, attenuating high frequencies over distance. This effect is clearly noticeable in scenarios like an approaching airplane, where the sound not only grows louder but also becomes brighter and richer in frequency content.
+
+In sum, sound localization is a complex perceptual process informed by a combination of **binaural and monaural cues**, **spectral filtering by the outer ear**, and **familiarity with the sound source**. These mechanisms interact continuously to allow listeners to orient themselves in a dynamic acoustic environment, whether real or simulated.
+
+## Hearing in Enclosed Spaces
+
+When we experience sound in an enclosed environment, the first auditory cue that reaches our ears is known as the **direct sound**—the signal that travels straight from the source without interacting with any obstacles. This is followed by the **first-order reflections**, which occur when the sound bounces off a single surface—such as a wall—before reaching the listener. These are then succeeded by **second-order reflections**, involving two bounces, and progressively higher orders of reflection. Eventually, this cascade of reflections gives rise to a **diffuse auditory sensation** known as **reverberation**.
+
+In a typical empty room—consider one with four walls, a ceiling, and a floor—the six primary surfaces contribute to the first-order reflections. These early reflections are particularly significant when the sound has a sharp or impulsive attack, as they assist the auditory system in identifying the **spatial position of the sound source**. Reverberation, by contrast, carries information about the **acoustic properties** and **dimensions** of the room. It plays a key role in shaping the overall perception of the space's material and geometry.
+
+A critical metric used in room acoustics is the **reverberation time**, commonly denoted as *T₆₀*. This refers to the time it takes for the reverberant sound energy to decay by **60 decibels** after the original sound source has ceased. A widely used formula for estimating this value is the **Sabine equation**:
+$$T_{60} = 0.16 \times \frac{V}{A}$$
+
+Here, **V** represents the volume of the room in cubic meters, and **A** is the total **equivalent absorption area**, calculated as the sum of the products of each surface's area and its corresponding **absorption coefficient**. Importantly, absorption coefficients are **frequency-dependent**, meaning that the acoustic behavior of a room varies with different sound frequencies.
+
+To account for this, acousticians often use a metric known as the **Noise Reduction Coefficient (NRC)**, which averages absorption values across key frequencies—specifically 250 Hz, 500 Hz, 1000 Hz, and 2000 Hz. This provides a more practical estimate of how a room absorbs sound across the human auditory spectrum.
+
+A graphical representation of room acoustics typically illustrates the **temporal distribution of reflections** produced by an impulse response within the space. In such plots, the **height of each line** corresponds to the **relative amplitude** of each reflection. These visualizations help researchers and designers understand how sound energy evolves over time in an architectural space, offering insight into both **clarity** and **spatial impression**.
+
+Understanding how direct sound, early reflections, and reverberation interact is essential for both technical and artistic applications in sound design. Whether composing for multichannel electroacoustic environments or designing spatial sound installations, these acoustic principles are fundamental to crafting immersive and intelligible auditory experiences.
+
+## Virtual Source Simulation via Stereophonic Techniques
+
+Stereophonic systems enable the simulation of virtual sound source localization using just two loudspeakers positioned to the left and right of the listener. By manipulating the amplitude of each signal sent to the speakers, we can generate the perceptual illusion of a sound source moving laterally across the auditory field. Additional transformations also allow us to simulate depth and even create the sensation of a source emanating from behind the speakers, constructing an illusory auditory space.
+
+The perception of a virtual source positioned between two speakers arises from the system’s ability to artificially generate an **Interaural Level Difference (ILD)**. If the signal emitted from the right speaker is louder than that from the left, the right ear perceives a higher intensity, prompting the auditory system to localize the source toward the right. The degree of perceived lateral displacement is directly proportional to the intensity difference.
+
+In typical stereo setups, the speakers are arranged with a 60° separation. However, for purposes of spatial expansion and compatibility with quadraphonic systems (involving four speakers surrounding the listener), we assume a 90° separation. We define 0° as the location of the left speaker and 90° as the right. The objective is to calculate the appropriate amplitude for each speaker to position the virtual source at a desired angle θ within this range.
+
+To ensure the virtual source appears equidistant from the listener during its movement, the **total sound intensity** emitted by both speakers must remain constant. That is:
+
+$$
+I_L + I_R = k
+$$
+
+Assuming intensity is normalized between 0 and 1, we can simplify this to:
+
+$$
+I_L + I_R = 1
+$$
+
+Here, \( I_L \) and \( I_R \) represent the intensities emitted by the left and right speakers, respectively. When the source is fully localized at the left, \( I_L = 1 \) and \( I_R = 0 \); when at the right, \( I_L = 0 \) and \( I_R = 1 \); and when centered, both are \( 0.5 \). However, in most digital audio systems we operate on **amplitude**, not intensity. Since **intensity is proportional to the square of amplitude**, we use the relation:
+
+$$
+I \propto A^2
+$$
+
+Thus, the condition of constant intensity becomes:
+
+$$
+A_L^2 + A_R^2 = 1
+$$
+
+A common misconception is to linearly scale amplitudes (e.g., \( A_L = A_R = 0.5 \) when centered), but this would yield:
+
+$$
+0.5^2 + 0.5^2 = 0.25 + 0.25 = 0.5
+$$
+
+—only half the intended total intensity, which could be mistakenly perceived as an increase in distance. To preserve consistent intensity across the stereo field, we rely on a trigonometric identity:
+
+$$
+\sin^2(\theta) + \cos^2(\theta) = 1
+$$
+
+Using this, we can define the **amplitude assignments** as:
+
+$$
+A_R = \sin(\theta) \\
+A_L = \cos(\theta)
+$$
+
+Where θ ranges from 0° (left) to 90° (right). For example, at 45°, both \( \sin(45^\circ) \) and \( \cos(45^\circ) \) equal approximately 0.707. Squaring and summing these values confirms that the total intensity remains 1:
+
+$$
+A_R^2 + A_L^2 = \sin^2(45^\circ) + \cos^2(45^\circ) = 0.5 + 0.5 = 1
+$$
+
+Thus, this method preserves the **perceptual coherence** of the virtual sound source’s position while maintaining a **constant energy output**, a critical aspect of spatial audio realism.
+
+In summary, for any virtual angle \( \theta \in [0^\circ, 90^\circ] \), we can accurately simulate spatial position with consistent intensity using:
+
+$$
+A_R = \sin(\theta) \\
+A_L = \cos(\theta)
+$$
+
+This technique forms the basis for further expansion into quadraphonic and multichannel spatialization systems.
+
+## Implementing a Stereo Spatialization in Pure Data
+
+Before diving into the implementation of a stereophonic spatialization system in Pure Data (Pd), it is essential to note that the objects used to compute trigonometric functions such as sine and cosine require the input angle to be expressed in **radians**, not degrees. Recall that one radian is the angle formed when the length of the arc of a circle equals the radius. From this definition, we derive the following equivalences:
+
+- 360° = \(2\pi\) radians  
+- 180° = \(\pi\) radians  
+- 90° = \(\frac{\pi}{2}\) radians
+
+To convert degrees to radians, we multiply the angle in degrees by the ratio \( \frac{2\pi}{360} \). To optimize performance and avoid redundant calculations, we can precompute this factor:
+
+$$
+\text{Angle}_{\text{rad}} = \text{Angle}_{^\circ} \times 0.0174533
+$$
+
+![Fig. ](/assets/screenshots/space/intenssity-panning.png){width=50%}
+
+The patch illustrated below simulates a virtual sound source using stereophonic panning. This technique, commonly referred to as *intensity panning*, adjusts the balance between two loudspeakers. The source signal (from a subpatch named `sonido`) is split into two channels, each multiplied by the cosine and sine of the specified angle (in radians) to distribute the amplitude between the left and right speakers. As we vary the angle between 0° and 90°, the source appears to move along an arc, emulating the listener's perception of spatial position.
+
+### Simulating Distance
+
+To simulate distance, we must account for how amplitude diminishes as the source moves away from the listener. Unlike intensity, which decreases with the square of the distance, amplitude is inversely proportional to the distance:
+
+$$
+A \propto \frac{1}{d}
+$$
+
+Thus, the amplitude perceived by the listener is:
+
+$$
+A_{\text{perceived}} = \frac{A_{\text{source}}}{d}
+$$
+
+To manage both the **angle of lateralization** and the **distance to the source** simultaneously, we use the `slider2d` object from the `ELSE` library. This object provides a two-dimensional matrix that captures mouse pointer movement and returns the corresponding \(x, y\) coordinates.
+
+![Fig. ](/assets/screenshots/space/distance-panning.png){width=80%}
+
+We map the horizontal axis (x) to the angle (0°–90°) and the vertical axis (y) to the distance. These values are then routed via `[send]` and `[receive]` objects for use throughout the patch. It’s crucial to prevent division by zero in distance calculations, so we define the minimum distance as 1—equivalent to the baseline distance between the listener and speakers. If speakers are placed 2 meters away, then a distance of \(d = 1\) equals 2 meters in real space, \(d = 2\) would correspond to 4 meters, and so on. In this system, **distance is relative to the speaker-listener spacing**.
+
+### Simulating Air Absorption
+
+To further enhance the realism of our spatialization, we simulate **air absorption**, which—although minimal at short distances—contributes to the perceptual illusion of depth. As distance increases, high frequencies are attenuated, which we simulate using a **low-pass filter** (`[lop~]`).
+
+![Fig. ](/assets/screenshots/space/distance-panning-lop.png)
+
+We control the cutoff frequency of this filter using a `[expr]` object (expr (1 - $f1) * 7000 + 1000). For example, we can scale a distance range of 1–10 to a cutoff frequency range of 8000–1000 Hz. As the source moves farther away, the filter reduces the brightness of the sound, mimicking atmospheric filtering.
+
+### Simulating Reverberant Spaces
+
+Consider a large environment with significant reverberation—such as a church or garage. When someone speaks nearby, the **direct sound** dominates, and reverberation is minimal. Conversely, at greater distances, the direct signal weakens while reverberation remains relatively constant. This is due to the fact that reverberation is a function of the environment and not as sensitive to the source's location.
+
+![Fig. ](/assets/screenshots/space/distance-panning-lop-reverb.png)
+
+To simulate this phenomenon, we introduce a **reverberation chamber** using `[freeverb~]`. A subpatch named `reverb` handles this effect, and the reverb level is controlled via a rotary dial (`[knob]` from the `ELSE` library). By configuring the knob for a low initial setting, we simulate the acoustic behavior where reverberation becomes more prominent as the source moves farther from the listener. As the source approaches, the increased amplitude of the direct signal masks the reverberation, completing our auditory illusion.
+
+
 
 
 
