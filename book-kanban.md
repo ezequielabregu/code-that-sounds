@@ -61,6 +61,10 @@
   - Distance
   - Reverb
 
+#### Anexo
+
+- add the sonification sheet artoworks
+
 ## In Progress
 
 - [x] Write Synthesis: Advanced Audio Processing Techniques.
