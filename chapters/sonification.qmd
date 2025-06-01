@@ -527,4 +527,128 @@ The four audio channels (RGBA) are mixed using configurable amplitude controls, 
 
 This sonification approach opens new possibilities for cross-modal artistic expression and analytical exploration, demonstrating how Pure Data's flexible architecture enables innovative connections between disparate data domains.
 
+
+
+## Linear Image Scanner
+
+This patch implements a linear scanning sonification system that transforms visual image data into audio through systematic pixel sampling. By creating multiple scan points that traverse an image from left to right, the patch converts spatial color information into frequency-controlled oscillators, creating a real-time audio representation of visual content. This approach enables users to "hear" images through systematic exploration of pixel data across defined scan lines.
+
+The scanning process reveals the vertical distribution of visual information within images, where different scan lines capture distinct horizontal slices of the visual content. Each scan point operates independently, creating polyphonic textures that reflect the complexity and variation present in the source image.
+
+![Fig. ](/assets/screenshots/sonification/scan-image.png)
+
+### Patch Overview
+
+The linear image scanner consists of four primary subsystems that work together to create a comprehensive image-to-audio conversion pipeline:
+
+1. **Image Loading and Display**: Manages file import and visual presentation through GEM
+2. **Dynamic Scan Point Generation**: Creates configurable numbers of scanning instances
+3. **Pixel Data Extraction**: Samples color values at specific image coordinates
+4. **Audio Synthesis**: Converts pixel data into frequency-controlled oscillators
+
+The patch employs dynamic patching techniques to generate scalable numbers of scan points, each implemented as an instance of the `linear-scan` abstraction. This modular approach enables flexible configuration while maintaining efficient processing of multiple simultaneous scan lines.
+
+```{mermaid}
+flowchart TD
+    A[Image File] --> B[pix_image/pix_texture]
+    B --> C[Visual Display]
+    D[Number of Scan Points] --> E[Dynamic Patch Generation]
+    E --> F[linear-scan Abstractions]
+    F --> G[pix_data Objects]
+    G --> H[Pixel Color Extraction]
+    H --> I[Frequency Mapping]
+    I --> J[Oscillator Control]
+    J --> K[Audio Output]
+    L[Scan Duration Control] --> M[Temporal Coordination]
+    M --> F
+    
+    style A fill:#e1f5fe
+    style K fill:#f3e5f5
+    style E fill:#fff3e0
+    style F fill:#fff3e0
+```
+
+### Key Objects and Their Roles
+
+| Object | Function | Role in Scanning |
+|--------|----------|------------------|
+| `pix_image` | Image loading | Loads image files into GEM processing chain |
+| `pix_texture` | Texture rendering | Enables visual display and pixel access |
+| `pix_data` | Pixel sampling | Extracts color values at specified coordinates |
+| `linear-scan` | Scan line abstraction | Implements individual scanning instances |
+| `osc~` | Audio oscillator | Generates frequency-controlled sine waves |
+| `line` | Temporal interpolation | Controls scanning position over time |
+| `metro` | Timing control | Coordinates scan timing across instances |
+
+#### Critical Processing Components
+
+**pix_data Object**: This GEM object serves as the core interface between visual and audio domains. It samples pixel color values at specified x,y coordinates within the loaded image. The normalize message controls coordinate interpretation: when enabled (default), coordinates range from (0.0, 0.0) at bottom-left to (1.0, 1.0) at top-right; when disabled, coordinates use actual pixel dimensions.
+
+**Dynamic Patch Generation**: The `generate-scanpoints` subpatch implements dynamic patching techniques to create configurable numbers of `linear-scan` instances. This system calculates y-position arguments for each scan line and generates the corresponding patch objects programmatically.
+
+**linear-scan Abstraction**: Each scan line is implemented as an abstraction that receives a y-position argument determining its vertical position within the image. The abstraction contains the pixel sampling logic and frequency mapping calculations specific to that scan line.
+
+### Data Flow
+
+The linear image scanner a real-time processing pipeline that transforms static visual information into dynamic audio representations through systematic pixel sampling and frequency mapping. This process demonstrates how spatial image data can be converted into temporal audio experiences while preserving meaningful relationships between visual characteristics and sonic parameters.
+
+The image loading and preparation stage establishes the foundation for the entire scanning process through comprehensive file management and visual processing setup. When an image file is loaded via the `import-image` subpatch, the system employs GEM's `pix_image` object to read various image formats including JPEG, PNG, and TIFF into Pure Data's visual processing environment. The loaded image undergoes texture processing through the `pix_texture` object, which prepares the pixel data for efficient random access while simultaneously enabling visual display within the GEM rendering window. This dual functionality ensures that users can see the image being processed while the scanning system extracts pixel information for audio synthesis. The image data becomes available to multiple `pix_data` objects that will sample specific pixel locations, with the texture object maintaining the image in memory for continuous access throughout the scanning process.
+
+The dynamic scan point generation stage represents a sophisticated implementation of Pure Data's dynamic patching capabilities, enabling user-configurable scanning resolution. The `generate-scanpoints` subpatch analyzes the user-specified number of scan points and calculates the appropriate y-coordinate distribution across the image height. For each scan point, the system generates a new instance of the `linear-scan` abstraction with a specific y-position argument that determines where that scan line will sample pixels vertically within the image. This y-position argument undergoes normalization calculation to ensure proper distribution from 0.0 (bottom of image) to 1.0 (top of image), creating evenly spaced scan lines that cover the entire vertical dimension of the source image. The dynamic generation process creates the necessary patch connections and initializes each scan line instance with its unique vertical position parameter, enabling parallel processing of multiple image regions simultaneously.
+
+The pixel sampling and coordinate management stage implements the core data extraction functionality where visual information becomes available for audio processing. Each `linear-scan` abstraction contains a `pix_data` object configured to sample pixels at its assigned y-coordinate while the x-coordinate varies continuously during the scanning process. The temporal control system coordinates the scanning motion through `line` objects that interpolate x-position values from 0.0 to 1.0 over the user-specified scan duration. This creates synchronized left-to-right motion across all scan lines, with each line sampling pixels at its fixed y-position while traversing the full width of the image. The `pix_data` objects output both grayscale and RGB color values for each sampled pixel, providing multiple data streams that can be used for different aspects of the audio synthesis process. The temporal coordination ensures that all scan lines move in synchronization, creating coherent scanning motion that preserves the spatial relationships present in the original image.
+
+The frequency mapping and audio synthesis stage transforms the extracted pixel data into meaningful audio parameters through sophisticated scaling and oscillator control. Each scan line's pixel sampling output undergoes frequency mapping that converts color intensity values into specific frequency ranges for audio oscillators. The frequency distribution system maps the y-position of each scan line to a specific frequency band, creating a spectral arrangement where scan lines at the bottom of the image control lower frequencies while scan lines at the top control higher frequencies. This vertical frequency mapping creates intuitive correspondence between image position and audio pitch, enabling listeners to perceive spatial relationships within the image through pitch relationships in the audio output. The pixel intensity values modulate the oscillator frequencies within each scan line's assigned frequency band, so brighter pixels produce higher frequencies while darker pixels produce lower frequencies within that band. Multiple oscillators operating simultaneously create polyphonic textures that reflect the complexity and variation present across different regions of the source image.
+
+```{mermaid}
+flowchart LR
+    A[Image Loading] --> B[Scan Point Generation]
+    B --> C[Pixel Sampling]
+    C --> D[Frequency Mapping]
+    D --> E[Audio Synthesis]
+```
+
+### Processing Chain Details
+
+The scanning system maintains precise temporal and spatial coordination through several sophisticated control mechanisms:
+
+| Stage | Input | Process | Output |
+|-------|-------|---------|--------|
+| 1 | Image File | GEM loading and texture preparation | Accessible pixel data |
+| 2 | Scan Point Count | Dynamic abstraction generation | Multiple linear-scan instances |
+| 3 | Time Position | Synchronized x-coordinate interpolation | Pixel sampling coordinates |
+| 4 | Pixel Color Values | Intensity to frequency conversion | Oscillator control signals |
+| 5 | Multiple Frequencies | Polyphonic audio mixing | Combined audio output |
+
+#### Temporal Control Parameters
+
+| Parameter | Control Range | Audio Effect |
+|-----------|---------------|--------------|
+| Scan Duration | 100-90000 ms | Speed of left-to-right traversal |
+| Frequency Range | 100-5000 Hz | Span of available frequencies |
+| Scan Point Count | 1-256 points | Number of simultaneous scan lines |
+| Y-Position Distribution | 0.0-1.0 | Vertical spacing of scan lines |
+
+#### Coordinate Mapping System
+
+The patch implements sophisticated coordinate management that ensures proper spatial relationships between image pixels and audio parameters:
+
+**Spatial Mapping**: Each scan line occupies a fixed y-coordinate determined by its position in the overall distribution, while x-coordinates vary temporally from left to right during scanning.
+
+**Frequency Allocation**: The vertical position of each scan line determines its base frequency range, creating spectral separation that preserves spatial information in the audio domain.
+
+**Temporal Synchronization**: All scan lines move simultaneously from left to right, maintaining spatial coherence while revealing temporal evolution of visual content.
+
+### Creative Applications
+
+- **Musical Score Scanning**: Transform written musical notation into audio by scanning staff lines, converting note positions into corresponding pitches and rhythms
+- **Texture Analysis**: Explore the sonic characteristics of different visual textures by scanning patterns, fabrics, or surface details to reveal their rhythmic and harmonic qualities
+- **Architectural Sonification**: Scan building facades, floor plans, or structural diagrams to create audio representations of architectural spaces and proportions
+- **Data Visualization Audio**: Convert scientific charts, graphs, and data visualizations into audio to provide alternative access methods for visually impaired users
+- **Artistic Collaboration**: Enable visual artists to hear their compositions while creating, providing real-time audio feedback during the visual creative process
+- **Interactive Installations**: Create gallery pieces where visitors can upload images and immediately hear their sonic representation through the scanning system
+- **Educational Tools**: Teach concepts of frequency, spatial relationship, and data representation by demonstrating direct correlations between visual and audio domains
+- **Live Performance Integration**: Use the scanner with live video feeds or real-time image manipulation to create dynamic audio responses to visual performance elements
+- **Astronomical Data Exploration**: Scan telescope images, star charts, or planetary surfaces to create audio representations of cosmic phenomena and celestial structures
+
 ## References{.unnumbered}
