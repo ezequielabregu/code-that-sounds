@@ -417,6 +417,15 @@ window.Quarto = {
   <li><a href="#simulating-air-absorption" id="toc-simulating-air-absorption" class="nav-link" data-scroll-target="#simulating-air-absorption"><span class="header-section-number">6.5.2</span> Simulating Air Absorption</a></li>
   <li><a href="#simulating-reverberant-spaces" id="toc-simulating-reverberant-spaces" class="nav-link" data-scroll-target="#simulating-reverberant-spaces"><span class="header-section-number">6.5.3</span> Simulating Reverberant Spaces</a></li>
   </ul></li>
+  <li><a href="#simulation-through-quadraphonic-spatialization-the-chowning-model" id="toc-simulation-through-quadraphonic-spatialization-the-chowning-model" class="nav-link" data-scroll-target="#simulation-through-quadraphonic-spatialization-the-chowning-model"><span class="header-section-number">6.6</span> Simulation through Quadraphonic Spatialization: The Chowning Model</a>
+  <ul class="collapse">
+  <li><a href="#amplitude-and-distance-scaling" id="toc-amplitude-and-distance-scaling" class="nav-link" data-scroll-target="#amplitude-and-distance-scaling"><span class="header-section-number">6.6.1</span> Amplitude and Distance Scaling</a></li>
+  <li><a href="#gain-function-and-phase-offsets" id="toc-gain-function-and-phase-offsets" class="nav-link" data-scroll-target="#gain-function-and-phase-offsets"><span class="header-section-number">6.6.2</span> Gain Function and Phase Offsets</a></li>
+  <li><a href="#reverberation-modeling" id="toc-reverberation-modeling" class="nav-link" data-scroll-target="#reverberation-modeling"><span class="header-section-number">6.6.3</span> Reverberation Modeling</a></li>
+  <li><a href="#coordinate-system" id="toc-coordinate-system" class="nav-link" data-scroll-target="#coordinate-system"><span class="header-section-number">6.6.4</span> Coordinate System</a></li>
+  <li><a href="#mathematical-conversion" id="toc-mathematical-conversion" class="nav-link" data-scroll-target="#mathematical-conversion"><span class="header-section-number">6.6.5</span> Mathematical Conversion</a></li>
+  </ul></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
 </nav>
     </div>
@@ -542,7 +551,7 @@ I_L + I_R = k
 <p><span class="math display">\[
 I_L + I_R = 1
 \]</span></p>
-<p>Here, ( I_L ) and ( I_R ) represent the intensities emitted by the left and right speakers, respectively. When the source is fully localized at the left, ( I_L = 1 ) and ( I_R = 0 ); when at the right, ( I_L = 0 ) and ( I_R = 1 ); and when centered, both are ( 0.5 ). However, in most digital audio systems we operate on <strong>amplitude</strong>, not intensity. Since <strong>intensity is proportional to the square of amplitude</strong>, we use the relation:</p>
+<p>Here, <span class="math inline">\(I_L\)</span> and <span class="math inline">\(I_R\)</span> represent the intensities emitted by the left and right speakers, respectively. When the source is fully localized at the left, <span class="math inline">\(I_L = 1\)</span> and <span class="math inline">\(I_R = 0\)</span>; when at the right, <span class="math inline">\(I_L = 0\)</span> and <span class="math inline">\(I_R = 1\)</span>; and when centered, both are <span class="math inline">\(0.5\)</span>. However, in most digital audio systems we operate on <strong>amplitude</strong>, not intensity. Since <strong>intensity is proportional to the square of amplitude</strong>, we use the relation:</p>
 <p><span class="math display">\[
 I \propto A^2
 \]</span></p>
@@ -550,7 +559,7 @@ I \propto A^2
 <p><span class="math display">\[
 A_L^2 + A_R^2 = 1
 \]</span></p>
-<p>A common misconception is to linearly scale amplitudes (e.g., ( A_L = A_R = 0.5 ) when centered), but this would yield:</p>
+<p>A common misconception is to linearly scale amplitudes (e.g., <span class="math inline">\(A_L = A_R = 0.5\)</span> when centered), but this would yield:</p>
 <p><span class="math display">\[
 0.5^2 + 0.5^2 = 0.25 + 0.25 = 0.5
 \]</span></p>
@@ -563,12 +572,12 @@ A_L^2 + A_R^2 = 1
 A_R = \sin(\theta) \\
 A_L = \cos(\theta)
 \]</span></p>
-<p>Where θ ranges from 0° (left) to 90° (right). For example, at 45°, both ( (45^) ) and ( (45^) ) equal approximately 0.707. Squaring and summing these values confirms that the total intensity remains 1:</p>
+<p>Where θ ranges from 0° (left) to 90° (right). For example, at 45°, both <span class="math inline">\(sin(45^\circ)\)</span> and <span class="math inline">\(cos(45^\circ)\)</span> equal approximately 0.707. Squaring and summing these values confirms that the total intensity remains 1:</p>
 <p><span class="math display">\[
 A_R^2 + A_L^2 = \sin^2(45^\circ) + \cos^2(45^\circ) = 0.5 + 0.5 = 1
 \]</span></p>
 <p>Thus, this method preserves the <strong>perceptual coherence</strong> of the virtual sound source’s position while maintaining a <strong>constant energy output</strong>, a critical aspect of spatial audio realism.</p>
-<p>In summary, for any virtual angle ( ), we can accurately simulate spatial position with consistent intensity using:</p>
+<p>In summary, for any virtual angle <span class="math inline">\(\theta \in [0^\circ, 90^\circ]\)</span>, we can accurately simulate spatial position with consistent intensity using:</p>
 <p><span class="math display">\[
 A_R = \sin(\theta) \\
 A_L = \cos(\theta)
@@ -579,15 +588,15 @@ A_L = \cos(\theta)
 <h2 data-number="6.5" class="anchored" data-anchor-id="implementing-a-stereo-spatialization-in-pure-data"><span class="header-section-number">6.5</span> Implementing a Stereo Spatialization in Pure Data</h2>
 <p>Before diving into the implementation of a stereophonic spatialization system in Pure Data (Pd), it is essential to note that the objects used to compute trigonometric functions such as sine and cosine require the input angle to be expressed in <strong>radians</strong>, not degrees. Recall that one radian is the angle formed when the length of the arc of a circle equals the radius. From this definition, we derive the following equivalences:</p>
 <ul>
-<li>360° = (2) radians<br>
+<li>360° = <span class="math inline">\(2\pi\)</span> radians<br>
 </li>
-<li>180° = () radians<br>
+<li>180° = <span class="math inline">\(\pi\)</span> radians<br>
 </li>
-<li>90° = () radians</li>
+<li>90° = <span class="math inline">\(\frac{\pi}{2}\)</span> radians</li>
 </ul>
-<p>To convert degrees to radians, we multiply the angle in degrees by the ratio ( ). To optimize performance and avoid redundant calculations, we can precompute this factor:</p>
+<p>To convert degrees to radians, we multiply the angle in degrees by the ratio (<span class="math inline">\(\frac{2\pi}{360}\)</span>). To optimize performance and avoid redundant calculations, we can precompute this factor:</p>
 <p><span class="math display">\[
-\text{Angle}_{\text{rad}} = \text{Angle}_{^\circ} \times 0.0174533
+\text{Angle}_{\text{rad}} = \text{Angle}_{\text{deg}} \times \frac{2\pi}{360} = \text{Angle}_{\text{deg}} \times 0.0174533
 \]</span></p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -595,7 +604,7 @@ A_L = \cos(\theta)
 <figcaption>Fig.</figcaption>
 </figure>
 </div>
-<p>The patch illustrated below simulates a virtual sound source using stereophonic panning. This technique, commonly referred to as <em>intensity panning</em>, adjusts the balance between two loudspeakers. The source signal (from a subpatch named <code>sonido</code>) is split into two channels, each multiplied by the cosine and sine of the specified angle (in radians) to distribute the amplitude between the left and right speakers. As we vary the angle between 0° and 90°, the source appears to move along an arc, emulating the listener’s perception of spatial position.</p>
+<p>The patch illustrated below simulates a virtual sound source using stereophonic panning. This technique, commonly referred to as <em>intensity panning</em>, adjusts the balance between two loudspeakers. The source signa is split into two channels, each multiplied by the cosine and sine of the specified angle (in radians) to distribute the amplitude between the left and right speakers. As we vary the angle between 0° and 90°, the source appears to move along an arc, emulating the listener’s perception of spatial position.</p>
 <section id="simulating-distance" class="level3" data-number="6.5.1">
 <h3 data-number="6.5.1" class="anchored" data-anchor-id="simulating-distance"><span class="header-section-number">6.5.1</span> Simulating Distance</h3>
 <p>To simulate distance, we must account for how amplitude diminishes as the source moves away from the listener. Unlike intensity, which decreases with the square of the distance, amplitude is inversely proportional to the distance:</p>
@@ -613,18 +622,18 @@ A_{\text{perceived}} = \frac{A_{\text{source}}}{d}
 <figcaption>Fig.</figcaption>
 </figure>
 </div>
-<p>We map the horizontal axis (x) to the angle (0°–90°) and the vertical axis (y) to the distance. These values are then routed via <code>[send]</code> and <code>[receive]</code> objects for use throughout the patch. It’s crucial to prevent division by zero in distance calculations, so we define the minimum distance as 1—equivalent to the baseline distance between the listener and speakers. If speakers are placed 2 meters away, then a distance of (d = 1) equals 2 meters in real space, (d = 2) would correspond to 4 meters, and so on. In this system, <strong>distance is relative to the speaker-listener spacing</strong>.</p>
+<p>We map the horizontal axis (x) to the angle (0°–90°) and the vertical axis (y) to the distance (1-10). These values are then routed via <code>[send]</code> and <code>[receive]</code> objects for use throughout the patch. It’s crucial to prevent division by zero in distance calculations, so we define the minimum distance as 1—equivalent to the baseline distance between the listener and speakers. If speakers are placed 2 meters away, then a distance of <span class="math inline">\(d = 1\)</span> equals 2 meters in real space, <span class="math inline">\(d = 2\)</span> would correspond to 4 meters, and so on. In this system, <strong>distance is relative to the speaker-listener spacing</strong>.</p>
 </section>
 <section id="simulating-air-absorption" class="level3" data-number="6.5.2">
 <h3 data-number="6.5.2" class="anchored" data-anchor-id="simulating-air-absorption"><span class="header-section-number">6.5.2</span> Simulating Air Absorption</h3>
-<p>To further enhance the realism of our spatialization, we simulate <strong>air absorption</strong>, which—although minimal at short distances—contributes to the perceptual illusion of depth. As distance increases, high frequencies are attenuated, which we simulate using a <strong>low-pass filter</strong> (<code>[lop~]</code>).</p>
+<p>To further enhance the realism of our spatialization, we simulate <strong>air absorption</strong>, which—although minimal at short distances—contributes to the perceptual illusion of depth. As distance increases, high frequencies are attenuated, which we simulate using a <strong>low-pass filter</strong> object<code>[lop~]</code>.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><a href="../assets/screenshots/space/distance-panning-lop.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6" title="Fig."><img src="../assets/screenshots/space/distance-panning-lop.png" class="img-fluid figure-img" alt="Fig."></a></p>
 <figcaption>Fig.</figcaption>
 </figure>
 </div>
-<p>We control the cutoff frequency of this filter using a <code>[expr]</code> object (expr (1 - $f1) * 7000 + 1000). For example, we can scale a distance range of 1–10 to a cutoff frequency range of 8000–1000 Hz. As the source moves farther away, the filter reduces the brightness of the sound, mimicking atmospheric filtering.</p>
+<p>We control the cutoff frequency of this filter using a <code>[expr]</code> object (<code>[expr (1 - $f1) * 7000 + 1000]</code>). For example, we can scale a distance range of 1–10 to a cutoff frequency range of 8000–1000 Hz. As the source moves farther away, the filter reduces the brightness of the sound, mimicking atmospheric filtering.</p>
 </section>
 <section id="simulating-reverberant-spaces" class="level3" data-number="6.5.3">
 <h3 data-number="6.5.3" class="anchored" data-anchor-id="simulating-reverberant-spaces"><span class="header-section-number">6.5.3</span> Simulating Reverberant Spaces</h3>
@@ -635,7 +644,105 @@ A_{\text{perceived}} = \frac{A_{\text{source}}}{d}
 <figcaption>Fig.</figcaption>
 </figure>
 </div>
-<p>To simulate this phenomenon, we introduce a <strong>reverberation chamber</strong> using <code>[freeverb~]</code>. A subpatch named <code>reverb</code> handles this effect, and the reverb level is controlled via a rotary dial (<code>[knob]</code> from the <code>ELSE</code> library). By configuring the knob for a low initial setting, we simulate the acoustic behavior where reverberation becomes more prominent as the source moves farther from the listener. As the source approaches, the increased amplitude of the direct signal masks the reverberation, completing our auditory illusion.</p>
+<p>To simulate this phenomenon, we introduce a <strong>reverberation chamber</strong> using <code>[freeverb~]</code>. The reverb level is controlled via a rotary dial (<code>[knob]</code> from the <code>ELSE</code> library). By configuring the knob for a low initial setting, we simulate the acoustic behavior where reverberation becomes more prominent as the source moves farther from the listener. As the source approaches, the increased amplitude of the direct signal masks the reverberation, completing our auditory illusion.</p>
+</section>
+</section>
+<section id="simulation-through-quadraphonic-spatialization-the-chowning-model" class="level2" data-number="6.6">
+<h2 data-number="6.6" class="anchored" data-anchor-id="simulation-through-quadraphonic-spatialization-the-chowning-model"><span class="header-section-number">6.6</span> Simulation through Quadraphonic Spatialization: The Chowning Model</h2>
+<p>To extend spatial simulation beyond the limitations of stereophony—typically constrained to a 90° field—or to achieve finer localization resolution, the <em>intensity panning</em> technique used with two loudspeakers can be generalized to multi-channel systems.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../assets/screenshots/space/quadra-chowning.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8" title="Fig."><img src="../assets/screenshots/space/quadra-chowning.png" class="img-fluid figure-img" alt="Fig."></a></p>
+<figcaption>Fig.</figcaption>
+</figure>
+</div>
+<p>By placing four loudspeakers at the corners of a square, one can simulate a 360° horizontal sound field, allowing for a full circular distribution of a virtual source. Arranging six speakers in a hexagonal layout also provides 360° coverage, with improved localization accuracy. As a general rule, more channels yield higher resolution and spatial definition, though this comes at the cost of increased system complexity. From a practical standpoint, quadraphonic configurations have proven to offer a compelling balance between implementation feasibility and perceptual quality, and have thus gained wide acceptance in spatial sound simulation.</p>
+<p>One of the most well-known models in this domain is the <strong>John Chowning quadraphonic model</strong>. It features:</p>
+<ul>
+<li>Direct sound simulation from a virtual source</li>
+<li>Local reverberation, individually tailored for each speaker based on the source’s angle</li>
+<li>Global reverberation shared across all four speakers</li>
+</ul>
+<section id="amplitude-and-distance-scaling" class="level3" data-number="6.6.1">
+<h3 data-number="6.6.1" class="anchored" data-anchor-id="amplitude-and-distance-scaling"><span class="header-section-number">6.6.1</span> Amplitude and Distance Scaling</h3>
+<p>The audio input signal is first attenuated according to the <strong>inverse of the distance</strong>:</p>
+<p><span class="math display">\[
+A_{\text{direct}} = \frac{1}{D}
+\]</span></p>
+<p>Then, the signal is <strong>scaled by a coefficient specific to each speaker</strong>, depending on the virtual source’s position:</p>
+<p><span class="math display">\[
+A_i = \frac{1}{D} \times C_i(\theta)
+\]</span></p>
+<p>where:</p>
+<ul>
+<li><span class="math inline">\(A_i\)</span> is the amplitude for speaker <span class="math inline">\(i\)</span>,</li>
+<li><span class="math inline">\(D\)</span> is the distance between the source and the listener,</li>
+<li><span class="math inline">\(C_i(\theta)\)</span> is the coefficient for speaker <span class="math inline">\(i\)</span> as a function of the source angle <span class="math inline">\(\theta \in [0^\circ, 360^\circ]\)</span>,</li>
+<li>and the speaker coefficients are labeled LRA, LFA, RFA, RRA (Left Rear, Left Front, Right Front, Right Rear).</li>
+</ul>
+</section>
+<section id="gain-function-and-phase-offsets" class="level3" data-number="6.6.2">
+<h3 data-number="6.6.2" class="anchored" data-anchor-id="gain-function-and-phase-offsets"><span class="header-section-number">6.6.2</span> Gain Function and Phase Offsets</h3>
+<p>To avoid complex calculations of gain for each speaker, Chowning implements a <strong>predefined function</strong>, stored as a lookup table of 512 samples. The table’s function ranges between 0 and 1 and is designed to generate continuous 360° source motion through intensity panning.</p>
+<p>Each speaker reads the same function with a <strong>phase offset</strong>:</p>
+<ul>
+<li>The <strong>first quarter</strong> of the function represents a sine wave from <span class="math inline">\(0^\circ\)</span> to <span class="math inline">\(90^\circ\)</span></li>
+<li>The <strong>second quarter</strong> is a cosine wave over the same angular range</li>
+<li>The <strong>remaining half</strong> is silent (zero amplitude)</li>
+</ul>
+<p>As the virtual source rotates, only <strong>two speakers are active</strong> at a time, crossfading between them. For instance, as the source moves from <span class="math inline">\(theta = 90^\circ\)</span> to <span class="math inline">\(\theta = 0^\circ\)</span>, the cosine-driven speaker fades out while the sine-driven speaker fades in, mimicking a continuous spatial trajectory.</p>
+</section>
+<section id="reverberation-modeling" class="level3" data-number="6.6.3">
+<h3 data-number="6.6.3" class="anchored" data-anchor-id="reverberation-modeling"><span class="header-section-number">6.6.3</span> Reverberation Modeling</h3>
+<p>In the lower part of Chowning’s model (see again Figure G.8.9), <strong>reverberation is processed separately</strong>: - The reverberation signal is attenuated by the <strong>square root of the inverse of the distance</strong>:</p>
+<p><span class="math display">\[
+A_{\text{reverb}} = \sqrt{\frac{1}{D}} \times \text{PRV}
+\]</span></p>
+<p>where <strong>PRV</strong> is an empirical parameter representing the <strong>reverberation percentage</strong>.</p>
+<ul>
+<li>A <strong>global reverb</strong> signal is scaled again by <span class="math inline">\(\frac{1}{D}\)</span></li>
+<li><strong>Local reverberation</strong> is further attenuated by <span class="math inline">\(1 - \frac{1}{D}\)</span>, then scaled using the same angle-dependent coefficients (LRA, LFA, RFA, RRA)</li>
+</ul>
+<p>To increase realism, <strong>four independent reverberation units</strong> are used—one for each loudspeaker—ensuring spatial decorrelation and more convincing immersion.</p>
+<p>This model not only exemplifies how mathematical reasoning and spatial design converge in sound synthesis, but also stands as a landmark in algorithmic composition and immersive audio. Through relatively simple mathematical operations and efficient data structures (such as phase-offset lookup tables), it offers a powerful foundation for dynamic spatial control in real-time systems such as Pure Data.</p>
+<p>Here’s how to think about the solution:</p>
+</section>
+<section id="coordinate-system" class="level3" data-number="6.6.4">
+<h3 data-number="6.6.4" class="anchored" data-anchor-id="coordinate-system"><span class="header-section-number">6.6.4</span> Coordinate System</h3>
+<p>The <code>circle</code> object gives you <strong>Cartesian coordinates</strong> (x, y) in range [-1, 1], but you need:</p>
+<ol type="1">
+<li><strong>Polar coordinates</strong> (angle, radius)</li>
+<li><strong>Scaled values</strong> (0-359° for azimuth, 1-10 for distance)</li>
+</ol>
+</section>
+<section id="mathematical-conversion" class="level3" data-number="6.6.5">
+<h3 data-number="6.6.5" class="anchored" data-anchor-id="mathematical-conversion"><span class="header-section-number">6.6.5</span> Mathematical Conversion</h3>
+<section id="azimuth-angle-calculation" class="level4" data-number="6.6.5.1">
+<h4 data-number="6.6.5.1" class="anchored" data-anchor-id="azimuth-angle-calculation"><span class="header-section-number">6.6.5.1</span> Azimuth (Angle) Calculation</h4>
+<p>We need to convert (x, y) to angle using <strong>arctangent</strong> using:</p>
+<p><code>[expr atan2($f2, $f1) * 180 / 3.14159]</code></p>
+<p><strong>Key points:</strong></p>
+<ul>
+<li><code>atan2(y, x)</code> gives angle in radians (-π to π)</li>
+<li>Multiply by <code>180/π</code> to convert to degrees (-180° to 180°)</li>
+<li>Add 360° if negative to get 0-360° range:</li>
+</ul>
+<p><code>[expr (atan2($f2, $f1) * 180 / 3.14159 + 360) % 360]</code></p>
+</section>
+<section id="distance-calculation" class="level4" data-number="6.6.5.2">
+<h4 data-number="6.6.5.2" class="anchored" data-anchor-id="distance-calculation"><span class="header-section-number">6.6.5.2</span> Distance Calculation</h4>
+<p>Convert (x, y) to radius using <strong>Pythagorean theorem</strong>, then scale:</p>
+<p><code>[expr sqrt($f1*$f1 + $f2*$f2) * 9 + 1]</code></p>
+<p><strong>Logic:</strong></p>
+<ul>
+<li><code>sqrt(x² + y²)</code> gives radius in range [0, 1]</li>
+<li>Multiply by 9 and add 1 to get range [1, 10]</li>
+</ul>
+</section>
+</section>
+</section>
+<section id="references" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="references">References</h2>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
@@ -661,7 +768,6 @@ Stockhausen, Karlheinz. 1959. <span>“Musik Im Raum.”</span> <em>Die Reihe</e
 Wishart, Trevor. 1996. <em>On Sonic Art</em>. Amsterdam: Harwood Academic Publishers.
 </div>
 </div>
-</section>
 </section>
 
 </main> <!-- /main -->
