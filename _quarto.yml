@@ -20,8 +20,9 @@ book:
     - chapters/synthesis.qmd
     - chapters/sonification.qmd
     - chapters/space.qmd
-    - chapters/tools.qmd
     - chapters/conclusion.qmd
+    #- chapters/appendix.qmd
+    - chapters/references.qmd
   
   page-footer:
     center: 
