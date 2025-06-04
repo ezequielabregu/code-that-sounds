@@ -8,7 +8,7 @@ The design of Pure Data echoes the modular synthesis systems of the 20th century
 
 To fully engage with the creative potential of Pure Data, one can develop or modify algorithms for digital audio using imaginative coding strategies. For instance, building a real-time audio granulator that reinterprets live microphone input can offer both technical challenge and artistic reward. Through this lens, programming becomes a form of creative expression, blending logical structures with aesthetic decisions. By experimenting with signal flow, modulation techniques, or interactive sensors, users cultivate a mindset that is both inventive and analytical—unlocking new possibilities in digital sound design and performance.
   
-## What is Pure Data?  ![](/assets/images/introduction/pd_2.png){ width=8%}
+## What is Pure Data?
 
 
 Pure Data (or Pd) is a real-time graphical programming environment for audio, video, and graphical processing. Pure Data is commonly used for live music performance, VeeJaying, sound effects, composition, audio analysis, interfacing with sensors, using cameras, controlling robots or even interacting with websites.  Because all of these various media are handled as digital data within the program, many fascinating opportunities for cross-synthesis between them exist. Sound can be used to manipulate video, which could then be streamed over the internet to another computer which might analyze that video and use it to control a motor-driven installation.
@@ -76,7 +76,9 @@ If you are new to Pure Data or programming, there are several free online resour
 
 [Multimedia Programming with Pure Data (B. Chung)](https://www.amazon.com/-/es/Multimedia-Programming-Pure-Bryan-Chung/dp/1782164642) – You will learn how to author various digital media, such as images, animations, audio, and videos. From simple to sophisticated interaction techniques, you will learn to apply these techniques in your practical multimedia projects with Pure Data.
 
-[Pure Data: Electronic Music and Sound Design - Theory and Practice - Volume 1]() - by Francesco Bianchi, Alessandro Cipriani and Maurizio Giri, the book is an overview of the theory and practice of Pure Data, with a glossary of terms and suggested tests that allow students to evaluate their progress. 
+[Pure Data: Electronic Music and Sound Design - Theory and Practice - Volume 1]() - by Francesco Bianchi, Alessandro Cipriani and Maurizio Giri, the book is an overview of the theory and practice of Pure Data, with a glossary of terms and suggested tests that allow students to evaluate their progress.
+
+[Live Electronics Tutorial by Alexandre Torres Porres](https://github.com/porres/Live-Electronics-Tutorial) - This tutorial presents theory and practice of Live Electronics and computer music, synthesis/DSP (digital Signal Processing) topics without any prerequisite.
 
 [Ekran.org Gem Tutorials](http://www.ekran.org/pd/) – Additional tutorials on Gem for those interested in audiovisual composition and performance.
 

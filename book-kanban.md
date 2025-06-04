@@ -25,7 +25,6 @@
 
 - Think and Add more creative examples and exercises in synthesis chapter.
 - Add image captions and tables.
-- Reference images from internet or with third-party owners.
 - Numerate patches according to the chapter and section.
 - Numerate tables according to the chapter and section.
 
@@ -52,14 +51,8 @@
 
 - Add Arrays and Tables.
 - Intro and review basic concepts of readsf and writesf~ in
-- make the bullets explanation more verbose.
 
 #### Space
-
-- Write space pure data examples. 
-  - Panning
-  - Distance
-  - Reverb
 
 #### Anexo
 
@@ -68,22 +61,13 @@
 ## In Progress
 
 - [x] Write Synthesis: Advanced Audio Processing Techniques.
-  - [x] Oscillators
   - [ ] Additive
   - [ ] Subtractive
-  - [x] Modulation (AM, RM, FM)
-- [.] Sonification
 - [.] Transcribe Python code examples to Pure Data.
 - [.]Implement the Bjorklund algorithm in Pure Data
   - a. In a Pure Data patch, or
     - still stocked in the list distribution and sublist creation.
   - b. Write a pd external in C.
-- [x] Download all images from the internet and add them to the book.
-- [x] Create a better cover image for the book.
 
 ## Done
 
-- [x] Complete Chapter 1: Introduction to Pure Data.
-- [x] Set up the project structure and Quarto configuration.
-- [x] Create the initial README file.
-- [x] Add a Kanban board for project management.
