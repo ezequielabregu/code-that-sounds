@@ -2,6 +2,18 @@
 
 ## Introduction
 
+Sound synthesis is the art and science of producing sound, whether by transforming existing recordings or by generating new audio signals electronically or mechanically. It can be grounded in mathematics, physics, or even biology, and it emerges at the intersection of creative expression and technical knowledge. As both a musical and computational process, synthesis enables the shaping of sound with precision and imagination, allowing for the creation of sonic textures that range from the familiar to the entirely new.
+
+At its core, synthesis is a process of construction—a method for bringing elements together into a cohesive whole. This notion of "making" is essential, as it signals not just assembly, but intention. Synthesis is inherently creative. While the tools and technologies involved—oscillators, filters, software environments like Pure Data—are increasingly accessible and powerful, they remain just that: tools. It is the skill, intuition, and aesthetic sensibility of the artist or programmer that gives them meaning.
+
+Modern tools have made sound synthesis more available than ever. From high-fidelity sample libraries to algorithmic engines capable of real-time manipulation, the technological barrier has lowered dramatically. But while the means have changed, the importance of the human element remains. Without creative intention, sound synthesis risks becoming a purely mechanical operation.
+
+It is a common misconception to associate synthesis solely with complex or futuristic electronic timbres. In fact, synthesized sound spans a vast range—from simple sine waves to layered, expressive textures. The process itself is plural: it includes subtractive, additive, granular, physical modeling, and many other techniques. Each offers a different lens on how sound can be built and manipulated.
+
+Interestingly, the term "synthesis" has roots that extend beyond audio. It also refers to the creation of new compounds in chemistry or the combining of ideas into a theory. In sound, as in those other domains, synthesis implies thoughtful construction—a deliberate act of shaping something new from constituent parts.
+
+Throughout this chapter, we will return often to the idea of synthesis not just as a technique, but as a mode of inquiry and expression. It invites experimentation, demands understanding, and rewards careful listening.
+
 ## Oscillatory Movements
 
 Oscillatory motion will be analyzed in detail—not only in terms of technical implementation but also through its creative and conceptual applications. Using example patches provided in both Pure Data and VCV Rack, we will explore how oscillation becomes an expressive tool in interactive works and live sound experiments. This approach will form the core of the module’s practical component, where students are encouraged to adapt the exercises to their own interests: whether by replicating existing works, developing new compositions, or analyzing the results of comparative experiments between different oscillators and their spectral behaviors.

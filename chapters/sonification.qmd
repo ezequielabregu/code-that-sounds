@@ -140,6 +140,13 @@ The expressive capacity of sonification technics invites an analogy with sculptu
 
 The evolution of sonification within the creative coding domain demands a reconceptualization of what constitutes success in sonification. Beyond reproducibility, the true measure lies in perceptual clarity, aesthetic engagement, and communicative power. As Gresham-Lancaster asserts, the inclusion of musical form, stylistic awareness, and cultural embedding are not luxuries, but necessities for sonification to become a widely adopted and meaningful practice Pure Data, with its flexibility, open-ended structure, and visual coding paradigm, provides an ideal environment to develop and test both first-order and second-order sonification systems. By embracing both scientific precision and artistic insight, Pd-based sonification becomes a model for interdisciplinary practice—where the auditory exploration of data is not just informative but transformative.
 
+## Data Sonification Artworks Database
+
+The following links provides an overview of notable sonification artworks, highlighting their creators, data sources, and the unique approaches they employ to transform data into sound.
+
+[Data Sonification Archive](https://sonification.design/) - curated collection is part of a broader research endeavor in which data, sonification and design converge to explore the potential of sound in complementing other modes of representation and broadening the publics of data. With visualization still being one of the prominent forms of data transformation, we believe that sound can both enrich the experience of data and build new publics.
+
+[Sonification Art database by Samuel Van Ransbeeck](https://docs.google.com/spreadsheets/d/1847An-P0Q4D3Wtz45vpvKcreK-qIZAAo2lUCc72LPHY/edit?usp=sharing) - It contains now 256 projects, making it an interesting catalogue for sonification art. Besides adding new works, I also cleaned up some things. 
 
 ### Data Humanism: A Visual Manifesto of Giorgia Lupi
 

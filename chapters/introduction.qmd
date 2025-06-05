@@ -10,7 +10,6 @@ To fully engage with the creative potential of Pure Data, one can develop or mod
   
 ## What is Pure Data?
 
-
 Pure Data (or Pd) is a real-time graphical programming environment for audio, video, and graphical processing. Pure Data is commonly used for live music performance, VeeJaying, sound effects, composition, audio analysis, interfacing with sensors, using cameras, controlling robots or even interacting with websites.  Because all of these various media are handled as digital data within the program, many fascinating opportunities for cross-synthesis between them exist. Sound can be used to manipulate video, which could then be streamed over the internet to another computer which might analyze that video and use it to control a motor-driven installation.
 
 Programming with Pure Data is a unique interaction that is much closer to the experience of manipulating things in the physical world.  The most basic unit of functionality is a box, and the program is formed by connecting these boxes together into diagrams that both represent the flow of data while actually performing the operations mapped out in the diagram.  The program itself is always running, there is no separation between writing the program and running the program, and each action takes effect the moment it is completed.
@@ -261,3 +260,37 @@ If you need to install an external manually:
 > **Tip:** Always check the documentation for each external, as installation steps or requirements may vary.
 
 For more details, see the [official Pure Data documentation on externals](https://msp.ucsd.edu/Pd_documentation/resources/chapter4.htm).
+
+### Setting Up a Virtual MIDI Bus
+
+Establishing a virtual MIDI bus allows MIDI messages to be routed between different applications on the same computer, or to create intricate internal MIDI configurations within applications. This setup is particularly useful for integrating software instruments, sequencers, or custom-built Pure Data patches into a single ecosystem, enabling real-time interaction across programs.
+
+#### macOS
+
+macOS provides a native solution for virtual MIDI routing through the **IAC Bus** (Inter-Application Communication Bus), a built-in MIDI driver that allows you to create multiple virtual MIDI ports.
+
+To enable and configure the IAC Bus:
+
+1. Open the **Audio MIDI Setup** application (found in `/Applications/Utilities`), then select **Window → Show MIDI Studio** from the top menu.
+
+2. In the **MIDI Studio** window, double-click the **IAC Driver** icon to open its configuration panel.
+
+3. Enable the virtual bus by checking **Device is online**. This activates the driver.
+
+4. You may rename the default port if desired, for better identification in your DAW or software environment.
+
+5. To add additional virtual MIDI ports, click the **+** button. Each new bus functions as a separate virtual cable and can be independently addressed.
+
+Once activated, these ports will appear as MIDI input and output options within your software (e.g., Pure Data, Live, Max), supporting the full range of MIDI messages including **Note**, **Control Change**, and **MIDI Sync**.
+
+#### Windows
+
+Unlike macOS, Windows does not include a built-in virtual MIDI bus. However, several reliable third-party tools are freely available:
+
+- [**loopMIDI**](https://www.tobias-erichsen.de/software/loopmidi.html), developed by Tobias Erichsen, provides a robust solution for creating virtual MIDI ports and supports multiple concurrent buses. It is compatible with both 32-bit and 64-bit systems and is widely recommended for use with modern DAWs and programming environments.
+
+- [**MIDI Yoke**](http://www.midiox.com/) is a legacy solution bundled with MIDI-OX, offering basic virtual MIDI routing. However, MIDI Yoke is **32-bit only**, and therefore **not compatible with 64-bit software**, including Live 10 and later. Use with caution and only in legacy setups.
+
+When setting up virtual MIDI buses in Windows, ensure that your audio software and any MIDI-routing utilities are operating with compatible bit-depths and permissions. Proper driver installation and restart may be necessary to expose the new virtual ports in your system’s MIDI routing options.
+
+Virtual MIDI buses are essential tools for building interactive sound systems, enabling communication between modular audio software, DAWs, and real-time instruments. Whether you are sending MIDI from Pure Data to a DAW, or routing control signals between applications, setting up a virtual MIDI infrastructure is a crucial foundational step.
