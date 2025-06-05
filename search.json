@@ -642,31 +642,41 @@
   {
     "objectID": "chapters/conclusion.html",
     "href": "chapters/conclusion.html",
-    "title": "7  Conclusion",
+    "title": "Conclusion",
     "section": "",
-    "text": "7.1 Key Takeaways\nIn this chapter, we summarize the key points discussed throughout the book. We reflect on the main topics introduced in the first chapter and the detailed discussions in the second chapter.\nThank you for reading! We hope this book has provided valuable insights and knowledge.",
+    "text": "A Synthesis of Themes\nWriting this book has been, above all, an exercise in listening: listening to code, to sound, to problems waiting for solutions—and, perhaps most importantly, to the questions that emerge from the creative process itself. Code That Sounds was never intended to offer definitive answers or a closed system. Rather, it opens a space—a conceptual and practical territory—where sound, code, and imagination intersect. As such, this conclusion is not a full stop, but a resonance: a reflection on what we’ve learned, what remains unresolved, and what may yet be explored.\nThroughout these chapters, we moved between conceptual exploration and hands-on implementation. From recording and playback, to sequencing, synthesis, sonification, spatialization, and tool design, the book traced a path through fundamental aspects of sound-based creative coding. Each section aimed to present not only techniques, but the deeper questions and ideas that underpin them. We considered how sequences construct musical time, how synthesis reimagines the materiality of sound, how data becomes expressive when translated into sonic form, and how space can be composed just as much as pitch or rhythm.\nAcross these topics, we have tried to maintain a balance between rigor and experimentation. Pure Data was our instrument of choice—not because it is the only or best option, but because it invites a certain kind of thinking: modular, open, visual, and sonic. Yet the language itself was never the focus. What mattered more was the clarity of thought behind the algorithm, the elegance of the structure, and the potential for creative variation. This book does not teach a tool; it invites a way of thinking.",
     "crumbs": [
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Conclusion</span>"
+      "Conclusion"
     ]
   },
   {
-    "objectID": "chapters/conclusion.html#key-takeaways",
-    "href": "chapters/conclusion.html#key-takeaways",
-    "title": "7  Conclusion",
-    "section": "",
-    "text": "Highlight the main objectives of the book.\nDiscuss the significance of the topics covered.\nEncourage further exploration and learning in the subject area.",
+    "objectID": "chapters/conclusion.html#sound-code-and-interaction",
+    "href": "chapters/conclusion.html#sound-code-and-interaction",
+    "title": "Conclusion",
+    "section": "Sound, Code, and Interaction",
+    "text": "Sound, Code, and Interaction\nSound is not just output—it is medium, metaphor, and message. Code is not just syntax—it is structure, process, and potential. And interaction is not merely control—it is participation, embodiment, and interpretation. This triad—sound, code, interaction—forms the expressive core of the practices we explore. Together, they offer a fertile ground for experimentation, performance, and critique.\nBy treating code as a creative material, we position it alongside other artistic practices. We sketch with it, compose with it, prototype with it. We revise, remix, and reimagine. And in doing so, we shift the relationship between maker and machine—from command to conversation. It is in this dynamic, live, improvisational space that creative coding finds its strongest voice.",
     "crumbs": [
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Conclusion</span>"
+      "Conclusion"
     ]
   },
   {
-    "objectID": "chapters/references.html",
-    "href": "chapters/references.html",
-    "title": "References",
-    "section": "",
-    "text": "Abregú, E. L., E. R. Calcagno, and R. O. Vergara. 2012. “La\nDistancia Como Factor Estructural de La Música.” Revista\nArgentina de Musicología, no. 12-13: 379–400.\n\n\nBasso, Gustavo, Oscar Pablo Di Liscia, and Juan Pampin, eds. 2009.\nMúsica y Espacio: Ciencia, Tecnología y Estética. Buenos Aires:\nEditorial de la Universidad Nacional de Quilmes.\n\n\nBrown, Andrew. 2023. “Live Coding Patterns and a Toolkit for Pure\nData.” Organised Sound 28: 1–12. https://doi.org/10.1017/S1355771823000365.\n\n\nBrummitt, Charles D., and Eric Rowland. 2012. “Boundary Growth in\nOne-Dimensional Cellular Automata.” Complex Systems 21:\n85–116. https://doi.org/10.48550/arXiv.1204.2172.\n\n\nCanossa, Alessandro, Luis Laris Pardo, Michael Tran, and Alexis Lozano\nAngulo. 2022. “From Data Humanism to Metaphorical Visualization–an\nEducational Game Case Study.” In International Conference on\nHuman-Computer Interaction, 109–17. Cham: Springer.\n\n\nEpstein, Paul. 1986. “Pattern Structure and Process in Steve\nReich’s Piano Phase.” The Musical Quarterly 72 (4):\n494–502.\n\n\nGardner, Martin. 1970. “MATHEMATICAL GAMES - the Fantastic\nCombinations of John Conway’s New Solitaire Game Life.”\nScientific American 223 (4): 120–23. http://www.jstor.org/stable/24927642.\n\n\nGresham-Lancaster, Scot. 2012. “Relationships of Sonification to\nMusic and Sound Art.” AI and Society 27 (2): 207–12.\n\n\nHallnäs, Lars, and Johan Redström. 2001. “Slow\nTechnology–Designing for Reflection.” Personal and Ubiquitous\nComputing 5: 201–12.\n\n\nHasse, Sarah. 2012. “I Am Sitting in a Room.” Body,\nSpace & Technology 11. https://doi.org/10.16995/bst.71.\n\n\nHelmholtz, Hermann. 1954. On the Sensations of Tone as a\nPhysiological Basis for the Theory of Music. 2nd ed. New York:\nDover Publications.\n\n\nKalbande, Swaraj. 2022. “Conway’s Game of Life – Life on\nComputer.” Medium. https://medium.com/@swarajkalbande123/conways-game-of-life-life-on-computer-b7edfc85d21a.\n\n\nKim, Nam Wook, Hyejin Im, Nathalie Henry Riche, Alicia Wang, Krzysztof\nGajos, and Hanspeter Pfister. 2019. “Dataselfie: Empowering People\nto Design Personalized Visuals to Represent Their Data.” In\nProceedings of the 2019 CHI Conference on Human Factors in Computing\nSystems, 1–12. New York, NY, USA: Association for Computing\nMachinery.\n\n\nKnudsen, V. O. 1932. Architectural Acoustics. J. Wiley y Sons.\n\n\nLévi-Strauss, Claude. 1964. Le Cru Et Le Cuit. Vol. 1.\nMythologiques. Paris: Plon.\n\n\nLupi, Giorgia. 2017. “Data Humanism: The Revolutionary Future of\nData Visualization.” PrintMag. https://www.printmag.com/article/data-humanism-future-of-data-visualization/.\n\n\nReich, Steve. 2002. “Music as a Gradual Process.” In\nWritings on Music 1965–2000, 34–36. Oxford; New York: Oxford\nUniversity Press.\n\n\nRisett, J. C. 1969. “An Introductory Catalogue of Computer\nSynthesized Sounds.” Nueva Jersey: Bell Telephone Laboratories.\n\n\nSchaeffer, Pierre. 2003. Tratado de Los Objetos Musicales.\nTranslated by Araceli Cabezón de Diego. Alianza Editorial.\n\n\nSterne, Jonathan, and Tara Rodgers. 2011. “Poetics of Signal\nProcessing.” Differences 22 (2-3): 31–53. https://doi.org/10.1215/10407391-1428834.\n\n\nStockhausen, Karlheinz. 1959. “Musik Im Raum.” Die\nReihe, no. 5.\n\n\nThéberge, Paul. 1997. Any Sound You Can Imagine: Making\nMusic/Consuming Technology. Hanover & London: Wesleyan\nUniversity Press.\n\n\nToussaint, Godfried. 2005. “The Euclidean Algorithm Generates\nTraditional Musical Rhythms.” In, 47–56.\n\n\nWishart, Trevor. 1996. On Sonic Art. Amsterdam: Harwood\nAcademic Publishers.\n\n\nWolfram, Stephen. 1983. “Statistical Mechanics of Cellular\nAutomata.” Reviews of Modern Physics 55 (3): 601–44. https://doi.org/10.1103/RevModPhys.55.601.",
+    "objectID": "chapters/conclusion.html#open-tools-open-futures",
+    "href": "chapters/conclusion.html#open-tools-open-futures",
+    "title": "Conclusion",
+    "section": "Open Tools, Open Futures",
+    "text": "Open Tools, Open Futures\nThis work would not exist without the open-source communities that sustain tools like Pure Data. The accessibility of such platforms democratizes creative technology, allowing artists, educators, and students to participate in practices that were once locked behind proprietary systems. But openness is more than a license—it is a philosophy. It implies transparency, generosity, and collective authorship. It values process as much as product.\nStill, working with open tools also reveals their limits. Documenting, teaching, and developing them is labor-intensive and often under-resourced. In this sense, writing a book like this one not only reveals the scope of creative coding—it also exposes its fragilities. But that, too, is part of the story: a story of building infrastructures that support exploration, criticality, and care.",
     "crumbs": [
-      "References"
+      "Conclusion"
+    ]
+  },
+  {
+    "objectID": "chapters/conclusion.html#toward-what-comes-next",
+    "href": "chapters/conclusion.html#toward-what-comes-next",
+    "title": "Conclusion",
+    "section": "Toward What Comes Next",
+    "text": "Toward What Comes Next\nIf this book succeeds, it will not be because it taught you how to patch a synthesizer or connect a sensor. It will be because it left you with questions—about systems, about aesthetics, about perception and participation. The real value of each chapter lies in what comes after: the remix, the variation, the new problem posed. Creative coding is not just a way to make things; it is a way to think, to test, to sense.\nAlgorithmic thinking, in this context, is not about efficiency or automation. It is about strategy, iteration, and design. It invites us to map the terrain of a problem, to build a process that responds to constraints, and to remain open to surprise. This mindset can be applied well beyond the boundaries of sound or art: it is a tool for navigating complexity, for making the invisible audible, for composing with systems as much as with signals.\nIn the end, Code That Sounds is a beginning, not a culmination. I hope it sparks your own experiments, collaborations, and inquiries. I hope it gives you language—not only to describe your tools, but to invent new ones. And above all, we hope it helps you listen: to code, to sound, to the world you are helping to shape.",
+    "crumbs": [
+      "Conclusion"
     ]
   }
 ]
