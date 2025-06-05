@@ -22,7 +22,7 @@ book:
     - chapters/space.qmd
     - chapters/conclusion.qmd
     #- chapters/appendix.qmd
-    - chapters/references.qmd
+    #- chapters/references.qmd
   
   page-footer:
     center: 
