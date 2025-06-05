@@ -97,6 +97,35 @@ div.csl-indent {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../styles.css">
 </head>
@@ -399,6 +428,22 @@ div.csl-indent {
   <li><a href="#other-waveforms-1" id="toc-other-waveforms-1" class="nav-link" data-scroll-target="#other-waveforms-1"><span class="header-section-number">4.6.2</span> Other Waveforms</a></li>
   <li><a href="#exponential-frequency" id="toc-exponential-frequency" class="nav-link" data-scroll-target="#exponential-frequency"><span class="header-section-number">4.6.3</span> Exponential Frequency</a></li>
   <li><a href="#ratio" id="toc-ratio" class="nav-link" data-scroll-target="#ratio"><span class="header-section-number">4.6.4</span> Ratio</a></li>
+  </ul></li>
+  <li><a href="#subtractive-synthesis" id="toc-subtractive-synthesis" class="nav-link" data-scroll-target="#subtractive-synthesis"><span class="header-section-number">4.7</span> Subtractive Synthesis</a>
+  <ul class="collapse">
+  <li><a href="#conceptual-model-source-and-modifier" id="toc-conceptual-model-source-and-modifier" class="nav-link" data-scroll-target="#conceptual-model-source-and-modifier"><span class="header-section-number">4.7.1</span> Conceptual Model: Source and Modifier</a></li>
+  <li><a href="#sound-sources-1" id="toc-sound-sources-1" class="nav-link" data-scroll-target="#sound-sources-1"><span class="header-section-number">4.7.2</span> Sound Sources</a></li>
+  <li><a href="#filters" id="toc-filters" class="nav-link" data-scroll-target="#filters"><span class="header-section-number">4.7.3</span> Filters</a></li>
+  <li><a href="#classification-of-filters" id="toc-classification-of-filters" class="nav-link" data-scroll-target="#classification-of-filters"><span class="header-section-number">4.7.4</span> Classification of Filters</a></li>
+  <li><a href="#filters-in-pure-data" id="toc-filters-in-pure-data" class="nav-link" data-scroll-target="#filters-in-pure-data"><span class="header-section-number">4.7.5</span> Filters in Pure Data</a></li>
+  <li><a href="#low-pass-filtering" id="toc-low-pass-filtering" class="nav-link" data-scroll-target="#low-pass-filtering"><span class="header-section-number">4.7.6</span> Low-Pass Filtering</a></li>
+  <li><a href="#high-pass-filtering" id="toc-high-pass-filtering" class="nav-link" data-scroll-target="#high-pass-filtering"><span class="header-section-number">4.7.7</span> High-Pass Filtering</a></li>
+  <li><a href="#resonant-filters" id="toc-resonant-filters" class="nav-link" data-scroll-target="#resonant-filters"><span class="header-section-number">4.7.8</span> Resonant Filters</a></li>
+  <li><a href="#the-q-factor" id="toc-the-q-factor" class="nav-link" data-scroll-target="#the-q-factor"><span class="header-section-number">4.7.9</span> The Q Factor</a></li>
+  <li><a href="#band-pass-filters" id="toc-band-pass-filters" class="nav-link" data-scroll-target="#band-pass-filters"><span class="header-section-number">4.7.10</span> Band-Pass Filters</a></li>
+  <li><a href="#voltage-controlled-filters" id="toc-voltage-controlled-filters" class="nav-link" data-scroll-target="#voltage-controlled-filters"><span class="header-section-number">4.7.11</span> Voltage-Controlled Filters</a></li>
+  <li><a href="#emulating-the-moog-filter" id="toc-emulating-the-moog-filter" class="nav-link" data-scroll-target="#emulating-the-moog-filter"><span class="header-section-number">4.7.12</span> Emulating the Moog Filter</a></li>
+  <li><a href="#biquad-filters" id="toc-biquad-filters" class="nav-link" data-scroll-target="#biquad-filters"><span class="header-section-number">4.7.13</span> Biquad Filters</a></li>
   </ul></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
@@ -822,11 +867,141 @@ Period = 1 / 100 Hz = 0.01 s = 10 ms</code></pre>
 <p>This approach preserves the relationship between the carrier and modulator frequencies, which is crucial since this ratio determines how the additional spectral components—partials—are distributed. Harmonic ratios (such as 0.5 or 2) yield harmonic results, while non-integer ratios lead to inharmonic spectra.</p>
 </section>
 </section>
+<section id="subtractive-synthesis" class="level2" data-number="4.7">
+<h2 data-number="4.7" class="anchored" data-anchor-id="subtractive-synthesis"><span class="header-section-number">4.7</span> Subtractive Synthesis</h2>
+<p>Subtractive synthesis is frequently—and mistakenly—viewed as synonymous with analog synthesis. While there are many methods of sound synthesis, subtractive synthesis remains the most prevalent in commercial analog synthesizers. Often presented through user interfaces brimming with knobs and switches, it can appear overwhelming to newcomers. However, its intuitive one-to-one mapping between physical controls and sound parameters makes it especially suitable for educational contexts. Furthermore, it provides a useful entry point for exploring core acoustic principles and models of sound production.</p>
+<section id="conceptual-model-source-and-modifier" class="level3" data-number="4.7.1">
+<h3 data-number="4.7.1" class="anchored" data-anchor-id="conceptual-model-source-and-modifier"><span class="header-section-number">4.7.1</span> Conceptual Model: Source and Modifier</h3>
+<p>At the heart of subtractive synthesis lies a conceptual framework: the separation of sound production into three functional components: 1. source, 2. modifier, and 3. controller.</p>
+<p>This framework mirrors the structure of many acoustic instruments, most clearly in wind instruments. Take, for example, the clarinet: its vibrating reed acts as the source, while the resonant body functions as a modifier. The reed alone produces a sharp, buzzing tone; the body of the clarinet, essentially a cylindrical tube, shapes this tone through its resonant properties, which are determined by physical dimensions like length and bore diameter. Together, they produce the rich timbral identity of the clarinet.</p>
+<p>This model, while illustrative, is not universally applicable. Consider the guitar: its sound emerges from the interplay between the plucked string (source) and the resonant body (modifier). Yet unlike the clarinet, the source and modifier in the guitar are tightly coupled and difficult to separate experimentally. The string cannot be plucked in isolation, nor can the body’s resonant characteristics be accurately studied without the tensioned string.</p>
+<p>Despite such limitations, the core idea—modifying a source signal to shape its timbre—is both intuitive and powerful. It underpins most approaches to sound synthesis and provides a compelling framework for creative exploration. In a subtractive synthesis context, this source-modifier model is streamlined: the sound source is designed to contain rich harmonic content, and the modifier (typically a filter) removes selected frequency components to shape the sound. The process is thus subtractive in nature—the unwanted frequencies are “subtracted” from the original signal.</p>
+</section>
+<section id="sound-sources-1" class="level3" data-number="4.7.2">
+<h3 data-number="4.7.2" class="anchored" data-anchor-id="sound-sources-1"><span class="header-section-number">4.7.2</span> Sound Sources</h3>
+<p>The primary sound sources in analog subtractive synthesizers are waveform generators and noise sources. Common waveforms include sawtooth, square, pulse, sine, and triangle waves—each chosen for their mathematical simplicity and electronic feasibility. These shapes carry predictable harmonic content: for instance, sawtooth waves contain both even and odd harmonics, while square waves contain only odd harmonics.</p>
+<p>Random waveforms, typically perceived as noise, include all frequencies and are often used to generate percussive or atmospheric textures. The devices that produce these waveforms—oscillators—are descendants of function generators. In subtractive synthesis, these oscillators produce continuous signals, with frequency typically controlled by voltage. These signals serve as raw material for further shaping via modifiers.</p>
+</section>
+<section id="filters" class="level3" data-number="4.7.3">
+<h3 data-number="4.7.3" class="anchored" data-anchor-id="filters"><span class="header-section-number">4.7.3</span> Filters</h3>
+<p>Filters play a central role in subtractive synthesis. At their core, filters are amplifiers whose gain varies with frequency. In most synthesizer contexts, filters are designed such that their maximum gain is one; thus, it’s more accurate to say that they attenuate different frequency components to varying degrees. When a filter’s parameters can be controlled via voltage, it becomes a Voltage-Controlled Filter (VCF). VCFs are essential modifiers because they allow dynamic control over a signal’s spectral content, significantly influencing the resulting timbre.</p>
+</section>
+<section id="classification-of-filters" class="level3" data-number="4.7.4">
+<h3 data-number="4.7.4" class="anchored" data-anchor-id="classification-of-filters"><span class="header-section-number">4.7.4</span> Classification of Filters</h3>
+<p>Filters are typically categorized by their frequency response—how they affect different parts of the frequency spectrum. There are four main types:</p>
+<ul>
+<li><p><strong>Low-pass filters (LPF)</strong> allow frequencies below a cutoff point to pass and attenuate higher frequencies. The <strong>cutoff frequency</strong> is defined as the point at which the signal is attenuated by 3 dB (the “half-power” point). The <strong>slope</strong> of attenuation is determined by the filter’s design: a one-pole filter attenuates at 6 dB per octave, a two-pole at 12 dB, and so on. Filters with steeper slopes, such as four-pole filters (24 dB/octave), tend to sound more “synthetic” and dramatically alter timbre.</p></li>
+<li><p><strong>High-pass filters (HPF)</strong> do the reverse, removing low frequencies and allowing higher frequencies to pass. This has the effect of “thinning” the sound by removing its fundamental or lower harmonics. HPFs are often used in combination with LPFs to further sculpt the timbre, especially when the goal is to mimic instruments with weak or missing fundamentals.</p></li>
+<li><p><strong>Band-pass filters (BPF)</strong> permit only a specified range of frequencies to pass. This is useful for emphasizing particular harmonic regions or simulating acoustic resonances. A BPF can be implemented by combining an HPF and an LPF in series. The central frequency of the pass-band is its resonant peak, and the width of the pass-band is termed the <strong>bandwidth</strong>.</p></li>
+<li><p><strong>Notch filters</strong>, or band-reject filters, remove a narrow band of frequencies, allowing all others to pass. These are useful for eliminating unwanted harmonics or resonant peaks, especially in applications such as feedback suppression or timbral correction.</p></li>
+</ul>
+<p>Each filter type can be modulated dynamically, allowing timbral variation over time. For instance, sweeping the cutoff frequency of an LPF from high to low removes successive harmonics, gradually “closing” the filter and making the sound darker and more subdued.</p>
+<p>The subtractive model—source rich in harmonics, modified via filtering—forms the foundational paradigm for analog synthesis. While conceptually straightforward, it allows for a wide array of sonic possibilities. By carefully selecting waveforms, modulating filter parameters, and controlling amplitude envelopes, one can sculpt intricate, evolving timbres.</p>
+<p>This approach, despite its age, remains vital in modern synthesis. Its clarity, intuitiveness, and direct mapping between sound components and control structures make it an enduring framework for both education and creative practice. Whether one is emulating acoustic instruments or crafting entirely synthetic textures, subtractive synthesis offers a practical and powerful toolset for sonic exploration.</p>
+</section>
+<section id="filters-in-pure-data" class="level3" data-number="4.7.5">
+<h3 data-number="4.7.5" class="anchored" data-anchor-id="filters-in-pure-data"><span class="header-section-number">4.7.5</span> Filters in Pure Data</h3>
+<p>As mentioned, a filter is any process that modifies an incoming sound. From an acoustic perspective, filters are omnipresent: the reverberant characteristics of a room act as filters, as do the resonant bodies of musical instruments. Even the human vocal tract can be considered a natural filter. In our context, however, we define filters more narrowly: as signal processing modules—such as equalizers—that selectively amplify or attenuate specific frequency components of a sound.</p>
+<p>The most common representation of how a filter affects sound is its frequency response. This is typically displayed as a graph where the horizontal axis represents frequency (in kilohertz), and the vertical axis shows amplitude (in decibels, dB). Positive values (above 0 dB) indicate frequencies that are being boosted, while negative values (below 0 dB) show those that are attenuated. In addition to frequency response, filters also affect the phase of the signal, which we refer to as phase response—representing the phase shift introduced as a function of frequency.</p>
+</section>
+<section id="low-pass-filtering" class="level3" data-number="4.7.6">
+<h3 data-number="4.7.6" class="anchored" data-anchor-id="low-pass-filtering"><span class="header-section-number">4.7.6</span> Low-Pass Filtering</h3>
+<p>The object <code>lop~</code> in Pure Data (short for “low-pass”) implements a basic low-pass filter. This filter allows frequencies below a certain threshold, called the cutoff or roll-off frequency, to pass through while progressively attenuating higher frequencies. This transition is not abrupt: the filtering effect begins at 0 Hz and gradually increases, resulting in a -3 dB drop at the cutoff point. Beyond this, the attenuation rate is approximately 6 dB per octave.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../assets/screenshots/synthesis/filters/lop.png" class="lightbox" data-gallery="quarto-lightbox-gallery-32" title="Fig."><img src="../assets/screenshots/synthesis/filters/lop.png" class="img-fluid figure-img" alt="Fig."></a></p>
+<figcaption>Fig.</figcaption>
+</figure>
+</div>
+<p>This filter is useful not only in audio synthesis but also in signal smoothing applications—such as envelope followers or data processing from physical sensors. At high cutoff frequencies (above ~5 kHz), the filter’s response deviates slightly from this ideal behavior.</p>
+</section>
+<section id="high-pass-filtering" class="level3" data-number="4.7.7">
+<h3 data-number="4.7.7" class="anchored" data-anchor-id="high-pass-filtering"><span class="header-section-number">4.7.7</span> High-Pass Filtering</h3>
+<p>A high-pass filter, such as <code>hip~</code> in Pure Data, performs the inverse operation of a low-pass: it permits frequencies above a defined cutoff point and attenuates those below it. Interestingly, a high-pass effect can also be derived by subtracting the output of a low-pass filter from the original signal. While <code>hip~</code> is often employed to remove DC offsets, it too has a 6 dB per octave slope and exhibits some gain anomalies at higher cutoff values.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../assets/screenshots/synthesis/filters/hip.png" class="lightbox" data-gallery="quarto-lightbox-gallery-33" title="Fig."><img src="../assets/screenshots/synthesis/filters/hip.png" class="img-fluid figure-img" alt="Fig."></a></p>
+<figcaption>Fig.</figcaption>
+</figure>
+</div>
+</section>
+<section id="resonant-filters" class="level3" data-number="4.7.8">
+<h3 data-number="4.7.8" class="anchored" data-anchor-id="resonant-filters"><span class="header-section-number">4.7.8</span> Resonant Filters</h3>
+<p>A resonant filter emphasizes a specific frequency band over others. A typical example is the band-pass filter, which allows only a defined range of frequencies to pass while attenuating those outside the band. The center frequency of this band is commonly denoted as ( f_0 ), with ( f_1 ) and ( f_2 ) marking the -3 dB points below and above it, respectively.</p>
+<p>The bandwidth of the filter is defined as the difference between these two frequencies:<br>
+<span class="math display">\[ \text{Bandwidth} = f_2 - f_1 \]</span></p>
+<p>The musical interval between ( f_1 ) and ( f_2 ) can also be used to conceptualize the resonance more musically, especially when represented on a logarithmic scale like MIDI pitch.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../assets/screenshots/synthesis/filters/bandwidth.png" class="lightbox" data-gallery="quarto-lightbox-gallery-34" title="Fig."><img src="../assets/screenshots/synthesis/filters/bandwidth.png" class="img-fluid figure-img" style="width:50.0%" alt="Fig."></a></p>
+<figcaption>Fig.</figcaption>
+</figure>
+</div>
+</section>
+<section id="the-q-factor" class="level3" data-number="4.7.9">
+<h3 data-number="4.7.9" class="anchored" data-anchor-id="the-q-factor"><span class="header-section-number">4.7.9</span> The Q Factor</h3>
+<p>The sharpness or “quality” of a filter’s resonance is quantified by the Q factor, which is calculated as:</p>
+<p><span class="math display">\[ Q = \frac{f_0}{f_2 - f_1} \]</span></p>
+<p>A higher Q value indicates a narrower and more pronounced resonance, while a lower Q results in a broader and more subtle response. In essence, Q and bandwidth are inverse measures of the same characteristic.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../assets/screenshots/synthesis/filters/q-factor.png" class="lightbox" data-gallery="quarto-lightbox-gallery-35" title="Fig."><img src="../assets/screenshots/synthesis/filters/q-factor.png" class="img-fluid figure-img" style="width:75.0%" alt="Fig."></a></p>
+<figcaption>Fig.</figcaption>
+</figure>
+</div>
+</section>
+<section id="band-pass-filters" class="level3" data-number="4.7.10">
+<h3 data-number="4.7.10" class="anchored" data-anchor-id="band-pass-filters"><span class="header-section-number">4.7.10</span> Band-Pass Filters</h3>
+<p>The <code>bp~</code> object in Pure Data provides a straightforward implementation of a band-pass filter, accepting center frequency and Q as inputs. It is computationally efficient and practical, though it tends to attenuate frequencies above the center more than those below, thus producing an asymmetrical response. With a Q of 1, <code>bp~</code> approximates the behavior of a <code>lop~</code> filter. As with other vanilla filters, its frequency response changes noticeably at higher frequencies.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../assets/screenshots/synthesis/filters/bp.png" class="lightbox" data-gallery="quarto-lightbox-gallery-36" title="Fig."><img src="../assets/screenshots/synthesis/filters/bp.png" class="img-fluid figure-img" alt="Fig."></a></p>
+<figcaption>Fig.</figcaption>
+</figure>
+</div>
+</section>
+<section id="voltage-controlled-filters" class="level3" data-number="4.7.11">
+<h3 data-number="4.7.11" class="anchored" data-anchor-id="voltage-controlled-filters"><span class="header-section-number">4.7.11</span> Voltage-Controlled Filters</h3>
+<p>The <code>vcf~</code> object (short for “voltage-controlled filter”) is another band-pass filter in the vanilla distribution, notable for its ability to accept audio-rate signals to modulate the center frequency—mimicking the behavior of analog synthesizers. While the Q parameter is controlled by control-rate data, the central frequency can be dynamically shaped by audio input.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../assets/screenshots/synthesis/filters/vcf.png" class="lightbox" data-gallery="quarto-lightbox-gallery-37" title="Fig."><img src="../assets/screenshots/synthesis/filters/vcf.png" class="img-fluid figure-img" alt="Fig."></a></p>
+<figcaption>Fig.</figcaption>
+</figure>
+</div>
+<p>This object has two outputs: the right outlet approximates a <code>bp~</code> filter’s frequency response, whereas the left outlet provides a complementary phase response. At low Q values, both outputs show a characteristically asymmetrical frequency curve, and deviations become more pronounced at higher frequencies (above ~7 kHz).</p>
+</section>
+<section id="emulating-the-moog-filter" class="level3" data-number="4.7.12">
+<h3 data-number="4.7.12" class="anchored" data-anchor-id="emulating-the-moog-filter"><span class="header-section-number">4.7.12</span> Emulating the Moog Filter</h3>
+<p>The <code>bob~</code> object is a recent addition to Pure Data’s vanilla library, designed to model the iconic Moog filter created by Robert Moog. It allows both the cutoff frequency and Q to be modulated at audio rate, making it one of the most expressive and flexible filters in the system. Though officially described as a low-pass resonant filter, its architecture lends itself to a wide variety of applications. Users are encouraged to consult its help patch for in-depth understanding and examples.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../assets/screenshots/synthesis/filters/bob.png" class="lightbox" data-gallery="quarto-lightbox-gallery-38" title="Fig."><img src="../assets/screenshots/synthesis/filters/bob.png" class="img-fluid figure-img" style="width:50.0%" alt="Fig."></a></p>
+<figcaption>Fig.</figcaption>
+</figure>
+</div>
+</section>
+<section id="biquad-filters" class="level3" data-number="4.7.13">
+<h3 data-number="4.7.13" class="anchored" data-anchor-id="biquad-filters"><span class="header-section-number">4.7.13</span> Biquad Filters</h3>
+<p>The <code>biquad~</code> object is a versatile, coefficient-driven filter capable of implementing multiple filter types based on its settings. “Biquad” stands for “biquadratic,” reflecting its mathematical foundation in second-order polynomials. However, configuring <code>biquad~</code> manually is a non-trivial task for most musicians or artists.</p>
+<p>To simplify this process, the <code>bicoeff</code> object from the ELSE library allows users to generate coefficients for nine different filter types, based on Robert Bristow-Johnson’s “Cookbook formulae for audio EQ biquad filter coefficients”<span class="citation" data-cites="bristow-johnson2024">(<a href="#ref-bristow-johnson2024" role="doc-biblioref">Bristow-Johnson 2024</a>)</span>. This GUI-based object visualizes the amplitude response in real time. The X-axis is logarithmic (typically in MIDI pitch), and the Y-axis represents gain in dB. Interactive controls allow users to modify frequency, bandwidth, and gain directly by clicking and dragging on the graph.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../assets/screenshots/synthesis/filters/biquad.png" class="lightbox" data-gallery="quarto-lightbox-gallery-39" title="Fig."><img src="../assets/screenshots/synthesis/filters/biquad.png" class="img-fluid figure-img" alt="Fig."></a></p>
+<figcaption>Fig.</figcaption>
+</figure>
+</div>
+<p>Together, these filtering tools illustrate the conceptual and practical range of subtractive and resonant filtering in sound synthesis. Whether you are shaping a simple tone, cleaning up sensor data, or building complex timbral transformations, understanding how filters operate is essential. They not only alter the spectral content of signals but also engage with broader perceptual dimensions—allowing composers, performers, and designers to sculpt sound with nuance and precision.</p>
+</section>
+</section>
 <section id="references" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="references">References</h2>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-bristow-johnson2024" class="csl-entry" role="listitem">
+Bristow-Johnson, Robert. 2024. <span>“Cookbook Formulae for Audio Equalizer Biquad Filter Coefficients.”</span> <a href="https://webaudio.github.io/Audio-EQ-Cookbook/audio-eq-cookbook.html" class="uri">https://webaudio.github.io/Audio-EQ-Cookbook/audio-eq-cookbook.html</a>.
+</div>
 <div id="ref-helmholtz1860" class="csl-entry" role="listitem">
 Helmholtz, Hermann. 1954. <em>On the Sensations of Tone as a Physiological Basis for the Theory of Music</em>. 2nd ed. New York: Dover Publications.
 </div>
