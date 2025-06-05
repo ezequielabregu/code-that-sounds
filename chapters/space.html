@@ -96,6 +96,10 @@ div.csl-indent {
     "search-label": "Search"
   }
 }</script>
+<meta name="mermaid-theme" content="neutral">
+<script src="../site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="../site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -413,17 +417,40 @@ window.Quarto = {
   <li><a href="#virtual-source-simulation-via-stereophonic-techniques" id="toc-virtual-source-simulation-via-stereophonic-techniques" class="nav-link" data-scroll-target="#virtual-source-simulation-via-stereophonic-techniques"><span class="header-section-number">6.4</span> Virtual Source Simulation via Stereophonic Techniques</a></li>
   <li><a href="#implementing-a-stereo-spatialization-in-pure-data" id="toc-implementing-a-stereo-spatialization-in-pure-data" class="nav-link" data-scroll-target="#implementing-a-stereo-spatialization-in-pure-data"><span class="header-section-number">6.5</span> Implementing a Stereo Spatialization in Pure Data</a>
   <ul class="collapse">
-  <li><a href="#simulating-distance" id="toc-simulating-distance" class="nav-link" data-scroll-target="#simulating-distance"><span class="header-section-number">6.5.1</span> Simulating Distance</a></li>
-  <li><a href="#simulating-air-absorption" id="toc-simulating-air-absorption" class="nav-link" data-scroll-target="#simulating-air-absorption"><span class="header-section-number">6.5.2</span> Simulating Air Absorption</a></li>
-  <li><a href="#simulating-reverberant-spaces" id="toc-simulating-reverberant-spaces" class="nav-link" data-scroll-target="#simulating-reverberant-spaces"><span class="header-section-number">6.5.3</span> Simulating Reverberant Spaces</a></li>
+  <li><a href="#patch-overview" id="toc-patch-overview" class="nav-link" data-scroll-target="#patch-overview"><span class="header-section-number">6.5.1</span> Patch Overview</a></li>
+  <li><a href="#key-objects-and-their-roles" id="toc-key-objects-and-their-roles" class="nav-link" data-scroll-target="#key-objects-and-their-roles"><span class="header-section-number">6.5.2</span> Key Objects and Their Roles</a></li>
+  <li><a href="#data-flow" id="toc-data-flow" class="nav-link" data-scroll-target="#data-flow"><span class="header-section-number">6.5.3</span> Data Flow</a></li>
+  <li><a href="#processing-chain-details" id="toc-processing-chain-details" class="nav-link" data-scroll-target="#processing-chain-details"><span class="header-section-number">6.5.4</span> Processing Chain Details</a></li>
+  <li><a href="#creative-applications" id="toc-creative-applications" class="nav-link" data-scroll-target="#creative-applications"><span class="header-section-number">6.5.5</span> Creative Applications</a></li>
   </ul></li>
-  <li><a href="#simulation-through-quadraphonic-spatialization-the-chowning-model" id="toc-simulation-through-quadraphonic-spatialization-the-chowning-model" class="nav-link" data-scroll-target="#simulation-through-quadraphonic-spatialization-the-chowning-model"><span class="header-section-number">6.6</span> Simulation through Quadraphonic Spatialization: The Chowning Model</a>
+  <li><a href="#simulating-distance" id="toc-simulating-distance" class="nav-link" data-scroll-target="#simulating-distance"><span class="header-section-number">6.6</span> Simulating Distance</a>
   <ul class="collapse">
-  <li><a href="#amplitude-and-distance-scaling" id="toc-amplitude-and-distance-scaling" class="nav-link" data-scroll-target="#amplitude-and-distance-scaling"><span class="header-section-number">6.6.1</span> Amplitude and Distance Scaling</a></li>
-  <li><a href="#gain-function-and-phase-offsets" id="toc-gain-function-and-phase-offsets" class="nav-link" data-scroll-target="#gain-function-and-phase-offsets"><span class="header-section-number">6.6.2</span> Gain Function and Phase Offsets</a></li>
-  <li><a href="#reverberation-modeling" id="toc-reverberation-modeling" class="nav-link" data-scroll-target="#reverberation-modeling"><span class="header-section-number">6.6.3</span> Reverberation Modeling</a></li>
-  <li><a href="#coordinate-system" id="toc-coordinate-system" class="nav-link" data-scroll-target="#coordinate-system"><span class="header-section-number">6.6.4</span> Coordinate System</a></li>
-  <li><a href="#mathematical-conversion" id="toc-mathematical-conversion" class="nav-link" data-scroll-target="#mathematical-conversion"><span class="header-section-number">6.6.5</span> Mathematical Conversion</a></li>
+  <li><a href="#patch-overview-1" id="toc-patch-overview-1" class="nav-link" data-scroll-target="#patch-overview-1"><span class="header-section-number">6.6.1</span> Patch Overview</a></li>
+  <li><a href="#key-objects-and-their-roles-1" id="toc-key-objects-and-their-roles-1" class="nav-link" data-scroll-target="#key-objects-and-their-roles-1"><span class="header-section-number">6.6.2</span> Key Objects and Their Roles</a></li>
+  <li><a href="#data-flow-1" id="toc-data-flow-1" class="nav-link" data-scroll-target="#data-flow-1"><span class="header-section-number">6.6.3</span> Data Flow</a></li>
+  <li><a href="#processing-chain-details-1" id="toc-processing-chain-details-1" class="nav-link" data-scroll-target="#processing-chain-details-1"><span class="header-section-number">6.6.4</span> Processing Chain Details</a></li>
+  <li><a href="#creative-applications-1" id="toc-creative-applications-1" class="nav-link" data-scroll-target="#creative-applications-1"><span class="header-section-number">6.6.5</span> Creative Applications</a></li>
+  </ul></li>
+  <li><a href="#enhanced-distance-modeling-with-air-absorption-and-reverberation" id="toc-enhanced-distance-modeling-with-air-absorption-and-reverberation" class="nav-link" data-scroll-target="#enhanced-distance-modeling-with-air-absorption-and-reverberation"><span class="header-section-number">6.7</span> Enhanced Distance Modeling with Air Absorption and Reverberation</a>
+  <ul class="collapse">
+  <li><a href="#patch-overview-2" id="toc-patch-overview-2" class="nav-link" data-scroll-target="#patch-overview-2"><span class="header-section-number">6.7.1</span> Patch Overview</a></li>
+  <li><a href="#key-objects-and-their-roles-2" id="toc-key-objects-and-their-roles-2" class="nav-link" data-scroll-target="#key-objects-and-their-roles-2"><span class="header-section-number">6.7.2</span> Key Objects and Their Roles</a></li>
+  <li><a href="#data-flow-2" id="toc-data-flow-2" class="nav-link" data-scroll-target="#data-flow-2"><span class="header-section-number">6.7.3</span> Data Flow</a></li>
+  <li><a href="#processing-chain-details-2" id="toc-processing-chain-details-2" class="nav-link" data-scroll-target="#processing-chain-details-2"><span class="header-section-number">6.7.4</span> Processing Chain Details</a></li>
+  <li><a href="#creative-applications-2" id="toc-creative-applications-2" class="nav-link" data-scroll-target="#creative-applications-2"><span class="header-section-number">6.7.5</span> Creative Applications</a></li>
+  </ul></li>
+  <li><a href="#simulation-through-quadraphonic-spatialization-the-chowning-model" id="toc-simulation-through-quadraphonic-spatialization-the-chowning-model" class="nav-link" data-scroll-target="#simulation-through-quadraphonic-spatialization-the-chowning-model"><span class="header-section-number">6.8</span> Simulation through Quadraphonic Spatialization: The Chowning Model</a>
+  <ul class="collapse">
+  <li><a href="#amplitude-and-distance-scaling" id="toc-amplitude-and-distance-scaling" class="nav-link" data-scroll-target="#amplitude-and-distance-scaling"><span class="header-section-number">6.8.1</span> Amplitude and Distance Scaling</a></li>
+  <li><a href="#gain-function-and-phase-offsets" id="toc-gain-function-and-phase-offsets" class="nav-link" data-scroll-target="#gain-function-and-phase-offsets"><span class="header-section-number">6.8.2</span> Gain Function and Phase Offsets</a></li>
+  <li><a href="#reverberation-modeling" id="toc-reverberation-modeling" class="nav-link" data-scroll-target="#reverberation-modeling"><span class="header-section-number">6.8.3</span> Reverberation Modeling</a></li>
+  <li><a href="#coordinate-system" id="toc-coordinate-system" class="nav-link" data-scroll-target="#coordinate-system"><span class="header-section-number">6.8.4</span> Coordinate System</a></li>
+  <li><a href="#mathematical-conversion" id="toc-mathematical-conversion" class="nav-link" data-scroll-target="#mathematical-conversion"><span class="header-section-number">6.8.5</span> Mathematical Conversion</a></li>
+  <li><a href="#patch-overview-3" id="toc-patch-overview-3" class="nav-link" data-scroll-target="#patch-overview-3"><span class="header-section-number">6.8.6</span> Patch Overview</a></li>
+  <li><a href="#key-objects-and-their-roles-3" id="toc-key-objects-and-their-roles-3" class="nav-link" data-scroll-target="#key-objects-and-their-roles-3"><span class="header-section-number">6.8.7</span> Key Objects and Their Roles</a></li>
+  <li><a href="#data-flow-3" id="toc-data-flow-3" class="nav-link" data-scroll-target="#data-flow-3"><span class="header-section-number">6.8.8</span> Data Flow</a></li>
+  <li><a href="#processing-chain-details-3" id="toc-processing-chain-details-3" class="nav-link" data-scroll-target="#processing-chain-details-3"><span class="header-section-number">6.8.9</span> Processing Chain Details</a></li>
+  <li><a href="#creative-applications-3" id="toc-creative-applications-3" class="nav-link" data-scroll-target="#creative-applications-3"><span class="header-section-number">6.8.10</span> Creative Applications</a></li>
   </ul></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
@@ -605,8 +632,305 @@ A_L = \cos(\theta)
 </figure>
 </div>
 <p>The patch illustrated below simulates a virtual sound source using stereophonic panning. This technique, commonly referred to as <em>intensity panning</em>, adjusts the balance between two loudspeakers. The source signa is split into two channels, each multiplied by the cosine and sine of the specified angle (in radians) to distribute the amplitude between the left and right speakers. As we vary the angle between 0° and 90°, the source appears to move along an arc, emulating the listener’s perception of spatial position.</p>
-<section id="simulating-distance" class="level3" data-number="6.5.1">
-<h3 data-number="6.5.1" class="anchored" data-anchor-id="simulating-distance"><span class="header-section-number">6.5.1</span> Simulating Distance</h3>
+<p>This Pure Data patch demonstrates the fundamental principles of stereophonic spatialization through intensity panning, implementing the mathematical framework for creating virtual sound source positioning between two speakers. By applying trigonometric amplitude control to left and right audio channels, the patch enables precise localization of monophonic sources within a 90-degree stereo field while maintaining constant total energy output. This approach forms the foundation for understanding spatial audio processing and serves as a building block for more complex multichannel spatialization systems.</p>
+<p>The patch provides real-time control over angular positioning through intuitive slider interfaces, allowing users to experience the direct relationship between mathematical spatial calculations and perceptual sound localization. This implementation serves both educational and practical purposes, demonstrating how theoretical acoustic principles translate into functional audio processing tools.</p>
+<section id="patch-overview" class="level3" data-number="6.5.1">
+<h3 data-number="6.5.1" class="anchored" data-anchor-id="patch-overview"><span class="header-section-number">6.5.1</span> Patch Overview</h3>
+<p>The intensity panning system implements a complete stereophonic spatialization pipeline consisting of four primary processing stages:</p>
+<ol type="1">
+<li><strong>Angle Input and Conversion</strong>: Manages user input and degree-to-radian conversion</li>
+<li><strong>Trigonometric Calculation</strong>: Computes sine and cosine values for amplitude control</li>
+<li><strong>Audio Generation and Processing</strong>: Creates test signals and applies spatial positioning</li>
+<li><strong>Stereo Output</strong>: Delivers positioned audio to left and right channels</li>
+</ol>
+<p>The patch demonstrates the essential mathematical relationship where spatial positioning is achieved through complementary amplitude control, ensuring that the virtual source maintains consistent perceived loudness while moving between speakers.</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart TD
+    A[Angle Input 0-90°] --&gt; B[Degree to Radian Conversion]
+    B --&gt; C[Trigonometric Calculation]
+    C --&gt; D[Sine/Cosine Values]
+    D --&gt; E[Audio Signal Generation]
+    E --&gt; F[Amplitude Modulation]
+    F --&gt; G[Left Channel Output]
+    F --&gt; H[Right Channel Output]
+    I[Test Oscillator] --&gt; E
+    
+    style A fill:#e1f5fe
+    style G fill:#f3e5f5
+    style H fill:#f3e5f5
+    style C fill:#fff3e0
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="key-objects-and-their-roles" class="level3" data-number="6.5.2">
+<h3 data-number="6.5.2" class="anchored" data-anchor-id="key-objects-and-their-roles"><span class="header-section-number">6.5.2</span> Key Objects and Their Roles</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 25%">
+<col style="width: 55%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Object</th>
+<th>Function</th>
+<th>Role in Spatialization</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>hsl</code></td>
+<td>Horizontal slider</td>
+<td>User interface for angle input (0-90 degrees)</td>
+</tr>
+<tr class="even">
+<td><code>* 0.0174533</code></td>
+<td>Conversion multiplier</td>
+<td>Converts degrees to radians for trigonometric functions</td>
+</tr>
+<tr class="odd">
+<td><code>expr cos($f1) \; sin($f1)</code></td>
+<td>Trigonometric processor</td>
+<td>Calculates complementary amplitude values</td>
+</tr>
+<tr class="even">
+<td><code>phasor~ 220</code></td>
+<td>Audio oscillator</td>
+<td>Generates test signal for spatialization demonstration</td>
+</tr>
+<tr class="odd">
+<td><code>expr~ $v1*$v2 \; $v1*$v3</code></td>
+<td>Audio multiplier</td>
+<td>Applies trigonometric amplitude control to audio</td>
+</tr>
+<tr class="even">
+<td><code>vsl</code></td>
+<td>Vertical slider</td>
+<td>Visual feedback for calculated amplitude values</td>
+</tr>
+<tr class="odd">
+<td><code>output~</code></td>
+<td>Audio output</td>
+<td>Delivers spatialized stereo audio</td>
+</tr>
+</tbody>
+</table>
+<section id="critical-processing-components" class="level4" data-number="6.5.2.1">
+<h4 data-number="6.5.2.1" class="anchored" data-anchor-id="critical-processing-components"><span class="header-section-number">6.5.2.1</span> Critical Processing Components</h4>
+<p><strong>Degree-to-Radian Conversion</strong>: The multiplication factor <code>0.0174533</code> represents the mathematical constant π/180, enabling conversion from user-friendly degree input to the radian values required by Pure Data’s trigonometric functions. This conversion ensures precise mathematical calculation while maintaining intuitive user control.</p>
+<p><strong>Trigonometric Expression</strong>: The <code>expr cos($f1) \; sin($f1)</code> object simultaneously calculates both amplitude coefficients needed for stereophonic positioning. The cosine output controls left channel amplitude, while sine controls right channel amplitude, creating the complementary relationship essential for constant-energy panning.</p>
+<p><strong>Audio Expression Multiplier</strong>: The <code>expr~ $v1*$v2 \; $v1*$v3</code> object performs real-time multiplication of the audio signal with the calculated trigonometric values, applying the spatial positioning in the audio domain while maintaining sample-accurate timing.</p>
+</section>
+</section>
+<section id="data-flow" class="level3" data-number="6.5.3">
+<h3 data-number="6.5.3" class="anchored" data-anchor-id="data-flow"><span class="header-section-number">6.5.3</span> Data Flow</h3>
+<p>The stereophonic intensity panning patch orchestrates a precise mathematical transformation pipeline that converts angular positioning information into spatially positioned audio output through systematic trigonometric processing. This implementation demonstrates how theoretical spatial audio principles translate into practical real-time audio processing systems that maintain both mathematical accuracy and perceptual coherence.</p>
+<p>The angle input and preprocessing stage establishes the foundation for spatial positioning through user interface management and mathematical preparation. The horizontal slider (<code>hsl</code>) provides intuitive control over the desired angular position, accepting input values in the familiar degree scale from 0° to 90°, where 0° represents full left positioning and 90° represents full right positioning. This degree-based input undergoes immediate conversion to radians through multiplication by the constant 0.0174533 (π/180), transforming the user-friendly angular measurement into the mathematical format required by Pure Data’s trigonometric functions. The conversion process ensures that subsequent calculations maintain precision while preserving the intuitive relationship between slider position and spatial location. The radian values flow directly to the trigonometric processing stage, maintaining real-time responsiveness that enables immediate auditory feedback as users adjust the angular positioning control.</p>
+<p>The trigonometric calculation stage represents the mathematical core of the spatialization process, where angular information becomes amplitude control data through sophisticated mathematical processing. The <code>expr cos($f1) \; sin($f1)</code> object performs simultaneous calculation of both cosine and sine functions for the input angle, generating the complementary amplitude coefficients essential for stereophonic positioning. The cosine output provides the left channel amplitude coefficient, following the mathematical convention where cos(0°) = 1 and cos(90°) = 0, creating maximum left channel output when the angle is at 0° and minimum output at 90°. Conversely, the sine output generates the right channel amplitude coefficient, where sin(0°) = 0 and sin(90°) = 1, producing the inverse relationship necessary for right channel control. This mathematical relationship ensures that the fundamental trigonometric identity sin²(θ) + cos²(θ) = 1 is preserved, maintaining constant total energy across the stereo field regardless of angular position.</p>
+<p>The audio signal generation and modulation stage transforms the calculated amplitude coefficients into actual spatial positioning through real-time audio processing. The <code>phasor~ 220</code> object generates a continuous sawtooth wave at 220 Hz, providing a harmonically rich test signal that clearly demonstrates the spatial positioning effects across the frequency spectrum. This test signal enters the <code>expr~ $v1*$v2 \; $v1*$v3</code> audio expression object, where it undergoes simultaneous multiplication with both trigonometric amplitude coefficients. The first output (<span class="math inline">\(v1*\)</span>v2) produces the left channel audio by multiplying the source signal with the cosine amplitude value, while the second output (<span class="math inline">\(v1*\)</span>v3) creates the right channel audio through multiplication with the sine amplitude value. This dual multiplication process applies the spatial positioning in real-time while maintaining sample-accurate synchronization between channels, ensuring that the stereo image remains stable and coherent.</p>
+<p>The feedback and output stage provides both visual monitoring and audio delivery systems that enable users to understand and experience the spatialization process. The vertical sliders (<code>vsl</code>) connected to the trigonometric outputs provide real-time visual feedback of the calculated amplitude values, allowing users to observe how the complementary relationship between left and right coefficients changes as the angle varies. This visual feedback reinforces the mathematical principles underlying the spatialization process and helps users understand the relationship between angular input and amplitude distribution. The <code>output~</code> object delivers the final spatialized audio to the system’s audio interface, enabling immediate auditory perception of the spatial positioning effects. The stereo output maintains the precise amplitude relationships calculated by the trigonometric functions, ensuring that the perceived spatial position corresponds accurately to the input angle while preserving the constant energy principle essential for realistic spatial audio.</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+    A[Angle Input] --&gt; B[Radian Conversion]
+    B --&gt; C[Trigonometric Calculation]
+    C --&gt; D[Audio Modulation]
+    D --&gt; E[Stereo Output]
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="processing-chain-details" class="level3" data-number="6.5.4">
+<h3 data-number="6.5.4" class="anchored" data-anchor-id="processing-chain-details"><span class="header-section-number">6.5.4</span> Processing Chain Details</h3>
+<p>The spatialization system maintains mathematical precision through several coordinated processing stages:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 22%">
+<col style="width: 22%">
+<col style="width: 29%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Stage</th>
+<th>Input</th>
+<th>Process</th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>Angle (0-90°)</td>
+<td>Degree to radian conversion</td>
+<td>Radian values</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>Radian angle</td>
+<td>Trigonometric calculation</td>
+<td>Cosine and sine coefficients</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>Test audio + coefficients</td>
+<td>Real-time multiplication</td>
+<td>Left and right audio channels</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>Stereo channels</td>
+<td>Audio interface output</td>
+<td>Spatialized audio</td>
+</tr>
+</tbody>
+</table>
+<section id="mathematical-relationships" class="level4" data-number="6.5.4.1">
+<h4 data-number="6.5.4.1" class="anchored" data-anchor-id="mathematical-relationships"><span class="header-section-number">6.5.4.1</span> Mathematical Relationships</h4>
+<p>The patch implements the fundamental stereophonic panning equations:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 21%">
+<col style="width: 42%">
+<col style="width: 36%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Parameter</th>
+<th>Mathematical Function</th>
+<th>Audio Application</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Left Amplitude</td>
+<td><span class="math inline">\(A_L = \cos(\theta)\)</span></td>
+<td>Multiply source signal by cosine value</td>
+</tr>
+<tr class="even">
+<td>Right Amplitude</td>
+<td><span class="math inline">\(A_R = \sin(\theta)\)</span></td>
+<td>Multiply source signal by sine value</td>
+</tr>
+<tr class="odd">
+<td>Energy Conservation</td>
+<td><span class="math inline">\(A_L^2 + A_R^2 = 1\)</span></td>
+<td>Maintains constant perceived loudness</td>
+</tr>
+<tr class="even">
+<td>Angular Range</td>
+<td><span class="math inline">\(\theta \in [0°, 90°]\)</span></td>
+<td>Maps to full left-right stereo field</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="control-parameter-mapping" class="level4" data-number="6.5.4.2">
+<h4 data-number="6.5.4.2" class="anchored" data-anchor-id="control-parameter-mapping"><span class="header-section-number">6.5.4.2</span> Control Parameter Mapping</h4>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 15%">
+<col style="width: 16%">
+<col style="width: 18%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Slider Position</th>
+<th>Angle (Degrees)</th>
+<th>Angle (Radians)</th>
+<th>Left Amplitude</th>
+<th>Right Amplitude</th>
+<th>Perceived Position</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>0°</td>
+<td>0.000</td>
+<td>1.000</td>
+<td>0.000</td>
+<td>Full Left</td>
+</tr>
+<tr class="even">
+<td>0.25</td>
+<td>22.5°</td>
+<td>0.393</td>
+<td>0.924</td>
+<td>0.383</td>
+<td>Left-Center</td>
+</tr>
+<tr class="odd">
+<td>0.5</td>
+<td>45°</td>
+<td>0.785</td>
+<td>0.707</td>
+<td>0.707</td>
+<td>Center</td>
+</tr>
+<tr class="even">
+<td>0.75</td>
+<td>67.5°</td>
+<td>1.178</td>
+<td>0.383</td>
+<td>0.924</td>
+<td>Right-Center</td>
+</tr>
+<tr class="odd">
+<td>1.0</td>
+<td>90°</td>
+<td>1.571</td>
+<td>0.000</td>
+<td>1.000</td>
+<td>Full Right</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="signal-processing-verification" class="level4" data-number="6.5.4.3">
+<h4 data-number="6.5.4.3" class="anchored" data-anchor-id="signal-processing-verification"><span class="header-section-number">6.5.4.3</span> Signal Processing Verification</h4>
+<p>The patch maintains signal integrity through:</p>
+<ul>
+<li><strong>Constant Energy Preservation</strong>: Total amplitude squared remains unity across all positions</li>
+<li><strong>Phase Coherence</strong>: Both channels maintain identical phase relationships</li>
+<li><strong>Amplitude Linearity</strong>: Trigonometric functions provide smooth transitions between positions</li>
+<li><strong>Real-time Responsiveness</strong>: Sample-accurate processing without latency or artifacts</li>
+</ul>
+</section>
+</section>
+<section id="creative-applications" class="level3" data-number="6.5.5">
+<h3 data-number="6.5.5" class="anchored" data-anchor-id="creative-applications"><span class="header-section-number">6.5.5</span> Creative Applications</h3>
+<ul>
+<li><strong>Interactive Spatial Composition</strong>: Use MIDI controllers or OSC input to automate the angle parameter, creating dynamic spatial movement within musical compositions.</li>
+<li><strong>Binaural Audio Production</strong>: Combine with headphone processing to create immersive spatial experiences for stereo headphone listeners.</li>
+<li><strong>Multi-source Spatialization</strong>: Duplicate the patch architecture to control multiple independent sound sources within the same stereo field.</li>
+<li><strong>Spatial Modulation Effects</strong>: Apply low-frequency oscillators (LFOs) to the angle parameter to create tremolo-like spatial movement effects.</li>
+<li><strong>Performance Control Systems</strong>: Integrate with physical controllers, sensors, or computer vision systems to map performer gestures to spatial positioning.</li>
+<li><strong>Educational Demonstrations</strong>: Use as a teaching tool to illustrate psychoacoustic principles, trigonometric relationships, and spatial audio mathematics.</li>
+<li><strong>Sound Design Applications</strong>: Create spatial effects for film, game audio, or immersive media by precisely controlling source positioning.</li>
+<li><strong>Installation Art</strong>: Implement in gallery spaces where visitor proximity or movement controls the spatial positioning of ambient sounds.</li>
+</ul>
+</section>
+</section>
+<section id="simulating-distance" class="level2" data-number="6.6">
+<h2 data-number="6.6" class="anchored" data-anchor-id="simulating-distance"><span class="header-section-number">6.6</span> Simulating Distance</h2>
 <p>To simulate distance, we must account for how amplitude diminishes as the source moves away from the listener. Unlike intensity, which decreases with the square of the distance, amplitude is inversely proportional to the distance:</p>
 <p><span class="math display">\[
 A \propto \frac{1}{d}
@@ -623,9 +947,338 @@ A_{\text{perceived}} = \frac{A_{\text{source}}}{d}
 </figure>
 </div>
 <p>We map the horizontal axis (x) to the angle (0°–90°) and the vertical axis (y) to the distance (1-10). These values are then routed via <code>[send]</code> and <code>[receive]</code> objects for use throughout the patch. It’s crucial to prevent division by zero in distance calculations, so we define the minimum distance as 1—equivalent to the baseline distance between the listener and speakers. If speakers are placed 2 meters away, then a distance of <span class="math inline">\(d = 1\)</span> equals 2 meters in real space, <span class="math inline">\(d = 2\)</span> would correspond to 4 meters, and so on. In this system, <strong>distance is relative to the speaker-listener spacing</strong>.</p>
+<p>This Pure Data patch extends the fundamental stereophonic panning system by introducing interactive two-dimensional spatial control through a visual interface. By combining angular positioning with distance modeling, the patch creates a more sophisticated spatialization system that simulates both the horizontal positioning and depth perception of virtual sound sources. The implementation demonstrates how distance affects amplitude through inverse-square law approximations while maintaining the trigonometric relationships essential for accurate stereo positioning.</p>
+<p>The patch integrates real-time visual control through a 2D slider interface that enables intuitive manipulation of both angular position and source distance simultaneously. This approach provides immediate tactile feedback for spatial audio composition while implementing realistic amplitude scaling based on distance relationships that mirror natural acoustic behavior.</p>
+<section id="patch-overview-1" class="level3" data-number="6.6.1">
+<h3 data-number="6.6.1" class="anchored" data-anchor-id="patch-overview-1"><span class="header-section-number">6.6.1</span> Patch Overview</h3>
+<p>The interactive distance panning system implements a comprehensive spatial audio control interface consisting of five primary processing stages:</p>
+<ol type="1">
+<li><strong>Two-Dimensional Input Control</strong>: Visual interface for simultaneous angle and distance manipulation</li>
+<li><strong>Coordinate Conversion</strong>: Cartesian to polar coordinate transformation with parameter scaling</li>
+<li><strong>Distance Modeling</strong>: Amplitude scaling based on acoustic distance relationships</li>
+<li><strong>Angular Processing</strong>: Trigonometric calculation for stereophonic positioning</li>
+<li><strong>Audio Synthesis and Output</strong>: Signal generation with spatial and distance-based amplitude control</li>
+</ol>
+<p>The patch demonstrates advanced Pure Data interface design by combining multiple control paradigms within a single cohesive system that maintains both mathematical precision and intuitive user interaction.</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart TD
+    A[2D Slider Interface] --&gt; B[Coordinate Unpacking]
+    B --&gt; C[Angle Calculation 0-90°]
+    B --&gt; D[Distance Extraction 1-10]
+    C --&gt; E[Radian Conversion]
+    E --&gt; F[Trigonometric Processing]
+    D --&gt; G[Distance Amplitude Scaling]
+    F --&gt; H[Spatial Audio Mixing]
+    G --&gt; H
+    I[Test Oscillator] --&gt; J[Distance Division]
+    J --&gt; H
+    H --&gt; K[Stereo Output]
+    
+    style A fill:#e1f5fe
+    style K fill:#f3e5f5
+    style F fill:#fff3e0
+    style G fill:#fff3e0
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
 </section>
-<section id="simulating-air-absorption" class="level3" data-number="6.5.2">
-<h3 data-number="6.5.2" class="anchored" data-anchor-id="simulating-air-absorption"><span class="header-section-number">6.5.2</span> Simulating Air Absorption</h3>
+<section id="key-objects-and-their-roles-1" class="level3" data-number="6.6.2">
+<h3 data-number="6.6.2" class="anchored" data-anchor-id="key-objects-and-their-roles-1"><span class="header-section-number">6.6.2</span> Key Objects and Their Roles</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 19%">
+<col style="width: 23%">
+<col style="width: 57%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Object</th>
+<th>Function</th>
+<th>Role in Spatial Control</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>slider2d</code></td>
+<td>Two-dimensional interface</td>
+<td>Provides x,y coordinate input for angle and distance</td>
+</tr>
+<tr class="even">
+<td><code>unpack f f</code></td>
+<td>Coordinate separation</td>
+<td>Splits 2D coordinates into independent x,y values</td>
+</tr>
+<tr class="odd">
+<td><code>* 90</code></td>
+<td>Angular scaling</td>
+<td>Converts normalized x-coordinate to 0-90° range</td>
+</tr>
+<tr class="even">
+<td><code>s distance</code> / <code>r distance</code></td>
+<td>Distance communication</td>
+<td>Distributes distance parameter across patch</td>
+</tr>
+<tr class="odd">
+<td><code>expr~ $v1 / (($v2*9)+1)</code></td>
+<td>Distance amplitude modeling</td>
+<td>Applies inverse relationship for distance attenuation</td>
+</tr>
+<tr class="even">
+<td><code>expr cos($f1) \; sin($f1)</code></td>
+<td>Trigonometric processor</td>
+<td>Maintains stereophonic positioning calculations</td>
+</tr>
+<tr class="odd">
+<td><code>expr~ $v1*$v2 \; $v1*$v3</code></td>
+<td>Spatial audio multiplier</td>
+<td>Applies both distance and angular amplitude control</td>
+</tr>
+</tbody>
+</table>
+<section id="critical-processing-components-1" class="level4" data-number="6.6.2.1">
+<h4 data-number="6.6.2.1" class="anchored" data-anchor-id="critical-processing-components-1"><span class="header-section-number">6.6.2.1</span> Critical Processing Components</h4>
+<p><strong>slider2d Interface</strong>: This object provides the primary user interaction mechanism, outputting normalized x,y coordinates in the range 0.0-1.0. The horizontal axis (x) controls angular positioning while the vertical axis (y) determines distance scaling, creating an intuitive two-dimensional spatial control surface.</p>
+<p><strong>Coordinate Transformation</strong>: The <code>unpack f f</code> object separates the 2D coordinates, enabling independent processing of angular and distance parameters. The x-coordinate undergoes multiplication by 90 to generate the 0-90° angular range required for stereophonic panning.</p>
+<p><strong>Distance Amplitude Expression</strong>: The <code>expr~ $v1 / (($v2*9)+1)</code> object implements a distance-based amplitude scaling algorithm that approximates acoustic distance attenuation. The multiplication by 9 and addition of 1 creates a distance range from 1 to 10, preventing division by zero while providing meaningful amplitude variation.</p>
+</section>
+</section>
+<section id="data-flow-1" class="level3" data-number="6.6.3">
+<h3 data-number="6.6.3" class="anchored" data-anchor-id="data-flow-1"><span class="header-section-number">6.6.3</span> Data Flow</h3>
+<p>The interactive distance panning patch orchestrates a sophisticated multi-dimensional control system that transforms two-dimensional interface input into spatially accurate audio output through coordinated processing of angular positioning and distance modeling. This implementation demonstrates how visual interface design can be integrated with acoustic modeling to create intuitive spatial audio control systems that maintain both mathematical precision and perceptual accuracy.</p>
+<p>The initial input coordination and parameter extraction stage establishes the foundation for spatial control through the comprehensive management of the two-dimensional slider interface. The <code>slider2d</code> object captures user interaction as normalized x,y coordinate pairs ranging from 0.0 to 1.0, where the horizontal axis represents angular positioning information and the vertical axis encodes distance relationship data. Upon initialization, the <code>loadbang</code> and <code>range 0 1</code> message ensure proper scaling configuration, establishing the coordinate system boundaries that will govern subsequent parameter mapping. The coordinate unpacking process through <code>unpack f f</code> separates the combined spatial input into independent data streams that can be processed according to their specific roles in the spatialization algorithm. This separation enables parallel processing of angular and distance information while maintaining the temporal relationship between user input and system response that is essential for real-time spatial audio manipulation.</p>
+<p>The angular conversion and trigonometric processing stage transforms the horizontal coordinate information into the angular parameters required for stereophonic positioning calculations. The x-coordinate from the 2D slider undergoes scaling multiplication by 90, converting the normalized 0.0-1.0 range into the 0-90° angular span that defines the complete left-right stereo field. This angular value proceeds through the established degree-to-radian conversion process via multiplication by 0.0174533, preparing the data for the trigonometric calculations performed by the <code>expr cos($f1) \; sin($f1)</code> object. The trigonometric processing generates the complementary amplitude coefficients essential for stereophonic positioning, where the cosine output controls left channel amplitude and the sine output controls right channel amplitude. This processing stage maintains the mathematical relationships established in previous spatial audio implementations while adapting to the dynamic input provided by the interactive interface system.</p>
+<p>The distance modeling and amplitude scaling stage implements acoustic distance relationships through sophisticated amplitude manipulation that simulates realistic sound propagation characteristics. The y-coordinate from the 2D slider interface undergoes processing through the send/receive system (<code>s distance</code> / <code>r distance</code>) that distributes the distance parameter to multiple processing locations within the patch. The distance value enters the <code>expr~ $v1 / (($v2*9)+1)</code> expression, which implements an approximation of inverse-square law amplitude scaling where increasing distance values produce proportionally decreased amplitude output. The mathematical relationship <code>($v2*9)+1</code> creates a distance scaling factor that ranges from 1 (minimum distance, maximum amplitude) to 10 (maximum distance, minimum amplitude), preventing division by zero while providing meaningful amplitude variation across the available control range. This distance-based amplitude scaling applies to the test oscillator signal before it undergoes spatial positioning through the trigonometric multiplication stage.</p>
+<p>The audio synthesis and spatial integration stage combines the distance-scaled audio signal with the angular positioning coefficients to create the final spatialized output with realistic distance characteristics. The <code>phasor~ 220</code> object generates a harmonically rich test signal that undergoes distance-based amplitude scaling through the division expression before entering the spatial processing chain. The <code>expr~ $v1*$v2 \; $v1*$v3</code> object performs the critical multiplication that applies both the distance attenuation and the trigonometric spatial positioning simultaneously, creating stereo output channels that reflect both the angular position and distance of the virtual sound source. The left channel output results from multiplication with the cosine amplitude coefficient modified by distance scaling, while the right channel output employs the sine amplitude coefficient similarly modified by distance attenuation. This dual processing approach ensures that the final audio output maintains both the spatial positioning accuracy established by the trigonometric relationships and the amplitude scaling appropriate for the simulated distance.</p>
+<p>The visual feedback and system monitoring stage provides real-time indication of the calculated spatial parameters through integrated display elements that enable users to understand the relationship between interface input and audio processing parameters. The numerical display objects connected to various processing stages show the current angular values in both degrees and radians, the extracted distance parameter, and the calculated amplitude coefficients for both stereo channels. This visual feedback system enables users to develop understanding of the mathematical relationships underlying the spatial audio processing while providing confirmation that the interface input is correctly translated into audio processing parameters. The continuous visual update of these parameters during real-time interaction creates an educational environment where users can observe the direct correspondence between spatial positioning concepts and their implementation in digital audio processing systems.</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+    A[2D Interface Input] --&gt; B[Coordinate Processing]
+    B --&gt; C[Angular Conversion]
+    B --&gt; D[Distance Scaling]
+    C --&gt; E[Trigonometric Calculation]
+    D --&gt; F[Amplitude Attenuation]
+    E --&gt; G[Spatial Audio Output]
+    F --&gt; G
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="processing-chain-details-1" class="level3" data-number="6.6.4">
+<h3 data-number="6.6.4" class="anchored" data-anchor-id="processing-chain-details-1"><span class="header-section-number">6.6.4</span> Processing Chain Details</h3>
+<p>The distance panning system maintains mathematical precision through several coordinated processing stages that integrate spatial positioning with acoustic distance modeling:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 22%">
+<col style="width: 22%">
+<col style="width: 29%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Stage</th>
+<th>Input</th>
+<th>Process</th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>2D Coordinates (0-1)</td>
+<td>Interface capture and unpacking</td>
+<td>Separated x,y values</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>X-coordinate</td>
+<td>Multiplication by 90</td>
+<td>Angular degrees (0-90°)</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>Y-coordinate</td>
+<td>Distance parameter extraction</td>
+<td>Distance factor (0-1)</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>Angular degrees</td>
+<td>Radian conversion and trigonometry</td>
+<td>Cosine/sine coefficients</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>Distance factor</td>
+<td>Amplitude scaling calculation</td>
+<td>Distance attenuation</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>Audio + coefficients + distance</td>
+<td>Combined spatial and distance processing</td>
+<td>Spatialized stereo output</td>
+</tr>
+</tbody>
+</table>
+<section id="mathematical-relationships-1" class="level4" data-number="6.6.4.1">
+<h4 data-number="6.6.4.1" class="anchored" data-anchor-id="mathematical-relationships-1"><span class="header-section-number">6.6.4.1</span> Mathematical Relationships</h4>
+<p>The patch implements integrated spatial and distance modeling through coordinated mathematical relationships:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 21%">
+<col style="width: 42%">
+<col style="width: 36%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Parameter</th>
+<th>Mathematical Function</th>
+<th>Audio Application</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Angular Position</td>
+<td><span class="math inline">\(\theta = x \times 90°\)</span></td>
+<td>Maps horizontal slider to stereo field</td>
+</tr>
+<tr class="even">
+<td>Left Amplitude</td>
+<td><span class="math inline">\(A_L = \cos(\theta)\)</span></td>
+<td>Spatial positioning coefficient</td>
+</tr>
+<tr class="odd">
+<td>Right Amplitude</td>
+<td><span class="math inline">\(A_R = \sin(\theta)\)</span></td>
+<td>Spatial positioning coefficient</td>
+</tr>
+<tr class="even">
+<td>Distance Scaling</td>
+<td><span class="math inline">\(A_d = \frac{1}{(d \times 9) + 1}\)</span></td>
+<td>Inverse distance attenuation</td>
+</tr>
+<tr class="odd">
+<td>Final Left Channel</td>
+<td><span class="math inline">\(L = \text{signal} \times A_d \times A_L\)</span></td>
+<td>Combined distance and spatial processing</td>
+</tr>
+<tr class="even">
+<td>Final Right Channel</td>
+<td><span class="math inline">\(R = \text{signal} \times A_d \times A_R\)</span></td>
+<td>Combined distance and spatial processing</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="control-parameter-mapping-1" class="level4" data-number="6.6.4.2">
+<h4 data-number="6.6.4.2" class="anchored" data-anchor-id="control-parameter-mapping-1"><span class="header-section-number">6.6.4.2</span> Control Parameter Mapping</h4>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 17%">
+<col style="width: 15%">
+<col style="width: 15%">
+<col style="width: 14%">
+<col style="width: 15%">
+<col style="width: 19%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Interface Position</th>
+<th>Angle (Degrees)</th>
+<th>Distance Factor</th>
+<th>Left Amplitude</th>
+<th>Right Amplitude</th>
+<th>Distance Attenuation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>(0.0, 0.0)</td>
+<td>0°</td>
+<td>1 (close)</td>
+<td>1.000</td>
+<td>0.000</td>
+<td>1.000</td>
+</tr>
+<tr class="even">
+<td>(0.5, 0.0)</td>
+<td>45°</td>
+<td>1 (close)</td>
+<td>0.707</td>
+<td>0.707</td>
+<td>1.000</td>
+</tr>
+<tr class="odd">
+<td>(1.0, 0.0)</td>
+<td>90°</td>
+<td>1 (close)</td>
+<td>0.000</td>
+<td>1.000</td>
+<td>1.000</td>
+</tr>
+<tr class="even">
+<td>(0.0, 1.0)</td>
+<td>0°</td>
+<td>10 (far)</td>
+<td>1.000</td>
+<td>0.000</td>
+<td>0.100</td>
+</tr>
+<tr class="odd">
+<td>(0.5, 1.0)</td>
+<td>45°</td>
+<td>10 (far)</td>
+<td>0.707</td>
+<td>0.707</td>
+<td>0.100</td>
+</tr>
+<tr class="even">
+<td>(1.0, 1.0)</td>
+<td>90°</td>
+<td>10 (far)</td>
+<td>0.000</td>
+<td>1.000</td>
+<td>0.100</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="distance-modeling-considerations" class="level4" data-number="6.6.4.3">
+<h4 data-number="6.6.4.3" class="anchored" data-anchor-id="distance-modeling-considerations"><span class="header-section-number">6.6.4.3</span> Distance Modeling Considerations</h4>
+<p><strong>Acoustic Accuracy</strong>: The distance scaling approximates natural sound propagation where amplitude decreases with increasing distance, though the specific mathematical relationship can be adjusted for different acoustic environments or artistic preferences.</p>
+<p><strong>Control Resolution</strong>: The 1-10 distance range provides meaningful amplitude variation while maintaining sufficient resolution for precise spatial positioning in musical and installation contexts.</p>
+<p><strong>Interface Mapping</strong>: The vertical axis controlling distance creates intuitive correspondence where upward movement represents increased distance and reduced amplitude, matching visual expectations of spatial relationships.</p>
+</section>
+</section>
+<section id="creative-applications-1" class="level3" data-number="6.6.5">
+<h3 data-number="6.6.5" class="anchored" data-anchor-id="creative-applications-1"><span class="header-section-number">6.6.5</span> Creative Applications</h3>
+<ul>
+<li><strong>Interactive Spatial Composition</strong>: Use tablet interfaces or touch controllers to manipulate multiple sound sources simultaneously within a virtual acoustic space with realistic distance modeling.</li>
+<li><strong>Architectural Space Simulation</strong>: Model specific room acoustics by adjusting the distance scaling factors to match measured reverberation and absorption characteristics of real spaces.</li>
+<li><strong>Immersive Audio Storytelling</strong>: Create dynamic soundscapes for narrative applications where sound source proximity affects listener emotional engagement and attention focus.</li>
+<li><strong>Performance Interface Design</strong>: Develop custom controllers that map performer gestures to spatial positioning, enabling expressive control over both angle and distance through physical movement.</li>
+<li><strong>Collaborative Music Systems</strong>: Enable multiple performers to control independent sound sources within a shared spatial audio environment.</li>
+<li><strong>Installation Art with Proximity Sensing</strong>: Connect distance parameters to actual physical proximity sensors that adjust audio based on visitor location within gallery spaces</li>
+<li><strong>Gaming Audio Implementation</strong>: Provide realistic spatial audio feedback for game environments where player-object relationships affect both direction and distance perception</li>
+</ul>
+</section>
+</section>
+<section id="enhanced-distance-modeling-with-air-absorption-and-reverberation" class="level2" data-number="6.7">
+<h2 data-number="6.7" class="anchored" data-anchor-id="enhanced-distance-modeling-with-air-absorption-and-reverberation"><span class="header-section-number">6.7</span> Enhanced Distance Modeling with Air Absorption and Reverberation</h2>
 <p>To further enhance the realism of our spatialization, we simulate <strong>air absorption</strong>, which—although minimal at short distances—contributes to the perceptual illusion of depth. As distance increases, high frequencies are attenuated, which we simulate using a <strong>low-pass filter</strong> object<code>[lop~]</code>.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -634,9 +1287,6 @@ A_{\text{perceived}} = \frac{A_{\text{source}}}{d}
 </figure>
 </div>
 <p>We control the cutoff frequency of this filter using a <code>[expr]</code> object (<code>[expr (1 - $f1) * 7000 + 1000]</code>). For example, we can scale a distance range of 1–10 to a cutoff frequency range of 8000–1000 Hz. As the source moves farther away, the filter reduces the brightness of the sound, mimicking atmospheric filtering.</p>
-</section>
-<section id="simulating-reverberant-spaces" class="level3" data-number="6.5.3">
-<h3 data-number="6.5.3" class="anchored" data-anchor-id="simulating-reverberant-spaces"><span class="header-section-number">6.5.3</span> Simulating Reverberant Spaces</h3>
 <p>Consider a large environment with significant reverberation—such as a church or garage. When someone speaks nearby, the <strong>direct sound</strong> dominates, and reverberation is minimal. Conversely, at greater distances, the direct signal weakens while reverberation remains relatively constant. This is due to the fact that reverberation is a function of the environment and not as sensitive to the source’s location.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -645,10 +1295,276 @@ A_{\text{perceived}} = \frac{A_{\text{source}}}{d}
 </figure>
 </div>
 <p>To simulate this phenomenon, we introduce a <strong>reverberation chamber</strong> using <code>[freeverb~]</code>. The reverb level is controlled via a rotary dial (<code>[knob]</code> from the <code>ELSE</code> library). By configuring the knob for a low initial setting, we simulate the acoustic behavior where reverberation becomes more prominent as the source moves farther from the listener. As the source approaches, the increased amplitude of the direct signal masks the reverberation, completing our auditory illusion.</p>
+<p>The patch extends the interactive distance panning system by incorporating realistic acoustic phenomena that occur in natural environments. The implementation adds frequency-dependent air absorption through low-pass filtering and environmental reverberation modeling, creating a comprehensive spatial audio simulation that mirrors how sound behaves across varying distances in real acoustic spaces. This enhanced system demonstrates how multiple acoustic cues work together to create convincing depth perception and environmental context.</p>
+<p>The design integrates three primary acoustic distance cues: amplitude attenuation based on inverse distance relationships, high-frequency absorption that simulates atmospheric filtering, and reverberation balance that reflects how direct and reflected sound components change with source proximity. This multi-parameter approach creates significantly more realistic distance simulation than amplitude scaling alone.</p>
+<section id="patch-overview-2" class="level3" data-number="6.7.1">
+<h3 data-number="6.7.1" class="anchored" data-anchor-id="patch-overview-2"><span class="header-section-number">6.7.1</span> Patch Overview</h3>
+<p>The enhanced distance modeling system implements a comprehensive acoustic simulation pipeline consisting of six integrated processing stages:</p>
+<ol type="1">
+<li><strong>Two-Dimensional Interface Control</strong>: Visual manipulation of angle and distance parameters</li>
+<li><strong>Distance-Based Amplitude Scaling</strong>: Inverse relationship modeling for realistic volume attenuation</li>
+<li><strong>Frequency-Dependent Air Absorption</strong>: Low-pass filtering that simulates atmospheric effects</li>
+<li><strong>Environmental Reverberation Processing</strong>: Spatial acoustic context through algorithmic reverb</li>
+<li><strong>Direct/Reverb Signal Balancing</strong>: Dynamic mixing based on distance relationships</li>
+<li><strong>Spatial Audio Output</strong>: Final stereo positioning with enhanced depth cues</li>
+</ol>
+<p>The system demonstrates how multiple acoustic phenomena combine to create convincing spatial audio environments that extend beyond simple amplitude panning.</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart TD
+    A[2D Slider Interface] --&gt; B[Distance Extraction]
+    B --&gt; C[Amplitude Scaling]
+    B --&gt; D[Air Absorption Filtering]
+    B --&gt; E[Reverb Level Control]
+    F[Audio Source] --&gt; C
+    C --&gt; G[Low-pass Filter]
+    D --&gt; G
+    G --&gt; H[Dry Signal Path]
+    G --&gt; I[Reverb Processing]
+    E --&gt; I
+    H --&gt; J[Spatial Mixing]
+    I --&gt; J
+    J --&gt; K[Enhanced Stereo Output]
+    
+    style A fill:#e1f5fe
+    style K fill:#f3e5f5
+    style G fill:#fff3e0
+    style I fill:#fff3e0
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="key-objects-and-their-roles-2" class="level3" data-number="6.7.2">
+<h3 data-number="6.7.2" class="anchored" data-anchor-id="key-objects-and-their-roles-2"><span class="header-section-number">6.7.2</span> Key Objects and Their Roles</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 15%">
+<col style="width: 18%">
+<col style="width: 66%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Object</th>
+<th>Function</th>
+<th>Role in Enhanced Distance Modeling</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>slider2d</code></td>
+<td>Two-dimensional interface</td>
+<td>Angle and distance parameter input</td>
+</tr>
+<tr class="even">
+<td><code>expr~ $v1 / (($v2*9)+1)</code></td>
+<td>Distance amplitude scaling</td>
+<td>Inverse distance attenuation</td>
+</tr>
+<tr class="odd">
+<td><code>lop~</code></td>
+<td>Low-pass filter</td>
+<td>Frequency-dependent air absorption simulation</td>
+</tr>
+<tr class="even">
+<td><code>expr (1 - $f1) * 7000 + 1000</code></td>
+<td>Cutoff frequency calculation</td>
+<td>Maps distance to absorption characteristics</td>
+</tr>
+<tr class="odd">
+<td><code>freeverb~</code></td>
+<td>Algorithmic reverberation</td>
+<td>Environmental acoustic simulation</td>
+</tr>
+<tr class="even">
+<td><code>knob</code></td>
+<td>Reverb level control</td>
+<td>Interactive reverberation amount adjustment</td>
+</tr>
+<tr class="odd">
+<td><code>s~ dry</code> / <code>r~ dry</code></td>
+<td>Dry signal routing</td>
+<td>Direct sound path management</td>
+</tr>
+<tr class="even">
+<td><code>expr~ $v1*$v2 \; $v3*$v4</code></td>
+<td>Spatial audio multiplier</td>
+<td>Final stereo positioning with distance effects</td>
+</tr>
+</tbody>
+</table>
+<section id="critical-enhancement-components" class="level4" data-number="6.7.2.1">
+<h4 data-number="6.7.2.1" class="anchored" data-anchor-id="critical-enhancement-components"><span class="header-section-number">6.7.2.1</span> Critical Enhancement Components</h4>
+<p><strong>Air Absorption Modeling</strong>: The <code>lop~</code> object implements frequency-dependent attenuation that simulates how air absorption affects sound transmission over distance. The cutoff frequency calculation <code>(1 - $f1) * 7000 + 1000</code> creates an inverse relationship where increased distance produces lower cutoff frequencies, mimicking the natural tendency for high frequencies to attenuate more rapidly through atmospheric transmission.</p>
+<p><strong>Reverberation Processing</strong>: The <code>freeverb~</code> object provides environmental acoustic context through algorithmic reverberation that simulates room acoustics. The reverb parameters (dry 0, wet 1, roomsize 0.95) create a large virtual space with minimal direct signal bleed-through.</p>
+<p><strong>Dynamic Signal Routing</strong>: The send/receive system (<code>s~ dry</code>, <code>r~ dry</code>) enables parallel processing where the same audio source feeds both the direct signal path and the reverberation processing chain, allowing independent control of each component.</p>
 </section>
 </section>
-<section id="simulation-through-quadraphonic-spatialization-the-chowning-model" class="level2" data-number="6.6">
-<h2 data-number="6.6" class="anchored" data-anchor-id="simulation-through-quadraphonic-spatialization-the-chowning-model"><span class="header-section-number">6.6</span> Simulation through Quadraphonic Spatialization: The Chowning Model</h2>
+<section id="data-flow-2" class="level3" data-number="6.7.3">
+<h3 data-number="6.7.3" class="anchored" data-anchor-id="data-flow-2"><span class="header-section-number">6.7.3</span> Data Flow</h3>
+<p>The enhanced distance modeling patch orchestrates a sophisticated multi-stage acoustic simulation that combines amplitude, frequency, and temporal cues to create realistic spatial audio experiences. This implementation demonstrates how multiple acoustic phenomena interact in natural environments and how these relationships can be modeled systematically to achieve convincing distance perception.</p>
+<p>The enhanced distance parameter extraction stage builds upon the basic distance panning system by distributing the distance control signal to multiple processing destinations simultaneously. The y-coordinate from the 2D slider interface continues to provide the primary distance measurement, but this value now feeds three distinct processing pathways rather than a single amplitude control. The distance parameter reaches the amplitude scaling system for volume attenuation, the air absorption calculation system for frequency filtering, and the reverberation balance system for environmental processing. This parallel distribution ensures that all acoustic distance cues remain synchronized and proportional, maintaining the physical relationships that exist in natural acoustic environments.</p>
+<p>The frequency-dependent air absorption processing stage introduces realistic high-frequency attenuation that simulates atmospheric filtering effects. The distance value undergoes transformation through the expression <code>(1 - $f1) * 7000 + 1000</code>, which creates an inverse relationship mapping distance to low-pass filter cutoff frequency. When the source appears close (distance near 0), the calculation yields a cutoff frequency approaching 8000 Hz, allowing the full frequency spectrum to pass through unaffected. As distance increases toward maximum (distance near 1), the cutoff frequency approaches 1000 Hz, creating significant high-frequency attenuation that simulates the natural absorption characteristics of air transmission. The <code>lop~</code> object implements this filtering in real-time, processing the distance-scaled audio signal to create the spectral changes associated with increasing source distance. This filtering effect proves particularly noticeable with broad-spectrum audio sources, where the gradual loss of high-frequency content creates immediate perceptual cues about source proximity.</p>
+<p>The environmental reverberation processing stage adds spatial acoustic context through sophisticated algorithmic processing that simulates how direct and reflected sound components change with source distance. The audio signal enters the <code>freeverb~</code> object configured with parameters that create a large virtual acoustic space: dry level set to 0 eliminates direct signal bleed-through, wet level at 1 provides full reverberation output, and room size at 0.95 creates an expansive virtual environment. The reverberation level control through the <code>knob</code> interface enables real-time adjustment of the environmental contribution, simulating how reverberation prominence changes with source distance. In natural acoustic environments, nearby sources produce strong direct signals that mask reverberation, while distant sources generate weaker direct signals that allow reverberation to become more prominent in the overall acoustic balance.</p>
+<p>The signal mixing and spatial integration stage combines the processed direct and reverberated audio components while maintaining the established spatial positioning relationships. The direct signal path carries the distance-attenuated and air-absorption-filtered audio through the send/receive system (<code>s~ dry</code>, <code>r~ dry</code>) to the spatial mixing stage, while the reverberation output provides environmental context that adds spatial depth and acoustic realism. The final spatial audio expression <code>expr~ $v1*$v2 \; $v3*$v4</code> applies the trigonometric amplitude coefficients to both the direct and environmental signal components, ensuring that the spatial positioning affects all aspects of the audio output. This integrated approach creates stereo output where both the direct sound and its environmental reflections maintain proper spatial relationships, contributing to convincing three-dimensional audio positioning that extends beyond simple left-right panning.</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+    A[Distance Control] --&gt; B[Multi-Parameter Processing]
+    B --&gt; C[Enhanced Audio Output]
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="processing-chain-details-2" class="level3" data-number="6.7.4">
+<h3 data-number="6.7.4" class="anchored" data-anchor-id="processing-chain-details-2"><span class="header-section-number">6.7.4</span> Processing Chain Details</h3>
+<p>The enhanced distance modeling system integrates multiple acoustic simulation stages:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 22%">
+<col style="width: 22%">
+<col style="width: 29%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Stage</th>
+<th>Input</th>
+<th>Process</th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>2D Interface</td>
+<td>Distance parameter extraction</td>
+<td>Control signals for multiple destinations</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>Distance Value</td>
+<td>Amplitude scaling calculation</td>
+<td>Volume attenuation</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>Distance Value</td>
+<td>Air absorption frequency mapping</td>
+<td>Low-pass filter cutoff</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>Filtered Audio</td>
+<td>Environmental reverberation</td>
+<td>Spatial acoustic context</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>Distance Value</td>
+<td>Reverb balance calculation</td>
+<td>Direct/reverb mixing ratio</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>Multiple Audio Streams</td>
+<td>Spatial positioning integration</td>
+<td>Enhanced stereo output</td>
+</tr>
+</tbody>
+</table>
+<section id="acoustic-parameter-relationships" class="level4" data-number="6.7.4.1">
+<h4 data-number="6.7.4.1" class="anchored" data-anchor-id="acoustic-parameter-relationships"><span class="header-section-number">6.7.4.1</span> Acoustic Parameter Relationships</h4>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 21%">
+<col style="width: 13%">
+<col style="width: 21%">
+<col style="width: 22%">
+<col style="width: 21%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Distance Setting</th>
+<th>Amplitude</th>
+<th>Cutoff Frequency</th>
+<th>Reverb Prominence</th>
+<th>Perceived Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0.0 (Close)</td>
+<td>1.000</td>
+<td>8000 Hz</td>
+<td>Low</td>
+<td>Bright, direct, intimate</td>
+</tr>
+<tr class="even">
+<td>0.25</td>
+<td>0.692</td>
+<td>6250 Hz</td>
+<td>Low-Medium</td>
+<td>Slightly muffled, present</td>
+</tr>
+<tr class="odd">
+<td>0.5</td>
+<td>0.444</td>
+<td>4500 Hz</td>
+<td>Medium</td>
+<td>Noticeably filtered, balanced</td>
+</tr>
+<tr class="even">
+<td>0.75</td>
+<td>0.308</td>
+<td>2750 Hz</td>
+<td>Medium-High</td>
+<td>Distant, reverberant</td>
+</tr>
+<tr class="odd">
+<td>1.0 (Far)</td>
+<td>0.200</td>
+<td>1000 Hz</td>
+<td>High</td>
+<td>Very distant, heavily filtered</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="air-absorption-simulation" class="level4" data-number="6.7.4.2">
+<h4 data-number="6.7.4.2" class="anchored" data-anchor-id="air-absorption-simulation"><span class="header-section-number">6.7.4.2</span> Air Absorption Simulation</h4>
+<p>The frequency mapping implements realistic atmospheric absorption characteristics:</p>
+<ul>
+<li><strong>Near field (0-0.3)</strong>: Minimal high-frequency loss, preserving audio brightness</li>
+<li><strong>Mid field (0.3-0.7)</strong>: Progressive filtering that maintains intelligibility</li>
+<li><strong>Far field (0.7-1.0)</strong>: Significant high-frequency attenuation creating distant character</li>
+</ul>
+</section>
+</section>
+<section id="creative-applications-2" class="level3" data-number="6.7.5">
+<h3 data-number="6.7.5" class="anchored" data-anchor-id="creative-applications-2"><span class="header-section-number">6.7.5</span> Creative Applications</h3>
+<ul>
+<li><strong>Cinematic Soundscape Design</strong>: Create realistic environmental audio where sound sources exhibit authentic distance characteristics for film, gaming, or virtual reality applications.</li>
+<li><strong>Architectural Acoustic Simulation</strong>: Model specific room types by adjusting reverberation parameters to match different environmental contexts from intimate chambers to vast cathedrals.</li>
+<li><strong>Interactive Audio Installations</strong>: Design responsive environments where visitor movement controls not just positioning but the complete acoustic experience including filtering and reverberation.</li>
+<li><strong>Nature Sound Recreation</strong>: Simulate outdoor acoustic environments where wildlife calls, weather sounds, and ambient textures exhibit realistic distance-dependent characteristics.</li>
+<li><strong>Performance Audio Processing</strong>: Process live instruments with dynamic distance effects that can be controlled by performers or automated through score-following systems.</li>
+</ul>
+</section>
+</section>
+<section id="simulation-through-quadraphonic-spatialization-the-chowning-model" class="level2" data-number="6.8">
+<h2 data-number="6.8" class="anchored" data-anchor-id="simulation-through-quadraphonic-spatialization-the-chowning-model"><span class="header-section-number">6.8</span> Simulation through Quadraphonic Spatialization: The Chowning Model</h2>
 <p>To extend spatial simulation beyond the limitations of stereophony—typically constrained to a 90° field—or to achieve finer localization resolution, the <em>intensity panning</em> technique used with two loudspeakers can be generalized to multi-channel systems.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -663,8 +1579,8 @@ A_{\text{perceived}} = \frac{A_{\text{source}}}{d}
 <li>Local reverberation, individually tailored for each speaker based on the source’s angle</li>
 <li>Global reverberation shared across all four speakers</li>
 </ul>
-<section id="amplitude-and-distance-scaling" class="level3" data-number="6.6.1">
-<h3 data-number="6.6.1" class="anchored" data-anchor-id="amplitude-and-distance-scaling"><span class="header-section-number">6.6.1</span> Amplitude and Distance Scaling</h3>
+<section id="amplitude-and-distance-scaling" class="level3" data-number="6.8.1">
+<h3 data-number="6.8.1" class="anchored" data-anchor-id="amplitude-and-distance-scaling"><span class="header-section-number">6.8.1</span> Amplitude and Distance Scaling</h3>
 <p>The audio input signal is first attenuated according to the <strong>inverse of the distance</strong>:</p>
 <p><span class="math display">\[
 A_{\text{direct}} = \frac{1}{D}
@@ -681,8 +1597,8 @@ A_i = \frac{1}{D} \times C_i(\theta)
 <li>and the speaker coefficients are labeled LRA, LFA, RFA, RRA (Left Rear, Left Front, Right Front, Right Rear).</li>
 </ul>
 </section>
-<section id="gain-function-and-phase-offsets" class="level3" data-number="6.6.2">
-<h3 data-number="6.6.2" class="anchored" data-anchor-id="gain-function-and-phase-offsets"><span class="header-section-number">6.6.2</span> Gain Function and Phase Offsets</h3>
+<section id="gain-function-and-phase-offsets" class="level3" data-number="6.8.2">
+<h3 data-number="6.8.2" class="anchored" data-anchor-id="gain-function-and-phase-offsets"><span class="header-section-number">6.8.2</span> Gain Function and Phase Offsets</h3>
 <p>To avoid complex calculations of gain for each speaker, Chowning implements a <strong>predefined function</strong>, stored as a lookup table of 512 samples. The table’s function ranges between 0 and 1 and is designed to generate continuous 360° source motion through intensity panning.</p>
 <p>Each speaker reads the same function with a <strong>phase offset</strong>:</p>
 <ul>
@@ -692,8 +1608,8 @@ A_i = \frac{1}{D} \times C_i(\theta)
 </ul>
 <p>As the virtual source rotates, only <strong>two speakers are active</strong> at a time, crossfading between them. For instance, as the source moves from <span class="math inline">\(theta = 90^\circ\)</span> to <span class="math inline">\(\theta = 0^\circ\)</span>, the cosine-driven speaker fades out while the sine-driven speaker fades in, mimicking a continuous spatial trajectory.</p>
 </section>
-<section id="reverberation-modeling" class="level3" data-number="6.6.3">
-<h3 data-number="6.6.3" class="anchored" data-anchor-id="reverberation-modeling"><span class="header-section-number">6.6.3</span> Reverberation Modeling</h3>
+<section id="reverberation-modeling" class="level3" data-number="6.8.3">
+<h3 data-number="6.8.3" class="anchored" data-anchor-id="reverberation-modeling"><span class="header-section-number">6.8.3</span> Reverberation Modeling</h3>
 <p>In the lower part of Chowning’s model (see again Figure G.8.9), <strong>reverberation is processed separately</strong>: - The reverberation signal is attenuated by the <strong>square root of the inverse of the distance</strong>:</p>
 <p><span class="math display">\[
 A_{\text{reverb}} = \sqrt{\frac{1}{D}} \times \text{PRV}
@@ -707,18 +1623,18 @@ A_{\text{reverb}} = \sqrt{\frac{1}{D}} \times \text{PRV}
 <p>This model not only exemplifies how mathematical reasoning and spatial design converge in sound synthesis, but also stands as a landmark in algorithmic composition and immersive audio. Through relatively simple mathematical operations and efficient data structures (such as phase-offset lookup tables), it offers a powerful foundation for dynamic spatial control in real-time systems such as Pure Data.</p>
 <p>Here’s how to think about the solution:</p>
 </section>
-<section id="coordinate-system" class="level3" data-number="6.6.4">
-<h3 data-number="6.6.4" class="anchored" data-anchor-id="coordinate-system"><span class="header-section-number">6.6.4</span> Coordinate System</h3>
+<section id="coordinate-system" class="level3" data-number="6.8.4">
+<h3 data-number="6.8.4" class="anchored" data-anchor-id="coordinate-system"><span class="header-section-number">6.8.4</span> Coordinate System</h3>
 <p>The <code>circle</code> object gives you <strong>Cartesian coordinates</strong> (x, y) in range [-1, 1], but you need:</p>
 <ol type="1">
 <li><strong>Polar coordinates</strong> (angle, radius)</li>
 <li><strong>Scaled values</strong> (0-359° for azimuth, 1-10 for distance)</li>
 </ol>
 </section>
-<section id="mathematical-conversion" class="level3" data-number="6.6.5">
-<h3 data-number="6.6.5" class="anchored" data-anchor-id="mathematical-conversion"><span class="header-section-number">6.6.5</span> Mathematical Conversion</h3>
-<section id="azimuth-angle-calculation" class="level4" data-number="6.6.5.1">
-<h4 data-number="6.6.5.1" class="anchored" data-anchor-id="azimuth-angle-calculation"><span class="header-section-number">6.6.5.1</span> Azimuth (Angle) Calculation</h4>
+<section id="mathematical-conversion" class="level3" data-number="6.8.5">
+<h3 data-number="6.8.5" class="anchored" data-anchor-id="mathematical-conversion"><span class="header-section-number">6.8.5</span> Mathematical Conversion</h3>
+<section id="azimuth-angle-calculation" class="level4" data-number="6.8.5.1">
+<h4 data-number="6.8.5.1" class="anchored" data-anchor-id="azimuth-angle-calculation"><span class="header-section-number">6.8.5.1</span> Azimuth (Angle) Calculation</h4>
 <p>We need to convert (x, y) to angle using <strong>arctangent</strong> using:</p>
 <p><code>[expr atan2($f2, $f1) * 180 / 3.14159]</code></p>
 <p><strong>Key points:</strong></p>
@@ -729,8 +1645,8 @@ A_{\text{reverb}} = \sqrt{\frac{1}{D}} \times \text{PRV}
 </ul>
 <p><code>[expr (atan2($f2, $f1) * 180 / 3.14159 + 360) % 360]</code></p>
 </section>
-<section id="distance-calculation" class="level4" data-number="6.6.5.2">
-<h4 data-number="6.6.5.2" class="anchored" data-anchor-id="distance-calculation"><span class="header-section-number">6.6.5.2</span> Distance Calculation</h4>
+<section id="distance-calculation" class="level4" data-number="6.8.5.2">
+<h4 data-number="6.8.5.2" class="anchored" data-anchor-id="distance-calculation"><span class="header-section-number">6.8.5.2</span> Distance Calculation</h4>
 <p>Convert (x, y) to radius using <strong>Pythagorean theorem</strong>, then scale:</p>
 <p><code>[expr sqrt($f1*$f1 + $f2*$f2) * 9 + 1]</code></p>
 <p><strong>Logic:</strong></p>
@@ -739,6 +1655,299 @@ A_{\text{reverb}} = \sqrt{\frac{1}{D}} \times \text{PRV}
 <li>Multiply by 9 and add 1 to get range [1, 10]</li>
 </ul>
 </section>
+</section>
+<section id="patch-overview-3" class="level3" data-number="6.8.6">
+<h3 data-number="6.8.6" class="anchored" data-anchor-id="patch-overview-3"><span class="header-section-number">6.8.6</span> Patch Overview</h3>
+<p>This Pure Data patch implements John Chowning’s groundbreaking quadraphonic spatialization model, demonstrating how mathematical algorithms can create convincing 360-degree spatial audio movement using four strategically positioned speakers. The implementation features a predefined lookup table, distance-based amplitude scaling, and sophisticated reverberation modeling that simulates both local and global acoustic environments. This approach enables precise control over virtual sound source movement while maintaining perceptual coherence across the complete circular sound field.</p>
+<p>The patch demonstrates the practical application of Chowning’s theoretical framework through real-time interface controls that manage azimuth positioning, distance simulation, and reverberation balance. By utilizing lookup tables and phase-offset techniques, the system achieves smooth spatial transitions while minimizing computational overhead, making it suitable for live performance and interactive applications.</p>
+<p>The Chowning quadraphonic spatialization system implements a comprehensive spatial audio pipeline consisting of six primary processing stages:</p>
+<ol type="1">
+<li><strong>Lookup Table Generation</strong>: Creates the fundamental sine/cosine function for spatial positioning</li>
+<li><strong>Interactive Control Interface</strong>: Manages azimuth, distance, and reverberation parameters</li>
+<li><strong>Amplitude Coefficient Calculation</strong>: Determines speaker-specific gain values using phase offsets</li>
+<li><strong>Distance Modeling</strong>: Applies inverse distance relationships for realistic amplitude scaling</li>
+<li><strong>Reverberation Processing</strong>: Implements both local and global acoustic environment simulation</li>
+<li><strong>Quadraphonic Output</strong>: Delivers positioned audio to four independent speaker channels</li>
+</ol>
+<p>The system demonstrates how relatively simple mathematical operations and efficient data structures can create sophisticated spatial audio experiences suitable for both compositional and performance applications.</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart TD
+    A[Lookup Table Generation] --&gt; B[Interface Controls]
+    B --&gt; C[Amplitude Calculation]
+    B --&gt; D[Distance Processing]
+    C --&gt; E[Audio Positioning]
+    D --&gt; E
+    E --&gt; F[Reverberation]
+    F --&gt; G[Quadraphonic Output LF RF RR LR]
+    
+    style A fill:#e1f5fe
+    style G fill:#f3e5f5
+    style E fill:#fff3e0
+    style F fill:#fff3e0
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="key-objects-and-their-roles-3" class="level3" data-number="6.8.7">
+<h3 data-number="6.8.7" class="anchored" data-anchor-id="key-objects-and-their-roles-3"><span class="header-section-number">6.8.7</span> Key Objects and Their Roles</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 17%">
+<col style="width: 21%">
+<col style="width: 60%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Object</th>
+<th>Function</th>
+<th>Role in Quadraphonic System</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>tabwrite chowning-table</code></td>
+<td>Lookup table creation</td>
+<td>Stores 512-sample sine function for spatial coefficients</td>
+</tr>
+<tr class="even">
+<td><code>expr if($f1&lt;256, sin($f1*3.14159/256), 0)</code></td>
+<td>Function generation</td>
+<td>Creates sine wave with silent half-cycle</td>
+</tr>
+<tr class="odd">
+<td><code>circle</code></td>
+<td>2D position interface</td>
+<td>Provides x,y coordinates for azimuth and distance control</td>
+</tr>
+<tr class="even">
+<td><code>angle</code></td>
+<td>Phase offset calculation</td>
+<td>Implements speaker-specific table reading positions</td>
+</tr>
+<tr class="odd">
+<td><code>freeverb~</code></td>
+<td>Algorithmic reverberation</td>
+<td>Creates environmental acoustic simulation</td>
+</tr>
+<tr class="even">
+<td><code>expr~ $v1 / (($v2*9)+1)</code></td>
+<td>Distance attenuation</td>
+<td>Applies inverse distance amplitude scaling</td>
+</tr>
+<tr class="odd">
+<td><code>sqrt</code></td>
+<td>Reverberation scaling</td>
+<td>Modifies reverb balance based on distance</td>
+</tr>
+</tbody>
+</table>
+<section id="critical-processing-components-2" class="level4" data-number="6.8.7.1">
+<h4 data-number="6.8.7.1" class="anchored" data-anchor-id="critical-processing-components-2"><span class="header-section-number">6.8.7.1</span> Critical Processing Components</h4>
+<p><strong>Chowning Lookup Table</strong>: The 512-sample array contains a complete sine function from 0° to 180° (samples 0-255) followed by silence (samples 256-511). This creates the characteristic amplitude envelope where only two adjacent speakers are active at any time during 360° rotation.</p>
+<p><strong>Angle Objects</strong>: Each of the four speakers uses an <code>angle</code> object with specific phase offsets (0, 128, 256, 384) that correspond to 90° increments around the circular speaker arrangement. These offsets ensure proper spatial positioning as the virtual source rotates.</p>
+<p><strong>Dynamic Distance Processing</strong>: The patch implements both amplitude attenuation (<code>/~ distance</code>) and reverberation balance modification (<code>sqrt</code> and <code>1-1/distance</code> calculations) to create realistic distance perception through multiple acoustic cues.</p>
+</section>
+</section>
+<section id="data-flow-3" class="level3" data-number="6.8.8">
+<h3 data-number="6.8.8" class="anchored" data-anchor-id="data-flow-3"><span class="header-section-number">6.8.8</span> Data Flow</h3>
+<p>The Chowning quadraphonic spatialization patch orchestrates a sophisticated multi-stage spatial audio processing pipeline that transforms user interface input into convincing 360-degree sound source positioning through mathematical modeling of acoustic propagation and psychoacoustic principles. This implementation demonstrates how John Chowning’s theoretical framework translates into practical real-time audio processing systems that maintain both computational efficiency and perceptual accuracy.</p>
+<p>The lookup table generation and initialization stage establishes the mathematical foundation for the entire spatialization system through automated creation of the characteristic Chowning function. Upon patch initialization, the <code>loadbang</code> object triggers a systematic process that populates the <code>chowning-table</code> array with 512 samples representing the fundamental spatial positioning function. The generation process employs an <code>until</code> loop that iterates through array indices 0-511, with each position calculated using the expression <code>if($f1&lt;256, sin($f1*3.14159/256), 0)</code>. This creates a complete sine wave from 0° to 180° occupying the first half of the table (samples 0-255), followed by complete silence in the second half (samples 256-511). This specific function design ensures that during 360° spatial rotation, only two adjacent speakers remain active at any time, creating smooth amplitude transitions that maintain constant energy output while avoiding phase cancellation effects that could degrade spatial imaging.</p>
+<p>The interactive control and parameter extraction stage manages real-time spatial positioning through the sophisticated interface provided by the <code>circle</code> object from the ELSE library. This two-dimensional control surface captures mouse interaction as normalized coordinate pairs that represent both angular position and distance information within a single intuitive interface. The coordinate unpacking process separates the combined spatial input into independent data streams: the x-coordinate undergoes conversion to azimuth values spanning 0-359° through the expression <code>(atan2($f2, $f1) * 180 / 3.14159 + 360) % 360</code>, while the y-coordinate transforms into distance values ranging 1-10 through <code>sqrt($f1*$f1 + $f2*$f2) * 9 + 1</code>. This dual parameter extraction enables simultaneous control over both horizontal positioning and depth perception within the virtual acoustic space, providing the essential control data for subsequent processing stages.</p>
+<p>The amplitude coefficient calculation stage represents the core of Chowning’s spatialization algorithm, where angular position information becomes speaker-specific gain values through phase-offset table reading. Each of the four speakers employs an individual <code>angle</code> object configured with specific phase offsets: 0 samples for the front-left speaker, 128 samples for front-right, 256 samples for rear-right, and 384 samples for rear-left. These offsets correspond to 90° increments around the circular speaker arrangement, ensuring that the spatial positioning function provides appropriate amplitude coefficients for each speaker location. As the azimuth value changes, each <code>angle</code> object reads from its phase-shifted position within the lookup table, generating amplitude coefficients that create smooth transitions between adjacent speakers while maintaining the characteristic two-speaker activation pattern that defines the Chowning model.</p>
+<p>The distance processing and amplitude scaling stage implements realistic sound propagation characteristics through multiple coordinated processing pathways that simulate both amplitude attenuation and acoustic environmental effects. The primary distance attenuation employs the expression <code>expr~ $v1 / (($v2*9)+1)</code> applied to the raw audio signal, creating inverse distance scaling where increasing distance produces proportionally decreased amplitude. This amplitude scaling affects all speakers equally, maintaining the spatial positioning relationships while adding realistic volume changes that correspond to source proximity. Simultaneously, the distance parameter influences reverberation processing through the <code>sqrt</code> calculation that modifies reverberation level based on distance relationships, simulating how nearby sources produce strong direct signals that mask environmental reflections while distant sources allow reverberation to become more prominent in the overall acoustic balance.</p>
+<p>The reverberation processing and environmental simulation stage adds spatial acoustic context through dual-path processing that creates both local and global environmental effects. The audio signal path splits to feed both direct positioning processing and environmental reverberation systems implemented through <code>freeverb~</code> objects configured for large virtual spaces. The reverberation balance control through the <code>knob</code> interface enables real-time adjustment of environmental contribution, while the distance-dependent reverberation scaling creates realistic acoustic behavior where reverberation prominence varies with source distance. The dual reverberation system provides both general environmental ambience and speaker-specific local reflections, creating convincing spatial acoustic contexts that enhance the positioning effects achieved through the amplitude coefficients.</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+    A[User Input] --&gt; B[Parameter Processing]
+    B --&gt; C[Spatial Calculation]
+    C --&gt; D[Audio Output]
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="processing-chain-details-3" class="level3" data-number="6.8.9">
+<h3 data-number="6.8.9" class="anchored" data-anchor-id="processing-chain-details-3"><span class="header-section-number">6.8.9</span> Processing Chain Details</h3>
+<p>The quadraphonic spatialization system maintains mathematical precision and perceptual coherence through coordinated processing stages:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 22%">
+<col style="width: 22%">
+<col style="width: 29%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Stage</th>
+<th>Input</th>
+<th>Process</th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>Patch Initialization</td>
+<td>Sine function generation</td>
+<td>512-sample lookup table</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>Circle Interface</td>
+<td>Coordinate conversion</td>
+<td>Azimuth (0-359°) and Distance (1-10)</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>Azimuth + Phase Offsets</td>
+<td>Table reading with interpolation</td>
+<td>Speaker amplitude coefficients</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>Distance Value</td>
+<td>Inverse scaling calculation</td>
+<td>Amplitude attenuation factor</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>Audio + Coefficients + Distance</td>
+<td>Multiplication and mixing</td>
+<td>Positioned audio signals</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>Multiple Audio Streams</td>
+<td>Reverberation processing</td>
+<td>Enhanced quadraphonic output</td>
+</tr>
+</tbody>
+</table>
+<section id="speaker-configuration-and-phase-offsets" class="level4" data-number="6.8.9.1">
+<h4 data-number="6.8.9.1" class="anchored" data-anchor-id="speaker-configuration-and-phase-offsets"><span class="header-section-number">6.8.9.1</span> Speaker Configuration and Phase Offsets</h4>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 24%">
+<col style="width: 29%">
+<col style="width: 24%">
+<col style="width: 22%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Speaker Position</th>
+<th>Phase Offset (samples)</th>
+<th>Angle Equivalent</th>
+<th>Function Region</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Front Left (LF)</td>
+<td>0</td>
+<td>0°</td>
+<td>Sine ascending</td>
+</tr>
+<tr class="even">
+<td>Front Right (RF)</td>
+<td>128</td>
+<td>90°</td>
+<td>Sine descending</td>
+</tr>
+<tr class="odd">
+<td>Rear Right (RR)</td>
+<td>256</td>
+<td>180°</td>
+<td>Silent region</td>
+</tr>
+<tr class="even">
+<td>Rear Left (LR)</td>
+<td>384</td>
+<td>270°</td>
+<td>Silent region</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="distance-processing-parameters" class="level4" data-number="6.8.9.2">
+<h4 data-number="6.8.9.2" class="anchored" data-anchor-id="distance-processing-parameters"><span class="header-section-number">6.8.9.2</span> Distance Processing Parameters</h4>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 21%">
+<col style="width: 25%">
+<col style="width: 28%">
+<col style="width: 24%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Distance Value</th>
+<th>Amplitude Scaling</th>
+<th>Reverberation Factor</th>
+<th>Perceived Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1.0 (Close)</td>
+<td>1.000</td>
+<td>0.000</td>
+<td>Immediate, dry, present</td>
+</tr>
+<tr class="even">
+<td>3.0</td>
+<td>0.250</td>
+<td>0.667</td>
+<td>Moderate distance, some reverb</td>
+</tr>
+<tr class="odd">
+<td>6.0</td>
+<td>0.143</td>
+<td>0.833</td>
+<td>Distant, reverberant</td>
+</tr>
+<tr class="even">
+<td>10.0 (Far)</td>
+<td>0.091</td>
+<td>0.900</td>
+<td>Very distant, highly reverberant</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="lookup-table-function-analysis" class="level4" data-number="6.8.9.3">
+<h4 data-number="6.8.9.3" class="anchored" data-anchor-id="lookup-table-function-analysis"><span class="header-section-number">6.8.9.3</span> Lookup Table Function Analysis</h4>
+<p>The Chowning table implements a specific mathematical relationship that ensures smooth spatial transitions:</p>
+<ul>
+<li><strong>Samples 0-127</strong>: Ascending sine (0 to 1) - Controls fade-in transitions</li>
+<li><strong>Samples 128-255</strong>: Descending sine (1 to 0) - Controls fade-out transitions<br>
+</li>
+<li><strong>Samples 256-511</strong>: Silent (0) - Ensures two-speaker limitation</li>
+</ul>
+<p>This function design creates the characteristic “phantom source” effect where virtual positioning occurs between active speaker pairs while maintaining constant total energy output.</p>
+</section>
+</section>
+<section id="creative-applications-3" class="level3" data-number="6.8.10">
+<h3 data-number="6.8.10" class="anchored" data-anchor-id="creative-applications-3"><span class="header-section-number">6.8.10</span> Creative Applications</h3>
+<ul>
+<li><strong>360-Degree Spatial Composition</strong>: Create immersive musical pieces where sound sources move in complete circles around the listener, utilizing the full quadraphonic field for dynamic spatial narratives.</li>
+<li><strong>Interactive Spatial Performance</strong>: Connect external controllers or sensors to the azimuth and distance parameters, enabling performers to sculpt spatial positioning through gesture or movement.</li>
+<li><strong>Environmental Sound Design</strong>: Simulate realistic acoustic environments by combining the Chowning positioning with distance-dependent reverberation for film, game, or installation applications.</li>
+<li><strong>Multi-Source Spatial Mixing</strong>: Implement multiple instances of the Chowning model to position independent sound sources within the same quadraphonic field, creating complex spatial polyphony.</li>
+<li><strong>Adaptive Concert Hall Simulation</strong>: Use real-time reverberation control to simulate different acoustic environments during performance, from intimate chambers to vast cathedrals.</li>
+<li><strong>Collaborative Virtual Environments</strong>: Network multiple quadraphonic systems where remote participants can position sounds within shared virtual acoustic spaces for telepresence applications.</li>
+</ul>
 </section>
 </section>
 <section id="references" class="level2 unnumbered">
