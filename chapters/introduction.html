@@ -382,7 +382,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#what-is-pure-data" id="toc-what-is-pure-data" class="nav-link active" data-scroll-target="#what-is-pure-data"><span class="header-section-number">1.1</span> What is Pure Data? <img src="../assets/images/introduction/pd_2.png" class="img-fluid" style="width:8.0%"></a></li>
+  <li><a href="#what-is-pure-data" id="toc-what-is-pure-data" class="nav-link active" data-scroll-target="#what-is-pure-data"><span class="header-section-number">1.1</span> What is Pure Data?</a></li>
   <li><a href="#why-pure-data" id="toc-why-pure-data" class="nav-link" data-scroll-target="#why-pure-data"><span class="header-section-number">1.2</span> Why Pure Data?</a></li>
   <li><a href="#what-is-creative-coding" id="toc-what-is-creative-coding" class="nav-link" data-scroll-target="#what-is-creative-coding"><span class="header-section-number">1.3</span> What is Creative Coding?</a></li>
   <li><a href="#getting-started" id="toc-getting-started" class="nav-link" data-scroll-target="#getting-started"><span class="header-section-number">1.4</span> Getting Started</a>
@@ -396,6 +396,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#installing-on-macos" id="toc-installing-on-macos" class="nav-link" data-scroll-target="#installing-on-macos"><span class="header-section-number">1.4.7</span> Installing on macOS</a></li>
   <li><a href="#installing-on-linux" id="toc-installing-on-linux" class="nav-link" data-scroll-target="#installing-on-linux"><span class="header-section-number">1.4.8</span> Installing on Linux</a></li>
   <li><a href="#installing-externals" id="toc-installing-externals" class="nav-link" data-scroll-target="#installing-externals"><span class="header-section-number">1.4.9</span> Installing Externals</a></li>
+  <li><a href="#setting-up-a-virtual-midi-bus" id="toc-setting-up-a-virtual-midi-bus" class="nav-link" data-scroll-target="#setting-up-a-virtual-midi-bus"><span class="header-section-number">1.4.10</span> Setting Up a Virtual MIDI Bus</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -428,7 +429,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The design of Pure Data echoes the modular synthesis systems of the 20th century, where sound was shaped by routing audio through a network of physical devices linked with patch cables. This historical reference not only grounds Pure Data in a legacy of experimental electronic music but also makes it intuitive for users familiar with analog workflows. By visually “patching” connections, users can simulate and extend these traditional processes in a digital context.</p>
 <p>To fully engage with the creative potential of Pure Data, one can develop or modify algorithms for digital audio using imaginative coding strategies. For instance, building a real-time audio granulator that reinterprets live microphone input can offer both technical challenge and artistic reward. Through this lens, programming becomes a form of creative expression, blending logical structures with aesthetic decisions. By experimenting with signal flow, modulation techniques, or interactive sensors, users cultivate a mindset that is both inventive and analytical—unlocking new possibilities in digital sound design and performance.</p>
 <section id="what-is-pure-data" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="what-is-pure-data"><span class="header-section-number">1.1</span> What is Pure Data? <img src="../assets/images/introduction/pd_2.png" class="img-fluid" style="width:8.0%"></h2>
+<h2 data-number="1.1" class="anchored" data-anchor-id="what-is-pure-data"><span class="header-section-number">1.1</span> What is Pure Data?</h2>
 <p>Pure Data (or Pd) is a real-time graphical programming environment for audio, video, and graphical processing. Pure Data is commonly used for live music performance, VeeJaying, sound effects, composition, audio analysis, interfacing with sensors, using cameras, controlling robots or even interacting with websites. Because all of these various media are handled as digital data within the program, many fascinating opportunities for cross-synthesis between them exist. Sound can be used to manipulate video, which could then be streamed over the internet to another computer which might analyze that video and use it to control a motor-driven installation.</p>
 <p>Programming with Pure Data is a unique interaction that is much closer to the experience of manipulating things in the physical world. The most basic unit of functionality is a box, and the program is formed by connecting these boxes together into diagrams that both represent the flow of data while actually performing the operations mapped out in the diagram. The program itself is always running, there is no separation between writing the program and running the program, and each action takes effect the moment it is completed.</p>
 <p>The community of users and programmers around Pure Data have created additional functions (called “externals” or “external libraries”) which are used for a wide variety of other purposes, such as video processing, the playback and streaming of MP3s or Quicktime video, the manipulation and display of 3-dimensional objects and the modeling of virtual physical objects. There is a wide range of external libraries available which give Pure Data additional features. Just about any kind of programming is feasible using Pure Data as long as there are externals libraries which provide the most basic units of functionality required.</p>
@@ -472,6 +473,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><a href="https://pd.iem.sh/">Kunstuniversität Graz / Pure Data</a> – An extensive collection of tutorials and resources for learning Pure Data, including tutorials and example patches.</p>
 <p><a href="https://www.amazon.com/-/es/Multimedia-Programming-Pure-Bryan-Chung/dp/1782164642">Multimedia Programming with Pure Data (B. Chung)</a> – You will learn how to author various digital media, such as images, animations, audio, and videos. From simple to sophisticated interaction techniques, you will learn to apply these techniques in your practical multimedia projects with Pure Data.</p>
 <p><a href="">Pure Data: Electronic Music and Sound Design - Theory and Practice - Volume 1</a> - by Francesco Bianchi, Alessandro Cipriani and Maurizio Giri, the book is an overview of the theory and practice of Pure Data, with a glossary of terms and suggested tests that allow students to evaluate their progress.</p>
+<p><a href="https://github.com/porres/Live-Electronics-Tutorial">Live Electronics Tutorial by Alexandre Torres Porres</a> - This tutorial presents theory and practice of Live Electronics and computer music, synthesis/DSP (digital Signal Processing) topics without any prerequisite.</p>
 <p><a href="http://www.ekran.org/pd/">Ekran.org Gem Tutorials</a> – Additional tutorials on Gem for those interested in audiovisual composition and performance.</p>
 <hr>
 </section>
@@ -734,6 +736,33 @@ For example, to use the <code>counter</code> object from the <code>cyclone</code
 <p><strong>Tip:</strong> Always check the documentation for each external, as installation steps or requirements may vary.</p>
 </blockquote>
 <p>For more details, see the <a href="https://msp.ucsd.edu/Pd_documentation/resources/chapter4.htm">official Pure Data documentation on externals</a>.</p>
+</section>
+</section>
+<section id="setting-up-a-virtual-midi-bus" class="level3" data-number="1.4.10">
+<h3 data-number="1.4.10" class="anchored" data-anchor-id="setting-up-a-virtual-midi-bus"><span class="header-section-number">1.4.10</span> Setting Up a Virtual MIDI Bus</h3>
+<p>Establishing a virtual MIDI bus allows MIDI messages to be routed between different applications on the same computer, or to create intricate internal MIDI configurations within applications. This setup is particularly useful for integrating software instruments, sequencers, or custom-built Pure Data patches into a single ecosystem, enabling real-time interaction across programs.</p>
+<section id="macos" class="level4" data-number="1.4.10.1">
+<h4 data-number="1.4.10.1" class="anchored" data-anchor-id="macos"><span class="header-section-number">1.4.10.1</span> macOS</h4>
+<p>macOS provides a native solution for virtual MIDI routing through the <strong>IAC Bus</strong> (Inter-Application Communication Bus), a built-in MIDI driver that allows you to create multiple virtual MIDI ports.</p>
+<p>To enable and configure the IAC Bus:</p>
+<ol type="1">
+<li><p>Open the <strong>Audio MIDI Setup</strong> application (found in <code>/Applications/Utilities</code>), then select <strong>Window → Show MIDI Studio</strong> from the top menu.</p></li>
+<li><p>In the <strong>MIDI Studio</strong> window, double-click the <strong>IAC Driver</strong> icon to open its configuration panel.</p></li>
+<li><p>Enable the virtual bus by checking <strong>Device is online</strong>. This activates the driver.</p></li>
+<li><p>You may rename the default port if desired, for better identification in your DAW or software environment.</p></li>
+<li><p>To add additional virtual MIDI ports, click the <strong>+</strong> button. Each new bus functions as a separate virtual cable and can be independently addressed.</p></li>
+</ol>
+<p>Once activated, these ports will appear as MIDI input and output options within your software (e.g., Pure Data, Live, Max), supporting the full range of MIDI messages including <strong>Note</strong>, <strong>Control Change</strong>, and <strong>MIDI Sync</strong>.</p>
+</section>
+<section id="windows" class="level4" data-number="1.4.10.2">
+<h4 data-number="1.4.10.2" class="anchored" data-anchor-id="windows"><span class="header-section-number">1.4.10.2</span> Windows</h4>
+<p>Unlike macOS, Windows does not include a built-in virtual MIDI bus. However, several reliable third-party tools are freely available:</p>
+<ul>
+<li><p><a href="https://www.tobias-erichsen.de/software/loopmidi.html"><strong>loopMIDI</strong></a>, developed by Tobias Erichsen, provides a robust solution for creating virtual MIDI ports and supports multiple concurrent buses. It is compatible with both 32-bit and 64-bit systems and is widely recommended for use with modern DAWs and programming environments.</p></li>
+<li><p><a href="http://www.midiox.com/"><strong>MIDI Yoke</strong></a> is a legacy solution bundled with MIDI-OX, offering basic virtual MIDI routing. However, MIDI Yoke is <strong>32-bit only</strong>, and therefore <strong>not compatible with 64-bit software</strong>, including Live 10 and later. Use with caution and only in legacy setups.</p></li>
+</ul>
+<p>When setting up virtual MIDI buses in Windows, ensure that your audio software and any MIDI-routing utilities are operating with compatible bit-depths and permissions. Proper driver installation and restart may be necessary to expose the new virtual ports in your system’s MIDI routing options.</p>
+<p>Virtual MIDI buses are essential tools for building interactive sound systems, enabling communication between modular audio software, DAWs, and real-time instruments. Whether you are sending MIDI from Pure Data to a DAW, or routing control signals between applications, setting up a virtual MIDI infrastructure is a crucial foundational step.</p>
 
 
 </section>

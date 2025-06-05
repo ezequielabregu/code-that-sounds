@@ -77,6 +77,10 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<meta name="mermaid-theme" content="neutral">
+<script src="site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 
 
 <link rel="stylesheet" href="styles.css">
@@ -362,8 +366,8 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#what-are-you-not-going-to-learn" id="toc-what-are-you-not-going-to-learn" class="nav-link" data-scroll-target="#what-are-you-not-going-to-learn">What are you not going to learn?</a></li>
   <li><a href="#a-work-in-progress" id="toc-a-work-in-progress" class="nav-link" data-scroll-target="#a-work-in-progress">A Work in Progress</a></li>
   <li><a href="#backend-first-leaving-the-gui-for-later" id="toc-backend-first-leaving-the-gui-for-later" class="nav-link" data-scroll-target="#backend-first-leaving-the-gui-for-later">Backend First: Leaving the GUI for Later</a></li>
+  <li><a href="#book-structure" id="toc-book-structure" class="nav-link" data-scroll-target="#book-structure">Book Structure</a></li>
   <li><a href="#contributing" id="toc-contributing" class="nav-link" data-scroll-target="#contributing">Contributing</a></li>
-  <li><a href="#contact" id="toc-contact" class="nav-link" data-scroll-target="#contact">Contact</a></li>
   <li><a href="#acknowledgements" id="toc-acknowledgements" class="nav-link" data-scroll-target="#acknowledgements">Acknowledgements</a></li>
   <li><a href="#license" id="toc-license" class="nav-link" data-scroll-target="#license">License</a></li>
   </ul></li>
@@ -445,13 +449,10 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="why-code-that-sounds" class="level2">
 <h2 class="anchored" data-anchor-id="why-code-that-sounds">Why <em>Code That Sounds</em>?</h2>
-<p>The title may appear straightforward at first, but upon deeper reflection, it reveals a rich conceptual landscape that frames the entire approach of this book. More than a literal description of code that produces audio, it invites us to consider the interplay between computation, perception, and artistic expression. In this book, we explore how code becomes a medium for crafting sonic experiences—how it can be shaped, composed, and performed to produce not only functional systems, but also resonant and meaningful works of art.</p>
-<p>At the most immediate level, the phrase refers to the act of writing code that generates sound. Whether synthesizing a sine wave, constructing a step sequencer, or routing audio signals in real time, we are engaging with code as a tool for sonic creation. Tools like Pure Data make this direct connection between programming and audio particularly tangible: the act of connecting objects, defining behaviors, and mapping parameters becomes inseparable from the process of producing audible outcomes. In this sense, <em>Code That Sounds</em> expresses the essential relationship between the logical structure of algorithms and the materiality of sound.</p>
-<p>Yet the phrase also invites a more poetic interpretation. “Sounds,” in English, can refer not only to audio but also to the way something resonates intellectually or emotionally. Code, then, is not merely a set of instructions—it is a language with its own voice, rhythm, and character. A piece of code can “sound right” in the same way that a musical phrase does. This expressive quality of code becomes especially relevant in the context of creative practice. As we will see throughout the book, the aesthetic choices embedded in code—its structure, logic, timing, and responsiveness—are as crucial as the sounds it ultimately produces. In this light, the act of programming becomes a compositional gesture, where syntax and semantics coalesce into a form of audible thinking.</p>
-<p>This perspective positions code as a bridge between traditionally separate domains: between the analytical and the intuitive, the procedural and the performative, the technical and the poetic. Sound has long been associated with music, art, and embodiment; code, with abstraction and logic. But when we write <em>Code That Sounds</em>, we dissolve these boundaries. We begin to treat code not as a rigid mechanism, but as a generative medium—capable of producing form, emotion, and experience. The phrase thus embodies the interdisciplinary ethos that guides this book, where creative coding is not merely about mastering a tool, but about exploring how different ways of knowing and making converge through sound.</p>
-<p>There is also a sense of agency embedded in the phrase. This is not just code that happens to produce sound—it is code that is designed to sound. The use of the active verb implies intention, purpose, and dynamism. It reminds us that the systems we build are not passive containers for sound, but active participants in shaping it. In interactive contexts especially, where the code responds to movement, sensors, or user input, the sounding becomes an emergent property of a living system. Here, the code is not simply a means to an end—it is the co-author of a sonic event.</p>
-<p><em>Code That Sounds</em> gestures toward a methodology rooted in exploration and discovery. It encourages us to treat code as something to be listened to, not just debugged. What does a patch “sound like” when put into motion? What happens when you tweak a parameter or rewire a signal path? This book invites you to approach creative coding as a space of experimentation—where understanding emerges through making, and insight through listening. We embrace this attitude by providing examples, sketches, and exercises that are meant not to be followed blindly, but to be remixed, transformed, and extended.</p>
-<p><em>Code That Sounds</em> captures the spirit of this book: it is about making sound with code, but also about listening to the voice of code itself. It is about finding resonance between systems and sensations, and about using programming as a medium for creative exploration. As you work through the following chapters, we encourage you to tune your ears not only to the sounds that emerge, but to the ideas, questions, and possibilities that those sounds carry with them. This is not just about learning how to code—this is about learning how to listen to what code can become.</p>
+<p>At first glance, the title <em>Code That Sounds</em> may seem literal—code that produces audio. But it also opens a conceptual field that reflects the spirit of this book: the convergence of computation, sound, and creative expression. We treat code not only as a functional tool for generating and processing sound, but as a medium for composition, experimentation, and discovery.</p>
+<p>The title highlights the immediate activity of coding to produce audio: from simple sine waves to complex interactive systems, tools like Pure Data turn logical structures into audible forms. But it also gestures toward a deeper, more poetic reading. In English, “sounds” doesn’t only refer to audio—it also implies resonance, meaning, and sensibility. A line of code can <em>sound right</em>, not just technically but aesthetically. This expressive quality reveals code as a language with tone, rhythm, and intention.</p>
+<p>Through this lens, <em>Code That Sounds</em> positions programming as a creative act—part design, part composition. It invites us to explore how code becomes an audible thought, a structure that lives and reacts, especially in interactive systems. The code doesn’t just <em>produce</em> sound—it <em>performs</em> it.</p>
+<p>This book is shaped by that ethos. We approach creative coding not simply as a technical challenge, but as a practice of listening, of composing with systems, of learning through making. <em>Code That Sounds</em> is both our method and our invitation: to write, to hear, and to imagine what code can become.</p>
 </section>
 <section id="from-problem-to-algorithm" class="level2">
 <h2 class="anchored" data-anchor-id="from-problem-to-algorithm">From Problem to Algorithm</h2>
@@ -489,6 +490,92 @@ ul.task-list li input[type="checkbox"] {
 <p>By concentrating first on backend logic, we build a strong foundation that can later support more refined user interactions. GUI design will certainly be addressed, but in future chapters, when we are equipped with a clearer understanding of how our systems behave and how we want them to evolve. In other words, we treat the visual layer as a representation of logic, not a replacement for it.</p>
 <p>This book is an invitation to approach creative coding not as a set of shortcuts or pre-made solutions, but as a <em>process of inquiry</em>. We will get our hands dirty, make mistakes, and revise along the way. In doing so, we learn not just how to build systems, but how to think with and through them. That is the deeper promise of creative code.</p>
 </section>
+<section id="book-structure" class="level2">
+<h2 class="anchored" data-anchor-id="book-structure">Book Structure</h2>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+    A[Code that Sounds&lt;br/&gt;Creative Coding and Sonic Thinking with Pure Data] --&gt; B[Preface]
+    
+    A --&gt; C[Play and Rec]
+    C --&gt; C1[Arrays and Tables]
+    C --&gt; C2[readsf~ and writesf~]
+    C --&gt; C3[Basic Recording Concepts]
+    
+    A --&gt; D[Synthesis]
+    D --&gt; D1[Oscillators]
+    D --&gt; D2[Additive Synthesis]
+    D --&gt; D3[Subtractive Synthesis]
+    D --&gt; D4[Modulation Techniques]
+    D4 --&gt; D4a[AM - Amplitude Modulation]
+    D4 --&gt; D4b[RM - Ring Modulation]
+    D4 --&gt; D4c[FM - Frequency Modulation]
+    
+    A --&gt; E[Sonification]
+    E --&gt; E1[Electrocardiogram Step Sequencer]
+    E1 --&gt; E1a[ECG Data Processing]
+    E1 --&gt; E1b[Step Sequence Generation]
+    E1 --&gt; E1c[Creative Applications]
+    
+    E --&gt; E2[Image Sonification with RGBA Data]
+    E2 --&gt; E2a[Image Loading and Analysis]
+    E2 --&gt; E2b[Pixel Data Extraction]
+    E2 --&gt; E2c[Audio Synthesis from Color]
+    
+    E --&gt; E3[Linear Image Scanner]
+    E3 --&gt; E3a[Static Image Scanning]
+    E3 --&gt; E3b[Dynamic Scan Points]
+    E3 --&gt; E3c[Frequency Mapping]
+    
+    E --&gt; E4[Live Camera Scanner]
+    E4 --&gt; E4a[Real-time Video Processing]
+    E4 --&gt; E4b[Enhanced Controls]
+    E4 --&gt; E4c[Interactive Applications]
+    
+    A --&gt; F[Space]
+    F --&gt; F1[Stereophonic Spatialization]
+    F1 --&gt; F1a[Intensity Panning]
+    F1 --&gt; F1b[Amplitude and Phase]
+    F1 --&gt; F1c[Trigonometric Implementation]
+    
+    F --&gt; F2[Quadraphonic Systems]
+    F2 --&gt; F2a[John Chowning Model]
+    F2 --&gt; F2b[Lookup Tables]
+    F2 --&gt; F2c[Phase Offsets]
+    F2 --&gt; F2d[Distance Modeling]
+    
+    F --&gt; F3[Reverberation Modeling]
+    F3 --&gt; F3a[Sabine Formula]
+    F3 --&gt; F3b[Absorption Coefficients]
+    F3 --&gt; F3c[Implementation Techniques]
+    
+    A --&gt; G[Bjorklund Algorithm]
+    G --&gt; G1[Euclidean Rhythms]
+    G --&gt; G2[Pure Data Implementation]
+    G --&gt; G3[External Development in C]
+    
+    A --&gt; H[Anexo]
+    H --&gt; H1[Sonification Artworks]
+    H --&gt; H2[Reference Materials]
+    
+    style A fill:#e1f5fe
+    style B fill:#f3e5f5
+    style C fill:#fff3e0
+    style D fill:#e8f5e8
+    style E fill:#fce4ec
+    style F fill:#f1f8e9
+    style G fill:#e0f2f1
+    style H fill:#fafafa
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
 <section id="contributing" class="level2">
 <h2 class="anchored" data-anchor-id="contributing">Contributing</h2>
 <p>If you would like to contribute to this book, please feel free to fork the repository and submit a pull request. I welcome any suggestions, corrections, or improvements to the content. You can also report issues or request features by opening an issue in the repository. You can find the source code for this book on <a href="https://github.com/ezequielabregu/code-that-sounds">GitHub</a>.</p>
@@ -506,10 +593,6 @@ Note
 <p>Please, if you have questions about PD, post them on the <a href="https://forum.pdpatchrepo.info/">Pure Data forum</a>, the <a href="https://lists.iem.at/postorius/lists/">Pd mailing lists</a>, or the <a href="https://www.facebook.com/groups/4729684494">Facebook PD Group</a>.</p>
 </div>
 </div>
-</section>
-<section id="contact" class="level2">
-<h2 class="anchored" data-anchor-id="contact">Contact</h2>
-<p>If you have any questions, comments, or feedback about this book, please feel free to reach out to me at <a href="mailto:eabregu.dev@gmail.com">eabregu.dev@gmail.com</a>. I would love to hear from you!</p>
 </section>
 <section id="acknowledgements" class="level2">
 <h2 class="anchored" data-anchor-id="acknowledgements">Acknowledgements</h2>

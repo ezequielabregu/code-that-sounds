@@ -1,0 +1,3283 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.31">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>8&nbsp; Appendix – Code that Sounds</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../chapters/references.html" rel="next">
+<link href="../chapters/conclusion.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-8ef56b68f8fa1e9d2ba328e99e439f80.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-1e81d527365e20b3495763033adbcf98.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-8ab8b311eebd604b8865a9cbc6c08092.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-1e81d527365e20b3495763033adbcf98.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-sidebar floating quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/appendix.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Appendix</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Code that Sounds</a> 
+        <div class="sidebar-tools-main tools-wide">
+    <a href="https://github.com/ezequielabregu/code-that-sounds" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/introduction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/playrec.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Rec &amp; Play</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/sequencer.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Sequencer</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/synthesis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Synthesis</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/sonification.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Sonification</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/space.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Space</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/conclusion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Conclusion</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/appendix.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Appendix</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#data-sonification-archive" id="toc-data-sonification-archive" class="nav-link active" data-scroll-target="#data-sonification-archive"><span class="header-section-number">8.1</span> Data Sonification Archive</a></li>
+  <li><a href="#sonification-artwork-data-base" id="toc-sonification-artwork-data-base" class="nav-link" data-scroll-target="#sonification-artwork-data-base"><span class="header-section-number">8.2</span> Sonification Artwork Data Base</a></li>
+  <li><a href="#midi-virtual-ports" id="toc-midi-virtual-ports" class="nav-link" data-scroll-target="#midi-virtual-ports"><span class="header-section-number">8.3</span> MIDI virtual ports</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content column-body" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Appendix</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta column-body">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="data-sonification-archive" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="data-sonification-archive"><span class="header-section-number">8.1</span> Data Sonification Archive</h2>
+<p><a href="https://sonification.design/">Data Sonification Archive</a> - curated collection is part of a broader research endeavor in which data, sonification and design converge to explore the potential of sound in complementing other modes of representation and broadening the publics of data. With visualization still being one of the prominent forms of data transformation, we believe that sound can both enrich the experience of data and build new publics.</p>
+</section>
+<section id="sonification-artwork-data-base" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="sonification-artwork-data-base"><span class="header-section-number">8.2</span> Sonification Artwork Data Base</h2>
+<style>
+.table-container {
+  font-size: 0.8em;
+  overflow-x: auto;
+  margin-right: 20px;
+}
+
+.table-container table {
+  width: 100%;
+  max-width: 100%;
+  font-size: 0.85em;
+}
+
+.table-container th,
+.table-container td {
+  font-size: 0.8em;
+  padding: 6px 8px;
+  white-space: nowrap;
+}
+
+@media (max-width: 1200px) {
+  .table-container {
+    font-size: 0.75em;
+  }
+}
+</style>
+
+<div class="table-container">
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">Name of the work</th>
+<th data-quarto-table-cell-role="th">Artist(s)</th>
+<th data-quarto-table-cell-role="th">Topic of dataset</th>
+<th data-quarto-table-cell-role="th">Data category</th>
+<th data-quarto-table-cell-role="th">Data source</th>
+<th data-quarto-table-cell-role="th">Type of output</th>
+<th data-quarto-table-cell-role="th">secondary output</th>
+<th data-quarto-table-cell-role="th">Realtime</th>
+<th data-quarto-table-cell-role="th">Historical/ non-temporal</th>
+<th data-quarto-table-cell-role="th">Short description</th>
+<th data-quarto-table-cell-role="th">remarks</th>
+<th data-quarto-table-cell-role="th">Release date</th>
+<th data-quarto-table-cell-role="th">Link to original site or video</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Stadsmuziek/ Citymusic</td>
+<td>Akko Goldenbeld</td>
+<td>GIS-data</td>
+<td>geographical</td>
+<td>City of Eindhoven and Amsterdam</td>
+<td>installation</td>
+<td>sculpture</td>
+<td>NaN</td>
+<td>X</td>
+<td>sonification of cityscape</td>
+<td>NaN</td>
+<td>2011-04-20 00:00:00</td>
+<td>https://youtu.be/XdE_L-cOwM0</td>
+</tr>
+<tr class="even">
+<td>Two trains</td>
+<td>Brian Foo</td>
+<td>Income data in New York</td>
+<td>economic</td>
+<td>US Census data</td>
+<td>video</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>X</td>
+<td>sonification of income inequality in New York</td>
+<td>NaN</td>
+<td>2015-01-31 00:00:00</td>
+<td>https://goo.gl/UVmgTD</td>
+</tr>
+<tr class="odd">
+<td>Stanley cup</td>
+<td>Bard Edlund</td>
+<td>2012 NHL Stanley Cup playoffs goals</td>
+<td>sports</td>
+<td>nhl.com and Wikipedia</td>
+<td>video</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>X</td>
+<td>sonification of playoff goals in 2012 NHL competition</td>
+<td>NaN</td>
+<td>2012-06-30 00:00:00</td>
+<td>https://goo.gl/DOiQ5W</td>
+</tr>
+<tr class="even">
+<td>The Last Gun</td>
+<td>Constantine Zlatev</td>
+<td>US weapon exports 1960-2009</td>
+<td>economic</td>
+<td>NaN</td>
+<td>installation</td>
+<td>sculpture</td>
+<td>NaN</td>
+<td>X</td>
+<td>sonification of US weapon exports</td>
+<td>NaN</td>
+<td>2012-10-04 00:00:00</td>
+<td>https://goo.gl/9t5xPP</td>
+</tr>
+<tr class="odd">
+<td>The sound of a falling currency</td>
+<td>BBC</td>
+<td>USD-GBP exchange rate</td>
+<td>economic</td>
+<td>NaN</td>
+<td>audio</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>X</td>
+<td>sonification of USD-GBP exchange rate</td>
+<td>NaN</td>
+<td>2017-07-08 00:00:00</td>
+<td>https://goo.gl/XXAt4t</td>
+</tr>
+<tr class="even">
+<td>The Climate Symphony</td>
+<td>Marty Quinn</td>
+<td>climate data extracted from ice core</td>
+<td>climatological</td>
+<td>US Greenland Ice Sheet Project 2 (GISP2) and the European Greenland Ice Core Program (GRIP)</td>
+<td>video</td>
+<td>multimedia presentation</td>
+<td>NaN</td>
+<td>X</td>
+<td>sonification of 110000 years of climatological data</td>
+<td>NaN</td>
+<td>2007-05-25 00:00:00</td>
+<td>https://goo.gl/LAam5A</td>
+</tr>
+<tr class="odd">
+<td>Stock Exchange Piece</td>
+<td>Matthieu Saladin</td>
+<td>50-day Moving Average⁠1 of crude oil and gold during 50 days (between 4th of March and 22nd of April 200</td>
+<td>economic</td>
+<td>NaN</td>
+<td>audio</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>X</td>
+<td>sonification of gold and crude oil prices</td>
+<td>NaN</td>
+<td>2007-04-22 00:00:00</td>
+<td>https://goo.gl/DdHrv6</td>
+</tr>
+<tr class="even">
+<td>Playing the lottery in plano</td>
+<td>Warren Burt</td>
+<td>New South Wales lottery results</td>
+<td>urban</td>
+<td>New South Wales lottery results</td>
+<td>audio</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>X</td>
+<td>sonification of lottery results</td>
+<td>NaN</td>
+<td>2009-12-06 00:00:00</td>
+<td>https://goo.gl/ZrEkOT</td>
+</tr>
+<tr class="odd">
+<td>N.A.G. (Network Auralization for Gnutella)</td>
+<td>Jason Freeman</td>
+<td>P2P filesharing</td>
+<td>internet</td>
+<td>Gnuttela API</td>
+<td>audio</td>
+<td>software</td>
+<td>X</td>
+<td>NaN</td>
+<td>sonification of P2P network</td>
+<td>NaN</td>
+<td>2003-07-01 00:00:00</td>
+<td>https://goo.gl/poZKfi</td>
+</tr>
+<tr class="even">
+<td>Solar Wind Sonification</td>
+<td>Robert Alexander</td>
+<td>solarwind</td>
+<td>astronomical</td>
+<td>NASA Advanced composition Explorer Satellite</td>
+<td>audio</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>X</td>
+<td>sonification of solar data</td>
+<td>NaN</td>
+<td>2009-10-03 00:00:00</td>
+<td>https://goo.gl/89LeKi</td>
+</tr>
+<tr class="odd">
+<td>Rock Music</td>
+<td>Mara Helmuth</td>
+<td>melting of the Matanuska glacier in Alaska during a 24-hour period.</td>
+<td>geological</td>
+<td>NaN</td>
+<td>audio</td>
+<td>multimedia presentation</td>
+<td>NaN</td>
+<td>X</td>
+<td>sonification of glacier data</td>
+<td>NaN</td>
+<td>2004-11-01 00:00:00</td>
+<td>https://goo.gl/z5oY7R</td>
+</tr>
+<tr class="even">
+<td>Listen to Wikipedia</td>
+<td>Stephen LaPorte and Mahmoud Hashemi</td>
+<td>modifications of Wikipedia content</td>
+<td>collaborative media</td>
+<td>Wikipedia via Wikimon</td>
+<td>audio-visual net-art</td>
+<td>audio</td>
+<td>X</td>
+<td>NaN</td>
+<td>sonification of modifications on Wikipedia</td>
+<td>NaN</td>
+<td>2013-07-28 00:00:00</td>
+<td>https://goo.gl/6iUx5k</td>
+</tr>
+<tr class="odd">
+<td>You’ll have to take my word for it</td>
+<td>Brian House</td>
+<td>car crash</td>
+<td>technological</td>
+<td>car black box</td>
+<td>composition</td>
+<td>video</td>
+<td>NaN</td>
+<td>X</td>
+<td>sonification of car crash</td>
+<td>NaN</td>
+<td>2013-03-09 00:00:00</td>
+<td>https://goo.gl/dLxMBz</td>
+</tr>
+<tr class="even">
+<td>Rhythms of the City</td>
+<td>Mar Canet Sola and Varvara Guljajeva</td>
+<td>social media data in different cities</td>
+<td>social media</td>
+<td>Twitter, Youtube, Flickr API's</td>
+<td>installation</td>
+<td>video</td>
+<td>X</td>
+<td>NaN</td>
+<td>sonification of social media activity</td>
+<td>NaN</td>
+<td>2011-11-15 00:00:00</td>
+<td>https://goo.gl/vQSIVi</td>
+</tr>
+<tr class="odd">
+<td>Tweetscapes</td>
+<td>Team at HEAVYLISTENING, German National Radio, CITEC Bielefeld, and Sound Studies at University of the Arts Berlin</td>
+<td>Twitter hashtags</td>
+<td>social media</td>
+<td>Twitter API</td>
+<td>audio-visual net-art</td>
+<td>video</td>
+<td>X</td>
+<td>NaN</td>
+<td>sonification of twitter activity</td>
+<td>NaN</td>
+<td>2012-02-24 00:00:00</td>
+<td>https://goo.gl/7KoYP6</td>
+</tr>
+<tr class="even">
+<td>Twittersynth/ Twinthesis</td>
+<td>Sam Harman</td>
+<td>Twitter public tweets based on keywords</td>
+<td>social media</td>
+<td>Twitter API</td>
+<td>software art</td>
+<td>video</td>
+<td>X</td>
+<td>NaN</td>
+<td>Sonification of public tweets</td>
+<td>NaN</td>
+<td>2011-03-13 00:00:00</td>
+<td>https://goo.gl/djBeQo</td>
+</tr>
+<tr class="odd">
+<td>Polarseeds</td>
+<td>Polar Seeds Group</td>
+<td>melting icesheet in Greenland</td>
+<td>geological</td>
+<td>data collected by Marco Tedesco</td>
+<td>exhibition</td>
+<td>video</td>
+<td>NaN</td>
+<td>X</td>
+<td>Sonification of several climatological parameters in Greenland</td>
+<td>NaN</td>
+<td>2013-01-15 00:00:00</td>
+<td>https://goo.gl/UfiwgH</td>
+</tr>
+<tr class="even">
+<td>Masachussets Geophonic</td>
+<td>Arvid Tomayko</td>
+<td>geological data from Massachusetts</td>
+<td>geological</td>
+<td>USGS MA geologic map</td>
+<td>interactive installation</td>
+<td>software</td>
+<td>NaN</td>
+<td>X</td>
+<td>Sonification of geological features in Massachusetts</td>
+<td>NaN</td>
+<td>2013-10-23 00:00:00</td>
+<td>https://goo.gl/67yixV</td>
+</tr>
+<tr class="odd">
+<td>Life Music</td>
+<td>Dunn &amp; Clarke</td>
+<td>amino acids</td>
+<td>biological</td>
+<td>NaN</td>
+<td>audio</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>X</td>
+<td>Sonification of amino acids</td>
+<td>NaN</td>
+<td>1999-02-01 00:00:00</td>
+<td>https://goo.gl/3IXcqo</td>
+</tr>
+<tr class="even">
+<td>Earth’s Magnetic Field: Realizations in Computed Electronic Sound</td>
+<td>Charles Dodge</td>
+<td>earth's magnetic field</td>
+<td>astronomical</td>
+<td>NaN</td>
+<td>audio</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>X</td>
+<td>Sonification of the earth's magnetic field throuh the KP index</td>
+<td>NaN</td>
+<td>1970</td>
+<td>https://goo.gl/0CUwY2</td>
+</tr>
+<tr class="odd">
+<td>The Listening Machine</td>
+<td>Daniel Jones &amp; Peter Gregson</td>
+<td>tweets from selected group of participants</td>
+<td>social media</td>
+<td>Twitter API</td>
+<td>audio</td>
+<td>net-art and TV-stream</td>
+<td>X</td>
+<td>NaN</td>
+<td>Sonification of tweets by 500 people, according to topic</td>
+<td>NaN</td>
+<td>2012-04-15 00:00:00</td>
+<td>https://goo.gl/L9GLm9</td>
+</tr>
+<tr class="even">
+<td>Quotidian Record</td>
+<td>Brian House</td>
+<td>location data</td>
+<td>urban data</td>
+<td>Open Paths tracking app</td>
+<td>audio</td>
+<td>physical record</td>
+<td>NaN</td>
+<td>X</td>
+<td>Sonification of personal location data</td>
+<td>NaN</td>
+<td>2012-09-05 00:00:00</td>
+<td>https://goo.gl/m0vA1j</td>
+</tr>
+<tr class="odd">
+<td>AERO</td>
+<td>Gregory Reeves</td>
+<td>airport departure/ arrival data</td>
+<td>urban data</td>
+<td>airport websites</td>
+<td>app</td>
+<td>audio</td>
+<td>X</td>
+<td>X</td>
+<td>Sonification of flight arrivals/departures</td>
+<td>NaN</td>
+<td>2014-05-07 00:00:00</td>
+<td>https://goo.gl/kOhgaU</td>
+</tr>
+<tr class="even">
+<td>1945-1998</td>
+<td>Isao Hashimoto</td>
+<td>nuclear explosions 1945-1998</td>
+<td>urban data</td>
+<td>NaN</td>
+<td>video</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>X</td>
+<td>Sonification of 2053 nuclear tests</td>
+<td>NaN</td>
+<td>2003</td>
+<td>https://goo.gl/qj9jTn</td>
+</tr>
+<tr class="odd">
+<td>WikiIRC ou la sonification de Wikipedia</td>
+<td>Baudu, Templier &amp; Bloques</td>
+<td>changes in the french version of Wikipedia</td>
+<td>collaborative media</td>
+<td>Wikipedia API</td>
+<td>installation</td>
+<td>NaN</td>
+<td>X</td>
+<td>NaN</td>
+<td>Sonification of changes in French version of Wikipedia. Not based on the content but only the characters (letters, numbers, punctuation)</td>
+<td>NaN</td>
+<td>2012-12-03 00:00:00</td>
+<td>https://goo.gl/5qZZq0</td>
+</tr>
+<tr class="even">
+<td>Leech</td>
+<td>Curtis McKinney &amp; Alain Renaud</td>
+<td>Bittorrent traffic</td>
+<td>network</td>
+<td>Bittorent client monitoring</td>
+<td>video</td>
+<td>NaN</td>
+<td>X</td>
+<td>NaN</td>
+<td>Sonification of filesharing via BIttorrent</td>
+<td>NaN</td>
+<td>2011-03-28 00:00:00</td>
+<td>https://goo.gl/fsKseR</td>
+</tr>
+<tr class="odd">
+<td>Maelstrom</td>
+<td>Jones &amp; Bulley</td>
+<td>sounds uploaded to the internet</td>
+<td>collaborative media</td>
+<td>Youtube, Freesound, ...</td>
+<td>installation</td>
+<td>NaN</td>
+<td>X</td>
+<td>NaN</td>
+<td>Sonification of sounds uploaded to the internet, according to a prewritten score</td>
+<td>NaN</td>
+<td>2011-11-24 00:00:00</td>
+<td>https://goo.gl/VImH2h</td>
+</tr>
+<tr class="even">
+<td>Submap Ebullation 2.0</td>
+<td>Feles Dániel, Gergely Krisztián, Kiss László</td>
+<td>news headlines</td>
+<td>news</td>
+<td>origo.hu</td>
+<td>video</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>X</td>
+<td>Sonification of mentions of villages/cities iin news headlines</td>
+<td>NaN</td>
+<td>2010-10-07 00:00:00</td>
+<td>https://goo.gl/Ar31BG</td>
+</tr>
+<tr class="odd">
+<td>FMS Symphony</td>
+<td>CSV Soundsystem</td>
+<td>US cash spending and borrowing</td>
+<td>economic</td>
+<td>Daily Treasury Statements from the Financial Management Service https://www.fms.treas.gov/dts/index.html</td>
+<td>website</td>
+<td>video</td>
+<td>NaN</td>
+<td>X</td>
+<td>Sonification of US government cash borrowing and spending</td>
+<td>NaN</td>
+<td>2013-04-28 00:00:00</td>
+<td>https://goo.gl/UP2JjM</td>
+</tr>
+<tr class="even">
+<td>sMax</td>
+<td>Fabio Cifariello Ciardi</td>
+<td>stock markets</td>
+<td>economic</td>
+<td>NaN</td>
+<td>software</td>
+<td>several compositions</td>
+<td>X</td>
+<td>NaN</td>
+<td>Sonification of stock market data</td>
+<td>NaN</td>
+<td>2004-11-01 00:00:00</td>
+<td>https://goo.gl/NU7jaV</td>
+</tr>
+<tr class="odd">
+<td>Maestro Frankenstein 2.0</td>
+<td>Arvid Tomayko</td>
+<td>geological data (but open to other data)</td>
+<td>geological</td>
+<td>sample sets by Tomayko</td>
+<td>software</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>X</td>
+<td>Sonification of geological data</td>
+<td>NaN</td>
+<td>2013-11-18 00:00:00</td>
+<td>https://goo.gl/YjQ7iw</td>
+</tr>
+<tr class="even">
+<td>Sonart</td>
+<td>Yeo, Berger, Lee at CCRMA</td>
+<td>image data (eg: RGB values from pixels)</td>
+<td>media</td>
+<td>NaN</td>
+<td>software</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>X</td>
+<td>Sonification of image data</td>
+<td>NaN</td>
+<td>2004-11-01 00:00:00</td>
+<td>https://goo.gl/4tVHcJ</td>
+</tr>
+<tr class="odd">
+<td>Sonipy</td>
+<td>David Worrall</td>
+<td>stock market data (australia capital markets)</td>
+<td>economic</td>
+<td>NaN</td>
+<td>software framework (Python)</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>X</td>
+<td>Sonification of stock market dta but open to other datasets</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>https://goo.gl/h1tavj</td>
+</tr>
+<tr class="even">
+<td>Artwonk/ Musicwonk</td>
+<td>John Dunn</td>
+<td>several data types</td>
+<td>general</td>
+<td>NaN</td>
+<td>software</td>
+<td>several compositions by the developer and by users</td>
+<td>NaN</td>
+<td>X</td>
+<td>Algoritmic composition software</td>
+<td>NaN</td>
+<td>1986</td>
+<td>https://goo.gl/hmzfm7</td>
+</tr>
+<tr class="odd">
+<td>FROM HIPPARCHUS TO HIPPARCOS: A SONIFICATION OF STELLAR CATALOGUES</td>
+<td>Jamie Ferguson in collaboration with ESA</td>
+<td>star maps</td>
+<td>astronomical</td>
+<td>ancient star catologues from the Greek era until ESA satellite data</td>
+<td>audio</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>X</td>
+<td>sonification of stellar maps</td>
+<td>NaN</td>
+<td>2016-09-22 00:00:00</td>
+<td>https://goo.gl/8NXCgJ</td>
+</tr>
+<tr class="even">
+<td>Chains</td>
+<td>Daito Manabe</td>
+<td>Bitcoin and Ethereum transactions</td>
+<td>economic</td>
+<td>API's</td>
+<td>installation interactive</td>
+<td>NaN</td>
+<td>X</td>
+<td>NaN</td>
+<td>interactive sonification of criptocurrency transactions</td>
+<td>NaN</td>
+<td>2016-03-05 00:00:00</td>
+<td>https://goo.gl/d2jwXR</td>
+</tr>
+<tr class="odd">
+<td>Artefact#0, Digital Necrophony</td>
+<td>Mathilde Lavenne, Daniel Cabanzo</td>
+<td>material data</td>
+<td>geological</td>
+<td>sensor reading</td>
+<td>installation</td>
+<td>NaN</td>
+<td>X</td>
+<td>NaN</td>
+<td>sonification of marble texture</td>
+<td>NaN</td>
+<td>2016-10-08 00:00:00</td>
+<td>https://goo.gl/wQjLyT</td>
+</tr>
+<tr class="even">
+<td>Floodtide</td>
+<td>John Eacott</td>
+<td>tides</td>
+<td>astronomical</td>
+<td>touring sensor and permanent sensor</td>
+<td>online composition</td>
+<td>several compositions</td>
+<td>X</td>
+<td>X</td>
+<td>sonification of tidal flow</td>
+<td>NaN</td>
+<td>2008</td>
+<td>https://goo.gl/LkIst7</td>
+</tr>
+<tr class="odd">
+<td>Wheather Jams</td>
+<td>Wheather Analytics</td>
+<td>Washington DC area weather data</td>
+<td>meteorological</td>
+<td>own data and satellite data</td>
+<td>video</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>X</td>
+<td>sonification of meteorological data</td>
+<td>NaN</td>
+<td>2015</td>
+<td>https://goo.gl/R9Mz44</td>
+</tr>
+<tr class="even">
+<td>The Four Inner Planets</td>
+<td>Michael Quinton, Pre-Doctoral Researcher, Edinburgh Napier University, David Benyon, Professor of Computing, Edinburgh Napier University, Iain McGregor, Lecturer in Sound Design, Edinburgh Napier University</td>
+<td>Exoplanets' atmospheric conditions and the chemical properties of their atmospheres</td>
+<td>astronomical</td>
+<td>NaN</td>
+<td>audio</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>X</td>
+<td>sonification of Exoplanets' atmospheric conditions and the chemical properties of their atmospheres</td>
+<td>NaN</td>
+<td>2016-10-21 00:00:00</td>
+<td>https://goo.gl/3J9x2J</td>
+</tr>
+<tr class="odd">
+<td>The Sound of Sorting</td>
+<td>Timo Bingmann</td>
+<td>algorithm sorting</td>
+<td>mathematical</td>
+<td>formulas</td>
+<td>video</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>X</td>
+<td>sonification of sorting algorithms</td>
+<td>NaN</td>
+<td>2013-05-22 00:00:00</td>
+<td>https://goo.gl/pGyIXL</td>
+</tr>
+<tr class="even">
+<td>LHChamber Music</td>
+<td>Domenico Vicinanza</td>
+<td>particle data</td>
+<td>physics</td>
+<td>obtained by four detectors – ALICE, ATLAS, CMS and LHCb – during the Large Hadron Collider run 2010-2013</td>
+<td>several compositions</td>
+<td>video</td>
+<td>NaN</td>
+<td>X</td>
+<td>sonification of particle data in the LHC</td>
+<td>NaN</td>
+<td>2014-09-29 00:00:00</td>
+<td>https://goo.gl/HgGMpB</td>
+</tr>
+<tr class="odd">
+<td>Etna Sonification Project</td>
+<td>Domenico Vicinanza</td>
+<td>Seismographical data at the Etna Vocano</td>
+<td>seismic</td>
+<td>Digital seismograph placed on the Etna volcano, Istituto Nazionale di Geofisica e Vulcanologia</td>
+<td>audio</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>sonification of seismic data at Etna volcano</td>
+<td>NaN</td>
+<td>2005</td>
+<td>https://goo.gl/mXCW10</td>
+</tr>
+<tr class="even">
+<td>Phantom Terrains</td>
+<td>Frank Swain &amp; Daniel Jones</td>
+<td>network data</td>
+<td>network</td>
+<td>network data streamed to the hearing devices</td>
+<td>interactive walk</td>
+<td>audio</td>
+<td>X</td>
+<td>NaN</td>
+<td>sonification of network data</td>
+<td>NaN</td>
+<td>2014-11-14 00:00:00</td>
+<td>https://goo.gl/rHrFMv</td>
+</tr>
+<tr class="odd">
+<td>LHC Open Symphony</td>
+<td>Domenico Vicinanza</td>
+<td>Higgs-Boson data</td>
+<td>physics</td>
+<td>particle data colected at the LHC</td>
+<td>audio</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>X</td>
+<td>sonification of the Higgs-boson particle</td>
+<td>NaN</td>
+<td>2014-06-17 00:00:00</td>
+<td>https://goo.gl/070Ldx</td>
+</tr>
+<tr class="even">
+<td>Voyager 1 &amp; 2 spacecraft duet</td>
+<td>Domenico Vicinanza- Géant Sounds</td>
+<td>astronomical data collected by Voyager 1 and 2</td>
+<td>astronomical</td>
+<td>collected by Voyager 1 and 2 spacecraft</td>
+<td>audio</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>X</td>
+<td>sonification of astronomical data collected by the Voyager 1 and 2 spacecrafts</td>
+<td>NaN</td>
+<td>2014-01-16 00:00:00</td>
+<td>https://goo.gl/qnAmFh</td>
+</tr>
+<tr class="odd">
+<td>The sound of Twitter</td>
+<td>Jeff Hemsley</td>
+<td>sonification of tweets using R</td>
+<td>social media</td>
+<td>test file compiled by author</td>
+<td>audio</td>
+<td>code</td>
+<td>NaN</td>
+<td>X</td>
+<td>sonifcation of tweets</td>
+<td>NaN</td>
+<td>2013-03-29 00:00:00</td>
+<td>https://goo.gl/c63zeq</td>
+</tr>
+<tr class="even">
+<td>Stock Market Music</td>
+<td>Patrick Sébastien Coulombe</td>
+<td>stock market prices</td>
+<td>economic</td>
+<td>via Beancounter</td>
+<td>video</td>
+<td>NaN</td>
+<td>X</td>
+<td>NaN</td>
+<td>sonification of stock prices</td>
+<td>NaN</td>
+<td>2009-07-01 00:00:00</td>
+<td>https://goo.gl/yyaqOi</td>
+</tr>
+<tr class="odd">
+<td>Kosmophone</td>
+<td>Jerry Chamkis</td>
+<td>electromagnetic spectrum (gamma-rays)</td>
+<td>physics</td>
+<td>Kosmophone (custom hardware)</td>
+<td>installation</td>
+<td>audio</td>
+<td>X</td>
+<td>NaN</td>
+<td>sonification of cosmic rays</td>
+<td>NaN</td>
+<td>2004</td>
+<td>https://goo.gl/EUm3ZB</td>
+</tr>
+<tr class="even">
+<td>Listen to a live Volocano</td>
+<td>Celos Reyes</td>
+<td>audification of volcano rumblings</td>
+<td>seismic</td>
+<td>Alaska Volcano Observatory</td>
+<td>audio</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>X</td>
+<td>audification of Alakna volcanoes' rumblings</td>
+<td>NaN</td>
+<td>2004-04-01 00:00:00</td>
+<td>https://goo.gl/5Zdm2D</td>
+</tr>
+<tr class="odd">
+<td>New York Skyline Melody</td>
+<td>Heitor Villa-Lobos</td>
+<td>building height</td>
+<td>urban</td>
+<td>self-made graph of Manhattan skyline</td>
+<td>composition</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>X</td>
+<td>sonification of graph of Manhattan skyline</td>
+<td>NaN</td>
+<td>1939</td>
+<td>https://goo.gl/8b63JS</td>
+</tr>
+<tr class="even">
+<td>Solar Beat</td>
+<td>Luke Twyman (WhiteVinylDesign)</td>
+<td>orbit of planets</td>
+<td>astronomical</td>
+<td>NaN</td>
+<td>interactive website</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>X</td>
+<td>sonification of planetary orbits</td>
+<td>first version in 2010, current in 2015</td>
+<td>2010/ 2015</td>
+<td>https://goo.gl/V8WtRc</td>
+</tr>
+<tr class="odd">
+<td>Solar Wind: Sounds Of Space, Stereo Spectro</td>
+<td>David Bithell and Roberto Morales</td>
+<td>solar wind</td>
+<td>astronomical</td>
+<td>Helios 1 and 2 satellites</td>
+<td>software</td>
+<td>audio</td>
+<td>NaN</td>
+<td>X</td>
+<td>sonification of solar data</td>
+<td>NaN</td>
+<td>2011-01-18 00:00:00</td>
+<td>https://goo.gl/YXbY4Y</td>
+</tr>
+<tr class="even">
+<td>Sonification Sandbox</td>
+<td>Psychology Department's Sonification Lab at the Georgia Institute of Technology, Bruce Walker</td>
+<td>user-input</td>
+<td>NaN</td>
+<td>csv files</td>
+<td>software</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>X</td>
+<td>sonification of user input data</td>
+<td>NaN</td>
+<td>2002</td>
+<td>https://goo.gl/5a0s2N</td>
+</tr>
+<tr class="odd">
+<td>Transit of Venus</td>
+<td>Wayne Grim</td>
+<td>transit of Venus in front of the sun</td>
+<td>astronomical (visual)</td>
+<td>video-input</td>
+<td>video</td>
+<td>NaN</td>
+<td>X</td>
+<td>NaN</td>
+<td>sonification of planetary transit</td>
+<td>NaN</td>
+<td>2012-06-05 00:00:00</td>
+<td>https://goo.gl/L7QFD3</td>
+</tr>
+<tr class="even">
+<td>Digiti Sonus</td>
+<td>Yoon Chung Han</td>
+<td>fingerprint images</td>
+<td>urban biological</td>
+<td>user input</td>
+<td>interactive installation</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>X</td>
+<td>sonification of visual features of fingerprints</td>
+<td>NaN</td>
+<td>2013</td>
+<td>https://goo.gl/n8dtvz</td>
+</tr>
+<tr class="odd">
+<td>WebMelody</td>
+<td>UNISA team</td>
+<td>webserver HTTP requests</td>
+<td>internet</td>
+<td>custom tracking software</td>
+<td>audio</td>
+<td>NaN</td>
+<td>X</td>
+<td>NaN</td>
+<td>sonification of HTTP requests</td>
+<td>NaN</td>
+<td>2003</td>
+<td>https://goo.gl/jCEceA</td>
+</tr>
+<tr class="even">
+<td>A Decade of U.S. Home Prices</td>
+<td>Jess Jiang</td>
+<td>US housing prices</td>
+<td>economic</td>
+<td>Case-Shiller home price index</td>
+<td>compositions</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>X</td>
+<td>sonification of housing prices in the USA</td>
+<td>NaN</td>
+<td>2011-04-26 00:00:00</td>
+<td>https://goo.gl/EKJiPC</td>
+</tr>
+<tr class="odd">
+<td>Weather for the blind</td>
+<td>Quintronics</td>
+<td>weather in New Orleans, Louisiana</td>
+<td>meteorological</td>
+<td>weather sensorstemperature, wind, sun, and rain</td>
+<td>installation</td>
+<td>audio livestream</td>
+<td>X</td>
+<td>NaN</td>
+<td>sonification of weather data in New Orleans</td>
+<td>based on Weather Witch, earlier version</td>
+<td>2014</td>
+<td>https://goo.gl/HBuKX4</td>
+</tr>
+<tr class="even">
+<td>Earthquake Quartet #1</td>
+<td>Andy Michael</td>
+<td>earthquakes in california</td>
+<td>seismic</td>
+<td>USGS</td>
+<td>composition</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>X</td>
+<td>sonification of earthquakes in california</td>
+<td>NaN</td>
+<td>1999-12-16 00:00:00</td>
+<td>https://goo.gl/u0z542</td>
+</tr>
+<tr class="odd">
+<td>Artificial Killing Machine</td>
+<td>Fletcher Moore</td>
+<td>U.S. military drone strikes</td>
+<td>urban</td>
+<td>The Bureau of Investigative Journalism via Dronestre.am</td>
+<td>installation</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>X</td>
+<td>sonification of drone strikes</td>
+<td>NaN</td>
+<td>2014</td>
+<td>https://goo.gl/9kvJbp</td>
+</tr>
+<tr class="even">
+<td>Kabbalistic Synthesizer</td>
+<td>Sam Conran</td>
+<td>astronomical data collected by</td>
+<td>astronomic</td>
+<td>custom hardware</td>
+<td>instrument</td>
+<td>audio</td>
+<td>NaN</td>
+<td>X</td>
+<td>sonification of earth's magnetic field, cosmic rays and Jupiter noise storm. Used as samples in synthesizer</td>
+<td>NaN</td>
+<td>2015</td>
+<td>https://goo.gl/dmT0V5</td>
+</tr>
+<tr class="odd">
+<td>Junction</td>
+<td>Micah Frank</td>
+<td>movements of taxi's in New York</td>
+<td>urban</td>
+<td>live footage from New York’s Traffic Management Center</td>
+<td>installation</td>
+<td>NaN</td>
+<td>X</td>
+<td>NaN</td>
+<td>sonification of taxi movements in New York</td>
+<td>NaN</td>
+<td>2010</td>
+<td>https://goo.gl/nbWRmP</td>
+</tr>
+<tr class="even">
+<td>Silk</td>
+<td>Dmitry Morozov</td>
+<td>Exchange rate between Bitcoin and Litecoin vs US dollar, Yuan, Euro, Canadian dollar and Russian ruble</td>
+<td>economic</td>
+<td>cryptocurrecy market API's</td>
+<td>installation</td>
+<td>NaN</td>
+<td>X</td>
+<td>NaN</td>
+<td>sonification of exchange rates between crypto- and traditional currencies</td>
+<td>NaN</td>
+<td>2015</td>
+<td>https://goo.gl/AEp58d</td>
+</tr>
+<tr class="odd">
+<td>Chirp</td>
+<td>LIGO Research Centre</td>
+<td>gravitational waves</td>
+<td>astronomic</td>
+<td>Laser Interferometer Gravitational-Wave Observatory</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>X</td>
+<td>audification of gravitational waves</td>
+<td>the original version has been stretched 50 times by Bogdan (see link 2)</td>
+<td>2016</td>
+<td>https://goo.gl/wcRu0C</td>
+</tr>
+<tr class="even">
+<td>The Sound Of People</td>
+<td>David Runge</td>
+<td>bases/ base pairs on chromosomes</td>
+<td>biological</td>
+<td>opensnp.org</td>
+<td>installation</td>
+<td>audio</td>
+<td>NaN</td>
+<td>X</td>
+<td>sonification of bases/ base pairs on chromosomes</td>
+<td>NaN</td>
+<td>2012</td>
+<td>https://goo.gl/Ec7nSF</td>
+</tr>
+<tr class="odd">
+<td>Max/MSP Stock Market Sonification</td>
+<td>Ben Craven</td>
+<td>stock market prices</td>
+<td>economic</td>
+<td>Yahoo Finance API</td>
+<td>software</td>
+<td>NaN</td>
+<td>X</td>
+<td>NaN</td>
+<td>sonification of stock prices</td>
+<td>This was an exercise</td>
+<td>2010-02-02 00:00:00</td>
+<td>https://goo.gl/4k4Jby</td>
+</tr>
+<tr class="even">
+<td>Specimen Box</td>
+<td>The OCR</td>
+<td>botnet activity</td>
+<td>urban</td>
+<td>Microsoft’s Digital Crimes Unit</td>
+<td>interactive installation</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>X</td>
+<td>sonification of botnet activity</td>
+<td>NaN</td>
+<td>2014</td>
+<td>https://goo.gl/5fGj33</td>
+</tr>
+<tr class="odd">
+<td>The Sound of the Economy: Data Sonification and the Cheeseburger Index</td>
+<td>Matt Kenney</td>
+<td>silver/ gold prices, car inventory, cheeseburgers (inflation)</td>
+<td>economic</td>
+<td>Convergex</td>
+<td>audio</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>X</td>
+<td>sonification of economic indicators in US economy</td>
+<td>more as an example, than as an artwork but the topic (cheeseburgers) is unusual.</td>
+<td>2016-04-04 00:00:00</td>
+<td>https://goo.gl/NIjj0A</td>
+</tr>
+<tr class="even">
+<td>Echo</td>
+<td>Binaura collective</td>
+<td>Wikipedia edits by state sources</td>
+<td>collaborative media</td>
+<td>Twitter bots</td>
+<td>installation</td>
+<td>NaN</td>
+<td>X</td>
+<td>NaN</td>
+<td>sonification of Wikipedia edits by government sources</td>
+<td>NaN</td>
+<td>2016</td>
+<td>https://goo.gl/jNiKhH</td>
+</tr>
+<tr class="odd">
+<td>Aqua•litative</td>
+<td>Jon Bellona, John Park, and John Reagan</td>
+<td>temperature and precipitation data in Califirnia</td>
+<td>meteorological</td>
+<td>weather stations in California</td>
+<td>installation</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>X</td>
+<td>sonification of drought in Calfornia</td>
+<td>NaN</td>
+<td>2016-04-18 00:00:00</td>
+<td>https://goo.gl/YhkSeP</td>
+</tr>
+<tr class="even">
+<td>#Carbonfeed</td>
+<td>Jon Bellona</td>
+<td>twitter carbon</td>
+<td>urban/ social media</td>
+<td>specific hashtags sourced via Twitter API through node.js</td>
+<td>installation</td>
+<td>twitter interaction</td>
+<td>X</td>
+<td>NaN</td>
+<td>sonification of carbon usage byusing Twitter</td>
+<td>NaN</td>
+<td>2014</td>
+<td>https://goo.gl/thvJZk</td>
+</tr>
+<tr class="odd">
+<td>Landwaves</td>
+<td>Binaura (Dániel Huszár, Ágoston Nagy and Bence Samu)</td>
+<td>1D reaction diffusion system</td>
+<td>physics</td>
+<td>mathematical models</td>
+<td>installation</td>
+<td>iOS app</td>
+<td>NaN</td>
+<td>X</td>
+<td>Raw sonification of a 1D reaction diffusion system</td>
+<td>NaN</td>
+<td>2012/2014/2015</td>
+<td>https://goo.gl/s99zxY</td>
+</tr>
+<tr class="even">
+<td>An Instrument for the Sonification of Everday Things</td>
+<td>Denis P Paul</td>
+<td>silhouette from everyday objects</td>
+<td>image</td>
+<td>laser input (distance between laser and object's contour)</td>
+<td>installation (instrument)</td>
+<td>video</td>
+<td>X</td>
+<td>NaN</td>
+<td>sonification of silhouette of everyday objects</td>
+<td>NaN</td>
+<td>2012</td>
+<td>https://goo.gl/LhZuvW</td>
+</tr>
+<tr class="odd">
+<td>The Pirate Cinema</td>
+<td>Nicolas Maigret</td>
+<td>P2P data</td>
+<td>internet</td>
+<td>Bittorrent data</td>
+<td>installation</td>
+<td>online version, performance, book</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>visualisation of P2P sharing</td>
+<td>sonification is a result of the film fragments being played</td>
+<td>2012</td>
+<td>https://goo.gl/yrIqwM</td>
+</tr>
+<tr class="even">
+<td>The Satellite Sounders</td>
+<td>Yolande Harris</td>
+<td>GPS data (person and satellite location)</td>
+<td>internet</td>
+<td>GPS</td>
+<td>installation (interactive walk)</td>
+<td>NaN</td>
+<td>X</td>
+<td>NaN</td>
+<td>sonification of location data</td>
+<td>NaN</td>
+<td>2007</td>
+<td>https://goo.gl/uS5ioL</td>
+</tr>
+<tr class="odd">
+<td>Atmospherics/Weather Works</td>
+<td>Andrea Polli</td>
+<td>weather data</td>
+<td>meteorological</td>
+<td>Mesoscale Atmospheric Simulation System (models) and satellite data</td>
+<td>installation</td>
+<td>interactive website</td>
+<td>NaN</td>
+<td>X</td>
+<td>sonification of two storms in US east coast area</td>
+<td>NaN</td>
+<td>2007</td>
+<td>https://goo.gl/EGHSSG</td>
+</tr>
+<tr class="even">
+<td>Project: Autobahn</td>
+<td>Tom Zimmerman</td>
+<td>car data</td>
+<td>urban</td>
+<td>OpenXC data (sensor data in car)</td>
+<td>audio</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>X</td>
+<td>sonification of car data</td>
+<td>this video seems to be the only one on this project, no other info available</td>
+<td>2013</td>
+<td>https://goo.gl/zHW6qb</td>
+</tr>
+<tr class="odd">
+<td>Music of the Atmosphere/ Space Fight</td>
+<td>Swedisch Environment Institute (Radek Rudnicki, Kevin Hicks)</td>
+<td>ozone levels</td>
+<td>environment</td>
+<td>NASA’s infrared TES spectrometer, aboard the Aura satellite at 6 locations around the world</td>
+<td>composition</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>X</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>https://goo.gl/DIJJRN</td>
+</tr>
+<tr class="even">
+<td>Deutsche Bank stock fluctuations made into music</td>
+<td>Benedict Eris Carey</td>
+<td>Deutsche Bank stock price</td>
+<td>economic</td>
+<td>DataScapR/ Yahoo Finance</td>
+<td>audio</td>
+<td>video (expanation the process)</td>
+<td>NaN</td>
+<td>X</td>
+<td>sonification of stock price of Deutsche Bank</td>
+<td>This work uses the DataScapR sonification toolbox</td>
+<td>2016</td>
+<td>https://goo.gl/SFSXrp</td>
+</tr>
+<tr class="odd">
+<td>PriceSquawk</td>
+<td>PriceSquawk Audible Market Technology</td>
+<td>stock market data</td>
+<td>economic</td>
+<td>add-on for stock trading software</td>
+<td>interactive audio</td>
+<td>NaN</td>
+<td>X</td>
+<td>X</td>
+<td>professional sonificatin software for stock trading</td>
+<td>NaN</td>
+<td>2011</td>
+<td>https://goo.gl/TAJX36</td>
+</tr>
+<tr class="even">
+<td>audiolyzR: Give Your Data a Listen</td>
+<td>Eric Stone and Jesse Garrison</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>software (R Package)</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>X</td>
+<td>R package for sonificationof user-input datasets</td>
+<td>This package requires an external synthesizer for audio playback</td>
+<td>2012</td>
+<td>https://goo.gl/vQUkdT</td>
+</tr>
+<tr class="odd">
+<td>materialssoundmusic</td>
+<td>Marco Buongiorno Nardell</td>
+<td>materials</td>
+<td>geological</td>
+<td>computational materials science repository AFLOWLIB.org</td>
+<td>software</td>
+<td>compositions</td>
+<td>NaN</td>
+<td>X</td>
+<td>sonification of earth materials</td>
+<td>NaN</td>
+<td>2015</td>
+<td>https://goo.gl/d6k1h8</td>
+</tr>
+<tr class="even">
+<td>Sonification of the Total Solar Eclipse August 2017</td>
+<td>Wayne Grim</td>
+<td>solar eclipse</td>
+<td>astronomical</td>
+<td>digital (telescope) video</td>
+<td>composition</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>X</td>
+<td>sonification of solar eclipse</td>
+<td>This is still a work in progress</td>
+<td>2017</td>
+<td>https://goo.gl/ODk4tF</td>
+</tr>
+<tr class="odd">
+<td>Vineland: Toyoji's Song</td>
+<td>Scot Gresham-Lancaster</td>
+<td>sensor data of micro-climates</td>
+<td>biological</td>
+<td>sensors on plants at Camilie Vineyard (crop monitoring)</td>
+<td>audio</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>X</td>
+<td>sonification of micro climates</td>
+<td>NaN</td>
+<td>2008</td>
+<td>https://goo.gl/mcHXVr</td>
+</tr>
+<tr class="even">
+<td>SeismoDome</td>
+<td>Seismic Sound Lab: Ben Holtzman and Jason Candler</td>
+<td>earthquakes</td>
+<td>seismic</td>
+<td>Global CMT Web Page</td>
+<td>immersive audiovisual performance</td>
+<td>video</td>
+<td>NaN</td>
+<td>X</td>
+<td>sonification of earthquakes</td>
+<td>NaN</td>
+<td>2006 (first version)</td>
+<td>https://goo.gl/guBXsq</td>
+</tr>
+<tr class="odd">
+<td>Sound of Money</td>
+<td>Helena Davidova</td>
+<td>exchange rates, gold price, Dow Jones Industrial Average (index)</td>
+<td>economic</td>
+<td>NaN</td>
+<td>video</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>X</td>
+<td>sonification of currency exchange rates, gold price, stock index</td>
+<td>NaN</td>
+<td>2012</td>
+<td>https://goo.gl/BXPLE3</td>
+</tr>
+<tr class="even">
+<td>sonic particles 2.0</td>
+<td>Kasper Fangel Skov</td>
+<td>environmental data</td>
+<td>environmental</td>
+<td>sensors placed in 7 cities</td>
+<td>software</td>
+<td>audio</td>
+<td>X</td>
+<td>X</td>
+<td>sonification of environmental data</td>
+<td>The sensors are not live anymore</td>
+<td>2015</td>
+<td>https://goo.gl/ekaT4i</td>
+</tr>
+<tr class="odd">
+<td>Saturn Ring Sonification</td>
+<td>Jeongho Park</td>
+<td>image data of the rings of Saturn</td>
+<td>astronomical</td>
+<td>NASA Cassini Gallery,</td>
+<td>interactive website</td>
+<td>code</td>
+<td>NaN</td>
+<td>X</td>
+<td>sonification of iamge data of Saturn's rings</td>
+<td>NaN</td>
+<td>2017-02-21 00:00:00</td>
+<td>https://goo.gl/z1ioum</td>
+</tr>
+<tr class="even">
+<td>A sonic memorial to the victims at Orlando’s Pulse nightclub</td>
+<td>Jim Brigs and Michael Corey</td>
+<td>shooting at Orlando nightclub</td>
+<td>urban</td>
+<td>NaN</td>
+<td>audio</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>X</td>
+<td>sonification of the birtdays of people shot at the Orlando nightclub in 2016</td>
+<td>NaN</td>
+<td>2016</td>
+<td>https://goo.gl/WvNct1</td>
+</tr>
+<tr class="odd">
+<td>The Oklahoma Shakes</td>
+<td>Jim Briggs and Michael Corey</td>
+<td>eartquakes in oklahoma</td>
+<td>seismic</td>
+<td>Northern California Earthquake Data Center</td>
+<td>audio</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>X</td>
+<td>sonification os seismic activity as a result of fracking</td>
+<td>NaN</td>
+<td>2015</td>
+<td>https://goo.gl/91EDee</td>
+</tr>
+<tr class="even">
+<td>Listening Post</td>
+<td>Mark Hansen and Ben Rubin</td>
+<td>online communication (IRC)</td>
+<td>social media</td>
+<td>NaN</td>
+<td>installation</td>
+<td>NaN</td>
+<td>X</td>
+<td>NaN</td>
+<td>sonification of IRC communications</td>
+<td>NaN</td>
+<td>2001</td>
+<td>https://goo.gl/VJ3gnY</td>
+</tr>
+<tr class="odd">
+<td>Baltic Sea Radio</td>
+<td>Varvara Guljajeva &amp; Mar Canet Sola</td>
+<td>marine traffic in the Baltic sea</td>
+<td>urban</td>
+<td>AIS-receiving station in Sopot, Poland</td>
+<td>installation</td>
+<td>online radio stream</td>
+<td>X</td>
+<td>NaN</td>
+<td>sonification of marine movements iin the Baltic sea</td>
+<td>NaN</td>
+<td>2012</td>
+<td>https://goo.gl/nyTxvA</td>
+</tr>
+<tr class="even">
+<td>Treshold</td>
+<td>Nelson Guda</td>
+<td>climate data</td>
+<td>environmental</td>
+<td>direct temperature readings, CO2 measurements (Mauna Loa research station in Hawaii), and ice-core derived temperature data</td>
+<td>compositions</td>
+<td>audio (installation)</td>
+<td>NaN</td>
+<td>X</td>
+<td>sonification of CO2 data in Hawai, and Antarctic ice core sheets</td>
+<td>NaN</td>
+<td>2015</td>
+<td>https://goo.gl/d4yRbJ</td>
+</tr>
+<tr class="odd">
+<td>Sonification of Atmospheric Carbon Dioxide in PPM (1958-2008)</td>
+<td>Aedes Aegypti (Jonathan Eiseman)</td>
+<td>Atmospheric Carbon Dioxide (CO2 ) in parts per million from 1958 to 2008</td>
+<td>environmental</td>
+<td>Scripps Institution for Oceanography at the Mauna Loa Observatory, HI, USA</td>
+<td>audio</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>X</td>
+<td>sonification of CO2 data collected in Hawaii</td>
+<td>NaN</td>
+<td>2016-05-29 00:00:00</td>
+<td>https://goo.gl/dHkSMI</td>
+</tr>
+<tr class="even">
+<td>Sounding out the border wall</td>
+<td>Jim Briggs and Michael Corey</td>
+<td>US-Mexico border</td>
+<td>urban</td>
+<td>GIS data for the U.S.-Mexico border fence by Revealnews</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>X</td>
+<td>sonification of the US-Mexico border</td>
+<td>NaN</td>
+<td>2017-03-04 00:00:00</td>
+<td>https://goo.gl/2Yfr1R</td>
+</tr>
+<tr class="odd">
+<td>trumpTones - sonification of a President</td>
+<td>Alexis Kirke</td>
+<td>Donald Trump speeches (valence and emotional arousal)</td>
+<td>urban</td>
+<td>Database of Trump speeches (84000 words)</td>
+<td>audio</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>X</td>
+<td>sonification of valence and arousal in Donald Trump speeches 1990-2017</td>
+<td>NaN</td>
+<td>2017-02-17 00:00:00</td>
+<td>https://goo.gl/tQDMpq</td>
+</tr>
+<tr class="even">
+<td>Bitlisten (Listen to Bitcoin)</td>
+<td>Maximillian Laumeister</td>
+<td>Bitcoin transactions</td>
+<td>economic</td>
+<td>Toshi.io</td>
+<td>interactive website</td>
+<td>NaN</td>
+<td>X</td>
+<td>NaN</td>
+<td>sonification of Bitcoin transactions</td>
+<td>This project serves as a base for "Listen to Wikipedia"</td>
+<td>2013-03-25 00:00:00</td>
+<td>https://goo.gl/KExBnh</td>
+</tr>
+<tr class="odd">
+<td>Music Algorithms</td>
+<td>Jonathan N. Middleton, Andrew Cobb, Michael Henry, Robert Lyon, and Ian Siemer</td>
+<td>algorithms, DNA sequences, user-input</td>
+<td>NaN</td>
+<td>provided by website</td>
+<td>interactive website</td>
+<td>audio</td>
+<td>NaN</td>
+<td>X</td>
+<td>sonification of algorithms, DNA-sequences and user-input sequences</td>
+<td>NaN</td>
+<td>2005</td>
+<td>https://goo.gl/80Hvr5</td>
+</tr>
+<tr class="even">
+<td>Sonification of you</td>
+<td>Martin John Callanan</td>
+<td>scanning various radio spectrum frequencies of mobile phones, bluetooth, WIFI, ...</td>
+<td>NaN</td>
+<td>scanning device set up at a specific location that scans active devices</td>
+<td>installation</td>
+<td>audio</td>
+<td>X</td>
+<td>NaN</td>
+<td>sonification of radio spectrum frequencies</td>
+<td>NaN</td>
+<td>2006</td>
+<td>https://goo.gl/V7CBYL</td>
+</tr>
+<tr class="odd">
+<td>Outros Registros</td>
+<td>Samuel Van Ransbeeck, Nico Espinoza, Rafucko, Tori Holmes</td>
+<td>police violence in Rio de Janeiro</td>
+<td>urban</td>
+<td>Public Security Institute of Rio de Janeiro</td>
+<td>installation</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>X</td>
+<td>sonification of police violence in Rio de Janeiro</td>
+<td>video forthcoming</td>
+<td>2016</td>
+<td>https://goo.gl/Ya2msK</td>
+</tr>
+<tr class="even">
+<td>DataScapR</td>
+<td>Samuel Van Ransbeeck</td>
+<td>stock market data</td>
+<td>economic</td>
+<td>Yahoo Finance</td>
+<td>software</td>
+<td>NaN</td>
+<td>X</td>
+<td>X</td>
+<td>stock market sonification tolbox</td>
+<td>NaN</td>
+<td>2015</td>
+<td>https://goo.gl/B5y6Z2</td>
+</tr>
+<tr class="odd">
+<td>Vapourwaves</td>
+<td>Samuel Van Ransbeeck</td>
+<td>stock market data</td>
+<td>economic</td>
+<td>Yahoo Finance</td>
+<td>installation</td>
+<td>NaN</td>
+<td>X</td>
+<td>NaN</td>
+<td>sonification of 8 stocks using oscillatorbanks, granularisation and Disklavier</td>
+<td>NaN</td>
+<td>2015</td>
+<td>https://goo.gl/7o1iNz</td>
+</tr>
+<tr class="even">
+<td>Sonification of MBTA</td>
+<td>Stephen Hensley</td>
+<td>MBTA (Boston subway) train data</td>
+<td>urban (transit)</td>
+<td>MBTA realtime data</td>
+<td>audio</td>
+<td>code</td>
+<td>X</td>
+<td>NaN</td>
+<td>sonification of subway train locations in Boston</td>
+<td>NaN</td>
+<td>2015</td>
+<td>https://goo.gl/avkzCd</td>
+</tr>
+<tr class="odd">
+<td>Song of Our Warming Planet</td>
+<td>Daniel Crawford</td>
+<td>annual temperature readings from 1880 to 2012</td>
+<td>climate</td>
+<td>NASA’s Goddard Institute for Space Studies.</td>
+<td>composition</td>
+<td>NaN</td>
+<td>X</td>
+<td>NaN</td>
+<td>sonification of temperature data 1880-2012</td>
+<td>NaN</td>
+<td>2016</td>
+<td>https://goo.gl/F0kWwI</td>
+</tr>
+<tr class="even">
+<td>Nik Sawe</td>
+<td>Turning Data Into Music: An Alaskan Forest Plays an Orchestra</td>
+<td>Alaskan forest population</td>
+<td>environmental</td>
+<td>Samples collected by Lauren Oakes in 2011-2012</td>
+<td>composition</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>X</td>
+<td>sonification of Alaskan forest tree diversity</td>
+<td>NaN</td>
+<td>2016</td>
+<td>https://www.outsideonline.com/2109116/art-turning-climate-change-science-music</td>
+</tr>
+<tr class="odd">
+<td>Adrift (Machine 9)</td>
+<td>Cath Le Couteur, Nick Ryan</td>
+<td>space junk</td>
+<td>astronomical/ urban</td>
+<td>NASA/ US Department of Defense</td>
+<td>installation (sculpture)</td>
+<td>NaN</td>
+<td>X</td>
+<td>NaN</td>
+<td>sonification of space debris</td>
+<td>NaN</td>
+<td>2016</td>
+<td>http://www.projectadrift.co.uk/</td>
+</tr>
+<tr class="even">
+<td>Listen Live!</td>
+<td>Marty Quinn</td>
+<td>water data gathered at the Hubbard Brook Experimental Forest in the White Mountains of New Hampshire</td>
+<td>environmental</td>
+<td>sensor data</td>
+<td>audio</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>X</td>
+<td>sonification of water data</td>
+<td>NaN</td>
+<td>2015</td>
+<td>https://waterviz.org/listenin.shtml</td>
+</tr>
+<tr class="odd">
+<td>OpenDataSynth</td>
+<td>Opendatasoft, Jérémy Autran</td>
+<td>various datasets</td>
+<td>various</td>
+<td>opendatasoft API</td>
+<td>online software</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>X</td>
+<td>sonification software for various datasets</td>
+<td>NaN</td>
+<td>2017</td>
+<td>https://opendatasoft.github.io/OpenDataSynth/#/what</td>
+</tr>
+<tr class="even">
+<td>Dolmen</td>
+<td>Mario de Vega</td>
+<td>ultrasonic frequencies</td>
+<td>urban</td>
+<td>high frequency receivers, radio scanners and custom electronics</td>
+<td>installation</td>
+<td>NaN</td>
+<td>X</td>
+<td>NaN</td>
+<td>sonification of ultrasonic frequencies</td>
+<td>NaN</td>
+<td>2015</td>
+<td>http://portfolio.mariodevega.info/F041</td>
+</tr>
+<tr class="odd">
+<td>Sonic Word Cloud</td>
+<td>Daniel Ruten</td>
+<td>word frequency in texts</td>
+<td>urban</td>
+<td>text ananlysis</td>
+<td>audio</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>X</td>
+<td>sonification of word frequency in texts</td>
+<td>using MidiTime sonification software by Shawn Graham</td>
+<td>2017</td>
+<td>https://danielruten.wordpress.com/2017/04/15/sonic-word-clouds-an-experiment-with-data-sonification-part-i-introduction/</td>
+</tr>
+<tr class="even">
+<td>Electric Acoustic</td>
+<td>Dan Lockton</td>
+<td>electricity use of appliances and energy generation</td>
+<td>urban</td>
+<td>see remarks</td>
+<td>installation</td>
+<td>exhibit</td>
+<td>X</td>
+<td>NaN</td>
+<td>sonification of energy generation and use</td>
+<td>work in progress</td>
+<td>2017</td>
+<td>http://www.cmu-collegeoffinearts.com/frc-2017-recipients.html</td>
+</tr>
+<tr class="odd">
+<td>Molecular Soundscapes</td>
+<td>Shelly Knotts</td>
+<td>drug design processes and the effects on protein structures</td>
+<td>biological</td>
+<td>gathered by Agnieszka Bronowska at the School of Chemistry at Newcastle University</td>
+<td>installation</td>
+<td>graphic score</td>
+<td>NaN</td>
+<td>X</td>
+<td>sonification of proetin structures affected by drug design processes</td>
+<td>NaN</td>
+<td>2017</td>
+<td>https://shellyknotts.wordpress.com/2017/04/11/molecular-soundscapes/</td>
+</tr>
+<tr class="even">
+<td>TRAPPIST Transits: Music From Exoplanets</td>
+<td>Daniel Tamayo</td>
+<td>sonification of planetary trajectories in the Trappist-1 solar system</td>
+<td>NaN</td>
+<td>data published in "Seven Temperate Terrestrial Planets Around the Nearby Ultracool Dwarf Star TRAPPIST-1," M. Gillon (Univ. of Liege, Belgium) et al., Nature, February 23, 2017.</td>
+<td>audio</td>
+<td>Midifiles and sheet music for people to adapt</td>
+<td>NaN</td>
+<td>X</td>
+<td>sonification of planetary transits' timing</td>
+<td>NaN</td>
+<td>2017</td>
+<td>http://www.spitzer.caltech.edu/explore/blog/378-Make-your-own-TRAPPIST-1-Music</td>
+</tr>
+<tr class="odd">
+<td>Song of the tides</td>
+<td>Levy Lorenzo, Tony Phillips, Stony Brook University</td>
+<td>tides in Vecice and Ancona, Italy</td>
+<td>astronomical</td>
+<td>WWW Tide and Current Predictor (see links)</td>
+<td>composition</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>X</td>
+<td>sonification of tides</td>
+<td>NaN</td>
+<td>2010 (started in 1999, ast updated in 2015)</td>
+<td>http://www.math.stonybrook.edu/~tony/tides/venice/ancona3000.html</td>
+</tr>
+<tr class="even">
+<td>#max140beats</td>
+<td>Tony Morton</td>
+<td>tweets and their emotional content</td>
+<td>urban</td>
+<td>Twitter API</td>
+<td>installation</td>
+<td>online stream</td>
+<td>X</td>
+<td>NaN</td>
+<td>sonification of tweets and tehir emotional content</td>
+<td>a subproject sonifies Trump tweets specifically</td>
+<td>2016</td>
+<td>https://www.tonymorton.co.uk/projects</td>
+</tr>
+<tr class="odd">
+<td>The Sounds of Migration</td>
+<td>Kitti Balogh, Zoltan Varju</td>
+<td>news articles about migration in Hungary</td>
+<td>urban</td>
+<td>Hungarian news portals</td>
+<td>audio</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>X</td>
+<td>sonification of over forty-two thousands articles on migration published on the main Hungarian news portals between 27/09/2014 and 11/06/2016</td>
+<td>NaN</td>
+<td>2016</td>
+<td>http://zolizoli.github.io/sonification/index.html</td>
+</tr>
+<tr class="even">
+<td>sonic particles 2.0</td>
+<td>Kasper Fangel Skov</td>
+<td>sonification of environmental data in urban centres</td>
+<td>environmental, urban</td>
+<td>sensors by datacancas roject</td>
+<td>audio</td>
+<td>NaN</td>
+<td>X</td>
+<td>NaN</td>
+<td>sonification of environmental data in urban centres</td>
+<td>part of Data Canvas: Sense Your City</td>
+<td>2015</td>
+<td>http://www.kasperskov-audiodesign.dk/sonicparticles2.0 (site unavailable)</td>
+</tr>
+<tr class="odd">
+<td>Hear the city</td>
+<td>YDreams Brasil, Cisco, Rob Thomas</td>
+<td>sonification of environmental and urban data in Rio de Janeiro's Porto Maravilha region</td>
+<td>environmental, urban</td>
+<td>data gathered in Rio de Janeiro</td>
+<td>app</td>
+<td>NaN</td>
+<td>X</td>
+<td>NaN</td>
+<td>sonification of urban data in Rio de Janeiro</td>
+<td>NaN</td>
+<td>2016</td>
+<td>https://americas.thecisconetwork.com/site/content/lang/en/id/6158</td>
+</tr>
+<tr class="even">
+<td>EMUSIC</td>
+<td>Antonio Menghini (geologist and geophysicist) and Stefano Pontani (musician)</td>
+<td>eletromagnetic data</td>
+<td>geological</td>
+<td>NaN</td>
+<td>audio</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>X</td>
+<td>sonifcation of electromagnetic data</td>
+<td>NaN</td>
+<td>2017</td>
+<td>http://www.emusic.world/</td>
+</tr>
+<tr class="odd">
+<td>London Fix</td>
+<td>Tom Hamilton</td>
+<td>gold price</td>
+<td>economic</td>
+<td>NaN</td>
+<td>audio</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>X</td>
+<td>sonification of gold prices in 2002 at the London Stock Exchange</td>
+<td>NaN</td>
+<td>2003</td>
+<td>https://store.cdbaby.com/cd/thamilton</td>
+</tr>
+<tr class="even">
+<td>Stellar</td>
+<td>Francesco Fabris</td>
+<td>star charts</td>
+<td>atronomical</td>
+<td>stellarium.org , darksky.net</td>
+<td>installation</td>
+<td>NaN</td>
+<td>X</td>
+<td>X</td>
+<td>sonification of stars in Northern hemisphere</td>
+<td>three versions eachusing a dfferent sound generation</td>
+<td>2015</td>
+<td>http://www.francescofabris.com/?project=stellar-2015</td>
+</tr>
+<tr class="odd">
+<td>BIORHYTHMS – LONDON</td>
+<td>Jon Pigren</td>
+<td>London transport (underground)</td>
+<td>urban/ transit</td>
+<td>TfL API</td>
+<td>audio</td>
+<td>NaN</td>
+<td>X</td>
+<td>NaN</td>
+<td>real-time sonification of London underground</td>
+<td>NaN</td>
+<td>2017-02-26 00:00:00</td>
+<td>https://jonpigrem.wordpress.com/2017/02/26/biorhythms-london/</td>
+</tr>
+<tr class="even">
+<td>Mesh</td>
+<td>Inouk Demers</td>
+<td>Art spaces in Los Angeles Area</td>
+<td>urban</td>
+<td>local authorities</td>
+<td>installation</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>X</td>
+<td>sonification of art spaces in the Los Angeles area</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>https://www.youtube.com/watch?v=1MIQs8NSfWI&amp;utm_content=buffer3c76e&amp;utm_medium=social&amp;utm_source=twitter.com&amp;utm_campaign=buffer</td>
+</tr>
+<tr class="odd">
+<td>Geolocation</td>
+<td>Georgios Cherouvim</td>
+<td>individual commute</td>
+<td>urban/ transit</td>
+<td>geolocation via mobile phone</td>
+<td>video</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>X</td>
+<td>sonification (audification) of personal commute</td>
+<td>NaN</td>
+<td>2017-05-17 00:00:00</td>
+<td>https://vimeo.com/218106546</td>
+</tr>
+<tr class="even">
+<td>Hard Data</td>
+<td>Luke Dubois and Mivos Quartet</td>
+<td>Data in relation to Iraq and Afghanisatan wars</td>
+<td>urban/ economic</td>
+<td>NaN</td>
+<td>composition</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>X</td>
+<td>sonification of several datasets with elation to the wars in Iraq and Afghanistan</td>
+<td>turbulence site is down. I am contacting Luke DuBois to get more information</td>
+<td>2009</td>
+<td>https://archive.org/details/Hard_Data-3796</td>
+</tr>
+<tr class="odd">
+<td>World earthquakes 2011 Visualization map</td>
+<td>Monoroch</td>
+<td>eartquakes worldwide in 2011</td>
+<td>seismic/ geological</td>
+<td>NaN</td>
+<td>video</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>X</td>
+<td>sonification of eartquakes worldwide in 2012</td>
+<td>this project is repeated each year. Website in Japanese</td>
+<td>2012</td>
+<td>http://monoroch.net/jishin2011/</td>
+</tr>
+<tr class="even">
+<td>Credit Synthesis</td>
+<td>Jonathan Vingiano</td>
+<td>credit and other magnetic strip cards</td>
+<td>urban</td>
+<td>cardreader</td>
+<td>installation (sound sculpture)</td>
+<td>NaN</td>
+<td>X</td>
+<td>X</td>
+<td>sonification of data on magnetic strip of creditcard stye cards</td>
+<td>NaN</td>
+<td>2009</td>
+<td>http://jonathanvingiano.com/</td>
+</tr>
+<tr class="odd">
+<td>YEARS</td>
+<td>Bartholomäus Traubeck</td>
+<td>age of trees</td>
+<td>biological (image)</td>
+<td>modified record playerhead</td>
+<td>installation</td>
+<td>record</td>
+<td>X</td>
+<td>X</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>2011</td>
+<td>http://www.ecoutelebois.com/musique-bois-rondelles-cernes-traubeck/</td>
+</tr>
+<tr class="even">
+<td>mta.me</td>
+<td>Chen Alexander</td>
+<td>NY subway network and transit</td>
+<td>urban/ transit</td>
+<td>MTA actual subway schedule</td>
+<td>software art</td>
+<td>NaN</td>
+<td>X</td>
+<td>NaN</td>
+<td>sonification of NY subway network and transit</td>
+<td>NaN</td>
+<td>2011</td>
+<td>http://www.mta.me/</td>
+</tr>
+<tr class="odd">
+<td>Chaos Atlantis</td>
+<td>ed.wrzesien</td>
+<td>sonification of marine activity</td>
+<td>astronomical/ wheather</td>
+<td>NOAA buoy 41047 near Bermuda</td>
+<td>audio stream</td>
+<td>NaN</td>
+<td>X</td>
+<td>NaN</td>
+<td>sonification of real-time marine data near Bermuda</td>
+<td>NaN</td>
+<td>2011</td>
+<td>http://www.montanafamilyhome.com/chaos_atlantisV2/Info.html</td>
+</tr>
+<tr class="even">
+<td>Sonification of Boris Bikes and Traffic Disruptions</td>
+<td>number1neek (Youtube name)</td>
+<td>Shared Bike scheme and traffic disruptions in London</td>
+<td>urban, transit</td>
+<td>TfL server.</td>
+<td>video</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>X</td>
+<td>sonification of Boris Bikes and traffic disruptions in London</td>
+<td>NaN</td>
+<td>2012</td>
+<td>https://www.youtube.com/watch?v=inC7uAU2I64</td>
+</tr>
+<tr class="odd">
+<td>sound/tracks - Real-Time Sonification and Visualisation of Train Journeys</td>
+<td>Peter Knees, Tim Pohle, Gerhard Widmer</td>
+<td>image sonification of view out of train window</td>
+<td>image</td>
+<td>camera input</td>
+<td>video</td>
+<td>performance using Disklavier</td>
+<td>X</td>
+<td>NaN</td>
+<td>sonification of view out of train window using realtime camera input</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td>White Noise / Snowstorm</td>
+<td>Tara Rodgers</td>
+<td>image sonification of snow storm</td>
+<td>image</td>
+<td>camera input</td>
+<td>audio</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>X</td>
+<td>sonification of image dat from snow storm video</td>
+<td>NaN</td>
+<td>2008</td>
+<td>http://fembotcollective.org/blog/2012/06/21/patterns-of-movement-landscapes-data-sound/</td>
+</tr>
+<tr class="odd">
+<td>Sonification of Go</td>
+<td>Peter Tigges</td>
+<td>Go board game</td>
+<td>urban</td>
+<td>gameplay</td>
+<td>audio</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>X</td>
+<td>sonification of a Go game</td>
+<td>NaN</td>
+<td>2012-09-01 00:00:00</td>
+<td>https://soundcloud.com/peter-tigges/sonification-of-go</td>
+</tr>
+<tr class="even">
+<td>Carbon Composition</td>
+<td>Guy Evans</td>
+<td>household eergy consumption</td>
+<td>urban, network</td>
+<td>xively.com</td>
+<td>software art</td>
+<td>video</td>
+<td>X</td>
+<td>NaN</td>
+<td>household energy consumption</td>
+<td>new version released in 2014</td>
+<td>2010, 2014</td>
+<td>https://vimeo.com/47297721</td>
+</tr>
+<tr class="odd">
+<td>aroundNorth</td>
+<td>Robert Jarvis</td>
+<td>earth rotation</td>
+<td>astronomical</td>
+<td>observatory</td>
+<td>audio-visual</td>
+<td>NaN</td>
+<td>X</td>
+<td>NaN</td>
+<td>sonification of stars passing teh telescope</td>
+<td>NaN</td>
+<td>2010</td>
+<td>https://aroundnorth.wordpress.com/</td>
+</tr>
+<tr class="even">
+<td>Markup Melodium</td>
+<td>Daniel Jones</td>
+<td>website structure</td>
+<td>urban/ technological</td>
+<td>website source code</td>
+<td>audio-visual</td>
+<td>NaN</td>
+<td>X</td>
+<td>X</td>
+<td>sonification of website markup structure</td>
+<td>NaN</td>
+<td>2013-10-01 00:00:00</td>
+<td>https://github.com/citymont/markup-melodium/tree/live</td>
+</tr>
+<tr class="odd">
+<td>Sonification of San Giovanni Elemosinario (Venice, Italy)</td>
+<td>Jon Bellona</td>
+<td>architecture</td>
+<td>urban/ architectural</td>
+<td>building sketches</td>
+<td>audio-visual</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>X</td>
+<td>sonification of a church building in Venice</td>
+<td>NaN</td>
+<td>2013-10-24 00:00:00</td>
+<td>https://vimeo.com/77712677</td>
+</tr>
+<tr class="even">
+<td>Sci-Fi</td>
+<td>Space F!ght</td>
+<td>ozone data</td>
+<td>biological</td>
+<td>NASA’s infrared TES spectrometer, aboard the Aura satellite</td>
+<td>audio-visual</td>
+<td>live-music</td>
+<td>X</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>2013</td>
+<td>http://spacefight.eu/scifi-tour-2013/</td>
+</tr>
+<tr class="odd">
+<td>Star Songs</td>
+<td>Wanda Diaz Merced, Gerhard Sonnert, Volkmar Studtrucker</td>
+<td>EX Hydrae stellar system</td>
+<td>astronomical</td>
+<td>Chandra X-Ray Observatory (xray observations)</td>
+<td>composition</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>X</td>
+<td>sonification of a solar system through xray observations</td>
+<td>NaN</td>
+<td>2012</td>
+<td>https://www.cfa.harvard.edu/sed/projects/star_songs/pages/xraytosound.html</td>
+</tr>
+<tr class="even">
+<td>Christchurch Quakes – Sonified</td>
+<td>Tim Prebble</td>
+<td>2010 Christchurch earthquake</td>
+<td>seismic</td>
+<td>Geonet</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>X</td>
+<td>sonification of the big 2010 eartquake in New Zeland</td>
+<td>NaN</td>
+<td>2010</td>
+<td>http://www.musicofsound.co.nz/blog/christchurch-quakes-sonified</td>
+</tr>
+<tr class="odd">
+<td>Earth Sound</td>
+<td>curated by JT Bullit</td>
+<td>eathquakes</td>
+<td>seismic</td>
+<td>various</td>
+<td>various</td>
+<td>NaN</td>
+<td>X</td>
+<td>X</td>
+<td>collectio of sonifiocations of seismic data worldwide</td>
+<td>this is a collection made by various contributors</td>
+<td>2006</td>
+<td>http://www.jtbullitt.com/earthsound/</td>
+</tr>
+<tr class="even">
+<td>City Symphonies</td>
+<td>Mark McKeague</td>
+<td>relationships between cars</td>
+<td>urban (transport)</td>
+<td>London traffic simulation</td>
+<td>audio-visual</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>X</td>
+<td>sonification of relationships between cars in a traffic simulation</td>
+<td>NaN</td>
+<td>2012</td>
+<td>http://markmckeague.com/work/city-symphonies</td>
+</tr>
+<tr class="odd">
+<td>Canadian Coastlines</td>
+<td>Larry Austin</td>
+<td>the contours of the Canadian shoreline</td>
+<td>geological</td>
+<td>maps of Canadian coastlines</td>
+<td>composition /ensemble and tape)</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>X</td>
+<td>sonification of maps of the Canadian coastline</td>
+<td>little information available, if anyone has any leads to a liner note( explanation, oplease let me know</td>
+<td>1981</td>
+<td>https://en.wikipedia.org/wiki/Larry_Austin</td>
+</tr>
+<tr class="even">
+<td>TransProse: Generating Music from Literature</td>
+<td>Hannah Davis, Saif M. Mohammad</td>
+<td>emotions in literature</td>
+<td>textual</td>
+<td>direct text analysis</td>
+<td>audio</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>X</td>
+<td>sonification of emotions in literature</td>
+<td>NaN</td>
+<td>2014</td>
+<td>https://arxiv.org/abs/1403.2124</td>
+</tr>
+<tr class="odd">
+<td>LAKE TAHOE SONIFICATION PROJECT</td>
+<td>Philip Acimovic, Gabriel Bolaños, Fang-Wei Luo, and Alex Van Gils, as well as Matt Gilbert, and Kevin Corcoran</td>
+<td>Lake Tahoe</td>
+<td>biological</td>
+<td>sensor data</td>
+<td>installation</td>
+<td>NaN</td>
+<td>X</td>
+<td>NaN</td>
+<td>sonification of motion in Lake Tahoe</td>
+<td>NaN</td>
+<td>2014</td>
+<td>http://www.davisenterprise.com/arts/lake-tahoe-sonification-projection-uses-weather-data-to-create-artistic-soundscape-based-on-nature/</td>
+</tr>
+<tr class="even">
+<td>Market Music</td>
+<td>CNN Money</td>
+<td>S&amp;P 500 index performance in 2013</td>
+<td>economic</td>
+<td>CNN Money data</td>
+<td>video</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>X</td>
+<td>sonification of the performace of the S&amp;P 500 index in 2013</td>
+<td>NaN</td>
+<td>2014</td>
+<td>https://www.youtube.com/watch?v=9JR1bflmC20&amp;feature=youtu.be&amp;t=1m18s</td>
+</tr>
+<tr class="odd">
+<td>One Year of Suicide in Japan for Piano</td>
+<td>Rory Viner</td>
+<td>suicide rate in Japan in 2013</td>
+<td>urban</td>
+<td>Japan National Police Agency</td>
+<td>audio</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>X</td>
+<td>sonification of suicide rates in Japan</td>
+<td>NaN</td>
+<td>2014</td>
+<td>https://soundcloud.com/rory-viner/one-year-of-suicide-statistics</td>
+</tr>
+<tr class="even">
+<td>Radiation as Music</td>
+<td>Rory Viner</td>
+<td>radiation in Japan</td>
+<td>urban, industrial, nuclear</td>
+<td>national agency of statistics and sensor data</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>X</td>
+<td>X</td>
+<td>sonification of radiation data in Japan</td>
+<td>Rory Viner explores other data in similiar works, to be added to the database</td>
+<td>2014</td>
+<td>http://rory-viner.tumblr.com/</td>
+</tr>
+<tr class="odd">
+<td>ESAGaia sonification (no given name by the agency)</td>
+<td>ESA Science Agency</td>
+<td>brightness of stars</td>
+<td>astronomical</td>
+<td>ESAGaia satellite</td>
+<td>audio-visual</td>
+<td>NaN</td>
+<td>X</td>
+<td>NaN</td>
+<td>sonification of brightness of stars</td>
+<td>the sonification is only a short exaple, not a full-fledged work</td>
+<td>2018-04-29 00:00:00</td>
+<td>https://twitter.com/esascience/status/990625583989186560</td>
+</tr>
+<tr class="even">
+<td>Sonification of DDoS Attacks: Netflow Melodies and a Tomato Panic Button</td>
+<td>Dima Bekerman, Avishay Zawoznik, Johnathan Azaria, Koby Kilimnik</td>
+<td>sonification of network traffic</td>
+<td>network traffic</td>
+<td>python script colecting netflow data</td>
+<td>audio</td>
+<td>live-stream internet radio</td>
+<td>X</td>
+<td>NaN</td>
+<td>sonification of network traffic, more specifically DDos attacks</td>
+<td>NaN</td>
+<td>2018-04-25 00:00:00</td>
+<td>https://www.imperva.com/blog/2018/04/sonification-of-ddos-attacks/</td>
+</tr>
+<tr class="odd">
+<td>Jane's Walk, Love Stories</td>
+<td>Cassandra Marsillo</td>
+<td>sonification of GPS data of love stories</td>
+<td>urban, geographical</td>
+<td>qualilative data in love stories</td>
+<td>audio</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>X</td>
+<td>sonification of love stories</td>
+<td>people told their love stories and where they took place. THe artists took those places and sonified the GPS data usic musicalgoritm.com</td>
+<td>2018-05-05 00:00:00</td>
+<td>http://www.cbc.ca/player/play/1226427459877</td>
+</tr>
+<tr class="even">
+<td>Sonification of Japanese ceramics</td>
+<td>Dafydd Roberts (Aberystwyth Uni)</td>
+<td>sonification of laserscanned ceramics</td>
+<td>material</td>
+<td>3D scan</td>
+<td>audio</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>X</td>
+<td>sonification of ceramic objects</td>
+<td>this work is still in progress</td>
+<td>2018-05-04 00:00:00</td>
+<td>https://twitter.com/euterpesequence/status/992300826407268354</td>
+</tr>
+<tr class="odd">
+<td>Play Saturn's Rings Like a Harp</td>
+<td>NASA, Matt Russo</td>
+<td>sonification of Saturn's rings</td>
+<td>astronomical</td>
+<td>Cassini satellite</td>
+<td>interactive webpage</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>X</td>
+<td>sonification of Saturn's rings</td>
+<td>NaN</td>
+<td>2018</td>
+<td>http://www.system-sounds.com/saturn-harp/</td>
+</tr>
+<tr class="even">
+<td>The Poseidon Ensemble</td>
+<td>David Johnson</td>
+<td>sonification of 100 years of seismic data (YT excerpt shows 2004 Indian Ocean Earthquake)</td>
+<td>seismic</td>
+<td>U.S. Geological Survey</td>
+<td>audio-visual</td>
+<td>source code</td>
+<td>NaN</td>
+<td>X</td>
+<td>sonification of seismic data from +/- 1910-2010</td>
+<td>the sourcecode can be downloaded and adapted</td>
+<td>2014-10-22 00:00:00</td>
+<td>https://github.com/struct78/the-poseidon-ensemble</td>
+</tr>
+<tr class="odd">
+<td>Fault Trace</td>
+<td>David Johnson</td>
+<td>sonification of seismic data</td>
+<td>seismic</td>
+<td>U.S. Geological Survey</td>
+<td>audio-visual</td>
+<td>source code</td>
+<td>NaN</td>
+<td>X</td>
+<td>sonification of seismic data from 2017</td>
+<td>the sourcecode can be downloaded and adapted</td>
+<td>2018-01-15 00:00:00</td>
+<td>https://github.com/struct78/fault-trace</td>
+</tr>
+<tr class="even">
+<td>A Galaxy of Suns</td>
+<td>Michaela Gleave, composer Amanda Cole and programmer Warren Armstrong</td>
+<td>sonification of star movements</td>
+<td>astronomical</td>
+<td>Hipparchos astronomical catalogue</td>
+<td>interactive mobile application</td>
+<td>composition for choir + electronics (using real-time GPS data)</td>
+<td>X</td>
+<td>X</td>
+<td>sonification of stellar data based on user's location</td>
+<td>the user's GPS data are real-time, while the stellar data are historical. As stellar movemets are relatively fixed, this does not cause any problem</td>
+<td>2016</td>
+<td>https://www.agalaxyofsuns.net/</td>
+</tr>
+<tr class="odd">
+<td>Data Humanism, The Revolution will be Visualized.</td>
+<td>GIORGIALUPI</td>
+<td>NaN</td>
+<td>human behavior</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>http://giorgialupi.com/data-humanism-my-manifesto-for-a-new-data-wold</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</section>
+<section id="midi-virtual-ports" class="level2" data-number="8.3">
+<h2 data-number="8.3" class="anchored" data-anchor-id="midi-virtual-ports"><span class="header-section-number">8.3</span> MIDI virtual ports</h2>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation column-body">
+  <div class="nav-page nav-page-previous">
+      <a href="../chapters/conclusion.html" class="pagination-link" aria-label="Conclusion">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Conclusion</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../chapters/references.html" class="pagination-link" aria-label="References">
+        <span class="nav-page-text">References</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+ Code that Sounds - Ezequiel Abregú
+  </li>  
+</ul>
+    </div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
