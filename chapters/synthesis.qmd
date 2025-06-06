@@ -245,7 +245,239 @@ The native \[phasor\~\] and \[osc\~\] objects include a right inlet that accepts
 
 The \[osc\~\] object does not support phase modulation; we implemented it using \[phasor\~\] in the previous examples. Hence, using a \[phasor\~\] together with a \[cos\~\] enables both phase modulation and oscillator resetting.
 
-## Additivity
+## Additive Synthesis
+
+Additive synthesis is a method for constructing complex waveforms by combining multiple sine waves of different frequencies and amplitudes. Unlike subtractive synthesis, which begins with a harmonically rich signal and removes unwanted components through filtering, additive synthesis starts from fundamental building blocks—sine waves—and gradually assembles them into a desired sound. While the conceptual clarity of this approach is appealing, its practical implementation typically demands a user interface capable of managing a high number of parameters simultaneously, often making additive synthesizers more complex to operate.
+
+The theoretical foundation of additive synthesis lies in the work of the French mathematician Jean-Baptiste Joseph Fourier. In 1807, Fourier demonstrated that any periodic waveform could be represented as a sum of sine waves, each with a specific frequency and amplitude. This revelation forms the basis of what we now call Fourier analysis and synthesis. While Fourier’s original formulation applied only to repetitive waveforms to maintain mathematical tractability, modern techniques extend these principles to non-periodic signals by allowing sine wave parameters to vary over time.
+
+A helpful analogy is to imagine describing written text over a telephone to someone who has never seen it. One might begin by breaking words into letters, and letters into lines, curves, and dots. This level of description works well if the words remain static. However, if the words change, the description must be updated continuously. Likewise, Fourier synthesis allows us to describe and reproduce complex waveforms from basic sinusoidal components, provided we are equipped to update these components when the signal changes.
+
+The simplest application of Fourier synthesis is the reconstruction of a sine wave—which, unsurprisingly, requires just one sine wave. A sine wave contains only a single frequency component—the fundamental—and no additional harmonics.
+
+### Harmonics and Waveform Construction
+
+More complex waveforms are created by adding sine waves at integer multiples of the fundamental frequency. These multiples are called harmonics. If the fundamental frequency is denoted by \( f \), then the additional components will be \( 2f, 3f, 4f, \ldots \), corresponding to the second, third, fourth harmonics, and so on. This organization gives rise to the standard harmonic series found in many acoustic and electronic sounds.
+
+The terminology surrounding harmonics often overlaps with that of overtones. The first harmonic (fundamental) has no overtone. The second harmonic is the first overtone, the third harmonic is the second overtone, and so forth. This relationship is summarized in the following table:
+
+| Frequency | Harmonic | Overtone |
+|-----------|----------|----------|
+| \( f \)   | 1        | —        |
+| \( 2f \)  | 2        | 1        |
+| \( 3f \)  | 3        | 2        |
+| \( 4f \)  | 4        | 3        |
+| \( 5f \)  | 5        | 4        |
+| \( 6f \)  | 6        | 5        |
+| \( 7f \)  | 7        | 6        |
+| \( 8f \)  | 8        | 7        |
+| \( 9f \)  | 9        | 8        |
+| \( 10f \) | 10       | 9        |
+
+### Harmonic Synthesis
+
+Although additive synthesis often begins with the goal of reconstructing a known waveform, this is a limited perspective. In practice, the visual shape of a waveform does not reliably indicate its harmonic content. Minor alterations in phase relationships can drastically alter the shape of a waveform without affecting its sonic character. This is especially true at higher frequencies, where the human auditory system is less sensitive to phase differences.
+
+For example, sine waves are considered perceptually pure. Introducing odd-numbered harmonics yields a triangular waveform, which retains a clean quality but feels richer than a pure sine. Square waves contain only odd harmonics, lending them a hollow timbre. If the second harmonic of a square wave is phase-shifted, the visual waveform changes, yet the auditory perception remains largely unaffected. Sawtooth waves, containing both even and odd harmonics, are brighter and richer in harmonic content. Modifying the phase of their components alters the shape without significantly changing the perceived sound.
+
+Pulse waves, derived from narrow square waves, introduce more harmonics as the duty cycle deviates from 50%. Interestingly, a 10% and a 90% pulse wave share identical harmonic content, illustrating the symmetry of their spectrum. The square wave (50% duty cycle) is unique in that it contains only odd harmonics. By contrast, a waveform composed exclusively of even harmonics resembles a square wave shifted up by an octave—its fundamental frequency is \( 2f \).
+
+### Practical Considerations
+
+Perfect waveforms, such as ideal square waves, require an infinite number of harmonics. In practice, synthesizers approximate these shapes with a limited set of partials, usually between 32 and 64 harmonics. For instance, a fundamental frequency of 55 Hz (low A) yields the 32nd harmonic at 1760 Hz and the 64th at 3520 Hz. At 440 Hz (concert A), the 45th harmonic reaches 19,800 Hz, which is near the upper limit of human hearing.
+
+| Frequency | Harmonic |
+|-----------|----------|
+| 55 Hz     | 1        |
+| 110 Hz    | 2        |
+| 165 Hz    | 3        |
+| 220 Hz    | 4        |
+| 275 Hz    | 5        |
+| ...       | ...      |
+| 3520 Hz   | 64       |
+
+### Inharmonic Content and Real-World Complexity
+
+Real-world sounds often exhibit inharmonic components—frequencies that are not integer multiples of the fundamental. These include:
+
+- **Noise**: Broad-spectrum energy with no harmonic organization.
+- **Beat Frequencies**: Resulting from detuned harmonics, producing low-frequency amplitude modulations.
+- **Sidebands**: Occurring from modulation, producing spectral mirror images around a carrier frequency.
+- **Inharmonics**: Regularly structured but non-harmonic components, typical of metallic or bell-like sounds.
+
+Many additive synthesizers limit themselves to harmonic content, occasionally supplemented by noise generators. While deterministic in design, this approach overlooks the stochastic and dynamic nature of real-world sound phenomena.
+
+### Harmonic Analysis
+
+To construct realistic timbres, additive synthesis relies on knowledge of harmonic spectra from real instruments. Fourier analysis provides a systematic method for decomposing complex signals into their constituent sine waves. This is conceptually akin to sweeping a narrow band-pass filter across the spectrum and measuring energy at each frequency. The narrower the filter bandwidth, the higher the resolution. Simple musical tones require relatively coarse resolution; more complex sounds demand finer spectral discrimination.
+
+Fourier analysis can be performed with analog hardware or more commonly with digital processing techniques, offering flexibility and precision for real-time applications.
+
+### Envelopes in Additive Synthesis
+
+Controlling the amplitude of each harmonic over time requires an envelope generator (EG) and a voltage-controlled amplifier (VCA) per harmonic. Ideally, the final sound envelope results from the sum of individual harmonic envelopes. To simplify control while preserving expressivity, a global EG and VCA can also be applied post-summing to modulate the overall output.
+
+One common configuration is the ADSR envelope—Attack, Decay, Sustain, Release—which requires only four parameters and is relatively easy to implement in analog circuitry. Though more complex designs like DADSR offer additional flexibility, they demand more components and are usually reserved for digital implementations.
+
+![Fig.](/assets/images/synthesis/adsr.png)
+
+Additive synthesis provides a powerful framework for sound construction, especially when paired with modern computational tools. It invites a deep understanding of harmonic behavior and spectral composition, allowing composers and designers to sculpt timbre with surgical precision—layer by layer, sine by sine.
+
+The following example created by Miller Puckette [@puckette2007] encapsulate an ADSR envelope generator within a reusable Pure Data (Pd) abstraction named `adsr`. This design enables easy replication of the envelope generator and flexible parameter control, either through creation arguments or real-time updates via control inlets.
+
+The abstraction accepts five creation arguments, corresponding respectively to the:
+
+- peak level
+- attack time 
+- decay time 
+- sustain level (expressed as a percentage of the peak), and 
+- release time 
+ 
+For instance, the arguments `[adsr 1 100 200 50 300]` define a peak amplitude of 1.0, an attack time of 100 milliseconds, a decay time of 200 milliseconds, a sustain level at 50% of the peak, and a release time of 300 milliseconds.
+
+![Fig.](/assets/screenshots/synthesis/additive/adsr-puckette.png)
+
+In addition to these arguments, the abstraction provides six control inlets. The first inlet serves as the trigger input, responsible for initiating or releasing the envelope. The remaining five inlets allow dynamic control over each of the ADSR parameters, overriding the corresponding creation arguments when values are received. The abstraction outputs an audio signal that modulates amplitude according to the ADSR envelope.
+
+Internally, the implementation of the `adsr` abstraction is both efficient and modular. The signal path consists of the standard `[line~]` object, used to generate smooth audio ramps, and `[outlet~]`, which delivers the envelope signal to the external patch. Control flow within the abstraction is handled through three `[pack]` objects—each corresponding to a message that controls one segment of the envelope: attack, decay, and release.
+
+The attack segment uses a `[pack]` object to format a message that instructs `[line~]` to ramp from 0 to the peak level over the attack time duration. This peak level is represented by `$1`, the first creation argument, while the duration is `$2`, the second. Both values can also be modified via the corresponding control inlets.
+
+The decay segment presents a more complex behavior. Once the attack segment is completed, the envelope should transition from the peak to the sustain level. This transition is delayed using `[del $2]`, which defers execution by the duration of the attack. The sustain level is computed by multiplying the peak value by the sustain percentage (the fourth creation argument or inlet), and dividing by 100. This result becomes the new target value for `[line~]`, reached over the duration specified by the decay time.
+
+The release segment is comparatively straightforward. Upon receiving a trigger value of 0, the abstraction sends a ramp to zero over the specified release time. This is implemented using a `[pack]` object that combines the zero target with the release time value, which is either `$5` (from creation arguments) or provided via the corresponding inlet.
+
+The trigger logic supports three types of behavior:
+
+- A **positive number** initiates an attack and decay cycle.
+- A **zero** triggers the release segment, allowing the envelope to fade back to zero.
+- A **negative number** functions as a reset, immediately sending the output to zero and initiating a new onset.
+
+This flexibility enables the abstraction to support a variety of amplitude modulation scenarios in real-time audio synthesis, making it both pedagogically instructive and practically versatile for sound design tasks.
+
+## Twenty-Oscillator Harmonic System
+
+This Pure Data patch implements a comprehensive additive synthesis engine that demonstrates the fundamental principles of harmonic spectrum construction through the controlled combination of multiple sine wave oscillators. The system employs twenty independent oscillator modules, each operating at harmonically related frequencies with individual amplitude envelope control, creating a powerful platform for exploring the timbral possibilities of additive synthesis while maintaining real-time performance capabilities.
+
+The patch architecture emphasizes modular design through the use of custom abstractions, enabling scalable harmonic control while providing educational insight into the mathematical relationships that govern harmonic series construction. By implementing individual envelope generators for each partial, the system demonstrates how complex timbral evolution can be achieved through coordinated amplitude control across multiple frequency components.
+
+![Fig. ](/assets/screenshots/synthesis/additive/20-oscillators.png){width="70%"}
+
+### Patch Overview
+
+The additive synthesis system implements a comprehensive harmonic generation pipeline consisting of four primary processing stages:
+
+1. **Global Parameter Control**: Manages fundamental frequency and timing coordination
+2. **Individual Oscillator Modules**: Twenty independent `oscilador` abstractions with harmonic frequency relationships
+3. **Amplitude Envelope Management**: Coordinated envelope generation across all partials
+4. **Audio Signal Summation**: Collection and mixing of all oscillator outputs
+
+The system demonstrates classic additive synthesis principles where complex timbres emerge from the controlled combination of simple sinusoidal components, each contributing specific harmonic content to the overall spectral composition.
+
+```{mermaid}
+flowchart TD
+    A[Global Frequency Control] --> B[Twenty Harmonic Oscillators]
+    B --> C[Individual Envelope Generation]
+    C --> D[Audio Signal Collection]
+    D --> E[Mixed Output]
+    F[Global Time Scaling] --> C
+    
+    style A fill:#e1f5fe
+    style E fill:#f3e5f5
+    style C fill:#fff3e0
+```
+
+### Key Objects and Their Roles
+
+| Object | Function | Role in Additive Synthesis |
+|--------|----------|----------------------------|
+| `s freq` / `r freq` | Global frequency distribution | Distributes fundamental frequency to all oscillators |
+| `oscilador` | Harmonic oscillator abstraction | Implements individual partial with envelope control |
+| `catch~ audio` | Audio signal collection | Aggregates all oscillator outputs |
+| `hradio` | Duration control interface | Selects global envelope timing |
+| `s timeScale` / `r timeScale` | Timing distribution | Coordinates envelope durations across oscillators |
+| `out~` | Audio output | Final signal delivery |
+
+#### Critical Processing Components
+
+**oscilador Abstraction**: Each instance implements a complete harmonic partial with integrated envelope generation. The abstraction receives two arguments: harmonic number (1-20) and envelope duration in milliseconds, enabling independent control over both frequency relationships and temporal characteristics.
+
+**Global Parameter Distribution**: The send/receive system (`s freq`, `s timeScale`) ensures synchronized parameter updates across all oscillator instances while maintaining modular architecture that supports easy scaling to different numbers of partials.
+
+**Audio Signal Aggregation**: The `catch~ audio` object employs Pure Data's audio signal collection mechanism to sum all oscillator outputs without explicit connection cables, demonstrating efficient signal routing in complex patches.
+
+### Data Flow
+
+The additive synthesis patch orchestrates a multi-oscillator system that transforms simple frequency and timing parameters into complex harmonic spectra through coordinated oscillator management and envelope control. This implementation demonstrates how additive synthesis principles can be systematically applied to create timbral complexity from elementary sinusoidal components while maintaining real-time performance and user control.
+
+The global parameter management stage establishes the foundation for harmonic spectrum generation through centralized control of fundamental frequency and timing coordination. When users adjust the frequency control, the new value propagates through the `s freq` send object to all twenty oscillator instances simultaneously, ensuring that harmonic relationships remain mathematically correct as the fundamental frequency changes. This distribution system maintains the precise frequency ratios that define harmonic series relationships, where each oscillator operates at an integer multiple of the fundamental frequency. The timing control system operates in parallel through the `s timeScale` mechanism, enabling users to adjust the overall temporal character of the synthesis while preserving the relative envelope timing relationships between different partials. The hradio interface provides discrete envelope duration options that range from brief percussive attacks to sustained harmonic evolutions, allowing for diverse timbral expressions within the additive framework.
+
+The individual oscillator processing stage represents the core of the additive synthesis engine, where each `oscilador` abstraction implements a complete harmonic partial with sophisticated envelope control. Each oscillator instance receives two critical arguments during instantiation: the harmonic number (1, 2, 3... up to 20) and the base envelope duration in milliseconds. The harmonic number determines the frequency multiplication factor applied to the global fundamental frequency, creating the precise integer relationships that define harmonic spectra. Within each `oscilador` abstraction, the frequency calculation multiplies the received fundamental frequency by the harmonic number, generating frequencies such as 440 Hz (fundamental), 880 Hz (second harmonic), 1320 Hz (third harmonic), and so forth. The envelope duration argument provides each oscillator with its temporal characteristics, which are further modified by the global time scaling factor to enable coordinated timing adjustments across the entire harmonic spectrum.
+
+The envelope generation and coordination stage implements sophisticated temporal control that enables complex timbral evolution through coordinated amplitude modulation across all harmonic partials. Each `oscilador` abstraction contains an independent envelope generator that controls the amplitude trajectory of its associated sine wave oscillator. The envelope system employs bang-triggered activation that initiates synchronized envelope sequences across all oscillators, creating coherent timbral attacks and evolutions. The envelope duration calculation combines the base duration argument with the global time scaling factor, enabling users to modify the overall temporal character of the synthesis while maintaining the relative timing relationships between different partials. This coordination mechanism allows for sophisticated timbral effects where lower harmonics might sustain longer than higher harmonics, or where specific partials activate at different times to create complex spectral evolution patterns.
+
+The audio signal collection and output stage demonstrates efficient signal routing architecture that aggregates all oscillator outputs without requiring complex cable connections between modules. Each `oscilador` abstraction contains a `throw~ audio` object that sends its processed audio signal to the global collection point implemented by the `catch~ audio` object in the main patch. This signal routing approach enables the system to sum all twenty harmonic partials automatically while maintaining clean patch organization and supporting easy modification of the oscillator count. The collected audio signal undergoes final processing through the `out~` object, which provides level control and audio interface connectivity for monitoring and recording the synthesized output.
+
+```{mermaid}
+flowchart LR
+    A[Parameter Distribution] --> B[Harmonic Generation]
+    B --> C[Envelope Application]
+    C --> D[Signal Collection]
+```
+
+### Processing Chain Details
+
+The additive synthesis system maintains harmonic precision and temporal coordination through several interconnected processing stages:
+
+| Stage | Input | Process | Output |
+|-------|-------|---------|--------|
+| 1 | User Controls | Global parameter distribution | Synchronized frequency and timing |
+| 2 | Global Parameters | Harmonic frequency calculation | Twenty harmonic frequencies |
+| 3 | Harmonic Frequencies | Sine wave generation with envelopes | Individual partial signals |
+| 4 | Multiple Audio Signals | Signal aggregation and mixing | Combined harmonic spectrum |
+
+#### Harmonic Frequency Distribution
+
+| Oscillator | Harmonic Number | Frequency Relationship | Example (440 Hz fundamental) |
+|------------|-----------------|------------------------|------------------------------|
+| 1 | 1 | f × 1 | 440 Hz |
+| 2 | 2 | f × 2 | 880 Hz |
+| 3 | 3 | f × 3 | 1320 Hz |
+| 4 | 4 | f × 4 | 1760 Hz |
+| 5 | 5 | f × 5 | 2200 Hz |
+| 6-10 | 6-10 | f × 6-10 | 2640-4400 Hz |
+| 11-15 | 11-15 | f × 11-15 | 4840-6600 Hz |
+| 16-20 | 16-20 | f × 16-20 | 7040-8800 Hz |
+
+#### Envelope Timing Control
+
+The time scaling system provides proportional control over envelope durations:
+
+| hradio Setting | Time Scale Factor | Effect on 1000ms Base Duration |
+|----------------|-------------------|--------------------------------|
+| 0 | 0.1 | 100 ms (very fast attack) |
+| 1 | 0.25 | 250 ms (fast attack) |
+| 2 | 0.5 | 500 ms (medium attack) |
+| 3 | 1.0 | 1000 ms (normal attack) |
+| 4 | 2.0 | 2000 ms (slow attack) |
+| 5 | 5.0 | 5000 ms (very slow attack) |
+
+#### Signal Architecture
+
+**Modular Design**: Each oscillator operates independently while sharing global parameters, enabling flexible harmonic control and easy system modification.
+
+**Efficient Routing**: The throw~/catch~ system eliminates cable clutter while maintaining clear signal flow organization.
+
+**Scalable Architecture**: The abstraction-based design supports easy addition or removal of harmonic partials without patch restructuring.
+
+### Creative Applications
+
+- **Classic Additive Synthesis**: Recreate the timbres of historical additive synthesizers like the Kawai K5000 or early computer music systems by manually adjusting individual harmonic amplitudes
+- **Spectral Animation**: Use external control data (MIDI, OSC, sensors) to modulate individual oscillator amplitudes, creating dynamic spectral evolution and movement
+- **Organ Stop Simulation**: Configure different combinations of harmonics to simulate pipe organ stops, drawbar organs, or other harmonic instruments
+- **Spectral Morphing**: Sequence different harmonic amplitude configurations to create smooth timbral transitions between distinct spectral shapes
+- **Microtonal Additive Synthesis**: Modify individual oscillator frequencies to explore non-harmonic spectra and microtonal intervals while maintaining the additive framework
+- **Algorithmic Composition**: Use mathematical functions or stochastic processes to control harmonic amplitudes over time, creating evolving textures with embedded structural logic
 
 ## Amplitude & Ring Modulation
 
