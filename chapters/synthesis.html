@@ -96,6 +96,10 @@ div.csl-indent {
     "search-label": "Search"
   }
 }</script>
+<meta name="mermaid-theme" content="neutral">
+<script src="../site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="../site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -412,38 +416,54 @@ window.Quarto = {
   <li><a href="#phase" id="toc-phase" class="nav-link" data-scroll-target="#phase"><span class="header-section-number">4.3.9</span> Phase</a></li>
   <li><a href="#polarity" id="toc-polarity" class="nav-link" data-scroll-target="#polarity"><span class="header-section-number">4.3.10</span> Polarity</a></li>
   </ul></li>
-  <li><a href="#additivity" id="toc-additivity" class="nav-link" data-scroll-target="#additivity"><span class="header-section-number">4.4</span> Additivity</a></li>
-  <li><a href="#amplitude-ring-modulation" id="toc-amplitude-ring-modulation" class="nav-link" data-scroll-target="#amplitude-ring-modulation"><span class="header-section-number">4.5</span> Amplitude &amp; Ring Modulation</a>
+  <li><a href="#additive-synthesis" id="toc-additive-synthesis" class="nav-link" data-scroll-target="#additive-synthesis"><span class="header-section-number">4.4</span> Additive Synthesis</a>
   <ul class="collapse">
-  <li><a href="#amplitude-modulation" id="toc-amplitude-modulation" class="nav-link" data-scroll-target="#amplitude-modulation"><span class="header-section-number">4.5.1</span> Amplitude Modulation</a></li>
-  <li><a href="#ring-modulation" id="toc-ring-modulation" class="nav-link" data-scroll-target="#ring-modulation"><span class="header-section-number">4.5.2</span> Ring Modulation</a></li>
-  <li><a href="#dc-offset" id="toc-dc-offset" class="nav-link" data-scroll-target="#dc-offset"><span class="header-section-number">4.5.3</span> DC Offset</a></li>
-  <li><a href="#audio-samples-modulation" id="toc-audio-samples-modulation" class="nav-link" data-scroll-target="#audio-samples-modulation"><span class="header-section-number">4.5.4</span> Audio Samples &amp; Modulation</a></li>
-  <li><a href="#other-waveforms" id="toc-other-waveforms" class="nav-link" data-scroll-target="#other-waveforms"><span class="header-section-number">4.5.5</span> Other Waveforms</a></li>
-  <li><a href="#tremolo" id="toc-tremolo" class="nav-link" data-scroll-target="#tremolo"><span class="header-section-number">4.5.6</span> Tremolo</a></li>
+  <li><a href="#harmonics-and-waveform-construction" id="toc-harmonics-and-waveform-construction" class="nav-link" data-scroll-target="#harmonics-and-waveform-construction"><span class="header-section-number">4.4.1</span> Harmonics and Waveform Construction</a></li>
+  <li><a href="#harmonic-synthesis" id="toc-harmonic-synthesis" class="nav-link" data-scroll-target="#harmonic-synthesis"><span class="header-section-number">4.4.2</span> Harmonic Synthesis</a></li>
+  <li><a href="#practical-considerations" id="toc-practical-considerations" class="nav-link" data-scroll-target="#practical-considerations"><span class="header-section-number">4.4.3</span> Practical Considerations</a></li>
+  <li><a href="#inharmonic-content-and-real-world-complexity" id="toc-inharmonic-content-and-real-world-complexity" class="nav-link" data-scroll-target="#inharmonic-content-and-real-world-complexity"><span class="header-section-number">4.4.4</span> Inharmonic Content and Real-World Complexity</a></li>
+  <li><a href="#harmonic-analysis" id="toc-harmonic-analysis" class="nav-link" data-scroll-target="#harmonic-analysis"><span class="header-section-number">4.4.5</span> Harmonic Analysis</a></li>
+  <li><a href="#envelopes-in-additive-synthesis" id="toc-envelopes-in-additive-synthesis" class="nav-link" data-scroll-target="#envelopes-in-additive-synthesis"><span class="header-section-number">4.4.6</span> Envelopes in Additive Synthesis</a></li>
   </ul></li>
-  <li><a href="#frequency-modulation" id="toc-frequency-modulation" class="nav-link" data-scroll-target="#frequency-modulation"><span class="header-section-number">4.6</span> Frequency Modulation</a>
+  <li><a href="#twenty-oscillator-harmonic-system" id="toc-twenty-oscillator-harmonic-system" class="nav-link" data-scroll-target="#twenty-oscillator-harmonic-system"><span class="header-section-number">4.5</span> Twenty-Oscillator Harmonic System</a>
   <ul class="collapse">
-  <li><a href="#fm-simple" id="toc-fm-simple" class="nav-link" data-scroll-target="#fm-simple"><span class="header-section-number">4.6.1</span> FM Simple</a></li>
-  <li><a href="#other-waveforms-1" id="toc-other-waveforms-1" class="nav-link" data-scroll-target="#other-waveforms-1"><span class="header-section-number">4.6.2</span> Other Waveforms</a></li>
-  <li><a href="#exponential-frequency" id="toc-exponential-frequency" class="nav-link" data-scroll-target="#exponential-frequency"><span class="header-section-number">4.6.3</span> Exponential Frequency</a></li>
-  <li><a href="#ratio" id="toc-ratio" class="nav-link" data-scroll-target="#ratio"><span class="header-section-number">4.6.4</span> Ratio</a></li>
+  <li><a href="#patch-overview" id="toc-patch-overview" class="nav-link" data-scroll-target="#patch-overview"><span class="header-section-number">4.5.1</span> Patch Overview</a></li>
+  <li><a href="#key-objects-and-their-roles" id="toc-key-objects-and-their-roles" class="nav-link" data-scroll-target="#key-objects-and-their-roles"><span class="header-section-number">4.5.2</span> Key Objects and Their Roles</a></li>
+  <li><a href="#data-flow" id="toc-data-flow" class="nav-link" data-scroll-target="#data-flow"><span class="header-section-number">4.5.3</span> Data Flow</a></li>
+  <li><a href="#processing-chain-details" id="toc-processing-chain-details" class="nav-link" data-scroll-target="#processing-chain-details"><span class="header-section-number">4.5.4</span> Processing Chain Details</a></li>
+  <li><a href="#creative-applications" id="toc-creative-applications" class="nav-link" data-scroll-target="#creative-applications"><span class="header-section-number">4.5.5</span> Creative Applications</a></li>
   </ul></li>
-  <li><a href="#subtractive-synthesis" id="toc-subtractive-synthesis" class="nav-link" data-scroll-target="#subtractive-synthesis"><span class="header-section-number">4.7</span> Subtractive Synthesis</a>
+  <li><a href="#amplitude-ring-modulation" id="toc-amplitude-ring-modulation" class="nav-link" data-scroll-target="#amplitude-ring-modulation"><span class="header-section-number">4.6</span> Amplitude &amp; Ring Modulation</a>
   <ul class="collapse">
-  <li><a href="#conceptual-model-source-and-modifier" id="toc-conceptual-model-source-and-modifier" class="nav-link" data-scroll-target="#conceptual-model-source-and-modifier"><span class="header-section-number">4.7.1</span> Conceptual Model: Source and Modifier</a></li>
-  <li><a href="#sound-sources-1" id="toc-sound-sources-1" class="nav-link" data-scroll-target="#sound-sources-1"><span class="header-section-number">4.7.2</span> Sound Sources</a></li>
-  <li><a href="#filters" id="toc-filters" class="nav-link" data-scroll-target="#filters"><span class="header-section-number">4.7.3</span> Filters</a></li>
-  <li><a href="#classification-of-filters" id="toc-classification-of-filters" class="nav-link" data-scroll-target="#classification-of-filters"><span class="header-section-number">4.7.4</span> Classification of Filters</a></li>
-  <li><a href="#filters-in-pure-data" id="toc-filters-in-pure-data" class="nav-link" data-scroll-target="#filters-in-pure-data"><span class="header-section-number">4.7.5</span> Filters in Pure Data</a></li>
-  <li><a href="#low-pass-filtering" id="toc-low-pass-filtering" class="nav-link" data-scroll-target="#low-pass-filtering"><span class="header-section-number">4.7.6</span> Low-Pass Filtering</a></li>
-  <li><a href="#high-pass-filtering" id="toc-high-pass-filtering" class="nav-link" data-scroll-target="#high-pass-filtering"><span class="header-section-number">4.7.7</span> High-Pass Filtering</a></li>
-  <li><a href="#resonant-filters" id="toc-resonant-filters" class="nav-link" data-scroll-target="#resonant-filters"><span class="header-section-number">4.7.8</span> Resonant Filters</a></li>
-  <li><a href="#the-q-factor" id="toc-the-q-factor" class="nav-link" data-scroll-target="#the-q-factor"><span class="header-section-number">4.7.9</span> The Q Factor</a></li>
-  <li><a href="#band-pass-filters" id="toc-band-pass-filters" class="nav-link" data-scroll-target="#band-pass-filters"><span class="header-section-number">4.7.10</span> Band-Pass Filters</a></li>
-  <li><a href="#voltage-controlled-filters" id="toc-voltage-controlled-filters" class="nav-link" data-scroll-target="#voltage-controlled-filters"><span class="header-section-number">4.7.11</span> Voltage-Controlled Filters</a></li>
-  <li><a href="#emulating-the-moog-filter" id="toc-emulating-the-moog-filter" class="nav-link" data-scroll-target="#emulating-the-moog-filter"><span class="header-section-number">4.7.12</span> Emulating the Moog Filter</a></li>
-  <li><a href="#biquad-filters" id="toc-biquad-filters" class="nav-link" data-scroll-target="#biquad-filters"><span class="header-section-number">4.7.13</span> Biquad Filters</a></li>
+  <li><a href="#amplitude-modulation" id="toc-amplitude-modulation" class="nav-link" data-scroll-target="#amplitude-modulation"><span class="header-section-number">4.6.1</span> Amplitude Modulation</a></li>
+  <li><a href="#ring-modulation" id="toc-ring-modulation" class="nav-link" data-scroll-target="#ring-modulation"><span class="header-section-number">4.6.2</span> Ring Modulation</a></li>
+  <li><a href="#dc-offset" id="toc-dc-offset" class="nav-link" data-scroll-target="#dc-offset"><span class="header-section-number">4.6.3</span> DC Offset</a></li>
+  <li><a href="#audio-samples-modulation" id="toc-audio-samples-modulation" class="nav-link" data-scroll-target="#audio-samples-modulation"><span class="header-section-number">4.6.4</span> Audio Samples &amp; Modulation</a></li>
+  <li><a href="#other-waveforms" id="toc-other-waveforms" class="nav-link" data-scroll-target="#other-waveforms"><span class="header-section-number">4.6.5</span> Other Waveforms</a></li>
+  <li><a href="#tremolo" id="toc-tremolo" class="nav-link" data-scroll-target="#tremolo"><span class="header-section-number">4.6.6</span> Tremolo</a></li>
+  </ul></li>
+  <li><a href="#frequency-modulation" id="toc-frequency-modulation" class="nav-link" data-scroll-target="#frequency-modulation"><span class="header-section-number">4.7</span> Frequency Modulation</a>
+  <ul class="collapse">
+  <li><a href="#fm-simple" id="toc-fm-simple" class="nav-link" data-scroll-target="#fm-simple"><span class="header-section-number">4.7.1</span> FM Simple</a></li>
+  <li><a href="#other-waveforms-1" id="toc-other-waveforms-1" class="nav-link" data-scroll-target="#other-waveforms-1"><span class="header-section-number">4.7.2</span> Other Waveforms</a></li>
+  <li><a href="#exponential-frequency" id="toc-exponential-frequency" class="nav-link" data-scroll-target="#exponential-frequency"><span class="header-section-number">4.7.3</span> Exponential Frequency</a></li>
+  <li><a href="#ratio" id="toc-ratio" class="nav-link" data-scroll-target="#ratio"><span class="header-section-number">4.7.4</span> Ratio</a></li>
+  </ul></li>
+  <li><a href="#subtractive-synthesis" id="toc-subtractive-synthesis" class="nav-link" data-scroll-target="#subtractive-synthesis"><span class="header-section-number">4.8</span> Subtractive Synthesis</a>
+  <ul class="collapse">
+  <li><a href="#conceptual-model-source-and-modifier" id="toc-conceptual-model-source-and-modifier" class="nav-link" data-scroll-target="#conceptual-model-source-and-modifier"><span class="header-section-number">4.8.1</span> Conceptual Model: Source and Modifier</a></li>
+  <li><a href="#sound-sources-1" id="toc-sound-sources-1" class="nav-link" data-scroll-target="#sound-sources-1"><span class="header-section-number">4.8.2</span> Sound Sources</a></li>
+  <li><a href="#filters" id="toc-filters" class="nav-link" data-scroll-target="#filters"><span class="header-section-number">4.8.3</span> Filters</a></li>
+  <li><a href="#classification-of-filters" id="toc-classification-of-filters" class="nav-link" data-scroll-target="#classification-of-filters"><span class="header-section-number">4.8.4</span> Classification of Filters</a></li>
+  <li><a href="#filters-in-pure-data" id="toc-filters-in-pure-data" class="nav-link" data-scroll-target="#filters-in-pure-data"><span class="header-section-number">4.8.5</span> Filters in Pure Data</a></li>
+  <li><a href="#low-pass-filtering" id="toc-low-pass-filtering" class="nav-link" data-scroll-target="#low-pass-filtering"><span class="header-section-number">4.8.6</span> Low-Pass Filtering</a></li>
+  <li><a href="#high-pass-filtering" id="toc-high-pass-filtering" class="nav-link" data-scroll-target="#high-pass-filtering"><span class="header-section-number">4.8.7</span> High-Pass Filtering</a></li>
+  <li><a href="#resonant-filters" id="toc-resonant-filters" class="nav-link" data-scroll-target="#resonant-filters"><span class="header-section-number">4.8.8</span> Resonant Filters</a></li>
+  <li><a href="#the-q-factor" id="toc-the-q-factor" class="nav-link" data-scroll-target="#the-q-factor"><span class="header-section-number">4.8.9</span> The Q Factor</a></li>
+  <li><a href="#band-pass-filters" id="toc-band-pass-filters" class="nav-link" data-scroll-target="#band-pass-filters"><span class="header-section-number">4.8.10</span> Band-Pass Filters</a></li>
+  <li><a href="#voltage-controlled-filters" id="toc-voltage-controlled-filters" class="nav-link" data-scroll-target="#voltage-controlled-filters"><span class="header-section-number">4.8.11</span> Voltage-Controlled Filters</a></li>
+  <li><a href="#emulating-the-moog-filter" id="toc-emulating-the-moog-filter" class="nav-link" data-scroll-target="#emulating-the-moog-filter"><span class="header-section-number">4.8.12</span> Emulating the Moog Filter</a></li>
+  <li><a href="#biquad-filters" id="toc-biquad-filters" class="nav-link" data-scroll-target="#biquad-filters"><span class="header-section-number">4.8.13</span> Biquad Filters</a></li>
   </ul></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
@@ -736,158 +756,630 @@ Period = 1 / 100 Hz = 0.01 s = 10 ms</code></pre>
 <p>The [osc~] object does not support phase modulation; we implemented it using [phasor~] in the previous examples. Hence, using a [phasor~] together with a [cos~] enables both phase modulation and oscillator resetting.</p>
 </section>
 </section>
-<section id="additivity" class="level2" data-number="4.4">
-<h2 data-number="4.4" class="anchored" data-anchor-id="additivity"><span class="header-section-number">4.4</span> Additivity</h2>
+<section id="additive-synthesis" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="additive-synthesis"><span class="header-section-number">4.4</span> Additive Synthesis</h2>
+<p>Additive synthesis is a method for constructing complex waveforms by combining multiple sine waves of different frequencies and amplitudes. Unlike subtractive synthesis, which begins with a harmonically rich signal and removes unwanted components through filtering, additive synthesis starts from fundamental building blocks—sine waves—and gradually assembles them into a desired sound. While the conceptual clarity of this approach is appealing, its practical implementation typically demands a user interface capable of managing a high number of parameters simultaneously, often making additive synthesizers more complex to operate.</p>
+<p>The theoretical foundation of additive synthesis lies in the work of the French mathematician Jean-Baptiste Joseph Fourier. In 1807, Fourier demonstrated that any periodic waveform could be represented as a sum of sine waves, each with a specific frequency and amplitude. This revelation forms the basis of what we now call Fourier analysis and synthesis. While Fourier’s original formulation applied only to repetitive waveforms to maintain mathematical tractability, modern techniques extend these principles to non-periodic signals by allowing sine wave parameters to vary over time.</p>
+<p>A helpful analogy is to imagine describing written text over a telephone to someone who has never seen it. One might begin by breaking words into letters, and letters into lines, curves, and dots. This level of description works well if the words remain static. However, if the words change, the description must be updated continuously. Likewise, Fourier synthesis allows us to describe and reproduce complex waveforms from basic sinusoidal components, provided we are equipped to update these components when the signal changes.</p>
+<p>The simplest application of Fourier synthesis is the reconstruction of a sine wave—which, unsurprisingly, requires just one sine wave. A sine wave contains only a single frequency component—the fundamental—and no additional harmonics.</p>
+<section id="harmonics-and-waveform-construction" class="level3" data-number="4.4.1">
+<h3 data-number="4.4.1" class="anchored" data-anchor-id="harmonics-and-waveform-construction"><span class="header-section-number">4.4.1</span> Harmonics and Waveform Construction</h3>
+<p>More complex waveforms are created by adding sine waves at integer multiples of the fundamental frequency. These multiples are called harmonics. If the fundamental frequency is denoted by ( f ), then the additional components will be ( 2f, 3f, 4f, ), corresponding to the second, third, fourth harmonics, and so on. This organization gives rise to the standard harmonic series found in many acoustic and electronic sounds.</p>
+<p>The terminology surrounding harmonics often overlaps with that of overtones. The first harmonic (fundamental) has no overtone. The second harmonic is the first overtone, the third harmonic is the second overtone, and so forth. This relationship is summarized in the following table:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Frequency</th>
+<th>Harmonic</th>
+<th>Overtone</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>( f )</td>
+<td>1</td>
+<td>—</td>
+</tr>
+<tr class="even">
+<td>( 2f )</td>
+<td>2</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>( 3f )</td>
+<td>3</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>( 4f )</td>
+<td>4</td>
+<td>3</td>
+</tr>
+<tr class="odd">
+<td>( 5f )</td>
+<td>5</td>
+<td>4</td>
+</tr>
+<tr class="even">
+<td>( 6f )</td>
+<td>6</td>
+<td>5</td>
+</tr>
+<tr class="odd">
+<td>( 7f )</td>
+<td>7</td>
+<td>6</td>
+</tr>
+<tr class="even">
+<td>( 8f )</td>
+<td>8</td>
+<td>7</td>
+</tr>
+<tr class="odd">
+<td>( 9f )</td>
+<td>9</td>
+<td>8</td>
+</tr>
+<tr class="even">
+<td>( 10f )</td>
+<td>10</td>
+<td>9</td>
+</tr>
+</tbody>
+</table>
 </section>
-<section id="amplitude-ring-modulation" class="level2" data-number="4.5">
-<h2 data-number="4.5" class="anchored" data-anchor-id="amplitude-ring-modulation"><span class="header-section-number">4.5</span> Amplitude &amp; Ring Modulation</h2>
+<section id="harmonic-synthesis" class="level3" data-number="4.4.2">
+<h3 data-number="4.4.2" class="anchored" data-anchor-id="harmonic-synthesis"><span class="header-section-number">4.4.2</span> Harmonic Synthesis</h3>
+<p>Although additive synthesis often begins with the goal of reconstructing a known waveform, this is a limited perspective. In practice, the visual shape of a waveform does not reliably indicate its harmonic content. Minor alterations in phase relationships can drastically alter the shape of a waveform without affecting its sonic character. This is especially true at higher frequencies, where the human auditory system is less sensitive to phase differences.</p>
+<p>For example, sine waves are considered perceptually pure. Introducing odd-numbered harmonics yields a triangular waveform, which retains a clean quality but feels richer than a pure sine. Square waves contain only odd harmonics, lending them a hollow timbre. If the second harmonic of a square wave is phase-shifted, the visual waveform changes, yet the auditory perception remains largely unaffected. Sawtooth waves, containing both even and odd harmonics, are brighter and richer in harmonic content. Modifying the phase of their components alters the shape without significantly changing the perceived sound.</p>
+<p>Pulse waves, derived from narrow square waves, introduce more harmonics as the duty cycle deviates from 50%. Interestingly, a 10% and a 90% pulse wave share identical harmonic content, illustrating the symmetry of their spectrum. The square wave (50% duty cycle) is unique in that it contains only odd harmonics. By contrast, a waveform composed exclusively of even harmonics resembles a square wave shifted up by an octave—its fundamental frequency is ( 2f ).</p>
+</section>
+<section id="practical-considerations" class="level3" data-number="4.4.3">
+<h3 data-number="4.4.3" class="anchored" data-anchor-id="practical-considerations"><span class="header-section-number">4.4.3</span> Practical Considerations</h3>
+<p>Perfect waveforms, such as ideal square waves, require an infinite number of harmonics. In practice, synthesizers approximate these shapes with a limited set of partials, usually between 32 and 64 harmonics. For instance, a fundamental frequency of 55 Hz (low A) yields the 32nd harmonic at 1760 Hz and the 64th at 3520 Hz. At 440 Hz (concert A), the 45th harmonic reaches 19,800 Hz, which is near the upper limit of human hearing.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Frequency</th>
+<th>Harmonic</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>55 Hz</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>110 Hz</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>165 Hz</td>
+<td>3</td>
+</tr>
+<tr class="even">
+<td>220 Hz</td>
+<td>4</td>
+</tr>
+<tr class="odd">
+<td>275 Hz</td>
+<td>5</td>
+</tr>
+<tr class="even">
+<td>…</td>
+<td>…</td>
+</tr>
+<tr class="odd">
+<td>3520 Hz</td>
+<td>64</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="inharmonic-content-and-real-world-complexity" class="level3" data-number="4.4.4">
+<h3 data-number="4.4.4" class="anchored" data-anchor-id="inharmonic-content-and-real-world-complexity"><span class="header-section-number">4.4.4</span> Inharmonic Content and Real-World Complexity</h3>
+<p>Real-world sounds often exhibit inharmonic components—frequencies that are not integer multiples of the fundamental. These include:</p>
+<ul>
+<li><strong>Noise</strong>: Broad-spectrum energy with no harmonic organization.</li>
+<li><strong>Beat Frequencies</strong>: Resulting from detuned harmonics, producing low-frequency amplitude modulations.</li>
+<li><strong>Sidebands</strong>: Occurring from modulation, producing spectral mirror images around a carrier frequency.</li>
+<li><strong>Inharmonics</strong>: Regularly structured but non-harmonic components, typical of metallic or bell-like sounds.</li>
+</ul>
+<p>Many additive synthesizers limit themselves to harmonic content, occasionally supplemented by noise generators. While deterministic in design, this approach overlooks the stochastic and dynamic nature of real-world sound phenomena.</p>
+</section>
+<section id="harmonic-analysis" class="level3" data-number="4.4.5">
+<h3 data-number="4.4.5" class="anchored" data-anchor-id="harmonic-analysis"><span class="header-section-number">4.4.5</span> Harmonic Analysis</h3>
+<p>To construct realistic timbres, additive synthesis relies on knowledge of harmonic spectra from real instruments. Fourier analysis provides a systematic method for decomposing complex signals into their constituent sine waves. This is conceptually akin to sweeping a narrow band-pass filter across the spectrum and measuring energy at each frequency. The narrower the filter bandwidth, the higher the resolution. Simple musical tones require relatively coarse resolution; more complex sounds demand finer spectral discrimination.</p>
+<p>Fourier analysis can be performed with analog hardware or more commonly with digital processing techniques, offering flexibility and precision for real-time applications.</p>
+</section>
+<section id="envelopes-in-additive-synthesis" class="level3" data-number="4.4.6">
+<h3 data-number="4.4.6" class="anchored" data-anchor-id="envelopes-in-additive-synthesis"><span class="header-section-number">4.4.6</span> Envelopes in Additive Synthesis</h3>
+<p>Controlling the amplitude of each harmonic over time requires an envelope generator (EG) and a voltage-controlled amplifier (VCA) per harmonic. Ideally, the final sound envelope results from the sum of individual harmonic envelopes. To simplify control while preserving expressivity, a global EG and VCA can also be applied post-summing to modulate the overall output.</p>
+<p>One common configuration is the ADSR envelope—Attack, Decay, Sustain, Release—which requires only four parameters and is relatively easy to implement in analog circuitry. Though more complex designs like DADSR offer additional flexibility, they demand more components and are usually reserved for digital implementations.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../assets/images/synthesis/adsr.png" class="lightbox" data-gallery="quarto-lightbox-gallery-21" title="Fig."><img src="../assets/images/synthesis/adsr.png" class="img-fluid figure-img" alt="Fig."></a></p>
+<figcaption>Fig.</figcaption>
+</figure>
+</div>
+<p>Additive synthesis provides a powerful framework for sound construction, especially when paired with modern computational tools. It invites a deep understanding of harmonic behavior and spectral composition, allowing composers and designers to sculpt timbre with surgical precision—layer by layer, sine by sine.</p>
+<p>The following example created by Miller Puckette <span class="citation" data-cites="puckette2007">(<a href="#ref-puckette2007" role="doc-biblioref">Puckette 2007</a>)</span> encapsulate an ADSR envelope generator within a reusable Pure Data (Pd) abstraction named <code>adsr</code>. This design enables easy replication of the envelope generator and flexible parameter control, either through creation arguments or real-time updates via control inlets.</p>
+<p>The abstraction accepts five creation arguments, corresponding respectively to the:</p>
+<ul>
+<li>peak level</li>
+<li>attack time</li>
+<li>decay time</li>
+<li>sustain level (expressed as a percentage of the peak), and</li>
+<li>release time</li>
+</ul>
+<p>For instance, the arguments <code>[adsr 1 100 200 50 300]</code> define a peak amplitude of 1.0, an attack time of 100 milliseconds, a decay time of 200 milliseconds, a sustain level at 50% of the peak, and a release time of 300 milliseconds.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../assets/screenshots/synthesis/additive/adsr-puckette.png" class="lightbox" data-gallery="quarto-lightbox-gallery-22" title="Fig."><img src="../assets/screenshots/synthesis/additive/adsr-puckette.png" class="img-fluid figure-img" alt="Fig."></a></p>
+<figcaption>Fig.</figcaption>
+</figure>
+</div>
+<p>In addition to these arguments, the abstraction provides six control inlets. The first inlet serves as the trigger input, responsible for initiating or releasing the envelope. The remaining five inlets allow dynamic control over each of the ADSR parameters, overriding the corresponding creation arguments when values are received. The abstraction outputs an audio signal that modulates amplitude according to the ADSR envelope.</p>
+<p>Internally, the implementation of the <code>adsr</code> abstraction is both efficient and modular. The signal path consists of the standard <code>[line~]</code> object, used to generate smooth audio ramps, and <code>[outlet~]</code>, which delivers the envelope signal to the external patch. Control flow within the abstraction is handled through three <code>[pack]</code> objects—each corresponding to a message that controls one segment of the envelope: attack, decay, and release.</p>
+<p>The attack segment uses a <code>[pack]</code> object to format a message that instructs <code>[line~]</code> to ramp from 0 to the peak level over the attack time duration. This peak level is represented by <code>$1</code>, the first creation argument, while the duration is <code>$2</code>, the second. Both values can also be modified via the corresponding control inlets.</p>
+<p>The decay segment presents a more complex behavior. Once the attack segment is completed, the envelope should transition from the peak to the sustain level. This transition is delayed using <code>[del $2]</code>, which defers execution by the duration of the attack. The sustain level is computed by multiplying the peak value by the sustain percentage (the fourth creation argument or inlet), and dividing by 100. This result becomes the new target value for <code>[line~]</code>, reached over the duration specified by the decay time.</p>
+<p>The release segment is comparatively straightforward. Upon receiving a trigger value of 0, the abstraction sends a ramp to zero over the specified release time. This is implemented using a <code>[pack]</code> object that combines the zero target with the release time value, which is either <code>$5</code> (from creation arguments) or provided via the corresponding inlet.</p>
+<p>The trigger logic supports three types of behavior:</p>
+<ul>
+<li>A <strong>positive number</strong> initiates an attack and decay cycle.</li>
+<li>A <strong>zero</strong> triggers the release segment, allowing the envelope to fade back to zero.</li>
+<li>A <strong>negative number</strong> functions as a reset, immediately sending the output to zero and initiating a new onset.</li>
+</ul>
+<p>This flexibility enables the abstraction to support a variety of amplitude modulation scenarios in real-time audio synthesis, making it both pedagogically instructive and practically versatile for sound design tasks.</p>
+</section>
+</section>
+<section id="twenty-oscillator-harmonic-system" class="level2" data-number="4.5">
+<h2 data-number="4.5" class="anchored" data-anchor-id="twenty-oscillator-harmonic-system"><span class="header-section-number">4.5</span> Twenty-Oscillator Harmonic System</h2>
+<p>This Pure Data patch implements a comprehensive additive synthesis engine that demonstrates the fundamental principles of harmonic spectrum construction through the controlled combination of multiple sine wave oscillators. The system employs twenty independent oscillator modules, each operating at harmonically related frequencies with individual amplitude envelope control, creating a powerful platform for exploring the timbral possibilities of additive synthesis while maintaining real-time performance capabilities.</p>
+<p>The patch architecture emphasizes modular design through the use of custom abstractions, enabling scalable harmonic control while providing educational insight into the mathematical relationships that govern harmonic series construction. By implementing individual envelope generators for each partial, the system demonstrates how complex timbral evolution can be achieved through coordinated amplitude control across multiple frequency components.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../assets/screenshots/synthesis/additive/20-oscillators.png" class="lightbox" data-gallery="quarto-lightbox-gallery-23" title="Fig."><img src="../assets/screenshots/synthesis/additive/20-oscillators.png" class="img-fluid figure-img" style="width:70.0%" alt="Fig."></a></p>
+<figcaption>Fig.</figcaption>
+</figure>
+</div>
+<section id="patch-overview" class="level3" data-number="4.5.1">
+<h3 data-number="4.5.1" class="anchored" data-anchor-id="patch-overview"><span class="header-section-number">4.5.1</span> Patch Overview</h3>
+<p>The additive synthesis system implements a comprehensive harmonic generation pipeline consisting of four primary processing stages:</p>
+<ol type="1">
+<li><strong>Global Parameter Control</strong>: Manages fundamental frequency and timing coordination</li>
+<li><strong>Individual Oscillator Modules</strong>: Twenty independent <code>oscilador</code> abstractions with harmonic frequency relationships</li>
+<li><strong>Amplitude Envelope Management</strong>: Coordinated envelope generation across all partials</li>
+<li><strong>Audio Signal Summation</strong>: Collection and mixing of all oscillator outputs</li>
+</ol>
+<p>The system demonstrates classic additive synthesis principles where complex timbres emerge from the controlled combination of simple sinusoidal components, each contributing specific harmonic content to the overall spectral composition.</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart TD
+    A[Global Frequency Control] --&gt; B[Twenty Harmonic Oscillators]
+    B --&gt; C[Individual Envelope Generation]
+    C --&gt; D[Audio Signal Collection]
+    D --&gt; E[Mixed Output]
+    F[Global Time Scaling] --&gt; C
+    
+    style A fill:#e1f5fe
+    style E fill:#f3e5f5
+    style C fill:#fff3e0
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="key-objects-and-their-roles" class="level3" data-number="4.5.2">
+<h3 data-number="4.5.2" class="anchored" data-anchor-id="key-objects-and-their-roles"><span class="header-section-number">4.5.2</span> Key Objects and Their Roles</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 17%">
+<col style="width: 21%">
+<col style="width: 60%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Object</th>
+<th>Function</th>
+<th>Role in Additive Synthesis</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>s freq</code> / <code>r freq</code></td>
+<td>Global frequency distribution</td>
+<td>Distributes fundamental frequency to all oscillators</td>
+</tr>
+<tr class="even">
+<td><code>oscilador</code></td>
+<td>Harmonic oscillator abstraction</td>
+<td>Implements individual partial with envelope control</td>
+</tr>
+<tr class="odd">
+<td><code>catch~ audio</code></td>
+<td>Audio signal collection</td>
+<td>Aggregates all oscillator outputs</td>
+</tr>
+<tr class="even">
+<td><code>hradio</code></td>
+<td>Duration control interface</td>
+<td>Selects global envelope timing</td>
+</tr>
+<tr class="odd">
+<td><code>s timeScale</code> / <code>r timeScale</code></td>
+<td>Timing distribution</td>
+<td>Coordinates envelope durations across oscillators</td>
+</tr>
+<tr class="even">
+<td><code>out~</code></td>
+<td>Audio output</td>
+<td>Final signal delivery</td>
+</tr>
+</tbody>
+</table>
+<section id="critical-processing-components" class="level4" data-number="4.5.2.1">
+<h4 data-number="4.5.2.1" class="anchored" data-anchor-id="critical-processing-components"><span class="header-section-number">4.5.2.1</span> Critical Processing Components</h4>
+<p><strong>oscilador Abstraction</strong>: Each instance implements a complete harmonic partial with integrated envelope generation. The abstraction receives two arguments: harmonic number (1-20) and envelope duration in milliseconds, enabling independent control over both frequency relationships and temporal characteristics.</p>
+<p><strong>Global Parameter Distribution</strong>: The send/receive system (<code>s freq</code>, <code>s timeScale</code>) ensures synchronized parameter updates across all oscillator instances while maintaining modular architecture that supports easy scaling to different numbers of partials.</p>
+<p><strong>Audio Signal Aggregation</strong>: The <code>catch~ audio</code> object employs Pure Data’s audio signal collection mechanism to sum all oscillator outputs without explicit connection cables, demonstrating efficient signal routing in complex patches.</p>
+</section>
+</section>
+<section id="data-flow" class="level3" data-number="4.5.3">
+<h3 data-number="4.5.3" class="anchored" data-anchor-id="data-flow"><span class="header-section-number">4.5.3</span> Data Flow</h3>
+<p>The additive synthesis patch orchestrates a multi-oscillator system that transforms simple frequency and timing parameters into complex harmonic spectra through coordinated oscillator management and envelope control. This implementation demonstrates how additive synthesis principles can be systematically applied to create timbral complexity from elementary sinusoidal components while maintaining real-time performance and user control.</p>
+<p>The global parameter management stage establishes the foundation for harmonic spectrum generation through centralized control of fundamental frequency and timing coordination. When users adjust the frequency control, the new value propagates through the <code>s freq</code> send object to all twenty oscillator instances simultaneously, ensuring that harmonic relationships remain mathematically correct as the fundamental frequency changes. This distribution system maintains the precise frequency ratios that define harmonic series relationships, where each oscillator operates at an integer multiple of the fundamental frequency. The timing control system operates in parallel through the <code>s timeScale</code> mechanism, enabling users to adjust the overall temporal character of the synthesis while preserving the relative envelope timing relationships between different partials. The hradio interface provides discrete envelope duration options that range from brief percussive attacks to sustained harmonic evolutions, allowing for diverse timbral expressions within the additive framework.</p>
+<p>The individual oscillator processing stage represents the core of the additive synthesis engine, where each <code>oscilador</code> abstraction implements a complete harmonic partial with sophisticated envelope control. Each oscillator instance receives two critical arguments during instantiation: the harmonic number (1, 2, 3… up to 20) and the base envelope duration in milliseconds. The harmonic number determines the frequency multiplication factor applied to the global fundamental frequency, creating the precise integer relationships that define harmonic spectra. Within each <code>oscilador</code> abstraction, the frequency calculation multiplies the received fundamental frequency by the harmonic number, generating frequencies such as 440 Hz (fundamental), 880 Hz (second harmonic), 1320 Hz (third harmonic), and so forth. The envelope duration argument provides each oscillator with its temporal characteristics, which are further modified by the global time scaling factor to enable coordinated timing adjustments across the entire harmonic spectrum.</p>
+<p>The envelope generation and coordination stage implements sophisticated temporal control that enables complex timbral evolution through coordinated amplitude modulation across all harmonic partials. Each <code>oscilador</code> abstraction contains an independent envelope generator that controls the amplitude trajectory of its associated sine wave oscillator. The envelope system employs bang-triggered activation that initiates synchronized envelope sequences across all oscillators, creating coherent timbral attacks and evolutions. The envelope duration calculation combines the base duration argument with the global time scaling factor, enabling users to modify the overall temporal character of the synthesis while maintaining the relative timing relationships between different partials. This coordination mechanism allows for sophisticated timbral effects where lower harmonics might sustain longer than higher harmonics, or where specific partials activate at different times to create complex spectral evolution patterns.</p>
+<p>The audio signal collection and output stage demonstrates efficient signal routing architecture that aggregates all oscillator outputs without requiring complex cable connections between modules. Each <code>oscilador</code> abstraction contains a <code>throw~ audio</code> object that sends its processed audio signal to the global collection point implemented by the <code>catch~ audio</code> object in the main patch. This signal routing approach enables the system to sum all twenty harmonic partials automatically while maintaining clean patch organization and supporting easy modification of the oscillator count. The collected audio signal undergoes final processing through the <code>out~</code> object, which provides level control and audio interface connectivity for monitoring and recording the synthesized output.</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+    A[Parameter Distribution] --&gt; B[Harmonic Generation]
+    B --&gt; C[Envelope Application]
+    C --&gt; D[Signal Collection]
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="processing-chain-details" class="level3" data-number="4.5.4">
+<h3 data-number="4.5.4" class="anchored" data-anchor-id="processing-chain-details"><span class="header-section-number">4.5.4</span> Processing Chain Details</h3>
+<p>The additive synthesis system maintains harmonic precision and temporal coordination through several interconnected processing stages:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 22%">
+<col style="width: 22%">
+<col style="width: 29%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Stage</th>
+<th>Input</th>
+<th>Process</th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>User Controls</td>
+<td>Global parameter distribution</td>
+<td>Synchronized frequency and timing</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>Global Parameters</td>
+<td>Harmonic frequency calculation</td>
+<td>Twenty harmonic frequencies</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>Harmonic Frequencies</td>
+<td>Sine wave generation with envelopes</td>
+<td>Individual partial signals</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>Multiple Audio Signals</td>
+<td>Signal aggregation and mixing</td>
+<td>Combined harmonic spectrum</td>
+</tr>
+</tbody>
+</table>
+<section id="harmonic-frequency-distribution" class="level4" data-number="4.5.4.1">
+<h4 data-number="4.5.4.1" class="anchored" data-anchor-id="harmonic-frequency-distribution"><span class="header-section-number">4.5.4.1</span> Harmonic Frequency Distribution</h4>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 14%">
+<col style="width: 20%">
+<col style="width: 28%">
+<col style="width: 36%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Oscillator</th>
+<th>Harmonic Number</th>
+<th>Frequency Relationship</th>
+<th>Example (440 Hz fundamental)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>1</td>
+<td>f × 1</td>
+<td>440 Hz</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>2</td>
+<td>f × 2</td>
+<td>880 Hz</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>3</td>
+<td>f × 3</td>
+<td>1320 Hz</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>4</td>
+<td>f × 4</td>
+<td>1760 Hz</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>5</td>
+<td>f × 5</td>
+<td>2200 Hz</td>
+</tr>
+<tr class="even">
+<td>6-10</td>
+<td>6-10</td>
+<td>f × 6-10</td>
+<td>2640-4400 Hz</td>
+</tr>
+<tr class="odd">
+<td>11-15</td>
+<td>11-15</td>
+<td>f × 11-15</td>
+<td>4840-6600 Hz</td>
+</tr>
+<tr class="even">
+<td>16-20</td>
+<td>16-20</td>
+<td>f × 16-20</td>
+<td>7040-8800 Hz</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="envelope-timing-control" class="level4" data-number="4.5.4.2">
+<h4 data-number="4.5.4.2" class="anchored" data-anchor-id="envelope-timing-control"><span class="header-section-number">4.5.4.2</span> Envelope Timing Control</h4>
+<p>The time scaling system provides proportional control over envelope durations:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>hradio Setting</th>
+<th>Time Scale Factor</th>
+<th>Effect on 1000ms Base Duration</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>0.1</td>
+<td>100 ms (very fast attack)</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>0.25</td>
+<td>250 ms (fast attack)</td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td>0.5</td>
+<td>500 ms (medium attack)</td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td>1.0</td>
+<td>1000 ms (normal attack)</td>
+</tr>
+<tr class="odd">
+<td>4</td>
+<td>2.0</td>
+<td>2000 ms (slow attack)</td>
+</tr>
+<tr class="even">
+<td>5</td>
+<td>5.0</td>
+<td>5000 ms (very slow attack)</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="signal-architecture" class="level4" data-number="4.5.4.3">
+<h4 data-number="4.5.4.3" class="anchored" data-anchor-id="signal-architecture"><span class="header-section-number">4.5.4.3</span> Signal Architecture</h4>
+<p><strong>Modular Design</strong>: Each oscillator operates independently while sharing global parameters, enabling flexible harmonic control and easy system modification.</p>
+<p><strong>Efficient Routing</strong>: The throw<sub>/catch</sub> system eliminates cable clutter while maintaining clear signal flow organization.</p>
+<p><strong>Scalable Architecture</strong>: The abstraction-based design supports easy addition or removal of harmonic partials without patch restructuring.</p>
+</section>
+</section>
+<section id="creative-applications" class="level3" data-number="4.5.5">
+<h3 data-number="4.5.5" class="anchored" data-anchor-id="creative-applications"><span class="header-section-number">4.5.5</span> Creative Applications</h3>
+<ul>
+<li><strong>Classic Additive Synthesis</strong>: Recreate the timbres of historical additive synthesizers like the Kawai K5000 or early computer music systems by manually adjusting individual harmonic amplitudes</li>
+<li><strong>Spectral Animation</strong>: Use external control data (MIDI, OSC, sensors) to modulate individual oscillator amplitudes, creating dynamic spectral evolution and movement</li>
+<li><strong>Organ Stop Simulation</strong>: Configure different combinations of harmonics to simulate pipe organ stops, drawbar organs, or other harmonic instruments</li>
+<li><strong>Spectral Morphing</strong>: Sequence different harmonic amplitude configurations to create smooth timbral transitions between distinct spectral shapes</li>
+<li><strong>Microtonal Additive Synthesis</strong>: Modify individual oscillator frequencies to explore non-harmonic spectra and microtonal intervals while maintaining the additive framework</li>
+<li><strong>Algorithmic Composition</strong>: Use mathematical functions or stochastic processes to control harmonic amplitudes over time, creating evolving textures with embedded structural logic</li>
+</ul>
+</section>
+</section>
+<section id="amplitude-ring-modulation" class="level2" data-number="4.6">
+<h2 data-number="4.6" class="anchored" data-anchor-id="amplitude-ring-modulation"><span class="header-section-number">4.6</span> Amplitude &amp; Ring Modulation</h2>
 <p>Amplitude modulation (AM) and ring modulation (RM) are two techniques that manipulate the amplitude of a signal using another signal. While they share similarities, they produce distinct results and are used in different contexts. In this section, we will explore the differences between AM and RM, their applications, and how they can be implemented in sound synthesis.</p>
-<section id="amplitude-modulation" class="level3" data-number="4.5.1">
-<h3 data-number="4.5.1" class="anchored" data-anchor-id="amplitude-modulation"><span class="header-section-number">4.5.1</span> Amplitude Modulation</h3>
+<section id="amplitude-modulation" class="level3" data-number="4.6.1">
+<h3 data-number="4.6.1" class="anchored" data-anchor-id="amplitude-modulation"><span class="header-section-number">4.6.1</span> Amplitude Modulation</h3>
 <p>We can modulate the amplitude of any signal—referred to as the <em>carrier</em>—by multiplying it with an oscillating signal, called the <em>modulator</em>. The modulator is typically another oscillator, and its frequency determines the <em>modulation frequency</em>.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="../assets/screenshots/synthesis/am-rm/am.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-21" title="Amplitude Modulation"><img src="../assets/screenshots/synthesis/am-rm/am.gif" class="img-fluid figure-img" alt="Amplitude Modulation"></a></p>
+<p><a href="../assets/screenshots/synthesis/am-rm/am.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-24" title="Amplitude Modulation"><img src="../assets/screenshots/synthesis/am-rm/am.gif" class="img-fluid figure-img" alt="Amplitude Modulation"></a></p>
 <figcaption>Amplitude Modulation</figcaption>
 </figure>
 </div>
 <p>In the example provided, both the carrier and modulator are sine wave oscillators. This is what we call “classic” amplitude modulation (AM), where the modulator signal includes a DC offset, making it <em>unipolar</em>, ranging only from 0 to 1. This unipolarity ensures that the carrier’s amplitude is scaled without ever becoming negative.</p>
 </section>
-<section id="ring-modulation" class="level3" data-number="4.5.2">
-<h3 data-number="4.5.2" class="anchored" data-anchor-id="ring-modulation"><span class="header-section-number">4.5.2</span> Ring Modulation</h3>
+<section id="ring-modulation" class="level3" data-number="4.6.2">
+<h3 data-number="4.6.2" class="anchored" data-anchor-id="ring-modulation"><span class="header-section-number">4.6.2</span> Ring Modulation</h3>
 <p>Ring modulation is a particular form of amplitude modulation where both the carrier and modulator signals are <em>bipolar</em>, meaning they oscillate between -1 and 1 without any DC offset. In this configuration, there’s no functional distinction between carrier and modulator—both behave symmetrically.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="../assets/screenshots/synthesis/am-rm/rm.png" class="lightbox" data-gallery="quarto-lightbox-gallery-22" title="Ring Modulation"><img src="../assets/screenshots/synthesis/am-rm/rm.png" class="img-fluid figure-img" alt="Ring Modulation"></a></p>
+<p><a href="../assets/screenshots/synthesis/am-rm/rm.png" class="lightbox" data-gallery="quarto-lightbox-gallery-25" title="Ring Modulation"><img src="../assets/screenshots/synthesis/am-rm/rm.png" class="img-fluid figure-img" alt="Ring Modulation"></a></p>
 <figcaption>Ring Modulation</figcaption>
 </figure>
 </div>
 <p>Nonetheless, in practical terms, the carrier is usually an audio signal such as a musical instrument, while the modulator remains a simple oscillator. A key technical detail is that when the modulator signal is negative, it inverts the polarity of the carrier signal—producing a unique and often metallic timbre.</p>
 </section>
-<section id="dc-offset" class="level3" data-number="4.5.3">
-<h3 data-number="4.5.3" class="anchored" data-anchor-id="dc-offset"><span class="header-section-number">4.5.3</span> DC Offset</h3>
+<section id="dc-offset" class="level3" data-number="4.6.3">
+<h3 data-number="4.6.3" class="anchored" data-anchor-id="dc-offset"><span class="header-section-number">4.6.3</span> DC Offset</h3>
 <p>Amplitude modulation schemes can involve various DC offset settings—not just limited to AM or RM. In our example, preset configurations for AM and RM are available, but one can also manually adjust peak levels and DC offset using sliders.</p>
 <p>Observe how, in the frequency spectrum of classic AM, we see two sidebands—above and below the carrier frequency—each at half the amplitude of the original carrier. These sidebands are spaced apart by the modulation frequency.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="../assets/screenshots/synthesis/am-rm/dc-offset.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-23" title="Fig."><img src="../assets/screenshots/synthesis/am-rm/dc-offset.gif" class="img-fluid figure-img" alt="Fig."></a></p>
+<p><a href="../assets/screenshots/synthesis/am-rm/dc-offset.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-26" title="Fig."><img src="../assets/screenshots/synthesis/am-rm/dc-offset.gif" class="img-fluid figure-img" alt="Fig."></a></p>
 <figcaption>Fig.</figcaption>
 </figure>
 </div>
 <p>In contrast, ring modulation removes the original carrier frequency entirely from the spectrum, leaving only the sidebands, which typically carry more energy than in AM.</p>
 <p>By adjusting amplitude and DC offset with sliders, we can morph continuously between AM and RM modes, gaining nuanced control over the presence of the original frequency component and the energy distribution in the sidebands.</p>
 </section>
-<section id="audio-samples-modulation" class="level3" data-number="4.5.4">
-<h3 data-number="4.5.4" class="anchored" data-anchor-id="audio-samples-modulation"><span class="header-section-number">4.5.4</span> Audio Samples &amp; Modulation</h3>
+<section id="audio-samples-modulation" class="level3" data-number="4.6.4">
+<h3 data-number="4.6.4" class="anchored" data-anchor-id="audio-samples-modulation"><span class="header-section-number">4.6.4</span> Audio Samples &amp; Modulation</h3>
 <p>In this example, an audio sample replaces the oscillator as the carrier signal. This demonstrates how amplitude modulation can function as an <em>audio effect processor</em> rather than just a <em>synthesis technique</em>. In fact, much of what we traditionally associate with synthesis techniques is often more accurately described as audio processing.</p>
 <p>Conversely, many effects processors—such as filters—are integral to sound synthesis. The boundary between synthesis and processing is thus fluid and contextual.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="../assets/screenshots/synthesis/am-rm/sample.png" class="lightbox" data-gallery="quarto-lightbox-gallery-24" title="Fig."><img src="../assets/screenshots/synthesis/am-rm/sample.png" class="img-fluid figure-img" alt="Fig."></a></p>
+<p><a href="../assets/screenshots/synthesis/am-rm/sample.png" class="lightbox" data-gallery="quarto-lightbox-gallery-27" title="Fig."><img src="../assets/screenshots/synthesis/am-rm/sample.png" class="img-fluid figure-img" alt="Fig."></a></p>
 <figcaption>Fig.</figcaption>
 </figure>
 </div>
 <p>Try both the classic AM and RM examples. In both cases, sidebands are generated for each sine wave component within the carrier signal. AM retains the carrier’s original sine components, which coexist and interact with the generated sidebands. For this reason, AM is commonly used for tremolo effects (which we’ll examine later). On the other hand, RM removes the original sine components entirely, yielding a more sonically distinctive result.</p>
 </section>
-<section id="other-waveforms" class="level3" data-number="4.5.5">
-<h3 data-number="4.5.5" class="anchored" data-anchor-id="other-waveforms"><span class="header-section-number">4.5.5</span> Other Waveforms</h3>
+<section id="other-waveforms" class="level3" data-number="4.6.5">
+<h3 data-number="4.6.5" class="anchored" data-anchor-id="other-waveforms"><span class="header-section-number">4.6.5</span> Other Waveforms</h3>
 <p>Using more complex waveforms for the modulator signal leads to the creation of additional partials within any amplitude modulation patch—including ring modulation. Sine waves are typically favored as modulators since they offer clean and controlled results, especially when applying AM as an audio effect.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="../assets/screenshots/synthesis/am-rm/other-waveforms.png" class="lightbox" data-gallery="quarto-lightbox-gallery-25" title="Fig."><img src="../assets/screenshots/synthesis/am-rm/other-waveforms.png" class="img-fluid figure-img" alt="Fig."></a></p>
+<p><a href="../assets/screenshots/synthesis/am-rm/other-waveforms.png" class="lightbox" data-gallery="quarto-lightbox-gallery-28" title="Fig."><img src="../assets/screenshots/synthesis/am-rm/other-waveforms.png" class="img-fluid figure-img" alt="Fig."></a></p>
 <figcaption>Fig.</figcaption>
 </figure>
 </div>
 <p>However, in synthesis contexts, more intricate and harmonically rich methods—such as <em>frequency</em> and <em>phase</em> modulation—offer more efficient and versatile approaches for generating complex timbres. We’ll explore these in the following sections.</p>
 </section>
-<section id="tremolo" class="level3" data-number="4.5.6">
-<h3 data-number="4.5.6" class="anchored" data-anchor-id="tremolo"><span class="header-section-number">4.5.6</span> Tremolo</h3>
+<section id="tremolo" class="level3" data-number="4.6.6">
+<h3 data-number="4.6.6" class="anchored" data-anchor-id="tremolo"><span class="header-section-number">4.6.6</span> Tremolo</h3>
 <p>Tremolo is essentially amplitude modulation using a <em>low-frequency</em> modulator. The key addition is a <em>depth</em> parameter, ranging from 0 to 1, which determines the modulation intensity. At 0, no modulation occurs (dry signal), while a depth of 1 results in full tremolo, where the carrier’s amplitude is modulated across its full range.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="../assets/screenshots/synthesis/am-rm/tremolo.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-26" title="Fig."><img src="../assets/screenshots/synthesis/am-rm/tremolo.gif" class="img-fluid figure-img" alt="Fig."></a></p>
+<p><a href="../assets/screenshots/synthesis/am-rm/tremolo.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-29" title="Fig."><img src="../assets/screenshots/synthesis/am-rm/tremolo.gif" class="img-fluid figure-img" alt="Fig."></a></p>
 <figcaption>Fig.</figcaption>
 </figure>
 </div>
 </section>
 </section>
-<section id="frequency-modulation" class="level2" data-number="4.6">
-<h2 data-number="4.6" class="anchored" data-anchor-id="frequency-modulation"><span class="header-section-number">4.6</span> Frequency Modulation</h2>
+<section id="frequency-modulation" class="level2" data-number="4.7">
+<h2 data-number="4.7" class="anchored" data-anchor-id="frequency-modulation"><span class="header-section-number">4.7</span> Frequency Modulation</h2>
 <p>In general terms, to <em>modulate</em> a signal means to alter it in some way. In the context of this course, however, we refer specifically to using a <em>modulating signal</em> to control a parameter—such as amplitude, as previously discussed. We now turn to the basic structure of <em>frequency modulation</em> (FM), where an oscillator acts as the modulator.</p>
 <p>The signal being modulated is called the <em>carrier</em>; in the case of frequency modulation, it is also referred to as the <em>carrier frequency</em>. In contrast, we have the <em>modulating frequency</em>, which corresponds to the frequency of the modulating oscillator. The depth of frequency variation is determined by the amplitude of the modulator and is commonly referred to as the <em>modulation index</em>. The modulation process itself is straightforward: we add the modulating signal to the frequency input of the carrier oscillator. See the example on the right</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="../assets/screenshots/synthesis/fm/intro.png" class="lightbox" data-gallery="quarto-lightbox-gallery-27" title="Fig."><img src="../assets/screenshots/synthesis/fm/intro.png" class="img-fluid figure-img" style="width:50.0%" alt="Fig."></a></p>
+<p><a href="../assets/screenshots/synthesis/fm/intro.png" class="lightbox" data-gallery="quarto-lightbox-gallery-30" title="Fig."><img src="../assets/screenshots/synthesis/fm/intro.png" class="img-fluid figure-img" style="width:50.0%" alt="Fig."></a></p>
 <figcaption>Fig.</figcaption>
 </figure>
 </div>
 <p>By default, we have a carrier frequency of 400 Hz, a low modulation frequency of 1 Hz, and a modulation index of 100. This means the modulating signal oscillates between -100 and +100 Hz, causing the carrier frequency to vary between 300 and 500 Hz. Note that when the modulation frequency is low, the result is a vibrato-like effect.</p>
-<section id="fm-simple" class="level3" data-number="4.6.1">
-<h3 data-number="4.6.1" class="anchored" data-anchor-id="fm-simple"><span class="header-section-number">4.6.1</span> FM Simple</h3>
+<section id="fm-simple" class="level3" data-number="4.7.1">
+<h3 data-number="4.7.1" class="anchored" data-anchor-id="fm-simple"><span class="header-section-number">4.7.1</span> FM Simple</h3>
 <p>We apply the same structure as before. Besides a vibrato example, this section includes fully developed FM examples. As with amplitude modulation, FM produces <em>sidebands</em> spaced by intervals equal to the modulation frequency. However, FM can generate many more sidebands, potentially resulting in a much richer spectrum.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="../assets/screenshots/synthesis/fm/fm.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-28" title="Fig."><img src="../assets/screenshots/synthesis/fm/fm.gif" class="img-fluid figure-img" alt="Fig."></a></p>
+<p><a href="../assets/screenshots/synthesis/fm/fm.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-31" title="Fig."><img src="../assets/screenshots/synthesis/fm/fm.gif" class="img-fluid figure-img" alt="Fig."></a></p>
 <figcaption>Fig.</figcaption>
 </figure>
 </div>
 <p>The higher the modulation index, the greater the number of resulting partials—enabling the creation of dense and complex waveforms. When the carrier and modulator frequencies share a simple harmonic ratio, the resulting waveform is harmonic. Otherwise, it tends to be inharmonic. Click on the message boxes to hear the preset examples.</p>
 </section>
-<section id="other-waveforms-1" class="level3" data-number="4.6.2">
-<h3 data-number="4.6.2" class="anchored" data-anchor-id="other-waveforms-1"><span class="header-section-number">4.6.2</span> Other Waveforms</h3>
+<section id="other-waveforms-1" class="level3" data-number="4.7.2">
+<h3 data-number="4.7.2" class="anchored" data-anchor-id="other-waveforms-1"><span class="header-section-number">4.7.2</span> Other Waveforms</h3>
 <p>In this patch, we experiment with different oscillator combinations. Waveforms are arranged according to spectral complexity—from simple sine waves to rich sawtooth waves (the only waveform here containing both even and odd harmonics). The more complex the waveform used, the more intricate the FM result becomes.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="../assets/screenshots/synthesis/fm/other-waveforms.png" class="lightbox" data-gallery="quarto-lightbox-gallery-29" title="Fig."><img src="../assets/screenshots/synthesis/fm/other-waveforms.png" class="img-fluid figure-img" alt="Fig."></a></p>
+<p><a href="../assets/screenshots/synthesis/fm/other-waveforms.png" class="lightbox" data-gallery="quarto-lightbox-gallery-32" title="Fig."><img src="../assets/screenshots/synthesis/fm/other-waveforms.png" class="img-fluid figure-img" alt="Fig."></a></p>
 <figcaption>Fig.</figcaption>
 </figure>
 </div>
 <p>On the modulator side, the waveforms are idealized and band-unlimited—perfect in theory. However, the frequency-modulated oscillator has a limited bandwidth, which imposes practical constraints on the resulting spectrum.</p>
 </section>
-<section id="exponential-frequency" class="level3" data-number="4.6.3">
-<h3 data-number="4.6.3" class="anchored" data-anchor-id="exponential-frequency"><span class="header-section-number">4.6.3</span> Exponential Frequency</h3>
+<section id="exponential-frequency" class="level3" data-number="4.7.3">
+<h3 data-number="4.7.3" class="anchored" data-anchor-id="exponential-frequency"><span class="header-section-number">4.7.3</span> Exponential Frequency</h3>
 <p>We can also use exponential pitch values (such as MIDI note numbers) instead of linear frequency input. The key difference here is that <em>frequency deviation</em>—the modulation index—is now expressed in <em>semitones</em>, not Hertz. This shift affects the entire modulation behavior.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="../assets/screenshots/synthesis/fm/exponential-freq.png" class="lightbox" data-gallery="quarto-lightbox-gallery-30" title="Fig."><img src="../assets/screenshots/synthesis/fm/exponential-freq.png" class="img-fluid figure-img" alt="Fig."></a></p>
+<p><a href="../assets/screenshots/synthesis/fm/exponential-freq.png" class="lightbox" data-gallery="quarto-lightbox-gallery-33" title="Fig."><img src="../assets/screenshots/synthesis/fm/exponential-freq.png" class="img-fluid figure-img" alt="Fig."></a></p>
 <figcaption>Fig.</figcaption>
 </figure>
 </div>
 <p>As a result, the output waveform becomes asymmetrical and significantly different in character. The main change in the patch is the use of <code>[mtof~]</code> to convert MIDI pitch to frequency in Hz.</p>
 </section>
-<section id="ratio" class="level3" data-number="4.6.4">
-<h3 data-number="4.6.4" class="anchored" data-anchor-id="ratio"><span class="header-section-number">4.6.4</span> Ratio</h3>
+<section id="ratio" class="level3" data-number="4.7.4">
+<h3 data-number="4.7.4" class="anchored" data-anchor-id="ratio"><span class="header-section-number">4.7.4</span> Ratio</h3>
 <p>It is common practice to define the modulating frequency as a <em>ratio</em> of the carrier frequency. This allows us to work with a single frequency input while maintaining a consistent sonic character across different pitches.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="../assets/screenshots/synthesis/fm/ratio.png" class="lightbox" data-gallery="quarto-lightbox-gallery-31" title="Fig."><img src="../assets/screenshots/synthesis/fm/ratio.png" class="img-fluid figure-img" alt="Fig."></a></p>
+<p><a href="../assets/screenshots/synthesis/fm/ratio.png" class="lightbox" data-gallery="quarto-lightbox-gallery-34" title="Fig."><img src="../assets/screenshots/synthesis/fm/ratio.png" class="img-fluid figure-img" alt="Fig."></a></p>
 <figcaption>Fig.</figcaption>
 </figure>
 </div>
 <p>This approach preserves the relationship between the carrier and modulator frequencies, which is crucial since this ratio determines how the additional spectral components—partials—are distributed. Harmonic ratios (such as 0.5 or 2) yield harmonic results, while non-integer ratios lead to inharmonic spectra.</p>
 </section>
 </section>
-<section id="subtractive-synthesis" class="level2" data-number="4.7">
-<h2 data-number="4.7" class="anchored" data-anchor-id="subtractive-synthesis"><span class="header-section-number">4.7</span> Subtractive Synthesis</h2>
+<section id="subtractive-synthesis" class="level2" data-number="4.8">
+<h2 data-number="4.8" class="anchored" data-anchor-id="subtractive-synthesis"><span class="header-section-number">4.8</span> Subtractive Synthesis</h2>
 <p>Subtractive synthesis is frequently—and mistakenly—viewed as synonymous with analog synthesis. While there are many methods of sound synthesis, subtractive synthesis remains the most prevalent in commercial analog synthesizers. Often presented through user interfaces brimming with knobs and switches, it can appear overwhelming to newcomers. However, its intuitive one-to-one mapping between physical controls and sound parameters makes it especially suitable for educational contexts. Furthermore, it provides a useful entry point for exploring core acoustic principles and models of sound production.</p>
-<section id="conceptual-model-source-and-modifier" class="level3" data-number="4.7.1">
-<h3 data-number="4.7.1" class="anchored" data-anchor-id="conceptual-model-source-and-modifier"><span class="header-section-number">4.7.1</span> Conceptual Model: Source and Modifier</h3>
+<section id="conceptual-model-source-and-modifier" class="level3" data-number="4.8.1">
+<h3 data-number="4.8.1" class="anchored" data-anchor-id="conceptual-model-source-and-modifier"><span class="header-section-number">4.8.1</span> Conceptual Model: Source and Modifier</h3>
 <p>At the heart of subtractive synthesis lies a conceptual framework: the separation of sound production into three functional components: 1. source, 2. modifier, and 3. controller.</p>
 <p>This framework mirrors the structure of many acoustic instruments, most clearly in wind instruments. Take, for example, the clarinet: its vibrating reed acts as the source, while the resonant body functions as a modifier. The reed alone produces a sharp, buzzing tone; the body of the clarinet, essentially a cylindrical tube, shapes this tone through its resonant properties, which are determined by physical dimensions like length and bore diameter. Together, they produce the rich timbral identity of the clarinet.</p>
 <p>This model, while illustrative, is not universally applicable. Consider the guitar: its sound emerges from the interplay between the plucked string (source) and the resonant body (modifier). Yet unlike the clarinet, the source and modifier in the guitar are tightly coupled and difficult to separate experimentally. The string cannot be plucked in isolation, nor can the body’s resonant characteristics be accurately studied without the tensioned string.</p>
 <p>Despite such limitations, the core idea—modifying a source signal to shape its timbre—is both intuitive and powerful. It underpins most approaches to sound synthesis and provides a compelling framework for creative exploration. In a subtractive synthesis context, this source-modifier model is streamlined: the sound source is designed to contain rich harmonic content, and the modifier (typically a filter) removes selected frequency components to shape the sound. The process is thus subtractive in nature—the unwanted frequencies are “subtracted” from the original signal.</p>
 </section>
-<section id="sound-sources-1" class="level3" data-number="4.7.2">
-<h3 data-number="4.7.2" class="anchored" data-anchor-id="sound-sources-1"><span class="header-section-number">4.7.2</span> Sound Sources</h3>
+<section id="sound-sources-1" class="level3" data-number="4.8.2">
+<h3 data-number="4.8.2" class="anchored" data-anchor-id="sound-sources-1"><span class="header-section-number">4.8.2</span> Sound Sources</h3>
 <p>The primary sound sources in analog subtractive synthesizers are waveform generators and noise sources. Common waveforms include sawtooth, square, pulse, sine, and triangle waves—each chosen for their mathematical simplicity and electronic feasibility. These shapes carry predictable harmonic content: for instance, sawtooth waves contain both even and odd harmonics, while square waves contain only odd harmonics.</p>
 <p>Random waveforms, typically perceived as noise, include all frequencies and are often used to generate percussive or atmospheric textures. The devices that produce these waveforms—oscillators—are descendants of function generators. In subtractive synthesis, these oscillators produce continuous signals, with frequency typically controlled by voltage. These signals serve as raw material for further shaping via modifiers.</p>
 </section>
-<section id="filters" class="level3" data-number="4.7.3">
-<h3 data-number="4.7.3" class="anchored" data-anchor-id="filters"><span class="header-section-number">4.7.3</span> Filters</h3>
+<section id="filters" class="level3" data-number="4.8.3">
+<h3 data-number="4.8.3" class="anchored" data-anchor-id="filters"><span class="header-section-number">4.8.3</span> Filters</h3>
 <p>Filters play a central role in subtractive synthesis. At their core, filters are amplifiers whose gain varies with frequency. In most synthesizer contexts, filters are designed such that their maximum gain is one; thus, it’s more accurate to say that they attenuate different frequency components to varying degrees. When a filter’s parameters can be controlled via voltage, it becomes a Voltage-Controlled Filter (VCF). VCFs are essential modifiers because they allow dynamic control over a signal’s spectral content, significantly influencing the resulting timbre.</p>
 </section>
-<section id="classification-of-filters" class="level3" data-number="4.7.4">
-<h3 data-number="4.7.4" class="anchored" data-anchor-id="classification-of-filters"><span class="header-section-number">4.7.4</span> Classification of Filters</h3>
+<section id="classification-of-filters" class="level3" data-number="4.8.4">
+<h3 data-number="4.8.4" class="anchored" data-anchor-id="classification-of-filters"><span class="header-section-number">4.8.4</span> Classification of Filters</h3>
 <p>Filters are typically categorized by their frequency response—how they affect different parts of the frequency spectrum. There are four main types:</p>
 <ul>
 <li><p><strong>Low-pass filters (LPF)</strong> allow frequencies below a cutoff point to pass and attenuate higher frequencies. The <strong>cutoff frequency</strong> is defined as the point at which the signal is attenuated by 3 dB (the “half-power” point). The <strong>slope</strong> of attenuation is determined by the filter’s design: a one-pole filter attenuates at 6 dB per octave, a two-pole at 12 dB, and so on. Filters with steeper slopes, such as four-pole filters (24 dB/octave), tend to sound more “synthetic” and dramatically alter timbre.</p></li>
@@ -899,95 +1391,95 @@ Period = 1 / 100 Hz = 0.01 s = 10 ms</code></pre>
 <p>The subtractive model—source rich in harmonics, modified via filtering—forms the foundational paradigm for analog synthesis. While conceptually straightforward, it allows for a wide array of sonic possibilities. By carefully selecting waveforms, modulating filter parameters, and controlling amplitude envelopes, one can sculpt intricate, evolving timbres.</p>
 <p>This approach, despite its age, remains vital in modern synthesis. Its clarity, intuitiveness, and direct mapping between sound components and control structures make it an enduring framework for both education and creative practice. Whether one is emulating acoustic instruments or crafting entirely synthetic textures, subtractive synthesis offers a practical and powerful toolset for sonic exploration.</p>
 </section>
-<section id="filters-in-pure-data" class="level3" data-number="4.7.5">
-<h3 data-number="4.7.5" class="anchored" data-anchor-id="filters-in-pure-data"><span class="header-section-number">4.7.5</span> Filters in Pure Data</h3>
+<section id="filters-in-pure-data" class="level3" data-number="4.8.5">
+<h3 data-number="4.8.5" class="anchored" data-anchor-id="filters-in-pure-data"><span class="header-section-number">4.8.5</span> Filters in Pure Data</h3>
 <p>As mentioned, a filter is any process that modifies an incoming sound. From an acoustic perspective, filters are omnipresent: the reverberant characteristics of a room act as filters, as do the resonant bodies of musical instruments. Even the human vocal tract can be considered a natural filter. In our context, however, we define filters more narrowly: as signal processing modules—such as equalizers—that selectively amplify or attenuate specific frequency components of a sound.</p>
 <p>The most common representation of how a filter affects sound is its frequency response. This is typically displayed as a graph where the horizontal axis represents frequency (in kilohertz), and the vertical axis shows amplitude (in decibels, dB). Positive values (above 0 dB) indicate frequencies that are being boosted, while negative values (below 0 dB) show those that are attenuated. In addition to frequency response, filters also affect the phase of the signal, which we refer to as phase response—representing the phase shift introduced as a function of frequency.</p>
 </section>
-<section id="low-pass-filtering" class="level3" data-number="4.7.6">
-<h3 data-number="4.7.6" class="anchored" data-anchor-id="low-pass-filtering"><span class="header-section-number">4.7.6</span> Low-Pass Filtering</h3>
+<section id="low-pass-filtering" class="level3" data-number="4.8.6">
+<h3 data-number="4.8.6" class="anchored" data-anchor-id="low-pass-filtering"><span class="header-section-number">4.8.6</span> Low-Pass Filtering</h3>
 <p>The object <code>lop~</code> in Pure Data (short for “low-pass”) implements a basic low-pass filter. This filter allows frequencies below a certain threshold, called the cutoff or roll-off frequency, to pass through while progressively attenuating higher frequencies. This transition is not abrupt: the filtering effect begins at 0 Hz and gradually increases, resulting in a -3 dB drop at the cutoff point. Beyond this, the attenuation rate is approximately 6 dB per octave.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="../assets/screenshots/synthesis/filters/lop.png" class="lightbox" data-gallery="quarto-lightbox-gallery-32" title="Fig."><img src="../assets/screenshots/synthesis/filters/lop.png" class="img-fluid figure-img" alt="Fig."></a></p>
+<p><a href="../assets/screenshots/synthesis/filters/lop.png" class="lightbox" data-gallery="quarto-lightbox-gallery-35" title="Fig."><img src="../assets/screenshots/synthesis/filters/lop.png" class="img-fluid figure-img" alt="Fig."></a></p>
 <figcaption>Fig.</figcaption>
 </figure>
 </div>
 <p>This filter is useful not only in audio synthesis but also in signal smoothing applications—such as envelope followers or data processing from physical sensors. At high cutoff frequencies (above ~5 kHz), the filter’s response deviates slightly from this ideal behavior.</p>
 </section>
-<section id="high-pass-filtering" class="level3" data-number="4.7.7">
-<h3 data-number="4.7.7" class="anchored" data-anchor-id="high-pass-filtering"><span class="header-section-number">4.7.7</span> High-Pass Filtering</h3>
+<section id="high-pass-filtering" class="level3" data-number="4.8.7">
+<h3 data-number="4.8.7" class="anchored" data-anchor-id="high-pass-filtering"><span class="header-section-number">4.8.7</span> High-Pass Filtering</h3>
 <p>A high-pass filter, such as <code>hip~</code> in Pure Data, performs the inverse operation of a low-pass: it permits frequencies above a defined cutoff point and attenuates those below it. Interestingly, a high-pass effect can also be derived by subtracting the output of a low-pass filter from the original signal. While <code>hip~</code> is often employed to remove DC offsets, it too has a 6 dB per octave slope and exhibits some gain anomalies at higher cutoff values.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="../assets/screenshots/synthesis/filters/hip.png" class="lightbox" data-gallery="quarto-lightbox-gallery-33" title="Fig."><img src="../assets/screenshots/synthesis/filters/hip.png" class="img-fluid figure-img" alt="Fig."></a></p>
+<p><a href="../assets/screenshots/synthesis/filters/hip.png" class="lightbox" data-gallery="quarto-lightbox-gallery-36" title="Fig."><img src="../assets/screenshots/synthesis/filters/hip.png" class="img-fluid figure-img" alt="Fig."></a></p>
 <figcaption>Fig.</figcaption>
 </figure>
 </div>
 </section>
-<section id="resonant-filters" class="level3" data-number="4.7.8">
-<h3 data-number="4.7.8" class="anchored" data-anchor-id="resonant-filters"><span class="header-section-number">4.7.8</span> Resonant Filters</h3>
+<section id="resonant-filters" class="level3" data-number="4.8.8">
+<h3 data-number="4.8.8" class="anchored" data-anchor-id="resonant-filters"><span class="header-section-number">4.8.8</span> Resonant Filters</h3>
 <p>A resonant filter emphasizes a specific frequency band over others. A typical example is the band-pass filter, which allows only a defined range of frequencies to pass while attenuating those outside the band. The center frequency of this band is commonly denoted as ( f_0 ), with ( f_1 ) and ( f_2 ) marking the -3 dB points below and above it, respectively.</p>
 <p>The bandwidth of the filter is defined as the difference between these two frequencies:<br>
 <span class="math display">\[ \text{Bandwidth} = f_2 - f_1 \]</span></p>
 <p>The musical interval between ( f_1 ) and ( f_2 ) can also be used to conceptualize the resonance more musically, especially when represented on a logarithmic scale like MIDI pitch.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="../assets/screenshots/synthesis/filters/bandwidth.png" class="lightbox" data-gallery="quarto-lightbox-gallery-34" title="Fig."><img src="../assets/screenshots/synthesis/filters/bandwidth.png" class="img-fluid figure-img" style="width:50.0%" alt="Fig."></a></p>
+<p><a href="../assets/screenshots/synthesis/filters/bandwidth.png" class="lightbox" data-gallery="quarto-lightbox-gallery-37" title="Fig."><img src="../assets/screenshots/synthesis/filters/bandwidth.png" class="img-fluid figure-img" style="width:50.0%" alt="Fig."></a></p>
 <figcaption>Fig.</figcaption>
 </figure>
 </div>
 </section>
-<section id="the-q-factor" class="level3" data-number="4.7.9">
-<h3 data-number="4.7.9" class="anchored" data-anchor-id="the-q-factor"><span class="header-section-number">4.7.9</span> The Q Factor</h3>
+<section id="the-q-factor" class="level3" data-number="4.8.9">
+<h3 data-number="4.8.9" class="anchored" data-anchor-id="the-q-factor"><span class="header-section-number">4.8.9</span> The Q Factor</h3>
 <p>The sharpness or “quality” of a filter’s resonance is quantified by the Q factor, which is calculated as:</p>
 <p><span class="math display">\[ Q = \frac{f_0}{f_2 - f_1} \]</span></p>
 <p>A higher Q value indicates a narrower and more pronounced resonance, while a lower Q results in a broader and more subtle response. In essence, Q and bandwidth are inverse measures of the same characteristic.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="../assets/screenshots/synthesis/filters/q-factor.png" class="lightbox" data-gallery="quarto-lightbox-gallery-35" title="Fig."><img src="../assets/screenshots/synthesis/filters/q-factor.png" class="img-fluid figure-img" style="width:75.0%" alt="Fig."></a></p>
+<p><a href="../assets/screenshots/synthesis/filters/q-factor.png" class="lightbox" data-gallery="quarto-lightbox-gallery-38" title="Fig."><img src="../assets/screenshots/synthesis/filters/q-factor.png" class="img-fluid figure-img" style="width:75.0%" alt="Fig."></a></p>
 <figcaption>Fig.</figcaption>
 </figure>
 </div>
 </section>
-<section id="band-pass-filters" class="level3" data-number="4.7.10">
-<h3 data-number="4.7.10" class="anchored" data-anchor-id="band-pass-filters"><span class="header-section-number">4.7.10</span> Band-Pass Filters</h3>
+<section id="band-pass-filters" class="level3" data-number="4.8.10">
+<h3 data-number="4.8.10" class="anchored" data-anchor-id="band-pass-filters"><span class="header-section-number">4.8.10</span> Band-Pass Filters</h3>
 <p>The <code>bp~</code> object in Pure Data provides a straightforward implementation of a band-pass filter, accepting center frequency and Q as inputs. It is computationally efficient and practical, though it tends to attenuate frequencies above the center more than those below, thus producing an asymmetrical response. With a Q of 1, <code>bp~</code> approximates the behavior of a <code>lop~</code> filter. As with other vanilla filters, its frequency response changes noticeably at higher frequencies.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="../assets/screenshots/synthesis/filters/bp.png" class="lightbox" data-gallery="quarto-lightbox-gallery-36" title="Fig."><img src="../assets/screenshots/synthesis/filters/bp.png" class="img-fluid figure-img" alt="Fig."></a></p>
+<p><a href="../assets/screenshots/synthesis/filters/bp.png" class="lightbox" data-gallery="quarto-lightbox-gallery-39" title="Fig."><img src="../assets/screenshots/synthesis/filters/bp.png" class="img-fluid figure-img" alt="Fig."></a></p>
 <figcaption>Fig.</figcaption>
 </figure>
 </div>
 </section>
-<section id="voltage-controlled-filters" class="level3" data-number="4.7.11">
-<h3 data-number="4.7.11" class="anchored" data-anchor-id="voltage-controlled-filters"><span class="header-section-number">4.7.11</span> Voltage-Controlled Filters</h3>
+<section id="voltage-controlled-filters" class="level3" data-number="4.8.11">
+<h3 data-number="4.8.11" class="anchored" data-anchor-id="voltage-controlled-filters"><span class="header-section-number">4.8.11</span> Voltage-Controlled Filters</h3>
 <p>The <code>vcf~</code> object (short for “voltage-controlled filter”) is another band-pass filter in the vanilla distribution, notable for its ability to accept audio-rate signals to modulate the center frequency—mimicking the behavior of analog synthesizers. While the Q parameter is controlled by control-rate data, the central frequency can be dynamically shaped by audio input.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="../assets/screenshots/synthesis/filters/vcf.png" class="lightbox" data-gallery="quarto-lightbox-gallery-37" title="Fig."><img src="../assets/screenshots/synthesis/filters/vcf.png" class="img-fluid figure-img" alt="Fig."></a></p>
+<p><a href="../assets/screenshots/synthesis/filters/vcf.png" class="lightbox" data-gallery="quarto-lightbox-gallery-40" title="Fig."><img src="../assets/screenshots/synthesis/filters/vcf.png" class="img-fluid figure-img" alt="Fig."></a></p>
 <figcaption>Fig.</figcaption>
 </figure>
 </div>
 <p>This object has two outputs: the right outlet approximates a <code>bp~</code> filter’s frequency response, whereas the left outlet provides a complementary phase response. At low Q values, both outputs show a characteristically asymmetrical frequency curve, and deviations become more pronounced at higher frequencies (above ~7 kHz).</p>
 </section>
-<section id="emulating-the-moog-filter" class="level3" data-number="4.7.12">
-<h3 data-number="4.7.12" class="anchored" data-anchor-id="emulating-the-moog-filter"><span class="header-section-number">4.7.12</span> Emulating the Moog Filter</h3>
+<section id="emulating-the-moog-filter" class="level3" data-number="4.8.12">
+<h3 data-number="4.8.12" class="anchored" data-anchor-id="emulating-the-moog-filter"><span class="header-section-number">4.8.12</span> Emulating the Moog Filter</h3>
 <p>The <code>bob~</code> object is a recent addition to Pure Data’s vanilla library, designed to model the iconic Moog filter created by Robert Moog. It allows both the cutoff frequency and Q to be modulated at audio rate, making it one of the most expressive and flexible filters in the system. Though officially described as a low-pass resonant filter, its architecture lends itself to a wide variety of applications. Users are encouraged to consult its help patch for in-depth understanding and examples.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="../assets/screenshots/synthesis/filters/bob.png" class="lightbox" data-gallery="quarto-lightbox-gallery-38" title="Fig."><img src="../assets/screenshots/synthesis/filters/bob.png" class="img-fluid figure-img" style="width:50.0%" alt="Fig."></a></p>
+<p><a href="../assets/screenshots/synthesis/filters/bob.png" class="lightbox" data-gallery="quarto-lightbox-gallery-41" title="Fig."><img src="../assets/screenshots/synthesis/filters/bob.png" class="img-fluid figure-img" style="width:50.0%" alt="Fig."></a></p>
 <figcaption>Fig.</figcaption>
 </figure>
 </div>
 </section>
-<section id="biquad-filters" class="level3" data-number="4.7.13">
-<h3 data-number="4.7.13" class="anchored" data-anchor-id="biquad-filters"><span class="header-section-number">4.7.13</span> Biquad Filters</h3>
+<section id="biquad-filters" class="level3" data-number="4.8.13">
+<h3 data-number="4.8.13" class="anchored" data-anchor-id="biquad-filters"><span class="header-section-number">4.8.13</span> Biquad Filters</h3>
 <p>The <code>biquad~</code> object is a versatile, coefficient-driven filter capable of implementing multiple filter types based on its settings. “Biquad” stands for “biquadratic,” reflecting its mathematical foundation in second-order polynomials. However, configuring <code>biquad~</code> manually is a non-trivial task for most musicians or artists.</p>
 <p>To simplify this process, the <code>bicoeff</code> object from the ELSE library allows users to generate coefficients for nine different filter types, based on Robert Bristow-Johnson’s “Cookbook formulae for audio EQ biquad filter coefficients”<span class="citation" data-cites="bristow-johnson2024">(<a href="#ref-bristow-johnson2024" role="doc-biblioref">Bristow-Johnson 2024</a>)</span>. This GUI-based object visualizes the amplitude response in real time. The X-axis is logarithmic (typically in MIDI pitch), and the Y-axis represents gain in dB. Interactive controls allow users to modify frequency, bandwidth, and gain directly by clicking and dragging on the graph.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="../assets/screenshots/synthesis/filters/biquad.png" class="lightbox" data-gallery="quarto-lightbox-gallery-39" title="Fig."><img src="../assets/screenshots/synthesis/filters/biquad.png" class="img-fluid figure-img" alt="Fig."></a></p>
+<p><a href="../assets/screenshots/synthesis/filters/biquad.png" class="lightbox" data-gallery="quarto-lightbox-gallery-42" title="Fig."><img src="../assets/screenshots/synthesis/filters/biquad.png" class="img-fluid figure-img" alt="Fig."></a></p>
 <figcaption>Fig.</figcaption>
 </figure>
 </div>
@@ -1007,6 +1499,9 @@ Helmholtz, Hermann. 1954. <em>On the Sensations of Tone as a Physiological Basis
 </div>
 <div id="ref-levistrauss1964" class="csl-entry" role="listitem">
 Lévi-Strauss, Claude. 1964. <em>Le Cru Et Le Cuit</em>. Vol. 1. Mythologiques. Paris: Plon.
+</div>
+<div id="ref-puckette2007" class="csl-entry" role="listitem">
+Puckette, Miller. 2007. <em>The Theory and Technique of Electronic Music</em>. World Scientific Publishing. <a href="https://doi.org/10.1142/6277">https://doi.org/10.1142/6277</a>.
 </div>
 <div id="ref-sterne2011" class="csl-entry" role="listitem">
 Sterne, Jonathan, and Tara Rodgers. 2011. <span>“Poetics of Signal Processing.”</span> <em>Differences</em> 22 (2-3): 31–53. <a href="https://doi.org/10.1215/10407391-1428834">https://doi.org/10.1215/10407391-1428834</a>.
