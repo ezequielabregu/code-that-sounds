@@ -9,7 +9,7 @@ We will also consider the artistic implications of recording and playback, inclu
 
 > "...I am recording the sound of my speaking voice and I am going to play it back into the room again and again..."
 
-![*I am sitting in a room* design](/assets/images/play-rec/lucier-diagram.jpg)
+![*I am sitting in a room* design diagram illustrating the iterative recording and playback process that gradually transforms speech into pure room resonance.](/assets/images/play-rec/lucier-diagram.jpg)
 
 As listeners, we know what is going to happen, but we don’t know **how** it will happen [@hasse2012]. We listen, following Lucier’s recorded voice. Then, Lucier plays the recording into the room and re-records it. This time, we begin to hear more of the room’s acoustic characteristics. He continues to play back and re-record his voice—over and over—until his speech becomes softened, almost dissolved, into the sonic reflections of the room in which the piece was recorded and re-recorded.
 
@@ -41,9 +41,9 @@ All the recorded generations, presented in chronological order, create a tape co
 
 ### Pure Data implementation of *I'm sitting in a room*
 
-&nbsp;
+<br>
 
-![Pure Data implementation of I am sitting in a room](/assets/screenshots/playrec/sitting.png)
+![Pure Data implementation of I am sitting in a room with recursive audio recording with dual file storage, playback controls, and room acoustic processing.](/assets/screenshots/playrec/sitting.png)
 
 In this section, we will break down the Pure Data patch [`I-am-sitting-in-a-room.pd`](/assets/code/playrec/I-am-sitting-in-a-room.pd) step by step. This patch is inspired by Alvin Lucier’s iconic piece and demonstrates how to recursively record and play back sound to reveal the resonant frequencies of a room.
 
@@ -208,11 +208,11 @@ The patch incorporates real-time monitoring capabilities that allow users to hea
 This patch is a practical and creative way to explore acoustic phenomena and the transformation of sound through recursive recording, echoing the spirit of Lucier’s original work.
 
 
-## I am sitting in a [freeverb~] — Patch Walkthrough
+## I am sitting in a [freeverb~]
 
 The patch [I-am-sitting-in-a-room-freeverb.pd](/assets/code/playrec/I-am-sitting-in-a-room-freeverb.pd) extends the original *I am sitting in a room* concept by introducing a **virtual acoustic environment** using reverb and allowing for **pre-recorded audio input** instead of just live microphone input. This adaptation provides more creative flexibility and consistent results compared to using a physical room.
 
-![Pure Data implementation of I am sitting in a room with freeverb](/assets/screenshots/playrec/sitting-freeverb.png)
+![Implementation of "I am sitting in a room" with freeverb showing virtual acoustic processing, dual file recording system, and pre-recorded audio input capabilities for controlled recursive audio transformation.](/assets/screenshots/playrec/sitting-freeverb.png)
 
 This patch is designed to simulate the recursive recording process of Lucier's piece while allowing for more control over the sound environment. It uses the `freeverb~` object to create a virtual room effect, enabling you to manipulate the acoustic characteristics of the sound without relying on a physical space.
 
@@ -358,7 +358,7 @@ This virtual approach offers a controlled laboratory for exploring the core conc
 
 The simple audio player represents a streamlined approach to audio file playback that emphasizes ease of use while providing essential control over playback parameters. This Pure Data implementation demonstrates how to create an intuitive audio player interface that combines file loading, visual feedback, and precise playback control in a single cohesive system. The patch showcases fundamental concepts including automatic file loading, visual waveform display, start/stop position control, playback speed manipulation, and smooth parameter interpolation.
 
-![Fig. Pure Data implementation of simple audio player](/assets/screenshots/playrec/audioplayer.png)
+![Simple audio player with waveform display, position control sliders, speed adjustment, and visual feedback.](/assets/screenshots/playrec/audioplayer.png)
 
 ### Patch Overview
 
@@ -445,7 +445,7 @@ This implementation serves as an excellent foundation for understanding basic au
 
 The audio sampler represents a fundamental tool in digital audio processing and musical performance, enabling the capture, manipulation, and playback of recorded audio material. This Pure Data implementation demonstrates how to create a comprehensive sampling system that provides real-time control over playback speed, direction, position, and interpolation. The patch showcases essential concepts including array-based audio storage, variable-speed playback, phase control, and temporal interpolation for smooth parameter transitions.
 
-![Fig. ](/assets/screenshots/playrec/sampler.png)
+![Phasor-based audio sampler demonstrating speed control, phase manipulation, and interpolated table reading with visual waveform display.](/assets/screenshots/playrec/sampler.png)
 
 ### Patch Overview
 
