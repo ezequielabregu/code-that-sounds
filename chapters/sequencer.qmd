@@ -1,4 +1,4 @@
-# Sequencer
+# Sequencing
 
 In this chapter, we will explore the concept of sequencers and how they can be implemented in Pure Data.
 
@@ -1332,4 +1332,4 @@ Finally, the script calls `main()` to launch the game. Press the spacebar to beg
 -   [conwaylife.com](https://conwaylife.com/)
 -   [Cellular Automata Megathread](https://nga.178.com/read.php?tid=21761699&rand=998)
 
-## References .{.unnumbered}
+## References {.unnumbered}

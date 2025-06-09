@@ -1,4 +1,4 @@
-# Rec & Play
+# Sampling
 
 In this chapter, we will explore the relationship between recording and playback. We will look at how these two processes can be used to create new sounds and compositions. We will also discuss the technical aspects of recording and playback, including the equipment and techniques used in the process. 
 We will also consider the artistic implications of recording and playback, including how these processes can be used to create new forms of expression and communication.
@@ -528,4 +528,4 @@ This implementation serves as a foundation for more complex sampling application
 - **Rhythmic displacement:** Sync multiple samplers to the same clock but with different phase offsets to create polyrhythmic patterns
 
 
-## References{.unnumbered}
+## References {.unnumbered}

@@ -16,7 +16,7 @@ book:
     - index.qmd
     - chapters/introduction.qmd
     - chapters/sequencer.qmd
-    - chapters/playrec.qmd
+    - chapters/sampling.qmd
     - chapters/synthesis.qmd
     - chapters/sonification.qmd
     - chapters/space.qmd
