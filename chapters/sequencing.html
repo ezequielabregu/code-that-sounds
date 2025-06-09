@@ -1,0 +1,3093 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.31">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>2&nbsp; Sequencing – Code that Sounds</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../chapters/sampling.html" rel="next">
+<link href="../chapters/introduction.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-8ef56b68f8fa1e9d2ba328e99e439f80.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-1e81d527365e20b3495763033adbcf98.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-8ab8b311eebd604b8865a9cbc6c08092.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-1e81d527365e20b3495763033adbcf98.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<meta name="mermaid-theme" content="neutral">
+<script src="../site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="../site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-sidebar floating quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/sequencing.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Sequencing</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Code that Sounds</a> 
+        <div class="sidebar-tools-main tools-wide">
+    <a href="https://github.com/ezequielabregu/code-that-sounds" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/introduction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/sequencing.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Sequencing</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/sampling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Sampling</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/synthesis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Sound Synthesis</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/sonification.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Sonification</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/space.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Spatial Audio</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/conclusion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Conclusion</span></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#arrays-and-sequencers" id="toc-arrays-and-sequencers" class="nav-link active" data-scroll-target="#arrays-and-sequencers"><span class="header-section-number">2.1</span> Arrays and Sequencers</a>
+  <ul class="collapse">
+  <li><a href="#formulation-pseudo-code" id="toc-formulation-pseudo-code" class="nav-link" data-scroll-target="#formulation-pseudo-code"><span class="header-section-number">2.1.1</span> Formulation (pseudo code)</a></li>
+  </ul></li>
+  <li><a href="#implementation-of-the-8-step-sequencer" id="toc-implementation-of-the-8-step-sequencer" class="nav-link" data-scroll-target="#implementation-of-the-8-step-sequencer"><span class="header-section-number">2.2</span> Implementation of the 8-Step Sequencer</a>
+  <ul class="collapse">
+  <li><a href="#patch-overview" id="toc-patch-overview" class="nav-link" data-scroll-target="#patch-overview"><span class="header-section-number">2.2.1</span> Patch Overview</a></li>
+  <li><a href="#data-flow" id="toc-data-flow" class="nav-link" data-scroll-target="#data-flow"><span class="header-section-number">2.2.2</span> Data Flow</a></li>
+  <li><a href="#key-objects-and-their-roles" id="toc-key-objects-and-their-roles" class="nav-link" data-scroll-target="#key-objects-and-their-roles"><span class="header-section-number">2.2.3</span> Key Objects and Their Roles</a></li>
+  </ul></li>
+  <li><a href="#random-step-sequencer-implementation" id="toc-random-step-sequencer-implementation" class="nav-link" data-scroll-target="#random-step-sequencer-implementation"><span class="header-section-number">2.3</span> Random Step Sequencer Implementation</a>
+  <ul class="collapse">
+  <li><a href="#patch-overview-1" id="toc-patch-overview-1" class="nav-link" data-scroll-target="#patch-overview-1"><span class="header-section-number">2.3.1</span> Patch Overview</a></li>
+  <li><a href="#data-flow-1" id="toc-data-flow-1" class="nav-link" data-scroll-target="#data-flow-1"><span class="header-section-number">2.3.2</span> Data Flow</a></li>
+  <li><a href="#key-objects-and-their-roles-1" id="toc-key-objects-and-their-roles-1" class="nav-link" data-scroll-target="#key-objects-and-their-roles-1"><span class="header-section-number">2.3.3</span> Key Objects and Their Roles</a></li>
+  </ul></li>
+  <li><a href="#piano-phase-steve-reich" id="toc-piano-phase-steve-reich" class="nav-link" data-scroll-target="#piano-phase-steve-reich"><span class="header-section-number">2.4</span> Piano Phase (Steve Reich)</a>
+  <ul class="collapse">
+  <li><a href="#algorithm-formulation-pseudo-code" id="toc-algorithm-formulation-pseudo-code" class="nav-link" data-scroll-target="#algorithm-formulation-pseudo-code"><span class="header-section-number">2.4.1</span> Algorithm Formulation (pseudo code)</a></li>
+  <li><a href="#piano-phase-implementation-in-pd" id="toc-piano-phase-implementation-in-pd" class="nav-link" data-scroll-target="#piano-phase-implementation-in-pd"><span class="header-section-number">2.4.2</span> Piano Phase Implementation in PD</a></li>
+  <li><a href="#patch-overview-2" id="toc-patch-overview-2" class="nav-link" data-scroll-target="#patch-overview-2"><span class="header-section-number">2.4.3</span> Patch Overview</a></li>
+  <li><a href="#sequence-data" id="toc-sequence-data" class="nav-link" data-scroll-target="#sequence-data"><span class="header-section-number">2.4.4</span> Sequence Data</a></li>
+  <li><a href="#data-flow-2" id="toc-data-flow-2" class="nav-link" data-scroll-target="#data-flow-2"><span class="header-section-number">2.4.5</span> Data Flow</a></li>
+  <li><a href="#key-objects-and-their-roles-2" id="toc-key-objects-and-their-roles-2" class="nav-link" data-scroll-target="#key-objects-and-their-roles-2"><span class="header-section-number">2.4.6</span> Key Objects and Their Roles</a></li>
+  </ul></li>
+  <li><a href="#random-melody-generator" id="toc-random-melody-generator" class="nav-link" data-scroll-target="#random-melody-generator"><span class="header-section-number">2.5</span> Random Melody Generator</a>
+  <ul class="collapse">
+  <li><a href="#patch-overview-3" id="toc-patch-overview-3" class="nav-link" data-scroll-target="#patch-overview-3"><span class="header-section-number">2.5.1</span> Patch Overview</a></li>
+  <li><a href="#key-objects-and-their-roles-3" id="toc-key-objects-and-their-roles-3" class="nav-link" data-scroll-target="#key-objects-and-their-roles-3"><span class="header-section-number">2.5.2</span> Key Objects and Their Roles</a></li>
+  <li><a href="#diagram-melody-generation-and-playback" id="toc-diagram-melody-generation-and-playback" class="nav-link" data-scroll-target="#diagram-melody-generation-and-playback"><span class="header-section-number">2.5.3</span> Diagram: Melody Generation and Playback</a></li>
+  </ul></li>
+  <li><a href="#the-euclidean-algorithm-generates-traditional-musical-rhythms" id="toc-the-euclidean-algorithm-generates-traditional-musical-rhythms" class="nav-link" data-scroll-target="#the-euclidean-algorithm-generates-traditional-musical-rhythms"><span class="header-section-number">2.6</span> The Euclidean Algorithm Generates Traditional Musical Rhythms</a>
+  <ul class="collapse">
+  <li><a href="#hypothesis" id="toc-hypothesis" class="nav-link" data-scroll-target="#hypothesis"><span class="header-section-number">2.6.1</span> Hypothesis</a></li>
+  <li><a href="#patterns-of-maximal-evenness" id="toc-patterns-of-maximal-evenness" class="nav-link" data-scroll-target="#patterns-of-maximal-evenness"><span class="header-section-number">2.6.2</span> Patterns of Maximal Evenness</a></li>
+  <li><a href="#euclidean-algorithm" id="toc-euclidean-algorithm" class="nav-link" data-scroll-target="#euclidean-algorithm"><span class="header-section-number">2.6.3</span> Euclidean Algorithm</a></li>
+  <li><a href="#how-does-computing-the-gcd-turn-into-maximally-even-distributed-patterns" id="toc-how-does-computing-the-gcd-turn-into-maximally-even-distributed-patterns" class="nav-link" data-scroll-target="#how-does-computing-the-gcd-turn-into-maximally-even-distributed-patterns"><span class="header-section-number">2.6.4</span> How does computing the GCD turn into maximally even distributed patterns?</a></li>
+  <li><a href="#implementation-in-pure-data---euclidean-sequencer" id="toc-implementation-in-pure-data---euclidean-sequencer" class="nav-link" data-scroll-target="#implementation-in-pure-data---euclidean-sequencer"><span class="header-section-number">2.6.5</span> Implementation in Pure Data - Euclidean sequencer</a></li>
+  <li><a href="#euclidean-rhythm-generator" id="toc-euclidean-rhythm-generator" class="nav-link" data-scroll-target="#euclidean-rhythm-generator"><span class="header-section-number">2.6.6</span> Euclidean Rhythm Generator</a></li>
+  <li><a href="#euclidean-rotation-generator" id="toc-euclidean-rotation-generator" class="nav-link" data-scroll-target="#euclidean-rotation-generator"><span class="header-section-number">2.6.7</span> Euclidean Rotation Generator</a></li>
+  <li><a href="#euclidean-accents-generator" id="toc-euclidean-accents-generator" class="nav-link" data-scroll-target="#euclidean-accents-generator"><span class="header-section-number">2.6.8</span> Euclidean Accents Generator</a></li>
+  </ul></li>
+  <li><a href="#cellular-automata" id="toc-cellular-automata" class="nav-link" data-scroll-target="#cellular-automata"><span class="header-section-number">2.7</span> Cellular Automata</a>
+  <ul class="collapse">
+  <li><a href="#one-dimensional-cellular-automata-1dca" id="toc-one-dimensional-cellular-automata-1dca" class="nav-link" data-scroll-target="#one-dimensional-cellular-automata-1dca"><span class="header-section-number">2.7.1</span> One-Dimensional Cellular Automata (1DCA)</a></li>
+  <li><a href="#the-case-of-rule-30" id="toc-the-case-of-rule-30" class="nav-link" data-scroll-target="#the-case-of-rule-30"><span class="header-section-number">2.7.2</span> The Case of Rule 30</a></li>
+  <li><a href="#one-dimensional-cellular-automata-implementation" id="toc-one-dimensional-cellular-automata-implementation" class="nav-link" data-scroll-target="#one-dimensional-cellular-automata-implementation"><span class="header-section-number">2.7.3</span> One-Dimensional Cellular Automata Implementation</a></li>
+  <li><a href="#two-dimensional-cellular-automata-2dca" id="toc-two-dimensional-cellular-automata-2dca" class="nav-link" data-scroll-target="#two-dimensional-cellular-automata-2dca"><span class="header-section-number">2.7.4</span> Two-Dimensional Cellular Automata (2DCA)</a></li>
+  <li><a href="#case-study-conways-game-of-life" id="toc-case-study-conways-game-of-life" class="nav-link" data-scroll-target="#case-study-conways-game-of-life"><span class="header-section-number">2.7.5</span> Case Study: Conway’s Game of Life</a></li>
+  <li><a href="#origins" id="toc-origins" class="nav-link" data-scroll-target="#origins"><span class="header-section-number">2.7.6</span> Origins</a></li>
+  <li><a href="#patterns" id="toc-patterns" class="nav-link" data-scroll-target="#patterns"><span class="header-section-number">2.7.7</span> Patterns</a></li>
+  <li><a href="#python-implementation-of-game-of-life" id="toc-python-implementation-of-game-of-life" class="nav-link" data-scroll-target="#python-implementation-of-game-of-life"><span class="header-section-number">2.7.8</span> Python Implementation of Game of Life</a></li>
+  <li><a href="#further-reading" id="toc-further-reading" class="nav-link" data-scroll-target="#further-reading"><span class="header-section-number">2.7.9</span> Further Reading</a></li>
+  <li><a href="#interactive-websites" id="toc-interactive-websites" class="nav-link" data-scroll-target="#interactive-websites"><span class="header-section-number">2.7.10</span> Interactive Websites</a></li>
+  </ul></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content column-body" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Sequencing</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta column-body">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>In this chapter, we will explore the concept of sequencers and how they can be implemented in Pure Data. We will cover various types of sequencers, including step sequencers, random sequencers, and algorithmic composition techniques, with practical examples and implementations.</p>
+<section id="arrays-and-sequencers" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="arrays-and-sequencers"><span class="header-section-number">2.1</span> Arrays and Sequencers</h2>
+<p>Sequencer is a tool for organizing and controlling the playback of <code>events</code> in a temporally ordered sequence. This sequence consists of a series of discrete steps, where each step represents a regular time interval and can contain information about event activation or deactivation.</p>
+<p>In addition to controlling musical events such as notes, chords, and percussions, a step sequencer can also manage a variety of other events. This includes parameter changes in virtual instruments or audio/video synthesizers, real-time effect automation, lighting control in live performances or multimedia installations, triggering of samples to create patterns and effect sequences, as well as firing MIDI control events to operate external hardware or software.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Step</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+<th>8</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Value</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+</tr>
+<tr class="even">
+<td>Index</td>
+<td>0</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+<td>6</td>
+<td>7</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Each cell represents a step in the sequencer.</li>
+<li>1 to 8 indicate the steps.</li>
+<li>Empty cells represent steps without events or notes.</li>
+<li>You can fill each cell with notes or events to represent the desired sequence.</li>
+</ul>
+<section id="formulation-pseudo-code" class="level3" data-number="2.1.1">
+<h3 data-number="2.1.1" class="anchored" data-anchor-id="formulation-pseudo-code"><span class="header-section-number">2.1.1</span> Formulation (pseudo code)</h3>
+<div class="sourceCode" id="cb1"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>Data Structures:</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>- Define a data structure to represent each step of the sequence (e.g., array, list).</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>Variables:</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>- Define an array to store the MIDI note values for each step.</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>- Initialize the sequencer parameters:</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  - CurrentStep = 0</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  - Tempo</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  - NumberOfSteps = 8</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>Algorithm:</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>1. Initialization:</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>   a. Set CurrentStep to 0.</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>   b. Ask the user to input the Tempo.</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>   c. Set NumberOfSteps to 8.</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>2. Loop:</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>   a. While true:</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>      i. Calculate the time duration for each step based on the Tempo.</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>      ii. Play the MIDI note corresponding to the CurrentStep.</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>      iii. Increment CurrentStep.</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>      iv. If CurrentStep exceeds NumberOfSteps, reset it to 0.</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>      v. Wait the calculated duration before moving to the next step.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="implementation-of-the-8-step-sequencer" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="implementation-of-the-8-step-sequencer"><span class="header-section-number">2.2</span> Implementation of the 8-Step Sequencer</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../assets/screenshots/sequencers/step-sequencer.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Fig.Implementation of an 8-step MIDI sequencer showing the complete signal flow from tempo control through step counting, array lookup, and MIDI output generation"><img src="../assets/screenshots/sequencers/step-sequencer.png" class="img-fluid figure-img" alt="Fig.Implementation of an 8-step MIDI sequencer showing the complete signal flow from tempo control through step counting, array lookup, and MIDI output generation"></a></p>
+<figcaption>Fig.Implementation of an 8-step MIDI sequencer showing the complete signal flow from tempo control through step counting, array lookup, and MIDI output generation</figcaption>
+</figure>
+</div>
+<p>This implementation demonstrates how to create a basic 8-step MIDI sequencer that cycles through a predefined sequence of notes at a controllable tempo. The patch showcases essential concepts including timing control, array-based data storage, step counting with modulo arithmetic, and MIDI output generation.</p>
+<section id="patch-overview" class="level3" data-number="2.2.1">
+<h3 data-number="2.2.1" class="anchored" data-anchor-id="patch-overview"><span class="header-section-number">2.2.1</span> Patch Overview</h3>
+<p>The 8-step sequencer patch implements a classic step-based sequencing paradigm where musical events are organized into discrete time slots. The system operates by maintaining an internal counter that advances through eight sequential positions, with each position corresponding to a MIDI note value stored in an array. The sequencer provides real-time tempo control through a BPM slider interface and uses Pure Data’s built-in MIDI capabilities to output note events that can be routed to software synthesizers or external MIDI devices.</p>
+<p>The patch architecture follows a linear signal flow pattern that begins with user control inputs and culminates in MIDI note output. The timing engine uses Pure Data’s <code>metro</code> object as the primary clock source, generating regular pulses that drive the step advancement mechanism. Each pulse triggers a counter increment operation, which is processed through modulo arithmetic to ensure the sequence loops seamlessly after reaching the eighth step. The current step index is then used to retrieve the corresponding MIDI note value from a pre-populated array, which is subsequently formatted into proper MIDI messages and transmitted through the system’s MIDI output infrastructure.</p>
+<p>The visual interface provides immediate feedback on the sequencer’s operation through numeric displays that show both the current step position and the MIDI note value being played. The tempo control utilizes a mathematical conversion from beats per minute to milliseconds, allowing users to adjust the playback speed in musically meaningful units while maintaining precise timing accuracy.</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart TD
+    A[Start/Stop Toggle] --&gt; B[Metro Object]
+    C[BPM Slider] --&gt; D[BPM to ms Conversion]
+    D --&gt; B
+    B --&gt; E[Step Counter]
+    E --&gt; F[+1 Increment]
+    F --&gt; G[Modulo 8]
+    G --&gt; E
+    G --&gt; H[Step Index Display]
+    H --&gt; I[Array Lookup]
+    I --&gt; J[MIDI Note Display]
+    J --&gt; K[Makenote Object]
+    K --&gt; L[MIDI Output]
+    M[Loadbang] --&gt; N[Array Initialization]
+    N --&gt; I
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="data-flow" class="level3" data-number="2.2.2">
+<h3 data-number="2.2.2" class="anchored" data-anchor-id="data-flow"><span class="header-section-number">2.2.2</span> Data Flow</h3>
+<p>The sequencer’s operation begins when the user activates the start/stop toggle, which enables the metro object to begin generating timing pulses. The tempo of these pulses is determined by the BPM slider value, which is converted from beats per minute to milliseconds using the expression <code>60000/$f1</code>. This conversion ensures that the metro object receives timing intervals in the appropriate units for accurate tempo control.</p>
+<p>Each timing pulse from the metro object triggers the step counter mechanism, implemented using a combination of <code>f</code> (float storage), <code>+1</code> (increment), and <code>mod 8</code> (modulo) objects. The float object stores the current step index, which is incremented by one each time a pulse is received. The incremented value is then processed through the modulo operation to ensure it wraps back to zero after reaching seven, creating the characteristic eight-step cycle.</p>
+<p>The current step index serves dual purposes within the patch. First, it provides visual feedback to the user through a numeric atom display, allowing real-time monitoring of the sequencer’s position. Second, and more importantly, it functions as an index for retrieving MIDI note values from the <code>midi_note</code> array using the <code>tabread</code> object.</p>
+<p>The MIDI note array is initialized at patch startup through a <code>loadbang</code> object that sends a message containing the sequence <code>60 62 64 65 67 69 71 72</code>, representing a C major scale starting from middle C. This initialization ensures that the sequencer has meaningful musical content available immediately upon loading the patch.</p>
+<p>Once a MIDI note value is retrieved from the array, it is displayed numerically and then processed through the <code>makenote</code> object, which creates properly formatted MIDI note-on and note-off messages. The <code>makenote</code> object is configured with a fixed velocity of 100 and a duration of 250 milliseconds, providing consistent note characteristics across all steps. The resulting MIDI messages are then transmitted through the <code>noteout</code> object to MIDI channel 1, where they can be received by synthesizers or recording software.</p>
+</section>
+<section id="key-objects-and-their-roles" class="level3" data-number="2.2.3">
+<h3 data-number="2.2.3" class="anchored" data-anchor-id="key-objects-and-their-roles"><span class="header-section-number">2.2.3</span> Key Objects and Their Roles</h3>
+<p>The following table summarizes the essential objects used in the step sequencer implementation and their specific functions within the patch:</p>
+<div style="width: 70%;">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 47%">
+<col style="width: 52%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Object</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>tgl</code></td>
+<td>Start/stop toggle switch for sequencer control</td>
+</tr>
+<tr class="even">
+<td><code>metro</code></td>
+<td>Timing engine that generates regular pulses</td>
+</tr>
+<tr class="odd">
+<td><code>floatatom</code></td>
+<td>BPM input and step/note value display</td>
+</tr>
+<tr class="even">
+<td><code>expr 60000/$f1</code></td>
+<td>Converts BPM to milliseconds for metro timing</td>
+</tr>
+<tr class="odd">
+<td><code>f</code></td>
+<td>Stores current step index value</td>
+</tr>
+<tr class="even">
+<td><code>+ 1</code></td>
+<td>Increments step counter on each pulse</td>
+</tr>
+<tr class="odd">
+<td><code>mod 8</code></td>
+<td>Wraps step counter back to 0 after reaching 7</td>
+</tr>
+<tr class="even">
+<td><code>tabread midi_note</code></td>
+<td>Reads MIDI note values from the array</td>
+</tr>
+<tr class="odd">
+<td><code>makenote</code></td>
+<td>Creates MIDI note-on/off messages with velocity and duration</td>
+</tr>
+<tr class="even">
+<td><code>unpack f f</code></td>
+<td>Separates MIDI note and velocity values</td>
+</tr>
+<tr class="odd">
+<td><code>noteout</code></td>
+<td>Transmits MIDI messages to specified channel</td>
+</tr>
+<tr class="even">
+<td><code>loadbang</code></td>
+<td>Initializes array with note sequence at patch startup</td>
+</tr>
+<tr class="odd">
+<td><code>array midi_note</code></td>
+<td>Stores the sequence of MIDI note values</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The patch demonstrates several fundamental programming concepts, including the use of timing objects for rhythmic control, array manipulation for data storage and retrieval, mathematical operations for counter management, and MIDI message formatting for external communication. The modular design allows for easy modification of the note sequence, tempo range, and MIDI output parameters, making it a versatile foundation for more complex sequencing applications.</p>
+</section>
+</section>
+<section id="random-step-sequencer-implementation" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="random-step-sequencer-implementation"><span class="header-section-number">2.3</span> Random Step Sequencer Implementation</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../assets/screenshots/sequencers/random-step-sequencer.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Fig. Random step sequencer patch showing the integration of random number generation with array-based note storage and MIDI output, creating unpredictable yet musically coherent patterns from predefined harmonic material."><img src="../assets/screenshots/sequencers/random-step-sequencer.png" class="img-fluid figure-img" alt="Fig. Random step sequencer patch showing the integration of random number generation with array-based note storage and MIDI output, creating unpredictable yet musically coherent patterns from predefined harmonic material."></a></p>
+<figcaption>Fig. Random step sequencer patch showing the integration of random number generation with array-based note storage and MIDI output, creating unpredictable yet musically coherent patterns from predefined harmonic material.</figcaption>
+</figure>
+</div>
+<p>The random step sequencer represents an evolution of the basic sequential approach to rhythm generation. Instead of following a predictable linear progression through stored note values, this implementation introduces stochastic elements that create unpredictable yet musically coherent patterns. This patch demonstrates how randomization can be integrated into sequencing systems to generate non-repetitive musical content while maintaining the fundamental structure of step-based sequencing.</p>
+<section id="patch-overview-1" class="level3" data-number="2.3.1">
+<h3 data-number="2.3.1" class="anchored" data-anchor-id="patch-overview-1"><span class="header-section-number">2.3.1</span> Patch Overview</h3>
+<p>The random step sequencer patch builds upon the foundational concepts of the basic 8-step sequencer while introducing a crucial modification: the step advancement mechanism is replaced with a random selection process. Rather than incrementing through array indices sequentially, the system generates random index values that point to different positions within the stored note sequence. This approach maintains the same timing control, array-based storage, and MIDI output capabilities as the sequential version, but produces entirely different musical results due to the non-linear access pattern.</p>
+<p>The architecture preserves the linear signal flow from user controls to MIDI output, but introduces a random number generator at the critical junction where step advancement occurs. The timing engine continues to use Pure Data’s <code>metro</code> object as the primary clock source, but each timing pulse now triggers a random selection rather than a predictable increment. This modification transforms the sequencer from a deterministic system into a probabilistic one, where the same stored sequence can produce infinite variations in playback order.</p>
+<p>The interface maintains the same visual feedback mechanisms as the sequential version, displaying both the randomly selected step index and the corresponding MIDI note value. The tempo control system remains unchanged, allowing users to adjust playback speed while experiencing the unpredictable note selection patterns that emerge from the randomization process.</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart TD
+    A[Start/Stop Toggle] --&gt; B[Metro Object]
+    C[BPM Slider] --&gt; D[BPM to ms Conversion]
+    D --&gt; B
+    B --&gt; E[Random Generator]
+    E --&gt; F[Random Index 0-7]
+    F --&gt; G[Step Index Display]
+    G --&gt; H[Array Lookup]
+    H --&gt; I[MIDI Note Display]
+    I --&gt; J[Makenote Object]
+    J --&gt; K[MIDI Output]
+    L[Loadbang] --&gt; M[Array Initialization]
+    M --&gt; H
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="data-flow-1" class="level3" data-number="2.3.2">
+<h3 data-number="2.3.2" class="anchored" data-anchor-id="data-flow-1"><span class="header-section-number">2.3.2</span> Data Flow</h3>
+<p>The operational sequence begins identically to the sequential version, with the user activating the start/stop toggle to enable metro object timing generation. The BPM slider continues to control tempo through the same mathematical conversion formula <code>60000/$f1</code>, ensuring consistent timing accuracy regardless of the randomization occurring downstream.</p>
+<p>The fundamental difference emerges at the step generation stage. Instead of using a counter that increments predictably, each timing pulse from the metro object triggers a random number generator implemented with the <code>expr random(0, 8)</code> object. This expression generates random integers between 0 and 7 (inclusive), providing equal probability access to any position within the 8-element note array. The random selection occurs independently for each timing pulse, meaning the same index can be selected multiple times in succession, or the system might skip certain indices entirely during any given playback session.</p>
+<p>The randomly generated index serves the same dual purpose as in the sequential version: providing immediate visual feedback through a numeric display and functioning as the lookup key for array access. The <code>tabread midi_note</code> object retrieves the MIDI note value corresponding to the randomly selected index, creating an unpredictable sequence of pitches from the stored scale pattern.</p>
+<p>The subsequent processing stages remain unchanged from the sequential implementation. The retrieved MIDI note value is displayed numerically, then processed through the <code>makenote</code> object with the same fixed velocity (100) and duration (250 milliseconds) parameters. The resulting MIDI messages are transmitted through the <code>noteout</code> object to MIDI channel 1, maintaining full compatibility with external synthesizers and recording systems.</p>
+<p>The array initialization process follows the identical pattern established in the sequential version, using a <code>loadbang</code> object to populate the <code>midi_note</code> array with the C major scale sequence <code>60 62 64 65 67 69 71 72</code> at patch startup. This ensures immediate availability of musical content regardless of the randomization method employed.</p>
+</section>
+<section id="key-objects-and-their-roles-1" class="level3" data-number="2.3.3">
+<h3 data-number="2.3.3" class="anchored" data-anchor-id="key-objects-and-their-roles-1"><span class="header-section-number">2.3.3</span> Key Objects and Their Roles</h3>
+<p>The following table summarizes the essential objects used in the random step sequencer implementation, highlighting the specific changes from the sequential version:</p>
+<div style="width: 70%;">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 47%">
+<col style="width: 52%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Object</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>tgl</code></td>
+<td>Start/stop toggle switch for sequencer control</td>
+</tr>
+<tr class="even">
+<td><code>metro</code></td>
+<td>Timing engine that generates regular pulses</td>
+</tr>
+<tr class="odd">
+<td><code>floatatom</code></td>
+<td>BPM input and step/note value display</td>
+</tr>
+<tr class="even">
+<td><code>expr 60000/$f1</code></td>
+<td>Converts BPM to milliseconds for metro timing</td>
+</tr>
+<tr class="odd">
+<td><code>expr random(0, 8)</code></td>
+<td><strong>Generates random indices from 0 to 7</strong></td>
+</tr>
+<tr class="even">
+<td><code>bng</code></td>
+<td><strong>Visual pulse indicator triggered by metro</strong></td>
+</tr>
+<tr class="odd">
+<td><code>tabread midi_note</code></td>
+<td>Reads MIDI note values from the array</td>
+</tr>
+<tr class="even">
+<td><code>makenote</code></td>
+<td>Creates MIDI note-on/off messages with velocity and duration</td>
+</tr>
+<tr class="odd">
+<td><code>unpack f f</code></td>
+<td>Separates MIDI note and velocity values</td>
+</tr>
+<tr class="even">
+<td><code>noteout</code></td>
+<td>Transmits MIDI messages to specified channel</td>
+</tr>
+<tr class="odd">
+<td><code>loadbang</code></td>
+<td>Initializes array with note sequence at patch startup</td>
+</tr>
+<tr class="even">
+<td><code>array midi_note</code></td>
+<td>Stores the sequence of MIDI note values</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The most significant architectural change is the replacement of the sequential counter mechanism (<code>f</code>, <code>+ 1</code>, <code>mod 8</code>) with the random generator (<code>expr random(0, 8)</code>). This substitution fundamentally alters the system’s behavior while maintaining interface compatibility and output format consistency. The addition of a <code>bng</code> (bang) object provides visual confirmation of each timing pulse, which becomes particularly useful when monitoring the random selection process.</p>
+<p>This implementation demonstrates how simple modifications to algorithmic components can produce dramatically different musical results. The random step sequencer maintains all the practical advantages of the sequential version—including real-time tempo control, visual feedback, and MIDI compatibility—while introducing the creative possibilities inherent in stochastic processes. The resulting system serves as an excellent foundation for exploring probability-based composition techniques and can be extended with weighted random selection, controlled randomness, or hybrid deterministic-stochastic approaches.</p>
+</section>
+</section>
+<section id="piano-phase-steve-reich" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="piano-phase-steve-reich"><span class="header-section-number">2.4</span> Piano Phase (Steve Reich)</h2>
+<p><a href="../assets/images/sequencers/piano-phase-animation-1.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="../assets/images/sequencers/piano-phase-animation-1.gif" class="img-fluid"></a></p>
+<p><a href="./Biblio /SteveReich-PianoPhase.pdf">View Piano Phase Score (S. Reich)</a></p>
+<p>Design patterns are abstractions that capture idiomatic tendencies of practices and processes. These abstractions are embedded in live coding languages as functions and syntax, allowing for the reuse of these practices in new projects. <span class="citation" data-cites="brown2023">(<a href="#ref-brown2023" role="doc-biblioref">Brown 2023</a>)</span></p>
+<p><em>Piano Phase</em> is an example of “music as a gradual process,” as Reich stated in his essay from 1968.<span class="citation" data-cites="reich2002">(<a href="#ref-reich2002" role="doc-biblioref">Reich 2002</a>)</span>. In it, Reich described his interest in using processes to generate music, particularly noting how the process is perceived by the listener. (Processes are deterministic: a description of the process can describe an entire whole composition.[5] In other words, once the basic pattern and the phase process have been defined, the music consists itself.)</p>
+<p>Reich called the unexpected ways change occurred via the process “by-products”, formed by the superimposition of patterns. The superimpositions form sub-melodies, often spontaneously due to echo, resonance, dynamics, and tempo, and the general perception of the listener.<span class="citation" data-cites="epstein1986">(<a href="#ref-epstein1986" role="doc-biblioref">Epstein 1986</a>)</span></p>
+<p>Piano Phase led to several breakthroughs that would mark Reich’s future compositions. The first is the discovery of using simple but flexible harmonic material, which produces remarkable musical results when phasing occurs. The use of 12-note or 12-division patterns in Piano Phase proved to be successful, and Reich would re-use it in Clapping Music and Music for 18 Musicians. Another novelty is the appearance of rhythmic ambiguity during phasing of a basic pattern. The rhythmic perception during phasing can vary considerably, from being very simple (in-phase), to complex and intricate.</p>
+<p>The first section of Piano Phase has been the section studied most by musicologists. A property of the first section of phase cycle is that it is symmetric, which results in identical patterns half-way through the phase cycle.<span class="citation" data-cites="epstein1986">(<a href="#ref-epstein1986" role="doc-biblioref">Epstein 1986</a>)</span></p>
+<p><em>Piano Phase</em> can be conceived as an algorithm. Starting with two pianos playing the same sequence of notes at the same speed, one of the pianists begins to gradually accelerate their tempo.</p>
+<p>When the separation between the notes played by both pianos reaches a fraction of a note’s duration, the phase is shifted and the cycle repeats. This process continues endlessly, creating a hypnotic effect of rhythmic phasing that evolves over time as an infinite sequence of iterations.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../assets/images/sequencers/piano-phase-animation-2.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="Phase Difference"><img src="../assets/images/sequencers/piano-phase-animation-2.gif" class="img-fluid figure-img" alt="Phase Difference"></a></p>
+<figcaption>Phase Difference</figcaption>
+</figure>
+</div>
+<section id="algorithm-formulation-pseudo-code" class="level3" data-number="2.4.1">
+<h3 data-number="2.4.1" class="anchored" data-anchor-id="algorithm-formulation-pseudo-code"><span class="header-section-number">2.4.1</span> Algorithm Formulation (pseudo code)</h3>
+<div class="sourceCode" id="cb2"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>1. Initialize two pianists with the same note sequence.</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>2. Set an initial tempo for both pianists.</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>3. Repeat until the desired phase is reached:</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>     a. Gradually increase the second pianist's tempo.</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>     b. Compare note positions between both pianists.</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>     c. When the separation between the notes reaches a fraction of a note’s duration, invert the phase.</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>     d. Continue playback.</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>4. Repeat the cycle indefinitely to create a continuous and evolving rhythmic phasing effect.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="piano-phase-implementation-in-pd" class="level3" data-number="2.4.2">
+<h3 data-number="2.4.2" class="anchored" data-anchor-id="piano-phase-implementation-in-pd"><span class="header-section-number">2.4.2</span> Piano Phase Implementation in PD</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../assets/screenshots/sequencers/piano-phase.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" title="Fig. Piano Phase patch demonstrating phasing process through two sequencers with different metro intervals, visualized with hradio step indicators and MIDI output for each voice."><img src="../assets/screenshots/sequencers/piano-phase.png" class="img-fluid figure-img" alt="Fig. Piano Phase patch demonstrating phasing process through two sequencers with different metro intervals, visualized with hradio step indicators and MIDI output for each voice."></a></p>
+<figcaption>Fig. Piano Phase patch demonstrating phasing process through two sequencers with different metro intervals, visualized with hradio step indicators and MIDI output for each voice.</figcaption>
+</figure>
+</div>
+</section>
+<section id="patch-overview-2" class="level3" data-number="2.4.3">
+<h3 data-number="2.4.3" class="anchored" data-anchor-id="patch-overview-2"><span class="header-section-number">2.4.3</span> Patch Overview</h3>
+<p>The piano-phase.pd patch implements a minimalist phasing process inspired by Steve Reich’s Piano Phase. It uses two parallel sequencers, each reading from the same melodic sequence but advancing at slightly different rates. This gradual tempo difference causes the two sequences to drift out of phase, creating evolving rhythmic and melodic patterns.</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart TD
+    Start([Start/Stop]) --&gt; M1[Clock 1 410ms]
+    Start --&gt; M2[Clock 2 406ms]
+    M1 --&gt; C1[Counter 1]
+    M2 --&gt; C2[Counter 2]
+    C1 --&gt; T1[read sequence]
+    C2 --&gt; T2[read sequence]
+    T1 --&gt; MK1[MIDI noteout]
+    T2 --&gt; MK2[MIDI noteout]
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="sequence-data" class="level3" data-number="2.4.4">
+<h3 data-number="2.4.4" class="anchored" data-anchor-id="sequence-data"><span class="header-section-number">2.4.4</span> Sequence Data</h3>
+<p><code>[table sequence 12]</code></p>
+<p>The sequence is stored in a table named sequence with 12 MIDI note values:</p>
+<p><code>64 66 71 73 74 66 64 73 71 66 74 73</code></p>
+<p>This pattern is initialized at patch load.</p>
+</section>
+<section id="data-flow-2" class="level3" data-number="2.4.5">
+<h3 data-number="2.4.5" class="anchored" data-anchor-id="data-flow-2"><span class="header-section-number">2.4.5</span> Data Flow</h3>
+<p><strong>Initialization</strong></p>
+<ul>
+<li>The sequence table is filled with 12 MIDI notes.</li>
+<li>Two metro objects are set: one at 410 ms (left), one at 406 ms (right).</li>
+<li>Both sequencers are started/stopped with a single toggle.</li>
+</ul>
+<p><strong>Playback</strong></p>
+<ul>
+<li>Each metro triggers its own counter, which advances from 0 to 11 and wraps around.</li>
+<li>The current index is used to read a note from the sequence table.</li>
+<li>The note is played via <code>makenote</code> and sent to MIDI output.</li>
+<li>The current step is visualized with a horizontal radio button (<code>hradio</code>).</li>
+</ul>
+<p><strong>Phasing Effect</strong></p>
+<ul>
+<li>The right sequencer is slightly faster, so its step index gradually shifts ahead of the left sequencer.</li>
+<li>Over time, the two sequences drift out of phase, producing new rhythmic and melodic combinations.</li>
+<li>Eventually, the faster sequencer laps the slower one, and the process repeats.</li>
+</ul>
+</section>
+<section id="key-objects-and-their-roles-2" class="level3" data-number="2.4.6">
+<h3 data-number="2.4.6" class="anchored" data-anchor-id="key-objects-and-their-roles-2"><span class="header-section-number">2.4.6</span> Key Objects and Their Roles</h3>
+<p>Two identical sequences are played in parallel. Slightly different tempos cause the sequences to gradually shift out of phase. Emergent patterns arise from the interaction of the two sequences. Visual feedback helps track the phase relationship. This patch demonstrates how minimalist processes can generate complex musical results through simple, deterministic rules, echoing the core concept of Steve Reich’s Piano Phase.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Object</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>metro</td>
+<td>Sets the timing for each sequencer</td>
+</tr>
+<tr class="even">
+<td>expr int(60000/$f1)</td>
+<td>Converts BPM to milliseconds</td>
+</tr>
+<tr class="odd">
+<td>f, + 1, mod 12</td>
+<td>Advances and wraps the step index</td>
+</tr>
+<tr class="even">
+<td>tabread sequence</td>
+<td>Reads the current note from the sequence</td>
+</tr>
+<tr class="odd">
+<td>makenote</td>
+<td>Generates MIDI note-on/off with duration</td>
+</tr>
+<tr class="even">
+<td>noteout</td>
+<td>Sends MIDI notes to the output device</td>
+</tr>
+<tr class="odd">
+<td>hradio</td>
+<td>Visualizes the current step position</td>
+</tr>
+<tr class="even">
+<td>loadbang</td>
+<td>Initializes sequence and metro intervals</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="random-melody-generator" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="random-melody-generator"><span class="header-section-number">2.5</span> Random Melody Generator</h2>
+<p>This chapter provides a step-by-step explanation of the <a href="../assets/code/sequencers/music-scale-B.pd">music-scale-B.pd</a> Pure Data patch. The patch demonstrates how to generate a melody using a musical scale, store it in an array, and play it back using MIDI.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../assets/screenshots/sequencers/random_melody.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6" title="Fig. Random melody generator patch showing scale definition, algorithmic note selection, array storage, and MIDI playback system for creating melodic sequences from predefined harmonic material."><img src="../assets/screenshots/sequencers/random_melody.png" class="img-fluid figure-img" alt="Fig. Random melody generator patch showing scale definition, algorithmic note selection, array storage, and MIDI playback system for creating melodic sequences from predefined harmonic material."></a></p>
+<figcaption>Fig. Random melody generator patch showing scale definition, algorithmic note selection, array storage, and MIDI playback system for creating melodic sequences from predefined harmonic material.</figcaption>
+</figure>
+</div>
+<section id="patch-overview-3" class="level3" data-number="2.5.1">
+<h3 data-number="2.5.1" class="anchored" data-anchor-id="patch-overview-3"><span class="header-section-number">2.5.1</span> Patch Overview</h3>
+<p>The Random Melody Generator patch demonstrates a comprehensive approach to algorithmic composition. This implementation showcases how to generate melodic content using musical scales, store the generated material in arrays for manipulation, and create a playback system with MIDI output capabilities.</p>
+<p>The patch architecture is built around several interconnected functional blocks that work together to create a complete generative music system. The first component handles scale definition and melody generation, where musical scales are defined as interval patterns and used as the foundation for creating new melodic material. The melody storage system utilizes array objects to hold the generated sequences, providing both data persistence and visual feedback. The playback control mechanism employs metronome objects and indexing systems to sequence through the stored melodies at controllable tempos. Finally, the MIDI output section transforms the stored note data into playable MIDI messages that can be sent to external synthesizers or software instruments.</p>
+<p>This modular design approach allows for easy modification and extension of the system. Each functional block can be adjusted independently, enabling composers and sound designers to experiment with different scales, generation algorithms, storage methods, and playback configurations without affecting the overall system stability.</p>
+<p>Below is a simplified diagram of the main data flow:</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart TD
+    S[Scale Message] --&gt; L[list Append]
+    L --&gt; R[random + Offset]
+    R --&gt; M[Modulo/Indexing]
+    M --&gt; A[Melody Array]
+    A --&gt; P[Playback - metro, tabread]
+    P --&gt; MN[makenote]
+    MN --&gt; NO[noteout]
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>The scale definition process begins with a message box containing the fundamental building blocks of Western harmony represented as semitone intervals.</p>
+<p>The example scale <code>0 2 4 5 7 9 11</code> represents a major scale pattern, where each number corresponds to a specific semitone distance from a root note. This intervallic approach provides flexibility, as the same pattern can be transposed to any key by simply changing the root note offset. The scale intervals are processed through list manipulation objects, which append the values to an internal list structure and calculate the scale’s length for use in subsequent random selection processes.</p>
+<p>The following table illustrates the mapping of musical notes to their corresponding intervals in semitones, which is crucial for understanding how the scale is constructed and how notes are generated from it.</p>
+<div style="width: 50%;">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Note</th>
+<th>Interval</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>C</td>
+<td><code>0</code></td>
+</tr>
+<tr class="even">
+<td>C# / Db</td>
+<td><code>1</code></td>
+</tr>
+<tr class="odd">
+<td>D</td>
+<td><code>2</code></td>
+</tr>
+<tr class="even">
+<td>D# / Eb</td>
+<td><code>3</code></td>
+</tr>
+<tr class="odd">
+<td>E</td>
+<td><code>4</code></td>
+</tr>
+<tr class="even">
+<td>F</td>
+<td><code>5</code></td>
+</tr>
+<tr class="odd">
+<td>F# / Gb</td>
+<td><code>6</code></td>
+</tr>
+<tr class="even">
+<td>G</td>
+<td><code>7</code></td>
+</tr>
+<tr class="odd">
+<td>G# / Ab</td>
+<td><code>8</code></td>
+</tr>
+<tr class="even">
+<td>A</td>
+<td><code>9</code></td>
+</tr>
+<tr class="odd">
+<td>A# / Bb</td>
+<td><code>10</code></td>
+</tr>
+<tr class="even">
+<td>B</td>
+<td><code>11</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The random note selection mechanism forms the core of the melodic generation process. A random number generator produces values between 0 and 47, which are then shifted upward by 60 to place the resulting MIDI notes in a musically appropriate range around middle C. This range selection ensures that generated melodies will fall within a playable range for most instruments and remain audible in typical monitoring setups. The random values are then mapped to the predefined scale using modulo operations and list indexing, ensuring that all generated notes conform to the harmonic framework established by the scale definition.</p>
+<p>The melody construction process utilizes looping mechanisms, specifically the <code>until</code>, <code>i</code>, and <code>+ 1</code> objects, to generate sequences of predetermined length. Each iteration of the loop calculates a new note based on the scale mapping process and stores the result in a growing list structure. This approach allows for the creation of melodic phrases of any desired length, from short motifs to extended melodic lines. The deterministic nature of the loop structure ensures predictable behavior while the random element within each iteration provides the variability necessary for interesting melodic content.</p>
+<p>For melody storage, the patch employs array system, specifically an array named <code>melody</code> that serves as both a data repository and a visual display element. The generated melodic sequences are written to this array using the <code>tabwrite</code> object, which provides indexed storage capabilities. The array’s visual representation appears as a graph within the patch interface, allowing users to see the melodic contour and note relationships in real-time. This visual feedback proves invaluable for understanding the characteristics of generated material and making informed decisions about parameter adjustments.</p>
+<p>The playback control system centers around a <code>metro</code> object that functions as a digital metronome, generating regular timing pulses that drive the sequencing process. The tempo of these pulses is controlled by a horizontal slider interface element, providing real-time tempo adjustment capabilities. Each pulse from the metronome advances an index counter that points to the next position in the <code>melody</code> array. This indexing system automatically wraps around to the beginning when it reaches the end of the stored sequence, creating seamless looping playback that continues indefinitely until stopped by the user.</p>
+<p>The MIDI output stage transforms the stored melodic data into standard MIDI protocol messages that can interface with external hardware and software. The note values retrieved from the array are processed through a <code>makenote</code> object, which creates properly formatted MIDI note-on and note-off messages with specified velocity and duration parameters. These parameters can be adjusted to affect the musical expression of the playback, with velocity controlling the apparent loudness or intensity of notes and duration determining their length. The final <code>noteout</code> object handles the actual transmission of MIDI data to the system’s MIDI routing infrastructure, where it can be directed to synthesizers, samplers, or recording software.</p>
+<p>The following is a simplified diagram of the data flow for the melody generation and playback process:</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">graph LR
+    MelodyList --&gt;|tabwrite| MelodyArray
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>The integration of these components creates a flexible and powerful tool for algorithmic composition. The system can generate new melodic material on demand, store multiple variations for comparison, and play back the results in real-time with full MIDI compatibility. This makes it suitable for both experimental composition work and practical music production applications, where generated material can serve as inspiration, accompaniment, or the foundation for further development.</p>
+</section>
+<section id="key-objects-and-their-roles-3" class="level3" data-number="2.5.2">
+<h3 data-number="2.5.2" class="anchored" data-anchor-id="key-objects-and-their-roles-3"><span class="header-section-number">2.5.2</span> Key Objects and Their Roles</h3>
+<div style="width: 50%;">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Object</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>random 48</code></td>
+<td>Generates random note indices</td>
+</tr>
+<tr class="even">
+<td><code>+ 60</code></td>
+<td>Shifts notes to a higher MIDI octave</td>
+</tr>
+<tr class="odd">
+<td><code>mod 12</code></td>
+<td>Maps notes to scale degrees</td>
+</tr>
+<tr class="even">
+<td><code>list-idx</code></td>
+<td>Retrieves scale degree from the list</td>
+</tr>
+<tr class="odd">
+<td><code>tabwrite</code></td>
+<td>Writes notes to the <code>melody</code> array</td>
+</tr>
+<tr class="even">
+<td><code>metro</code></td>
+<td>Controls playback timing</td>
+</tr>
+<tr class="odd">
+<td><code>tabread</code></td>
+<td>Reads notes from the <code>melody</code> array</td>
+</tr>
+<tr class="even">
+<td><code>makenote</code></td>
+<td>Creates MIDI notes with velocity/duration</td>
+</tr>
+<tr class="odd">
+<td><code>noteout</code></td>
+<td>Sends MIDI notes to output</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="diagram-melody-generation-and-playback" class="level3" data-number="2.5.3">
+<h3 data-number="2.5.3" class="anchored" data-anchor-id="diagram-melody-generation-and-playback"><span class="header-section-number">2.5.3</span> Diagram: Melody Generation and Playback</h3>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart TD
+    S[Scale Message] --&gt; L[list Append]
+    L --&gt; R[random + Offset]
+    R --&gt; M[Modulo/Indexing]
+    M --&gt; A[Melody Array]
+    A --&gt; P[Playback - metro, tabread]
+    P --&gt; MN[makenote]
+    MN --&gt; NO[noteout]
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="the-euclidean-algorithm-generates-traditional-musical-rhythms" class="level2" data-number="2.6">
+<h2 data-number="2.6" class="anchored" data-anchor-id="the-euclidean-algorithm-generates-traditional-musical-rhythms"><span class="header-section-number">2.6</span> The Euclidean Algorithm Generates Traditional Musical Rhythms</h2>
+<p>Godfried Toussaint (2005)</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../assets/images/sequencers/euclidian-seq-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7" title="Eucliden image"><img src="../assets/images/sequencers/euclidian-seq-1.png" class="img-fluid figure-img" alt="Eucliden image"></a></p>
+<figcaption>Eucliden image</figcaption>
+</figure>
+</div>
+<p><a href="https://cgm.cs.mcgill.ca/~godfried/publications/banff.pdf">Link to the original article</a></p>
+<p>The Euclidean rhythm in music was discovered by Godfried Toussaint in 2004 and is described in a 2005 paper <em>“The Euclidean Algorithm Generates Traditional Musical Rhythms”</em>.<span class="citation" data-cites="toussaint2005">(<a href="#ref-toussaint2005" role="doc-biblioref">Toussaint 2005</a>)</span> The paper presents a method for generating rhythms that are evenly distributed over a given time span, using the Euclidean algorithm. This method is particularly relevant in the context of world music, where such rhythms are often found. The Euclidean algorithm (as presented in <em>Euclid’s Elements</em>) calculates the greatest common divisor of two given integers. It is shown here that the structure of the Euclidean algorithm can be used to efficiently generate a wide variety of rhythms used as timelines (ostinatos) in sub-Saharan African music in particular, and world music in general. These rhythms, here called <em>Euclidean rhythms</em>, have the property that their onset patterns are distributed as evenly as possible. Euclidean rhythms also find application in nuclear physics accelerators and computer science and are closely related to several families of words and sequences of interest in the combinatorics of words, such as Euclidean strings, with which the rhythms are compared.<span class="citation" data-cites="toussaint2005">(<a href="#ref-toussaint2005" role="doc-biblioref">Toussaint 2005</a>)</span></p>
+<section id="hypothesis" class="level3" data-number="2.6.1">
+<h3 data-number="2.6.1" class="anchored" data-anchor-id="hypothesis"><span class="header-section-number">2.6.1</span> Hypothesis</h3>
+<p>Several researchers have observed that rhythms in traditional world music tend to exhibit patterns distributed as regularly or evenly as possible. The hypothesis is that the Euclidean algorithm can be used to generate these rhythms. According to the hypothesis, the Euclidean algorithm can be used to generate rhythms that are evenly distributed over a given time span. This is particularly relevant in the context of world music, where such rhythms are often found. The following is a summary of the main points:</p>
+<blockquote class="blockquote">
+<p><strong>Patterns of maximal evenness can be described using the Euclidean algorithm on the greatest common divisor of two integers.</strong></p>
+</blockquote>
+</section>
+<section id="patterns-of-maximal-evenness" class="level3" data-number="2.6.2">
+<h3 data-number="2.6.2" class="anchored" data-anchor-id="patterns-of-maximal-evenness"><span class="header-section-number">2.6.2</span> Patterns of Maximal Evenness</h3>
+<p>The Pattern of Maximal Evenness is a concept used in music theory to create Euclidean rhythms. Euclidean rhythms are rhythmic patterns that evenly distribute beats over a time cycle.</p>
+<p>In essence, the Pattern of Maximal Evenness seeks to <strong>distribute a specific number of beats evenly</strong> within a given time span. This is achieved by dividing the time into equal parts and assigning beats to these divisions uniformly.</p>
+<p>Example:</p>
+<p>x = beat</p>
+<p>· = rest</p>
+<p>[×· ×· ×· ×· ] → [1 0 1 0 1 0 1 0] (8,4) = 4 beats evenly distributed over 8 pulses</p>
+<p>[×· ·×· ·×·] → [1 0 0 1 0 0 1 0] (8,3) = 3 beats evenly distributed over 8 pulses</p>
+</section>
+<section id="euclidean-algorithm" class="level3" data-number="2.6.3">
+<h3 data-number="2.6.3" class="anchored" data-anchor-id="euclidean-algorithm"><span class="header-section-number">2.6.3</span> Euclidean Algorithm</h3>
+<p>One of the oldest known algorithms, described in <em>Euclid’s Elements</em> (around 300 BCE) in Proposition 2 of Book VII, now known as the Euclidean algorithm, calculates the greatest common divisor of two given integers.</p>
+<p>The idea is very simple. The smaller number is repeatedly subtracted from the larger until the larger becomes zero or smaller than the smaller one, in which case it becomes the remainder. This remainder is then repeatedly subtracted from the smaller number to obtain a new remainder. This process continues until the remainder is zero.</p>
+<p>To be more precise, consider the numbers 5 and 8 as an example:</p>
+<ul>
+<li>First, we divide 8 by 5. This gives a quotient of 1 and a remainder of 3.</li>
+<li>Then, we divide 5 by 3, which gives a quotient of 1 and a remainder of 2.</li>
+<li>Next, we divide 3 by 2, which gives a quotient of 1 and a remainder of 1.</li>
+<li>Finally, we divide 2 by 1, which gives a quotient of 2 and a remainder of 0.</li>
+</ul>
+<p>The idea is to keep dividing the previous divisor by the remainder obtained in each step until the remainder is 0. When we reach a remainder of 0, the previous divisor is the greatest common divisor of the two numbers.</p>
+<p>In short, the process can be seen as a sequence of equations:</p>
+<pre class="text"><code>8 = (1)(5) + 3
+5 = (1)(3) + 2
+3 = (1)(2) + 1
+2 = (1)(2) + 0</code></pre>
+<p><em>Note: 8 = (1)(5) + 3 means that 8 is divided by 5 once, yielding a quotient of 1 and a remainder of 3.</em></p>
+<p>&nbsp;</p>
+<p>In essence, it involves successive divisions to find the <code>greatest common divisor</code> of two positive numbers (GCD from now on).</p>
+<p>The <code>GCD</code> of two numbers a and b, assuming a &gt; b, is found by first dividing a by b, and obtaining the remainder r.</p>
+<p>The GCD of a and b is the same as that of b and r. When we divide a by b, we obtain a quotient c and a remainder r such that:</p>
+<p><code>a = c · b + r</code></p>
+<p><strong>Examples:</strong></p>
+<p>Let’s compute the GCD of 17 and 7.</p>
+<p>Since <code>17 = 7 · 2 + 3</code>, then GCD(17, 7) is equal to GCD(7, 3). Again, since 7 = 3 · 2 + 1, then GCD(7, 3) is equal to GCD(3, 1). Here, it is clear that the GCD between 3 and 1 is simply 1. Therefore, the GCD between 17 and 7 is also 1.</p>
+<pre class="text"><code>GCD(17,7) = 1
+
+17 = 7 · 2 + 3
+
+7 = 3 · 2 + 1
+
+3 = 1 · 3 + 0</code></pre>
+<p>&nbsp;</p>
+<p><strong>Another example:</strong></p>
+<pre class="text"><code>GCD(8,3) = 1
+
+8 = 3 · 2 + 2
+
+3 = 2 · 1 + 1
+
+2 = 1 · 2 + 0</code></pre>
+</section>
+<section id="how-does-computing-the-gcd-turn-into-maximally-even-distributed-patterns" class="level3" data-number="2.6.4">
+<h3 data-number="2.6.4" class="anchored" data-anchor-id="how-does-computing-the-gcd-turn-into-maximally-even-distributed-patterns"><span class="header-section-number">2.6.4</span> How does computing the GCD turn into maximally even distributed patterns?</h3>
+<p>Represent a binary sequence of k ones [1] and n − k zeros [0], where each [0] bit represents a time interval and the ones [1] indicate signal triggers.</p>
+<p>The problem then reduces to:</p>
+<p><code>Construct a binary sequence of n bits with k ones such that the ones are distributed as evenly as possible among the zeros.</code></p>
+<p>A simple case is when k evenly divides n (with no remainder), in which case we should place ones every n/k bits. For example, if n = 16 and k = 4, then the solution is:</p>
+<p><code>[1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0]</code></p>
+<p>This case corresponds to n and k having a common divisor of k (in this case 4).</p>
+<p>More generally, if the greatest common divisor between n and k is g, we would expect the solution to decompose into g repetitions of a sequence of n/g bits.</p>
+<p><strong>This connection with greatest common divisors suggests that we could compute a maximally even rhythm using an algorithm like Euclid’s.</strong></p>
+<p>&nbsp;</p>
+<section id="example-13-5" class="level4" data-number="2.6.4.1">
+<h4 data-number="2.6.4.1" class="anchored" data-anchor-id="example-13-5"><span class="header-section-number">2.6.4.1</span> Example (13, 5)</h4>
+<p>Let’s consider a sequence with n = 13 and k = 5.</p>
+<p>Since 13 − 5 = 8, we start with a sequence consisting of 5 ones, followed by 8 zeros, which can be thought of as 13 one-bit sequences:</p>
+<p>[1 1 1 1 1 0 0 0 0 0 0 0 0]</p>
+<p>We begin moving zeros by placing one zero after each one, creating five 2-bit sequences, with three remaining zeros:</p>
+<p>[10] [10] [10] [10] [10] [0] [0] [0]</p>
+<p><code>13 = 5 · 2 + 3</code></p>
+<p>Then we distribute the three remaining zeros similarly, placing a [0] after each [10] sequence:</p>
+<p>[100] [100] [100] [10] [10]</p>
+<p><code>5 = 3 · 1 + 2</code></p>
+<p>We now have three 3-bit sequences, and a remainder of two 2-bit sequences. So we continue the same way, placing one [10] after each [100]:</p>
+<p>[10010] [10010] [100]</p>
+<p><code>3 = 2 · 1 + 1</code></p>
+<p>The process stops when the remainder consists of a single sequence (here, [100]), or we run out of zeros.</p>
+<p>The final sequence is, therefore, the concatenation of [10010], [10010], and [100]:</p>
+<p><strong>[1 0 0 1 0 1 0 0 1 0 1 0 0]</strong></p>
+<p><code>2 = 1 · 2 + 0</code></p>
+<p>&nbsp;</p>
+</section>
+<section id="example-17-7" class="level4" data-number="2.6.4.2">
+<h4 data-number="2.6.4.2" class="anchored" data-anchor-id="example-17-7"><span class="header-section-number">2.6.4.2</span> Example (17, 7)</h4>
+<p>Suppose we have 17 pulses and want to evenly distribute 7 beats over them.</p>
+<p><strong>1.</strong> We align the number of beats and silences (7 ones and 10 zeros):</p>
+<p>[1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0]</p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>1 1 1 1 1 1 1</th>
+<th>0 0 0 0 0 0 0 0 0 0</th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<p><strong>2.</strong> We form 7 groups, corresponding to the division of 17 by 7; we get 7 groups of <code>[1 0]</code> and 3 remaining zeros <code>[000]</code>, which means the next step forms 3 groups until only one or zero groups remain.</p>
+<p>[1 0] [1 0] [1 0] [1 0] [1 0] [1 0] [1 0] [0] [0] [0]</p>
+<p><code>17 = 7 · 2 + 3</code></p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>1</th>
+<th>1</th>
+<th>1</th>
+<th>1</th>
+<th>1</th>
+<th>1</th>
+<th>1</th>
+<th>0 0 0</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
+<p><strong>3.</strong> Again, this corresponds to dividing 7 by 3. In our case, we are left with only one group and we are done.</p>
+<p>&nbsp;</p>
+<p>[1 0 0] [1 0 0] [1 0 0] [1 0] [1 0] [1 0] [1 0]</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>1</th>
+<th>1</th>
+<th>1</th>
+<th>1</th>
+<th>1</th>
+<th>1</th>
+<th>1</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>[1 0 0 1 0] [1 0 1 0 0] [1 0 0 1 0] [1 0]</p>
+<p><code>7 = 3 · 2 + 1</code></p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>1</th>
+<th>1</th>
+<th>1</th>
+<th>1</th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
+<p><strong>4.</strong> Finally, the rhythm is obtained by reading the grouping column by column, from left to right, step by step.</p>
+<p><strong><code>[1 0 0 1 0 1 0 0 1 0 1 0 0 1 0 1 0]</code></strong></p>
+<p><code>3 = 1 · 3 + 0</code></p>
+<p>&nbsp;</p>
+</section>
+</section>
+<section id="implementation-in-pure-data---euclidean-sequencer" class="level3" data-number="2.6.5">
+<h3 data-number="2.6.5" class="anchored" data-anchor-id="implementation-in-pure-data---euclidean-sequencer"><span class="header-section-number">2.6.5</span> Implementation in Pure Data - Euclidean sequencer</h3>
+<p>The following code implements the Euclidean algorithm in Pure Data to generate a Euclidean rhythm. The algorithm is based on the mathematical formula:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>(index * hits ) % steps</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>↓</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>[&lt; notes]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart TB
+    A[index * hits]
+    A --&gt; B[% steps]
+    B --&gt; C[&lt; notes]
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>where:</p>
+<p>index = index of the Euclidean series (array)</p>
+<p>hits = number of notes to be played</p>
+<p>steps = array size</p>
+<p>Yoy can check this <a href="https://dbkaplun.github.io/euclidean-rhythm/">Euclidean rhythm demo</a> in order to interact and see how the algorithm works.</p>
+<section id="understanding-the-mathematical-formula" class="level4" data-number="2.6.5.1">
+<h4 data-number="2.6.5.1" class="anchored" data-anchor-id="understanding-the-mathematical-formula"><span class="header-section-number">2.6.5.1</span> Understanding the Mathematical Formula</h4>
+<p>The formula <code>(index * hits) % steps &lt; hits</code> provides a simple and efficient way to approximate the distribution of pulses (or beats) over a sequence of discrete steps. It works by multiplying the current position (represented by <code>index</code>) by the total number of hits (pulses) desired. This result is then taken modulo the total number of steps to ensure it wraps around properly in a cyclical pattern. Finally, the result of this modulo operation is compared to the number of hits. If the condition is true, we place a beat at that position; otherwise, we place a rest.</p>
+<p>This method produces a rhythm by relying on modular arithmetic. The result is a mathematically regular distribution of beats that often approximates what we expect from an even rhythmic distribution. However, it does so without any recursive logic or iteration—it simply applies a consistent rule to each step in isolation. This makes the formula extremely efficient: it runs in constant time for any position, and it does not require any memory to store the pattern.</p>
+</section>
+<section id="the-bjorklund-algorithm-explained" class="level4" data-number="2.6.5.2">
+<h4 data-number="2.6.5.2" class="anchored" data-anchor-id="the-bjorklund-algorithm-explained"><span class="header-section-number">2.6.5.2</span> The Bjorklund Algorithm Explained</h4>
+<p>In contrast, the Bjorklund algorithm is a more sophisticated procedure rooted in the Euclidean algorithm for computing the greatest common divisor (GCD). This algorithm begins with two values: the number of pulses (beats) and the number of rests (steps minus beats). It then recursively groups these elements in a way that maximizes the evenness of their distribution.</p>
+<p>The method proceeds by repeatedly pairing elements—first grouping pulses with rests, then regrouping the leftovers, and so on—until the sequence cannot be subdivided further. The final pattern emerges from this recursive grouping, and it is typically rotated so that it starts with a pulse. The result is a rhythm that is maximally even, meaning that the beats are spaced as equally as possible given the constraints.</p>
+<p>This process, while more computationally demanding and conceptually complex, produces the canonical Euclidean rhythms often cited in academic and musical literature.</p>
+</section>
+<section id="comparing-the-formula-and-the-algorithm" class="level4" data-number="2.6.5.3">
+<h4 data-number="2.6.5.3" class="anchored" data-anchor-id="comparing-the-formula-and-the-algorithm"><span class="header-section-number">2.6.5.3</span> Comparing the Formula and the Algorithm</h4>
+<p>The core difference between the two approaches lies in how they arrive at the rhythmic pattern. The mathematical formula provides a direct, position-based method for determining beat placement. It does not take into account the context of previous or future beats—it treats each step in isolation. This is why it is so fast and well-suited for real-time applications, such as live audio processing in Pure Data or other creative coding environments.</p>
+<p>The Bjorklund algorithm, on the other hand, is concerned with the global structure of the pattern. It ensures that beats are distributed with maximal evenness and follows a well-defined sequence of operations that are both recursive and stateful. This means it needs to store and manipulate arrays of data to arrive at the final rhythm. The computational complexity of this algorithm is higher, and it is not as straightforward to implement, but the results are musically and mathematically robust.</p>
+<p>One major distinction is that the formula often produces a rotated version of the Bjorklund rhythm. That is, while the number and spacing of beats may be similar, the starting position may differ. The Bjorklund rhythm always starts with a pulse, ensuring that it adheres to a particular musical convention, while the formula does not guarantee this.</p>
+<p>Another important distinction lies in the distribution logic. The formula uses a fixed mathematical rule to space out the beats, leading to regular but not necessarily optimal placement. The Bjorklund algorithm, however, iteratively rearranges beats and rests to achieve the best possible balance.</p>
+</section>
+<section id="a-concrete-example-13-5" class="level4" data-number="2.6.5.4">
+<h4 data-number="2.6.5.4" class="anchored" data-anchor-id="a-concrete-example-13-5"><span class="header-section-number">2.6.5.4</span> A Concrete Example: (13, 5)</h4>
+<p>Let’s consider the case of 13 steps with 5 beats.</p>
+<p>Using the mathematical formula, we apply <code>(index * 5) % 13 &lt; 5</code> for each position:</p>
+<p>Pattern: 1 0 0 1 0 0 1 0 1 0 0 1 0</p>
+<p>In contrast, the Bjorklund algorithm produces:</p>
+<p>Pattern: 1 0 1 0 0 1 0 1 0 0 1 0 0</p>
+<p>Both patterns contain five beats. Both distribute them fairly evenly. But the Bjorklund version achieves a more perceptually even spacing and aligns with theoretical expectations. The formula result is essentially a rotated variant.</p>
+<p>In summary, the formula <code>(index * hits) % steps &lt; hits</code> offers a pragmatic and computationally efficient way to generate rhythm patterns that resemble Euclidean rhythms. It is well-suited for real-time use cases and environments where simplicity and speed are more important than strict accuracy. In contrast, the Bjorklund algorithm provides a mathematically rigorous method for generating rhythms with maximal evenness. It aligns with canonical definitions and is favored in theoretical and compositional contexts.The choice between these methods depends on your priorities: use the formula for lightweight, real-time approximation, and use Bjorklund when you need precision and adherence to the canonical Euclidean model.</p>
+</section>
+</section>
+<section id="euclidean-rhythm-generator" class="level3" data-number="2.6.6">
+<h3 data-number="2.6.6" class="anchored" data-anchor-id="euclidean-rhythm-generator"><span class="header-section-number">2.6.6</span> Euclidean Rhythm Generator</h3>
+<p>This section provides a detailed explanation of the <a href="../assets/code/sequencers/euclidean/00-Euclidean-basic-Serie.pd">Euclidean-basic-Serie.pd</a> patch. This Pure Data patch demonstrates how to generate Euclidean rhythms using a straightforward mathematical formula.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../assets/screenshots/sequencers/euclid_00.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8" title="Euclidean rhythm generator patch showing step and hit parameter controls, mathematical formula calculation, and pattern output display for generating evenly distributed rhythmic sequences."><img src="../assets/screenshots/sequencers/euclid_00.png" class="img-fluid figure-img" alt="Euclidean rhythm generator patch showing step and hit parameter controls, mathematical formula calculation, and pattern output display for generating evenly distributed rhythmic sequences."></a></p>
+<figcaption>Euclidean rhythm generator patch showing step and hit parameter controls, mathematical formula calculation, and pattern output display for generating evenly distributed rhythmic sequences.</figcaption>
+</figure>
+</div>
+<section id="patch-overview-4" class="level4" data-number="2.6.6.1">
+<h4 data-number="2.6.6.1" class="anchored" data-anchor-id="patch-overview-4"><span class="header-section-number">2.6.6.1</span> Patch Overview</h4>
+<p>The patch is structured into several functional blocks. First, there are controls for setting the number of steps and the number of hits (pulses). Next, the patch calculates the Euclidean pattern using a mathematical formula. Finally, the resulting pattern is output and visualized as a list of pulses and rests.</p>
+<p>To help visualize the flow of data through the patch, consider the following diagram:</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart TD
+    S[Steps Slider] --&gt; A[Step Counter]
+    H[Hits Slider] --&gt; B[Hits Value]
+    A --&gt; C[Euclidean Formula: index * hits % steps]
+    B --&gt; C
+    C --&gt; D[Compare &lt; hits]
+    D --&gt; E[Pattern List]
+    E --&gt; F[Output/Display]
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="data-flow-3" class="level4" data-number="2.6.6.2">
+<h4 data-number="2.6.6.2" class="anchored" data-anchor-id="data-flow-3"><span class="header-section-number">2.6.6.2</span> Data Flow</h4>
+<p>The process begins with the user setting the number of steps in the sequence using a horizontal slider labeled “Steps.” This determines the total length of the rhythmic cycle. The user also sets the number of hits, or pulses, using another slider labeled “HITS.” These two values are stored and sent to the rest of the patch, where they are used to calculate the rhythmic pattern.</p>
+<p>Once the parameters are set, the patch uses a loop, implemented with the <code>until</code> object, to iterate through each step index from 0 up to one less than the total number of steps. For each index, the patch calculates a value using the formula <code>(index * hits) % steps</code>. This formula determines the position of each pulse within the cycle by multiplying the current index by the number of hits and taking the result modulo the total number of steps. The result of this calculation is then compared to the number of hits. If the result is less than the number of hits, a pulse (represented by a 1) is added to the pattern. Otherwise, a rest (represented by a 0) is added. This process is repeated for every step in the sequence, gradually building up the complete Euclidean rhythm as a list of ones and zeros.</p>
+<p>After the pattern has been calculated, it is displayed as a list, allowing you to see the sequence of pulses and rests. The patch also includes a reset mechanism, so that the pattern can be recalculated and updated whenever the user changes the number of steps or hits.</p>
+</section>
+<section id="example-steps-13-hits-5" class="level4" data-number="2.6.6.3">
+<h4 data-number="2.6.6.3" class="anchored" data-anchor-id="example-steps-13-hits-5"><span class="header-section-number">2.6.6.3</span> Example: (Steps = 13, Hits = 5)</h4>
+<p>To illustrate how the patch works, consider the case where the number of steps is 13 and the number of hits is 5. The following table shows the calculation for each step:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Index</th>
+<th>Calculation</th>
+<th>Result</th>
+<th>&lt; Hits?</th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>(0 * 5) % 13 = 0</td>
+<td>0</td>
+<td>Yes</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>(1 * 5) % 13 = 5</td>
+<td>5</td>
+<td>Yes</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td>(2 * 5) % 13 = 10</td>
+<td>10</td>
+<td>No</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td>(3 * 5) % 13 = 2</td>
+<td>2</td>
+<td>Yes</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>4</td>
+<td>(4 * 5) % 13 = 7</td>
+<td>7</td>
+<td>No</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>5</td>
+<td>(5 * 5) % 13 = 12</td>
+<td>12</td>
+<td>No</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>6</td>
+<td>(6 * 5) % 13 = 4</td>
+<td>4</td>
+<td>Yes</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>7</td>
+<td>(7 * 5) % 13 = 9</td>
+<td>9</td>
+<td>No</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>8</td>
+<td>(8 * 5) % 13 = 1</td>
+<td>1</td>
+<td>Yes</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>9</td>
+<td>(9 * 5) % 13 = 6</td>
+<td>6</td>
+<td>No</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>10</td>
+<td>(10 * 5) % 13 = 11</td>
+<td>11</td>
+<td>No</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>11</td>
+<td>(11 * 5) % 13 = 3</td>
+<td>3</td>
+<td>Yes</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>12</td>
+<td>(12 * 5) % 13 = 8</td>
+<td>8</td>
+<td>No</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<p>The resulting pattern is:<br>
+<code>1 1 0 1 0 0 1 0 1 0 0 1 0</code></p>
+<p>This sequence distributes five pulses as evenly as possible across thirteen steps.</p>
+</section>
+<section id="key-objects-and-their-roles-4" class="level4" data-number="2.6.6.4">
+<h4 data-number="2.6.6.4" class="anchored" data-anchor-id="key-objects-and-their-roles-4"><span class="header-section-number">2.6.6.4</span> Key Objects and Their Roles</h4>
+<p>The following table summarizes the key objects used in the patch and their roles:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 30%">
+<col style="width: 69%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Object</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>hsl</code> (slider)</td>
+<td>Sets number of steps and hits</td>
+</tr>
+<tr class="even">
+<td><code>until</code></td>
+<td>Loops through each step index</td>
+</tr>
+<tr class="odd">
+<td><code>expr</code></td>
+<td>Calculates <code>(index * hits) % steps</code></td>
+</tr>
+<tr class="even">
+<td><code>&lt;</code></td>
+<td>Compares result to hits, outputs 1 or 0</td>
+</tr>
+<tr class="odd">
+<td><code>add2</code></td>
+<td>Appends each result to the output pattern list</td>
+</tr>
+<tr class="even">
+<td><code>set</code></td>
+<td>Resets the output list for new calculations</td>
+</tr>
+<tr class="odd">
+<td><code>mod</code></td>
+<td>Ensures index wraps around for correct calculation</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="euclidean-rotation-generator" class="level3" data-number="2.6.7">
+<h3 data-number="2.6.7" class="anchored" data-anchor-id="euclidean-rotation-generator"><span class="header-section-number">2.6.7</span> Euclidean Rotation Generator</h3>
+<p>This section explains the <a href="../assets/code/sequencers/euclidean/Euclidean-Rotation.pd">Euclidean-Rotation.pd</a> patch. This Pure Data patch builds on the basic Euclidean rhythm generator by introducing a rotation parameter, allowing you to shift the starting point of the rhythm pattern. This feature is useful for exploring different phase relationships and rhythmic variations without changing the underlying distribution of pulses.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../assets/screenshots/sequencers/euclid_01.png" class="lightbox" data-gallery="quarto-lightbox-gallery-9" title="Fig. Euclidean rotation generator patch showing enhanced rhythm control with rotation parameter for cyclical pattern shifting and phase exploration."><img src="../assets/screenshots/sequencers/euclid_01.png" class="img-fluid figure-img" alt="Fig. Euclidean rotation generator patch showing enhanced rhythm control with rotation parameter for cyclical pattern shifting and phase exploration."></a></p>
+<figcaption>Fig. Euclidean rotation generator patch showing enhanced rhythm control with rotation parameter for cyclical pattern shifting and phase exploration.</figcaption>
+</figure>
+</div>
+<section id="patch-overview-5" class="level4" data-number="2.6.7.1">
+<h4 data-number="2.6.7.1" class="anchored" data-anchor-id="patch-overview-5"><span class="header-section-number">2.6.7.1</span> Patch Overview</h4>
+<p>The patch allows you to set the number of steps, the number of hits (pulses), and the rotation amount. The rotation parameter shifts the pattern cyclically, so the rhythm can start at any point in the sequence. The patch calculates the Euclidean pattern using a formula that incorporates the rotation, and then outputs the resulting pattern for visualization and further use.</p>
+<p>The following diagram illustrates the data flow for the rhythm and rotation:</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart TD
+    Steps[Steps Slider] --&gt; Counter[Step Counter]
+    Hits[Hits Slider] --&gt; HitsVal[Hits Value]
+    Rot[Rotation Slider] --&gt; RotVal[Rotation Value]
+    Counter --&gt; Formula[Euclidean Formula: index_plus_rotation_times_hits_mod_steps]
+    RotVal --&gt; Formula
+    HitsVal --&gt; Formula
+    Formula --&gt; Compare[Compare to Hits]
+    Compare --&gt; Pattern[Pattern List]
+    Pattern --&gt; Output[Output/Display]
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="data-flow-4" class="level4" data-number="2.6.7.2">
+<h4 data-number="2.6.7.2" class="anchored" data-anchor-id="data-flow-4"><span class="header-section-number">2.6.7.2</span> Data Flow</h4>
+<p>The process begins with the user setting the number of steps, hits, and rotation using horizontal sliders. The steps slider determines the total length of the rhythmic cycle, the hits slider sets the number of pulses to be distributed, and the rotation slider specifies how many positions to shift the pattern.</p>
+<p>A loop, implemented with the <code>until</code> object and a counter, iterates through each step index. For each index, the patch calculates the value using the formula <code>((index + rotation) * hits) % steps</code>. This formula determines the position of each pulse within the cycle, taking into account the rotation. The result is then compared to the number of hits: if it is less than the number of hits, a pulse (represented by a 1) is added to the pattern; otherwise, a rest (represented by a 0) is added. This process is repeated for every step, building up the complete rotated Euclidean rhythm.</p>
+<p>The resulting pattern is displayed as a list, showing the sequence of pulses and rests after rotation. The patch also provides a reset mechanism to clear and recalculate the pattern when parameters change.</p>
+</section>
+<section id="example-rotating-a-euclidean-rhythm" class="level4" data-number="2.6.7.3">
+<h4 data-number="2.6.7.3" class="anchored" data-anchor-id="example-rotating-a-euclidean-rhythm"><span class="header-section-number">2.6.7.3</span> Example: Rotating a Euclidean Rhythm</h4>
+<p>Suppose you set 8 steps, 3 hits, and a rotation of 2. The main rhythm without rotation might be:</p>
+<p><code>1 0 0 1 0 0 1 0</code></p>
+<p>Applying a rotation of 2 shifts the pattern two steps to the right, resulting in:</p>
+<p><code>0 1 0 0 1 0 0 1</code></p>
+<p>This allows you to experiment with different phase offsets and rhythmic feels.</p>
+</section>
+<section id="key-objects-and-their-roles-5" class="level4" data-number="2.6.7.4">
+<h4 data-number="2.6.7.4" class="anchored" data-anchor-id="key-objects-and-their-roles-5"><span class="header-section-number">2.6.7.4</span> Key Objects and Their Roles</h4>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 79%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Object</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>hsl</code> (slider)</td>
+<td>Sets number of steps, hits, and rotation</td>
+</tr>
+<tr class="even">
+<td><code>until</code></td>
+<td>Loops through each step index</td>
+</tr>
+<tr class="odd">
+<td><code>counter</code></td>
+<td>Increments the step index for each iteration</td>
+</tr>
+<tr class="even">
+<td><code>expr</code></td>
+<td>Calculates the Euclidean formula with rotation</td>
+</tr>
+<tr class="odd">
+<td><code>&lt;</code></td>
+<td>Compares the formula result to hits, outputs 1 or 0</td>
+</tr>
+<tr class="even">
+<td><code>add2</code></td>
+<td>Appends each result to the output pattern list</td>
+</tr>
+<tr class="odd">
+<td><code>set</code></td>
+<td>Resets the output list for new calculations</td>
+</tr>
+<tr class="even">
+<td><code>mod</code></td>
+<td>Ensures index wraps around for correct calculation</td>
+</tr>
+<tr class="odd">
+<td><code>tabwrite</code></td>
+<td>Writes the final pattern to an array for visualization</td>
+</tr>
+<tr class="even">
+<td><code>print</code></td>
+<td>Prints the final pattern to the console (for debugging)</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="euclidean-accents-generator" class="level3" data-number="2.6.8">
+<h3 data-number="2.6.8" class="anchored" data-anchor-id="euclidean-accents-generator"><span class="header-section-number">2.6.8</span> Euclidean Accents Generator</h3>
+<p>This section explains the <a href="../assets/code/sequencers/euclidean/Euclidean-Accents.pd">Euclidean-Accents.pd</a> patch. This Pure Data patch extends the basic Euclidean rhythm generator by adding a second, independent Euclidean pattern to control accents. The result is a two-layer sequencer: one layer for the main rhythm (hits) and another for accentuation, allowing for more expressive and dynamic rhythmic patterns.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../assets/screenshots/sequencers/euclid_02.png" class="lightbox" data-gallery="quarto-lightbox-gallery-10" title="Euclidean accents generator showing two parallel Euclidean rhythm generators combined to create accented beat patterns with independent control over main rhythm and accent placement."><img src="../assets/screenshots/sequencers/euclid_02.png" class="img-fluid figure-img" alt="Euclidean accents generator showing two parallel Euclidean rhythm generators combined to create accented beat patterns with independent control over main rhythm and accent placement."></a></p>
+<figcaption>Euclidean accents generator showing two parallel Euclidean rhythm generators combined to create accented beat patterns with independent control over main rhythm and accent placement.</figcaption>
+</figure>
+</div>
+<section id="patch-overview-6" class="level4" data-number="2.6.8.1">
+<h4 data-number="2.6.8.1" class="anchored" data-anchor-id="patch-overview-6"><span class="header-section-number">2.6.8.1</span> Patch Overview</h4>
+<p>The patch is organized into two parallel sections. The first section generates the main Euclidean rhythm, while the second section generates an accent pattern using the same mathematical approach. Both sections allow for independent control of steps, hits, rotation, and accents. The outputs of both patterns are then combined to produce a final sequence where steps can be silent, regular, or accented.</p>
+<p>The following diagram illustrates the data flow for both rhythm and accent layers:</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart TD
+    S[Steps Slider] --&gt; A[Step Counter]
+    H[Hits Slider] --&gt; B[Hits Value]
+    R[Rotation Slider] --&gt; C[Rotation Value]
+    A --&gt; D[Euclidean Formula: index+rotation*hits%steps]
+    B --&gt; D
+    C --&gt; D
+    D --&gt; E[Compare &lt; hits]
+    E --&gt; F[Main Pattern List]
+    ACC[Accents Slider] --&gt; ACCV[Accents Value]
+    ACCROT[Accents Rotation Slider] --&gt; ACCROTVAL[Accents Rotation Value]
+    A2[Step Counter] --&gt; D2[Euclidean Formula: index+acc_rotation*accents %steps]
+    ACCV --&gt; D2
+    ACCROTVAL --&gt; D2
+    D2 --&gt; E2[Compare &lt; accents]
+    E2 --&gt; F2[Accent Pattern List]
+    F &amp; F2 --&gt; G[Combine Patterns]
+    G --&gt; H[Output/Display]
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="data-flow-5" class="level4" data-number="2.6.8.2">
+<h4 data-number="2.6.8.2" class="anchored" data-anchor-id="data-flow-5"><span class="header-section-number">2.6.8.2</span> Data Flow</h4>
+<p>The process begins with the user setting the number of steps, hits, and rotation for the main rhythm using horizontal sliders. These parameters determine the length of the sequence, the number of pulses, and the rotation (offset) of the pattern. The patch uses a loop (<code>until</code>) and a counter to iterate through each step index. For each step, it calculates the value using the formula <code>((index + rotation) * hits) % steps</code>. This value is compared to the number of hits; if it is less, a pulse (1) is added to the main pattern, otherwise a rest (0).</p>
+<p>In parallel, the user can set the number of accents and their rotation using additional sliders. The accent pattern is generated in the same way as the main rhythm, but with its own independent parameters. The formula <code>((index + acc_rotation) * accents) % steps</code> is used to determine the placement of accents. The result is a second pattern of 1s (accent) and 0s (no accent).</p>
+<p>After both patterns are generated, they are combined step by step. If both the main pattern and the accent pattern have a 1 at the same step, the output for that step is set to 2 (indicating an accented hit). If only the main pattern has a 1, the output is 1 (regular hit). If neither has a 1, the output is 0 (rest). The final combined pattern is written to an array and displayed, allowing for visualization and further use in sequencing.</p>
+</section>
+<section id="example-combining-rhythm-and-accents" class="level4" data-number="2.6.8.3">
+<h4 data-number="2.6.8.3" class="anchored" data-anchor-id="example-combining-rhythm-and-accents"><span class="header-section-number">2.6.8.3</span> Example: Combining Rhythm and Accents</h4>
+<p>Suppose you set 8 steps, 3 hits, and 2 accents. The main rhythm might produce a pattern like:</p>
+<p><code>1 0 0 1 0 0 1 0</code></p>
+<p>The accent pattern, with its own rotation, might produce:</p>
+<p><code>1 0 1 0 0 1 0 0</code></p>
+<p>Combining these, the output would be:</p>
+<p><code>2 0 1 1 0 1 1 0</code></p>
+<p>Here, “2” indicates an accented hit, “1” a regular hit, and “0” a rest.</p>
+</section>
+<section id="key-objects-and-their-roles-6" class="level4" data-number="2.6.8.4">
+<h4 data-number="2.6.8.4" class="anchored" data-anchor-id="key-objects-and-their-roles-6"><span class="header-section-number">2.6.8.4</span> Key Objects and Their Roles</h4>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 18%">
+<col style="width: 81%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Object</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>hsl</code> (slider)</td>
+<td>Sets number of steps, hits, rotation, accents, and accent rotation</td>
+</tr>
+<tr class="even">
+<td><code>until</code></td>
+<td>Loops through each step index</td>
+</tr>
+<tr class="odd">
+<td><code>counter</code></td>
+<td>Increments the step index for each iteration</td>
+</tr>
+<tr class="even">
+<td><code>expr</code></td>
+<td>Calculates the Euclidean formula for both rhythm and accent patterns</td>
+</tr>
+<tr class="odd">
+<td><code>&lt;</code></td>
+<td>Compares the formula result to hits or accents, outputs 1 or 0</td>
+</tr>
+<tr class="even">
+<td><code>add2</code></td>
+<td>Appends each result to the output pattern list</td>
+</tr>
+<tr class="odd">
+<td><code>set</code></td>
+<td>Resets the output list for new calculations</td>
+</tr>
+<tr class="even">
+<td><code>list-idx</code></td>
+<td>Retrieves values from the generated lists for combination</td>
+</tr>
+<tr class="odd">
+<td><code>expr if($f1+$f2==2, 2, $f1)</code></td>
+<td>Combines main and accent patterns into a single output</td>
+</tr>
+<tr class="even">
+<td><code>tabwrite</code></td>
+<td>Writes the final pattern to an array for visualization</td>
+</tr>
+<tr class="odd">
+<td><code>print</code></td>
+<td>Prints the final pattern to the console (for debugging)</td>
+</tr>
+</tbody>
+</table>
+<p><br> <br></p>
+</section>
+</section>
+</section>
+<section id="cellular-automata" class="level2" data-number="2.7">
+<h2 data-number="2.7" class="anchored" data-anchor-id="cellular-automata"><span class="header-section-number">2.7</span> Cellular Automata</h2>
+<p><a href="../assets/images/sequencers/cellular-automaton-rule30-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-11"><img src="../assets/images/sequencers/cellular-automaton-rule30-1.png" class="img-fluid"></a></p>
+<p>Cellular automata are simple machines consisting of cells that update in parallel at discrete time steps. In general, the state of a cell depends on the state of its local neighborhood at the previous time step. The earliest known examples were engineered for specific purposes, such as the two-dimensional cellular automaton constructed by von Neumann in 1951 to model biological self-replication <span class="citation" data-cites="brummitt2012">(<a href="#ref-brummitt2012" role="doc-biblioref">Brummitt and Rowland 2012</a>)</span></p>
+<p>A cellular automaton is a mathematical and computational model for a dynamic system that evolves in discrete steps. It is suitable for modeling natural systems that can be described as a massive collection of simple objects interacting locally with each other.</p>
+<p>A cellular automaton is a collection of “colored” cells on a grid of specified shape that evolves through a series of discrete time steps according to a set of rules based on the states of neighboring cells. The rules are then applied iteratively over as many time steps as desired.</p>
+<p>Cellular automata come in a variety of forms and types. One of the most fundamental properties of a cellular automaton is the type of grid on which it is computed. The simplest such grid is a <code>one-dimensional</code> line. In two dimensions, square, triangular, and hexagonal grids can be considered.</p>
+<p>One must also specify the number of colors (or distinct states) <em>k</em> that a cellular automaton can assume. This number is typically an integer, with k=2 (binary, <code>[1]</code> or <code>[0]</code>) being the simplest choice. For a binary automaton, color 0 is commonly referred to as “white” and color 1 as “black”. However, cellular automata with a continuous range of possible values can also be considered.</p>
+<p>In addition to the grid on which a cellular automaton resides and the colors its cells can assume, one must also specify the <code>neighborhood</code> over which the cells influence each other.</p>
+<section id="one-dimensional-cellular-automata-1dca" class="level3" data-number="2.7.1">
+<h3 data-number="2.7.1" class="anchored" data-anchor-id="one-dimensional-cellular-automata-1dca"><span class="header-section-number">2.7.1</span> One-Dimensional Cellular Automata (1DCA)</h3>
+<p>The simplest option is <code>"nearest neighbors"</code>, where only the cells directly adjacent to a given cell can influence it at each time step. Two common neighborhoods in the case of a two-dimensional cellular automaton on a square grid are the so-called Moore neighborhood (a square neighborhood) and the von Neumann neighborhood (a diamond-shaped neighborhood).</p>
+<p>Cellular automata are considered as a vector. Each component of the vector is called a cell. Each cell is assumed to take only two states:</p>
+<ul>
+<li>[0] (white)</li>
+<li>[1] (black)</li>
+</ul>
+<p>This type of automaton is known as an elementary one-dimensional cellular automaton (1DCA). A dynamic process is performed, starting from an initial configuration C(0) of each of the cells (stage 0), and at each new stage, the state of each cell is calculated based on the state of the neighboring cells and the cell itself in the previous stage.</p>
+<p>The cellular automata that we study in this section are one-dimensional. A one-dimensional cellular automaton consists of:</p>
+<ul>
+<li>an alphabet <code>Σ</code> of size <code>k</code>,</li>
+<li>a positive integer <code>d</code>,</li>
+<li>a function <code>i</code> from the set of integers to <code>Σ</code>, and</li>
+<li>a function <code>f</code> from Σ<sup>d</sup> (d-tuples of elements in Σ) to S.</li>
+</ul>
+<p>The function <code>i</code> is called the initial condition, and the function <code>f</code> is called the rule. We think of the initial condition as an infinite row of discrete cells, each assigned one of <code>k</code> colors. To evolve the cellular automaton, we update all cells in parallel, where each cell updates according to <code>f</code>, a function of d cells in its vicinity on the previous step. I adopt the usual convention of naming a cellular automaton’s rule by the number whose base-k digits consist of the outputs of the rule under the kd possible inputs of <code>d</code> cells, ordered reverse-lexicographically. For example, the two-color rule depending on three cells that maps the eight possible inputs according to the rule 00011110 = 30 in this numbering. Here we have identified 0 = [ ] and 1 = [x].</p>
+</section>
+<section id="the-case-of-rule-30" class="level3" data-number="2.7.2">
+<h3 data-number="2.7.2" class="anchored" data-anchor-id="the-case-of-rule-30"><span class="header-section-number">2.7.2</span> The Case of Rule 30</h3>
+<p>Rule 30 is a binary one-dimensional cellular automaton introduced by Stephen Wolfram <span class="citation" data-cites="wolfram1983">(<a href="#ref-wolfram1983" role="doc-biblioref">Wolfram 1983</a>)</span>. It considers an infinite one-dimensional array of cellular automaton cells with only two states, with each cell in some initial state.</p>
+<p>At discrete time intervals, each cell changes state spontaneously based on its current state and the state of its two neighbors.</p>
+<p>What it consists of:</p>
+<ol type="1">
+<li><p>Each cell can be in one of two states: alive or dead.</p></li>
+<li><p>The next generation of a cell is determined by the current state of the cell and the state of its two neighboring cells.</p></li>
+<li><p>There are 8 possible configurations of neighboring states (3^2), and for each, Rule 30 defines whether the cell lives or dies in the next generation.</p></li>
+</ol>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>It is called Rule 30 because in binary, 00011110<sub>2</sub> = 30</strong></p>
+</div>
+</div>
+<p>For Rule 30, the set of rules that governs the automaton’s next state is:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 21%">
+<col style="width: 19%">
+<col style="width: 28%">
+<col style="width: 30%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Pattern (decimal)</th>
+<th>Pattern (binary)</th>
+<th>Next State<br>(center cell)</th>
+<th>New state<br>(center cell)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>000</td>
+<td>Dead</td>
+<td>000</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>001</td>
+<td>Alive</td>
+<td>011</td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td>010</td>
+<td>Dead</td>
+<td>000</td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td>011</td>
+<td>Alive</td>
+<td>011</td>
+</tr>
+<tr class="odd">
+<td>4</td>
+<td>100</td>
+<td>Alive</td>
+<td>011</td>
+</tr>
+<tr class="even">
+<td>5</td>
+<td>101</td>
+<td>Dead</td>
+<td>000</td>
+</tr>
+<tr class="odd">
+<td>6</td>
+<td>110</td>
+<td>Alive</td>
+<td>011</td>
+</tr>
+<tr class="even">
+<td>7</td>
+<td>111</td>
+<td>Dead</td>
+<td>000</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p>In the following diagram, the top row shows the state of the central cell (cell <em>i</em>) and its two neighboring cells at a given stage, and the bottom row shows the state of the central cell in the next stage.</p>
+<p>For example, in the first case of the figure:</p>
+<ul>
+<li>if the state of a cell at a given stage is <code>[1]</code> (black) and</li>
+<li>its two neighbors at that stage are also <code>[1]</code> (black),</li>
+<li>then the cell’s state in the next stage will be <code>[0]</code> (white).</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../assets/images/sequencers/Rule30_Automaton.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-12" title="Rule 30 cellular automaton evolution displaying binary state transitions and emergent pattern generation from simple neighborhood-based rules."><img src="../assets/images/sequencers/Rule30_Automaton.gif" class="img-fluid figure-img" alt="Rule 30 cellular automaton evolution displaying binary state transitions and emergent pattern generation from simple neighborhood-based rules."></a></p>
+<figcaption>Rule 30 cellular automaton evolution displaying binary state transitions and emergent pattern generation from simple neighborhood-based rules.</figcaption>
+</figure>
+</div>
+<p>Let’s break down the procedure for determining the next state in the 8 combinations:</p>
+<p><strong>Input configurations:</strong> Consider the 8 possible input combinations of the three cells (a central cell and its left and right neighbors). Since each cell can be in one of two possible states (0 or 1), the combinations are 000, 001, 010, 011, 100, 101, 110, and 111.</p>
+<p><strong>Binary representation of the rule:</strong> Rule 30 is represented by the number 30 in binary, which is 00011110. This binary representation determines the rules for the next state of the central cell for each of the 8 possible combinations.</p>
+<p><strong>Bit correspondence:</strong> The 8 bits of the binary representation (00011110) correspond to the 8 input combinations in order. From right to left, the bits represent the next state of the central cell for each input combination.</p>
+<p>For example, the least significant bit of 00011110 (the rightmost bit) is 0. This means that when the input combination is 000, the next state of the central cell will be 0.</p>
+<p><strong>Next state determination:</strong> For each input combination (e.g., 000, 001, 010, 011, 100, 101, 110, 111), the corresponding bit in the binary representation of Rule 30 [00011110] indicates the next state of the central cell.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Input Configuration</th>
+<th>Next State</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>000</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>001</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>010</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>011</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>100</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>101</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>110</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>111</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p>For example, if the input combination is 000 and the corresponding bit in Rule 30 is 0, then the next state of the central cell will be 0.</p>
+<p>Therefore, the rules are not arbitrary but are determined by the binary representation of Rule 30, which specifies the next state of the central cell for each input combination of its neighbors.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../assets/images/sequencers/Rule-30--by-Stephen-Wolfram-for-Cellular-Automata.png" class="lightbox" data-gallery="quarto-lightbox-gallery-13" title="Rule 30 transition table illustrating the eight neighborhood patterns and their resulting center cell states for the next generation."><img src="../assets/images/sequencers/Rule-30--by-Stephen-Wolfram-for-Cellular-Automata.png" class="img-fluid figure-img" alt="Rule 30 transition table illustrating the eight neighborhood patterns and their resulting center cell states for the next generation."></a></p>
+<figcaption>Rule 30 transition table illustrating the eight neighborhood patterns and their resulting center cell states for the next generation.</figcaption>
+</figure>
+</div>
+</section>
+<section id="one-dimensional-cellular-automata-implementation" class="level3" data-number="2.7.3">
+<h3 data-number="2.7.3" class="anchored" data-anchor-id="one-dimensional-cellular-automata-implementation"><span class="header-section-number">2.7.3</span> One-Dimensional Cellular Automata Implementation</h3>
+<p>his implementation demonstrates how to construct a one-dimensional cellular automaton system that can generate intricate sequences based on elementary rule sets. The patch showcases advanced concepts including rule-based pattern generation, boundary condition handling, state evolution tracking, and data persistence mechanisms.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../assets/screenshots/sequencers/1DCA-Rule-30.png" class="lightbox" data-gallery="quarto-lightbox-gallery-14" title="One-dimensional cellular automaton patch implementing Rule 30 with iteration history display showing the evolution from a single seed cell into complex binary patterns."><img src="../assets/screenshots/sequencers/1DCA-Rule-30.png" class="img-fluid figure-img" alt="One-dimensional cellular automaton patch implementing Rule 30 with iteration history display showing the evolution from a single seed cell into complex binary patterns."></a></p>
+<figcaption>One-dimensional cellular automaton patch implementing Rule 30 with iteration history display showing the evolution from a single seed cell into complex binary patterns.</figcaption>
+</figure>
+</div>
+<div style="width: 50%;">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Iteration</th>
+<th>Binary Output</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>0 0 0 0 0 0 1 0 0 0 0 0</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>0 0 0 0 0 1 1 1 0 0 0 0</td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td>0 0 0 0 1 1 0 0 1 0 0 0</td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td>0 0 0 1 1 0 1 1 1 1 0 0</td>
+</tr>
+<tr class="odd">
+<td>4</td>
+<td>0 0 1 1 0 0 1 0 0 0 1 0</td>
+</tr>
+<tr class="even">
+<td>5</td>
+<td>0 1 1 0 1 1 1 1 0 1 1 1</td>
+</tr>
+<tr class="odd">
+<td>6</td>
+<td>0 1 0 0 1 0 0 0 0 1 0 0</td>
+</tr>
+<tr class="even">
+<td>7</td>
+<td>1 1 1 1 1 1 0 0 1 1 1 0</td>
+</tr>
+<tr class="odd">
+<td>8</td>
+<td>1 0 0 0 0 0 1 1 1 0 0 0</td>
+</tr>
+<tr class="even">
+<td>9</td>
+<td>1 1 0 0 0 1 1 0 0 1 0 1</td>
+</tr>
+<tr class="odd">
+<td>10</td>
+<td>0 0 1 0 1 1 0 1 1 1 0 1</td>
+</tr>
+<tr class="even">
+<td>11</td>
+<td>1 1 1 0 1 0 0 1 0 0 0 1</td>
+</tr>
+<tr class="odd">
+<td>12</td>
+<td>0 0 0 0 1 1 1 1 1 0 1 1</td>
+</tr>
+<tr class="even">
+<td>13</td>
+<td>1 0 0 1 1 0 0 0 0 0 1 0</td>
+</tr>
+<tr class="odd">
+<td>14</td>
+<td>1 1 1 1 0 1 0 0 0 1 1 0</td>
+</tr>
+<tr class="even">
+<td>15</td>
+<td>1 0 0 0 0 1 1 0 1 1 0 0</td>
+</tr>
+<tr class="odd">
+<td>16</td>
+<td>1 1 0 0 1 1 0 0 1 0 1 1</td>
+</tr>
+<tr class="even">
+<td>17</td>
+<td>0 0 1 1 1 0 1 1 1 0 1 0</td>
+</tr>
+<tr class="odd">
+<td>18</td>
+<td>0 1 1 0 0 0 1 0 0 0 1 1</td>
+</tr>
+<tr class="even">
+<td>19</td>
+<td>0 1 0 1 0 1 1 1 0 1 1 0</td>
+</tr>
+<tr class="odd">
+<td>20</td>
+<td>1 1 0 1 0 1 0 0 0 1 0 1</td>
+</tr>
+<tr class="even">
+<td>21</td>
+<td>0 0 0 1 0 1 1 0 1 1 0 1</td>
+</tr>
+<tr class="odd">
+<td>22</td>
+<td>1 0 1 1 0 1 0 0 1 0 0 1</td>
+</tr>
+<tr class="even">
+<td>23</td>
+<td>0 0 1 0 0 1 1 1 1 1 1 1</td>
+</tr>
+</tbody>
+</table>
+</div>
+<section id="patch-overview-7" class="level4" data-number="2.7.3.1">
+<h4 data-number="2.7.3.1" class="anchored" data-anchor-id="patch-overview-7"><span class="header-section-number">2.7.3.1</span> Patch Overview</h4>
+<p>The one-dimensional cellular automaton patch implements a comprehensive system for simulating elementary cellular automata, particularly focusing on Stephen Wolfram’s classification of 256 possible rules. The system operates by maintaining a linear array of cells, each containing a binary state (0 or 1), and applying transformation rules based on local neighborhoods of three consecutive cells. The patch provides sophisticated control over initial conditions (axioms), boundary behaviors, rule selection, and iteration management, making it suitable for both educational exploration and practical generative applications.</p>
+<p>The architecture follows a modular design pattern with distinct functional subsystems that handle different aspects of the cellular automaton simulation. The rule management subsystem converts numerical rule codes into binary lookup tables that define state transitions for all possible three-cell neighborhoods. The boundary condition handler manages edge cases when the automaton reaches the limits of its defined space, supporting both loop-around and reflection modes. The iteration engine coordinates the step-by-step evolution of the cellular array, maintaining state history and providing real-time feedback on the generation process.</p>
+<p>The patch interface accommodates various input methods for configuring the automaton parameters, including direct rule code entry (0-255), symbolic mode specification (loop, reflect, or fixed), and custom axiom definition through list messages. The system provides multiple output streams for accessing generated data, including real-time state information, complete iteration histories, and formatted data suitable for external analysis or visualization tools.</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart TD
+    A[Rule Code Input] --&gt; B[Binary Rule Generation]
+    C[Axiom Definition] --&gt; D[Initial State Setup]
+    E[Mode Selection] --&gt; F[Boundary Configuration]
+    B --&gt; G[Rule Lookup Table]
+    D --&gt; H[Current State Array]
+    F --&gt; I[Edge Handler]
+    J[Iterate Bang] --&gt; K[State Evolution Engine]
+    H --&gt; K
+    G --&gt; K
+    I --&gt; K
+    K --&gt; L[Next Generation]
+    L --&gt; M[State History]
+    L --&gt; N[Data Output]
+    L --&gt; H
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="data-flow-6" class="level4" data-number="2.7.3.2">
+<h4 data-number="2.7.3.2" class="anchored" data-anchor-id="data-flow-6"><span class="header-section-number">2.7.3.2</span> Data Flow</h4>
+<p>The cellular automaton’s operation begins with initialization phase where the rule code, boundary mode, and initial axiom are processed and stored in the system’s internal data structures. The rule code undergoes binary conversion through a specialized subpatch that transforms decimal values (0-255) into their eight-bit binary representations, which correspond to the output states for all possible three-cell neighborhood configurations (000, 001, 010, 011, 100, 101, 110, 111).</p>
+<p>The axiom processing system accepts list-formatted initial conditions that define the starting configuration of the cellular array. This initial state is stored in a <code>text</code> object that serves as both the current generation reference and the foundation for subsequent iterations. The boundary mode configuration determines how the system handles edge conditions when calculating neighborhoods for cells at the array boundaries, with options for periodic (loop), reflective, or fixed boundary conditions.</p>
+<p>When an iteration is triggered through the iterate bang, the system enters its core evolution cycle. The current state array is processed through a neighborhood analysis routine that examines each cell in conjunction with its immediate neighbors. For each three-cell neighborhood, the system constructs a lookup key by treating the binary states as a three-bit number, which is then used to index into the previously generated rule table to determine the next state for the center cell.</p>
+<p>The boundary condition handler plays a crucial role during this process, providing appropriate neighbor values for cells at the array edges based on the selected boundary mode. In loop mode, the array is treated as circular, with the leftmost and rightmost cells considered adjacent. Reflect mode mirrors the edge values inward, while fixed mode uses predetermined constant values for out-of-bounds references.</p>
+<p>The resulting next generation is simultaneously output for immediate access and stored in the iteration history system. This dual-path approach allows for real-time monitoring of the automaton’s evolution while maintaining a complete record of all generated states. The history management system can accommodate both memory-efficient storage (retaining only the current state) and comprehensive archival (preserving all iterations) depending on the intended application.</p>
+</section>
+<section id="key-objects-and-their-roles-7" class="level4" data-number="2.7.3.3">
+<h4 data-number="2.7.3.3" class="anchored" data-anchor-id="key-objects-and-their-roles-7"><span class="header-section-number">2.7.3.3</span> Key Objects and Their Roles</h4>
+<p>The following table summarizes the essential objects and subsystems used in the cellular automaton implementation:</p>
+<div style="width: 80%;">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 66%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Object/Subsystem</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>make.code</code> subpatch</td>
+<td>Converts rule codes to binary lookup tables and manages initialization</td>
+</tr>
+<tr class="even">
+<td><code>float.to.binary</code> subpatch</td>
+<td>Transforms decimal rule codes into 8-bit binary representations</td>
+</tr>
+<tr class="odd">
+<td><code>text define $0-rules</code></td>
+<td>Stores rule lookup table and configuration parameters</td>
+</tr>
+<tr class="even">
+<td><code>text define $0-outcome</code></td>
+<td>Maintains current generation state and iteration history</td>
+</tr>
+<tr class="odd">
+<td><code>list-drip</code></td>
+<td>Processes cell arrays sequentially for neighborhood analysis</td>
+</tr>
+<tr class="even">
+<td><code>list split 3</code></td>
+<td>Extracts three-cell neighborhoods from the current state</td>
+</tr>
+<tr class="odd">
+<td><code>text search</code></td>
+<td>Performs rule lookups based on neighborhood patterns</td>
+</tr>
+<tr class="even">
+<td><code>text get</code></td>
+<td>Retrieves rule outcomes and state information</td>
+</tr>
+<tr class="odd">
+<td><code>boundary.mode</code> subpatch</td>
+<td>Handles edge conditions and neighbor calculation</td>
+</tr>
+<tr class="even">
+<td><code>list append/prepend</code></td>
+<td>Manages array concatenation and state assembly</td>
+</tr>
+<tr class="odd">
+<td><code>spigot</code></td>
+<td>Controls data flow during iteration cycles</td>
+</tr>
+<tr class="even">
+<td><code>route</code></td>
+<td>Directs messages to appropriate processing subsystems</td>
+</tr>
+<tr class="odd">
+<td><code>v $0-iteration.n</code></td>
+<td>Tracks current iteration number and generation count</td>
+</tr>
+<tr class="even">
+<td><code>save</code> subpatch</td>
+<td>Provides data export functionality for generated sequences</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The patch demonstrates several advanced programming techniques, including dynamic text object manipulation for rule storage, sophisticated list processing for array operations, and modular subpatch design for complex algorithmic implementations. The use of local variables (<code>$0-</code> prefix) ensures proper encapsulation when multiple instances of the patch are used simultaneously, while the declare objects manage external file dependencies for rule and outcome storage.</p>
+<p>The cellular automaton implementation showcases how it can be used to create sophisticated algorithmic systems that bridge computational theory and practical creative applications. The modular architecture allows for easy experimentation with different rule sets, boundary conditions, and initial configurations, making it an excellent tool for exploring the rich behavioral space of elementary cellular automata and their potential applications in generative music, visual art, and algorithmic composition.</p>
+</section>
+</section>
+<section id="two-dimensional-cellular-automata-2dca" class="level3" data-number="2.7.4">
+<h3 data-number="2.7.4" class="anchored" data-anchor-id="two-dimensional-cellular-automata-2dca"><span class="header-section-number">2.7.4</span> Two-Dimensional Cellular Automata (2DCA)</h3>
+<p>Two-dimensional cellular automata are an extension of one-dimensional cellular automata, where cells not only have neighbors to the left and right, but also above and below. This allows modeling of more complex and structurally rich systems, such as two-dimensional phenomena like wave propagation, growth patterns in biology, fire spread, fluid simulation, among others.</p>
+<p>Two-dimensional cellular automata (2DCA) are computational models that simulate dynamic systems on a two-dimensional grid.</p>
+<p>They consist of:</p>
+<ol type="1">
+<li><p><em>Cells</em>: Each cell in the grid can have a finite state, such as alive or dead, and can change state according to the automaton’s rules.</p></li>
+<li><p><em>Neighborhood</em>: Each cell has a neighborhood, which is a set of adjacent cells that influence its state. The neighborhood can be rectangular, hexagonal, circular, or of any other shape.</p></li>
+<li><p><em>Transition rule</em>: The transition rule defines how the state of a cell changes based on its current state and the state of the cells in its neighborhood. The rule can be deterministic or probabilistic.</p></li>
+<li><p><em>Evolution</em>: The cellular automaton evolves through iterations. In each iteration, the state of each cell is updated according to the transition rule.</p></li>
+</ol>
+</section>
+<section id="case-study-conways-game-of-life" class="level3" data-number="2.7.5">
+<h3 data-number="2.7.5" class="anchored" data-anchor-id="case-study-conways-game-of-life"><span class="header-section-number">2.7.5</span> Case Study: Conway’s Game of Life</h3>
+<p><a href="../assets/images/sequencers/Game_of_Life-1.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-15"><img src="../assets/images/sequencers/Game_of_Life-1.gif" class="img-fluid"></a></p>
+<p>The most well known cellular automaton is the Game of Life, a two-dimensional cellular automaton which has been invented by John Horton Conway in 1970. It is a simulation that describes the evolution of a population of cells across a two-dimensional grid of squares by three (or four, depending on the wording) simple rules. Every cell has one of the two states ”dead” and ”alive”, and the state changes of the cells depend on the number of living neighbor cells. When it was first published by Martin Gardner in the journal Scientific American in 1970, it was praised to have ”fantastic combinations” <span class="citation" data-cites="gardner1970">(<a href="#ref-gardner1970" role="doc-biblioref">Gardner 1970</a>)</span>. Since its invention, thousands of patterns have been found by many people, and there seems to be no end in sight. Even after more than 50 years of history, interesting new patterns are still discovered.</p>
+<p>The “game” is actually a zero-player game, meaning its evolution is determined by its initial state, requiring no further input from human players. One interacts with the Game of Life by creating an initial configuration and observing how it evolves.</p>
+<p><a href="https://ballyalley.com/articles_and_news/LIFE_Article_%28Scientific_American%29%28October_1970%29.pdf">View Original Article - MATHEMATICAL GAMES - The fantastic combinations of John Conway’s new solitaire game life (Martin Gardner)</a></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>GOL</code> (Game of Life) and <code>CGOL</code> (Conway’s Game of Life) are commonly used acronyms.</p>
+</div>
+</div>
+<section id="rules" class="level4" data-number="2.7.5.1">
+<h4 data-number="2.7.5.1" class="anchored" data-anchor-id="rules"><span class="header-section-number">2.7.5.1</span> Rules</h4>
+<p>The universe of the Game of Life is an infinite two-dimensional orthogonal grid of square cells, each of which (at any given time) is in one of two possible states, <code>alive</code> (alternatively “on”) or <code>dead</code> (alternatively “off”). At each time step, the following transitions occur:</p>
+<p><strong>The four rules of Conway’s Game of Life:</strong></p>
+<p><strong>1. Overpopulation</strong>: Any live cell with more than three live neighbors dies due to overpopulation.</p>
+<p><strong>2. Underpopulation</strong>: Any live cell with fewer than two live neighbors dies due to underpopulation.</p>
+<p><strong>3. Stability</strong>: Any live cell with two or three live neighbors survives to the next generation.</p>
+<p><strong>4. Reproduction</strong>: Any dead cell with exactly three live neighbors becomes a live cell.</p>
+<p>&nbsp;</p>
+<p>We can also summarize the rules in a table:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 19%">
+<col style="width: 23%">
+<col style="width: 19%">
+<col style="width: 19%">
+<col style="width: 19%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Rule</th>
+<th>Description</th>
+<th>Current State</th>
+<th>Live Neighbors</th>
+<th>Next State</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Overpopulation</td>
+<td>Death by overcrowding</td>
+<td>Alive</td>
+<td>More than 3</td>
+<td>Dead</td>
+</tr>
+<tr class="even">
+<td>Underpopulation</td>
+<td>Death by isolation</td>
+<td>Alive</td>
+<td>Fewer than 2</td>
+<td>Dead</td>
+</tr>
+<tr class="odd">
+<td>Stability</td>
+<td>Survival</td>
+<td>Alive</td>
+<td>2 or 3</td>
+<td>Alive</td>
+</tr>
+<tr class="even">
+<td>Reproduction</td>
+<td>Birth</td>
+<td>Dead</td>
+<td>3</td>
+<td>Alive</td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
+<p>Or summarized as:</p>
+<p>0 → 3 live neighbors → 1 1 → &lt; 2 or &gt; 3 live neighbors → 0</p>
+<p>Where 0 represents a dead cell and 1 a live cell.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../assets/images/sequencers/GameOfLife-rules.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-16" title="Game of Life rules diagram illustrating cell state transitions based on the number of living neighbors in the Moore neighborhood."><img src="../assets/images/sequencers/GameOfLife-rules.gif" class="img-fluid figure-img" alt="Game of Life rules diagram illustrating cell state transitions based on the number of living neighbors in the Moore neighborhood."></a></p>
+<figcaption>Game of Life rules diagram illustrating cell state transitions based on the number of living neighbors in the Moore neighborhood.</figcaption>
+</figure>
+</div>
+<p>John Conway’s Game of Life is made of an infinite grid of square cells, each of which is alive or dead. The rules below govern the evolution of the system. Every cell has eight neighbors, and all cells update simultaneously as time advances.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../assets/images/sequencers/GameOfLife_rules_bw.png" class="lightbox" data-gallery="quarto-lightbox-gallery-17" title="Conway’s Game of Life rule visualization showing the four fundamental rules governing cell evolution: underpopulation, survival, reproduction, and overpopulation based on neighbor count."><img src="../assets/images/sequencers/GameOfLife_rules_bw.png" class="img-fluid figure-img" alt="Conway’s Game of Life rule visualization showing the four fundamental rules governing cell evolution: underpopulation, survival, reproduction, and overpopulation based on neighbor count."></a></p>
+<figcaption>Conway’s Game of Life rule visualization showing the four fundamental rules governing cell evolution: underpopulation, survival, reproduction, and overpopulation based on neighbor count.</figcaption>
+</figure>
+</div>
+<p>The initial pattern constitutes the system’s ‘seed’. The first generation is created by applying the above rules simultaneously to each cell in the seed; births and deaths occur simultaneously, and the discrete moment in which this occurs is sometimes called a step. (In other words, each generation is a pure function of the previous one.) The rules continue to be applied repeatedly to create more generations.</p>
+</section>
+</section>
+<section id="origins" class="level3" data-number="2.7.6">
+<h3 data-number="2.7.6" class="anchored" data-anchor-id="origins"><span class="header-section-number">2.7.6</span> Origins</h3>
+<p>Conway was interested in a problem presented in the 1940s by renowned mathematician John von Neumann, who was trying to find a hypothetical machine that could build copies of itself and succeeded when he found a mathematical model for such a machine with very complicated rules on a rectangular grid. The Game of Life emerged as Conway’s successful attempt to simplify von Neumann’s ideas.</p>
+<p>The game made its first public appearance in the October 1970 issue of Scientific American, in Martin Gardner’s “Mathematical Games” column, under the title “The fantastic combinations of John Conway’s new solitaire game ‘Life’”.</p>
+<p>Since its publication, Conway’s Game of Life has attracted significant interest due to the surprising ways patterns can evolve.</p>
+<p>Life is an example of emergence and self-organization. It is of interest to physicists, biologists, economists, mathematicians, philosophers, generative scientists, and others, as it shows how complex patterns can emerge from the implementation of very simple rules. The game can also serve as a didactic analogy, used to convey the somewhat counterintuitive notion that “design” and “organization” can spontaneously arise in the absence of a designer.</p>
+<p>Conway carefully selected the rules, after considerable experimentation, to meet three criteria:</p>
+<ol type="1">
+<li><p>There should be no initial pattern for which a simple proof exists that the population can grow without limit.</p></li>
+<li><p>There must be initial patterns that appear to grow indefinitely.</p></li>
+<li><p>There should be simple initial patterns that evolve and change for a considerable period before ending in one of the following ways:</p>
+<ul>
+<li>dying out completely (due to overcrowding or becoming too sparse); or</li>
+<li>settling into a stable configuration that remains unchanged thereafter, or entering an oscillating phase in which they repeat a cycle endlessly of two or more periods.</li>
+</ul></li>
+</ol>
+</section>
+<section id="patterns" class="level3" data-number="2.7.7">
+<h3 data-number="2.7.7" class="anchored" data-anchor-id="patterns"><span class="header-section-number">2.7.7</span> Patterns</h3>
+<p>Many different types of patterns occur in the Game of Life, including static patterns (“still lifes”), repeating patterns (“oscillators” – a superset of still lifes), and patterns that move across the board (“spaceships”). Common examples of these three classes are shown below, with live cells in black and dead cells in white.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../assets/images/sequencers/gosper-glider-gun.png" class="lightbox" data-gallery="quarto-lightbox-gallery-18" title="Gosper glider gun"><img src="../assets/images/sequencers/gosper-glider-gun.png" class="img-fluid figure-img" alt="Gosper glider gun"></a></p>
+<figcaption>Gosper glider gun</figcaption>
+</figure>
+</div>
+<p>Using the provided rules, you can investigate the evolution of simple patterns:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../assets/images/sequencers/GOL-3-cells.png" class="lightbox" data-gallery="quarto-lightbox-gallery-19" title="3 cells Source"><img src="../assets/images/sequencers/GOL-3-cells.png" class="img-fluid figure-img" alt="3 cells Source"></a></p>
+<figcaption>3 cells <a href="https://pi.math.cornell.edu/~lipa/mec/lesson6.html">Source</a></figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../assets/images/sequencers/GOL-4-cells.png" class="lightbox" data-gallery="quarto-lightbox-gallery-20" title="4 cells Source"><img src="../assets/images/sequencers/GOL-4-cells.png" class="img-fluid figure-img" alt="4 cells Source"></a></p>
+<figcaption>4 cells <a href="https://pi.math.cornell.edu/~lipa/mec/lesson6.html">Source</a></figcaption>
+</figure>
+</div>
+<p>Patterns that evolve for long periods before stabilizing are called <code>Methuselahs</code>, the first of which discovered was the <code>R-pentomino</code>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../assets/images/sequencers/GOL-R-pendomino.png" class="lightbox" data-gallery="quarto-lightbox-gallery-21" title="R-pendomino source"><img src="../assets/images/sequencers/GOL-R-pendomino.png" class="img-fluid figure-img" alt="R-pendomino source"></a></p>
+<figcaption>R-pendomino <a href="https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Game_of_life_diehard.svg/324px-Game_of_life_diehard.svg.png">source</a></figcaption>
+</figure>
+</div>
+<p><code>Diehard</code> is a pattern that eventually disappears, rather than stabilizing, after 130 generations, which is believed to be the maximum for initial patterns with seven or fewer cells.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../assets/images/sequencers/GOL-Diehard.png" class="lightbox" data-gallery="quarto-lightbox-gallery-22" title="Diehard source"><img src="../assets/images/sequencers/GOL-Diehard.png" class="img-fluid figure-img" alt="Diehard source"></a></p>
+<figcaption>Diehard <a href="https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Game_of_life_diehard.svg/324px-Game_of_life_diehard.svg.png">source</a></figcaption>
+</figure>
+</div>
+<p><code>Acorn</code> takes 5,206 generations to produce 633 cells, including 13 escaping gliders.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../assets/images/sequencers/GOL-Acorn.png" class="lightbox" data-gallery="quarto-lightbox-gallery-23" title="Acorn source"><img src="../assets/images/sequencers/GOL-Acorn.png" class="img-fluid figure-img" alt="Acorn source"></a></p>
+<figcaption>Acorn <a href="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Game_of_life_acorn.svg/292px-Game_of_life_acorn.svg.png">source</a></figcaption>
+</figure>
+</div>
+<p>Conway originally conjectured that no pattern could grow indefinitely; that is, for any initial configuration with a finite number of live cells, the population could not grow beyond some finite upper bound. The <code>Gosper glider gun</code> pattern produces its first glider in the 15th generation, and another every 30 generations thereafter.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../assets/images/sequencers/GOL-gospers-glyder-gun.png" class="lightbox" data-gallery="quarto-lightbox-gallery-24" title="Gosper’s glider gun source"><img src="../assets/images/sequencers/GOL-gospers-glyder-gun.png" class="img-fluid figure-img" alt="Gosper’s glider gun source"></a></p>
+<figcaption>Gosper’s glider gun <a href="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Game_of_life_glider_gun.svg/1000px-Game_of_life_glider_gun.svg.png">source</a></figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="https://upload.wikimedia.org/wikipedia/commons/e/e5/Gospers_glider_gun.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-25" title="Gosper glider gun"><img src="https://upload.wikimedia.org/wikipedia/commons/e/e5/Gospers_glider_gun.gif" class="img-fluid figure-img" alt="Gosper glider gun"></a></p>
+<figcaption>Gosper glider gun</figcaption>
+</figure>
+</div>
+<p>For many years, this pattern was the smallest known. In 2015, a gun called <code>Simkin glider gun</code> was discovered, which emits a glider every 120 generations, and has fewer live cells but is spread across a larger bounding box at its ends.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../assets/images/sequencers/GOL-Simkinglidergun.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-26" title="Simkin glider gun"><img src="../assets/images/sequencers/GOL-Simkinglidergun.gif" class="img-fluid figure-img" alt="Simkin glider gun"></a></p>
+<figcaption>Simkin glider gun</figcaption>
+</figure>
+</div>
+<p>For a more detailed overview of gliders and other patterns, you can refer and extensive post by Swaraj Kalbande <em>Conway’s Game of Life-Life on Computer</em> <span class="citation" data-cites="kalbande2022">(<a href="#ref-kalbande2022" role="doc-biblioref">Kalbande 2022</a>)</span>.</p>
+</section>
+<section id="python-implementation-of-game-of-life" class="level3" data-number="2.7.8">
+<h3 data-number="2.7.8" class="anchored" data-anchor-id="python-implementation-of-game-of-life"><span class="header-section-number">2.7.8</span> Python Implementation of Game of Life</h3>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pygame</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>COLOR_BG <span class="op">=</span> (<span class="dv">10</span>, <span class="dv">10</span>, <span class="dv">10</span>,)  <span class="co"># Color de fondo</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>COLOR_GRID <span class="op">=</span> (<span class="dv">40</span>, <span class="dv">40</span>, <span class="dv">40</span>)  <span class="co"># Color de la cuadrícula</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>COLOR_DIE_NEXT <span class="op">=</span> (<span class="dv">170</span>, <span class="dv">170</span>, <span class="dv">170</span>)  <span class="co"># Color de las células que mueren en la siguiente generación</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>COLOR_ALIVE_NEXT <span class="op">=</span> (<span class="dv">255</span>, <span class="dv">255</span>, <span class="dv">255</span>)  <span class="co"># Color de las células que siguen vivas en la siguiente generación</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>pygame.init()</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>pygame.display.set_caption(<span class="st">"conway's game of life"</span>)  <span class="co"># Título de la ventana del juego</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Función para actualizar la pantalla con las células</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> update(screen, cells, size, with_progress<span class="op">=</span><span class="va">False</span>):</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    updated_cells <span class="op">=</span> np.zeros((cells.shape[<span class="dv">0</span>], cells.shape[<span class="dv">1</span>]))  <span class="co"># Matriz para almacenar las células actualizadas</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> row, col <span class="kw">in</span> np.ndindex(cells.shape):</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>        alive <span class="op">=</span> np.<span class="bu">sum</span>(cells[row<span class="op">-</span><span class="dv">1</span>:row<span class="op">+</span><span class="dv">2</span>, col<span class="op">-</span><span class="dv">1</span>:col<span class="op">+</span><span class="dv">2</span>]) <span class="op">-</span> cells[row, col]  <span class="co"># Cálculo de células vecinas vivas</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>        color <span class="op">=</span> COLOR_BG <span class="cf">if</span> cells[row, col] <span class="op">==</span> <span class="dv">0</span> <span class="cf">else</span> COLOR_ALIVE_NEXT  <span class="co"># Color de la célula actual</span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> cells[row, col] <span class="op">==</span> <span class="dv">1</span>:  <span class="co"># Si la célula actual está viva</span></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> alive <span class="op">&lt;</span> <span class="dv">2</span> <span class="kw">or</span> alive <span class="op">&gt;</span> <span class="dv">3</span>:  <span class="co"># Si tiene menos de 2 o más de 3 vecinos vivos, muere</span></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> with_progress:</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>                    color <span class="op">=</span> COLOR_DIE_NEXT</span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>            <span class="cf">elif</span> <span class="dv">2</span> <span class="op">&lt;=</span> alive <span class="op">&lt;=</span> <span class="dv">3</span>:  <span class="co"># Si tiene 2 o 3 vecinos vivos, sigue viva</span></span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>                updated_cells[row, col] <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> with_progress:</span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>                    color <span class="op">=</span> COLOR_ALIVE_NEXT</span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:  <span class="co"># Si la célula actual está muerta</span></span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> alive <span class="op">==</span> <span class="dv">3</span>:  <span class="co"># Si tiene exactamente 3 vecinos vivos, revive</span></span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>                updated_cells[row, col] <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> with_progress:</span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>                    color <span class="op">=</span> COLOR_ALIVE_NEXT</span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a>        pygame.draw.rect(screen, color, (col <span class="op">*</span> size, row <span class="op">*</span> size, size <span class="op">-</span> <span class="dv">1</span>, size <span class="op">-</span> <span class="dv">1</span>))  <span class="co"># Dibuja la célula en la pantalla</span></span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> updated_cells  <span class="co"># Devuelve las células actualizadas</span></span>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a><span class="co"># Función principal del programa</span></span>
+<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> main():</span>
+<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a>    pygame.init()</span>
+<span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a>    screen <span class="op">=</span> pygame.display.set_mode((<span class="dv">800</span>, <span class="dv">600</span>))  <span class="co"># Crea la ventana del juego</span></span>
+<span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-44"><a href="#cb7-44" aria-hidden="true" tabindex="-1"></a>    cells <span class="op">=</span> np.zeros((<span class="dv">60</span>, <span class="dv">80</span>))  <span class="co"># Crea una matriz de células muertas</span></span>
+<span id="cb7-45"><a href="#cb7-45" aria-hidden="true" tabindex="-1"></a>    screen.fill(COLOR_GRID)  <span class="co"># Rellena la pantalla con el color de la cuadrícula</span></span>
+<span id="cb7-46"><a href="#cb7-46" aria-hidden="true" tabindex="-1"></a>    update(screen, cells, <span class="dv">10</span>)  <span class="co"># Actualiza la pantalla con las células</span></span>
+<span id="cb7-47"><a href="#cb7-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-48"><a href="#cb7-48" aria-hidden="true" tabindex="-1"></a>    pygame.display.flip()</span>
+<span id="cb7-49"><a href="#cb7-49" aria-hidden="true" tabindex="-1"></a>    pygame.display.update()</span>
+<span id="cb7-50"><a href="#cb7-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-51"><a href="#cb7-51" aria-hidden="true" tabindex="-1"></a>    running <span class="op">=</span> <span class="va">False</span>  <span class="co"># Variable para controlar si el juego está en ejecución</span></span>
+<span id="cb7-52"><a href="#cb7-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-53"><a href="#cb7-53" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb7-54"><a href="#cb7-54" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> Q <span class="kw">in</span> pygame.event.get():</span>
+<span id="cb7-55"><a href="#cb7-55" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> Q.<span class="bu">type</span> <span class="op">==</span> pygame.QUIT:  <span class="co"># Si se cierra la ventana, termina el programa</span></span>
+<span id="cb7-56"><a href="#cb7-56" aria-hidden="true" tabindex="-1"></a>                pygame.quit()</span>
+<span id="cb7-57"><a href="#cb7-57" aria-hidden="true" tabindex="-1"></a>                <span class="cf">return</span></span>
+<span id="cb7-58"><a href="#cb7-58" aria-hidden="true" tabindex="-1"></a>            <span class="cf">elif</span> Q.<span class="bu">type</span> <span class="op">==</span> pygame.KEYDOWN:</span>
+<span id="cb7-59"><a href="#cb7-59" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> Q.key <span class="op">==</span> pygame.K_SPACE:  <span class="co"># Si se presiona la tecla espacio, se inicia o pausa el juego</span></span>
+<span id="cb7-60"><a href="#cb7-60" aria-hidden="true" tabindex="-1"></a>                    running <span class="op">=</span> <span class="kw">not</span> running</span>
+<span id="cb7-61"><a href="#cb7-61" aria-hidden="true" tabindex="-1"></a>                    update(screen, cells, <span class="dv">10</span>)</span>
+<span id="cb7-62"><a href="#cb7-62" aria-hidden="true" tabindex="-1"></a>                    pygame.display.update()</span>
+<span id="cb7-63"><a href="#cb7-63" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> pygame.mouse.get_pressed()[<span class="dv">0</span>]:  <span class="co"># Si se presiona el botón izquierdo del ratón</span></span>
+<span id="cb7-64"><a href="#cb7-64" aria-hidden="true" tabindex="-1"></a>                pos <span class="op">=</span> pygame.mouse.get_pos()  <span class="co"># Obtiene la posición del ratón</span></span>
+<span id="cb7-65"><a href="#cb7-65" aria-hidden="true" tabindex="-1"></a>                cells[pos[<span class="dv">1</span>] <span class="op">//</span> <span class="dv">10</span>, pos[<span class="dv">0</span>] <span class="op">//</span> <span class="dv">10</span>] <span class="op">=</span> <span class="dv">1</span>  <span class="co"># Marca la célula correspondiente como viva</span></span>
+<span id="cb7-66"><a href="#cb7-66" aria-hidden="true" tabindex="-1"></a>                update(screen, cells, <span class="dv">10</span>)</span>
+<span id="cb7-67"><a href="#cb7-67" aria-hidden="true" tabindex="-1"></a>                pygame.display.update()</span>
+<span id="cb7-68"><a href="#cb7-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-69"><a href="#cb7-69" aria-hidden="true" tabindex="-1"></a>        screen.fill(COLOR_GRID)  <span class="co"># Rellena la pantalla con el color de la cuadrícula</span></span>
+<span id="cb7-70"><a href="#cb7-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-71"><a href="#cb7-71" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> running:  <span class="co"># Si el juego está en ejecución</span></span>
+<span id="cb7-72"><a href="#cb7-72" aria-hidden="true" tabindex="-1"></a>            cells <span class="op">=</span> update(screen, cells, <span class="dv">10</span>, with_progress<span class="op">=</span><span class="va">True</span>)  <span class="co"># Actualiza las células con progreso</span></span>
+<span id="cb7-73"><a href="#cb7-73" aria-hidden="true" tabindex="-1"></a>            pygame.display.update()</span>
+<span id="cb7-74"><a href="#cb7-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-75"><a href="#cb7-75" aria-hidden="true" tabindex="-1"></a>        time.sleep(<span class="fl">0.001</span>)  <span class="co"># Espera un breve tiempo para controlar la velocidad del juego</span></span>
+<span id="cb7-76"><a href="#cb7-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-77"><a href="#cb7-77" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">"__main__"</span>:</span>
+<span id="cb7-78"><a href="#cb7-78" aria-hidden="true" tabindex="-1"></a>    main()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
+<p>This Python script implements Conway’s Game of Life, a cellular automaton devised by British mathematician John Horton Conway. It is a zero-player game, meaning its evolution is determined entirely by its initial state, with no further input required.</p>
+<p>The script begins by importing the necessary modules: <code>time</code>, <code>pygame</code> for the graphical interface, and <code>numpy</code> to handle the game grid as a 2D matrix. It then defines color constants used for visualizing the game.</p>
+<p>The <code>pygame.init()</code> function is called to initialize all imported Pygame modules. The window title is set to “Conway’s Game of Life” using <code>pygame.display.set_caption()</code>.</p>
+<p>The <code>update()</code> function updates the game state and redraws the grid. It takes four arguments: <code>screen</code> (the Pygame surface to draw on), <code>cells</code> (the current game state as a 2D <code>numpy</code> array), <code>size</code> (the pixel size of each cell), and <code>with_progress</code> (a boolean indicating whether to display cells that will change in the next generation).</p>
+<p>The function creates a new 2D matrix <code>updated_cells</code> filled with zeros, matching the shape of <code>cells</code>. It then iterates over each cell, calculates the number of live neighbors, and applies the game rules to determine whether the cell will be alive in the next generation. The function draws each cell on the screen using the appropriate color and returns <code>updated_cells</code>.</p>
+<p>The <code>main()</code> function initializes Pygame, creates the game window, and initializes the game state as a 2D <code>numpy</code> array of zeros (representing dead cells). It then enters the main loop, which handles Pygame events (such as closing the window or key presses), updates the game state if it is running, and redraws the grid. The game can be started or paused by pressing the spacebar, and cells can be toggled manually by clicking on them.</p>
+<p>Finally, the script calls <code>main()</code> to launch the game. Press the spacebar to begin.</p>
+</section>
+<section id="further-reading" class="level3" data-number="2.7.9">
+<h3 data-number="2.7.9" class="anchored" data-anchor-id="further-reading"><span class="header-section-number">2.7.9</span> Further Reading</h3>
+<ul>
+<li><a href="https://www.artnome.com/news/2020/7/12/the-game-of-life-emergence-in-generative-art">The Game Of Life – Emergence In Generative Art (2020)</a></li>
+<li><a href="https://medium.com/@swarajkalbande123/conways-game-of-life-life-on-computer-b7edfc85d21a">Conway’s Game of Life – Life on Computer by Swaraj Kalbande</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life">Wikipedia – Conway’s Game of Life</a></li>
+</ul>
+</section>
+<section id="interactive-websites" class="level3" data-number="2.7.10">
+<h3 data-number="2.7.10" class="anchored" data-anchor-id="interactive-websites"><span class="header-section-number">2.7.10</span> Interactive Websites</h3>
+<ul>
+<li><a href="https://beltoforion.de/en/game_of_life/">John Conway’s Game of Life – An Introduction to Cellular Automata</a></li>
+<li><a href="https://conwaylife.com/">conwaylife.com</a></li>
+<li><a href="https://nga.178.com/read.php?tid=21761699&amp;rand=998">Cellular Automata Megathread</a></li>
+</ul>
+</section>
+</section>
+<section id="references" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="references">References</h2>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-brown2023" class="csl-entry" role="listitem">
+Brown, Andrew. 2023. <span>“Live Coding Patterns and a Toolkit for Pure Data.”</span> <em>Organised Sound</em> 28: 1–12. <a href="https://doi.org/10.1017/S1355771823000365">https://doi.org/10.1017/S1355771823000365</a>.
+</div>
+<div id="ref-brummitt2012" class="csl-entry" role="listitem">
+Brummitt, Charles D., and Eric Rowland. 2012. <span>“Boundary Growth in One-Dimensional Cellular Automata.”</span> <em>Complex Systems</em> 21: 85–116. <a href="https://doi.org/10.48550/arXiv.1204.2172">https://doi.org/10.48550/arXiv.1204.2172</a>.
+</div>
+<div id="ref-epstein1986" class="csl-entry" role="listitem">
+Epstein, Paul. 1986. <span>“Pattern Structure and Process in Steve Reich’s Piano Phase.”</span> <em>The Musical Quarterly</em> 72 (4): 494–502.
+</div>
+<div id="ref-gardner1970" class="csl-entry" role="listitem">
+Gardner, Martin. 1970. <span>“MATHEMATICAL GAMES - the Fantastic Combinations of John Conway’s New Solitaire Game Life.”</span> <em>Scientific American</em> 223 (4): 120–23. <a href="http://www.jstor.org/stable/24927642">http://www.jstor.org/stable/24927642</a>.
+</div>
+<div id="ref-kalbande2022" class="csl-entry" role="listitem">
+Kalbande, Swaraj. 2022. <span>“Conway’s Game of Life – Life on Computer.”</span> <em>Medium</em>. <a href="https://medium.com/@swarajkalbande123/conways-game-of-life-life-on-computer-b7edfc85d21a">https://medium.com/@swarajkalbande123/conways-game-of-life-life-on-computer-b7edfc85d21a</a>.
+</div>
+<div id="ref-reich2002" class="csl-entry" role="listitem">
+Reich, Steve. 2002. <span>“Music as a Gradual Process.”</span> In <em>Writings on Music 1965–2000</em>, 34–36. Oxford; New York: Oxford University Press.
+</div>
+<div id="ref-toussaint2005" class="csl-entry" role="listitem">
+Toussaint, Godfried. 2005. <span>“The Euclidean Algorithm Generates Traditional Musical Rhythms.”</span> In, 47–56.
+</div>
+<div id="ref-wolfram1983" class="csl-entry" role="listitem">
+Wolfram, Stephen. 1983. <span>“Statistical Mechanics of Cellular Automata.”</span> <em>Reviews of Modern Physics</em> 55 (3): 601–44. <a href="https://doi.org/10.1103/RevModPhys.55.601">https://doi.org/10.1103/RevModPhys.55.601</a>.
+</div>
+</div>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation column-body">
+  <div class="nav-page nav-page-previous">
+      <a href="../chapters/introduction.html" class="pagination-link" aria-label="Introduction">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../chapters/sampling.html" class="pagination-link" aria-label="Sampling">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Sampling</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+ Code that Sounds - Ezequiel Abregú
+  </li>  
+</ul>
+    </div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
+
+
+
+
+</body></html>

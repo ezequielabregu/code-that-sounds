@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>2&nbsp; Rec &amp; Play – Code that Sounds</title>
+<title>3&nbsp; Sampling – Code that Sounds</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -50,8 +50,8 @@ div.csl-indent {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../chapters/sequencer.html" rel="next">
-<link href="../chapters/introduction.html" rel="prev">
+<link href="../chapters/synthesis.html" rel="next">
+<link href="../chapters/sequencer.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -276,7 +276,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/playrec.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Rec &amp; Play</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/playrec.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Sampling</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -324,20 +324,20 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/playrec.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Rec &amp; Play</span></span></a>
+  <a href="../chapters/sequencer.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Sequencing Time</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/sequencer.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Sequencer</span></span></a>
+  <a href="../chapters/playrec.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Sampling</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/synthesis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Synthesis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Sound Synthesis</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -349,13 +349,13 @@ div.csl-indent {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/space.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Space</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Spatial Audio</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/conclusion.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Conclusion</span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Conclusion</span></span></a>
   </div>
 </li>
     </ul>
@@ -368,36 +368,36 @@ div.csl-indent {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#im-sitting-in-a-room-alvin-lucier" id="toc-im-sitting-in-a-room-alvin-lucier" class="nav-link active" data-scroll-target="#im-sitting-in-a-room-alvin-lucier"><span class="header-section-number">2.1</span> <em>I’m Sitting in a Room</em> – Alvin Lucier</a>
+  <li><a href="#im-sitting-in-a-room-alvin-lucier" id="toc-im-sitting-in-a-room-alvin-lucier" class="nav-link active" data-scroll-target="#im-sitting-in-a-room-alvin-lucier"><span class="header-section-number">3.1</span> <em>I’m Sitting in a Room</em> – Alvin Lucier</a>
   <ul class="collapse">
-  <li><a href="#pure-data-implementation-of-im-sitting-in-a-room" id="toc-pure-data-implementation-of-im-sitting-in-a-room" class="nav-link" data-scroll-target="#pure-data-implementation-of-im-sitting-in-a-room"><span class="header-section-number">2.1.1</span> Pure Data implementation of <em>I’m sitting in a room</em></a></li>
-  <li><a href="#system-diagram" id="toc-system-diagram" class="nav-link" data-scroll-target="#system-diagram"><span class="header-section-number">2.1.2</span> System Diagram</a></li>
-  <li><a href="#patch-overview" id="toc-patch-overview" class="nav-link" data-scroll-target="#patch-overview"><span class="header-section-number">2.1.3</span> Patch Overview</a></li>
-  <li><a href="#key-objects-table" id="toc-key-objects-table" class="nav-link" data-scroll-target="#key-objects-table"><span class="header-section-number">2.1.4</span> Key Objects Table</a></li>
-  <li><a href="#how-to-use-the-patch" id="toc-how-to-use-the-patch" class="nav-link" data-scroll-target="#how-to-use-the-patch"><span class="header-section-number">2.1.5</span> How to Use the Patch</a></li>
+  <li><a href="#pure-data-implementation-of-im-sitting-in-a-room" id="toc-pure-data-implementation-of-im-sitting-in-a-room" class="nav-link" data-scroll-target="#pure-data-implementation-of-im-sitting-in-a-room"><span class="header-section-number">3.1.1</span> Pure Data implementation of <em>I’m sitting in a room</em></a></li>
+  <li><a href="#system-diagram" id="toc-system-diagram" class="nav-link" data-scroll-target="#system-diagram"><span class="header-section-number">3.1.2</span> System Diagram</a></li>
+  <li><a href="#patch-overview" id="toc-patch-overview" class="nav-link" data-scroll-target="#patch-overview"><span class="header-section-number">3.1.3</span> Patch Overview</a></li>
+  <li><a href="#key-objects-table" id="toc-key-objects-table" class="nav-link" data-scroll-target="#key-objects-table"><span class="header-section-number">3.1.4</span> Key Objects Table</a></li>
+  <li><a href="#how-to-use-the-patch" id="toc-how-to-use-the-patch" class="nav-link" data-scroll-target="#how-to-use-the-patch"><span class="header-section-number">3.1.5</span> How to Use the Patch</a></li>
   </ul></li>
-  <li><a href="#i-am-sitting-in-a-freeverb-patch-walkthrough" id="toc-i-am-sitting-in-a-freeverb-patch-walkthrough" class="nav-link" data-scroll-target="#i-am-sitting-in-a-freeverb-patch-walkthrough"><span class="header-section-number">2.2</span> I am sitting in a [freeverb~] — Patch Walkthrough</a>
+  <li><a href="#i-am-sitting-in-a-freeverb-patch-walkthrough" id="toc-i-am-sitting-in-a-freeverb-patch-walkthrough" class="nav-link" data-scroll-target="#i-am-sitting-in-a-freeverb-patch-walkthrough"><span class="header-section-number">3.2</span> I am sitting in a [freeverb~] — Patch Walkthrough</a>
   <ul class="collapse">
-  <li><a href="#conceptual-overview-1" id="toc-conceptual-overview-1" class="nav-link" data-scroll-target="#conceptual-overview-1"><span class="header-section-number">2.2.1</span> Conceptual Overview</a></li>
-  <li><a href="#system-diagram-1" id="toc-system-diagram-1" class="nav-link" data-scroll-target="#system-diagram-1"><span class="header-section-number">2.2.2</span> System Diagram</a></li>
-  <li><a href="#unique-features-of-the-freeverb-version" id="toc-unique-features-of-the-freeverb-version" class="nav-link" data-scroll-target="#unique-features-of-the-freeverb-version"><span class="header-section-number">2.2.3</span> Unique Features of the [freeverb~] Version</a></li>
-  <li><a href="#step-by-step-explanation" id="toc-step-by-step-explanation" class="nav-link" data-scroll-target="#step-by-step-explanation"><span class="header-section-number">2.2.4</span> Step-by-Step Explanation</a></li>
-  <li><a href="#key-objects-table-1" id="toc-key-objects-table-1" class="nav-link" data-scroll-target="#key-objects-table-1"><span class="header-section-number">2.2.5</span> Key Objects Table</a></li>
-  <li><a href="#creative-applications" id="toc-creative-applications" class="nav-link" data-scroll-target="#creative-applications"><span class="header-section-number">2.2.6</span> Creative Applications</a></li>
+  <li><a href="#conceptual-overview-1" id="toc-conceptual-overview-1" class="nav-link" data-scroll-target="#conceptual-overview-1"><span class="header-section-number">3.2.1</span> Conceptual Overview</a></li>
+  <li><a href="#system-diagram-1" id="toc-system-diagram-1" class="nav-link" data-scroll-target="#system-diagram-1"><span class="header-section-number">3.2.2</span> System Diagram</a></li>
+  <li><a href="#unique-features-of-the-freeverb-version" id="toc-unique-features-of-the-freeverb-version" class="nav-link" data-scroll-target="#unique-features-of-the-freeverb-version"><span class="header-section-number">3.2.3</span> Unique Features of the [freeverb~] Version</a></li>
+  <li><a href="#step-by-step-explanation" id="toc-step-by-step-explanation" class="nav-link" data-scroll-target="#step-by-step-explanation"><span class="header-section-number">3.2.4</span> Step-by-Step Explanation</a></li>
+  <li><a href="#key-objects-table-1" id="toc-key-objects-table-1" class="nav-link" data-scroll-target="#key-objects-table-1"><span class="header-section-number">3.2.5</span> Key Objects Table</a></li>
+  <li><a href="#creative-applications" id="toc-creative-applications" class="nav-link" data-scroll-target="#creative-applications"><span class="header-section-number">3.2.6</span> Creative Applications</a></li>
   </ul></li>
-  <li><a href="#simple-audio-player" id="toc-simple-audio-player" class="nav-link" data-scroll-target="#simple-audio-player"><span class="header-section-number">2.3</span> Simple Audio Player</a>
+  <li><a href="#simple-audio-player" id="toc-simple-audio-player" class="nav-link" data-scroll-target="#simple-audio-player"><span class="header-section-number">3.3</span> Simple Audio Player</a>
   <ul class="collapse">
-  <li><a href="#patch-overview-1" id="toc-patch-overview-1" class="nav-link" data-scroll-target="#patch-overview-1"><span class="header-section-number">2.3.1</span> Patch Overview</a></li>
-  <li><a href="#data-flow" id="toc-data-flow" class="nav-link" data-scroll-target="#data-flow"><span class="header-section-number">2.3.2</span> Data Flow</a></li>
-  <li><a href="#key-objects-and-their-roles" id="toc-key-objects-and-their-roles" class="nav-link" data-scroll-target="#key-objects-and-their-roles"><span class="header-section-number">2.3.3</span> Key Objects and Their Roles</a></li>
-  <li><a href="#creative-applications-1" id="toc-creative-applications-1" class="nav-link" data-scroll-target="#creative-applications-1"><span class="header-section-number">2.3.4</span> Creative Applications</a></li>
+  <li><a href="#patch-overview-1" id="toc-patch-overview-1" class="nav-link" data-scroll-target="#patch-overview-1"><span class="header-section-number">3.3.1</span> Patch Overview</a></li>
+  <li><a href="#data-flow" id="toc-data-flow" class="nav-link" data-scroll-target="#data-flow"><span class="header-section-number">3.3.2</span> Data Flow</a></li>
+  <li><a href="#key-objects-and-their-roles" id="toc-key-objects-and-their-roles" class="nav-link" data-scroll-target="#key-objects-and-their-roles"><span class="header-section-number">3.3.3</span> Key Objects and Their Roles</a></li>
+  <li><a href="#creative-applications-1" id="toc-creative-applications-1" class="nav-link" data-scroll-target="#creative-applications-1"><span class="header-section-number">3.3.4</span> Creative Applications</a></li>
   </ul></li>
-  <li><a href="#audio-sampler-with-phasor" id="toc-audio-sampler-with-phasor" class="nav-link" data-scroll-target="#audio-sampler-with-phasor"><span class="header-section-number">2.4</span> Audio Sampler with [phasor~]</a>
+  <li><a href="#audio-sampler-with-phasor" id="toc-audio-sampler-with-phasor" class="nav-link" data-scroll-target="#audio-sampler-with-phasor"><span class="header-section-number">3.4</span> Audio Sampler with [phasor~]</a>
   <ul class="collapse">
-  <li><a href="#patch-overview-2" id="toc-patch-overview-2" class="nav-link" data-scroll-target="#patch-overview-2"><span class="header-section-number">2.4.1</span> Patch Overview</a></li>
-  <li><a href="#data-flow-1" id="toc-data-flow-1" class="nav-link" data-scroll-target="#data-flow-1"><span class="header-section-number">2.4.2</span> Data Flow</a></li>
-  <li><a href="#key-objects-and-their-roles-1" id="toc-key-objects-and-their-roles-1" class="nav-link" data-scroll-target="#key-objects-and-their-roles-1"><span class="header-section-number">2.4.3</span> Key Objects and Their Roles</a></li>
-  <li><a href="#creative-applications-2" id="toc-creative-applications-2" class="nav-link" data-scroll-target="#creative-applications-2"><span class="header-section-number">2.4.4</span> Creative Applications</a></li>
+  <li><a href="#patch-overview-2" id="toc-patch-overview-2" class="nav-link" data-scroll-target="#patch-overview-2"><span class="header-section-number">3.4.1</span> Patch Overview</a></li>
+  <li><a href="#data-flow-1" id="toc-data-flow-1" class="nav-link" data-scroll-target="#data-flow-1"><span class="header-section-number">3.4.2</span> Data Flow</a></li>
+  <li><a href="#key-objects-and-their-roles-1" id="toc-key-objects-and-their-roles-1" class="nav-link" data-scroll-target="#key-objects-and-their-roles-1"><span class="header-section-number">3.4.3</span> Key Objects and Their Roles</a></li>
+  <li><a href="#creative-applications-2" id="toc-creative-applications-2" class="nav-link" data-scroll-target="#creative-applications-2"><span class="header-section-number">3.4.4</span> Creative Applications</a></li>
   </ul></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
@@ -409,7 +409,7 @@ div.csl-indent {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Rec &amp; Play</span></h1>
+<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Sampling</span></h1>
 </div>
 
 
@@ -427,8 +427,8 @@ div.csl-indent {
 
 
 <p>In this chapter, we will explore the relationship between recording and playback. We will look at how these two processes can be used to create new sounds and compositions. We will also discuss the technical aspects of recording and playback, including the equipment and techniques used in the process. We will also consider the artistic implications of recording and playback, including how these processes can be used to create new forms of expression and communication.</p>
-<section id="im-sitting-in-a-room-alvin-lucier" class="level2 page-columns page-full" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="im-sitting-in-a-room-alvin-lucier"><span class="header-section-number">2.1</span> <em>I’m Sitting in a Room</em> – Alvin Lucier</h2>
+<section id="im-sitting-in-a-room-alvin-lucier" class="level2 page-columns page-full" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="im-sitting-in-a-room-alvin-lucier"><span class="header-section-number">3.1</span> <em>I’m Sitting in a Room</em> – Alvin Lucier</h2>
 <p><em>I’m Sitting in a Room</em> (Alvin Lucier) consists of a 15-minute and 23-second sound recording. The piece opens with Lucier’s voice as he declares he is sitting in a room different from ours. His voice trembles slightly as he delivers the text, describing what will unfold over the next 15 minutes:</p>
 <blockquote class="blockquote">
 <p>“…I am recording the sound of my speaking voice and I am going to play it back into the room again and again…”</p>
@@ -461,8 +461,8 @@ div.csl-indent {
 <li>Continue this process through multiple generations.</li>
 </ul>
 <p>All the recorded generations, presented in chronological order, create a tape composition whose duration is determined by the length of the original statement and the number of generations produced. Make versions in which a single statement is recycled through different rooms. Create versions using one or more speakers in different languages and spaces. Try versions where, for each generation, the microphone is moved to different parts of the room(s). You may also develop versions that can be performed in real time.</p>
-<section id="pure-data-implementation-of-im-sitting-in-a-room" class="level3" data-number="2.1.1">
-<h3 data-number="2.1.1" class="anchored" data-anchor-id="pure-data-implementation-of-im-sitting-in-a-room"><span class="header-section-number">2.1.1</span> Pure Data implementation of <em>I’m sitting in a room</em></h3>
+<section id="pure-data-implementation-of-im-sitting-in-a-room" class="level3" data-number="3.1.1">
+<h3 data-number="3.1.1" class="anchored" data-anchor-id="pure-data-implementation-of-im-sitting-in-a-room"><span class="header-section-number">3.1.1</span> Pure Data implementation of <em>I’m sitting in a room</em></h3>
 <p>&nbsp;</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -471,8 +471,8 @@ div.csl-indent {
 </figure>
 </div>
 <p>In this section, we will break down the Pure Data patch <a href="../assets/code/playrec/I-am-sitting-in-a-room.pd"><code>I-am-sitting-in-a-room.pd</code></a> step by step. This patch is inspired by Alvin Lucier’s iconic piece and demonstrates how to recursively record and play back sound to reveal the resonant frequencies of a room.</p>
-<section id="conceptual-overview" class="level4" data-number="2.1.1.1">
-<h4 data-number="2.1.1.1" class="anchored" data-anchor-id="conceptual-overview"><span class="header-section-number">2.1.1.1</span> Conceptual Overview</h4>
+<section id="conceptual-overview" class="level4" data-number="3.1.1.1">
+<h4 data-number="3.1.1.1" class="anchored" data-anchor-id="conceptual-overview"><span class="header-section-number">3.1.1.1</span> Conceptual Overview</h4>
 <p>The patch enables you to:</p>
 <ul>
 <li>Record your voice or any sound in a room.</li>
@@ -481,8 +481,8 @@ div.csl-indent {
 </ul>
 </section>
 </section>
-<section id="system-diagram" class="level3 page-columns page-full" data-number="2.1.2">
-<h3 data-number="2.1.2" class="anchored" data-anchor-id="system-diagram"><span class="header-section-number">2.1.2</span> System Diagram</h3>
+<section id="system-diagram" class="level3 page-columns page-full" data-number="3.1.2">
+<h3 data-number="3.1.2" class="anchored" data-anchor-id="system-diagram"><span class="header-section-number">3.1.2</span> System Diagram</h3>
 <p>The following diagram illustrates the recursive nature of the recording and playback process, similar to how Lucier’s piece unfolds. Each generation of tape recorders captures the previous one, creating a feedback loop that emphasizes the room’s resonances.</p>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
@@ -612,15 +612,15 @@ div.csl-indent {
 </div>
 </div>
 </section>
-<section id="patch-overview" class="level3" data-number="2.1.3">
-<h3 data-number="2.1.3" class="anchored" data-anchor-id="patch-overview"><span class="header-section-number">2.1.3</span> Patch Overview</h3>
+<section id="patch-overview" class="level3" data-number="3.1.3">
+<h3 data-number="3.1.3" class="anchored" data-anchor-id="patch-overview"><span class="header-section-number">3.1.3</span> Patch Overview</h3>
 <p>The Pure Data implementation of <em>I’m Sitting in a Room</em> creates a digital recreation of Alvin Lucier’s seminal work through a carefully orchestrated system of recording, playback, and re-recording processes. This patch demonstrates how computational tools can faithfully reproduce the acoustic phenomena that drive Lucier’s piece, where the gradual accumulation of room resonances transforms speech into pure acoustic space. The implementation leverages Pure Data’s audio file handling capabilities, signal routing architecture, and user interface elements to create an interactive environment that allows users to experience the recursive transformation process in real-time.</p>
 <p>The system architecture revolves around a dual-recording mechanism that alternates between two separate audio files, mimicking the original tape recorder setup used in Lucier’s piece. This alternating approach ensures that each generation of the recording process builds upon the previous one, creating the cumulative acoustic effect that defines the work. The patch employs a signal routing system that uses Pure Data’s send and receive objects to distribute audio signals to multiple destinations simultaneously, enabling the concurrent processes of playback monitoring and re-recording that are essential to the piece’s realization.</p>
 <p>The interface design prioritizes clarity and ease of use, providing distinct control buttons for each phase of the recording process. The modular approach to signal routing ensures that the same microphone input can serve multiple functions within the system, while the throw and catch objects create a centralized mixing point that consolidates all audio streams for output. This design philosophy reflects the conceptual elegance of Lucier’s original work, where simple processes yield complex and unpredictable results through iteration and accumulation.</p>
 <p>The patch incorporates real-time monitoring capabilities that allow users to hear the progressive transformation of their audio material as it passes through successive recording generations. This immediate feedback loop is crucial for understanding the acoustic phenomena at work and provides the experiential component that makes Lucier’s piece so compelling as both an artistic statement and a demonstration of physical principles. The system maintains the temporal structure and rhythmic elements of the original speech while gradually dissolving its semantic content, creating a sonic archaeology of the recording space itself.</p>
 </section>
-<section id="key-objects-table" class="level3" data-number="2.1.4">
-<h3 data-number="2.1.4" class="anchored" data-anchor-id="key-objects-table"><span class="header-section-number">2.1.4</span> Key Objects Table</h3>
+<section id="key-objects-table" class="level3" data-number="3.1.4">
+<h3 data-number="3.1.4" class="anchored" data-anchor-id="key-objects-table"><span class="header-section-number">3.1.4</span> Key Objects Table</h3>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -660,8 +660,8 @@ div.csl-indent {
 </tbody>
 </table>
 </section>
-<section id="how-to-use-the-patch" class="level3" data-number="2.1.5">
-<h3 data-number="2.1.5" class="anchored" data-anchor-id="how-to-use-the-patch"><span class="header-section-number">2.1.5</span> How to Use the Patch</h3>
+<section id="how-to-use-the-patch" class="level3" data-number="3.1.5">
+<h3 data-number="3.1.5" class="anchored" data-anchor-id="how-to-use-the-patch"><span class="header-section-number">3.1.5</span> How to Use the Patch</h3>
 <ol type="1">
 <li><strong>Start Recording:</strong><br>
 Click the “Start Recording” button and speak or make a sound.</li>
@@ -675,8 +675,8 @@ Repeat the playback and re-recording process as many times as you like to hear t
 <p>This patch is a practical and creative way to explore acoustic phenomena and the transformation of sound through recursive recording, echoing the spirit of Lucier’s original work.</p>
 </section>
 </section>
-<section id="i-am-sitting-in-a-freeverb-patch-walkthrough" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="i-am-sitting-in-a-freeverb-patch-walkthrough"><span class="header-section-number">2.2</span> I am sitting in a [freeverb~] — Patch Walkthrough</h2>
+<section id="i-am-sitting-in-a-freeverb-patch-walkthrough" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="i-am-sitting-in-a-freeverb-patch-walkthrough"><span class="header-section-number">3.2</span> I am sitting in a [freeverb~] — Patch Walkthrough</h2>
 <p>The patch <a href="../assets/code/playrec/I-am-sitting-in-a-room-freeverb.pd">I-am-sitting-in-a-room-freeverb.pd</a> extends the original <em>I am sitting in a room</em> concept by introducing a <strong>virtual acoustic environment</strong> using reverb and allowing for <strong>pre-recorded audio input</strong> instead of just live microphone input. This adaptation provides more creative flexibility and consistent results compared to using a physical room.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -685,12 +685,12 @@ Repeat the playback and re-recording process as many times as you like to hear t
 </figure>
 </div>
 <p>This patch is designed to simulate the recursive recording process of Lucier’s piece while allowing for more control over the sound environment. It uses the <code>freeverb~</code> object to create a virtual room effect, enabling you to manipulate the acoustic characteristics of the sound without relying on a physical space.</p>
-<section id="conceptual-overview-1" class="level3" data-number="2.2.1">
-<h3 data-number="2.2.1" class="anchored" data-anchor-id="conceptual-overview-1"><span class="header-section-number">2.2.1</span> Conceptual Overview</h3>
+<section id="conceptual-overview-1" class="level3" data-number="3.2.1">
+<h3 data-number="3.2.1" class="anchored" data-anchor-id="conceptual-overview-1"><span class="header-section-number">3.2.1</span> Conceptual Overview</h3>
 <p>The patch enables you to: - Use a pre-recorded audio file OR live input as your source material - Add artificial reverb to simulate room characteristics - Follow the same recursive recording process as the original - Achieve more controlled, repeatable results</p>
 </section>
-<section id="system-diagram-1" class="level3" data-number="2.2.2">
-<h3 data-number="2.2.2" class="anchored" data-anchor-id="system-diagram-1"><span class="header-section-number">2.2.2</span> System Diagram</h3>
+<section id="system-diagram-1" class="level3" data-number="3.2.2">
+<h3 data-number="3.2.2" class="anchored" data-anchor-id="system-diagram-1"><span class="header-section-number">3.2.2</span> System Diagram</h3>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
 <div>
@@ -746,10 +746,10 @@ Repeat the playback and re-recording process as many times as you like to hear t
 </div>
 <p>This diagram illustrates the recursive nature of the recording and playback process, similar to how Lucier’s piece unfolds. Each generation of tape recorders captures the previous one, creating a feedback loop that emphasizes the room’s resonances.</p>
 </section>
-<section id="unique-features-of-the-freeverb-version" class="level3" data-number="2.2.3">
-<h3 data-number="2.2.3" class="anchored" data-anchor-id="unique-features-of-the-freeverb-version"><span class="header-section-number">2.2.3</span> Unique Features of the [freeverb~] Version</h3>
-<section id="audio-file-input" class="level4" data-number="2.2.3.1">
-<h4 data-number="2.2.3.1" class="anchored" data-anchor-id="audio-file-input"><span class="header-section-number">2.2.3.1</span> 1. Audio File Input</h4>
+<section id="unique-features-of-the-freeverb-version" class="level3" data-number="3.2.3">
+<h3 data-number="3.2.3" class="anchored" data-anchor-id="unique-features-of-the-freeverb-version"><span class="header-section-number">3.2.3</span> Unique Features of the [freeverb~] Version</h3>
+<section id="audio-file-input" class="level4" data-number="3.2.3.1">
+<h4 data-number="3.2.3.1" class="anchored" data-anchor-id="audio-file-input"><span class="header-section-number">3.2.3.1</span> 1. Audio File Input</h4>
 <p>Unlike the original patch that only uses microphone input, this version can:</p>
 <ul>
 <li>Play a pre-recorded audio file (<code>speech.wav</code>) as the initial source</li>
@@ -773,8 +773,8 @@ Repeat the playback and re-recording process as many times as you like to hear t
 </div>
 </div>
 </section>
-<section id="virtual-acoustic-environment" class="level4" data-number="2.2.3.2">
-<h4 data-number="2.2.3.2" class="anchored" data-anchor-id="virtual-acoustic-environment"><span class="header-section-number">2.2.3.2</span> 2. Virtual Acoustic Environment</h4>
+<section id="virtual-acoustic-environment" class="level4" data-number="3.2.3.2">
+<h4 data-number="3.2.3.2" class="anchored" data-anchor-id="virtual-acoustic-environment"><span class="header-section-number">3.2.3.2</span> 2. Virtual Acoustic Environment</h4>
 <p>Instead of relying on a physical room’s acoustics, this patch uses <code>freeverb~</code> objects to create a simulated acoustic space:</p>
 <ul>
 <li>Every audio signal (input and playback) passes through a <code>freeverb~</code> object</li>
@@ -782,8 +782,8 @@ Repeat the playback and re-recording process as many times as you like to hear t
 <li>Multiple <code>freeverb~</code> objects process different stages of the audio for cumulative effects</li>
 </ul>
 </section>
-<section id="enhanced-control-flow" class="level4" data-number="2.2.3.3">
-<h4 data-number="2.2.3.3" class="anchored" data-anchor-id="enhanced-control-flow"><span class="header-section-number">2.2.3.3</span> 3. Enhanced Control Flow</h4>
+<section id="enhanced-control-flow" class="level4" data-number="3.2.3.3">
+<h4 data-number="3.2.3.3" class="anchored" data-anchor-id="enhanced-control-flow"><span class="header-section-number">3.2.3.3</span> 3. Enhanced Control Flow</h4>
 <p>The patch includes numbered controls for better workflow:</p>
 <table class="caption-top table">
 <colgroup>
@@ -817,8 +817,8 @@ Repeat the playback and re-recording process as many times as you like to hear t
 </tbody>
 </table>
 </section>
-<section id="multiple-sendreceive-paths" class="level4" data-number="2.2.3.4">
-<h4 data-number="2.2.3.4" class="anchored" data-anchor-id="multiple-sendreceive-paths"><span class="header-section-number">2.2.3.4</span> 4. Multiple Send/Receive Paths</h4>
+<section id="multiple-sendreceive-paths" class="level4" data-number="3.2.3.4">
+<h4 data-number="3.2.3.4" class="anchored" data-anchor-id="multiple-sendreceive-paths"><span class="header-section-number">3.2.3.4</span> 4. Multiple Send/Receive Paths</h4>
 <p>The patch uses additional send/receive pairs to manage signal routing:</p>
 <ul>
 <li><code>s~/r~ audio.input</code> - Routes input signals to the recording object</li>
@@ -828,16 +828,16 @@ Repeat the playback and re-recording process as many times as you like to hear t
 </ul>
 </section>
 </section>
-<section id="step-by-step-explanation" class="level3" data-number="2.2.4">
-<h3 data-number="2.2.4" class="anchored" data-anchor-id="step-by-step-explanation"><span class="header-section-number">2.2.4</span> Step-by-Step Explanation</h3>
+<section id="step-by-step-explanation" class="level3" data-number="3.2.4">
+<h3 data-number="3.2.4" class="anchored" data-anchor-id="step-by-step-explanation"><span class="header-section-number">3.2.4</span> Step-by-Step Explanation</h3>
 <p>The operation of this patch begins with the establishment of initial audio source options, where users can choose between pre-recorded file input or live input sources. For pre-recorded file input, clicking the “2. Playback audio” button triggers the playback of <code>speech.wav</code> through a <code>readsf~</code> object, which then processes the audio through <code>freeverb~</code> before sending it to the <code>s~ audio.input</code> routing system. This approach provides consistent source material that can be used repeatedly for experimentation and comparison across different processing generations. While live input capability is not explicitly shown in this version, the architecture could easily accommodate an <code>adc~</code> object that would capture real-time microphone input and route it through the same <code>s~ audio.input</code> pathway.</p>
 <p>The recording of the first generation commences when the user clicks the “1. Start recording” button, which initiates the capture process to <code>record-A.wav</code>. The signal from <code>s~ audio.input</code> is captured by the corresponding <code>r~ audio.input</code> object and sent directly to a <code>writesf~</code> object that handles the actual file writing operations. This resulting file contains the source material with initial reverb processing applied, establishing the foundation for subsequent generations. The recording process maintains the temporal structure and amplitude characteristics of the original material while introducing the first layer of artificial room acoustics that will be progressively enhanced through the recursive process.</p>
 <p>The playback and re-recording phase begins automatically after stopping the initial recording with the “3. Stop recording” button. The patch executes a carefully orchestrated sequence where it opens and plays <code>record-A.wav</code> through another <code>readsf~</code> object, processes this playback through an additional <code>freeverb~</code> object for cumulative reverb effects, and then routes the processed signal along two parallel paths. The first path sends the audio to <code>throw~ audio</code> for real-time monitoring, allowing users to hear the progressive transformation as it occurs. The second path directs the same signal to <code>s~ player.A</code>, where it is received and simultaneously recorded to <code>record-B.wav</code>, creating the next generation of the recursive process.</p>
 <p>The recursive process continues as each newly created recording becomes the source for the subsequent generation. When <code>record-B.wav</code> is created, it can be played back through its own <code>readsf~</code> object, processed through yet another <code>freeverb~</code> instance, and routed to both the monitoring system via <code>throw~ audio</code> and to <code>s~ player.B</code> for capture back to <code>record-A.wav</code>. This alternating cycle can continue indefinitely, with each generation accumulating more of the virtual room’s characteristics as defined by the <code>freeverb~</code> parameters. The cumulative effect gradually transforms the original source material into a sonic representation of the artificial acoustic space, with the original speech or audio content becoming increasingly obscured while the rhythmic and temporal elements remain as the structural foundation.</p>
 <p>The output stage serves as the central collection and distribution point for all audio signals in the system. All audio signals that have been sent to <code>throw~ audio</code> are collected by the corresponding <code>catch~ audio</code> object, which functions as a mixing bus that combines signals from whichever recording generation is currently active. This consolidated audio signal is then sent to an <code>out~</code> object that handles the final output routing to speakers or headphones, ensuring that users can monitor the entire process in real-time and experience the gradual transformation as it unfolds through successive generations.</p>
 </section>
-<section id="key-objects-table-1" class="level3" data-number="2.2.5">
-<h3 data-number="2.2.5" class="anchored" data-anchor-id="key-objects-table-1"><span class="header-section-number">2.2.5</span> Key Objects Table</h3>
+<section id="key-objects-table-1" class="level3" data-number="3.2.5">
+<h3 data-number="3.2.5" class="anchored" data-anchor-id="key-objects-table-1"><span class="header-section-number">3.2.5</span> Key Objects Table</h3>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 26%">
@@ -885,8 +885,8 @@ Repeat the playback and re-recording process as many times as you like to hear t
 </tbody>
 </table>
 </section>
-<section id="creative-applications" class="level3" data-number="2.2.6">
-<h3 data-number="2.2.6" class="anchored" data-anchor-id="creative-applications"><span class="header-section-number">2.2.6</span> Creative Applications</h3>
+<section id="creative-applications" class="level3" data-number="3.2.6">
+<h3 data-number="3.2.6" class="anchored" data-anchor-id="creative-applications"><span class="header-section-number">3.2.6</span> Creative Applications</h3>
 <ul>
 <li><strong>Experiment with reverb settings:</strong> Try different room sizes, damping, and wet/dry mix</li>
 <li><strong>Use different source materials:</strong> Test various speech samples, musical phrases, or sound effects</li>
@@ -897,8 +897,8 @@ Repeat the playback and re-recording process as many times as you like to hear t
 <p>This virtual approach offers a controlled laboratory for exploring the core concepts of Lucier’s piece, making it accessible even without an ideal acoustic space, while also opening new creative possibilities that wouldn’t be possible in a physical implementation.</p>
 </section>
 </section>
-<section id="simple-audio-player" class="level2" data-number="2.3">
-<h2 data-number="2.3" class="anchored" data-anchor-id="simple-audio-player"><span class="header-section-number">2.3</span> Simple Audio Player</h2>
+<section id="simple-audio-player" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="simple-audio-player"><span class="header-section-number">3.3</span> Simple Audio Player</h2>
 <p>The simple audio player represents a streamlined approach to audio file playback that emphasizes ease of use while providing essential control over playback parameters. This Pure Data implementation demonstrates how to create an intuitive audio player interface that combines file loading, visual feedback, and precise playback control in a single cohesive system. The patch showcases fundamental concepts including automatic file loading, visual waveform display, start/stop position control, playback speed manipulation, and smooth parameter interpolation.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -906,8 +906,8 @@ Repeat the playback and re-recording process as many times as you like to hear t
 <figcaption>Fig. Pure Data implementation of simple audio player</figcaption>
 </figure>
 </div>
-<section id="patch-overview-1" class="level3" data-number="2.3.1">
-<h3 data-number="2.3.1" class="anchored" data-anchor-id="patch-overview-1"><span class="header-section-number">2.3.1</span> Patch Overview</h3>
+<section id="patch-overview-1" class="level3" data-number="3.3.1">
+<h3 data-number="3.3.1" class="anchored" data-anchor-id="patch-overview-1"><span class="header-section-number">3.3.1</span> Patch Overview</h3>
 <p>The simple audio player patch implements a user-friendly playback system that automatically loads an audio file into a visual array and provides comprehensive control over playback parameters through an intuitive slider-based interface. The system operates by calculating playback positions based on normalized start and stop points, which are then converted to sample-accurate indices for precise audio retrieval. The architecture emphasizes visual feedback through multiple display elements that show both the raw sample data and the calculated playback parameters in real-time.</p>
 <p>The design philosophy centers around immediate usability, where a single “play!” button triggers playback of a predefined segment with user-controlled speed and timing parameters. The visual interface provides dual representation of the audio content through both a large waveform display that shows the entire audio file and smaller numeric displays that provide precise feedback on calculated values. The playback engine employs interpolated table reading to ensure high-quality audio reproduction across all speed settings, while the parameter calculation system converts user-friendly interface values into the sample-accurate indices required for proper audio playback.</p>
 <p>The patch incorporates automatic initialization through a loadbang mechanism that ensures the audio file is loaded immediately when the patch opens, eliminating the need for manual file loading procedures. The control system provides independent manipulation of start position, stop position, playback speed, and interpolation timing, with all parameters working together to create a flexible and responsive playback environment suitable for both educational exploration and practical audio playback applications.</p>
@@ -940,8 +940,8 @@ Repeat the playback and re-recording process as many times as you like to hear t
 </div>
 </div>
 </section>
-<section id="data-flow" class="level3" data-number="2.3.2">
-<h3 data-number="2.3.2" class="anchored" data-anchor-id="data-flow"><span class="header-section-number">2.3.2</span> Data Flow</h3>
+<section id="data-flow" class="level3" data-number="3.3.2">
+<h3 data-number="3.3.2" class="anchored" data-anchor-id="data-flow"><span class="header-section-number">3.3.2</span> Data Flow</h3>
 <p>The audio player system begins its operation with an automatic initialization sequence triggered by the <code>loadbang</code> object at patch startup. This initialization sends a message to the <code>soundfiler</code> object instructing it to load the file “speech.wav” into the “audio” array with automatic resizing enabled. The soundfiler responds by reading the entire audio file into the array and returning the total number of samples, which becomes the fundamental reference value for all subsequent position and timing calculations. This sample count is immediately displayed in a numeric box and distributed throughout the system to serve as the basis for converting normalized slider positions into actual sample indices.</p>
 <p>The position control system operates through two horizontal sliders that represent the start and stop positions as normalized values between 0 and 1. These normalized positions are processed through expression objects that multiply them by the total sample count, converting the user-friendly slider positions into precise sample indices that correspond to actual locations within the audio file. The start position calculation uses the expression <code>int($f1*$f2)</code> where the first input is the normalized slider value and the second is the total sample count, ensuring that the resulting index points to an exact sample location within the array.</p>
 <p>The timing and speed control mechanism calculates the duration and interpolation parameters necessary for smooth playback transitions. The duration calculation subtracts the start sample index from the stop sample index using the expression <code>$f2 - $f1</code>, providing the total number of samples that will be played during the current playback segment. This duration value is then converted from samples to milliseconds using the expression <code>abs(int(($f1 / 44100) * 1000))</code>, which divides by the standard sample rate and multiplies by 1000 to produce a time value suitable for the interpolation system.</p>
@@ -949,8 +949,8 @@ Repeat the playback and re-recording process as many times as you like to hear t
 <p>When the “play!” button is triggered, all calculated parameters are combined into a message that drives the <code>line~</code> object. The <code>pack f f f</code> object consolidates the start position, stop position, and interpolation time into a single list, which is then formatted by a message object into the proper syntax for the <code>line~</code> object. This formatted message instructs the <code>line~</code> to smoothly interpolate from the start sample index to the stop sample index over the calculated time duration, creating a continuously changing index value that scans through the selected portion of the audio file.</p>
 <p>The final audio generation stage employs the <code>tabread4~</code> object to retrieve audio samples from the array using the continuously changing index values provided by the <code>line~</code> object. The fourth-order interpolation ensures smooth audio reproduction even when the playback speed produces non-integer index values or when rapid parameter changes occur. The interpolated audio output is then routed to the <code>output~</code> object for final amplification and speaker routing, completing the signal path from stored audio data to audible output.</p>
 </section>
-<section id="key-objects-and-their-roles" class="level3" data-number="2.3.3">
-<h3 data-number="2.3.3" class="anchored" data-anchor-id="key-objects-and-their-roles"><span class="header-section-number">2.3.3</span> Key Objects and Their Roles</h3>
+<section id="key-objects-and-their-roles" class="level3" data-number="3.3.3">
+<h3 data-number="3.3.3" class="anchored" data-anchor-id="key-objects-and-their-roles"><span class="header-section-number">3.3.3</span> Key Objects and Their Roles</h3>
 <p>The following table summarizes the essential objects used in the simple audio player implementation:</p>
 <div style="width: 80%;">
 <table class="caption-top table">
@@ -1023,8 +1023,8 @@ Repeat the playback and re-recording process as many times as you like to hear t
 <p>The patch demonstrates several key Pure Data programming concepts, including automatic patch initialization through loadbang, visual array management for waveform display, mathematical expression evaluation for parameter conversion, and smooth audio-rate interpolation for high-quality playback. The modular design separates user interface elements from audio processing components, making the system easy to understand and modify.</p>
 <p>This implementation serves as an excellent foundation for understanding basic audio playback principles and can be easily extended with additional features such as looping, multiple file support, or external control integration. The visual feedback provided by the waveform display and numeric readouts makes it particularly suitable for educational applications where understanding the relationship between interface controls and audio parameters is important.</p>
 </section>
-<section id="creative-applications-1" class="level3" data-number="2.3.4">
-<h3 data-number="2.3.4" class="anchored" data-anchor-id="creative-applications-1"><span class="header-section-number">2.3.4</span> Creative Applications</h3>
+<section id="creative-applications-1" class="level3" data-number="3.3.4">
+<h3 data-number="3.3.4" class="anchored" data-anchor-id="creative-applications-1"><span class="header-section-number">3.3.4</span> Creative Applications</h3>
 <ul>
 <li><strong>Extreme time stretching:</strong> Push the speed control to very low values (0.1 or lower) to create drone-like textures from short audio snippets</li>
 <li><strong>Rhythmic patterns:</strong> Use rapid speed changes and phase jumps to generate percussive sequences from sustained tones</li>
@@ -1039,8 +1039,8 @@ Repeat the playback and re-recording process as many times as you like to hear t
 </ul>
 </section>
 </section>
-<section id="audio-sampler-with-phasor" class="level2" data-number="2.4">
-<h2 data-number="2.4" class="anchored" data-anchor-id="audio-sampler-with-phasor"><span class="header-section-number">2.4</span> Audio Sampler with [phasor~]</h2>
+<section id="audio-sampler-with-phasor" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="audio-sampler-with-phasor"><span class="header-section-number">3.4</span> Audio Sampler with [phasor~]</h2>
 <p>The audio sampler represents a fundamental tool in digital audio processing and musical performance, enabling the capture, manipulation, and playback of recorded audio material. This Pure Data implementation demonstrates how to create a comprehensive sampling system that provides real-time control over playback speed, direction, position, and interpolation. The patch showcases essential concepts including array-based audio storage, variable-speed playback, phase control, and temporal interpolation for smooth parameter transitions.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -1048,8 +1048,8 @@ Repeat the playback and re-recording process as many times as you like to hear t
 <figcaption>Fig.</figcaption>
 </figure>
 </div>
-<section id="patch-overview-2" class="level3" data-number="2.4.1">
-<h3 data-number="2.4.1" class="anchored" data-anchor-id="patch-overview-2"><span class="header-section-number">2.4.1</span> Patch Overview</h3>
+<section id="patch-overview-2" class="level3" data-number="3.4.1">
+<h3 data-number="3.4.1" class="anchored" data-anchor-id="patch-overview-2"><span class="header-section-number">3.4.1</span> Patch Overview</h3>
 <p>The audio sampler patch implements a sophisticated playback engine that reads audio data from a table array and provides extensive real-time control over the playback parameters. The system operates by using a phasor oscillator to generate index values that scan through the stored audio samples, with multiplication factors applied to control playback speed and direction. The architecture supports both forward and reverse playback, variable speed control ranging from extreme slow motion to high-speed acceleration, and precise positioning within the audio material.</p>
 <p>The design follows a modular approach where audio loading, parameter control, and playback generation are handled by distinct subsystems that communicate through Pure Data’s send and receive mechanism. The audio storage system utilizes a resizable array that automatically adjusts to accommodate different audio file lengths, while the playback control provides independent manipulation of speed, direction, interpolation time, and starting position. The output stage employs interpolated table reading to ensure smooth audio reproduction even during rapid parameter changes or extreme speed variations.</p>
 <p>The interface provides immediate visual feedback through horizontal sliders for speed control, interpolation time adjustment, and phase positioning, along with numeric displays that show the current playback parameters and array position. This design enables both precise manual control and potential automation through external control sources, making it suitable for live performance, sound design, and experimental audio manipulation applications.</p>
@@ -1079,8 +1079,8 @@ Repeat the playback and re-recording process as many times as you like to hear t
 </div>
 </div>
 </section>
-<section id="data-flow-1" class="level3" data-number="2.4.2">
-<h3 data-number="2.4.2" class="anchored" data-anchor-id="data-flow-1"><span class="header-section-number">2.4.2</span> Data Flow</h3>
+<section id="data-flow-1" class="level3" data-number="3.4.2">
+<h3 data-number="3.4.2" class="anchored" data-anchor-id="data-flow-1"><span class="header-section-number">3.4.2</span> Data Flow</h3>
 <p>The sampling system begins its operation with the audio loading process, initiated by a message that triggers the <code>soundfiler</code> object to read an audio file into the designated array. The soundfiler automatically resizes the array to match the audio file length and returns the total number of samples, which is stored and distributed to other components through the send/receive system. This sample count becomes crucial for calculating appropriate playback rates and ensuring the phasor oscillator operates within the correct frequency range.</p>
 <p>The speed and direction control mechanism processes user input from the horizontal slider, which provides values ranging from -5 to +5, representing both playback speed and direction. Negative values produce reverse playback, while positive values generate forward playback, with the magnitude determining the speed multiplier. This control value is processed through an interpolation system that uses the <code>line</code> object to create smooth transitions between different speed settings, preventing audible artifacts that might occur from abrupt parameter changes.</p>
 <p>The core playback engine centers around a <code>phasor~</code> oscillator that generates a continuously increasing ramp signal from 0 to 1. The frequency of this phasor is calculated by dividing the current sample rate by the total number of samples in the array, then multiplied by the speed control factor. This calculation ensures that a speed setting of 1 produces normal playback rate, while other values create proportional speed changes. The phasor output is then scaled to match the array size, creating index values that span the entire audio content.</p>
@@ -1088,8 +1088,8 @@ Repeat the playback and re-recording process as many times as you like to hear t
 <p>The final playback stage employs the <code>tabread4~</code> object, which performs fourth-order interpolated reading from the audio array. This interpolation method ensures smooth audio reproduction even when the playback speed produces non-integer index values or when rapid parameter changes occur. The interpolated output maintains audio quality across the full range of speed and position manipulations, providing professional-grade sample playback capabilities.</p>
 <p>Real-time monitoring and feedback systems track the current playback position and convert it to visual representations through the horizontal slider display and numeric readouts. The <code>unsig~</code> objects convert audio-rate signals to control-rate values suitable for interface updates, while the positioning system provides continuous feedback about the current location within the audio material.</p>
 </section>
-<section id="key-objects-and-their-roles-1" class="level3" data-number="2.4.3">
-<h3 data-number="2.4.3" class="anchored" data-anchor-id="key-objects-and-their-roles-1"><span class="header-section-number">2.4.3</span> Key Objects and Their Roles</h3>
+<section id="key-objects-and-their-roles-1" class="level3" data-number="3.4.3">
+<h3 data-number="3.4.3" class="anchored" data-anchor-id="key-objects-and-their-roles-1"><span class="header-section-number">3.4.3</span> Key Objects and Their Roles</h3>
 <p>The following table summarizes the essential objects used in the audio sampler implementation:</p>
 <div style="width: 80%;">
 <table class="caption-top table">
@@ -1170,8 +1170,8 @@ Repeat the playback and re-recording process as many times as you like to hear t
 <p>The patch demonstrates several advanced Pure Data programming techniques, including dynamic array management for variable-length audio files, mathematical rate calculation for accurate speed control, and multi-rate signal processing that combines audio-rate playback with control-rate parameter management. The use of interpolated table reading ensures high audio quality, while the modular design facilitates easy modification and extension of the sampling capabilities.</p>
 <p>This implementation serves as a foundation for more complex sampling applications, including granular synthesis, multi-sample instruments, and advanced audio manipulation tools. The real-time control capabilities make it suitable for live performance contexts, while the precise parameter control enables detailed studio work and sound design applications.</p>
 </section>
-<section id="creative-applications-2" class="level3" data-number="2.4.4">
-<h3 data-number="2.4.4" class="anchored" data-anchor-id="creative-applications-2"><span class="header-section-number">2.4.4</span> Creative Applications</h3>
+<section id="creative-applications-2" class="level3" data-number="3.4.4">
+<h3 data-number="3.4.4" class="anchored" data-anchor-id="creative-applications-2"><span class="header-section-number">3.4.4</span> Creative Applications</h3>
 <ul>
 <li><strong>Experiment with extreme time stretching:</strong> Push the speed control to very low values (0.1 or lower) to create drone-like textures from short audio snippets</li>
 <li><strong>Create rhythmic patterns:</strong> Use rapid speed changes and phase jumps to generate percussive sequences from sustained tones</li>
@@ -1612,13 +1612,13 @@ Hasse, Sarah. 2012. <span>“I Am Sitting in a Room.”</span> <em>Body, Space &
   </script>
 <nav class="page-navigation column-body">
   <div class="nav-page nav-page-previous">
-      <a href="../chapters/introduction.html" class="pagination-link" aria-label="Introduction">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span>
+      <a href="../chapters/sequencer.html" class="pagination-link" aria-label="Sequencing Time">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Sequencing Time</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../chapters/sequencer.html" class="pagination-link" aria-label="Sequencer">
-        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Sequencer</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../chapters/synthesis.html" class="pagination-link" aria-label="Sound Synthesis">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Sound Synthesis</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
