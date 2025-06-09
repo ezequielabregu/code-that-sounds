@@ -355,7 +355,7 @@ The trigger logic supports three types of behavior:
 
 This flexibility enables the abstraction to support a variety of amplitude modulation scenarios in real-time audio synthesis, making it both pedagogically instructive and practically versatile for sound design tasks.
 
-## Twenty-Oscillator Harmonic System
+### Twenty-Oscillator Harmonic System
 
 This Pure Data patch implements a comprehensive additive synthesis engine that demonstrates the fundamental principles of harmonic spectrum construction through the controlled combination of multiple sine wave oscillators. The system employs twenty independent oscillator modules, each operating at harmonically related frequencies with individual amplitude envelope control, creating a powerful platform for exploring the timbral possibilities of additive synthesis while maintaining real-time performance capabilities.
 
@@ -363,7 +363,7 @@ The patch architecture emphasizes modular design through the use of custom abstr
 
 ![Fig. ](/assets/screenshots/synthesis/additive/20-oscillators.png){width="70%"}
 
-### Patch Overview
+#### Patch Overview
 
 The additive synthesis system implements a comprehensive harmonic generation pipeline consisting of four primary processing stages:
 
@@ -387,7 +387,7 @@ flowchart TD
     style C fill:#fff3e0
 ```
 
-### Key Objects and Their Roles
+#### Key Objects and Their Roles
 
 | Object | Function | Role in Additive Synthesis |
 |--------|----------|----------------------------|
@@ -406,7 +406,7 @@ flowchart TD
 
 **Audio Signal Aggregation**: The `catch~ audio` object employs Pure Data's audio signal collection mechanism to sum all oscillator outputs without explicit connection cables, demonstrating efficient signal routing in complex patches.
 
-### Data Flow
+#### Data Flow
 
 The additive synthesis patch orchestrates a multi-oscillator system that transforms simple frequency and timing parameters into complex harmonic spectra through coordinated oscillator management and envelope control. This implementation demonstrates how additive synthesis principles can be systematically applied to create timbral complexity from elementary sinusoidal components while maintaining real-time performance and user control.
 
@@ -425,7 +425,7 @@ flowchart LR
     C --> D[Signal Collection]
 ```
 
-### Processing Chain Details
+#### Processing Chain Details
 
 The additive synthesis system maintains harmonic precision and temporal coordination through several interconnected processing stages:
 
@@ -470,7 +470,7 @@ The time scaling system provides proportional control over envelope durations:
 
 **Scalable Architecture**: The abstraction-based design supports easy addition or removal of harmonic partials without patch restructuring.
 
-### Creative Applications
+#### Creative Applications
 
 - **Classic Additive Synthesis**: Recreate the timbres of historical additive synthesizers like the Kawai K5000 or early computer music systems by manually adjusting individual harmonic amplitudes
 - **Spectral Animation**: Use external control data (MIDI, OSC, sensors) to modulate individual oscillator amplitudes, creating dynamic spectral evolution and movement
@@ -479,8 +479,119 @@ The time scaling system provides proportional control over envelope durations:
 - **Microtonal Additive Synthesis**: Modify individual oscillator frequencies to explore non-harmonic spectra and microtonal intervals while maintaining the additive framework
 - **Algorithmic Composition**: Use mathematical functions or stochastic processes to control harmonic amplitudes over time, creating evolving textures with embedded structural logic
 
+### Additive Clone: Scalable Harmonic Synthesis
 
-## Spectral Melody
+This Pure Data patch demonstrates dynamic additive synthesis using Pure Data's `clone` object to create a scalable system of harmonic oscillators. Unlike fixed multi-oscillator systems, this implementation allows real-time adjustment of the number of active partials, from 1 to 20, while maintaining proper amplitude scaling to prevent clipping. The patch showcases advanced Pure Data programming techniques including dynamic object creation, parameter distribution, and automatic scaling based on psychoacoustic principles.
+
+The system emphasizes efficiency and modularity by using identical `harmonic` abstractions that receive initialization parameters and operate independently. This approach enables exploration of how partial count affects timbral complexity while demonstrating the relationship between harmonic density and perceived loudness.
+
+![Fig. ](/assets/screenshots/synthesis/additive/additive-clone.png)
+
+#### Patch Overview
+
+The additive clone system implements a dynamic harmonic generation pipeline consisting of four primary processing stages:
+
+1. **Partial Count Control**: Interface for selecting number of active harmonics (1-20)
+2. **Parameter Generation**: Algorithmic calculation of frequency multipliers and amplitude coefficients
+3. **Dynamic Instance Management**: Clone-based creation of harmonic oscillators with scaling
+4. **Audio Collection**: Signal aggregation with psychoacoustic amplitude compensation
+
+The patch demonstrates how algorithmic parameter generation can control large numbers of synthesis components while maintaining musical coherence and preventing amplitude overflow.
+
+```{mermaid}
+flowchart TD
+    A[Partial Count Selection] --> B[Parameter Generation Loop]
+    B --> C[Clone Instance Creation]
+    C --> D[Individual Harmonic Processing]
+    D --> E[Amplitude Scaling]
+    E --> F[Audio Collection]
+    F --> G[Mixed Output]
+    
+    style A fill:#e1f5fe
+    style G fill:#f3e5f5
+    style E fill:#fff3e0
+```
+
+#### Key Objects and Their Roles
+
+| Object | Function | Role in Dynamic Synthesis |
+|--------|----------|---------------------------|
+| `hradio` | Partial count selector | Controls number of active harmonics (1-20) |
+| `clone harmonic` | Dynamic instance manager | Creates variable number of oscillator instances |
+| `until` | Parameter loop generator | Executes calculation sequence for each partial |
+| `mod` | Frequency calculation | Generates harmonic number sequence |
+| `expr~ pow($f2, -0.6)` | Amplitude scaling | Prevents clipping using psychoacoustic scaling |
+| `s n-partials` / `r n-partials` | Partial count distribution | Distributes active partial count to all instances |
+
+#### Critical Dynamic Components
+
+**Clone Object Management**: The `clone harmonic` object dynamically creates instances based on the resize message, enabling real-time adjustment of synthesis complexity without patch reconstruction.
+
+**Psychoacoustic Scaling**: The `expr~ pow($f2, -0.6)` calculation in each harmonic applies amplitude reduction based on the total number of active partials, using research-based scaling that matches human loudness perception.
+
+**Modular Parameter Generation**: The `until` and `mod` system creates a counting sequence that generates unique harmonic numbers for each clone instance while handling array wraparound.
+
+#### Data Flow
+
+The additive clone patch orchestrates a sophisticated dynamic synthesis system that adapts the number of active harmonic oscillators in real-time while maintaining proper amplitude relationships and preventing audio clipping. This implementation demonstrates how Pure Data's clone object can be combined with algorithmic parameter generation to create scalable synthesis systems that remain musically coherent across different levels of harmonic complexity.
+
+The partial count control stage establishes the foundation for dynamic synthesis through user interface management that directly controls system complexity. The hradio interface enables selection of partial counts from 1 to 20, with each selection triggering a complete reconfiguration of the synthesis system. The selected value propagates through two parallel pathways: immediate distribution via the `s n-partials` send system that informs all existing harmonic instances of the new partial count, and initiation of the parameter generation sequence that calculates appropriate settings for the requested number of oscillators. This dual distribution ensures that both the scaling calculations within individual harmonics and the overall system configuration remain synchronized as users adjust the synthesis complexity in real-time.
+
+The algorithmic parameter generation stage transforms the simple partial count selection into comprehensive initialization data for each harmonic oscillator through systematic mathematical processing. The `until` object creates an iteration loop that executes the specified number of times, generating unique parameter sets for each harmonic instance. During each iteration, the counter value undergoes processing through the `mod` object, which provides frequency multiplier values that cycle through a predetermined sequence, enabling harmonic relationships that extend beyond simple integer multiples if desired. The counter value also serves directly as the harmonic number identifier, while the fundamental frequency received through `r freq` provides the base frequency reference. These three values combine in the `pack f f f` object to create complete initialization messages that contain all information necessary for each harmonic instance to configure its frequency relationships and amplitude characteristics.
+
+The dynamic instance management stage demonstrates Pure Data's advanced object creation capabilities through sophisticated implementation of the clone system that adapts to changing synthesis requirements. When the resize message reaches the `clone harmonic` object, it dynamically adjusts the number of active harmonic instances, creating new oscillators when the count increases or deactivating instances when the count decreases. Each parameter pack message generated by the algorithmic calculation stage initializes a harmonic instance with its specific frequency multiplier and amplitude coefficient. The clone system manages this distribution automatically, ensuring that each active instance receives appropriate initialization data while maintaining efficient resource utilization. This dynamic approach enables the system to scale from simple single-oscillator tones to complex 20-partial harmonic spectra without requiring manual patch reconfiguration or predetermined oscillator allocation.
+
+The individual harmonic processing stage occurs within each `harmonic` abstraction instance, where distributed parameters control sophisticated oscillator and envelope systems enhanced with automatic amplitude scaling. Each harmonic receives its frequency multiplier through the initialization message and combines it with the global fundamental frequency to generate its specific harmonic frequency. The critical innovation within each harmonic involves the `expr~ pow($f2, -0.6)` calculation that applies amplitude scaling based on the total number of active partials received through the `r n-partials` system. This scaling factor implements psychoacoustic research that shows how human loudness perception requires amplitude reduction as the number of harmonic components increases, preventing the perception of increased loudness as synthesis complexity grows. The power law exponent of -0.6 provides a compromise between mathematical precision and musical utility, ensuring that 20-partial synthesis produces manageable amplitude levels while maintaining sufficient dynamic range for musical expression.
+
+```{mermaid}
+flowchart LR
+    A[Partial Selection] --> B[Dynamic Configuration]
+    B --> C[Scaled Audio Output]
+```
+
+#### Processing Chain Details
+
+The dynamic additive synthesis system maintains musical coherence through coordinated processing stages:
+
+| Stage | Input | Process | Output |
+|-------|-------|---------|--------|
+| 1 | User Selection | Partial count validation and distribution | System reconfiguration triggers |
+| 2 | Partial Count | Iterative parameter calculation | Harmonic initialization data |
+| 3 | Parameter Messages | Dynamic clone instance management | Active harmonic oscillators |
+| 4 | Instance Configuration | Individual harmonic synthesis with scaling | Amplitude-compensated audio |
+| 5 | Scaled Audio Streams | Signal collection and mixing | Balanced harmonic spectrum |
+
+##### Scaling Factor Analysis
+
+The psychoacoustic amplitude scaling prevents clipping while maintaining perceptual balance:
+
+| Active Partials | Scaling Factor | Individual Amplitude | Perceptual Effect |
+|-----------------|----------------|---------------------|-------------------|
+| 1 | 1.000 | 100% | Full single-tone amplitude |
+| 5 | 0.315 | 31.5% | Balanced complex tone |
+| 10 | 0.200 | 20.0% | Rich harmonic spectrum |
+| 15 | 0.151 | 15.1% | Dense harmonic texture |
+| 20 | 0.122 | 12.2% | Maximum complexity without clipping |
+
+#### Clone System Architecture
+
+
+**Dynamic Scalability**: Easy modification of maximum partial count through hradio range adjustment.
+
+**Efficient Resource Management**: Inactive instances consume minimal CPU resources.
+
+**Parameter Synchronization**: Automatic distribution of configuration changes to all active instances.
+
+**Amplitude Safety**: Built-in scaling prevents output clipping across all partial count settings.
+
+#### Creative Applications
+
+- **Real-time Timbral Morphing**: Automate the partial count using LFOs or envelopes to create evolving timbres that transition between simple and complex harmonic structures
+- **Interactive Spectral Control**: Map external controllers or sensors to the partial count parameter, enabling performers to sculpt harmonic complexity through gesture or movement
+- **Spectral Analysis Tools**: Use the system to reconstruct and study natural instrument timbres by adjusting partial counts to match analyzed harmonic content
+
+
+### Spectral Melody
 
 This patch implements an additive synthesis system that demonstrates how harmonic partial generation can be controlled through algorithmic distribution and temporal sequencing. By utilizing Pure Data's `clone` object to create eight instances of a `partial` abstraction, the system generates complex harmonic spectra where each partial operates with independent amplitude envelopes and frequency relationships. The patch emphasizes real-time control over both spectral content and temporal evolution, creating a platform for exploring the relationship between harmonic structure and melodic perception.
 
@@ -488,7 +599,7 @@ The implementation showcases advanced Pure Data programming techniques including
 
 ![Fig. ](/assets/screenshots/synthesis/additive/spectrum-melody.png)
 
-### Patch Overview
+#### Patch Overview
 
 The patch implements a comprehensive harmonic generation pipeline consisting of five primary processing stages:
 
@@ -516,7 +627,7 @@ flowchart TD
     style F fill:#fff3e0
 ```
 
-### Key Objects and Their Roles
+#### Key Objects and Their Roles
 
 | Object | Function | Role in Spectral Synthesis |
 |--------|----------|----------------------------|
@@ -536,7 +647,7 @@ flowchart TD
 
 **Parameter Pack System**: The `pack f f f` object bundles harmonic number, frequency multiplier, and amplitude coefficient into a unified message that initializes each partial instance with its specific characteristics.
 
-### Data Flow
+#### Data Flow
 
 The spectral melody patch implement an algorithmic synthesis process that transforms simple user parameters into complex harmonic spectra through systematic mathematical calculations and dynamic object instantiation. This implementation demonstrates how Pure Data's cloning capabilities can be combined with algorithmic parameter generation to create scalable additive synthesis systems that maintain both mathematical precision and musical expressivity.
 
@@ -557,7 +668,7 @@ flowchart LR
     C --> D[Signal Collection]
 ```
 
-### Processing Chain Details
+#### Processing Chain Details
 
 The spectral melody system maintains mathematical precision and musical coherence through several interconnected processing stages:
 
@@ -601,7 +712,7 @@ The `clone partial 8` implementation provides:
 - **Independent Processing**: Each instance operates with complete autonomy
 - **Efficient Signal Routing**: Built-in audio aggregation through throw~/catch~ system
 
-### Creative Applications
+#### Creative Applications
 
 - **Algorithmic Harmonic Composition**: Use external control data (MIDI, OSC, sensors) to modulate the root frequency and timing parameters, creating evolving harmonic progressions that maintain mathematical relationships
 - **Spectral Morphing Sequences**: Program sequences of different fundamental frequencies and timing values to create smooth transitions between distinct harmonic spectra, exploring timbral evolution over time
