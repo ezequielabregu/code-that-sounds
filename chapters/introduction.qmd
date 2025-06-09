@@ -55,9 +55,9 @@ If you are new to Pure Data or programming, there are several free online resour
 
 [Theory and Techniques of Electronic Music](https://msp.ucsd.edu/techniques/latest/book.pdf) – This canonical text by Miller Puckette accompanies Pd’s example patches (found via `Help → Browser → Audio Examples`). Although it has a steep learning curve, it is invaluable for those wishing to deepen their understanding of digital signal processing in the Pd environment.
 
-[Pure Data Tutorials Browser]() (Help → Browser → Manuals) – Within Pd, under the "Manuals" section of the browser, you'll find a range of beginner-focused tutorials, including sections on audio, visuals, and networking. These are ideal for building a foundational understanding.
+[Pure Data Tutorials Browser](https://msp.ucsd.edu/Pd_documentation/resources/chapter1.htm#s1.2) (Help → Browser → Manuals) – Within Pd, under the "Manuals" section of the browser, you'll find a range of beginner-focused tutorials, including sections on audio, visuals, and networking. These are ideal for building a foundational understanding.
 
-[Object Help Patches]() – Right-clicking on any object in a patch and selecting "Help" will open a contextual help patch explaining how the object works, often with embedded examples. Right-clicking on the background of a patch will show a list of available objects—an excellent way to explore what’s possible in Pd.
+[Object Help Patches](https://msp.ucsd.edu/Pd_documentation/resources/chapter1.htm#s1.2) – Right-clicking on any object in a patch and selecting "Help" will open a contextual help patch explaining how the object works, often with embedded examples. Right-clicking on the background of a patch will show a list of available objects—an excellent way to explore what’s possible in Pd.
 
 [puredata.org](http://www.puredata.org) – The official website for Pd. It offers current news, documentation, FAQs, and additional links and downloads. It’s also a great place to find updates and learn about the community.
 
@@ -75,24 +75,11 @@ If you are new to Pure Data or programming, there are several free online resour
 
 [Multimedia Programming with Pure Data (B. Chung)](https://www.amazon.com/-/es/Multimedia-Programming-Pure-Bryan-Chung/dp/1782164642) – You will learn how to author various digital media, such as images, animations, audio, and videos. From simple to sophisticated interaction techniques, you will learn to apply these techniques in your practical multimedia projects with Pure Data.
 
-[Pure Data: Electronic Music and Sound Design - Theory and Practice - Volume 1]() - by Francesco Bianchi, Alessandro Cipriani and Maurizio Giri, the book is an overview of the theory and practice of Pure Data, with a glossary of terms and suggested tests that allow students to evaluate their progress.
+[Pure Data: Electronic Music and Sound Design - Theory and Practice - Volume 1](https://www.amazon.com/Pure-Data-Electronic-Design-Practice/dp/889921221X) - by Francesco Bianchi, Alessandro Cipriani and Maurizio Giri, the book is an overview of the theory and practice of Pure Data, with a glossary of terms and suggested tests that allow students to evaluate their progress.
 
 [Live Electronics Tutorial by Alexandre Torres Porres](https://github.com/porres/Live-Electronics-Tutorial) - This tutorial presents theory and practice of Live Electronics and computer music, synthesis/DSP (digital Signal Processing) topics without any prerequisite.
 
 [Ekran.org Gem Tutorials](http://www.ekran.org/pd/) – Additional tutorials on Gem for those interested in audiovisual composition and performance.
-
----
-
-### Giving Back to the Pd Community
-
-Pure Data is not only free and open-source—it is also supported by a global community of contributors. If you’ve found value in Pd, consider giving back:
-
-- Share your knowledge and patches with others
-- Help newcomers by answering questions and offering guidance
-- Contribute abstractions, externals, or even core Pd code if you have programming skills
-- Promote the use of Pd in your community or academic setting
-
-Supporting the Pure Data community ensures that this powerful creative tool continues to evolve and remain accessible to artists, educators, and researchers around the world.
 
 
 ### Recommended Pure Data distributions
@@ -204,30 +191,30 @@ sudo pacman -S puredata
 
 Pure Data's functionality can be extended through the use of **externals**—additional libraries that provide new objects and features. These externals are created by the Pd community and can add everything from new audio effects to advanced data processing tools. Installing externals is straightforward thanks to Pure Data’s built-in package manager.
 
-#### Step 1: Open Pure Data
+#### 1. Open Pure Data
 
 - Launch Pure Data (Pd) on your computer.
 - Make sure you are using the **Vanilla** version for best compatibility with the package manager.
 
-#### Step 2: Access the "Find Externals" Tool
+#### 2. Access the "Find Externals" Tool
 
 - In the Pure Data menu, go to **Help → Find Externals...**  
   This opens the Deken package manager, which allows you to search for and install externals directly from within Pd.
 
-#### Step 3: Search for an External
+#### 3. Search for an External
 
 - In the search bar, type the name of the external or library you want to install (for example, `zexy`, `cyclone`, or `iemlib`).
 - Press **Enter** or click the **Search** button.
 - A list of matching externals will appear, showing available versions for your platform.
 
-#### Step 4: Install the External
+#### 4. Install the External
 
 - Click on the desired external in the list.
 - Choose the version that matches your operating system and Pd version.
 - Click **Install**.
 - The external will be downloaded and placed in your Pd externals folder (typically `~/Documents/Pd/externals` on macOS and Linux, or `C:\Users\<YourName>\Documents\Pd\externals` on Windows).
 
-#### Step 5: Add the External to Your Pd Path (if needed)
+#### 5. Add the External to Your Pd Path (if needed)
 
 - Most externals are automatically available after installation.
 - If Pd cannot find the external, you may need to add its folder to Pd’s search path:
@@ -235,7 +222,7 @@ Pure Data's functionality can be extended through the use of **externals**—add
   - Click **New** and add the path to the external’s folder (for example, `~/Documents/Pd/externals/cyclone`).
   - Click **OK** and restart Pd.
 
-#### Step 6: Use the External in Your Patch
+#### 6. Use the External in Your Patch
 
 - In your patch, create an object with the name of the external’s library, followed by the object you want to use.  
   For example, to use the `counter` object from the `cyclone` library:
@@ -244,7 +231,7 @@ Pure Data's functionality can be extended through the use of **externals**—add
   ```
 - Some libraries require you to load them with a special object, such as `[declare -lib cyclone]` at the top of your patch.
 
-#### Step 7: Verify Installation
+#### 7. Verify Installation
 
 - If the object appears without errors (no red box), the external is installed correctly.
 - If you see errors, double-check the installation path and that you are using the correct object/library name.
