@@ -114,6 +114,8 @@ The following libraries are recommended to be used with Pure Data. They are not 
 | jmmmp        | Collection of GUI and utility objects. Enhances user interface design in Pd patches                     |
 | mapping      | Tools for mapping data (e.g., sensors to sound). Useful for interactive installations and performances   |
 
+<br>
+
 These libraries provide additional objects and features that can enhance your projects and make it easier to work with sound synthesis, data visualization, and interactive installations. 
 
 

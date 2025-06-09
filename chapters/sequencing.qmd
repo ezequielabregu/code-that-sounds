@@ -1,6 +1,6 @@
 # Sequencing
 
-In this chapter, we will explore the concept of sequencers and how they can be implemented in Pure Data.
+In this chapter, we will explore the concept of sequencers and how they can be implemented in Pure Data. We will cover various types of sequencers, including step sequencers, random sequencers, and algorithmic composition techniques, with practical examples and implementations.
 
 ## Arrays and Sequencers
 
@@ -48,7 +48,7 @@ Algorithm:
 
 ## Implementation of the 8-Step Sequencer
 
-![Fig.](/assets/screenshots/sequencers/step-sequencer.png)
+![Fig.Implementation of an 8-step MIDI sequencer showing the complete signal flow from tempo control through step counting, array lookup, and MIDI output generation](/assets/screenshots/sequencers/step-sequencer.png)
 
 This implementation demonstrates how to create a basic 8-step MIDI sequencer that cycles through a predefined sequence of notes at a controllable tempo. The patch showcases essential concepts including timing control, array-based data storage, step counting with modulo arithmetic, and MIDI output generation.
 
@@ -116,7 +116,7 @@ The patch demonstrates several fundamental programming concepts, including the u
 
 ## Random Step Sequencer Implementation
 
-![Fig.](/assets/screenshots/sequencers/random-step-sequencer.png)
+![Fig. Random step sequencer patch showing the integration of random number generation with array-based note storage and MIDI output, creating unpredictable yet musically coherent patterns from predefined harmonic material.](/assets/screenshots/sequencers/random-step-sequencer.png)
 
 The random step sequencer represents an evolution of the basic sequential approach to rhythm generation. Instead of following a predictable linear progression through stored note values, this implementation introduces stochastic elements that create unpredictable yet musically coherent patterns. This patch demonstrates how randomization can be integrated into sequencing systems to generate non-repetitive musical content while maintaining the fundamental structure of step-based sequencing.
 
@@ -183,7 +183,7 @@ This implementation demonstrates how simple modifications to algorithmic compone
 
 ## Piano Phase (Steve Reich)
 
-![Fig.](/assets/images/sequencers/piano-phase-animation-1.gif)
+![](/assets/images/sequencers/piano-phase-animation-1.gif)
 
 [View Piano Phase Score (S. Reich)](./Biblio%20/SteveReich-PianoPhase.pdf)
 
@@ -221,7 +221,7 @@ When the separation between the notes played by both pianos reaches a fraction o
 
 ### Piano Phase Implementation in PD 
 
-![fig](/assets/screenshots/sequencers/piano-phase.png)
+![Fig. Piano Phase patch demonstrating phasing process through two sequencers with different metro intervals, visualized with hradio step indicators and MIDI output for each voice.](/assets/screenshots/sequencers/piano-phase.png)
 
 ### Patch Overview
 
@@ -290,7 +290,7 @@ Two identical sequences are played in parallel. Slightly different tempos cause 
 
 This chapter provides a step-by-step explanation of the [music-scale-B.pd](/assets/code/sequencers/music-scale-B.pd) Pure Data patch. The patch demonstrates how to generate a melody using a musical scale, store it in an array, and play it back using MIDI.
 
-![Random Melody Generator](/assets/screenshots/sequencers/random_melody.png)
+![Fig. Random melody generator patch showing scale definition, algorithmic note selection, array storage, and MIDI playback system for creating melodic sequences from predefined harmonic material.](/assets/screenshots/sequencers/random_melody.png)
 
 ### Patch Overview
 
@@ -670,7 +670,7 @@ In summary, the formula `(index * hits) % steps < hits` offers a pragmatic and c
 
 This section provides a detailed explanation of the [Euclidean-basic-Serie.pd](/assets/code/sequencers/euclidean/00-Euclidean-basic-Serie.pd) patch. This Pure Data patch demonstrates how to generate Euclidean rhythms using a straightforward mathematical formula. 
 
-![Fig. ](/assets/screenshots/sequencers/euclid_00.png)
+![Euclidean rhythm generator patch showing step and hit parameter controls, mathematical formula calculation, and pattern output display for generating evenly distributed rhythmic sequences.](/assets/screenshots/sequencers/euclid_00.png)
 
 #### Patch Overview
 
@@ -740,7 +740,7 @@ The following table summarizes the key objects used in the patch and their roles
 
 This section explains the [Euclidean-Rotation.pd](/assets/code/sequencers/euclidean/Euclidean-Rotation.pd) patch. This Pure Data patch builds on the basic Euclidean rhythm generator by introducing a rotation parameter, allowing you to shift the starting point of the rhythm pattern. This feature is useful for exploring different phase relationships and rhythmic variations without changing the underlying distribution of pulses.
 
-![Fig. ](/assets/screenshots/sequencers/euclid_01.png)
+![Fig. Euclidean rotation generator patch showing enhanced rhythm control with rotation parameter for cyclical pattern shifting and phase exploration.](/assets/screenshots/sequencers/euclid_01.png)
 
 #### Patch Overview
 
@@ -801,7 +801,7 @@ This allows you to experiment with different phase offsets and rhythmic feels.
 
 This section explains the [Euclidean-Accents.pd](/assets/code/sequencers/euclidean/Euclidean-Accents.pd) patch. This Pure Data patch extends the basic Euclidean rhythm generator by adding a second, independent Euclidean pattern to control accents. The result is a two-layer sequencer: one layer for the main rhythm (hits) and another for accentuation, allowing for more expressive and dynamic rhythmic patterns.
 
-![Fig. ](/assets/screenshots/sequencers/euclid_02.png)
+![Euclidean accents generator showing two parallel Euclidean rhythm generators combined to create accented beat patterns with independent control over main rhythm and accent placement.](/assets/screenshots/sequencers/euclid_02.png)
 
 #### Patch Overview
 
@@ -875,7 +875,7 @@ Here, "2" indicates an accented hit, "1" a regular hit, and "0" a rest.
 
 ## Cellular Automata
 
-![Fig. Cellular Automaton](/assets/images/sequencers/cellular-automaton-rule30-1.png)
+![](/assets/images/sequencers/cellular-automaton-rule30-1.png)
 
 Cellular automata are simple machines consisting of cells that update in parallel at discrete time steps. In general, the state of a cell depends on the state of its local neighborhood at the previous time step. The earliest known examples were engineered for specific purposes, such as the two-dimensional cellular automaton constructed by von Neumann in 1951 to model biological self-replication [@brummitt2012]
 
@@ -942,6 +942,8 @@ For Rule 30, the set of rules that governs the automaton's next state is:
 | 6       | 110    | Alive      | 011         |
 | 7       | 111    | Dead       | 000         |
 
+<br>
+
 In the following diagram, the top row shows the state of the central cell (cell *i*) and its two neighboring cells at a given stage, and the bottom row shows the state of the central cell in the next stage.
 
 For example, in the first case of the figure:
@@ -950,7 +952,7 @@ For example, in the first case of the figure:
 -   its two neighbors at that stage are also `[1]` (black),
 -   then the cell's state in the next stage will be `[0]` (white).
 
-![Fig. Rule 30](/assets/images/sequencers/Rule30_Automaton.gif) 
+![Rule 30 cellular automaton evolution displaying binary state transitions and emergent pattern generation from simple neighborhood-based rules.](/assets/images/sequencers/Rule30_Automaton.gif) 
 
 Let's break down the procedure for determining the next state in the 8 combinations:
 
@@ -975,17 +977,19 @@ For example, the least significant bit of 00011110 (the rightmost bit) is 0. Thi
 | 110                 | 0          |
 | 111                 | 0          |
 
+<br>
+
 For example, if the input combination is 000 and the corresponding bit in Rule 30 is 0, then the next state of the central cell will be 0.
 
 Therefore, the rules are not arbitrary but are determined by the binary representation of Rule 30, which specifies the next state of the central cell for each input combination of its neighbors.
 
-![Fig. Rule 30](/assets/images/sequencers/Rule-30--by-Stephen-Wolfram-for-Cellular-Automata.png)
+![Rule 30 transition table illustrating the eight neighborhood patterns and their resulting center cell states for the next generation.](/assets/images/sequencers/Rule-30--by-Stephen-Wolfram-for-Cellular-Automata.png)
 
 ### One-Dimensional Cellular Automata Implementation
 
 his implementation demonstrates how to construct a one-dimensional cellular automaton system that can generate intricate sequences based on elementary rule sets. The patch showcases advanced concepts including rule-based pattern generation, boundary condition handling, state evolution tracking, and data persistence mechanisms.
 
-![Fig.](/assets/screenshots/sequencers/1DCA-Rule-30.png)
+![One-dimensional cellular automaton patch implementing Rule 30 with iteration history display showing the evolution from a single seed cell into complex binary patterns.](/assets/screenshots/sequencers/1DCA-Rule-30.png)
 
 
 ::: {style="width: 50%;"}
@@ -1101,7 +1105,7 @@ They consist of:
 
 ### Case Study: Conway's Game of Life
 
-![Game of life [Source](https://www.artnome.com/news/2020/7/12/the-game-of-life-emergence-in-generative-art)](/assets/images/sequencers/Game_of_Life-1.gif)
+![](/assets/images/sequencers/Game_of_Life-1.gif)
 
 
 The most well known cellular automaton is the Game of Life, a two-dimensional cellular
@@ -1149,16 +1153,18 @@ We can also summarize the rules in a table:
 
 Or summarized as:
 
-0 → 3 live neighbors → 1 1 → \< 2 or \> 3 live neighbors → 0
+0 → 3 live neighbors → 1 1 → \< 2 
+or 
+\> 3 live neighbors → 0
 
 Where 0 represents a dead cell and 1 a live cell.
 
-![Game of life rules [Source](https://the-mvm.github.io/conways-game-of-life.html)](/assets/images/sequencers/GameOfLife-rules.gif)
+![Game of Life rules diagram illustrating cell state transitions based on the number of living neighbors in the Moore neighborhood.](/assets/images/sequencers/GameOfLife-rules.gif)
 
 John Conway's Game of Life is made of an infinite grid of square cells, each of which is alive or dead. The rules below govern the evolution of the system. Every cell has eight neighbors, and all cells update simultaneously as time advances.
 
 
-![Fig. Game of life rules [Source](https://www.quantamagazine.org/maths-game-of-life-reveals-long-sought-repeating-patterns-20240118/)](/assets/images/sequencers/GameOfLife_rules_bw)
+![Conway's Game of Life rule visualization showing the four fundamental rules governing cell evolution: underpopulation, survival, reproduction, and overpopulation based on neighbor count.](/assets/images/sequencers/GameOfLife_rules_bw)
 
 The initial pattern constitutes the system's 'seed'. The first generation is created by applying the above rules simultaneously to each cell in the seed; births and deaths occur simultaneously, and the discrete moment in which this occurs is sometimes called a step. (In other words, each generation is a pure function of the previous one.) The rules continue to be applied repeatedly to create more generations.
 

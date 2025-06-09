@@ -15,7 +15,7 @@ Whether you're an artist exploring new tools, a programmer seeking creative outl
 My name is **Ezequiel Abregú**, and I am a sound artist, composer, multi-instrumentalist, and researcher originally from Buenos Aires, Argentina. My artistic practice encompasses sound recordings, audio installations, performances, sound sculptures, sound design, and compositions for chamber music, choreography, and theater. I am particularly interested in the interplay between music, performance, sound art, live electronics, auditory and visual perception, interactive media, and the application of technology in art.
 
 ::: {style="text-align:center;"}
-![Dr. Ezequiel Abregú](/assets/images/index/eabregu-pic.jpg){width="70%"}
+![Ezequiel Abregú](/assets/images/index/eabregu-pic.jpg){width="70%"}
 :::
 
 I hold a Ph.D. focusing on the relationship between visual and auditory perception in sound art, and a degree in Composition with Electroacoustic Media from the National University of Quilmes (UNQ). My academic career includes teaching positions at several institutions: I am a professor at the University of Quilmes (Computing Applied to Music area), the National University of Arts (Multimedia Arts area), and the University of Tres de Febrero (Electronic Arts area).
