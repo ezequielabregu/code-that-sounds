@@ -17,7 +17,7 @@ Auditory display and sonification are now employed across a wide range of fields
 
 Equally diverse is the set of research disciplines required for successful sonification: physics, acoustics, psychoacoustics, perceptual research, sound engineering, and computer science form the core technical foundations. However, psychology, musicology, cognitive science, linguistics, pedagogy, social sciences, and philosophy are also essential for a comprehensive, multifaceted understanding of the description, technical implementation, usage, training, comprehension, acceptance, evaluation, and ergonomics of auditory displays and sonification in particular.
 
-![Fig.](/assets/images/sonification/sonification-disciplines.png)
+![Multidisciplinary landscape of sonification research encompassing technical, perceptual, and cultural domains essential for effective auditory display design and implementation.](/assets/images/sonification/sonification-disciplines.png)
 
 It is clear that in such an interdisciplinary field, a narrow focus on any single discipline risks “seeing the trees but missing the forest.” As with all interdisciplinary research efforts, auditory display and sonification face significant challenges, ranging from differing theoretical orientations across fields to even the very vocabulary used to describe our work. 
 
@@ -148,9 +148,9 @@ The following links provides an overview of notable sonification artworks, highl
 
 [Sonification Art database by Samuel Van Ransbeeck](https://docs.google.com/spreadsheets/d/1847An-P0Q4D3Wtz45vpvKcreK-qIZAAo2lUCc72LPHY/edit?usp=sharing) - It contains now 256 projects, making it an interesting catalogue for sonification art. Besides adding new works, I also cleaned up some things. 
 
-### Data Humanism: A Visual Manifesto of Giorgia Lupi
+## Data Humanism: A Visual Manifesto of Giorgia Lupi
 
-![Humanism of Data](/assets/images/sonification/datahumanism.jpeg)
+![](/assets/images/sonification/data-humanism-v2.png)
 
 Data is now recognized as one of the foundational pillars of our economy, and the idea that the world is exponentially enriched with data every day has long ceased to be news.
 
@@ -172,7 +172,7 @@ We are ready to question the impersonality of a purely technical approach to dat
 
 Certainly. Here's a refined and academically styled rephrasing of the provided section, maintaining clarity, structure, and alignment with the tone of an academic book:
 
-## Data Humanism and Personal Data
+### Data Humanism and Personal Data
 
 **Data Humanism** is a perspective initially articulated by Giorgia Lupi [@lupi2017], grounded in the belief that meaningful engagement with data necessitates attention to its underlying contexts and the inclusion of subjective perspectives throughout the processes of data collection, analysis, and representation—particularly when the data reflects human experience. Rather than reducing information to mere numbers or abstractions, Data Humanism emphasizes the value of **personalized, context-rich, and narratively driven** interpretations. It advocates for a relationship with data that is not only analytical but also emotional, aesthetic, and reflective [@canossa2022].
 
@@ -198,7 +198,7 @@ Overall, Data Humanism advocates for data representations that embrace **subject
 
 This Pure Data patch represents an innovative approach to biomedical data sonification, transforming electrocardiogram (ECG) readings into audible waveforms. By treating physiological data as audio samples, the patch creates a unique intersection between medical diagnostics and sound synthesis, offering both artistic and analytical possibilities for exploring cardiac rhythms through auditory perception.
 
-![Fig. ](/assets/screenshots/sonification/electrocardiogram.png)
+![Electrocardiogram sonification patch converting physiological data into audio through array storage](/assets/screenshots/sonification/electrocardiogram.png)
 
 ### Patch Overview
 
@@ -299,7 +299,7 @@ This electrocardiogram synthesis patch demonstrates Pure Data's versatility in s
 
 This patch demonstrates an innovative approach to data-driven rhythm generation, where electrocardiogram readings function as temporal control signals for a step sequencer. By interpreting cardiac rhythm data as beat timing information, the patch creates a unique hybrid system that transforms physiological patterns into musical sequences, establishing a direct relationship between biological rhythms and electronic music production.
 
-![Fig. ](/assets/screenshots/sonification/electrocardiogram-stepseq.png)
+![ECG-controlled step sequencer using cardiac rhythm data as timing source for audio sample playback, with counter-based sequential data access and BPM scaling for musical rhythm generation.](/assets/screenshots/sonification/electrocardiogram-stepseq.png)
 
 ### Patch Overview
 
@@ -402,7 +402,7 @@ Digital images contain vast amounts of visual information encoded as pixel data,
 
 The sonification process reveals hidden patterns and textures within images that may not be immediately apparent through visual inspection alone. By treating pixel data as audio samples, we can explore the rhythmic, harmonic, and textural qualities inherent in visual compositions, creating a synesthetic bridge between sight and sound.
 
-![Fig. ](/assets/screenshots/sonification/sonification-rgba.png)
+![Image sonification patch converting RGBA pixel data into audio through channel separation and frequency mapping for cross-modal artistic exploration.](/assets/screenshots/sonification/sonification-rgba.png)
 
 ### Patch Overview
 
@@ -542,7 +542,7 @@ This patch implements a linear scanning sonification system that transforms visu
 
 The scanning process reveals the vertical distribution of visual information within images, where different scan lines capture distinct horizontal slices of the visual content. Each scan point operates independently, creating polyphonic textures that reflect the complexity and variation present in the source image.
 
-![Fig. ](/assets/screenshots/sonification/scan-image.png)
+![Image scanner with configurable scan lines traversing visual content from left to right, converting pixel intensity into frequency-controlled oscillators for polyphonic sonification.](/assets/screenshots/sonification/scan-image.png)
 
 ### Patch Overview
 
@@ -664,7 +664,7 @@ This patch extends the linear image scanning concept to real-time video input, c
 
 The live camera scanner transforms the temporal dimension of video into immediate sonic feedback, where movements, lighting changes, and scene transitions become audible through frequency modulation across multiple scan lines. This creates an interactive relationship between the physical environment captured by the camera and the generated audio landscape.
 
-![Fig. ](/assets/screenshots/sonification/scan-camera.png)
+![Live camera scanner with real-time video processing, dynamic scan line generation, and enhanced controls for contrast adjustment and random scanning patterns.](/assets/screenshots/sonification/scan-camera.png)
 
 ### Patch Overview
 

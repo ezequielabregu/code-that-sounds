@@ -19,7 +19,7 @@ However, it must be noted that musical techniques for managing sound space have 
 In general terms, the spatial dimension of a musical composition can function as the primary expressive and communicative attribute for the listener. For instance, from the very first moment, the acoustic characteristics of a venue—real or virtual—directly affect how we perceive the sonic discourse. This dimension of musical space is further shaped by the placement of sound sources, whether instrumentalists or loudspeakers. A historical precedent for this can be found in the Renaissance period through the use of divided choirs in the Basilica of San Marco in Venice. This stylistic practice, known as antiphonal music, represents a clear antecedent of the deep connection between musical construction and architectural space [@stockhausen1959]. The style of Venetian composers was strongly influenced by the acoustics and architectural features of San Marco, involving spatially separated choirs or instrumental groups performing in alternation.
 
 
-![**Figure 1**: Floor plan of the Basilica of San Marco in Venice (Italy).](/assets/images/space/fig-1-san-marcos.png)
+![Floor plan of the Basilica of San Marco in Venice (Italy).](/assets/images/space/fig-1-san-marcos.png)
 
 
 ### Spatial Distribution and the Evolution of Listening Spaces
@@ -36,7 +36,7 @@ However, the notion of space in electroacoustic music differs significantly from
 
 Loudspeakers in electroacoustic music afford a uniquely flexible means of organizing space as a structural element. The spatial potential enabled by electroacoustic technologies has been, and continues to be, highly significant. With a single device (see Fig. 2), it is possible to transport the listener into a wide range of virtual environments, expanding the scope of musical space beyond the physical limitations of the performance venue. This opens the door to sonic representations of distance, movement, and directionality—factors that can be fully integrated into the musical structure and treated as compositional dimensions in their own right.
 
-![**Figure 2**: Multichannel electroacoustic concert hall.  
+![Multichannel electroacoustic concert hall.  
 ](/assets/images/space/fig-2-multichannel-setup-AI.png)
 
 
@@ -54,7 +54,7 @@ Unlike incidental listening in everyday life, attentive listening in electroacou
 
 By contrast, the auditory perception of distance remains one of the most enigmatic topics in both music and psychophysics. It involves a complex array of cues—many of which are still not fully understood or integrated into compositional practice. As such, distance remains an open and promising field of inquiry for creative and scientific exploration alike [@abregu2012].
 
-![**Figure 3**: Schematic representation of the azimuth, elevation, and distance axes.  
+![Schematic representation of the azimuth, elevation, and distance axes.  
 ](/assets/images/space/fig-3-space-xyz-2.png)
 
 ### The Expanded Spatial Palette of Electroacoustic Music
@@ -200,7 +200,7 @@ $$
 \text{Angle}_{\text{rad}} = \text{Angle}_{\text{deg}} \times \frac{2\pi}{360} = \text{Angle}_{\text{deg}} \times 0.0174533
 $$
 
-![Fig. ](/assets/screenshots/space/intenssity-panning.png){width=50%}
+![Intensity panning implementation with angular control and trigonometric amplitude distribution for stereophonic sound source positioning.](/assets/screenshots/space/intenssity-panning.png){width=50%}
 
 The patch illustrated below simulates a virtual sound source using stereophonic panning. This technique, commonly referred to as *intensity panning*, adjusts the balance between two loudspeakers. The source signa is split into two channels, each multiplied by the cosine and sine of the specified angle (in radians) to distribute the amplitude between the left and right speakers. As we vary the angle between 0° and 90°, the source appears to move along an arc, emulating the listener's perception of spatial position.
 
@@ -344,7 +344,7 @@ $$
 
 To manage both the **angle of lateralization** and the **distance to the source** simultaneously, we use the `slider2d` object from the `ELSE` library. This object provides a two-dimensional matrix that captures mouse pointer movement and returns the corresponding \(x, y\) coordinates.
 
-![Fig. ](/assets/screenshots/space/distance-panning.png){width=80%}
+![Distance panning where increasing distance reduces amplitude signal](/assets/screenshots/space/distance-panning.png){width=80%}
 
 We map the horizontal axis (x) to the angle (0°–90°) and the vertical axis (y) to the distance (1-10). These values are then routed via `[send]` and `[receive]` objects for use throughout the patch. It's crucial to prevent division by zero in distance calculations, so we define the minimum distance as 1—equivalent to the baseline distance between the listener and speakers. If speakers are placed 2 meters away, then a distance of $d = 1$ equals 2 meters in real space, $d = 2$ would correspond to 4 meters, and so on. In this system, **distance is relative to the speaker-listener spacing**.
 
@@ -489,13 +489,13 @@ The patch implements integrated spatial and distance modeling through coordinate
 
 To further enhance the realism of our spatialization, we simulate **air absorption**, which—although minimal at short distances—contributes to the perceptual illusion of depth. As distance increases, high frequencies are attenuated, which we simulate using a **low-pass filter** object`[lop~]`.
 
-![Fig. ](/assets/screenshots/space/distance-panning-lop.png)
+![Enhanced distance modeling with frequency-dependent air absorption through low-pass filtering](/assets/screenshots/space/distance-panning-lop.png)
 
 We control the cutoff frequency of this filter using a `[expr]` object (`[expr (1 - $f1) * 7000 + 1000]`). For example, we can scale a distance range of 1–10 to a cutoff frequency range of 8000–1000 Hz. As the source moves farther away, the filter reduces the brightness of the sound, mimicking atmospheric filtering.
 
 Consider a large environment with significant reverberation—such as a church or garage. When someone speaks nearby, the **direct sound** dominates, and reverberation is minimal. Conversely, at greater distances, the direct signal weakens while reverberation remains relatively constant. This is due to the fact that reverberation is a function of the environment and not as sensitive to the source's location.
 
-![Fig. ](/assets/screenshots/space/distance-panning-lop-reverb.png)
+![Enhanced distance modeling combining amplitude attenuation, low-pass filtering, and dynamic reverberation balance.](/assets/screenshots/space/distance-panning-lop-reverb.png)
 
 To simulate this phenomenon, we introduce a **reverberation chamber** using `[freeverb~]`. The reverb level is controlled via a rotary dial (`[knob]` from the `ELSE` library). By configuring the knob for a low initial setting, we simulate the acoustic behavior where reverberation becomes more prominent as the source moves farther from the listener. As the source approaches, the increased amplitude of the direct signal masks the reverberation, completing our auditory illusion.
 
@@ -620,7 +620,7 @@ The frequency mapping implements realistic atmospheric absorption characteristic
 
 To extend spatial simulation beyond the limitations of stereophony—typically constrained to a 90° field—or to achieve finer localization resolution, the *intensity panning* technique used with two loudspeakers can be generalized to multi-channel systems.
 
-![Fig. ](/assets/screenshots/space/quadra-chowning.png)
+![Chowning quadraphonic spatialization model with lookup table generation, circular interface control, and four-speaker amplitude distribution for 360-degree spatial audio positioning.](/assets/screenshots/space/quadra-chowning.png)
 
 By placing four loudspeakers at the corners of a square, one can simulate a 360° horizontal sound field, allowing for a full circular distribution of a virtual source. Arranging six speakers in a hexagonal layout also provides 360° coverage, with improved localization accuracy. As a general rule, more channels yield higher resolution and spatial definition, though this comes at the cost of increased system complexity. From a practical standpoint, quadraphonic configurations have proven to offer a compelling balance between implementation feasibility and perceptual quality, and have thus gained wide acceptance in spatial sound simulation.
 
