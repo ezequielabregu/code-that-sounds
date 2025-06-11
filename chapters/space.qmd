@@ -186,9 +186,9 @@ $$
 
 This technique forms the basis for further expansion into quadraphonic and multichannel spatialization systems.
 
-## Implementing a Stereo Spatialization in Pure Data
+## Implementing a Stereo Spatialization in Pd
 
-Before diving into the implementation of a stereophonic spatialization system in Pure Data (Pd), it is essential to note that the objects used to compute trigonometric functions such as sine and cosine require the input angle to be expressed in **radians**, not degrees. Recall that one radian is the angle formed when the length of the arc of a circle equals the radius. From this definition, we derive the following equivalences:
+Before diving into the implementation of a stereophonic spatialization system in Pd, it is essential to note that the objects used to compute trigonometric functions such as sine and cosine require the input angle to be expressed in **radians**, not degrees. Recall that one radian is the angle formed when the length of the arc of a circle equals the radius. From this definition, we derive the following equivalences:
 
 - 360° = $2\pi$ radians  
 - 180° = $\pi$ radians  
@@ -204,7 +204,7 @@ $$
 
 The patch illustrated below simulates a virtual sound source using stereophonic panning. This technique, commonly referred to as *intensity panning*, adjusts the balance between two loudspeakers. The source signa is split into two channels, each multiplied by the cosine and sine of the specified angle (in radians) to distribute the amplitude between the left and right speakers. As we vary the angle between 0° and 90°, the source appears to move along an arc, emulating the listener's perception of spatial position.
 
-This Pure Data patch demonstrates the fundamental principles of stereophonic spatialization through intensity panning, implementing the mathematical framework for creating virtual sound source positioning between two speakers. By applying trigonometric amplitude control to left and right audio channels, the patch enables precise localization of monophonic sources within a 90-degree stereo field while maintaining constant total energy output. This approach forms the foundation for understanding spatial audio processing and serves as a building block for more complex multichannel spatialization systems.
+This Pd patch demonstrates the fundamental principles of stereophonic spatialization through intensity panning, implementing the mathematical framework for creating virtual sound source positioning between two speakers. By applying trigonometric amplitude control to left and right audio channels, the patch enables precise localization of monophonic sources within a 90-degree stereo field while maintaining constant total energy output. This approach forms the foundation for understanding spatial audio processing and serves as a building block for more complex multichannel spatialization systems.
 
 The patch provides real-time control over angular positioning through intuitive slider interfaces, allowing users to experience the direct relationship between mathematical spatial calculations and perceptual sound localization. This implementation serves both educational and practical purposes, demonstrating how theoretical acoustic principles translate into functional audio processing tools.
 
@@ -250,7 +250,7 @@ flowchart TD
 
 #### Critical Processing Components
 
-**Degree-to-Radian Conversion**: The multiplication factor `0.0174533` represents the mathematical constant π/180, enabling conversion from user-friendly degree input to the radian values required by Pure Data's trigonometric functions. This conversion ensures precise mathematical calculation while maintaining intuitive user control.
+**Degree-to-Radian Conversion**: The multiplication factor `0.0174533` represents the mathematical constant π/180, enabling conversion from user-friendly degree input to the radian values required by Pd's trigonometric functions. This conversion ensures precise mathematical calculation while maintaining intuitive user control.
 
 **Trigonometric Expression**: The `expr cos($f1) \; sin($f1)` object simultaneously calculates both amplitude coefficients needed for stereophonic positioning. The cosine output controls left channel amplitude, while sine controls right channel amplitude, creating the complementary relationship essential for constant-energy panning.
 
@@ -260,7 +260,7 @@ flowchart TD
 
 The stereophonic intensity panning patch orchestrates a precise mathematical transformation pipeline that converts angular positioning information into spatially positioned audio output through systematic trigonometric processing. This implementation demonstrates how theoretical spatial audio principles translate into practical real-time audio processing systems that maintain both mathematical accuracy and perceptual coherence.
 
-The angle input and preprocessing stage establishes the foundation for spatial positioning through user interface management and mathematical preparation. The horizontal slider (`hsl`) provides intuitive control over the desired angular position, accepting input values in the familiar degree scale from 0° to 90°, where 0° represents full left positioning and 90° represents full right positioning. This degree-based input undergoes immediate conversion to radians through multiplication by the constant 0.0174533 (π/180), transforming the user-friendly angular measurement into the mathematical format required by Pure Data's trigonometric functions. The conversion process ensures that subsequent calculations maintain precision while preserving the intuitive relationship between slider position and spatial location. The radian values flow directly to the trigonometric processing stage, maintaining real-time responsiveness that enables immediate auditory feedback as users adjust the angular positioning control.
+The angle input and preprocessing stage establishes the foundation for spatial positioning through user interface management and mathematical preparation. The horizontal slider (`hsl`) provides intuitive control over the desired angular position, accepting input values in the familiar degree scale from 0° to 90°, where 0° represents full left positioning and 90° represents full right positioning. This degree-based input undergoes immediate conversion to radians through multiplication by the constant 0.0174533 (π/180), transforming the user-friendly angular measurement into the mathematical format required by Pd's trigonometric functions. The conversion process ensures that subsequent calculations maintain precision while preserving the intuitive relationship between slider position and spatial location. The radian values flow directly to the trigonometric processing stage, maintaining real-time responsiveness that enables immediate auditory feedback as users adjust the angular positioning control.
 
 The trigonometric calculation stage represents the mathematical core of the spatialization process, where angular information becomes amplitude control data through sophisticated mathematical processing. The `expr cos($f1) \; sin($f1)` object performs simultaneous calculation of both cosine and sine functions for the input angle, generating the complementary amplitude coefficients essential for stereophonic positioning. The cosine output provides the left channel amplitude coefficient, following the mathematical convention where cos(0°) = 1 and cos(90°) = 0, creating maximum left channel output when the angle is at 0° and minimum output at 90°. Conversely, the sine output generates the right channel amplitude coefficient, where sin(0°) = 0 and sin(90°) = 1, producing the inverse relationship necessary for right channel control. This mathematical relationship ensures that the fundamental trigonometric identity sin²(θ) + cos²(θ) = 1 is preserved, maintaining constant total energy across the stereo field regardless of angular position.
 
@@ -348,7 +348,7 @@ To manage both the **angle of lateralization** and the **distance to the source*
 
 We map the horizontal axis (x) to the angle (0°–90°) and the vertical axis (y) to the distance (1-10). These values are then routed via `[send]` and `[receive]` objects for use throughout the patch. It's crucial to prevent division by zero in distance calculations, so we define the minimum distance as 1—equivalent to the baseline distance between the listener and speakers. If speakers are placed 2 meters away, then a distance of $d = 1$ equals 2 meters in real space, $d = 2$ would correspond to 4 meters, and so on. In this system, **distance is relative to the speaker-listener spacing**.
 
-This Pure Data patch extends the fundamental stereophonic panning system by introducing interactive two-dimensional spatial control through a visual interface. By combining angular positioning with distance modeling, the patch creates a more sophisticated spatialization system that simulates both the horizontal positioning and depth perception of virtual sound sources. The implementation demonstrates how distance affects amplitude through inverse-square law approximations while maintaining the trigonometric relationships essential for accurate stereo positioning.
+This Pd patch extends the fundamental stereophonic panning system by introducing interactive two-dimensional spatial control through a visual interface. By combining angular positioning with distance modeling, the patch creates a more sophisticated spatialization system that simulates both the horizontal positioning and depth perception of virtual sound sources. The implementation demonstrates how distance affects amplitude through inverse-square law approximations while maintaining the trigonometric relationships essential for accurate stereo positioning.
 
 The patch integrates real-time visual control through a 2D slider interface that enables intuitive manipulation of both angular position and source distance simultaneously. This approach provides immediate tactile feedback for spatial audio composition while implementing realistic amplitude scaling based on distance relationships that mirror natural acoustic behavior.
 
@@ -362,7 +362,7 @@ The interactive distance panning system implements a comprehensive spatial audio
 4. **Angular Processing**: Trigonometric calculation for stereophonic positioning
 5. **Audio Synthesis and Output**: Signal generation with spatial and distance-based amplitude control
 
-The patch demonstrates advanced Pure Data interface design by combining multiple control paradigms within a single cohesive system that maintains both mathematical precision and intuitive user interaction.
+The patch demonstrates advanced Pd interface design by combining multiple control paradigms within a single cohesive system that maintains both mathematical precision and intuitive user interaction.
 
 ```{mermaid}
 flowchart TD
@@ -679,7 +679,7 @@ where **PRV** is an empirical parameter representing the **reverberation percent
 
 To increase realism, **four independent reverberation units** are used—one for each loudspeaker—ensuring spatial decorrelation and more convincing immersion.
 
-This model not only exemplifies how mathematical reasoning and spatial design converge in sound synthesis, but also stands as a landmark in algorithmic composition and immersive audio. Through relatively simple mathematical operations and efficient data structures (such as phase-offset lookup tables), it offers a powerful foundation for dynamic spatial control in real-time systems such as Pure Data.
+This model not only exemplifies how mathematical reasoning and spatial design converge in sound synthesis, but also stands as a landmark in algorithmic composition and immersive audio. Through relatively simple mathematical operations and efficient data structures (such as phase-offset lookup tables), it offers a powerful foundation for dynamic spatial control in real-time systems such as Pd.
 
 Here's how to think about the solution:
 
@@ -718,7 +718,7 @@ Convert (x, y) to radius using **Pythagorean theorem**, then scale:
 
 ### Patch Overview
 
-This Pure Data patch implements John Chowning's groundbreaking quadraphonic spatialization model, demonstrating how mathematical algorithms can create convincing 360-degree spatial audio movement using four strategically positioned speakers. The implementation features a predefined lookup table, distance-based amplitude scaling, and sophisticated reverberation modeling that simulates both local and global acoustic environments. This approach enables precise control over virtual sound source movement while maintaining perceptual coherence across the complete circular sound field.
+This Pd patch implements John Chowning's groundbreaking quadraphonic spatialization model, demonstrating how mathematical algorithms can create convincing 360-degree spatial audio movement using four strategically positioned speakers. The implementation features a predefined lookup table, distance-based amplitude scaling, and sophisticated reverberation modeling that simulates both local and global acoustic environments. This approach enables precise control over virtual sound source movement while maintaining perceptual coherence across the complete circular sound field.
 
 The patch demonstrates the practical application of Chowning's theoretical framework through real-time interface controls that manage azimuth positioning, distance simulation, and reverberation balance. By utilizing lookup tables and phase-offset techniques, the system achieves smooth spatial transitions while minimizing computational overhead, making it suitable for live performance and interactive applications.
 

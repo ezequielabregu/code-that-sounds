@@ -1,6 +1,6 @@
 # Sequencing
 
-In this chapter, we will explore the concept of sequencers and how they can be implemented in Pure Data. We will cover various types of sequencers, including step sequencers, random sequencers, and algorithmic composition techniques, with practical examples and implementations.
+In this chapter, we will explore the concept of sequencers and how they can be implemented in Pd. We will cover various types of sequencers, including step sequencers, random sequencers, and algorithmic composition techniques, with practical examples and implementations.
 
 ## Arrays and Sequencers
 
@@ -54,9 +54,9 @@ This implementation demonstrates how to create a basic 8-step MIDI sequencer tha
 
 ### Patch Overview
 
-The 8-step sequencer patch implements a classic step-based sequencing paradigm where musical events are organized into discrete time slots. The system operates by maintaining an internal counter that advances through eight sequential positions, with each position corresponding to a MIDI note value stored in an array. The sequencer provides real-time tempo control through a BPM slider interface and uses Pure Data's built-in MIDI capabilities to output note events that can be routed to software synthesizers or external MIDI devices.
+The 8-step sequencer patch implements a classic step-based sequencing paradigm where musical events are organized into discrete time slots. The system operates by maintaining an internal counter that advances through eight sequential positions, with each position corresponding to a MIDI note value stored in an array. The sequencer provides real-time tempo control through a BPM slider interface and uses Pd's built-in MIDI capabilities to output note events that can be routed to software synthesizers or external MIDI devices.
 
-The patch architecture follows a linear signal flow pattern that begins with user control inputs and culminates in MIDI note output. The timing engine uses Pure Data's `metro` object as the primary clock source, generating regular pulses that drive the step advancement mechanism. Each pulse triggers a counter increment operation, which is processed through modulo arithmetic to ensure the sequence loops seamlessly after reaching the eighth step. The current step index is then used to retrieve the corresponding MIDI note value from a pre-populated array, which is subsequently formatted into proper MIDI messages and transmitted through the system's MIDI output infrastructure.
+The patch architecture follows a linear signal flow pattern that begins with user control inputs and culminates in MIDI note output. The timing engine uses Pd's `metro` object as the primary clock source, generating regular pulses that drive the step advancement mechanism. Each pulse triggers a counter increment operation, which is processed through modulo arithmetic to ensure the sequence loops seamlessly after reaching the eighth step. The current step index is then used to retrieve the corresponding MIDI note value from a pre-populated array, which is subsequently formatted into proper MIDI messages and transmitted through the system's MIDI output infrastructure.
 
 The visual interface provides immediate feedback on the sequencer's operation through numeric displays that show both the current step position and the MIDI note value being played. The tempo control utilizes a mathematical conversion from beats per minute to milliseconds, allowing users to adjust the playback speed in musically meaningful units while maintaining precise timing accuracy.
 
@@ -124,7 +124,7 @@ The random step sequencer represents an evolution of the basic sequential approa
 
 The random step sequencer patch builds upon the foundational concepts of the basic 8-step sequencer while introducing a crucial modification: the step advancement mechanism is replaced with a random selection process. Rather than incrementing through array indices sequentially, the system generates random index values that point to different positions within the stored note sequence. This approach maintains the same timing control, array-based storage, and MIDI output capabilities as the sequential version, but produces entirely different musical results due to the non-linear access pattern.
 
-The architecture preserves the linear signal flow from user controls to MIDI output, but introduces a random number generator at the critical junction where step advancement occurs. The timing engine continues to use Pure Data's `metro` object as the primary clock source, but each timing pulse now triggers a random selection rather than a predictable increment. This modification transforms the sequencer from a deterministic system into a probabilistic one, where the same stored sequence can produce infinite variations in playback order.
+The architecture preserves the linear signal flow from user controls to MIDI output, but introduces a random number generator at the critical junction where step advancement occurs. The timing engine continues to use Pd's `metro` object as the primary clock source, but each timing pulse now triggers a random selection rather than a predictable increment. This modification transforms the sequencer from a deterministic system into a probabilistic one, where the same stored sequence can produce infinite variations in playback order.
 
 The interface maintains the same visual feedback mechanisms as the sequential version, displaying both the randomly selected step index and the corresponding MIDI note value. The tempo control system remains unchanged, allowing users to adjust playback speed while experiencing the unpredictable note selection patterns that emerge from the randomization process.
 
@@ -219,7 +219,7 @@ When the separation between the notes played by both pianos reaches a fraction o
 4. Repeat the cycle indefinitely to create a continuous and evolving rhythmic phasing effect.
 ```
 
-### Piano Phase Implementation in PD 
+### Piano Phase Implementation in Pd 
 
 ![Fig. Piano Phase patch demonstrating phasing process through two sequencers with different metro intervals, visualized with hradio step indicators and MIDI output for each voice.](/assets/screenshots/sequencers/piano-phase.png)
 
@@ -288,7 +288,7 @@ Two identical sequences are played in parallel. Slightly different tempos cause 
 
 ## Random Melody Generator
 
-This chapter provides a step-by-step explanation of the [music-scale-B.pd](/assets/code/sequencers/music-scale-B.pd) Pure Data patch. The patch demonstrates how to generate a melody using a musical scale, store it in an array, and play it back using MIDI.
+This chapter provides a step-by-step explanation of the [music-scale-B.pd](/assets/code/sequencers/music-scale-B.pd) Pd patch. The patch demonstrates how to generate a melody using a musical scale, store it in an array, and play it back using MIDI.
 
 ![Fig. Random melody generator patch showing scale definition, algorithmic note selection, array storage, and MIDI playback system for creating melodic sequences from predefined harmonic material.](/assets/screenshots/sequencers/random_melody.png)
 
@@ -595,9 +595,9 @@ Suppose we have 17 pulses and want to evenly distribute 7 beats over them.
 
  
 
-### Implementation in Pure Data - Euclidean sequencer
+### Implementation in Pd - Euclidean sequencer
 
-The following code implements the Euclidean algorithm in Pure Data to generate a Euclidean rhythm. The algorithm is based on the mathematical formula:
+The following code implements the Euclidean algorithm in Pd to generate a Euclidean rhythm. The algorithm is based on the mathematical formula:
 
 ```default
 (index * hits ) % steps
@@ -640,7 +640,7 @@ This process, while more computationally demanding and conceptually complex, pro
 
 #### Comparing the Formula and the Algorithm
 
-The core difference between the two approaches lies in how they arrive at the rhythmic pattern. The mathematical formula provides a direct, position-based method for determining beat placement. It does not take into account the context of previous or future beats—it treats each step in isolation. This is why it is so fast and well-suited for real-time applications, such as live audio processing in Pure Data or other creative coding environments.
+The core difference between the two approaches lies in how they arrive at the rhythmic pattern. The mathematical formula provides a direct, position-based method for determining beat placement. It does not take into account the context of previous or future beats—it treats each step in isolation. This is why it is so fast and well-suited for real-time applications, such as live audio processing in Pd or other creative coding environments.
 
 The Bjorklund algorithm, on the other hand, is concerned with the global structure of the pattern. It ensures that beats are distributed with maximal evenness and follows a well-defined sequence of operations that are both recursive and stateful. This means it needs to store and manipulate arrays of data to arrive at the final rhythm. The computational complexity of this algorithm is higher, and it is not as straightforward to implement, but the results are musically and mathematically robust.
 
@@ -668,7 +668,7 @@ In summary, the formula `(index * hits) % steps < hits` offers a pragmatic and c
 
 ### Euclidean Rhythm Generator
 
-This section provides a detailed explanation of the [Euclidean-basic-Serie.pd](/assets/code/sequencers/euclidean/00-Euclidean-basic-Serie.pd) patch. This Pure Data patch demonstrates how to generate Euclidean rhythms using a straightforward mathematical formula. 
+This section provides a detailed explanation of the [Euclidean-basic-Serie.pd](/assets/code/sequencers/euclidean/00-Euclidean-basic-Serie.pd) patch. This Pd patch demonstrates how to generate Euclidean rhythms using a straightforward mathematical formula. 
 
 ![Euclidean rhythm generator patch showing step and hit parameter controls, mathematical formula calculation, and pattern output display for generating evenly distributed rhythmic sequences.](/assets/screenshots/sequencers/euclid_00.png)
 
@@ -738,7 +738,7 @@ The following table summarizes the key objects used in the patch and their roles
 
 ### Euclidean Rotation Generator
 
-This section explains the [Euclidean-Rotation.pd](/assets/code/sequencers/euclidean/Euclidean-Rotation.pd) patch. This Pure Data patch builds on the basic Euclidean rhythm generator by introducing a rotation parameter, allowing you to shift the starting point of the rhythm pattern. This feature is useful for exploring different phase relationships and rhythmic variations without changing the underlying distribution of pulses.
+This section explains the [Euclidean-Rotation.pd](/assets/code/sequencers/euclidean/Euclidean-Rotation.pd) patch. This Pd patch builds on the basic Euclidean rhythm generator by introducing a rotation parameter, allowing you to shift the starting point of the rhythm pattern. This feature is useful for exploring different phase relationships and rhythmic variations without changing the underlying distribution of pulses.
 
 ![Fig. Euclidean rotation generator patch showing enhanced rhythm control with rotation parameter for cyclical pattern shifting and phase exploration.](/assets/screenshots/sequencers/euclid_01.png)
 
@@ -799,7 +799,7 @@ This allows you to experiment with different phase offsets and rhythmic feels.
 
 ### Euclidean Accents Generator
 
-This section explains the [Euclidean-Accents.pd](/assets/code/sequencers/euclidean/Euclidean-Accents.pd) patch. This Pure Data patch extends the basic Euclidean rhythm generator by adding a second, independent Euclidean pattern to control accents. The result is a two-layer sequencer: one layer for the main rhythm (hits) and another for accentuation, allowing for more expressive and dynamic rhythmic patterns.
+This section explains the [Euclidean-Accents.pd](/assets/code/sequencers/euclidean/Euclidean-Accents.pd) patch. This Pd patch extends the basic Euclidean rhythm generator by adding a second, independent Euclidean pattern to control accents. The result is a two-layer sequencer: one layer for the main rhythm (hits) and another for accentuation, allowing for more expressive and dynamic rhythmic patterns.
 
 ![Euclidean accents generator showing two parallel Euclidean rhythm generators combined to create accented beat patterns with independent control over main rhythm and accent placement.](/assets/screenshots/sequencers/euclid_02.png)
 

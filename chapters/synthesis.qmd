@@ -4,7 +4,7 @@
 
 Sound synthesis is the art and science of producing sound, whether by transforming existing recordings or by generating new audio signals electronically or mechanically. It can be grounded in mathematics, physics, or even biology, and it emerges at the intersection of creative expression and technical knowledge. As both a musical and computational process, synthesis enables the shaping of sound with precision and imagination, allowing for the creation of sonic textures that range from the familiar to the entirely new.
 
-At its core, synthesis is a process of construction—a method for bringing elements together into a cohesive whole. This notion of "making" is essential, as it signals not just assembly, but intention. Synthesis is inherently creative. While the tools and technologies involved—oscillators, filters, software environments like Pure Data—are increasingly accessible and powerful, they remain just that: tools. It is the skill, intuition, and aesthetic sensibility of the artist or programmer that gives them meaning.
+At its core, synthesis is a process of construction—a method for bringing elements together into a cohesive whole. This notion of "making" is essential, as it signals not just assembly, but intention. Synthesis is inherently creative. While the tools and technologies involved—oscillators, filters, software environments like Pd—are increasingly accessible and powerful, they remain just that: tools. It is the skill, intuition, and aesthetic sensibility of the artist or programmer that gives them meaning.
 
 Modern tools have made sound synthesis more available than ever. From high-fidelity sample libraries to algorithmic engines capable of real-time manipulation, the technological barrier has lowered dramatically. But while the means have changed, the importance of the human element remains. Without creative intention, sound synthesis risks becoming a purely mechanical operation.
 
@@ -16,7 +16,7 @@ Throughout this chapter, we will return often to the idea of synthesis not just 
 
 ## Oscillatory Movements
 
-Oscillatory motion will be analyzed in detail—not only in terms of technical implementation but also through its creative and conceptual applications. Using example patches provided in both Pure Data and VCV Rack, we will explore how oscillation becomes an expressive tool in interactive works and live sound experiments. This approach will form the core of the module’s practical component, where students are encouraged to adapt the exercises to their own interests: whether by replicating existing works, developing new compositions, or analyzing the results of comparative experiments between different oscillators and their spectral behaviors.
+Oscillatory motion will be analyzed in detail—not only in terms of technical implementation but also through its creative and conceptual applications. Using example patches provided in both Pd and VCV Rack, we will explore how oscillation becomes an expressive tool in interactive works and live sound experiments. This approach will form the core of the module’s practical component, where students are encouraged to adapt the exercises to their own interests: whether by replicating existing works, developing new compositions, or analyzing the results of comparative experiments between different oscillators and their spectral behaviors.
 
 ### Between Technique and Aesthetics
 
@@ -84,7 +84,7 @@ In the resulting graph, amplitude is on the vertical axis and angle on the horiz
 
 ![Sine wave as the fundamental periodic waveform](/assets/screenshots/synthesis/vco/sine.gif)
 
-Pure Data's native `[sin]` and `[cos]` objects take angle values in radians (0 to 2π). However, the audio object `[cos~]` uses a linear range from 0 to 1 to represent a full cycle. The ELSE library provides the `[pi]` object, which outputs the constant π. This can be stored in a `[value]` object and accessed within `[expr]`. To convert a linear 0–1 range into radians, multiply it by `2 * pi`. Then, `[cos]` and `[sin]` yield amplitude values accordingly.
+Pd's native `[sin]` and `[cos]` objects take angle values in radians (0 to 2π). However, the audio object `[cos~]` uses a linear range from 0 to 1 to represent a full cycle. The ELSE library provides the `[pi]` object, which outputs the constant π. This can be stored in a `[value]` object and accessed within `[expr]`. To convert a linear 0–1 range into radians, multiply it by `2 * pi`. Then, `[cos]` and `[sin]` yield amplitude values accordingly.
 
 ::: {style="text-align:center;"}
 ![Sine and cosine oscillators converting linear phase input to trigonometric waveform output](/assets/screenshots/synthesis/vco/sine-cosine.gif){width="70%"}
@@ -155,7 +155,7 @@ A square wave contains only odd harmonics and produces a hollow, synthetic sound
 
 ### Waveshapers
 
-This section focuses on creating oscillators in Pure Data (Pd) using the `[phasor~]` object. The only true oscillator in Pd Vanilla is `[osc~]`, a sine wave oscillator. Even standard waveforms must be built manually.
+This section focuses on creating oscillators in Pd using the `[phasor~]` object. The only true oscillator in Pd Vanilla is `[osc~]`, a sine wave oscillator. Even standard waveforms must be built manually.
 
 As mentioned earlier, `[osc~]` is essentially `[phasor~]` connected to `[cos~]`. The `[phasor~]` object outputs a 0–1 ramp, functionally similar to a sawtooth wave with half the amplitude and an offset. `[cos~]` multiplies this ramp by 2π and computes its cosine. The result is a sine wave oscillator.
 
@@ -323,7 +323,7 @@ One common configuration is the ADSR envelope—Attack, Decay, Sustain, Release�
 
 Additive synthesis provides a powerful framework for sound construction, especially when paired with modern computational tools. It invites a deep understanding of harmonic behavior and spectral composition, allowing composers and designers to sculpt timbre with surgical precision—layer by layer, sine by sine.
 
-The following example created by Miller Puckette [@puckette2007] encapsulate an ADSR envelope generator within a reusable Pure Data (Pd) abstraction named `adsr`. This design enables easy replication of the envelope generator and flexible parameter control, either through creation arguments or real-time updates via control inlets.
+The following example created by Miller Puckette [@puckette2007] encapsulate an ADSR envelope generator within a reusable Pd  abstraction named `adsr`. This design enables easy replication of the envelope generator and flexible parameter control, either through creation arguments or real-time updates via control inlets.
 
 The abstraction accepts five creation arguments, corresponding respectively to the:
 
@@ -357,7 +357,7 @@ This flexibility enables the abstraction to support a variety of amplitude modul
 
 ### Twenty-Oscillator Harmonic System
 
-This Pure Data patch implements a comprehensive additive synthesis engine that demonstrates the fundamental principles of harmonic spectrum construction through the controlled combination of multiple sine wave oscillators. The system employs twenty independent oscillator modules, each operating at harmonically related frequencies with individual amplitude envelope control, creating a powerful platform for exploring the timbral possibilities of additive synthesis while maintaining real-time performance capabilities.
+This Pd patch implements a comprehensive additive synthesis engine that demonstrates the fundamental principles of harmonic spectrum construction through the controlled combination of multiple sine wave oscillators. The system employs twenty independent oscillator modules, each operating at harmonically related frequencies with individual amplitude envelope control, creating a powerful platform for exploring the timbral possibilities of additive synthesis while maintaining real-time performance capabilities.
 
 The patch architecture emphasizes modular design through the use of custom abstractions, enabling scalable harmonic control while providing educational insight into the mathematical relationships that govern harmonic series construction. By implementing individual envelope generators for each partial, the system demonstrates how complex timbral evolution can be achieved through coordinated amplitude control across multiple frequency components.
 
@@ -404,7 +404,7 @@ flowchart TD
 
 **Global Parameter Distribution**: The send/receive system (`s freq`, `s timeScale`) ensures synchronized parameter updates across all oscillator instances while maintaining modular architecture that supports easy scaling to different numbers of partials.
 
-**Audio Signal Aggregation**: The `catch~ audio` object employs Pure Data's audio signal collection mechanism to sum all oscillator outputs without explicit connection cables, demonstrating efficient signal routing in complex patches.
+**Audio Signal Aggregation**: The `catch~ audio` object employs Pd's audio signal collection mechanism to sum all oscillator outputs without explicit connection cables, demonstrating efficient signal routing in complex patches.
 
 #### Data Flow
 
@@ -481,7 +481,7 @@ The time scaling system provides proportional control over envelope durations:
 
 ### Additive Clone: Scalable Harmonic Synthesis
 
-This Pure Data patch demonstrates dynamic additive synthesis using Pure Data's `clone` object to create a scalable system of harmonic oscillators. Unlike fixed multi-oscillator systems, this implementation allows real-time adjustment of the number of active partials, from 1 to 20, while maintaining proper amplitude scaling to prevent clipping. The patch showcases advanced Pure Data programming techniques including dynamic object creation, parameter distribution, and automatic scaling based on psychoacoustic principles.
+This Pd patch demonstrates dynamic additive synthesis using Pd's `clone` object to create a scalable system of harmonic oscillators. Unlike fixed multi-oscillator systems, this implementation allows real-time adjustment of the number of active partials, from 1 to 20, while maintaining proper amplitude scaling to prevent clipping. The patch showcases advanced Pd programming techniques including dynamic object creation, parameter distribution, and automatic scaling based on psychoacoustic principles.
 
 The system emphasizes efficiency and modularity by using identical `harmonic` abstractions that receive initialization parameters and operate independently. This approach enables exploration of how partial count affects timbral complexity while demonstrating the relationship between harmonic density and perceived loudness.
 
@@ -533,13 +533,13 @@ flowchart TD
 
 #### Data Flow
 
-The additive clone patch orchestrates a sophisticated dynamic synthesis system that adapts the number of active harmonic oscillators in real-time while maintaining proper amplitude relationships and preventing audio clipping. This implementation demonstrates how Pure Data's clone object can be combined with algorithmic parameter generation to create scalable synthesis systems that remain musically coherent across different levels of harmonic complexity.
+The additive clone patch orchestrates a sophisticated dynamic synthesis system that adapts the number of active harmonic oscillators in real-time while maintaining proper amplitude relationships and preventing audio clipping. This implementation demonstrates how Pd's clone object can be combined with algorithmic parameter generation to create scalable synthesis systems that remain musically coherent across different levels of harmonic complexity.
 
 The partial count control stage establishes the foundation for dynamic synthesis through user interface management that directly controls system complexity. The hradio interface enables selection of partial counts from 1 to 20, with each selection triggering a complete reconfiguration of the synthesis system. The selected value propagates through two parallel pathways: immediate distribution via the `s n-partials` send system that informs all existing harmonic instances of the new partial count, and initiation of the parameter generation sequence that calculates appropriate settings for the requested number of oscillators. This dual distribution ensures that both the scaling calculations within individual harmonics and the overall system configuration remain synchronized as users adjust the synthesis complexity in real-time.
 
 The algorithmic parameter generation stage transforms the simple partial count selection into comprehensive initialization data for each harmonic oscillator through systematic mathematical processing. The `until` object creates an iteration loop that executes the specified number of times, generating unique parameter sets for each harmonic instance. During each iteration, the counter value undergoes processing through the `mod` object, which provides frequency multiplier values that cycle through a predetermined sequence, enabling harmonic relationships that extend beyond simple integer multiples if desired. The counter value also serves directly as the harmonic number identifier, while the fundamental frequency received through `r freq` provides the base frequency reference. These three values combine in the `pack f f f` object to create complete initialization messages that contain all information necessary for each harmonic instance to configure its frequency relationships and amplitude characteristics.
 
-The dynamic instance management stage demonstrates Pure Data's advanced object creation capabilities through sophisticated implementation of the clone system that adapts to changing synthesis requirements. When the resize message reaches the `clone harmonic` object, it dynamically adjusts the number of active harmonic instances, creating new oscillators when the count increases or deactivating instances when the count decreases. Each parameter pack message generated by the algorithmic calculation stage initializes a harmonic instance with its specific frequency multiplier and amplitude coefficient. The clone system manages this distribution automatically, ensuring that each active instance receives appropriate initialization data while maintaining efficient resource utilization. This dynamic approach enables the system to scale from simple single-oscillator tones to complex 20-partial harmonic spectra without requiring manual patch reconfiguration or predetermined oscillator allocation.
+The dynamic instance management stage demonstrates Pd's advanced object creation capabilities through sophisticated implementation of the clone system that adapts to changing synthesis requirements. When the resize message reaches the `clone harmonic` object, it dynamically adjusts the number of active harmonic instances, creating new oscillators when the count increases or deactivating instances when the count decreases. Each parameter pack message generated by the algorithmic calculation stage initializes a harmonic instance with its specific frequency multiplier and amplitude coefficient. The clone system manages this distribution automatically, ensuring that each active instance receives appropriate initialization data while maintaining efficient resource utilization. This dynamic approach enables the system to scale from simple single-oscillator tones to complex 20-partial harmonic spectra without requiring manual patch reconfiguration or predetermined oscillator allocation.
 
 The individual harmonic processing stage occurs within each `harmonic` abstraction instance, where distributed parameters control sophisticated oscillator and envelope systems enhanced with automatic amplitude scaling. Each harmonic receives its frequency multiplier through the initialization message and combines it with the global fundamental frequency to generate its specific harmonic frequency. The critical innovation within each harmonic involves the `expr~ pow($f2, -0.6)` calculation that applies amplitude scaling based on the total number of active partials received through the `r n-partials` system. This scaling factor implements psychoacoustic research that shows how human loudness perception requires amplitude reduction as the number of harmonic components increases, preventing the perception of increased loudness as synthesis complexity grows. The power law exponent of -0.6 provides a compromise between mathematical precision and musical utility, ensuring that 20-partial synthesis produces manageable amplitude levels while maintaining sufficient dynamic range for musical expression.
 
@@ -593,9 +593,9 @@ The psychoacoustic amplitude scaling prevents clipping while maintaining percept
 
 ### Spectral Melody
 
-This patch implements an additive synthesis system that demonstrates how harmonic partial generation can be controlled through algorithmic distribution and temporal sequencing. By utilizing Pure Data's `clone` object to create eight instances of a `partial` abstraction, the system generates complex harmonic spectra where each partial operates with independent amplitude envelopes and frequency relationships. The patch emphasizes real-time control over both spectral content and temporal evolution, creating a platform for exploring the relationship between harmonic structure and melodic perception.
+This patch implements an additive synthesis system that demonstrates how harmonic partial generation can be controlled through algorithmic distribution and temporal sequencing. By utilizing Pd's `clone` object to create eight instances of a `partial` abstraction, the system generates complex harmonic spectra where each partial operates with independent amplitude envelopes and frequency relationships. The patch emphasizes real-time control over both spectral content and temporal evolution, creating a platform for exploring the relationship between harmonic structure and melodic perception.
 
-The implementation showcases advanced Pure Data programming techniques including dynamic object creation, parameter distribution through send/receive networks, and sophisticated envelope generation that enables complex spectral animation. By combining systematic harmonic relationships with stochastic envelope timing, the patch creates evolving textures that bridge the gap between traditional additive synthesis and contemporary algorithmic composition.
+The implementation showcases advanced Pd programming techniques including dynamic object creation, parameter distribution through send/receive networks, and sophisticated envelope generation that enables complex spectral animation. By combining systematic harmonic relationships with stochastic envelope timing, the patch creates evolving textures that bridge the gap between traditional additive synthesis and contemporary algorithmic composition.
 
 ![Spectral melody generator using clone object, mathematical amplitude scaling, and randomized envelope timing for complex harmonic evolution.](/assets/screenshots/synthesis/additive/spectrum-melody.png)
 
@@ -649,17 +649,17 @@ flowchart TD
 
 #### Data Flow
 
-The spectral melody patch implement an algorithmic synthesis process that transforms simple user parameters into complex harmonic spectra through systematic mathematical calculations and dynamic object instantiation. This implementation demonstrates how Pure Data's cloning capabilities can be combined with algorithmic parameter generation to create scalable additive synthesis systems that maintain both mathematical precision and musical expressivity.
+The spectral melody patch implement an algorithmic synthesis process that transforms simple user parameters into complex harmonic spectra through systematic mathematical calculations and dynamic object instantiation. This implementation demonstrates how Pd's cloning capabilities can be combined with algorithmic parameter generation to create scalable additive synthesis systems that maintain both mathematical precision and musical expressivity.
 
 The parameter initialization and distribution stage establishes the foundation for the entire synthesis process through coordinated management of fundamental frequency and timing parameters. When users adjust the frequency slider, the new value propagates through the `s root-freq` send object to all active partial instances, ensuring that harmonic relationships remain mathematically correct as the fundamental frequency changes. The duration control system operates in parallel, with the time slider feeding the `s total-time` distribution network that coordinates envelope timing across all eight partials. The bang trigger initiates the algorithmic calculation sequence that generates the specific parameters needed for each partial instance, creating a synchronized parameter update system that maintains harmonic coherence while enabling real-time musical control. This distribution architecture ensures that all synthesis components receive updated parameters simultaneously, preventing temporal misalignment that could compromise the spectral integrity of the additive synthesis process.
 
 The algorithmic parameter generation stage represents the mathematical core of the system, where simple counting operations become sophisticated harmonic calculations through coordinated processing chains. The `until` object creates an iteration loop that executes eight times, with each iteration generating the specific parameters needed for one partial instance. During each iteration, the counter value undergoes multiple simultaneous calculations: direct passage as the harmonic number, incrementation by one to create the frequency multiplier, and processing through the amplitude calculation expression `(8 - $f1)/8` to generate amplitude coefficients that follow natural harmonic decay patterns. This mathematical approach ensures that the first partial operates as the fundamental with maximum amplitude, while subsequent partials represent increasingly higher harmonics with proportionally reduced amplitudes. The `pack f f f` object collects these three calculated values into a unified parameter message that contains all information necessary for initializing each partial instance with its unique harmonic characteristics.
 
-The dynamic synthesis instantiation stage demonstrates Pure Data's advanced object creation capabilities through the sophisticated implementation of the `clone partial 8` system. Each parameter pack message generated by the algorithmic calculation stage triggers the creation and initialization of a partial instance with specific harmonic characteristics. The clone object manages eight independent instances of the `partial` abstraction, distributing the parameter messages to initialize each instance with its unique harmonic number, frequency multiplier, and amplitude coefficient. This distribution process creates a parallel processing architecture where eight independent synthesis units operate simultaneously, each contributing a specific harmonic component to the overall spectral composition. The modular design enables easy scaling to different numbers of partials by simply modifying the clone argument, demonstrating the flexibility inherent in this approach to additive synthesis system design.
+The dynamic synthesis instantiation stage demonstrates Pd's advanced object creation capabilities through the sophisticated implementation of the `clone partial 8` system. Each parameter pack message generated by the algorithmic calculation stage triggers the creation and initialization of a partial instance with specific harmonic characteristics. The clone object manages eight independent instances of the `partial` abstraction, distributing the parameter messages to initialize each instance with its unique harmonic number, frequency multiplier, and amplitude coefficient. This distribution process creates a parallel processing architecture where eight independent synthesis units operate simultaneously, each contributing a specific harmonic component to the overall spectral composition. The modular design enables easy scaling to different numbers of partials by simply modifying the clone argument, demonstrating the flexibility inherent in this approach to additive synthesis system design.
 
 The individual partial processing stage occurs within each `partial` abstraction instance, where the distributed parameters control sophisticated oscillator and envelope systems that generate the actual harmonic content. Each partial receives the global root frequency through the receive system and multiplies it by its assigned frequency multiplier to generate its specific harmonic frequency. The amplitude coefficient controls the maximum level for that partial's envelope system, while the total time parameter influences the temporal characteristics of the amplitude envelope. Within each partial, stochastic processes introduce controlled randomization into the envelope timing, creating complex temporal relationships between different harmonics that evolve organically over time. This combination of deterministic harmonic relationships with stochastic temporal control enables the system to generate spectra that maintain harmonic coherence while exhibiting natural variation and evolution that prevents static or mechanical sonic characteristics.
 
-The signal collection and output coordination stage aggregates the eight independent audio streams into a unified spectral composition through Pure Data's efficient audio signal routing system. Each partial instance employs a `throw~ audio` object that sends its processed audio signal to the global collection point implemented by the `catch~ audio` object in the main patch. This signal routing approach eliminates the need for complex cable connections while maintaining efficient audio summing that preserves the amplitude relationships established during the parameter calculation stage. The collected audio signal represents the complete harmonic spectrum generated by all eight partials, with the spectral content and temporal evolution determined by the interaction between the algorithmic parameter calculations and the stochastic processes operating within each individual partial instance.
+The signal collection and output coordination stage aggregates the eight independent audio streams into a unified spectral composition through Pd's efficient audio signal routing system. Each partial instance employs a `throw~ audio` object that sends its processed audio signal to the global collection point implemented by the `catch~ audio` object in the main patch. This signal routing approach eliminates the need for complex cable connections while maintaining efficient audio summing that preserves the amplitude relationships established during the parameter calculation stage. The collected audio signal represents the complete harmonic spectrum generated by all eight partials, with the spectral content and temporal evolution determined by the interaction between the algorithmic parameter calculations and the stochastic processes operating within each individual partial instance.
 
 ```{mermaid}
 flowchart LR
@@ -867,7 +867,7 @@ This approach, despite its age, remains vital in modern synthesis. Its clarity, 
 
 
 
-### Filters in Pure Data
+### Filters in Pd
 
 As mentioned, a filter is any process that modifies an incoming sound. From an acoustic perspective, filters are omnipresent: the reverberant characteristics of a room act as filters, as do the resonant bodies of musical instruments. Even the human vocal tract can be considered a natural filter. In our context, however, we define filters more narrowly: as signal processing modules—such as equalizers—that selectively amplify or attenuate specific frequency components of a sound.
 
@@ -875,7 +875,7 @@ The most common representation of how a filter affects sound is its frequency re
 
 ### Low-Pass Filtering
 
-The object `lop~` in Pure Data (short for "low-pass") implements a basic low-pass filter. This filter allows frequencies below a certain threshold, called the cutoff or roll-off frequency, to pass through while progressively attenuating higher frequencies. This transition is not abrupt: the filtering effect begins at 0 Hz and gradually increases, resulting in a -3 dB drop at the cutoff point. Beyond this, the attenuation rate is approximately 6 dB per octave.
+The object `lop~` in Pd (short for "low-pass") implements a basic low-pass filter. This filter allows frequencies below a certain threshold, called the cutoff or roll-off frequency, to pass through while progressively attenuating higher frequencies. This transition is not abrupt: the filtering effect begins at 0 Hz and gradually increases, resulting in a -3 dB drop at the cutoff point. Beyond this, the attenuation rate is approximately 6 dB per octave.
 
 ![Low-pass filter with frequency cutoff control, attenuating higher frequencies at 6dB per octave slope](/assets/screenshots/synthesis/filters/lop.png)
 
@@ -883,7 +883,7 @@ This filter is useful not only in audio synthesis but also in signal smoothing a
 
 ### High-Pass Filtering
 
-A high-pass filter, such as `hip~` in Pure Data, performs the inverse operation of a low-pass: it permits frequencies above a defined cutoff point and attenuates those below it. Interestingly, a high-pass effect can also be derived by subtracting the output of a low-pass filter from the original signal. While `hip~` is often employed to remove DC offsets, it too has a 6 dB per octave slope and exhibits some gain anomalies at higher cutoff values.
+A high-pass filter, such as `hip~` in Pd, performs the inverse operation of a low-pass: it permits frequencies above a defined cutoff point and attenuates those below it. Interestingly, a high-pass effect can also be derived by subtracting the output of a low-pass filter from the original signal. While `hip~` is often employed to remove DC offsets, it too has a 6 dB per octave slope and exhibits some gain anomalies at higher cutoff values.
 
 ![High-pass filter with cutoff control, removing frequencies below the threshold while preserving higher frequency content for signal clarity](/assets/screenshots/synthesis/filters/hip.png)
 
@@ -910,7 +910,7 @@ A higher Q value indicates a narrower and more pronounced resonance, while a low
 
 ### Band-Pass Filters
 
-The `bp~` object in Pure Data provides a straightforward implementation of a band-pass filter, accepting center frequency and Q as inputs. It is computationally efficient and practical, though it tends to attenuate frequencies above the center more than those below, thus producing an asymmetrical response. With a Q of 1, `bp~` approximates the behavior of a `lop~` filter. As with other vanilla filters, its frequency response changes noticeably at higher frequencies.
+The `bp~` object in Pd provides a straightforward implementation of a band-pass filter, accepting center frequency and Q as inputs. It is computationally efficient and practical, though it tends to attenuate frequencies above the center more than those below, thus producing an asymmetrical response. With a Q of 1, `bp~` approximates the behavior of a `lop~` filter. As with other vanilla filters, its frequency response changes noticeably at higher frequencies.
 
 ![Band-pass filter with frequency and Q controls, creating resonant peak emphasis while attenuating frequencies outside the passband.](/assets/screenshots/synthesis/filters/bp.png)
 
@@ -924,7 +924,7 @@ This object has two outputs: the right outlet approximates a `bp~` filter’s fr
 
 ### Emulating the Moog Filter
 
-The `bob~` object is a recent addition to Pure Data's vanilla library, designed to model the iconic Moog filter created by Robert Moog. It allows both the cutoff frequency and Q to be modulated at audio rate, making it one of the most expressive and flexible filters in the system. Though officially described as a low-pass resonant filter, its architecture lends itself to a wide variety of applications. Users are encouraged to consult its help patch for in-depth understanding and examples.
+The `bob~` object is a recent addition to Pd's vanilla library, designed to model the iconic Moog filter created by Robert Moog. It allows both the cutoff frequency and Q to be modulated at audio rate, making it one of the most expressive and flexible filters in the system. Though officially described as a low-pass resonant filter, its architecture lends itself to a wide variety of applications. Users are encouraged to consult its help patch for in-depth understanding and examples.
 
 ![Moog-style resonant low-pass filter with audio-rate cutoff and Q modulation, providing the characteristic warm analog filtering sound](/assets/screenshots/synthesis/filters/bob.png){width="50%"}
 

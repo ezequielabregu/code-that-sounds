@@ -6,7 +6,7 @@ Writing this book has been, above all, an exercise in listening: listening to co
 
 Throughout these chapters, we moved between conceptual exploration and hands-on implementation. From recording and playback, to sequencing, synthesis, sonification, spatialization, and tool design, the book traced a path through fundamental aspects of sound-based creative coding. Each section aimed to present not only techniques, but the deeper questions and ideas that underpin them. We considered how sequences construct musical time, how synthesis reimagines the materiality of sound, how data becomes expressive when translated into sonic form, and how space can be composed just as much as pitch or rhythm.
 
-Across these topics, we have tried to maintain a balance between rigor and experimentation. Pure Data was our instrument of choice—not because it is the only or best option, but because it invites a certain kind of thinking: modular, open, visual, and sonic. Yet the language itself was never the focus. What mattered more was the clarity of thought behind the algorithm, the elegance of the structure, and the potential for creative variation. This book does not teach a tool; it invites a way of thinking.
+Across these topics, we have tried to maintain a balance between rigor and experimentation. Pd was our instrument of choice—not because it is the only or best option, but because it invites a certain kind of thinking: modular, open, visual, and sonic. Yet the language itself was never the focus. What mattered more was the clarity of thought behind the algorithm, the elegance of the structure, and the potential for creative variation. This book does not teach a tool; it invites a way of thinking.
 
 ## Sound, Code, and Interaction
 
@@ -16,7 +16,7 @@ By treating code as a creative material, we position it alongside other artistic
 
 ## Open Tools, Open Futures
 
-This work would not exist without the open-source communities that sustain tools like Pure Data. The accessibility of such platforms democratizes creative technology, allowing artists, educators, and students to participate in practices that were once locked behind proprietary systems. But openness is more than a license—it is a philosophy. It implies transparency, generosity, and collective authorship. It values process as much as product.
+This work would not exist without the open-source communities that sustain tools like Pd. The accessibility of such platforms democratizes creative technology, allowing artists, educators, and students to participate in practices that were once locked behind proprietary systems. But openness is more than a license—it is a philosophy. It implies transparency, generosity, and collective authorship. It values process as much as product.
 
 Still, working with open tools also reveals their limits. Documenting, teaching, and developing them is labor-intensive and often under-resourced. In this sense, writing a book like this one not only reveals the *scope* of creative coding—it also exposes its *fragilities*. But that, too, is part of the story: a story of building infrastructures that support exploration, criticality, and care.
 
