@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 /* CSS for citations */
 div.csl-bib-body { }
 div.csl-entry {
@@ -534,8 +569,8 @@ window.Quarto = {
 <p>Sound sources in synthesizers are largely based on mathematics. There are two fundamental types: waveforms and random signals. Waveforms are typically described as simple geometric shapes—sawtooth, square, pulse, sine, and triangle being the most common. These shapes are mathematically straightforward and electronically feasible to generate. On the other hand, random waveforms produce noise, a constantly shifting mixture of all frequencies.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="../assets/screenshots/synthesis/vco/sources.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Fig. Sine Oscillator &amp; White Noise Generator"><img src="../assets/screenshots/synthesis/vco/sources.png" class="img-fluid figure-img" alt="Fig. Sine Oscillator &amp; White Noise Generator"></a></p>
-<figcaption>Fig. Sine Oscillator &amp; White Noise Generator</figcaption>
+<p><a href="../assets/screenshots/synthesis/vco/sources.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Basic sound sources showing sine oscillator for tonal content and noise generator for random spectral content."><img src="../assets/screenshots/synthesis/vco/sources.png" class="img-fluid figure-img" alt="Basic sound sources showing sine oscillator for tonal content and noise generator for random spectral content."></a></p>
+<figcaption>Basic sound sources showing sine oscillator for tonal content and noise generator for random spectral content.</figcaption>
 </figure>
 </div>
 <p>Oscillators are one of the core building blocks of synthesizers, often implemented as function generators. A function generator produces a waveform that may be continuous or triggered and can take arbitrary shapes. In a basic analog subtractive synthesizer, an oscillator usually outputs a few continuous waveforms, with frequency controlled by voltage. Since these sources typically output a continuous signal, modifiers must be applied to shape timbre or envelope the sound.</p>
@@ -545,23 +580,23 @@ window.Quarto = {
 <p>A “pure tone” consists of a single frequency and is produced by a sine wave oscillator, which can be implemented using either the sine or cosine function. These functions take an angle value, or “phase,” as input. Below, we see the angle “alpha,” the sine’s amplitude value, and the cosine’s output denoted as <code>x</code>.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="../assets/code/synthesis/oscillators/angle.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Fig."><img src="../assets/code/synthesis/oscillators/angle.gif" class="img-fluid figure-img" width="200" alt="Fig."></a></p>
-<figcaption>Fig.</figcaption>
+<p><a href="../assets/code/synthesis/oscillators/angle.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Unit circle with angle alpha demonstrating the geometric foundation of sine and cosine functions"><img src="../assets/code/synthesis/oscillators/angle.gif" class="img-fluid figure-img" width="200" alt="Unit circle with angle alpha demonstrating the geometric foundation of sine and cosine functions"></a></p>
+<figcaption>Unit circle with angle alpha demonstrating the geometric foundation of sine and cosine functions</figcaption>
 </figure>
 </div>
 <p>In the resulting graph, amplitude is on the vertical axis and angle on the horizontal axis. The cosine output traces the same function as the sine but starts at 1, meaning it has a different initial phase. Sine and cosine are essentially the same waveform offset by 90 degrees of phase.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="../assets/screenshots/synthesis/vco/sine.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Fig."><img src="../assets/screenshots/synthesis/vco/sine.gif" class="img-fluid figure-img" alt="Fig."></a></p>
-<figcaption>Fig.</figcaption>
+<p><a href="../assets/screenshots/synthesis/vco/sine.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Sine wave as the fundamental periodic waveform"><img src="../assets/screenshots/synthesis/vco/sine.gif" class="img-fluid figure-img" alt="Sine wave as the fundamental periodic waveform"></a></p>
+<figcaption>Sine wave as the fundamental periodic waveform</figcaption>
 </figure>
 </div>
 <p>Pure Data’s native <code>[sin]</code> and <code>[cos]</code> objects take angle values in radians (0 to 2π). However, the audio object <code>[cos~]</code> uses a linear range from 0 to 1 to represent a full cycle. The ELSE library provides the <code>[pi]</code> object, which outputs the constant π. This can be stored in a <code>[value]</code> object and accessed within <code>[expr]</code>. To convert a linear 0–1 range into radians, multiply it by <code>2 * pi</code>. Then, <code>[cos]</code> and <code>[sin]</code> yield amplitude values accordingly.</p>
 <div style="text-align:center;">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="../assets/screenshots/synthesis/vco/sine-cosine.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="Fig."><img src="../assets/screenshots/synthesis/vco/sine-cosine.gif" class="img-fluid figure-img" style="width:70.0%" alt="Fig."></a></p>
-<figcaption>Fig.</figcaption>
+<p><a href="../assets/screenshots/synthesis/vco/sine-cosine.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="Sine and cosine oscillators converting linear phase input to trigonometric waveform output"><img src="../assets/screenshots/synthesis/vco/sine-cosine.gif" class="img-fluid figure-img" style="width:70.0%" alt="Sine and cosine oscillators converting linear phase input to trigonometric waveform output"></a></p>
+<figcaption>Sine and cosine oscillators converting linear phase input to trigonometric waveform output</figcaption>
 </figure>
 </div>
 </div>
@@ -571,8 +606,8 @@ window.Quarto = {
 <p>In the following example, we implement a sine oscillator using the <code>[sin~]</code> object and the native <code>[phasor~]</code> object.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="../assets/screenshots/synthesis/vco/phasor-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" title="Fig."><img src="../assets/screenshots/synthesis/vco/phasor-1.png" class="img-fluid figure-img" alt="Fig."></a></p>
-<figcaption>Fig.</figcaption>
+<p><a href="../assets/screenshots/synthesis/vco/phasor-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" title="Linear phase ramp from phasor~ (top) converted to sine wave output (bottom), illustrating the basic oscillator construction using phase-to-amplitude conversion"><img src="../assets/screenshots/synthesis/vco/phasor-1.png" class="img-fluid figure-img" alt="Linear phase ramp from phasor~ (top) converted to sine wave output (bottom), illustrating the basic oscillator construction using phase-to-amplitude conversion"></a></p>
+<figcaption>Linear phase ramp from phasor~ (top) converted to sine wave output (bottom), illustrating the basic oscillator construction using phase-to-amplitude conversion</figcaption>
 </figure>
 </div>
 <p>Two graphs illustrate this: in the top one, the horizontal axis is time, and the vertical axis shows a steadily increasing phase, forming a linear ramp. In the bottom graph, this ramp is transformed into a sine waveform, with amplitude on the vertical axis.</p>
@@ -583,8 +618,8 @@ window.Quarto = {
 <div style="text-align:center;">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="../assets/screenshots/synthesis/vco/phasor-2.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-6" title="Fig."><img src="../assets/screenshots/synthesis/vco/phasor-2.gif" class="img-fluid figure-img" style="width:70.0%" alt="Fig."></a></p>
-<figcaption>Fig.</figcaption>
+<p><a href="../assets/screenshots/synthesis/vco/phasor-2.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-6" title="Phasor~ object generating linear phase ramp from 0 to 1 at specified frequency"><img src="../assets/screenshots/synthesis/vco/phasor-2.gif" class="img-fluid figure-img" style="width:70.0%" alt="Phasor~ object generating linear phase ramp from 0 to 1 at specified frequency"></a></p>
+<figcaption>Phasor~ object generating linear phase ramp from 0 to 1 at specified frequency</figcaption>
 </figure>
 </div>
 </div>
@@ -602,31 +637,21 @@ window.Quarto = {
 <li>Peak amplitude (optional)</li>
 </ul>
 <p>How do we control these parameters in our model?</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="../assets/screenshots/synthesis/vco/oscillator.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7" title="Fig."><img src="../assets/screenshots/synthesis/vco/oscillator.png" class="img-fluid figure-img" style="width:30.0%" alt="Fig."></a></p>
-<figcaption>Fig.</figcaption>
-</figure>
-</div>
+<p><a href="../assets/screenshots/synthesis/vco/oscillator.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7"><img src="../assets/screenshots/synthesis/vco/oscillator.png" class="img-fluid" style="width:30.0%"></a></p>
 </section>
 <section id="vco" class="level3" data-number="4.3.5">
 <h3 data-number="4.3.5" class="anchored" data-anchor-id="vco"><span class="header-section-number">4.3.5</span> VCO</h3>
 <p>In this example, <code>[phasor~]</code> and <code>[cos~]</code> form an oscillator. The <code>[cos~]</code> object outputs amplitude values from -1 to 1, yielding a maximum amplitude of 1 without additional gain control.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="../assets/screenshots/synthesis/vco/vco-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8" title="Fig."><img src="../assets/screenshots/synthesis/vco/vco-1.png" class="img-fluid figure-img" alt="Fig."></a></p>
-<figcaption>Fig.</figcaption>
+<p><a href="../assets/screenshots/synthesis/vco/vco-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8" title="Phasor~ and cos~ oscillator combination with frequency control input, creating a basic VCO equivalent in the digital domain."><img src="../assets/screenshots/synthesis/vco/vco-1.png" class="img-fluid figure-img" alt="Phasor~ and cos~ oscillator combination with frequency control input, creating a basic VCO equivalent in the digital domain."></a></p>
+<figcaption>Phasor~ and cos~ oscillator combination with frequency control input, creating a basic VCO equivalent in the digital domain.</figcaption>
 </figure>
 </div>
 <p>The waveform produced is a cosine. While <code>[phasor~]</code> sets the frequency, it can also define the initial phase. Since sine and cosine are essentially phase-shifted versions of the same function, we can easily produce sine waves as well. However, the initial phase does not affect the perceived pitch of a pure tone.</p>
 <p>Try this patch with different phase offsets. Note that <code>[phasor~]</code> also accepts negative frequencies, reversing the phase direction.</p>
 <p>Connecting <code>[phasor~]</code> to <code>[cos~]</code> replicates the functionality of the <code>[osc~]</code> object.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="../assets/screenshots/synthesis/vco/vco-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-9" title="Fig."><img src="../assets/screenshots/synthesis/vco/vco-2.png" class="img-fluid figure-img" style="width:50.0%" alt="Fig."></a></p>
-<figcaption>Fig.</figcaption>
-</figure>
-</div>
+<p><a href="../assets/screenshots/synthesis/vco/vco-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-9"><img src="../assets/screenshots/synthesis/vco/vco-2.png" class="img-fluid" style="width:50.0%"></a></p>
 </section>
 <section id="waveforms" class="level3" data-number="4.3.6">
 <h3 data-number="4.3.6" class="anchored" data-anchor-id="waveforms"><span class="header-section-number">4.3.6</span> Waveforms</h3>
@@ -641,15 +666,15 @@ window.Quarto = {
 <p>As mentioned earlier, <code>[osc~]</code> is essentially <code>[phasor~]</code> connected to <code>[cos~]</code>. The <code>[phasor~]</code> object outputs a 0–1 ramp, functionally similar to a sawtooth wave with half the amplitude and an offset. <code>[cos~]</code> multiplies this ramp by 2π and computes its cosine. The result is a sine wave oscillator.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="../assets/screenshots/synthesis/vco/waveshapers-sine.png" class="lightbox" data-gallery="quarto-lightbox-gallery-10" title="Fig."><img src="../assets/screenshots/synthesis/vco/waveshapers-sine.png" class="img-fluid figure-img" style="width:70.0%" alt="Fig."></a></p>
-<figcaption>Fig.</figcaption>
+<p><a href="../assets/screenshots/synthesis/vco/waveshapers-sine.png" class="lightbox" data-gallery="quarto-lightbox-gallery-10" title="Mathematical approach to sine wave generation using expr~ with pi calculation stored in value object for educational clarity."><img src="../assets/screenshots/synthesis/vco/waveshapers-sine.png" class="img-fluid figure-img" style="width:70.0%" alt="Mathematical approach to sine wave generation using expr~ with pi calculation stored in value object for educational clarity."></a></p>
+<figcaption>Mathematical approach to sine wave generation using expr~ with pi calculation stored in value object for educational clarity.</figcaption>
 </figure>
 </div>
 <p>Another way to construct this oscillator is by using <code>[expr~]</code> and <code>[value]</code>. Here we use the <code>[pi]</code> abstraction to calculate π (or approximate it by sending 1 to <code>[atan]</code> and multiplying the result by 4). We then multiply by 2 and store it in a <code>[value]</code> object. <code>[value]</code> acts like a global variable: any object using the same name accesses the same value. <code>[expr~]</code> can then use this to calculate the cosine, just like <code>[cos~]</code>. While this approach may be more CPU-intensive, it helps deepen understanding of oscillator construction in Pd.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="../assets/screenshots/synthesis/vco/waveshapers-cosine.png" class="lightbox" data-gallery="quarto-lightbox-gallery-11" title="Fig."><img src="../assets/screenshots/synthesis/vco/waveshapers-cosine.png" class="img-fluid figure-img" style="width:70.0%" alt="Fig."></a></p>
-<figcaption>Fig.</figcaption>
+<p><a href="../assets/screenshots/synthesis/vco/waveshapers-cosine.png" class="lightbox" data-gallery="quarto-lightbox-gallery-11" title="Basic sine oscillator implementation using phasor~ phase generator and cos~ waveshaper"><img src="../assets/screenshots/synthesis/vco/waveshapers-cosine.png" class="img-fluid figure-img" style="width:70.0%" alt="Basic sine oscillator implementation using phasor~ phase generator and cos~ waveshaper"></a></p>
+<figcaption>Basic sine oscillator implementation using phasor~ phase generator and cos~ waveshaper</figcaption>
 </figure>
 </div>
 <section id="sawtooth-oscillator" class="level4" data-number="4.3.7.1">
@@ -657,8 +682,8 @@ window.Quarto = {
 <p>Since <code>[phasor~]</code> already produces a ramp, generating a sawtooth wave is straightforward. Simply multiply <code>[phasor~]</code> by 2 to get the correct amplitude, then subtract 1 to shift the range to -1 to 1.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="../assets/screenshots/synthesis/vco/waveshapers-saw.png" class="lightbox" data-gallery="quarto-lightbox-gallery-12" title="Fig."><img src="../assets/screenshots/synthesis/vco/waveshapers-saw.png" class="img-fluid figure-img" style="width:70.0%" alt="Fig."></a></p>
-<figcaption>Fig.</figcaption>
+<p><a href="../assets/screenshots/synthesis/vco/waveshapers-saw.png" class="lightbox" data-gallery="quarto-lightbox-gallery-12" title="Sawtooth oscillator using phasor~ with amplitude scaling and DC offset adjustment."><img src="../assets/screenshots/synthesis/vco/waveshapers-saw.png" class="img-fluid figure-img" style="width:70.0%" alt="Sawtooth oscillator using phasor~ with amplitude scaling and DC offset adjustment."></a></p>
+<figcaption>Sawtooth oscillator using phasor~ with amplitude scaling and DC offset adjustment.</figcaption>
 </figure>
 </div>
 </section>
@@ -667,8 +692,8 @@ window.Quarto = {
 <p>To create a square wave, you can use <code>[expr~]</code> (included in Pd Vanilla), but <code>[&gt;~]</code> is faster and more CPU-efficient. A square wave toggles between -1 and 1. The <code>[&gt;~]</code> object compares its left input signal to a threshold (right input or argument). It outputs 1 if the input is greater than the threshold, and 0 otherwise. Using 0.5 as the threshold with a <code>[phasor~]</code> input yields a square wave: 0 for half the cycle, 1 for the other half.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="../assets/screenshots/synthesis/vco/waveshapers-square.png" class="lightbox" data-gallery="quarto-lightbox-gallery-13" title="Fig."><img src="../assets/screenshots/synthesis/vco/waveshapers-square.png" class="img-fluid figure-img" style="width:70.0%" alt="Fig."></a></p>
-<figcaption>Fig.</figcaption>
+<p><a href="../assets/screenshots/synthesis/vco/waveshapers-square.png" class="lightbox" data-gallery="quarto-lightbox-gallery-13" title="Square wave generator using phasor~ input compared against 0.5 threshold with >~ object for efficient binary waveform creation."><img src="../assets/screenshots/synthesis/vco/waveshapers-square.png" class="img-fluid figure-img" style="width:70.0%" alt="Square wave generator using phasor~ input compared against 0.5 threshold with >~ object for efficient binary waveform creation."></a></p>
+<figcaption>Square wave generator using phasor~ input compared against 0.5 threshold with &gt;~ object for efficient binary waveform creation.</figcaption>
 </figure>
 </div>
 </section>
@@ -678,8 +703,8 @@ window.Quarto = {
 <p>Now we have both ascending and descending ramps. Sending both to <code>[min~]</code> (which outputs the smaller of two values) gives us a triangle waveform spanning 0 to 0.5. <code>[min~]</code> effectively splices the ascending and descending ramps to form a symmetric triangle wave.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="../assets/screenshots/synthesis/vco/waveshapers-triangle.png" class="lightbox" data-gallery="quarto-lightbox-gallery-14" title="Fig."><img src="../assets/screenshots/synthesis/vco/waveshapers-triangle.png" class="img-fluid figure-img" style="width:70.0%" alt="Fig."></a></p>
-<figcaption>Fig.</figcaption>
+<p><a href="../assets/screenshots/synthesis/vco/waveshapers-triangle.png" class="lightbox" data-gallery="quarto-lightbox-gallery-14" title="Triangle oscillator construction using phasor~ and inverted ramp processed through min~ to create symmetric triangular waveform."><img src="../assets/screenshots/synthesis/vco/waveshapers-triangle.png" class="img-fluid figure-img" style="width:70.0%" alt="Triangle oscillator construction using phasor~ and inverted ramp processed through min~ to create symmetric triangular waveform."></a></p>
+<figcaption>Triangle oscillator construction using phasor~ and inverted ramp processed through min~ to create symmetric triangular waveform.</figcaption>
 </figure>
 </div>
 </section>
@@ -687,21 +712,11 @@ window.Quarto = {
 <section id="frequency" class="level3" data-number="4.3.8">
 <h3 data-number="4.3.8" class="anchored" data-anchor-id="frequency"><span class="header-section-number">4.3.8</span> Frequency</h3>
 <p>Frequency is presented here in terms of <em>angular velocity</em>! One common unit of measurement is the hertz (Hz), which equals “cycles per second.” Frequency also determines a period of oscillation, which is simply the inverse of frequency. For example, a frequency of 100 Hz corresponds to a period of 0.01 seconds (or 10 milliseconds):</p>
-<pre class="plaintext"><code>Period = 1 / Frequency
-Period = 1 / 100 Hz = 0.01 s = 10 ms</code></pre>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="../assets/screenshots/synthesis/vco/frequency-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-15" title="Fig."><img src="../assets/screenshots/synthesis/vco/frequency-1.png" class="img-fluid figure-img" style="width:70.0%" alt="Fig."></a></p>
-<figcaption>Fig.</figcaption>
-</figure>
-</div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>Period = 1 / Frequency</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>Period = 1 / 100 Hz = 0.01 s = 10 ms</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><a href="../assets/screenshots/synthesis/vco/frequency-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-15"><img src="../assets/screenshots/synthesis/vco/frequency-1.png" class="img-fluid" style="width:70.0%"></a></p>
 <p>We can convert between Hz and milliseconds using this same relationship. Another way to express period is in number of samples, which requires the sampling rate to perform the conversion:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="../assets/screenshots/synthesis/vco/frequency-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-16" title="Fig."><img src="../assets/screenshots/synthesis/vco/frequency-2.png" class="img-fluid figure-img" style="width:70.0%" alt="Fig."></a></p>
-<figcaption>Fig.</figcaption>
-</figure>
-</div>
+<p><a href="../assets/screenshots/synthesis/vco/frequency-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-16"><img src="../assets/screenshots/synthesis/vco/frequency-2.png" class="img-fluid" style="width:70.0%"></a></p>
 <p>Angular velocity units require both an angle and a time unit. One cycle per second defines a full cycle (360 degrees) as the angular unit, and seconds as the time unit. Other units are also possible. For example, the angle may be expressed in radians and the time unit as a single sample, yielding a unit of “radians per sample.”</p>
 <p>To convert Hz to radians per sample, multiply by 2π and divide by the sampling rate. See below for this conversion and the [hz2rad] and [rad2hz] objects from the ELSE library that handle it.</p>
 </section>
@@ -710,8 +725,8 @@ Period = 1 / 100 Hz = 0.01 s = 10 ms</code></pre>
 <p>The term <em>phase</em> can be used in various contexts, often making it ambiguous and potentially confusing. A useful strategy is to adopt more specific terminology instead of simply referring to “phase” in isolation. On its own, “phase” refers to a stage within a cycle—much like the four phases of the moon. Sound waveforms are cyclical, and we can speak of a positive or negative phase, as shown below. However, this original meaning is rarely used in music theory. Here, we focus on other more relevant applications and interpretations of phase (see right and below).</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="../assets/screenshots/synthesis/vco/phase-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-17" title="Fig."><img src="../assets/screenshots/synthesis/vco/phase-1.png" class="img-fluid figure-img" style="width:70.0%" alt="Fig."></a></p>
-<figcaption>Fig.</figcaption>
+<p><a href="../assets/screenshots/synthesis/vco/phase-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-17" title="Sine wave phase diagram showing positive and negative half-cycles that define different stages within a complete oscillation cycle."><img src="../assets/screenshots/synthesis/vco/phase-1.png" class="img-fluid figure-img" style="width:70.0%" alt="Sine wave phase diagram showing positive and negative half-cycles that define different stages within a complete oscillation cycle."></a></p>
+<figcaption>Sine wave phase diagram showing positive and negative half-cycles that define different stages within a complete oscillation cycle.</figcaption>
 </figure>
 </div>
 <p><strong>Initial phase</strong> refers to the point in the cycle where the oscillation begins.</p>
@@ -719,8 +734,8 @@ Period = 1 / 100 Hz = 0.01 s = 10 ms</code></pre>
 <p>Since instantaneous phase refers to a single position within a cycle, it can also be represented as an angle. This leads to a synonymous relationship between phase and angle, though it’s important to stress that both denote a position within the cycle.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="../assets/screenshots/synthesis/vco/phase-2.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-18" title="Fig."><img src="../assets/screenshots/synthesis/vco/phase-2.gif" class="img-fluid figure-img" style="width:70.0%" alt="Fig."></a></p>
-<figcaption>Fig.</figcaption>
+<p><a href="../assets/screenshots/synthesis/vco/phase-2.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-18" title="Instantaneous phase visualization showing the relationship between angular position and waveform generation"><img src="../assets/screenshots/synthesis/vco/phase-2.gif" class="img-fluid figure-img" style="width:70.0%" alt="Instantaneous phase visualization showing the relationship between angular position and waveform generation"></a></p>
+<figcaption>Instantaneous phase visualization showing the relationship between angular position and waveform generation</figcaption>
 </figure>
 </div>
 <p>Two oscillators operating at the same frequency can be <em>in phase</em> or <em>out of phase</em>. Being in phase means they are synchronized—there is no phase difference. Being out of phase indicates a lack of synchronization, i.e., a phase difference. This difference can take many forms, but two specific cases are of particular interest: <strong>quadrature phase</strong> and <strong>phase opposition</strong>.</p>
@@ -736,16 +751,16 @@ Period = 1 / 100 Hz = 0.01 s = 10 ms</code></pre>
 <p>Both phase and polarity inversion produce the same result for sine waves due to their symmetrical waveforms, where the second half of the cycle mirrors the first with opposite sign. Other waveforms with this property include triangle and square waves (with a 0.5 pulse width).</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="../assets/screenshots/synthesis/vco/polarity-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-19" title="Fig."><img src="../assets/screenshots/synthesis/vco/polarity-1.png" class="img-fluid figure-img" style="width:50.0%" alt="Fig."></a></p>
-<figcaption>Fig.</figcaption>
+<p><a href="../assets/screenshots/synthesis/vco/polarity-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-19" title="Waveform polarity comparison showing sine wave cancellation through inversion versus sawtooth wave asymmetry that prevents phase-based cancellation."><img src="../assets/screenshots/synthesis/vco/polarity-1.png" class="img-fluid figure-img" style="width:50.0%" alt="Waveform polarity comparison showing sine wave cancellation through inversion versus sawtooth wave asymmetry that prevents phase-based cancellation."></a></p>
+<figcaption>Waveform polarity comparison showing sine wave cancellation through inversion versus sawtooth wave asymmetry that prevents phase-based cancellation.</figcaption>
 </figure>
 </div>
 <p>Sawtooth waves, however, do not share this symmetry. Therefore, phase opposition is not equivalent to polarity inversion in this case. The only way to achieve full cancellation of a sawtooth wave is through polarity inversion. Refer to the graphs below: only the original sawtooth combined with its polarity-inverted version results in complete cancellation.</p>
 <p>The native [phasor~] and [osc~] objects include a right inlet that accepts control data to reset the phase. Whenever the inlet receives a number from 0 to 1, the waveform resets to that initial phase position. Note that this is unrelated to phase modulation techniques discussed earlier.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="../assets/screenshots/synthesis/vco/polarity-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-20" title="Fig."><img src="../assets/screenshots/synthesis/vco/polarity-2.png" class="img-fluid figure-img" style="width:50.0%" alt="Fig."></a></p>
-<figcaption>Fig.</figcaption>
+<p><a href="../assets/screenshots/synthesis/vco/polarity-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-20" title="Sawtooth polarity inversion"><img src="../assets/screenshots/synthesis/vco/polarity-2.png" class="img-fluid figure-img" style="width:50.0%" alt="Sawtooth polarity inversion"></a></p>
+<figcaption>Sawtooth polarity inversion</figcaption>
 </figure>
 </div>
 <p>The [osc~] object does not support phase modulation; we implemented it using [phasor~] in the previous examples. Hence, using a [phasor~] together with a [cos~] enables both phase modulation and oscillator resetting.</p>
@@ -893,8 +908,8 @@ Period = 1 / 100 Hz = 0.01 s = 10 ms</code></pre>
 <p>One common configuration is the ADSR envelope—Attack, Decay, Sustain, Release—which requires only four parameters and is relatively easy to implement in analog circuitry. Though more complex designs like DADSR offer additional flexibility, they demand more components and are usually reserved for digital implementations.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="../assets/images/synthesis/adsr.png" class="lightbox" data-gallery="quarto-lightbox-gallery-21" title="Fig."><img src="../assets/images/synthesis/adsr.png" class="img-fluid figure-img" alt="Fig."></a></p>
-<figcaption>Fig.</figcaption>
+<p><a href="../assets/images/synthesis/adsr.png" class="lightbox" data-gallery="quarto-lightbox-gallery-21" title="Classic ADSR envelope shape illustrating attack, decay, sustain, and release phases"><img src="../assets/images/synthesis/adsr.png" class="img-fluid figure-img" alt="Classic ADSR envelope shape illustrating attack, decay, sustain, and release phases"></a></p>
+<figcaption>Classic ADSR envelope shape illustrating attack, decay, sustain, and release phases</figcaption>
 </figure>
 </div>
 <p>Additive synthesis provides a powerful framework for sound construction, especially when paired with modern computational tools. It invites a deep understanding of harmonic behavior and spectral composition, allowing composers and designers to sculpt timbre with surgical precision—layer by layer, sine by sine.</p>
@@ -910,8 +925,8 @@ Period = 1 / 100 Hz = 0.01 s = 10 ms</code></pre>
 <p>For instance, the arguments <code>[adsr 1 100 200 50 300]</code> define a peak amplitude of 1.0, an attack time of 100 milliseconds, a decay time of 200 milliseconds, a sustain level at 50% of the peak, and a release time of 300 milliseconds.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="../assets/screenshots/synthesis/additive/adsr-puckette.png" class="lightbox" data-gallery="quarto-lightbox-gallery-22" title="Fig."><img src="../assets/screenshots/synthesis/additive/adsr-puckette.png" class="img-fluid figure-img" alt="Fig."></a></p>
-<figcaption>Fig.</figcaption>
+<p><a href="../assets/screenshots/synthesis/additive/adsr-puckette.png" class="lightbox" data-gallery="quarto-lightbox-gallery-22" title="Miller Puckette’s ADSR abstraction with creation arguments and control inlets for dynamic envelope parameter adjustment"><img src="../assets/screenshots/synthesis/additive/adsr-puckette.png" class="img-fluid figure-img" alt="Miller Puckette’s ADSR abstraction with creation arguments and control inlets for dynamic envelope parameter adjustment"></a></p>
+<figcaption>Miller Puckette’s ADSR abstraction with creation arguments and control inlets for dynamic envelope parameter adjustment</figcaption>
 </figure>
 </div>
 <p>In addition to these arguments, the abstraction provides six control inlets. The first inlet serves as the trigger input, responsible for initiating or releasing the envelope. The remaining five inlets allow dynamic control over each of the ADSR parameters, overriding the corresponding creation arguments when values are received. The abstraction outputs an audio signal that modulates amplitude according to the ADSR envelope.</p>
@@ -933,8 +948,8 @@ Period = 1 / 100 Hz = 0.01 s = 10 ms</code></pre>
 <p>The patch architecture emphasizes modular design through the use of custom abstractions, enabling scalable harmonic control while providing educational insight into the mathematical relationships that govern harmonic series construction. By implementing individual envelope generators for each partial, the system demonstrates how complex timbral evolution can be achieved through coordinated amplitude control across multiple frequency components.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="../assets/screenshots/synthesis/additive/20-oscillators.png" class="lightbox" data-gallery="quarto-lightbox-gallery-23" title="Fig."><img src="../assets/screenshots/synthesis/additive/20-oscillators.png" class="img-fluid figure-img" style="width:70.0%" alt="Fig."></a></p>
-<figcaption>Fig.</figcaption>
+<p><a href="../assets/screenshots/synthesis/additive/20-oscillators.png" class="lightbox" data-gallery="quarto-lightbox-gallery-23" title="Additive synthesis engine with twenty independent oscillators, each with harmonic frequency relationships and individual envelope control"><img src="../assets/screenshots/synthesis/additive/20-oscillators.png" class="img-fluid figure-img" style="width:70.0%" alt="Additive synthesis engine with twenty independent oscillators, each with harmonic frequency relationships and individual envelope control"></a></p>
+<figcaption>Additive synthesis engine with twenty independent oscillators, each with harmonic frequency relationships and individual envelope control</figcaption>
 </figure>
 </div>
 <section id="patch-overview" class="level4" data-number="4.4.7.1">
@@ -1231,8 +1246,8 @@ Period = 1 / 100 Hz = 0.01 s = 10 ms</code></pre>
 <p>The system emphasizes efficiency and modularity by using identical <code>harmonic</code> abstractions that receive initialization parameters and operate independently. This approach enables exploration of how partial count affects timbral complexity while demonstrating the relationship between harmonic density and perceived loudness.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="../assets/screenshots/synthesis/additive/additive-clone.png" class="lightbox" data-gallery="quarto-lightbox-gallery-24" title="Fig."><img src="../assets/screenshots/synthesis/additive/additive-clone.png" class="img-fluid figure-img" alt="Fig."></a></p>
-<figcaption>Fig.</figcaption>
+<p><a href="../assets/screenshots/synthesis/additive/additive-clone.png" class="lightbox" data-gallery="quarto-lightbox-gallery-24" title="Dynamic additive synthesis system using clone object for scalable harmonic generation with real-time partial count control and psychoacoustic amplitude scaling"><img src="../assets/screenshots/synthesis/additive/additive-clone.png" class="img-fluid figure-img" alt="Dynamic additive synthesis system using clone object for scalable harmonic generation with real-time partial count control and psychoacoustic amplitude scaling"></a></p>
+<figcaption>Dynamic additive synthesis system using clone object for scalable harmonic generation with real-time partial count control and psychoacoustic amplitude scaling</figcaption>
 </figure>
 </div>
 <section id="patch-overview-1" class="level4" data-number="4.4.8.1">
@@ -1471,8 +1486,8 @@ Period = 1 / 100 Hz = 0.01 s = 10 ms</code></pre>
 <p>The implementation showcases advanced Pure Data programming techniques including dynamic object creation, parameter distribution through send/receive networks, and sophisticated envelope generation that enables complex spectral animation. By combining systematic harmonic relationships with stochastic envelope timing, the patch creates evolving textures that bridge the gap between traditional additive synthesis and contemporary algorithmic composition.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="../assets/screenshots/synthesis/additive/spectrum-melody.png" class="lightbox" data-gallery="quarto-lightbox-gallery-25" title="Fig."><img src="../assets/screenshots/synthesis/additive/spectrum-melody.png" class="img-fluid figure-img" alt="Fig."></a></p>
-<figcaption>Fig.</figcaption>
+<p><a href="../assets/screenshots/synthesis/additive/spectrum-melody.png" class="lightbox" data-gallery="quarto-lightbox-gallery-25" title="Spectral melody generator using clone object, mathematical amplitude scaling, and randomized envelope timing for complex harmonic evolution."><img src="../assets/screenshots/synthesis/additive/spectrum-melody.png" class="img-fluid figure-img" alt="Spectral melody generator using clone object, mathematical amplitude scaling, and randomized envelope timing for complex harmonic evolution."></a></p>
+<figcaption>Spectral melody generator using clone object, mathematical amplitude scaling, and randomized envelope timing for complex harmonic evolution.</figcaption>
 </figure>
 </div>
 <section id="patch-overview-2" class="level4" data-number="4.4.9.1">
@@ -1778,8 +1793,8 @@ Period = 1 / 100 Hz = 0.01 s = 10 ms</code></pre>
 <p>We can modulate the amplitude of any signal—referred to as the <em>carrier</em>—by multiplying it with an oscillating signal, called the <em>modulator</em>. The modulator is typically another oscillator, and its frequency determines the <em>modulation frequency</em>.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="../assets/screenshots/synthesis/am-rm/am.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-26" title="Amplitude Modulation"><img src="../assets/screenshots/synthesis/am-rm/am.gif" class="img-fluid figure-img" alt="Amplitude Modulation"></a></p>
-<figcaption>Amplitude Modulation</figcaption>
+<p><a href="../assets/screenshots/synthesis/am-rm/am.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-26" title="Classic amplitude modulation with sine wave carrier and unipolar modulator, creating tremolo-like amplitude variation"><img src="../assets/screenshots/synthesis/am-rm/am.gif" class="img-fluid figure-img" alt="Classic amplitude modulation with sine wave carrier and unipolar modulator, creating tremolo-like amplitude variation"></a></p>
+<figcaption>Classic amplitude modulation with sine wave carrier and unipolar modulator, creating tremolo-like amplitude variation</figcaption>
 </figure>
 </div>
 <p>In the example provided, both the carrier and modulator are sine wave oscillators. This is what we call “classic” amplitude modulation (AM), where the modulator signal includes a DC offset, making it <em>unipolar</em>, ranging only from 0 to 1. This unipolarity ensures that the carrier’s amplitude is scaled without ever becoming negative.</p>
@@ -1789,8 +1804,8 @@ Period = 1 / 100 Hz = 0.01 s = 10 ms</code></pre>
 <p>Ring modulation is a particular form of amplitude modulation where both the carrier and modulator signals are <em>bipolar</em>, meaning they oscillate between -1 and 1 without any DC offset. In this configuration, there’s no functional distinction between carrier and modulator—both behave symmetrically.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="../assets/screenshots/synthesis/am-rm/rm.png" class="lightbox" data-gallery="quarto-lightbox-gallery-27" title="Ring Modulation"><img src="../assets/screenshots/synthesis/am-rm/rm.png" class="img-fluid figure-img" alt="Ring Modulation"></a></p>
-<figcaption>Ring Modulation</figcaption>
+<p><a href="../assets/screenshots/synthesis/am-rm/rm.png" class="lightbox" data-gallery="quarto-lightbox-gallery-27" title="Ring modulation configuration with bipolar signals creating sidebands"><img src="../assets/screenshots/synthesis/am-rm/rm.png" class="img-fluid figure-img" alt="Ring modulation configuration with bipolar signals creating sidebands"></a></p>
+<figcaption>Ring modulation configuration with bipolar signals creating sidebands</figcaption>
 </figure>
 </div>
 <p>Nonetheless, in practical terms, the carrier is usually an audio signal such as a musical instrument, while the modulator remains a simple oscillator. A key technical detail is that when the modulator signal is negative, it inverts the polarity of the carrier signal—producing a unique and often metallic timbre.</p>
@@ -1801,8 +1816,8 @@ Period = 1 / 100 Hz = 0.01 s = 10 ms</code></pre>
 <p>Observe how, in the frequency spectrum of classic AM, we see two sidebands—above and below the carrier frequency—each at half the amplitude of the original carrier. These sidebands are spaced apart by the modulation frequency.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="../assets/screenshots/synthesis/am-rm/dc-offset.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-28" title="Fig."><img src="../assets/screenshots/synthesis/am-rm/dc-offset.gif" class="img-fluid figure-img" alt="Fig."></a></p>
-<figcaption>Fig.</figcaption>
+<p><a href="../assets/screenshots/synthesis/am-rm/dc-offset.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-28" title="DC offset control interface showing continuous transition between AM and RM modes with real-time spectral analysis of carrier and sideband frequencies."><img src="../assets/screenshots/synthesis/am-rm/dc-offset.gif" class="img-fluid figure-img" alt="DC offset control interface showing continuous transition between AM and RM modes with real-time spectral analysis of carrier and sideband frequencies."></a></p>
+<figcaption>DC offset control interface showing continuous transition between AM and RM modes with real-time spectral analysis of carrier and sideband frequencies.</figcaption>
 </figure>
 </div>
 <p>In contrast, ring modulation removes the original carrier frequency entirely from the spectrum, leaving only the sidebands, which typically carry more energy than in AM.</p>
@@ -1814,8 +1829,8 @@ Period = 1 / 100 Hz = 0.01 s = 10 ms</code></pre>
 <p>Conversely, many effects processors—such as filters—are integral to sound synthesis. The boundary between synthesis and processing is thus fluid and contextual.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="../assets/screenshots/synthesis/am-rm/sample.png" class="lightbox" data-gallery="quarto-lightbox-gallery-29" title="Fig."><img src="../assets/screenshots/synthesis/am-rm/sample.png" class="img-fluid figure-img" alt="Fig."></a></p>
-<figcaption>Fig.</figcaption>
+<p><a href="../assets/screenshots/synthesis/am-rm/sample.png" class="lightbox" data-gallery="quarto-lightbox-gallery-29" title="Ring modulation applied to audio samples with carrier selection and modulation controls"><img src="../assets/screenshots/synthesis/am-rm/sample.png" class="img-fluid figure-img" alt="Ring modulation applied to audio samples with carrier selection and modulation controls"></a></p>
+<figcaption>Ring modulation applied to audio samples with carrier selection and modulation controls</figcaption>
 </figure>
 </div>
 <p>Try both the classic AM and RM examples. In both cases, sidebands are generated for each sine wave component within the carrier signal. AM retains the carrier’s original sine components, which coexist and interact with the generated sidebands. For this reason, AM is commonly used for tremolo effects (which we’ll examine later). On the other hand, RM removes the original sine components entirely, yielding a more sonically distinctive result.</p>
@@ -1825,8 +1840,8 @@ Period = 1 / 100 Hz = 0.01 s = 10 ms</code></pre>
 <p>Using more complex waveforms for the modulator signal leads to the creation of additional partials within any amplitude modulation patch—including ring modulation. Sine waves are typically favored as modulators since they offer clean and controlled results, especially when applying AM as an audio effect.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="../assets/screenshots/synthesis/am-rm/other-waveforms.png" class="lightbox" data-gallery="quarto-lightbox-gallery-30" title="Fig."><img src="../assets/screenshots/synthesis/am-rm/other-waveforms.png" class="img-fluid figure-img" alt="Fig."></a></p>
-<figcaption>Fig.</figcaption>
+<p><a href="../assets/screenshots/synthesis/am-rm/other-waveforms.png" class="lightbox" data-gallery="quarto-lightbox-gallery-30" title="Complex waveform modulation showing carrier and modulator waveform selection with spectral complexity progression from sine waves to sawtooth waves"><img src="../assets/screenshots/synthesis/am-rm/other-waveforms.png" class="img-fluid figure-img" alt="Complex waveform modulation showing carrier and modulator waveform selection with spectral complexity progression from sine waves to sawtooth waves"></a></p>
+<figcaption>Complex waveform modulation showing carrier and modulator waveform selection with spectral complexity progression from sine waves to sawtooth waves</figcaption>
 </figure>
 </div>
 <p>However, in synthesis contexts, more intricate and harmonically rich methods—such as <em>frequency</em> and <em>phase</em> modulation—offer more efficient and versatile approaches for generating complex timbres. We’ll explore these in the following sections.</p>
@@ -1836,8 +1851,8 @@ Period = 1 / 100 Hz = 0.01 s = 10 ms</code></pre>
 <p>Tremolo is essentially amplitude modulation using a <em>low-frequency</em> modulator. The key addition is a <em>depth</em> parameter, ranging from 0 to 1, which determines the modulation intensity. At 0, no modulation occurs (dry signal), while a depth of 1 results in full tremolo, where the carrier’s amplitude is modulated across its full range.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="../assets/screenshots/synthesis/am-rm/tremolo.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-31" title="Fig."><img src="../assets/screenshots/synthesis/am-rm/tremolo.gif" class="img-fluid figure-img" alt="Fig."></a></p>
-<figcaption>Fig.</figcaption>
+<p><a href="../assets/screenshots/synthesis/am-rm/tremolo.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-31" title="Tremolo effect with low-frequency modulation showing depth control from 0 (no effect) to 1 (full amplitude modulation)"><img src="../assets/screenshots/synthesis/am-rm/tremolo.gif" class="img-fluid figure-img" alt="Tremolo effect with low-frequency modulation showing depth control from 0 (no effect) to 1 (full amplitude modulation)"></a></p>
+<figcaption>Tremolo effect with low-frequency modulation showing depth control from 0 (no effect) to 1 (full amplitude modulation)</figcaption>
 </figure>
 </div>
 </section>
@@ -1848,8 +1863,8 @@ Period = 1 / 100 Hz = 0.01 s = 10 ms</code></pre>
 <p>The signal being modulated is called the <em>carrier</em>; in the case of frequency modulation, it is also referred to as the <em>carrier frequency</em>. In contrast, we have the <em>modulating frequency</em>, which corresponds to the frequency of the modulating oscillator. The depth of frequency variation is determined by the amplitude of the modulator and is commonly referred to as the <em>modulation index</em>. The modulation process itself is straightforward: we add the modulating signal to the frequency input of the carrier oscillator. See the example on the right</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="../assets/screenshots/synthesis/fm/intro.png" class="lightbox" data-gallery="quarto-lightbox-gallery-32" title="Fig."><img src="../assets/screenshots/synthesis/fm/intro.png" class="img-fluid figure-img" style="width:50.0%" alt="Fig."></a></p>
-<figcaption>Fig.</figcaption>
+<p><a href="../assets/screenshots/synthesis/fm/intro.png" class="lightbox" data-gallery="quarto-lightbox-gallery-32" title="FM synthesis with carrier oscillator, modulator input, and frequency deviation control, showing the fundamental structure of frequency modulation."><img src="../assets/screenshots/synthesis/fm/intro.png" class="img-fluid figure-img" style="width:50.0%" alt="FM synthesis with carrier oscillator, modulator input, and frequency deviation control, showing the fundamental structure of frequency modulation."></a></p>
+<figcaption>FM synthesis with carrier oscillator, modulator input, and frequency deviation control, showing the fundamental structure of frequency modulation.</figcaption>
 </figure>
 </div>
 <p>By default, we have a carrier frequency of 400 Hz, a low modulation frequency of 1 Hz, and a modulation index of 100. This means the modulating signal oscillates between -100 and +100 Hz, causing the carrier frequency to vary between 300 and 500 Hz. Note that when the modulation frequency is low, the result is a vibrato-like effect.</p>
@@ -1858,8 +1873,8 @@ Period = 1 / 100 Hz = 0.01 s = 10 ms</code></pre>
 <p>We apply the same structure as before. Besides a vibrato example, this section includes fully developed FM examples. As with amplitude modulation, FM produces <em>sidebands</em> spaced by intervals equal to the modulation frequency. However, FM can generate many more sidebands, potentially resulting in a much richer spectrum.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="../assets/screenshots/synthesis/fm/fm.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-33" title="Fig."><img src="../assets/screenshots/synthesis/fm/fm.gif" class="img-fluid figure-img" alt="Fig."></a></p>
-<figcaption>Fig.</figcaption>
+<p><a href="../assets/screenshots/synthesis/fm/fm.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-33" title="FM synthesis interface with carrier frequency, modulation frequency, and index controls, creating complex harmonic spectra through frequency modulation."><img src="../assets/screenshots/synthesis/fm/fm.gif" class="img-fluid figure-img" alt="FM synthesis interface with carrier frequency, modulation frequency, and index controls, creating complex harmonic spectra through frequency modulation."></a></p>
+<figcaption>FM synthesis interface with carrier frequency, modulation frequency, and index controls, creating complex harmonic spectra through frequency modulation.</figcaption>
 </figure>
 </div>
 <p>The higher the modulation index, the greater the number of resulting partials—enabling the creation of dense and complex waveforms. When the carrier and modulator frequencies share a simple harmonic ratio, the resulting waveform is harmonic. Otherwise, it tends to be inharmonic. Click on the message boxes to hear the preset examples.</p>
@@ -1869,8 +1884,8 @@ Period = 1 / 100 Hz = 0.01 s = 10 ms</code></pre>
 <p>In this patch, we experiment with different oscillator combinations. Waveforms are arranged according to spectral complexity—from simple sine waves to rich sawtooth waves (the only waveform here containing both even and odd harmonics). The more complex the waveform used, the more intricate the FM result becomes.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="../assets/screenshots/synthesis/fm/other-waveforms.png" class="lightbox" data-gallery="quarto-lightbox-gallery-34" title="Fig."><img src="../assets/screenshots/synthesis/fm/other-waveforms.png" class="img-fluid figure-img" alt="Fig."></a></p>
-<figcaption>Fig.</figcaption>
+<p><a href="../assets/screenshots/synthesis/fm/other-waveforms.png" class="lightbox" data-gallery="quarto-lightbox-gallery-34" title="FM synthesis interface with waveform selection for carrier and modulator arranged by harmonic complexity"><img src="../assets/screenshots/synthesis/fm/other-waveforms.png" class="img-fluid figure-img" alt="FM synthesis interface with waveform selection for carrier and modulator arranged by harmonic complexity"></a></p>
+<figcaption>FM synthesis interface with waveform selection for carrier and modulator arranged by harmonic complexity</figcaption>
 </figure>
 </div>
 <p>On the modulator side, the waveforms are idealized and band-unlimited—perfect in theory. However, the frequency-modulated oscillator has a limited bandwidth, which imposes practical constraints on the resulting spectrum.</p>
@@ -1880,8 +1895,8 @@ Period = 1 / 100 Hz = 0.01 s = 10 ms</code></pre>
 <p>We can also use exponential pitch values (such as MIDI note numbers) instead of linear frequency input. The key difference here is that <em>frequency deviation</em>—the modulation index—is now expressed in <em>semitones</em>, not Hertz. This shift affects the entire modulation behavior.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="../assets/screenshots/synthesis/fm/exponential-freq.png" class="lightbox" data-gallery="quarto-lightbox-gallery-35" title="Fig."><img src="../assets/screenshots/synthesis/fm/exponential-freq.png" class="img-fluid figure-img" alt="Fig."></a></p>
-<figcaption>Fig.</figcaption>
+<p><a href="../assets/screenshots/synthesis/fm/exponential-freq.png" class="lightbox" data-gallery="quarto-lightbox-gallery-35" title="FM synthesis with exponential frequency control using MIDI note numbers, where modulation index is expressed in semitones rather than Hz, creating asymmetrical waveform characteristics."><img src="../assets/screenshots/synthesis/fm/exponential-freq.png" class="img-fluid figure-img" alt="FM synthesis with exponential frequency control using MIDI note numbers, where modulation index is expressed in semitones rather than Hz, creating asymmetrical waveform characteristics."></a></p>
+<figcaption>FM synthesis with exponential frequency control using MIDI note numbers, where modulation index is expressed in semitones rather than Hz, creating asymmetrical waveform characteristics.</figcaption>
 </figure>
 </div>
 <p>As a result, the output waveform becomes asymmetrical and significantly different in character. The main change in the patch is the use of <code>[mtof~]</code> to convert MIDI pitch to frequency in Hz.</p>
@@ -1891,8 +1906,8 @@ Period = 1 / 100 Hz = 0.01 s = 10 ms</code></pre>
 <p>It is common practice to define the modulating frequency as a <em>ratio</em> of the carrier frequency. This allows us to work with a single frequency input while maintaining a consistent sonic character across different pitches.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="../assets/screenshots/synthesis/fm/ratio.png" class="lightbox" data-gallery="quarto-lightbox-gallery-36" title="Fig."><img src="../assets/screenshots/synthesis/fm/ratio.png" class="img-fluid figure-img" alt="Fig."></a></p>
-<figcaption>Fig.</figcaption>
+<p><a href="../assets/screenshots/synthesis/fm/ratio.png" class="lightbox" data-gallery="quarto-lightbox-gallery-36" title="Frequency modulation with ratio-based modulator control, maintaining consistent harmonic relationships between carrier and modulator frequencies across different pitch ranges."><img src="../assets/screenshots/synthesis/fm/ratio.png" class="img-fluid figure-img" alt="Frequency modulation with ratio-based modulator control, maintaining consistent harmonic relationships between carrier and modulator frequencies across different pitch ranges."></a></p>
+<figcaption>Frequency modulation with ratio-based modulator control, maintaining consistent harmonic relationships between carrier and modulator frequencies across different pitch ranges.</figcaption>
 </figure>
 </div>
 <p>This approach preserves the relationship between the carrier and modulator frequencies, which is crucial since this ratio determines how the additional spectral components—partials—are distributed. Harmonic ratios (such as 0.5 or 2) yield harmonic results, while non-integer ratios lead to inharmonic spectra.</p>
@@ -1940,8 +1955,8 @@ Period = 1 / 100 Hz = 0.01 s = 10 ms</code></pre>
 <p>The object <code>lop~</code> in Pure Data (short for “low-pass”) implements a basic low-pass filter. This filter allows frequencies below a certain threshold, called the cutoff or roll-off frequency, to pass through while progressively attenuating higher frequencies. This transition is not abrupt: the filtering effect begins at 0 Hz and gradually increases, resulting in a -3 dB drop at the cutoff point. Beyond this, the attenuation rate is approximately 6 dB per octave.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="../assets/screenshots/synthesis/filters/lop.png" class="lightbox" data-gallery="quarto-lightbox-gallery-37" title="Fig."><img src="../assets/screenshots/synthesis/filters/lop.png" class="img-fluid figure-img" alt="Fig."></a></p>
-<figcaption>Fig.</figcaption>
+<p><a href="../assets/screenshots/synthesis/filters/lop.png" class="lightbox" data-gallery="quarto-lightbox-gallery-37" title="Low-pass filter with frequency cutoff control, attenuating higher frequencies at 6dB per octave slope"><img src="../assets/screenshots/synthesis/filters/lop.png" class="img-fluid figure-img" alt="Low-pass filter with frequency cutoff control, attenuating higher frequencies at 6dB per octave slope"></a></p>
+<figcaption>Low-pass filter with frequency cutoff control, attenuating higher frequencies at 6dB per octave slope</figcaption>
 </figure>
 </div>
 <p>This filter is useful not only in audio synthesis but also in signal smoothing applications—such as envelope followers or data processing from physical sensors. At high cutoff frequencies (above ~5 kHz), the filter’s response deviates slightly from this ideal behavior.</p>
@@ -1951,8 +1966,8 @@ Period = 1 / 100 Hz = 0.01 s = 10 ms</code></pre>
 <p>A high-pass filter, such as <code>hip~</code> in Pure Data, performs the inverse operation of a low-pass: it permits frequencies above a defined cutoff point and attenuates those below it. Interestingly, a high-pass effect can also be derived by subtracting the output of a low-pass filter from the original signal. While <code>hip~</code> is often employed to remove DC offsets, it too has a 6 dB per octave slope and exhibits some gain anomalies at higher cutoff values.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="../assets/screenshots/synthesis/filters/hip.png" class="lightbox" data-gallery="quarto-lightbox-gallery-38" title="Fig."><img src="../assets/screenshots/synthesis/filters/hip.png" class="img-fluid figure-img" alt="Fig."></a></p>
-<figcaption>Fig.</figcaption>
+<p><a href="../assets/screenshots/synthesis/filters/hip.png" class="lightbox" data-gallery="quarto-lightbox-gallery-38" title="High-pass filter with cutoff control, removing frequencies below the threshold while preserving higher frequency content for signal clarity"><img src="../assets/screenshots/synthesis/filters/hip.png" class="img-fluid figure-img" alt="High-pass filter with cutoff control, removing frequencies below the threshold while preserving higher frequency content for signal clarity"></a></p>
+<figcaption>High-pass filter with cutoff control, removing frequencies below the threshold while preserving higher frequency content for signal clarity</figcaption>
 </figure>
 </div>
 </section>
@@ -1964,8 +1979,8 @@ Period = 1 / 100 Hz = 0.01 s = 10 ms</code></pre>
 <p>The musical interval between ( f_1 ) and ( f_2 ) can also be used to conceptualize the resonance more musically, especially when represented on a logarithmic scale like MIDI pitch.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="../assets/screenshots/synthesis/filters/bandwidth.png" class="lightbox" data-gallery="quarto-lightbox-gallery-39" title="Fig."><img src="../assets/screenshots/synthesis/filters/bandwidth.png" class="img-fluid figure-img" style="width:50.0%" alt="Fig."></a></p>
-<figcaption>Fig.</figcaption>
+<p><a href="../assets/screenshots/synthesis/filters/bandwidth.png" class="lightbox" data-gallery="quarto-lightbox-gallery-39" title="Band-pass filter frequency response showing center frequency f₀ with -3dB bandwidth points f₁ and f₂, illustrating the relationship between resonant peak and filter selectivity."><img src="../assets/screenshots/synthesis/filters/bandwidth.png" class="img-fluid figure-img" style="width:50.0%" alt="Band-pass filter frequency response showing center frequency f₀ with -3dB bandwidth points f₁ and f₂, illustrating the relationship between resonant peak and filter selectivity."></a></p>
+<figcaption>Band-pass filter frequency response showing center frequency f₀ with -3dB bandwidth points f₁ and f₂, illustrating the relationship between resonant peak and filter selectivity.</figcaption>
 </figure>
 </div>
 </section>
@@ -1976,8 +1991,8 @@ Period = 1 / 100 Hz = 0.01 s = 10 ms</code></pre>
 <p>A higher Q value indicates a narrower and more pronounced resonance, while a lower Q results in a broader and more subtle response. In essence, Q and bandwidth are inverse measures of the same characteristic.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="../assets/screenshots/synthesis/filters/q-factor.png" class="lightbox" data-gallery="quarto-lightbox-gallery-40" title="Fig."><img src="../assets/screenshots/synthesis/filters/q-factor.png" class="img-fluid figure-img" style="width:75.0%" alt="Fig."></a></p>
-<figcaption>Fig.</figcaption>
+<p><a href="../assets/screenshots/synthesis/filters/q-factor.png" class="lightbox" data-gallery="quarto-lightbox-gallery-40" title="Filter Q factor visualization showing the relationship between resonance sharpness and bandwidth, with higher Q values"><img src="../assets/screenshots/synthesis/filters/q-factor.png" class="img-fluid figure-img" style="width:75.0%" alt="Filter Q factor visualization showing the relationship between resonance sharpness and bandwidth, with higher Q values"></a></p>
+<figcaption>Filter Q factor visualization showing the relationship between resonance sharpness and bandwidth, with higher Q values</figcaption>
 </figure>
 </div>
 </section>
@@ -1986,8 +2001,8 @@ Period = 1 / 100 Hz = 0.01 s = 10 ms</code></pre>
 <p>The <code>bp~</code> object in Pure Data provides a straightforward implementation of a band-pass filter, accepting center frequency and Q as inputs. It is computationally efficient and practical, though it tends to attenuate frequencies above the center more than those below, thus producing an asymmetrical response. With a Q of 1, <code>bp~</code> approximates the behavior of a <code>lop~</code> filter. As with other vanilla filters, its frequency response changes noticeably at higher frequencies.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="../assets/screenshots/synthesis/filters/bp.png" class="lightbox" data-gallery="quarto-lightbox-gallery-41" title="Fig."><img src="../assets/screenshots/synthesis/filters/bp.png" class="img-fluid figure-img" alt="Fig."></a></p>
-<figcaption>Fig.</figcaption>
+<p><a href="../assets/screenshots/synthesis/filters/bp.png" class="lightbox" data-gallery="quarto-lightbox-gallery-41" title="Band-pass filter with frequency and Q controls, creating resonant peak emphasis while attenuating frequencies outside the passband."><img src="../assets/screenshots/synthesis/filters/bp.png" class="img-fluid figure-img" alt="Band-pass filter with frequency and Q controls, creating resonant peak emphasis while attenuating frequencies outside the passband."></a></p>
+<figcaption>Band-pass filter with frequency and Q controls, creating resonant peak emphasis while attenuating frequencies outside the passband.</figcaption>
 </figure>
 </div>
 </section>
@@ -1996,8 +2011,8 @@ Period = 1 / 100 Hz = 0.01 s = 10 ms</code></pre>
 <p>The <code>vcf~</code> object (short for “voltage-controlled filter”) is another band-pass filter in the vanilla distribution, notable for its ability to accept audio-rate signals to modulate the center frequency—mimicking the behavior of analog synthesizers. While the Q parameter is controlled by control-rate data, the central frequency can be dynamically shaped by audio input.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="../assets/screenshots/synthesis/filters/vcf.png" class="lightbox" data-gallery="quarto-lightbox-gallery-42" title="Fig."><img src="../assets/screenshots/synthesis/filters/vcf.png" class="img-fluid figure-img" alt="Fig."></a></p>
-<figcaption>Fig.</figcaption>
+<p><a href="../assets/screenshots/synthesis/filters/vcf.png" class="lightbox" data-gallery="quarto-lightbox-gallery-42" title="VCF implementation with audio-rate frequency modulation capability, providing both standard and complementary phase outputs for enhanced filtering flexibility."><img src="../assets/screenshots/synthesis/filters/vcf.png" class="img-fluid figure-img" alt="VCF implementation with audio-rate frequency modulation capability, providing both standard and complementary phase outputs for enhanced filtering flexibility."></a></p>
+<figcaption>VCF implementation with audio-rate frequency modulation capability, providing both standard and complementary phase outputs for enhanced filtering flexibility.</figcaption>
 </figure>
 </div>
 <p>This object has two outputs: the right outlet approximates a <code>bp~</code> filter’s frequency response, whereas the left outlet provides a complementary phase response. At low Q values, both outputs show a characteristically asymmetrical frequency curve, and deviations become more pronounced at higher frequencies (above ~7 kHz).</p>
@@ -2007,8 +2022,8 @@ Period = 1 / 100 Hz = 0.01 s = 10 ms</code></pre>
 <p>The <code>bob~</code> object is a recent addition to Pure Data’s vanilla library, designed to model the iconic Moog filter created by Robert Moog. It allows both the cutoff frequency and Q to be modulated at audio rate, making it one of the most expressive and flexible filters in the system. Though officially described as a low-pass resonant filter, its architecture lends itself to a wide variety of applications. Users are encouraged to consult its help patch for in-depth understanding and examples.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="../assets/screenshots/synthesis/filters/bob.png" class="lightbox" data-gallery="quarto-lightbox-gallery-43" title="Fig."><img src="../assets/screenshots/synthesis/filters/bob.png" class="img-fluid figure-img" style="width:50.0%" alt="Fig."></a></p>
-<figcaption>Fig.</figcaption>
+<p><a href="../assets/screenshots/synthesis/filters/bob.png" class="lightbox" data-gallery="quarto-lightbox-gallery-43" title="Moog-style resonant low-pass filter with audio-rate cutoff and Q modulation, providing the characteristic warm analog filtering sound"><img src="../assets/screenshots/synthesis/filters/bob.png" class="img-fluid figure-img" style="width:50.0%" alt="Moog-style resonant low-pass filter with audio-rate cutoff and Q modulation, providing the characteristic warm analog filtering sound"></a></p>
+<figcaption>Moog-style resonant low-pass filter with audio-rate cutoff and Q modulation, providing the characteristic warm analog filtering sound</figcaption>
 </figure>
 </div>
 </section>
@@ -2018,8 +2033,8 @@ Period = 1 / 100 Hz = 0.01 s = 10 ms</code></pre>
 <p>To simplify this process, the <code>bicoeff</code> object from the ELSE library allows users to generate coefficients for nine different filter types, based on Robert Bristow-Johnson’s “Cookbook formulae for audio EQ biquad filter coefficients”<span class="citation" data-cites="bristow-johnson2024">(<a href="#ref-bristow-johnson2024" role="doc-biblioref">Bristow-Johnson 2024</a>)</span>. This GUI-based object visualizes the amplitude response in real time. The X-axis is logarithmic (typically in MIDI pitch), and the Y-axis represents gain in dB. Interactive controls allow users to modify frequency, bandwidth, and gain directly by clicking and dragging on the graph.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="../assets/screenshots/synthesis/filters/biquad.png" class="lightbox" data-gallery="quarto-lightbox-gallery-44" title="Fig."><img src="../assets/screenshots/synthesis/filters/biquad.png" class="img-fluid figure-img" alt="Fig."></a></p>
-<figcaption>Fig.</figcaption>
+<p><a href="../assets/screenshots/synthesis/filters/biquad.png" class="lightbox" data-gallery="quarto-lightbox-gallery-44" title="Biquad filter interface with bicoeff object providing real-time frequency response visualization and interactive control"><img src="../assets/screenshots/synthesis/filters/biquad.png" class="img-fluid figure-img" alt="Biquad filter interface with bicoeff object providing real-time frequency response visualization and interactive control"></a></p>
+<figcaption>Biquad filter interface with bicoeff object providing real-time frequency response visualization and interactive control</figcaption>
 </figure>
 </div>
 <p>Together, these filtering tools illustrate the conceptual and practical range of subtractive and resonant filtering in sound synthesis. Whether you are shaping a simple tone, cleaning up sensor data, or building complex timbral transformations, understanding how filters operate is essential. They not only alter the spectral content of signals but also engage with broader perceptual dimensions—allowing composers, performers, and designers to sculpt sound with nuance and precision.</p>
