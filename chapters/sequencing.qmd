@@ -4,14 +4,14 @@ In this chapter, we will explore the concept of sequencers and how they can be i
 
 ## Arrays and Sequencers
 
-Sequencer is a tool for organizing and controlling the playback of `events` in a temporally ordered sequence. This sequence consists of a series of discrete steps, where each step represents a regular time interval and can contain information about event activation or deactivation.
-
-In addition to controlling musical events such as notes, chords, and percussions, a step sequencer can also manage a variety of other events. This includes parameter changes in virtual instruments or audio/video synthesizers, real-time effect automation, lighting control in live performances or multimedia installations, triggering of samples to create patterns and effect sequences, as well as firing MIDI control events to operate external hardware or software.
+Sequencer is a tool for organizing and controlling the playback of events in a temporally ordered sequence. This sequence consists of a series of discrete steps, where each step represents a regular time interval and can contain information about event activation or deactivation. In addition to controlling musical events such as notes, chords, and percussions, a step sequencer can also manage a variety of other events. This includes parameter changes in virtual instruments or audio/video synthesizers, real-time effect automation, lighting control in live performances or multimedia installations, triggering of samples to create patterns and effect sequences, as well as firing MIDI control events to operate external hardware or software. The following table illustrates the basic structure of a step sequencer:
 
 | Step  | 1  | 2  | 3  | 4  | 5  | 6  | 7  | 8  |
 |-------|-----|-----|-----|-----|-----|-----|-----|-----|
 | Value | x   | x   | x   | x   | x   | x   | x   | x   |
 | Index | 0   | 1  | 2  | 3  | 4  | 5  | 6  | 7  |
+<br>
+Where:
 
 -   Each cell represents a step in the sequencer.
 -   1 to 8 indicate the steps.
@@ -54,11 +54,13 @@ This implementation demonstrates how to create a basic 8-step MIDI sequencer tha
 
 ### Patch Overview
 
-The 8-step sequencer patch implements a classic step-based sequencing paradigm where musical events are organized into discrete time slots. The system operates by maintaining an internal counter that advances through eight sequential positions, with each position corresponding to a MIDI note value stored in an array. The sequencer provides real-time tempo control through a BPM slider interface and uses Pd's built-in MIDI capabilities to output note events that can be routed to software synthesizers or external MIDI devices.
+The 8-step sequencer patch implements a classic step-based sequencing paradigm where musical events are organized into discrete time slots. The patch operates by maintaining an internal counter that advances through eight sequential positions, with each position corresponding to a MIDI note value stored in an array. The sequencer provides real-time tempo control through a BPM slider interface and uses Pd's built-in MIDI capabilities to output note events that can be routed to software synthesizers or external MIDI devices.
 
 The patch architecture follows a linear signal flow pattern that begins with user control inputs and culminates in MIDI note output. The timing engine uses Pd's `metro` object as the primary clock source, generating regular pulses that drive the step advancement mechanism. Each pulse triggers a counter increment operation, which is processed through modulo arithmetic to ensure the sequence loops seamlessly after reaching the eighth step. The current step index is then used to retrieve the corresponding MIDI note value from a pre-populated array, which is subsequently formatted into proper MIDI messages and transmitted through the system's MIDI output infrastructure.
 
 The visual interface provides immediate feedback on the sequencer's operation through numeric displays that show both the current step position and the MIDI note value being played. The tempo control utilizes a mathematical conversion from beats per minute to milliseconds, allowing users to adjust the playback speed in musically meaningful units while maintaining precise timing accuracy.
+
+### Data Flow
 
 ```{mermaid}
 flowchart TD
@@ -78,15 +80,9 @@ flowchart TD
     N --> I
 ```
 
-### Data Flow
+The sequencer's operation begins when the user activates the start/stop `toggle`, which enables the metro object to begin generating timing pulses. The tempo of these pulses is determined by the BPM `slider` value, which is converted from beats per minute to milliseconds using the expression `60000/$f1`. This conversion ensures that the metro object receives timing intervals in the appropriate units for accurate tempo control. Each timing pulse from the metro object triggers the step counter mechanism, implemented using a combination of `f` (float storage), `+1` (increment), and `mod 8` (modulo) objects. The float object stores the current step index, which is incremented by one each time a pulse is received. The incremented value is then processed through the modulo operation to ensure it wraps back to zero after reaching seven, creating the characteristic eight-step cycle.
 
-The sequencer's operation begins when the user activates the start/stop toggle, which enables the metro object to begin generating timing pulses. The tempo of these pulses is determined by the BPM slider value, which is converted from beats per minute to milliseconds using the expression `60000/$f1`. This conversion ensures that the metro object receives timing intervals in the appropriate units for accurate tempo control.
-
-Each timing pulse from the metro object triggers the step counter mechanism, implemented using a combination of `f` (float storage), `+1` (increment), and `mod 8` (modulo) objects. The float object stores the current step index, which is incremented by one each time a pulse is received. The incremented value is then processed through the modulo operation to ensure it wraps back to zero after reaching seven, creating the characteristic eight-step cycle.
-
-The current step index serves dual purposes within the patch. First, it provides visual feedback to the user through a numeric atom display, allowing real-time monitoring of the sequencer's position. Second, and more importantly, it functions as an index for retrieving MIDI note values from the `midi_note` array using the `tabread` object.
-
-The MIDI note array is initialized at patch startup through a `loadbang` object that sends a message containing the sequence `60 62 64 65 67 69 71 72`, representing a C major scale starting from middle C. This initialization ensures that the sequencer has meaningful musical content available immediately upon loading the patch.
+The current step index serves dual purposes within the patch. First, it provides visual feedback to the user through a numeric atom display, allowing real-time monitoring of the sequencer's position. Second, and more importantly, it functions as an index for retrieving MIDI note values from the `midi_note` array using the `tabread` object. The MIDI note array is initialized at patch startup through a `loadbang` object that sends a message containing the sequence `60 62 64 65 67 69 71 72`, representing a C major scale starting from middle C. This initialization ensures that the sequencer has meaningful musical content available immediately upon loading the patch.
 
 Once a MIDI note value is retrieved from the array, it is displayed numerically and then processed through the `makenote` object, which creates properly formatted MIDI note-on and note-off messages. The `makenote` object is configured with a fixed velocity of 100 and a duration of 250 milliseconds, providing consistent note characteristics across all steps. The resulting MIDI messages are then transmitted through the `noteout` object to MIDI channel 1, where they can be received by synthesizers or recording software.
 
@@ -94,7 +90,6 @@ Once a MIDI note value is retrieved from the array, it is displayed numerically 
 
 The following table summarizes the essential objects used in the step sequencer implementation and their specific functions within the patch:
 
-::: {style="width: 70%;"}
 | Object | Purpose |
 |--------|---------|
 | `tgl` | Start/stop toggle switch for sequencer control |
@@ -110,8 +105,7 @@ The following table summarizes the essential objects used in the step sequencer 
 | `noteout` | Transmits MIDI messages to specified channel |
 | `loadbang` | Initializes array with note sequence at patch startup |
 | `array midi_note` | Stores the sequence of MIDI note values |
-:::
-
+<br>
 The patch demonstrates several fundamental programming concepts, including the use of timing objects for rhythmic control, array manipulation for data storage and retrieval, mathematical operations for counter management, and MIDI message formatting for external communication. The modular design allows for easy modification of the note sequence, tempo range, and MIDI output parameters, making it a versatile foundation for more complex sequencing applications.
 
 ## Random Step Sequencer Implementation
@@ -127,6 +121,8 @@ The random step sequencer patch builds upon the foundational concepts of the bas
 The architecture preserves the linear signal flow from user controls to MIDI output, but introduces a random number generator at the critical junction where step advancement occurs. The timing engine continues to use Pd's `metro` object as the primary clock source, but each timing pulse now triggers a random selection rather than a predictable increment. This modification transforms the sequencer from a deterministic system into a probabilistic one, where the same stored sequence can produce infinite variations in playback order.
 
 The interface maintains the same visual feedback mechanisms as the sequential version, displaying both the randomly selected step index and the corresponding MIDI note value. The tempo control system remains unchanged, allowing users to adjust playback speed while experiencing the unpredictable note selection patterns that emerge from the randomization process.
+
+### Data Flow
 
 ```{mermaid}
 flowchart TD
@@ -144,8 +140,6 @@ flowchart TD
     M --> H
 ```
 
-### Data Flow
-
 The operational sequence begins identically to the sequential version, with the user activating the start/stop toggle to enable metro object timing generation. The BPM slider continues to control tempo through the same mathematical conversion formula `60000/$f1`, ensuring consistent timing accuracy regardless of the randomization occurring downstream.
 
 The fundamental difference emerges at the step generation stage. Instead of using a counter that increments predictably, each timing pulse from the metro object triggers a random number generator implemented with the `expr random(0, 8)` object. This expression generates random integers between 0 and 7 (inclusive), providing equal probability access to any position within the 8-element note array. The random selection occurs independently for each timing pulse, meaning the same index can be selected multiple times in succession, or the system might skip certain indices entirely during any given playback session.
@@ -160,47 +154,36 @@ The array initialization process follows the identical pattern established in th
 
 The following table summarizes the essential objects used in the random step sequencer implementation, highlighting the specific changes from the sequential version:
 
-::: {style="width: 70%;"}
 | Object | Purpose |
 |--------|---------|
 | `tgl` | Start/stop toggle switch for sequencer control |
 | `metro` | Timing engine that generates regular pulses |
 | `floatatom` | BPM input and step/note value display |
 | `expr 60000/$f1` | Converts BPM to milliseconds for metro timing |
-| `expr random(0, 8)` | **Generates random indices from 0 to 7** |
-| `bng` | **Visual pulse indicator triggered by metro** |
+| `expr random(0, 8)` | Generates random indices from 0 to 7 |
+| `bng` | Visual pulse indicator triggered by metro |
 | `tabread midi_note` | Reads MIDI note values from the array |
 | `makenote` | Creates MIDI note-on/off messages with velocity and duration |
 | `unpack f f` | Separates MIDI note and velocity values |
 | `noteout` | Transmits MIDI messages to specified channel |
 | `loadbang` | Initializes array with note sequence at patch startup |
 | `array midi_note` | Stores the sequence of MIDI note values |
-:::
+<br>
 
-The most significant architectural change is the replacement of the sequential counter mechanism (`f`, `+ 1`, `mod 8`) with the random generator (`expr random(0, 8)`). This substitution fundamentally alters the system's behavior while maintaining interface compatibility and output format consistency. The addition of a `bng` (bang) object provides visual confirmation of each timing pulse, which becomes particularly useful when monitoring the random selection process.
+This implementation demonstrates how simple modifications to algorithmic components can produce dramatically different results. The random step sequencer maintains all the practical advantages of the sequential version—including real-time tempo control, visual feedback, and MIDI compatibility—while introducing the creative possibilities inherent in stochastic processes. The resulting system serves as an excellent foundation for exploring probability-based composition techniques and can be extended with weighted random selection, controlled randomness, or hybrid deterministic-stochastic approaches.
 
-This implementation demonstrates how simple modifications to algorithmic components can produce dramatically different musical results. The random step sequencer maintains all the practical advantages of the sequential version—including real-time tempo control, visual feedback, and MIDI compatibility—while introducing the creative possibilities inherent in stochastic processes. The resulting system serves as an excellent foundation for exploring probability-based composition techniques and can be extended with weighted random selection, controlled randomness, or hybrid deterministic-stochastic approaches.
-
-## Piano Phase (Steve Reich)
+## *Piano Phase* (Steve Reich)
 
 ![](/assets/images/sequencers/piano-phase-animation-1.gif)
 
-[View Piano Phase Score (S. Reich)](./Biblio%20/SteveReich-PianoPhase.pdf)
+[View *Piano Phase* Score (S. Reich)](./Biblio%20/SteveReich-PianoPhase.pdf)
 
-Design patterns are abstractions that capture idiomatic tendencies of practices and processes. These
-abstractions are embedded in live coding languages as
-functions and syntax, allowing for the reuse of these
-practices in new projects. [@brown2023]
+Design patterns are abstractions that capture idiomatic tendencies of practices and processes. These abstractions are embedded in live coding languages as functions and syntax, allowing for the reuse of these
+practices in new projects [@brown2023]. 
 
-*Piano Phase* is an example of "music as a gradual process," as Reich stated in his essay from 1968.[@reich2002]. In it, Reich described his interest in using processes to generate music, particularly noting how the process is perceived by the listener. (Processes are deterministic: a description of the process can describe an entire whole composition.\[5\] In other words, once the basic pattern and the phase process have been defined, the music consists itself.)
+*Piano Phase* is an example of "music as a gradual process," as Reich stated in his essay from 1968.[@reich2002]. In it, Reich described his interest in using processes to generate music, particularly noting how the process is perceived by the listener. Processes are deterministic: a description of the process can describe an entire whole composition. In other words, once the basic pattern and the phase process have been defined, the music consists itself. Reich called the unexpected ways change occurred via the process "by-products", formed by the superimposition of patterns. The superimpositions form sub-melodies, often spontaneously due to echo, resonance, dynamics, and tempo, and the general perception of the listener[@epstein1986]. *Piano Phase* led to several breakthroughs that would mark Reich's future compositions. The first is the discovery of using simple but flexible harmonic material, which produces remarkable musical results when phasing occurs. The use of 12-note or 12-division patterns in *Piano Phase* proved to be successful, and Reich would re-use it in Clapping Music and Music for 18 Musicians. Another novelty is the appearance of rhythmic ambiguity during phasing of a basic pattern. The rhythmic perception during phasing can vary considerably, from being very simple (in-phase), to complex and intricate.
 
-Reich called the unexpected ways change occurred via the process "by-products", formed by the superimposition of patterns. The superimpositions form sub-melodies, often spontaneously due to echo, resonance, dynamics, and tempo, and the general perception of the listener.[@epstein1986]
-
-Piano Phase led to several breakthroughs that would mark Reich's future compositions. The first is the discovery of using simple but flexible harmonic material, which produces remarkable musical results when phasing occurs. The use of 12-note or 12-division patterns in Piano Phase proved to be successful, and Reich would re-use it in Clapping Music and Music for 18 Musicians. Another novelty is the appearance of rhythmic ambiguity during phasing of a basic pattern. The rhythmic perception during phasing can vary considerably, from being very simple (in-phase), to complex and intricate.
-
-The first section of Piano Phase has been the section studied most by musicologists. A property of the first section of phase cycle is that it is symmetric, which results in identical patterns half-way through the phase cycle.[@epstein1986]
-
-*Piano Phase* can be conceived as an algorithm. Starting with two pianos playing the same sequence of notes at the same speed, one of the pianists begins to gradually accelerate their tempo.
+The first section of *Piano Phase* has been the section studied most by musicologists. A property of the first section of phase cycle is that it is symmetric, which results in identical patterns half-way through the phase cycle [@epstein1986]. *Piano Phase* can be conceived as an algorithm. Starting with two pianos playing the same sequence of notes at the same speed, one of the pianists begins to gradually accelerate their tempo.
 
 When the separation between the notes played by both pianos reaches a fraction of a note's duration, the phase is shifted and the cycle repeats. This process continues endlessly, creating a hypnotic effect of rhythmic phasing that evolves over time as an infinite sequence of iterations.
 
@@ -219,13 +202,27 @@ When the separation between the notes played by both pianos reaches a fraction o
 4. Repeat the cycle indefinitely to create a continuous and evolving rhythmic phasing effect.
 ```
 
-### Piano Phase Implementation in Pd 
+### *Piano Phase* Implementation in Pd 
 
-![Fig. Piano Phase patch demonstrating phasing process through two sequencers with different metro intervals, visualized with hradio step indicators and MIDI output for each voice.](/assets/screenshots/sequencers/piano-phase.png)
+![Fig. *Piano Phase* patch demonstrating phasing process through two sequencers with different metro intervals, visualized with hradio step indicators and MIDI output for each voice.](/assets/screenshots/sequencers/piano-phase.png)
 
 ### Patch Overview
 
-The piano-phase.pd patch implements a minimalist phasing process inspired by Steve Reich’s Piano Phase. It uses two parallel sequencers, each reading from the same melodic sequence but advancing at slightly different rates. This gradual tempo difference causes the two sequences to drift out of phase, creating evolving rhythmic and melodic patterns.
+The piano-phase.pd patch implements a minimalist phasing process inspired by Steve Reich’s *Piano Phase*. It uses two parallel sequencers, each reading from the same melodic sequence but advancing at slightly different rates. This gradual tempo difference causes the two sequences to drift out of phase, creating evolving rhythmic and melodic patterns.
+
+
+
+#### Sequence Data
+
+`[table sequence 12]`
+
+The sequence is stored in a table named sequence with 12 MIDI note values:
+
+`64 66 71 73 74 66 64 73 71 66 74 73`
+
+This pattern is initialized at patch load.
+
+### Data Flow
 
 ```{mermaid}
 flowchart TD
@@ -239,30 +236,13 @@ flowchart TD
     T2 --> MK2[MIDI noteout]
 ```
 
-### Sequence Data
+The operation of the *Piano Phase* patch begins with an initialization stage, triggered by a `loadbang` object when the patch is opened. This setup phase populates the shared `sequence` table with its 12 predefined MIDI note values. Simultaneously, the two `metro` objects, which serve as the independent clocks for each of the two parallel "pianists" or sequencers, are configured with their distinct time intervals: the left sequencer's `metro` is set to 410 milliseconds, and the right sequencer's `metro` to a slightly faster 406 milliseconds. A single `toggle` control allows the user to start or stop both `metro` objects concurrently, initiating or halting the phasing process.
 
-`[table sequence 12]`
+Once activated, each `metro` object begins to output a stream of bangs at its specified interval. These bangs drive separate but structurally identical sequencing logics. For each sequencer, its respective `metro` pulse triggers a counter. This counter, typically implemented with a combination of `f` (float atom), `+ 1` (increment), and `mod 12` (modulo) objects, advances its step index from 0 to 11. Upon reaching 11, the modulo operation ensures it wraps back to 0, allowing the 12-step sequence to loop continuously.
 
-The sequence is stored in a table named sequence with 12 MIDI note values:
+The current step index generated by each counter is then used to read a MIDI note value from the shared `sequence` table via a `tabread sequence` object. Thus, each sequencer independently fetches notes from the same melodic pattern according to its own current position. The retrieved MIDI note from each sequencer is subsequently processed by its own `makenote` object, which formats it into standard MIDI note-on and note-off messages, typically with a predefined velocity and duration. These MIDI messages are then sent to separate `noteout` objects, allowing the two voices to be routed to different MIDI channels or instruments if desired, or simply to play concurrently. Visual feedback for each sequencer's current step is provided by a dedicated `hradio` object, which updates in sync with its counter.
 
-`64 66 71 73 74 66 64 73 71 66 74 73`
-
-This pattern is initialized at patch load.
-
-### Data Flow
-
-**Initialization**
-
--   The sequence table is filled with 12 MIDI notes.
--   Two metro objects are set: one at 410 ms (left), one at 406 ms (right).
--   Both sequencers are started/stopped with a single toggle.
-
-**Playback**
-
--   Each metro triggers its own counter, which advances from 0 to 11 and wraps around.
--   The current index is used to read a note from the sequence table.
--   The note is played via `makenote` and sent to MIDI output.
--   The current step is visualized with a horizontal radio button (`hradio`).
+The core phasing effect emerges from the slight discrepancy in the `metro` intervals. Because the right sequencer's clock (406 ms) is marginally faster than the left's (410 ms), its counter advances more rapidly. This causes the right sequencer's melodic line to gradually "pull ahead" of the left. Over time, this desynchronization means the two identical melodic patterns are heard starting at different points relative to each other, creating complex, shifting rhythmic and harmonic interactions. This process continues cyclically: the faster sequence eventually "laps" the slower one, bringing them back into unison before they begin to drift apart again, perpetuating the mesmerizing phasing phenomenon central to Reich's composition.
 
 **Phasing Effect**
 
@@ -271,8 +251,6 @@ This pattern is initialized at patch load.
 -   Eventually, the faster sequencer laps the slower one, and the process repeats.
 
 ### Key Objects and Their Roles
-
-Two identical sequences are played in parallel. Slightly different tempos cause the sequences to gradually shift out of phase. Emergent patterns arise from the interaction of the two sequences. Visual feedback helps track the phase relationship. This patch demonstrates how minimalist processes can generate complex musical results through simple, deterministic rules, echoing the core concept of Steve Reich’s Piano Phase.
 
 | Object               | Purpose                                  |
 |----------------------|------------------------------------------|
@@ -288,7 +266,7 @@ Two identical sequences are played in parallel. Slightly different tempos cause 
 
 ## Random Melody Generator
 
-This chapter provides a step-by-step explanation of the [music-scale-B.pd](/assets/code/sequencers/music-scale-B.pd) Pd patch. The patch demonstrates how to generate a melody using a musical scale, store it in an array, and play it back using MIDI.
+The patch demonstrates how to generate a melody using a musical scale, store it in an array, and play it back using MIDI.
 
 ![Fig. Random melody generator patch showing scale definition, algorithmic note selection, array storage, and MIDI playback system for creating melodic sequences from predefined harmonic material.](/assets/screenshots/sequencers/random_melody.png)
 
@@ -300,7 +278,7 @@ The patch architecture is built around several interconnected functional blocks 
 
 This modular design approach allows for easy modification and extension of the system. Each functional block can be adjusted independently, enabling composers and sound designers to experiment with different scales, generation algorithms, storage methods, and playback configurations without affecting the overall system stability.
 
-Below is a simplified diagram of the main data flow:
+### Data Flow
 
 ```{mermaid}
 flowchart TD
@@ -313,9 +291,7 @@ flowchart TD
     MN --> NO[noteout]
 ```
 
-The scale definition process begins with a message box containing the fundamental building blocks of Western harmony represented as semitone intervals. 
-
-The example scale `0 2 4 5 7 9 11` represents a major scale pattern, where each number corresponds to a specific semitone distance from a root note. This intervallic approach provides flexibility, as the same pattern can be transposed to any key by simply changing the root note offset. The scale intervals are processed through list manipulation objects, which append the values to an internal list structure and calculate the scale's length for use in subsequent random selection processes.
+The scale definition process begins with a message box containing the fundamental building blocks of Western harmony represented as semitone intervals. The example scale `0 2 4 5 7 9 11` represents a major scale pattern, where each number corresponds to a specific semitone distance from a root note. This intervallic approach provides flexibility, as the same pattern can be transposed to any key by simply changing the root note offset. The scale intervals are processed through list manipulation objects, which append the values to an internal list structure and calculate the scale's length for use in subsequent random selection processes.
 
 The following table illustrates the mapping of musical notes to their corresponding intervals in semitones, which is crucial for understanding how the scale is constructed and how notes are generated from it.
 
@@ -335,7 +311,7 @@ The following table illustrates the mapping of musical notes to their correspond
 | A# / Bb | `10`     |
 | B       | `11`     |
 :::
-
+<br>
 The random note selection mechanism forms the core of the melodic generation process. A random number generator produces values between 0 and 47, which are then shifted upward by 60 to place the resulting MIDI notes in a musically appropriate range around middle C. This range selection ensures that generated melodies will fall within a playable range for most instruments and remain audible in typical monitoring setups. The random values are then mapped to the predefined scale using modulo operations and list indexing, ensuring that all generated notes conform to the harmonic framework established by the scale definition.
 
 The melody construction process utilizes looping mechanisms, specifically the `until`, `i`, and `+ 1` objects, to generate sequences of predetermined length. Each iteration of the loop calculates a new note based on the scale mapping process and stores the result in a growing list structure. This approach allows for the creation of melodic phrases of any desired length, from short motifs to extended melodic lines. The deterministic nature of the loop structure ensures predictable behavior while the random element within each iteration provides the variability necessary for interesting melodic content.
@@ -345,15 +321,6 @@ For melody storage, the patch employs array system, specifically an array named 
 The playback control system centers around a `metro` object that functions as a digital metronome, generating regular timing pulses that drive the sequencing process. The tempo of these pulses is controlled by a horizontal slider interface element, providing real-time tempo adjustment capabilities. Each pulse from the metronome advances an index counter that points to the next position in the `melody` array. This indexing system automatically wraps around to the beginning when it reaches the end of the stored sequence, creating seamless looping playback that continues indefinitely until stopped by the user.
 
 The MIDI output stage transforms the stored melodic data into standard MIDI protocol messages that can interface with external hardware and software. The note values retrieved from the array are processed through a `makenote` object, which creates properly formatted MIDI note-on and note-off messages with specified velocity and duration parameters. These parameters can be adjusted to affect the musical expression of the playback, with velocity controlling the apparent loudness or intensity of notes and duration determining their length. The final `noteout` object handles the actual transmission of MIDI data to the system's MIDI routing infrastructure, where it can be directed to synthesizers, samplers, or recording software. 
-
-The following is a simplified diagram of the data flow for the melody generation and playback process:
-
-```{mermaid}
-graph LR
-    MelodyList -->|tabwrite| MelodyArray
-```
-
-The integration of these components creates a flexible and powerful tool for algorithmic composition. The system can generate new melodic material on demand, store multiple variations for comparison, and play back the results in real-time with full MIDI compatibility. This makes it suitable for both experimental composition work and practical music production applications, where generated material can serve as inspiration, accompaniment, or the foundation for further development.
 
 ### Key Objects and Their Roles
 
@@ -370,31 +337,17 @@ The integration of these components creates a flexible and powerful tool for alg
 | `makenote`  | Creates MIDI notes with velocity/duration |
 | `noteout`   | Sends MIDI notes to output                |
 :::
-
-### Diagram: Melody Generation and Playback
-
-```{mermaid}
-flowchart TD
-    S[Scale Message] --> L[list Append]
-    L --> R[random + Offset]
-    R --> M[Modulo/Indexing]
-    M --> A[Melody Array]
-    A --> P[Playback - metro, tabread]
-    P --> MN[makenote]
-    MN --> NO[noteout]
-```
-
+<br>
+The integration of these components creates a flexible and powerful tool for algorithmic composition. The system can generate new melodic material on demand, store multiple variations for comparison, and play back the results in real-time with full MIDI compatibility. This makes it suitable for both experimental composition work and practical music production applications, where generated material can serve as inspiration, accompaniment, or the foundation for further development.
 
 ## The Euclidean Algorithm Generates Traditional Musical Rhythms
 
-Godfried Toussaint (2005)
-
 ![Eucliden image](/assets/images/sequencers/euclidian-seq-1.png)
 
-[Link to the original article](https://cgm.cs.mcgill.ca/~godfried/publications/banff.pdf)
+[See original paper](https://cgm.cs.mcgill.ca/~godfried/publications/banff.pdf)
 
 
-The Euclidean rhythm in music was discovered by Godfried Toussaint in 2004 and is described in a 2005 paper *"The Euclidean Algorithm Generates Traditional Musical Rhythms"*.[@toussaint2005] The paper presents a method for generating rhythms that are evenly distributed over a given time span, using the Euclidean algorithm. This method is particularly relevant in the context of world music, where such rhythms are often found. The Euclidean algorithm (as presented in *Euclid's Elements*) calculates the greatest common divisor of two given integers. It is shown here that the structure of the Euclidean algorithm can be used to efficiently generate a wide variety of rhythms used as timelines (ostinatos) in sub-Saharan African music in particular, and world music in general. These rhythms, here called *Euclidean rhythms*, have the property that their onset patterns are distributed as evenly as possible. Euclidean rhythms also find application in nuclear physics accelerators and computer science and are closely related to several families of words and sequences of interest in the combinatorics of words, such as Euclidean strings, with which the rhythms are compared.[@toussaint2005]
+The Euclidean rhythm in music was discovered by Godfried Toussaint in 2004 and is described in a 2005 paper *"The Euclidean Algorithm Generates Traditional Musical Rhythms"* [@toussaint2005]. The paper presents a method for generating rhythms that are evenly distributed over a given time span, using the Euclidean algorithm. This method is particularly relevant in the context of world music, where such rhythms are often found. The Euclidean algorithm (as presented in *Euclid's Elements*) calculates the greatest common divisor of two given integers. It is shown here that the structure of the Euclidean algorithm can be used to efficiently generate a wide variety of rhythms used as timelines (ostinatos) in sub-Saharan African music in particular, and world music in general. These rhythms, here called *Euclidean rhythms*, have the property that their onset patterns are distributed as evenly as possible. Euclidean rhythms also find application in nuclear physics accelerators and computer science and are closely related to several families of words and sequences of interest in the combinatorics of words, such as Euclidean strings, with which the rhythms are compared [@toussaint2005].
 
 ### Hypothesis
 
@@ -406,17 +359,21 @@ Several researchers have observed that rhythms in traditional world music tend t
 
 The Pattern of Maximal Evenness is a concept used in music theory to create Euclidean rhythms. Euclidean rhythms are rhythmic patterns that evenly distribute beats over a time cycle.
 
-In essence, the Pattern of Maximal Evenness seeks to **distribute a specific number of beats evenly** within a given time span. This is achieved by dividing the time into equal parts and assigning beats to these divisions uniformly.
+In essence, the Pattern of Maximal Evenness seeks to distribute a specific number of beats evenly within a given time span. This is achieved by dividing the time into equal parts and assigning beats to these divisions uniformly.
 
 Example:
 
-x = beat
+`x` = beat
 
-· = rest
+`·` = rest
 
-\[×· ×· ×· ×· \] → \[1 0 1 0 1 0 1 0\] (8,4) = 4 beats evenly distributed over 8 pulses
+[×· ×· ×· ×· ] → [1 0 1 0 1 0 1 0]      
 
-\[×· ·×· ·×·\] → \[1 0 0 1 0 0 1 0\] (8,3) = 3 beats evenly distributed over 8 pulses
+`(8,4)` = 4 beats evenly distributed over 8 pulses
+
+[×· ·×· ·×·] → [1 0 0 1 0 0 1 0]        
+
+`(8,3)` = 3 beats evenly distributed over 8 pulses
 
 ### Euclidean Algorithm
 
@@ -426,33 +383,35 @@ The idea is very simple. The smaller number is repeatedly subtracted from the la
 
 To be more precise, consider the numbers 5 and 8 as an example:
 
--   First, we divide 8 by 5. This gives a quotient of 1 and a remainder of 3.
--   Then, we divide 5 by 3, which gives a quotient of 1 and a remainder of 2.
--   Next, we divide 3 by 2, which gives a quotient of 1 and a remainder of 1.
--   Finally, we divide 2 by 1, which gives a quotient of 2 and a remainder of 0.
+| Step | Operation | Equation      | Quotient | Remainder |
+|------|-----------|---------------|----------|-----------|
+| 1    | Divide 8 by 5 | $$8 = 1 \cdot 5 + 3$$ | 1        | 3         |
+| 2    | Divide 5 by 3 | $$5 = 1 \cdot 3 + 2$$ | 1        | 2         |
+| 3    | Divide 3 by 2 | $$3 = 1 \cdot 2 + 1$$ | 1        | 1         |
+| 4    | Divide 2 by 1 | $$2 = 2 \cdot 1 + 0$$ | 2        | 0         |
 
+<br>
 The idea is to keep dividing the previous divisor by the remainder obtained in each step until the remainder is 0. When we reach a remainder of 0, the previous divisor is the greatest common divisor of the two numbers.
 
 In short, the process can be seen as a sequence of equations:
 
-``` text
-8 = (1)(5) + 3
-5 = (1)(3) + 2
-3 = (1)(2) + 1
-2 = (1)(2) + 0
-```
+\begin{align*}
+8 &= (1)\cdot(5) + 3 \\
+5 &= (1)\cdot(3) + 2 \\
+3 &= (1)\cdot(2) + 1 \\
+2 &= (1)\cdot(2) + 0
+\end{align*}
 
-*Note: 8 = (1)(5) + 3 means that 8 is divided by 5 once, yielding a quotient of 1 and a remainder of 3.*
+> Note: 8 = (1) . (5) + 3 means that 8 is divided by 5 once, yielding a quotient of 1 and a remainder of 3.
 
- 
 
-In essence, it involves successive divisions to find the `greatest common divisor` of two positive numbers (GCD from now on).
+In essence, it involves successive divisions to find the **greatest common divisor** of two positive numbers (GCD from now on).
 
 The `GCD` of two numbers a and b, assuming a \> b, is found by first dividing a by b, and obtaining the remainder r.
 
 The GCD of a and b is the same as that of b and r. When we divide a by b, we obtain a quotient c and a remainder r such that:
 
-`a = c · b + r`
+$a = c \cdot b + r$
 
 **Examples:**
 
@@ -460,47 +419,35 @@ Let’s compute the GCD of 17 and 7.
 
 Since `17 = 7 · 2 + 3`, then GCD(17, 7) is equal to GCD(7, 3). Again, since 7 = 3 · 2 + 1, then GCD(7, 3) is equal to GCD(3, 1). Here, it is clear that the GCD between 3 and 1 is simply 1. Therefore, the GCD between 17 and 7 is also 1.
 
-``` text
-GCD(17,7) = 1
 
-17 = 7 · 2 + 3
+$$\text{GCD}(17,7) = 1$$ 
+$$17 = 7 \cdot 2 + 3$$ 
+$$7 = 3 \cdot 2 + 1$$ 
+$$3 = 1 \cdot 3 + 0$$
 
-7 = 3 · 2 + 1
-
-3 = 1 · 3 + 0
-```
-
- 
 
 **Another example:**
 
-``` text
-GCD(8,3) = 1
-
-8 = 3 · 2 + 2
-
-3 = 2 · 1 + 1
-
-2 = 1 · 2 + 0
-```
+$$\text{GCD}(8,3) = 1$$
+$$8 = 3 \cdot 2 + 2$$
+$$3 = 2 \cdot 1 + 1$$
+$$2 = 1 \cdot 2 + 0$$
 
 ### How does computing the GCD turn into maximally even distributed patterns?
 
-Represent a binary sequence of k ones \[1\] and n − k zeros \[0\], where each \[0\] bit represents a time interval and the ones \[1\] indicate signal triggers.
+Represent a binary sequence of k ones [1] and n − k zeros [0], where each [0] bit represents a time interval and the ones [1] indicate signal triggers.
 
 The problem then reduces to:
 
-`Construct a binary sequence of n bits with k ones such that the ones are distributed as evenly as possible among the zeros.`
+> **Construct a binary sequence of n bits with k ones such that the ones are distributed as evenly as possible among the zeros.**
 
 A simple case is when k evenly divides n (with no remainder), in which case we should place ones every n/k bits. For example, if n = 16 and k = 4, then the solution is:
 
-`[1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0]`
+$$[1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0]$$
 
 This case corresponds to n and k having a common divisor of k (in this case 4).
 
-More generally, if the greatest common divisor between n and k is g, we would expect the solution to decompose into g repetitions of a sequence of n/g bits.
-
-**This connection with greatest common divisors suggests that we could compute a maximally even rhythm using an algorithm like Euclid’s.**
+More generally, if the greatest common divisor between n and k is g, we would expect the solution to decompose into g repetitions of a sequence of n/g bits. This connection with greatest common divisors suggests that we could compute a maximally even rhythm using an algorithm like Euclid’s.
 
  
 
@@ -510,33 +457,33 @@ Let’s consider a sequence with n = 13 and k = 5.
 
 Since 13 − 5 = 8, we start with a sequence consisting of 5 ones, followed by 8 zeros, which can be thought of as 13 one-bit sequences:
 
-\[1 1 1 1 1 0 0 0 0 0 0 0 0\]
+$$[1 1 1 1 1 0 0 0 0 0 0 0 0]$$
 
 We begin moving zeros by placing one zero after each one, creating five 2-bit sequences, with three remaining zeros:
 
-\[10\] \[10\] \[10\] \[10\] \[10\] \[0\] \[0\] \[0\]
+$$[10] [10] [10] [10] [10] [0] [0] [0]$$
 
-`13 = 5 · 2 + 3`
+$$13 = 5 · 2 + 3$$
 
-Then we distribute the three remaining zeros similarly, placing a \[0\] after each \[10\] sequence:
+Then we distribute the three remaining zeros similarly, placing a [0] after each [10] sequence:
 
-\[100\] \[100\] \[100\] \[10\] \[10\]
+$$[100] [100] [100] [10] [10]$$
 
-`5 = 3 · 1 + 2`
+$$5 = 3 · 1 + 2$$
 
-We now have three 3-bit sequences, and a remainder of two 2-bit sequences. So we continue the same way, placing one \[10\] after each \[100\]:
+We now have three 3-bit sequences, and a remainder of two 2-bit sequences. So we continue the same way, placing one [10] after each [100]:
 
-\[10010\] \[10010\] \[100\]
+$$[10010] [10010] [100]$$
 
-`3 = 2 · 1 + 1`
+$$3 = 2 · 1 + 1$$
 
-The process stops when the remainder consists of a single sequence (here, \[100\]), or we run out of zeros.
+The process stops when the remainder consists of a single sequence (here, [100]), or we run out of zeros.
 
-The final sequence is, therefore, the concatenation of \[10010\], \[10010\], and \[100\]:
+The final sequence is, therefore, the concatenation of [10010], [10010], and [100]:
 
-**\[1 0 0 1 0 1 0 0 1 0 1 0 0\]**
+$$[1 0 0 1 0 1 0 0 1 0 1 0 0]$$
 
-`2 = 1 · 2 + 0`
+$$2 = 1 · 2 + 0$$
 
  
 
@@ -546,16 +493,16 @@ Suppose we have 17 pulses and want to evenly distribute 7 beats over them.
 
 **1.** We align the number of beats and silences (7 ones and 10 zeros):
 
-\[1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0\]
+$$[1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0]$$
 
-| 1 1 1 1 1 1 1 | 0 0 0 0 0 0 0 0 0 0 |
-|---------------|---------------------|
+$$[1 1 1 1 1 1 1]  [0 0 0 0 0 0 0 0 0 0]$$ 
+
 
 **2.** We form 7 groups, corresponding to the division of 17 by 7; we get 7 groups of `[1 0]` and 3 remaining zeros `[000]`, which means the next step forms 3 groups until only one or zero groups remain.
 
-\[1 0\] \[1 0\] \[1 0\] \[1 0\] \[1 0\] \[1 0\] \[1 0\] \[0\] \[0\] \[0\]
+$$ [1 0] [1 0] [1 0] [1 0] [1 0] [1 0] [1 0] [0] [0] [0]$$ 
 
-`17 = 7 · 2 + 3`
+$$ 17 = 7 \cdot 2 + 3$$ 
 
 | 1   | 1   | 1   | 1   | 1   | 1   | 1   | 0 0 0 |
 |-----|-----|-----|-----|-----|-----|-----|-------|
@@ -567,16 +514,16 @@ Suppose we have 17 pulses and want to evenly distribute 7 beats over them.
 
  
 
-\[1 0 0\] \[1 0 0\] \[1 0 0\] \[1 0\] \[1 0\] \[1 0\] \[1 0\]
+$$ [1 0 0] [1 0 0] [1 0 0] [1 0] [1 0] [1 0] [1 0]$$ 
 
 | 1   | 1   | 1   | 1   | 1   | 1   | 1   |
 |-----|-----|-----|-----|-----|-----|-----|
 | 0   | 0   | 0   | 0   | 0   | 0   | 0   |
 | 0   | 0   | 0   |     |     |     |     |
 
-\[1 0 0 1 0\] \[1 0 1 0 0\] \[1 0 0 1 0\] \[1 0\]
+$$ [1 0 0 1 0] [1 0 1 0 0] [1 0 0 1 0] [1 0]$$ 
 
-`7 = 3 · 2 + 1`
+$$ 7 = 3 · 2 + 1$$ 
 
 | 1   | 1   | 1   | 1   |     |     |     |
 |-----|-----|-----|-----|-----|-----|-----|
@@ -589,9 +536,9 @@ Suppose we have 17 pulses and want to evenly distribute 7 beats over them.
 
 **4.** Finally, the rhythm is obtained by reading the grouping column by column, from left to right, step by step.
 
-**`[1 0 0 1 0 1 0 0 1 0 1 0 0 1 0 1 0]`**
+$$ [1 0 0 1 0 1 0 0 1 0 1 0 0 1 0 1 0]$$ 
 
-`3 = 1 · 3 + 0`
+$$ 3 = 1 · 3 + 0$$ 
 
  
 
@@ -599,28 +546,14 @@ Suppose we have 17 pulses and want to evenly distribute 7 beats over them.
 
 The following code implements the Euclidean algorithm in Pd to generate a Euclidean rhythm. The algorithm is based on the mathematical formula:
 
-```default
-(index * hits ) % steps
-↓
-[< notes]
-```
-
-
-```{mermaid}
-flowchart TB
-    A[index * hits]
-    A --> B[% steps]
-    B --> C[< notes]
-```
-
+$$(\text{index} \cdot \text{hits}) \%  \text{ steps} < \text{notes}$$
 
 where:
 
-index = index of the Euclidean series (array)
-
-hits = number of notes to be played
-
-steps = array size
+- $\text{index}$ = index of the Euclidean series (array)
+- $\text{hits}$ = number of notes to be played  
+- $\text{steps}$ = array size
+- $\text{notes}$ = threshold for comparison
 
 Yoy can check this [Euclidean rhythm demo](https://dbkaplun.github.io/euclidean-rhythm/) in order to interact and see how the algorithm works.
 
@@ -674,9 +607,17 @@ This section provides a detailed explanation of the [Euclidean-basic-Serie.pd](/
 
 #### Patch Overview
 
-The patch is structured into several functional blocks. First, there are controls for setting the number of steps and the number of hits (pulses). Next, the patch calculates the Euclidean pattern using a mathematical formula. Finally, the resulting pattern is output and visualized as a list of pulses and rests.
+The patch is structured into several functional blocks. First, there are controls for setting the number of steps and the number of hits (pulses). Next, the patch calculates the Euclidean pattern using a mathematical formula. 
 
-To help visualize the flow of data through the patch, consider the following diagram:
+```default
+(index * hits ) % steps
+↓
+[< notes]
+```
+
+Finally, the resulting pattern is output and visualized as a list of pulses and rests. 
+
+#### Data Flow
 
 ```{mermaid}
 flowchart TD
@@ -688,8 +629,6 @@ flowchart TD
     D --> E[Pattern List]
     E --> F[Output/Display]
 ```
-
-#### Data Flow
 
 The process begins with the user setting the number of steps in the sequence using a horizontal slider labeled "Steps." This determines the total length of the rhythmic cycle. The user also sets the number of hits, or pulses, using another slider labeled "HITS." These two values are stored and sent to the rest of the patch, where they are used to calculate the rhythmic pattern.
 
@@ -716,9 +655,9 @@ To illustrate how the patch works, consider the case where the number of steps i
 | 10    | (10 * 5) % 13 = 11  | 11     | No      | 0      |
 | 11    | (11 * 5) % 13 = 3   | 3      | Yes     | 1      |
 | 12    | (12 * 5) % 13 = 8   | 8      | No      | 0      |
-
+<br>
 The resulting pattern is:  
-`1 1 0 1 0 0 1 0 1 0 0 1 0`
+$$1 1 0 1 0 0 1 0 1 0 0 1 0$$
 
 This sequence distributes five pulses as evenly as possible across thirteen steps.
 
@@ -773,11 +712,11 @@ The resulting pattern is displayed as a list, showing the sequence of pulses and
 
 Suppose you set 8 steps, 3 hits, and a rotation of 2. The main rhythm without rotation might be:
 
-`1 0 0 1 0 0 1 0`
+$$1 0 0 1 0 0 1 0$$
 
 Applying a rotation of 2 shifts the pattern two steps to the right, resulting in:
 
-`0 1 0 0 1 0 0 1`
+$$0 1 0 0 1 0 0 1$$
 
 This allows you to experiment with different phase offsets and rhythmic feels.
 
@@ -809,6 +748,9 @@ The patch is organized into two parallel sections. The first section generates t
 
 The following diagram illustrates the data flow for both rhythm and accent layers:
 
+#### Data Flow
+
+
 ```{mermaid}
 flowchart TD
     S[Steps Slider] --> A[Step Counter]
@@ -830,8 +772,6 @@ flowchart TD
     G --> H[Output/Display]
 ```
 
-#### Data Flow
-
 The process begins with the user setting the number of steps, hits, and rotation for the main rhythm using horizontal sliders. These parameters determine the length of the sequence, the number of pulses, and the rotation (offset) of the pattern. The patch uses a loop (`until`) and a counter to iterate through each step index. For each step, it calculates the value using the formula `((index + rotation) * hits) % steps`. This value is compared to the number of hits; if it is less, a pulse (1) is added to the main pattern, otherwise a rest (0).
 
 In parallel, the user can set the number of accents and their rotation using additional sliders. The accent pattern is generated in the same way as the main rhythm, but with its own independent parameters. The formula `((index + acc_rotation) * accents) % steps` is used to determine the placement of accents. The result is a second pattern of 1s (accent) and 0s (no accent).
@@ -842,15 +782,15 @@ After both patterns are generated, they are combined step by step. If both the m
 
 Suppose you set 8 steps, 3 hits, and 2 accents. The main rhythm might produce a pattern like:
 
-`1 0 0 1 0 0 1 0`
+$$1 0 0 1 0 0 1 0$$
 
 The accent pattern, with its own rotation, might produce:
 
-`1 0 1 0 0 1 0 0`
+$$1 0 1 0 0 1 0 0$$
 
 Combining these, the output would be:
 
-`2 0 1 1 0 1 1 0`
+$$2 0 1 1 0 1 1 0$$
 
 Here, "2" indicates an accented hit, "1" a regular hit, and "0" a rest.
 
@@ -1029,6 +969,8 @@ The architecture follows a modular design pattern with distinct functional subsy
 
 The patch interface accommodates various input methods for configuring the automaton parameters, including direct rule code entry (0-255), symbolic mode specification (loop, reflect, or fixed), and custom axiom definition through list messages. The system provides multiple output streams for accessing generated data, including real-time state information, complete iteration histories, and formatted data suitable for external analysis or visualization tools.
 
+#### Data Flow
+
 ```{mermaid}
 flowchart TD
     A[Rule Code Input] --> B[Binary Rule Generation]
@@ -1046,8 +988,6 @@ flowchart TD
     L --> N[Data Output]
     L --> H
 ```
-
-#### Data Flow
 
 The cellular automaton's operation begins with initialization phase where the rule code, boundary mode, and initial axiom are processed and stored in the system's internal data structures. The rule code undergoes binary conversion through a specialized subpatch that transforms decimal values (0-255) into their eight-bit binary representations, which correspond to the output states for all possible three-cell neighborhood configurations (000, 001, 010, 011, 100, 101, 110, 111).
 
