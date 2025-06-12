@@ -91,67 +91,67 @@ This book is an invitation to approach creative coding not as a set of shortcuts
 ```{mermaid}
 flowchart LR
     A[Code that Sounds] --> B[Preface]
+    B --> B1[Who am I?]
+    B --> B2[What is this book about?]
+    B --> B3[Why Code That Sounds?]
+    B --> B4[From Problem to Algorithm]
+
     
-    A --> C[Sampling]
-    C --> C1[Arrays and Tables]
-    C --> C2[readsf~ and writesf~]
-    C --> C3[Basic Recording Concepts]
+    A --> C[1 Introduction]
+    C --> C1[What is Pure Data?]
+    C --> C2[Why Pd?]
+    C --> C3[What is Creative Coding?]
+    C --> C4[Getting Started]
     
-    A --> D[Synthesis]
-    D --> D1[Oscillators]
-    D --> D2[Additive Synthesis]
-    D --> D3[Subtractive Synthesis]
-    D --> D4[Modulation Techniques]
-    D4 --> D4a[AM - Amplitude Modulation]
-    D4 --> D4b[RM - Ring Modulation]
-    D4 --> D4c[FM - Frequency Modulation]
+    A --> D[2 Sequencing]
+    D --> D1[Arrays and Sequencers]
+    D --> D2[8-Step Sequencer Implementation]
+    D --> D3[Random Step Sequencer]
+    D --> D4[Piano Phase - Steve Reich]
+    D --> D5[Random Melody Generator]
+    D --> D6[Euclidean Algorithm]
+    D --> D7[Cellular Automata]
     
-    A --> E[Sonification]
-    E --> E1[Electrocardiogram Step Sequencer]
-    E1 --> E1a[ECG Data Processing]
-    E1 --> E1b[Step Sequence Generation]
-    E1 --> E1c[Creative Applications]
+    A --> E[3 Sampling]
+    E --> E1[I'm Sitting in a Room - Alvin Lucier]
+    E --> E2[I am sitting in a freeverb~]
+    E --> E3[Simple Audio Player]
+    E --> E4[Audio Sampler with phasor~]
     
-    E --> E2[Image Sonification with RGBA Data]
-    E2 --> E2a[Image Loading and Analysis]
-    E2 --> E2b[Pixel Data Extraction]
-    E2 --> E2c[Audio Synthesis from Color]
+    A --> F[4 Sound Synthesis]
+    F --> F1[Introduction & Oscillatory Movements]
+    F --> F2[Sound Sources]
+    F --> F3[Additive Synthesis]
+    F --> F4[Amplitude & Ring Modulation]
+    F --> F5[Frequency Modulation]
+    F --> F6[Subtractive Synthesis]
     
-    E --> E3[Linear Image Scanner]
-    E3 --> E3a[Static Image Scanning]
-    E3 --> E3b[Dynamic Scan Points]
-    E3 --> E3c[Frequency Mapping]
+    A --> G[5 Sonification]
+    G --> G1[Introduction & Data Types]
+    G --> G2[Sonification as Creative Framework]
+    G --> G3[Data Sonification Artworks Database]
+    G --> G4[Data Humanism - Giorgia Lupi]
+    G --> G5[Electrocardiogram Data]
+    G --> G6[ECG-Controlled Step Sequencer]
+    G --> G7[Image Sonification with RGBA Data]
+    G --> G8[Image Scanner]
+    G --> G9[Camera Scanner]
     
-    E --> E4[Live Camera Scanner]
-    E4 --> E4a[Real-time Video Processing]
-    E4 --> E4b[Enhanced Controls]
-    E4 --> E4c[Interactive Applications]
+    A --> H[6 Spatial Audio]
+    H --> H1[The Music Sound Space]
+    H --> H2[Spatial Localization of Sound]
+    H --> H3[Hearing in Enclosed Spaces]
+    H --> H4[Virtual Source Simulation]
+    H --> H5[Stereo Spatialization Implementation]
+    H --> H6[Simulating Distance]
+    H --> H7[Enhanced Distance Modeling]
+    H --> H8[Quadraphonic Spatialization: Chowning Model]
     
-    A --> F[Spatial Audio]
-    F --> F1[Stereophonic Spatialization]
-    F1 --> F1a[Intensity Panning]
-    F1 --> F1b[Amplitude and Phase]
-    F1 --> F1c[Trigonometric Implementation]
-    
-    F --> F2[Quadraphonic Systems]
-    F2 --> F2a[John Chowning Model]
-    F2 --> F2b[Lookup Tables]
-    F2 --> F2c[Phase Offsets]
-    F2 --> F2d[Distance Modeling]
-    
-    F --> F3[Reverberation Modeling]
-    F3 --> F3a[Sabine Formula]
-    F3 --> F3b[Absorption Coefficients]
-    F3 --> F3c[Implementation Techniques]
-    
-    A --> G[Bjorklund Algorithm]
-    G --> G1[Euclidean Rhythms]
-    G --> G2[Pure Data Implementation]
-    G --> G3[External Development in C]
-    
-    A --> H[Anexo]
-    H --> H1[Sonification Artworks]
-    H --> H2[Reference Materials]
+    A --> I[7 Conclusion]
+    I --> I1[A Synthesis of Themes]
+    I --> I2[Sound, Code, and Interaction]
+    I --> I3[Open Tools, Open Futures]
+    I --> I4[Toward What Comes Next]
     
     style A fill:#e1f5fe
     style B fill:#f3e5f5
@@ -161,6 +161,7 @@ flowchart LR
     style F fill:#f1f8e9
     style G fill:#e0f2f1
     style H fill:#fafafa
+    style I fill:#ffebee
 ```
 
 ## Contributing
