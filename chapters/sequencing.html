@@ -85,7 +85,7 @@ div.csl-indent {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../chapters/sampling.html" rel="next">
+<link href="../chapters/recplay.html" rel="next">
 <link href="../chapters/introduction.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -136,6 +136,35 @@ div.csl-indent {
 <script src="../site_libs/quarto-diagram/mermaid-init.js"></script>
 <link href="../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../styles.css">
 </head>
@@ -365,8 +394,8 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/sampling.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Sampling</span></span></a>
+  <a href="../chapters/recplay.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Rec &amp; Play</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -419,20 +448,19 @@ div.csl-indent {
   <li><a href="#data-flow-1" id="toc-data-flow-1" class="nav-link" data-scroll-target="#data-flow-1"><span class="header-section-number">2.3.2</span> Data Flow</a></li>
   <li><a href="#key-objects-and-their-roles-1" id="toc-key-objects-and-their-roles-1" class="nav-link" data-scroll-target="#key-objects-and-their-roles-1"><span class="header-section-number">2.3.3</span> Key Objects and Their Roles</a></li>
   </ul></li>
-  <li><a href="#piano-phase-steve-reich" id="toc-piano-phase-steve-reich" class="nav-link" data-scroll-target="#piano-phase-steve-reich"><span class="header-section-number">2.4</span> Piano Phase (Steve Reich)</a>
+  <li><a href="#piano-phase-steve-reich" id="toc-piano-phase-steve-reich" class="nav-link" data-scroll-target="#piano-phase-steve-reich"><span class="header-section-number">2.4</span> <em>Piano Phase</em> (Steve Reich)</a>
   <ul class="collapse">
   <li><a href="#algorithm-formulation-pseudo-code" id="toc-algorithm-formulation-pseudo-code" class="nav-link" data-scroll-target="#algorithm-formulation-pseudo-code"><span class="header-section-number">2.4.1</span> Algorithm Formulation (pseudo code)</a></li>
-  <li><a href="#piano-phase-implementation-in-pd" id="toc-piano-phase-implementation-in-pd" class="nav-link" data-scroll-target="#piano-phase-implementation-in-pd"><span class="header-section-number">2.4.2</span> Piano Phase Implementation in Pd</a></li>
+  <li><a href="#piano-phase-implementation-in-pd" id="toc-piano-phase-implementation-in-pd" class="nav-link" data-scroll-target="#piano-phase-implementation-in-pd"><span class="header-section-number">2.4.2</span> <em>Piano Phase</em> Implementation in Pd</a></li>
   <li><a href="#patch-overview-2" id="toc-patch-overview-2" class="nav-link" data-scroll-target="#patch-overview-2"><span class="header-section-number">2.4.3</span> Patch Overview</a></li>
-  <li><a href="#sequence-data" id="toc-sequence-data" class="nav-link" data-scroll-target="#sequence-data"><span class="header-section-number">2.4.4</span> Sequence Data</a></li>
-  <li><a href="#data-flow-2" id="toc-data-flow-2" class="nav-link" data-scroll-target="#data-flow-2"><span class="header-section-number">2.4.5</span> Data Flow</a></li>
-  <li><a href="#key-objects-and-their-roles-2" id="toc-key-objects-and-their-roles-2" class="nav-link" data-scroll-target="#key-objects-and-their-roles-2"><span class="header-section-number">2.4.6</span> Key Objects and Their Roles</a></li>
+  <li><a href="#data-flow-2" id="toc-data-flow-2" class="nav-link" data-scroll-target="#data-flow-2"><span class="header-section-number">2.4.4</span> Data Flow</a></li>
+  <li><a href="#key-objects-and-their-roles-2" id="toc-key-objects-and-their-roles-2" class="nav-link" data-scroll-target="#key-objects-and-their-roles-2"><span class="header-section-number">2.4.5</span> Key Objects and Their Roles</a></li>
   </ul></li>
   <li><a href="#random-melody-generator" id="toc-random-melody-generator" class="nav-link" data-scroll-target="#random-melody-generator"><span class="header-section-number">2.5</span> Random Melody Generator</a>
   <ul class="collapse">
   <li><a href="#patch-overview-3" id="toc-patch-overview-3" class="nav-link" data-scroll-target="#patch-overview-3"><span class="header-section-number">2.5.1</span> Patch Overview</a></li>
-  <li><a href="#key-objects-and-their-roles-3" id="toc-key-objects-and-their-roles-3" class="nav-link" data-scroll-target="#key-objects-and-their-roles-3"><span class="header-section-number">2.5.2</span> Key Objects and Their Roles</a></li>
-  <li><a href="#diagram-melody-generation-and-playback" id="toc-diagram-melody-generation-and-playback" class="nav-link" data-scroll-target="#diagram-melody-generation-and-playback"><span class="header-section-number">2.5.3</span> Diagram: Melody Generation and Playback</a></li>
+  <li><a href="#data-flow-3" id="toc-data-flow-3" class="nav-link" data-scroll-target="#data-flow-3"><span class="header-section-number">2.5.2</span> Data Flow</a></li>
+  <li><a href="#key-objects-and-their-roles-3" id="toc-key-objects-and-their-roles-3" class="nav-link" data-scroll-target="#key-objects-and-their-roles-3"><span class="header-section-number">2.5.3</span> Key Objects and Their Roles</a></li>
   </ul></li>
   <li><a href="#the-euclidean-algorithm-generates-traditional-musical-rhythms" id="toc-the-euclidean-algorithm-generates-traditional-musical-rhythms" class="nav-link" data-scroll-target="#the-euclidean-algorithm-generates-traditional-musical-rhythms"><span class="header-section-number">2.6</span> The Euclidean Algorithm Generates Traditional Musical Rhythms</a>
   <ul class="collapse">
@@ -488,8 +516,7 @@ div.csl-indent {
 <p>In this chapter, we will explore the concept of sequencers and how they can be implemented in Pd. We will cover various types of sequencers, including step sequencers, random sequencers, and algorithmic composition techniques, with practical examples and implementations.</p>
 <section id="arrays-and-sequencers" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="arrays-and-sequencers"><span class="header-section-number">2.1</span> Arrays and Sequencers</h2>
-<p>Sequencer is a tool for organizing and controlling the playback of <code>events</code> in a temporally ordered sequence. This sequence consists of a series of discrete steps, where each step represents a regular time interval and can contain information about event activation or deactivation.</p>
-<p>In addition to controlling musical events such as notes, chords, and percussions, a step sequencer can also manage a variety of other events. This includes parameter changes in virtual instruments or audio/video synthesizers, real-time effect automation, lighting control in live performances or multimedia installations, triggering of samples to create patterns and effect sequences, as well as firing MIDI control events to operate external hardware or software.</p>
+<p>Sequencer is a tool for organizing and controlling the playback of events in a temporally ordered sequence. This sequence consists of a series of discrete steps, where each step represents a regular time interval and can contain information about event activation or deactivation. In addition to controlling musical events such as notes, chords, and percussions, a step sequencer can also manage a variety of other events. This includes parameter changes in virtual instruments or audio/video synthesizers, real-time effect automation, lighting control in live performances or multimedia installations, triggering of samples to create patterns and effect sequences, as well as firing MIDI control events to operate external hardware or software. The following table illustrates the basic structure of a step sequencer:</p>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -529,6 +556,7 @@ div.csl-indent {
 </tr>
 </tbody>
 </table>
+<p><br> Where:</p>
 <ul>
 <li>Each cell represents a step in the sequencer.</li>
 <li>1 to 8 indicate the steps.</li>
@@ -573,9 +601,12 @@ div.csl-indent {
 <p>This implementation demonstrates how to create a basic 8-step MIDI sequencer that cycles through a predefined sequence of notes at a controllable tempo. The patch showcases essential concepts including timing control, array-based data storage, step counting with modulo arithmetic, and MIDI output generation.</p>
 <section id="patch-overview" class="level3" data-number="2.2.1">
 <h3 data-number="2.2.1" class="anchored" data-anchor-id="patch-overview"><span class="header-section-number">2.2.1</span> Patch Overview</h3>
-<p>The 8-step sequencer patch implements a classic step-based sequencing paradigm where musical events are organized into discrete time slots. The system operates by maintaining an internal counter that advances through eight sequential positions, with each position corresponding to a MIDI note value stored in an array. The sequencer provides real-time tempo control through a BPM slider interface and uses Pd’s built-in MIDI capabilities to output note events that can be routed to software synthesizers or external MIDI devices.</p>
+<p>The 8-step sequencer patch implements a classic step-based sequencing paradigm where musical events are organized into discrete time slots. The patch operates by maintaining an internal counter that advances through eight sequential positions, with each position corresponding to a MIDI note value stored in an array. The sequencer provides real-time tempo control through a BPM slider interface and uses Pd’s built-in MIDI capabilities to output note events that can be routed to software synthesizers or external MIDI devices.</p>
 <p>The patch architecture follows a linear signal flow pattern that begins with user control inputs and culminates in MIDI note output. The timing engine uses Pd’s <code>metro</code> object as the primary clock source, generating regular pulses that drive the step advancement mechanism. Each pulse triggers a counter increment operation, which is processed through modulo arithmetic to ensure the sequence loops seamlessly after reaching the eighth step. The current step index is then used to retrieve the corresponding MIDI note value from a pre-populated array, which is subsequently formatted into proper MIDI messages and transmitted through the system’s MIDI output infrastructure.</p>
 <p>The visual interface provides immediate feedback on the sequencer’s operation through numeric displays that show both the current step position and the MIDI note value being played. The tempo control utilizes a mathematical conversion from beats per minute to milliseconds, allowing users to adjust the playback speed in musically meaningful units while maintaining precise timing accuracy.</p>
+</section>
+<section id="data-flow" class="level3" data-number="2.2.2">
+<h3 data-number="2.2.2" class="anchored" data-anchor-id="data-flow"><span class="header-section-number">2.2.2</span> Data Flow</h3>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
 <div>
@@ -602,19 +633,13 @@ div.csl-indent {
 </div>
 </div>
 </div>
-</section>
-<section id="data-flow" class="level3" data-number="2.2.2">
-<h3 data-number="2.2.2" class="anchored" data-anchor-id="data-flow"><span class="header-section-number">2.2.2</span> Data Flow</h3>
-<p>The sequencer’s operation begins when the user activates the start/stop toggle, which enables the metro object to begin generating timing pulses. The tempo of these pulses is determined by the BPM slider value, which is converted from beats per minute to milliseconds using the expression <code>60000/$f1</code>. This conversion ensures that the metro object receives timing intervals in the appropriate units for accurate tempo control.</p>
-<p>Each timing pulse from the metro object triggers the step counter mechanism, implemented using a combination of <code>f</code> (float storage), <code>+1</code> (increment), and <code>mod 8</code> (modulo) objects. The float object stores the current step index, which is incremented by one each time a pulse is received. The incremented value is then processed through the modulo operation to ensure it wraps back to zero after reaching seven, creating the characteristic eight-step cycle.</p>
-<p>The current step index serves dual purposes within the patch. First, it provides visual feedback to the user through a numeric atom display, allowing real-time monitoring of the sequencer’s position. Second, and more importantly, it functions as an index for retrieving MIDI note values from the <code>midi_note</code> array using the <code>tabread</code> object.</p>
-<p>The MIDI note array is initialized at patch startup through a <code>loadbang</code> object that sends a message containing the sequence <code>60 62 64 65 67 69 71 72</code>, representing a C major scale starting from middle C. This initialization ensures that the sequencer has meaningful musical content available immediately upon loading the patch.</p>
+<p>The sequencer’s operation begins when the user activates the start/stop <code>toggle</code>, which enables the metro object to begin generating timing pulses. The tempo of these pulses is determined by the BPM <code>slider</code> value, which is converted from beats per minute to milliseconds using the expression <code>60000/$f1</code>. This conversion ensures that the metro object receives timing intervals in the appropriate units for accurate tempo control. Each timing pulse from the metro object triggers the step counter mechanism, implemented using a combination of <code>f</code> (float storage), <code>+1</code> (increment), and <code>mod 8</code> (modulo) objects. The float object stores the current step index, which is incremented by one each time a pulse is received. The incremented value is then processed through the modulo operation to ensure it wraps back to zero after reaching seven, creating the characteristic eight-step cycle.</p>
+<p>The current step index serves dual purposes within the patch. First, it provides visual feedback to the user through a numeric atom display, allowing real-time monitoring of the sequencer’s position. Second, and more importantly, it functions as an index for retrieving MIDI note values from the <code>midi_note</code> array using the <code>tabread</code> object. The MIDI note array is initialized at patch startup through a <code>loadbang</code> object that sends a message containing the sequence <code>60 62 64 65 67 69 71 72</code>, representing a C major scale starting from middle C. This initialization ensures that the sequencer has meaningful musical content available immediately upon loading the patch.</p>
 <p>Once a MIDI note value is retrieved from the array, it is displayed numerically and then processed through the <code>makenote</code> object, which creates properly formatted MIDI note-on and note-off messages. The <code>makenote</code> object is configured with a fixed velocity of 100 and a duration of 250 milliseconds, providing consistent note characteristics across all steps. The resulting MIDI messages are then transmitted through the <code>noteout</code> object to MIDI channel 1, where they can be received by synthesizers or recording software.</p>
 </section>
 <section id="key-objects-and-their-roles" class="level3" data-number="2.2.3">
 <h3 data-number="2.2.3" class="anchored" data-anchor-id="key-objects-and-their-roles"><span class="header-section-number">2.2.3</span> Key Objects and Their Roles</h3>
 <p>The following table summarizes the essential objects used in the step sequencer implementation and their specific functions within the patch:</p>
-<div style="width: 70%;">
 <table class="caption-top table">
 <colgroup>
 <col style="width: 47%">
@@ -681,8 +706,7 @@ div.csl-indent {
 </tr>
 </tbody>
 </table>
-</div>
-<p>The patch demonstrates several fundamental programming concepts, including the use of timing objects for rhythmic control, array manipulation for data storage and retrieval, mathematical operations for counter management, and MIDI message formatting for external communication. The modular design allows for easy modification of the note sequence, tempo range, and MIDI output parameters, making it a versatile foundation for more complex sequencing applications.</p>
+<p><br> The patch demonstrates several fundamental programming concepts, including the use of timing objects for rhythmic control, array manipulation for data storage and retrieval, mathematical operations for counter management, and MIDI message formatting for external communication. The modular design allows for easy modification of the note sequence, tempo range, and MIDI output parameters, making it a versatile foundation for more complex sequencing applications.</p>
 </section>
 </section>
 <section id="random-step-sequencer-implementation" class="level2" data-number="2.3">
@@ -699,6 +723,9 @@ div.csl-indent {
 <p>The random step sequencer patch builds upon the foundational concepts of the basic 8-step sequencer while introducing a crucial modification: the step advancement mechanism is replaced with a random selection process. Rather than incrementing through array indices sequentially, the system generates random index values that point to different positions within the stored note sequence. This approach maintains the same timing control, array-based storage, and MIDI output capabilities as the sequential version, but produces entirely different musical results due to the non-linear access pattern.</p>
 <p>The architecture preserves the linear signal flow from user controls to MIDI output, but introduces a random number generator at the critical junction where step advancement occurs. The timing engine continues to use Pd’s <code>metro</code> object as the primary clock source, but each timing pulse now triggers a random selection rather than a predictable increment. This modification transforms the sequencer from a deterministic system into a probabilistic one, where the same stored sequence can produce infinite variations in playback order.</p>
 <p>The interface maintains the same visual feedback mechanisms as the sequential version, displaying both the randomly selected step index and the corresponding MIDI note value. The tempo control system remains unchanged, allowing users to adjust playback speed while experiencing the unpredictable note selection patterns that emerge from the randomization process.</p>
+</section>
+<section id="data-flow-1" class="level3" data-number="2.3.2">
+<h3 data-number="2.3.2" class="anchored" data-anchor-id="data-flow-1"><span class="header-section-number">2.3.2</span> Data Flow</h3>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
 <div>
@@ -723,9 +750,6 @@ div.csl-indent {
 </div>
 </div>
 </div>
-</section>
-<section id="data-flow-1" class="level3" data-number="2.3.2">
-<h3 data-number="2.3.2" class="anchored" data-anchor-id="data-flow-1"><span class="header-section-number">2.3.2</span> Data Flow</h3>
 <p>The operational sequence begins identically to the sequential version, with the user activating the start/stop toggle to enable metro object timing generation. The BPM slider continues to control tempo through the same mathematical conversion formula <code>60000/$f1</code>, ensuring consistent timing accuracy regardless of the randomization occurring downstream.</p>
 <p>The fundamental difference emerges at the step generation stage. Instead of using a counter that increments predictably, each timing pulse from the metro object triggers a random number generator implemented with the <code>expr random(0, 8)</code> object. This expression generates random integers between 0 and 7 (inclusive), providing equal probability access to any position within the 8-element note array. The random selection occurs independently for each timing pulse, meaning the same index can be selected multiple times in succession, or the system might skip certain indices entirely during any given playback session.</p>
 <p>The randomly generated index serves the same dual purpose as in the sequential version: providing immediate visual feedback through a numeric display and functioning as the lookup key for array access. The <code>tabread midi_note</code> object retrieves the MIDI note value corresponding to the randomly selected index, creating an unpredictable sequence of pitches from the stored scale pattern.</p>
@@ -735,7 +759,6 @@ div.csl-indent {
 <section id="key-objects-and-their-roles-1" class="level3" data-number="2.3.3">
 <h3 data-number="2.3.3" class="anchored" data-anchor-id="key-objects-and-their-roles-1"><span class="header-section-number">2.3.3</span> Key Objects and Their Roles</h3>
 <p>The following table summarizes the essential objects used in the random step sequencer implementation, highlighting the specific changes from the sequential version:</p>
-<div style="width: 70%;">
 <table class="caption-top table">
 <colgroup>
 <col style="width: 47%">
@@ -766,11 +789,11 @@ div.csl-indent {
 </tr>
 <tr class="odd">
 <td><code>expr random(0, 8)</code></td>
-<td><strong>Generates random indices from 0 to 7</strong></td>
+<td>Generates random indices from 0 to 7</td>
 </tr>
 <tr class="even">
 <td><code>bng</code></td>
-<td><strong>Visual pulse indicator triggered by metro</strong></td>
+<td>Visual pulse indicator triggered by metro</td>
 </tr>
 <tr class="odd">
 <td><code>tabread midi_note</code></td>
@@ -798,21 +821,17 @@ div.csl-indent {
 </tr>
 </tbody>
 </table>
-</div>
-<p>The most significant architectural change is the replacement of the sequential counter mechanism (<code>f</code>, <code>+ 1</code>, <code>mod 8</code>) with the random generator (<code>expr random(0, 8)</code>). This substitution fundamentally alters the system’s behavior while maintaining interface compatibility and output format consistency. The addition of a <code>bng</code> (bang) object provides visual confirmation of each timing pulse, which becomes particularly useful when monitoring the random selection process.</p>
-<p>This implementation demonstrates how simple modifications to algorithmic components can produce dramatically different musical results. The random step sequencer maintains all the practical advantages of the sequential version—including real-time tempo control, visual feedback, and MIDI compatibility—while introducing the creative possibilities inherent in stochastic processes. The resulting system serves as an excellent foundation for exploring probability-based composition techniques and can be extended with weighted random selection, controlled randomness, or hybrid deterministic-stochastic approaches.</p>
+<p><br></p>
+<p>This implementation demonstrates how simple modifications to algorithmic components can produce dramatically different results. The random step sequencer maintains all the practical advantages of the sequential version—including real-time tempo control, visual feedback, and MIDI compatibility—while introducing the creative possibilities inherent in stochastic processes. The resulting system serves as an excellent foundation for exploring probability-based composition techniques and can be extended with weighted random selection, controlled randomness, or hybrid deterministic-stochastic approaches.</p>
 </section>
 </section>
 <section id="piano-phase-steve-reich" class="level2" data-number="2.4">
-<h2 data-number="2.4" class="anchored" data-anchor-id="piano-phase-steve-reich"><span class="header-section-number">2.4</span> Piano Phase (Steve Reich)</h2>
+<h2 data-number="2.4" class="anchored" data-anchor-id="piano-phase-steve-reich"><span class="header-section-number">2.4</span> <em>Piano Phase</em> (Steve Reich)</h2>
 <p><a href="../assets/images/sequencers/piano-phase-animation-1.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="../assets/images/sequencers/piano-phase-animation-1.gif" class="img-fluid"></a></p>
-<p><a href="./Biblio /SteveReich-PianoPhase.pdf">View Piano Phase Score (S. Reich)</a></p>
-<p>Design patterns are abstractions that capture idiomatic tendencies of practices and processes. These abstractions are embedded in live coding languages as functions and syntax, allowing for the reuse of these practices in new projects. <span class="citation" data-cites="brown2023">(<a href="#ref-brown2023" role="doc-biblioref">Brown 2023</a>)</span></p>
-<p><em>Piano Phase</em> is an example of “music as a gradual process,” as Reich stated in his essay from 1968.<span class="citation" data-cites="reich2002">(<a href="#ref-reich2002" role="doc-biblioref">Reich 2002</a>)</span>. In it, Reich described his interest in using processes to generate music, particularly noting how the process is perceived by the listener. (Processes are deterministic: a description of the process can describe an entire whole composition.[5] In other words, once the basic pattern and the phase process have been defined, the music consists itself.)</p>
-<p>Reich called the unexpected ways change occurred via the process “by-products”, formed by the superimposition of patterns. The superimpositions form sub-melodies, often spontaneously due to echo, resonance, dynamics, and tempo, and the general perception of the listener.<span class="citation" data-cites="epstein1986">(<a href="#ref-epstein1986" role="doc-biblioref">Epstein 1986</a>)</span></p>
-<p>Piano Phase led to several breakthroughs that would mark Reich’s future compositions. The first is the discovery of using simple but flexible harmonic material, which produces remarkable musical results when phasing occurs. The use of 12-note or 12-division patterns in Piano Phase proved to be successful, and Reich would re-use it in Clapping Music and Music for 18 Musicians. Another novelty is the appearance of rhythmic ambiguity during phasing of a basic pattern. The rhythmic perception during phasing can vary considerably, from being very simple (in-phase), to complex and intricate.</p>
-<p>The first section of Piano Phase has been the section studied most by musicologists. A property of the first section of phase cycle is that it is symmetric, which results in identical patterns half-way through the phase cycle.<span class="citation" data-cites="epstein1986">(<a href="#ref-epstein1986" role="doc-biblioref">Epstein 1986</a>)</span></p>
-<p><em>Piano Phase</em> can be conceived as an algorithm. Starting with two pianos playing the same sequence of notes at the same speed, one of the pianists begins to gradually accelerate their tempo.</p>
+<p><a href="./Biblio /SteveReich-PianoPhase.pdf">View <em>Piano Phase</em> Score (S. Reich)</a></p>
+<p>Design patterns are abstractions that capture idiomatic tendencies of practices and processes. These abstractions are embedded in live coding languages as functions and syntax, allowing for the reuse of these practices in new projects <span class="citation" data-cites="brown2023">(<a href="#ref-brown2023" role="doc-biblioref">Brown 2023</a>)</span>.</p>
+<p><em>Piano Phase</em> is an example of “music as a gradual process,” as Reich stated in his essay from 1968.<span class="citation" data-cites="reich2002">(<a href="#ref-reich2002" role="doc-biblioref">Reich 2002</a>)</span>. In it, Reich described his interest in using processes to generate music, particularly noting how the process is perceived by the listener. Processes are deterministic: a description of the process can describe an entire whole composition. In other words, once the basic pattern and the phase process have been defined, the music consists itself. Reich called the unexpected ways change occurred via the process “by-products”, formed by the superimposition of patterns. The superimpositions form sub-melodies, often spontaneously due to echo, resonance, dynamics, and tempo, and the general perception of the listener<span class="citation" data-cites="epstein1986">(<a href="#ref-epstein1986" role="doc-biblioref">Epstein 1986</a>)</span>. <em>Piano Phase</em> led to several breakthroughs that would mark Reich’s future compositions. The first is the discovery of using simple but flexible harmonic material, which produces remarkable musical results when phasing occurs. The use of 12-note or 12-division patterns in <em>Piano Phase</em> proved to be successful, and Reich would re-use it in Clapping Music and Music for 18 Musicians. Another novelty is the appearance of rhythmic ambiguity during phasing of a basic pattern. The rhythmic perception during phasing can vary considerably, from being very simple (in-phase), to complex and intricate.</p>
+<p>The first section of <em>Piano Phase</em> has been the section studied most by musicologists. A property of the first section of phase cycle is that it is symmetric, which results in identical patterns half-way through the phase cycle <span class="citation" data-cites="epstein1986">(<a href="#ref-epstein1986" role="doc-biblioref">Epstein 1986</a>)</span>. <em>Piano Phase</em> can be conceived as an algorithm. Starting with two pianos playing the same sequence of notes at the same speed, one of the pianists begins to gradually accelerate their tempo.</p>
 <p>When the separation between the notes played by both pianos reaches a fraction of a note’s duration, the phase is shifted and the cycle repeats. This process continues endlessly, creating a hypnotic effect of rhythmic phasing that evolves over time as an infinite sequence of iterations.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -832,17 +851,27 @@ div.csl-indent {
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>4. Repeat the cycle indefinitely to create a continuous and evolving rhythmic phasing effect.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="piano-phase-implementation-in-pd" class="level3" data-number="2.4.2">
-<h3 data-number="2.4.2" class="anchored" data-anchor-id="piano-phase-implementation-in-pd"><span class="header-section-number">2.4.2</span> Piano Phase Implementation in Pd</h3>
+<h3 data-number="2.4.2" class="anchored" data-anchor-id="piano-phase-implementation-in-pd"><span class="header-section-number">2.4.2</span> <em>Piano Phase</em> Implementation in Pd</h3>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><a href="../assets/screenshots/sequencers/piano-phase.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" title="Fig. Piano Phase patch demonstrating phasing process through two sequencers with different metro intervals, visualized with hradio step indicators and MIDI output for each voice."><img src="../assets/screenshots/sequencers/piano-phase.png" class="img-fluid figure-img" alt="Fig. Piano Phase patch demonstrating phasing process through two sequencers with different metro intervals, visualized with hradio step indicators and MIDI output for each voice."></a></p>
-<figcaption>Fig. Piano Phase patch demonstrating phasing process through two sequencers with different metro intervals, visualized with hradio step indicators and MIDI output for each voice.</figcaption>
+<figcaption>Fig. <em>Piano Phase</em> patch demonstrating phasing process through two sequencers with different metro intervals, visualized with hradio step indicators and MIDI output for each voice.</figcaption>
 </figure>
 </div>
 </section>
 <section id="patch-overview-2" class="level3" data-number="2.4.3">
 <h3 data-number="2.4.3" class="anchored" data-anchor-id="patch-overview-2"><span class="header-section-number">2.4.3</span> Patch Overview</h3>
-<p>The piano-phase.pd patch implements a minimalist phasing process inspired by Steve Reich’s Piano Phase. It uses two parallel sequencers, each reading from the same melodic sequence but advancing at slightly different rates. This gradual tempo difference causes the two sequences to drift out of phase, creating evolving rhythmic and melodic patterns.</p>
+<p>The piano-phase.pd patch implements a minimalist phasing process inspired by Steve Reich’s <em>Piano Phase</em>. It uses two parallel sequencers, each reading from the same melodic sequence but advancing at slightly different rates. This gradual tempo difference causes the two sequences to drift out of phase, creating evolving rhythmic and melodic patterns.</p>
+<section id="sequence-data" class="level4" data-number="2.4.3.1">
+<h4 data-number="2.4.3.1" class="anchored" data-anchor-id="sequence-data"><span class="header-section-number">2.4.3.1</span> Sequence Data</h4>
+<p><code>[table sequence 12]</code></p>
+<p>The sequence is stored in a table named sequence with 12 MIDI note values:</p>
+<p><code>64 66 71 73 74 66 64 73 71 66 74 73</code></p>
+<p>This pattern is initialized at patch load.</p>
+</section>
+</section>
+<section id="data-flow-2" class="level3" data-number="2.4.4">
+<h3 data-number="2.4.4" class="anchored" data-anchor-id="data-flow-2"><span class="header-section-number">2.4.4</span> Data Flow</h3>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
 <div>
@@ -863,29 +892,10 @@ div.csl-indent {
 </div>
 </div>
 </div>
-</section>
-<section id="sequence-data" class="level3" data-number="2.4.4">
-<h3 data-number="2.4.4" class="anchored" data-anchor-id="sequence-data"><span class="header-section-number">2.4.4</span> Sequence Data</h3>
-<p><code>[table sequence 12]</code></p>
-<p>The sequence is stored in a table named sequence with 12 MIDI note values:</p>
-<p><code>64 66 71 73 74 66 64 73 71 66 74 73</code></p>
-<p>This pattern is initialized at patch load.</p>
-</section>
-<section id="data-flow-2" class="level3" data-number="2.4.5">
-<h3 data-number="2.4.5" class="anchored" data-anchor-id="data-flow-2"><span class="header-section-number">2.4.5</span> Data Flow</h3>
-<p><strong>Initialization</strong></p>
-<ul>
-<li>The sequence table is filled with 12 MIDI notes.</li>
-<li>Two metro objects are set: one at 410 ms (left), one at 406 ms (right).</li>
-<li>Both sequencers are started/stopped with a single toggle.</li>
-</ul>
-<p><strong>Playback</strong></p>
-<ul>
-<li>Each metro triggers its own counter, which advances from 0 to 11 and wraps around.</li>
-<li>The current index is used to read a note from the sequence table.</li>
-<li>The note is played via <code>makenote</code> and sent to MIDI output.</li>
-<li>The current step is visualized with a horizontal radio button (<code>hradio</code>).</li>
-</ul>
+<p>The operation of the <em>Piano Phase</em> patch begins with an initialization stage, triggered by a <code>loadbang</code> object when the patch is opened. This setup phase populates the shared <code>sequence</code> table with its 12 predefined MIDI note values. Simultaneously, the two <code>metro</code> objects, which serve as the independent clocks for each of the two parallel “pianists” or sequencers, are configured with their distinct time intervals: the left sequencer’s <code>metro</code> is set to 410 milliseconds, and the right sequencer’s <code>metro</code> to a slightly faster 406 milliseconds. A single <code>toggle</code> control allows the user to start or stop both <code>metro</code> objects concurrently, initiating or halting the phasing process.</p>
+<p>Once activated, each <code>metro</code> object begins to output a stream of bangs at its specified interval. These bangs drive separate but structurally identical sequencing logics. For each sequencer, its respective <code>metro</code> pulse triggers a counter. This counter, typically implemented with a combination of <code>f</code> (float atom), <code>+ 1</code> (increment), and <code>mod 12</code> (modulo) objects, advances its step index from 0 to 11. Upon reaching 11, the modulo operation ensures it wraps back to 0, allowing the 12-step sequence to loop continuously.</p>
+<p>The current step index generated by each counter is then used to read a MIDI note value from the shared <code>sequence</code> table via a <code>tabread sequence</code> object. Thus, each sequencer independently fetches notes from the same melodic pattern according to its own current position. The retrieved MIDI note from each sequencer is subsequently processed by its own <code>makenote</code> object, which formats it into standard MIDI note-on and note-off messages, typically with a predefined velocity and duration. These MIDI messages are then sent to separate <code>noteout</code> objects, allowing the two voices to be routed to different MIDI channels or instruments if desired, or simply to play concurrently. Visual feedback for each sequencer’s current step is provided by a dedicated <code>hradio</code> object, which updates in sync with its counter.</p>
+<p>The core phasing effect emerges from the slight discrepancy in the <code>metro</code> intervals. Because the right sequencer’s clock (406 ms) is marginally faster than the left’s (410 ms), its counter advances more rapidly. This causes the right sequencer’s melodic line to gradually “pull ahead” of the left. Over time, this desynchronization means the two identical melodic patterns are heard starting at different points relative to each other, creating complex, shifting rhythmic and harmonic interactions. This process continues cyclically: the faster sequence eventually “laps” the slower one, bringing them back into unison before they begin to drift apart again, perpetuating the mesmerizing phasing phenomenon central to Reich’s composition.</p>
 <p><strong>Phasing Effect</strong></p>
 <ul>
 <li>The right sequencer is slightly faster, so its step index gradually shifts ahead of the left sequencer.</li>
@@ -893,9 +903,8 @@ div.csl-indent {
 <li>Eventually, the faster sequencer laps the slower one, and the process repeats.</li>
 </ul>
 </section>
-<section id="key-objects-and-their-roles-2" class="level3" data-number="2.4.6">
-<h3 data-number="2.4.6" class="anchored" data-anchor-id="key-objects-and-their-roles-2"><span class="header-section-number">2.4.6</span> Key Objects and Their Roles</h3>
-<p>Two identical sequences are played in parallel. Slightly different tempos cause the sequences to gradually shift out of phase. Emergent patterns arise from the interaction of the two sequences. Visual feedback helps track the phase relationship. This patch demonstrates how minimalist processes can generate complex musical results through simple, deterministic rules, echoing the core concept of Steve Reich’s Piano Phase.</p>
+<section id="key-objects-and-their-roles-2" class="level3" data-number="2.4.5">
+<h3 data-number="2.4.5" class="anchored" data-anchor-id="key-objects-and-their-roles-2"><span class="header-section-number">2.4.5</span> Key Objects and Their Roles</h3>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -942,7 +951,7 @@ div.csl-indent {
 </section>
 <section id="random-melody-generator" class="level2" data-number="2.5">
 <h2 data-number="2.5" class="anchored" data-anchor-id="random-melody-generator"><span class="header-section-number">2.5</span> Random Melody Generator</h2>
-<p>This chapter provides a step-by-step explanation of the <a href="../assets/code/sequencers/music-scale-B.pd">music-scale-B.pd</a> Pd patch. The patch demonstrates how to generate a melody using a musical scale, store it in an array, and play it back using MIDI.</p>
+<p>The patch demonstrates how to generate a melody using a musical scale, store it in an array, and play it back using MIDI.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><a href="../assets/screenshots/sequencers/random_melody.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6" title="Fig. Random melody generator patch showing scale definition, algorithmic note selection, array storage, and MIDI playback system for creating melodic sequences from predefined harmonic material."><img src="../assets/screenshots/sequencers/random_melody.png" class="img-fluid figure-img" alt="Fig. Random melody generator patch showing scale definition, algorithmic note selection, array storage, and MIDI playback system for creating melodic sequences from predefined harmonic material."></a></p>
@@ -954,7 +963,9 @@ div.csl-indent {
 <p>The Random Melody Generator patch demonstrates a comprehensive approach to algorithmic composition. This implementation showcases how to generate melodic content using musical scales, store the generated material in arrays for manipulation, and create a playback system with MIDI output capabilities.</p>
 <p>The patch architecture is built around several interconnected functional blocks that work together to create a complete generative music system. The first component handles scale definition and melody generation, where musical scales are defined as interval patterns and used as the foundation for creating new melodic material. The melody storage system utilizes array objects to hold the generated sequences, providing both data persistence and visual feedback. The playback control mechanism employs metronome objects and indexing systems to sequence through the stored melodies at controllable tempos. Finally, the MIDI output section transforms the stored note data into playable MIDI messages that can be sent to external synthesizers or software instruments.</p>
 <p>This modular design approach allows for easy modification and extension of the system. Each functional block can be adjusted independently, enabling composers and sound designers to experiment with different scales, generation algorithms, storage methods, and playback configurations without affecting the overall system stability.</p>
-<p>Below is a simplified diagram of the main data flow:</p>
+</section>
+<section id="data-flow-3" class="level3" data-number="2.5.2">
+<h3 data-number="2.5.2" class="anchored" data-anchor-id="data-flow-3"><span class="header-section-number">2.5.2</span> Data Flow</h3>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
 <div>
@@ -974,8 +985,7 @@ div.csl-indent {
 </div>
 </div>
 </div>
-<p>The scale definition process begins with a message box containing the fundamental building blocks of Western harmony represented as semitone intervals.</p>
-<p>The example scale <code>0 2 4 5 7 9 11</code> represents a major scale pattern, where each number corresponds to a specific semitone distance from a root note. This intervallic approach provides flexibility, as the same pattern can be transposed to any key by simply changing the root note offset. The scale intervals are processed through list manipulation objects, which append the values to an internal list structure and calculate the scale’s length for use in subsequent random selection processes.</p>
+<p>The scale definition process begins with a message box containing the fundamental building blocks of Western harmony represented as semitone intervals. The example scale <code>0 2 4 5 7 9 11</code> represents a major scale pattern, where each number corresponds to a specific semitone distance from a root note. This intervallic approach provides flexibility, as the same pattern can be transposed to any key by simply changing the root note offset. The scale intervals are processed through list manipulation objects, which append the values to an internal list structure and calculate the scale’s length for use in subsequent random selection processes.</p>
 <p>The following table illustrates the mapping of musical notes to their corresponding intervals in semitones, which is crucial for understanding how the scale is constructed and how notes are generated from it.</p>
 <div style="width: 50%;">
 <table class="caption-top table">
@@ -1037,29 +1047,14 @@ div.csl-indent {
 </tbody>
 </table>
 </div>
-<p>The random note selection mechanism forms the core of the melodic generation process. A random number generator produces values between 0 and 47, which are then shifted upward by 60 to place the resulting MIDI notes in a musically appropriate range around middle C. This range selection ensures that generated melodies will fall within a playable range for most instruments and remain audible in typical monitoring setups. The random values are then mapped to the predefined scale using modulo operations and list indexing, ensuring that all generated notes conform to the harmonic framework established by the scale definition.</p>
+<p><br> The random note selection mechanism forms the core of the melodic generation process. A random number generator produces values between 0 and 47, which are then shifted upward by 60 to place the resulting MIDI notes in a musically appropriate range around middle C. This range selection ensures that generated melodies will fall within a playable range for most instruments and remain audible in typical monitoring setups. The random values are then mapped to the predefined scale using modulo operations and list indexing, ensuring that all generated notes conform to the harmonic framework established by the scale definition.</p>
 <p>The melody construction process utilizes looping mechanisms, specifically the <code>until</code>, <code>i</code>, and <code>+ 1</code> objects, to generate sequences of predetermined length. Each iteration of the loop calculates a new note based on the scale mapping process and stores the result in a growing list structure. This approach allows for the creation of melodic phrases of any desired length, from short motifs to extended melodic lines. The deterministic nature of the loop structure ensures predictable behavior while the random element within each iteration provides the variability necessary for interesting melodic content.</p>
 <p>For melody storage, the patch employs array system, specifically an array named <code>melody</code> that serves as both a data repository and a visual display element. The generated melodic sequences are written to this array using the <code>tabwrite</code> object, which provides indexed storage capabilities. The array’s visual representation appears as a graph within the patch interface, allowing users to see the melodic contour and note relationships in real-time. This visual feedback proves invaluable for understanding the characteristics of generated material and making informed decisions about parameter adjustments.</p>
 <p>The playback control system centers around a <code>metro</code> object that functions as a digital metronome, generating regular timing pulses that drive the sequencing process. The tempo of these pulses is controlled by a horizontal slider interface element, providing real-time tempo adjustment capabilities. Each pulse from the metronome advances an index counter that points to the next position in the <code>melody</code> array. This indexing system automatically wraps around to the beginning when it reaches the end of the stored sequence, creating seamless looping playback that continues indefinitely until stopped by the user.</p>
 <p>The MIDI output stage transforms the stored melodic data into standard MIDI protocol messages that can interface with external hardware and software. The note values retrieved from the array are processed through a <code>makenote</code> object, which creates properly formatted MIDI note-on and note-off messages with specified velocity and duration parameters. These parameters can be adjusted to affect the musical expression of the playback, with velocity controlling the apparent loudness or intensity of notes and duration determining their length. The final <code>noteout</code> object handles the actual transmission of MIDI data to the system’s MIDI routing infrastructure, where it can be directed to synthesizers, samplers, or recording software.</p>
-<p>The following is a simplified diagram of the data flow for the melody generation and playback process:</p>
-<div class="cell" data-layout-align="default">
-<div class="cell-output-display">
-<div>
-<p></p><figure class="figure"><p></p>
-<div>
-<pre class="mermaid mermaid-js">graph LR
-    MelodyList --&gt;|tabwrite| MelodyArray
-</pre>
-</div>
-<p></p></figure><p></p>
-</div>
-</div>
-</div>
-<p>The integration of these components creates a flexible and powerful tool for algorithmic composition. The system can generate new melodic material on demand, store multiple variations for comparison, and play back the results in real-time with full MIDI compatibility. This makes it suitable for both experimental composition work and practical music production applications, where generated material can serve as inspiration, accompaniment, or the foundation for further development.</p>
 </section>
-<section id="key-objects-and-their-roles-3" class="level3" data-number="2.5.2">
-<h3 data-number="2.5.2" class="anchored" data-anchor-id="key-objects-and-their-roles-3"><span class="header-section-number">2.5.2</span> Key Objects and Their Roles</h3>
+<section id="key-objects-and-their-roles-3" class="level3" data-number="2.5.3">
+<h3 data-number="2.5.3" class="anchored" data-anchor-id="key-objects-and-their-roles-3"><span class="header-section-number">2.5.3</span> Key Objects and Their Roles</h3>
 <div style="width: 50%;">
 <table class="caption-top table">
 <thead>
@@ -1108,41 +1103,19 @@ div.csl-indent {
 </tbody>
 </table>
 </div>
-</section>
-<section id="diagram-melody-generation-and-playback" class="level3" data-number="2.5.3">
-<h3 data-number="2.5.3" class="anchored" data-anchor-id="diagram-melody-generation-and-playback"><span class="header-section-number">2.5.3</span> Diagram: Melody Generation and Playback</h3>
-<div class="cell" data-layout-align="default">
-<div class="cell-output-display">
-<div>
-<p></p><figure class="figure"><p></p>
-<div>
-<pre class="mermaid mermaid-js">flowchart TD
-    S[Scale Message] --&gt; L[list Append]
-    L --&gt; R[random + Offset]
-    R --&gt; M[Modulo/Indexing]
-    M --&gt; A[Melody Array]
-    A --&gt; P[Playback - metro, tabread]
-    P --&gt; MN[makenote]
-    MN --&gt; NO[noteout]
-</pre>
-</div>
-<p></p></figure><p></p>
-</div>
-</div>
-</div>
+<p><br> The integration of these components creates a flexible and powerful tool for algorithmic composition. The system can generate new melodic material on demand, store multiple variations for comparison, and play back the results in real-time with full MIDI compatibility. This makes it suitable for both experimental composition work and practical music production applications, where generated material can serve as inspiration, accompaniment, or the foundation for further development.</p>
 </section>
 </section>
 <section id="the-euclidean-algorithm-generates-traditional-musical-rhythms" class="level2" data-number="2.6">
 <h2 data-number="2.6" class="anchored" data-anchor-id="the-euclidean-algorithm-generates-traditional-musical-rhythms"><span class="header-section-number">2.6</span> The Euclidean Algorithm Generates Traditional Musical Rhythms</h2>
-<p>Godfried Toussaint (2005)</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><a href="../assets/images/sequencers/euclidian-seq-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7" title="Eucliden image"><img src="../assets/images/sequencers/euclidian-seq-1.png" class="img-fluid figure-img" alt="Eucliden image"></a></p>
 <figcaption>Eucliden image</figcaption>
 </figure>
 </div>
-<p><a href="https://cgm.cs.mcgill.ca/~godfried/publications/banff.pdf">Link to the original article</a></p>
-<p>The Euclidean rhythm in music was discovered by Godfried Toussaint in 2004 and is described in a 2005 paper <em>“The Euclidean Algorithm Generates Traditional Musical Rhythms”</em>.<span class="citation" data-cites="toussaint2005">(<a href="#ref-toussaint2005" role="doc-biblioref">Toussaint 2005</a>)</span> The paper presents a method for generating rhythms that are evenly distributed over a given time span, using the Euclidean algorithm. This method is particularly relevant in the context of world music, where such rhythms are often found. The Euclidean algorithm (as presented in <em>Euclid’s Elements</em>) calculates the greatest common divisor of two given integers. It is shown here that the structure of the Euclidean algorithm can be used to efficiently generate a wide variety of rhythms used as timelines (ostinatos) in sub-Saharan African music in particular, and world music in general. These rhythms, here called <em>Euclidean rhythms</em>, have the property that their onset patterns are distributed as evenly as possible. Euclidean rhythms also find application in nuclear physics accelerators and computer science and are closely related to several families of words and sequences of interest in the combinatorics of words, such as Euclidean strings, with which the rhythms are compared.<span class="citation" data-cites="toussaint2005">(<a href="#ref-toussaint2005" role="doc-biblioref">Toussaint 2005</a>)</span></p>
+<p><a href="https://cgm.cs.mcgill.ca/~godfried/publications/banff.pdf">See original paper</a></p>
+<p>The Euclidean rhythm in music was discovered by Godfried Toussaint in 2004 and is described in a 2005 paper <em>“The Euclidean Algorithm Generates Traditional Musical Rhythms”</em> <span class="citation" data-cites="toussaint2005">(<a href="#ref-toussaint2005" role="doc-biblioref">Toussaint 2005</a>)</span>. The paper presents a method for generating rhythms that are evenly distributed over a given time span, using the Euclidean algorithm. This method is particularly relevant in the context of world music, where such rhythms are often found. The Euclidean algorithm (as presented in <em>Euclid’s Elements</em>) calculates the greatest common divisor of two given integers. It is shown here that the structure of the Euclidean algorithm can be used to efficiently generate a wide variety of rhythms used as timelines (ostinatos) in sub-Saharan African music in particular, and world music in general. These rhythms, here called <em>Euclidean rhythms</em>, have the property that their onset patterns are distributed as evenly as possible. Euclidean rhythms also find application in nuclear physics accelerators and computer science and are closely related to several families of words and sequences of interest in the combinatorics of words, such as Euclidean strings, with which the rhythms are compared <span class="citation" data-cites="toussaint2005">(<a href="#ref-toussaint2005" role="doc-biblioref">Toussaint 2005</a>)</span>.</p>
 <section id="hypothesis" class="level3" data-number="2.6.1">
 <h3 data-number="2.6.1" class="anchored" data-anchor-id="hypothesis"><span class="header-section-number">2.6.1</span> Hypothesis</h3>
 <p>Several researchers have observed that rhythms in traditional world music tend to exhibit patterns distributed as regularly or evenly as possible. The hypothesis is that the Euclidean algorithm can be used to generate these rhythms. According to the hypothesis, the Euclidean algorithm can be used to generate rhythms that are evenly distributed over a given time span. This is particularly relevant in the context of world music, where such rhythms are often found. The following is a summary of the main points:</p>
@@ -1153,105 +1126,124 @@ div.csl-indent {
 <section id="patterns-of-maximal-evenness" class="level3" data-number="2.6.2">
 <h3 data-number="2.6.2" class="anchored" data-anchor-id="patterns-of-maximal-evenness"><span class="header-section-number">2.6.2</span> Patterns of Maximal Evenness</h3>
 <p>The Pattern of Maximal Evenness is a concept used in music theory to create Euclidean rhythms. Euclidean rhythms are rhythmic patterns that evenly distribute beats over a time cycle.</p>
-<p>In essence, the Pattern of Maximal Evenness seeks to <strong>distribute a specific number of beats evenly</strong> within a given time span. This is achieved by dividing the time into equal parts and assigning beats to these divisions uniformly.</p>
+<p>In essence, the Pattern of Maximal Evenness seeks to distribute a specific number of beats evenly within a given time span. This is achieved by dividing the time into equal parts and assigning beats to these divisions uniformly.</p>
 <p>Example:</p>
-<p>x = beat</p>
-<p>· = rest</p>
-<p>[×· ×· ×· ×· ] → [1 0 1 0 1 0 1 0] (8,4) = 4 beats evenly distributed over 8 pulses</p>
-<p>[×· ·×· ·×·] → [1 0 0 1 0 0 1 0] (8,3) = 3 beats evenly distributed over 8 pulses</p>
+<p><code>x</code> = beat</p>
+<p><code>·</code> = rest</p>
+<p>[×· ×· ×· ×· ] → [1 0 1 0 1 0 1 0]</p>
+<p><code>(8,4)</code> = 4 beats evenly distributed over 8 pulses</p>
+<p>[×· ·×· ·×·] → [1 0 0 1 0 0 1 0]</p>
+<p><code>(8,3)</code> = 3 beats evenly distributed over 8 pulses</p>
 </section>
 <section id="euclidean-algorithm" class="level3" data-number="2.6.3">
 <h3 data-number="2.6.3" class="anchored" data-anchor-id="euclidean-algorithm"><span class="header-section-number">2.6.3</span> Euclidean Algorithm</h3>
 <p>One of the oldest known algorithms, described in <em>Euclid’s Elements</em> (around 300 BCE) in Proposition 2 of Book VII, now known as the Euclidean algorithm, calculates the greatest common divisor of two given integers.</p>
 <p>The idea is very simple. The smaller number is repeatedly subtracted from the larger until the larger becomes zero or smaller than the smaller one, in which case it becomes the remainder. This remainder is then repeatedly subtracted from the smaller number to obtain a new remainder. This process continues until the remainder is zero.</p>
 <p>To be more precise, consider the numbers 5 and 8 as an example:</p>
-<ul>
-<li>First, we divide 8 by 5. This gives a quotient of 1 and a remainder of 3.</li>
-<li>Then, we divide 5 by 3, which gives a quotient of 1 and a remainder of 2.</li>
-<li>Next, we divide 3 by 2, which gives a quotient of 1 and a remainder of 1.</li>
-<li>Finally, we divide 2 by 1, which gives a quotient of 2 and a remainder of 0.</li>
-</ul>
-<p>The idea is to keep dividing the previous divisor by the remainder obtained in each step until the remainder is 0. When we reach a remainder of 0, the previous divisor is the greatest common divisor of the two numbers.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Step</th>
+<th>Operation</th>
+<th>Equation</th>
+<th>Quotient</th>
+<th>Remainder</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>Divide 8 by 5</td>
+<td><span class="math display">\[8 = 1 \cdot 5 + 3\]</span></td>
+<td>1</td>
+<td>3</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>Divide 5 by 3</td>
+<td><span class="math display">\[5 = 1 \cdot 3 + 2\]</span></td>
+<td>1</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>Divide 3 by 2</td>
+<td><span class="math display">\[3 = 1 \cdot 2 + 1\]</span></td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>Divide 2 by 1</td>
+<td><span class="math display">\[2 = 2 \cdot 1 + 0\]</span></td>
+<td>2</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<p><br> The idea is to keep dividing the previous divisor by the remainder obtained in each step until the remainder is 0. When we reach a remainder of 0, the previous divisor is the greatest common divisor of the two numbers.</p>
 <p>In short, the process can be seen as a sequence of equations:</p>
-<pre class="text"><code>8 = (1)(5) + 3
-5 = (1)(3) + 2
-3 = (1)(2) + 1
-2 = (1)(2) + 0</code></pre>
-<p><em>Note: 8 = (1)(5) + 3 means that 8 is divided by 5 once, yielding a quotient of 1 and a remainder of 3.</em></p>
-<p>&nbsp;</p>
-<p>In essence, it involves successive divisions to find the <code>greatest common divisor</code> of two positive numbers (GCD from now on).</p>
+<p><span class="math display">\[\begin{align*}
+8 &amp;= (1)\cdot(5) + 3 \\
+5 &amp;= (1)\cdot(3) + 2 \\
+3 &amp;= (1)\cdot(2) + 1 \\
+2 &amp;= (1)\cdot(2) + 0
+\end{align*}\]</span></p>
+<blockquote class="blockquote">
+<p>Note: 8 = (1) . (5) + 3 means that 8 is divided by 5 once, yielding a quotient of 1 and a remainder of 3.</p>
+</blockquote>
+<p>In essence, it involves successive divisions to find the <strong>greatest common divisor</strong> of two positive numbers (GCD from now on).</p>
 <p>The <code>GCD</code> of two numbers a and b, assuming a &gt; b, is found by first dividing a by b, and obtaining the remainder r.</p>
 <p>The GCD of a and b is the same as that of b and r. When we divide a by b, we obtain a quotient c and a remainder r such that:</p>
-<p><code>a = c · b + r</code></p>
+<p><span class="math inline">\(a = c \cdot b + r\)</span></p>
 <p><strong>Examples:</strong></p>
 <p>Let’s compute the GCD of 17 and 7.</p>
 <p>Since <code>17 = 7 · 2 + 3</code>, then GCD(17, 7) is equal to GCD(7, 3). Again, since 7 = 3 · 2 + 1, then GCD(7, 3) is equal to GCD(3, 1). Here, it is clear that the GCD between 3 and 1 is simply 1. Therefore, the GCD between 17 and 7 is also 1.</p>
-<pre class="text"><code>GCD(17,7) = 1
-
-17 = 7 · 2 + 3
-
-7 = 3 · 2 + 1
-
-3 = 1 · 3 + 0</code></pre>
-<p>&nbsp;</p>
+<p><span class="math display">\[\text{GCD}(17,7) = 1\]</span> <span class="math display">\[17 = 7 \cdot 2 + 3\]</span> <span class="math display">\[7 = 3 \cdot 2 + 1\]</span> <span class="math display">\[3 = 1 \cdot 3 + 0\]</span></p>
 <p><strong>Another example:</strong></p>
-<pre class="text"><code>GCD(8,3) = 1
-
-8 = 3 · 2 + 2
-
-3 = 2 · 1 + 1
-
-2 = 1 · 2 + 0</code></pre>
+<p><span class="math display">\[\text{GCD}(8,3) = 1\]</span> <span class="math display">\[8 = 3 \cdot 2 + 2\]</span> <span class="math display">\[3 = 2 \cdot 1 + 1\]</span> <span class="math display">\[2 = 1 \cdot 2 + 0\]</span></p>
 </section>
 <section id="how-does-computing-the-gcd-turn-into-maximally-even-distributed-patterns" class="level3" data-number="2.6.4">
 <h3 data-number="2.6.4" class="anchored" data-anchor-id="how-does-computing-the-gcd-turn-into-maximally-even-distributed-patterns"><span class="header-section-number">2.6.4</span> How does computing the GCD turn into maximally even distributed patterns?</h3>
 <p>Represent a binary sequence of k ones [1] and n − k zeros [0], where each [0] bit represents a time interval and the ones [1] indicate signal triggers.</p>
 <p>The problem then reduces to:</p>
-<p><code>Construct a binary sequence of n bits with k ones such that the ones are distributed as evenly as possible among the zeros.</code></p>
+<blockquote class="blockquote">
+<p><strong>Construct a binary sequence of n bits with k ones such that the ones are distributed as evenly as possible among the zeros.</strong></p>
+</blockquote>
 <p>A simple case is when k evenly divides n (with no remainder), in which case we should place ones every n/k bits. For example, if n = 16 and k = 4, then the solution is:</p>
-<p><code>[1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0]</code></p>
+<p><span class="math display">\[[1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0]\]</span></p>
 <p>This case corresponds to n and k having a common divisor of k (in this case 4).</p>
-<p>More generally, if the greatest common divisor between n and k is g, we would expect the solution to decompose into g repetitions of a sequence of n/g bits.</p>
-<p><strong>This connection with greatest common divisors suggests that we could compute a maximally even rhythm using an algorithm like Euclid’s.</strong></p>
+<p>More generally, if the greatest common divisor between n and k is g, we would expect the solution to decompose into g repetitions of a sequence of n/g bits. This connection with greatest common divisors suggests that we could compute a maximally even rhythm using an algorithm like Euclid’s.</p>
 <p>&nbsp;</p>
 <section id="example-13-5" class="level4" data-number="2.6.4.1">
 <h4 data-number="2.6.4.1" class="anchored" data-anchor-id="example-13-5"><span class="header-section-number">2.6.4.1</span> Example (13, 5)</h4>
 <p>Let’s consider a sequence with n = 13 and k = 5.</p>
 <p>Since 13 − 5 = 8, we start with a sequence consisting of 5 ones, followed by 8 zeros, which can be thought of as 13 one-bit sequences:</p>
-<p>[1 1 1 1 1 0 0 0 0 0 0 0 0]</p>
+<p><span class="math display">\[[1 1 1 1 1 0 0 0 0 0 0 0 0]\]</span></p>
 <p>We begin moving zeros by placing one zero after each one, creating five 2-bit sequences, with three remaining zeros:</p>
-<p>[10] [10] [10] [10] [10] [0] [0] [0]</p>
-<p><code>13 = 5 · 2 + 3</code></p>
+<p><span class="math display">\[[10] [10] [10] [10] [10] [0] [0] [0]\]</span></p>
+<p><span class="math display">\[13 = 5 · 2 + 3\]</span></p>
 <p>Then we distribute the three remaining zeros similarly, placing a [0] after each [10] sequence:</p>
-<p>[100] [100] [100] [10] [10]</p>
-<p><code>5 = 3 · 1 + 2</code></p>
+<p><span class="math display">\[[100] [100] [100] [10] [10]\]</span></p>
+<p><span class="math display">\[5 = 3 · 1 + 2\]</span></p>
 <p>We now have three 3-bit sequences, and a remainder of two 2-bit sequences. So we continue the same way, placing one [10] after each [100]:</p>
-<p>[10010] [10010] [100]</p>
-<p><code>3 = 2 · 1 + 1</code></p>
+<p><span class="math display">\[[10010] [10010] [100]\]</span></p>
+<p><span class="math display">\[3 = 2 · 1 + 1\]</span></p>
 <p>The process stops when the remainder consists of a single sequence (here, [100]), or we run out of zeros.</p>
 <p>The final sequence is, therefore, the concatenation of [10010], [10010], and [100]:</p>
-<p><strong>[1 0 0 1 0 1 0 0 1 0 1 0 0]</strong></p>
-<p><code>2 = 1 · 2 + 0</code></p>
+<p><span class="math display">\[[1 0 0 1 0 1 0 0 1 0 1 0 0]\]</span></p>
+<p><span class="math display">\[2 = 1 · 2 + 0\]</span></p>
 <p>&nbsp;</p>
 </section>
 <section id="example-17-7" class="level4" data-number="2.6.4.2">
 <h4 data-number="2.6.4.2" class="anchored" data-anchor-id="example-17-7"><span class="header-section-number">2.6.4.2</span> Example (17, 7)</h4>
 <p>Suppose we have 17 pulses and want to evenly distribute 7 beats over them.</p>
 <p><strong>1.</strong> We align the number of beats and silences (7 ones and 10 zeros):</p>
-<p>[1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0]</p>
-<table class="caption-top">
-<thead>
-<tr class="header">
-<th>1 1 1 1 1 1 1</th>
-<th>0 0 0 0 0 0 0 0 0 0</th>
-</tr>
-</thead>
-<tbody>
-</tbody>
-</table>
+<p><span class="math display">\[[1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0]\]</span></p>
+<p><span class="math display">\[[1 1 1 1 1 1 1]  [0 0 0 0 0 0 0 0 0 0]\]</span></p>
 <p><strong>2.</strong> We form 7 groups, corresponding to the division of 17 by 7; we get 7 groups of <code>[1 0]</code> and 3 remaining zeros <code>[000]</code>, which means the next step forms 3 groups until only one or zero groups remain.</p>
-<p>[1 0] [1 0] [1 0] [1 0] [1 0] [1 0] [1 0] [0] [0] [0]</p>
-<p><code>17 = 7 · 2 + 3</code></p>
+<p><span class="math display">\[ [1 0] [1 0] [1 0] [1 0] [1 0] [1 0] [1 0] [0] [0] [0]\]</span></p>
+<p><span class="math display">\[ 17 = 7 \cdot 2 + 3\]</span></p>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -1281,7 +1273,7 @@ div.csl-indent {
 <p>&nbsp;</p>
 <p><strong>3.</strong> Again, this corresponds to dividing 7 by 3. In our case, we are left with only one group and we are done.</p>
 <p>&nbsp;</p>
-<p>[1 0 0] [1 0 0] [1 0 0] [1 0] [1 0] [1 0] [1 0]</p>
+<p><span class="math display">\[ [1 0 0] [1 0 0] [1 0 0] [1 0] [1 0] [1 0] [1 0]\]</span></p>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -1315,8 +1307,8 @@ div.csl-indent {
 </tr>
 </tbody>
 </table>
-<p>[1 0 0 1 0] [1 0 1 0 0] [1 0 0 1 0] [1 0]</p>
-<p><code>7 = 3 · 2 + 1</code></p>
+<p><span class="math display">\[ [1 0 0 1 0] [1 0 1 0 0] [1 0 0 1 0] [1 0]\]</span></p>
+<p><span class="math display">\[ 7 = 3 · 2 + 1\]</span></p>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -1370,36 +1362,23 @@ div.csl-indent {
 </table>
 <p>&nbsp;</p>
 <p><strong>4.</strong> Finally, the rhythm is obtained by reading the grouping column by column, from left to right, step by step.</p>
-<p><strong><code>[1 0 0 1 0 1 0 0 1 0 1 0 0 1 0 1 0]</code></strong></p>
-<p><code>3 = 1 · 3 + 0</code></p>
+<p><span class="math display">\[ [1 0 0 1 0 1 0 0 1 0 1 0 0 1 0 1 0]\]</span></p>
+<p><span class="math display">\[ 3 = 1 · 3 + 0\]</span></p>
 <p>&nbsp;</p>
 </section>
 </section>
 <section id="implementation-in-pd---euclidean-sequencer" class="level3" data-number="2.6.5">
 <h3 data-number="2.6.5" class="anchored" data-anchor-id="implementation-in-pd---euclidean-sequencer"><span class="header-section-number">2.6.5</span> Implementation in Pd - Euclidean sequencer</h3>
 <p>The following code implements the Euclidean algorithm in Pd to generate a Euclidean rhythm. The algorithm is based on the mathematical formula:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>(index * hits ) % steps</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>↓</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>[&lt; notes]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell" data-layout-align="default">
-<div class="cell-output-display">
-<div>
-<p></p><figure class="figure"><p></p>
-<div>
-<pre class="mermaid mermaid-js">flowchart TB
-    A[index * hits]
-    A --&gt; B[% steps]
-    B --&gt; C[&lt; notes]
-</pre>
-</div>
-<p></p></figure><p></p>
-</div>
-</div>
-</div>
+<p><span class="math display">\[(\text{index} \cdot \text{hits}) \%  \text{ steps} &lt; \text{notes}\]</span></p>
 <p>where:</p>
-<p>index = index of the Euclidean series (array)</p>
-<p>hits = number of notes to be played</p>
-<p>steps = array size</p>
+<ul>
+<li><span class="math inline">\(\text{index}\)</span> = index of the Euclidean series (array)</li>
+<li><span class="math inline">\(\text{hits}\)</span> = number of notes to be played<br>
+</li>
+<li><span class="math inline">\(\text{steps}\)</span> = array size</li>
+<li><span class="math inline">\(\text{notes}\)</span> = threshold for comparison</li>
+</ul>
 <p>Yoy can check this <a href="https://dbkaplun.github.io/euclidean-rhythm/">Euclidean rhythm demo</a> in order to interact and see how the algorithm works.</p>
 <section id="understanding-the-mathematical-formula" class="level4" data-number="2.6.5.1">
 <h4 data-number="2.6.5.1" class="anchored" data-anchor-id="understanding-the-mathematical-formula"><span class="header-section-number">2.6.5.1</span> Understanding the Mathematical Formula</h4>
@@ -1441,8 +1420,14 @@ div.csl-indent {
 </div>
 <section id="patch-overview-4" class="level4" data-number="2.6.6.1">
 <h4 data-number="2.6.6.1" class="anchored" data-anchor-id="patch-overview-4"><span class="header-section-number">2.6.6.1</span> Patch Overview</h4>
-<p>The patch is structured into several functional blocks. First, there are controls for setting the number of steps and the number of hits (pulses). Next, the patch calculates the Euclidean pattern using a mathematical formula. Finally, the resulting pattern is output and visualized as a list of pulses and rests.</p>
-<p>To help visualize the flow of data through the patch, consider the following diagram:</p>
+<p>The patch is structured into several functional blocks. First, there are controls for setting the number of steps and the number of hits (pulses). Next, the patch calculates the Euclidean pattern using a mathematical formula.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>(index * hits ) % steps</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>↓</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>[&lt; notes]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Finally, the resulting pattern is output and visualized as a list of pulses and rests.</p>
+</section>
+<section id="data-flow-4" class="level4" data-number="2.6.6.2">
+<h4 data-number="2.6.6.2" class="anchored" data-anchor-id="data-flow-4"><span class="header-section-number">2.6.6.2</span> Data Flow</h4>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
 <div>
@@ -1462,9 +1447,6 @@ div.csl-indent {
 </div>
 </div>
 </div>
-</section>
-<section id="data-flow-3" class="level4" data-number="2.6.6.2">
-<h4 data-number="2.6.6.2" class="anchored" data-anchor-id="data-flow-3"><span class="header-section-number">2.6.6.2</span> Data Flow</h4>
 <p>The process begins with the user setting the number of steps in the sequence using a horizontal slider labeled “Steps.” This determines the total length of the rhythmic cycle. The user also sets the number of hits, or pulses, using another slider labeled “HITS.” These two values are stored and sent to the rest of the patch, where they are used to calculate the rhythmic pattern.</p>
 <p>Once the parameters are set, the patch uses a loop, implemented with the <code>until</code> object, to iterate through each step index from 0 up to one less than the total number of steps. For each index, the patch calculates a value using the formula <code>(index * hits) % steps</code>. This formula determines the position of each pulse within the cycle by multiplying the current index by the number of hits and taking the result modulo the total number of steps. The result of this calculation is then compared to the number of hits. If the result is less than the number of hits, a pulse (represented by a 1) is added to the pattern. Otherwise, a rest (represented by a 0) is added. This process is repeated for every step in the sequence, gradually building up the complete Euclidean rhythm as a list of ones and zeros.</p>
 <p>After the pattern has been calculated, it is displayed as a list, allowing you to see the sequence of pulses and rests. The patch also includes a reset mechanism, so that the pattern can be recalculated and updated whenever the user changes the number of steps or hits.</p>
@@ -1576,8 +1558,8 @@ div.csl-indent {
 </tr>
 </tbody>
 </table>
-<p>The resulting pattern is:<br>
-<code>1 1 0 1 0 0 1 0 1 0 0 1 0</code></p>
+<p><br> The resulting pattern is:<br>
+<span class="math display">\[1 1 0 1 0 0 1 0 1 0 0 1 0\]</span></p>
 <p>This sequence distributes five pulses as evenly as possible across thirteen steps.</p>
 </section>
 <section id="key-objects-and-their-roles-4" class="level4" data-number="2.6.6.4">
@@ -1662,8 +1644,8 @@ div.csl-indent {
 </div>
 </div>
 </section>
-<section id="data-flow-4" class="level4" data-number="2.6.7.2">
-<h4 data-number="2.6.7.2" class="anchored" data-anchor-id="data-flow-4"><span class="header-section-number">2.6.7.2</span> Data Flow</h4>
+<section id="data-flow-5" class="level4" data-number="2.6.7.2">
+<h4 data-number="2.6.7.2" class="anchored" data-anchor-id="data-flow-5"><span class="header-section-number">2.6.7.2</span> Data Flow</h4>
 <p>The process begins with the user setting the number of steps, hits, and rotation using horizontal sliders. The steps slider determines the total length of the rhythmic cycle, the hits slider sets the number of pulses to be distributed, and the rotation slider specifies how many positions to shift the pattern.</p>
 <p>A loop, implemented with the <code>until</code> object and a counter, iterates through each step index. For each index, the patch calculates the value using the formula <code>((index + rotation) * hits) % steps</code>. This formula determines the position of each pulse within the cycle, taking into account the rotation. The result is then compared to the number of hits: if it is less than the number of hits, a pulse (represented by a 1) is added to the pattern; otherwise, a rest (represented by a 0) is added. This process is repeated for every step, building up the complete rotated Euclidean rhythm.</p>
 <p>The resulting pattern is displayed as a list, showing the sequence of pulses and rests after rotation. The patch also provides a reset mechanism to clear and recalculate the pattern when parameters change.</p>
@@ -1671,9 +1653,9 @@ div.csl-indent {
 <section id="example-rotating-a-euclidean-rhythm" class="level4" data-number="2.6.7.3">
 <h4 data-number="2.6.7.3" class="anchored" data-anchor-id="example-rotating-a-euclidean-rhythm"><span class="header-section-number">2.6.7.3</span> Example: Rotating a Euclidean Rhythm</h4>
 <p>Suppose you set 8 steps, 3 hits, and a rotation of 2. The main rhythm without rotation might be:</p>
-<p><code>1 0 0 1 0 0 1 0</code></p>
+<p><span class="math display">\[1 0 0 1 0 0 1 0\]</span></p>
 <p>Applying a rotation of 2 shifts the pattern two steps to the right, resulting in:</p>
-<p><code>0 1 0 0 1 0 0 1</code></p>
+<p><span class="math display">\[0 1 0 0 1 0 0 1\]</span></p>
 <p>This allows you to experiment with different phase offsets and rhythmic feels.</p>
 </section>
 <section id="key-objects-and-their-roles-5" class="level4" data-number="2.6.7.4">
@@ -1747,6 +1729,9 @@ div.csl-indent {
 <h4 data-number="2.6.8.1" class="anchored" data-anchor-id="patch-overview-6"><span class="header-section-number">2.6.8.1</span> Patch Overview</h4>
 <p>The patch is organized into two parallel sections. The first section generates the main Euclidean rhythm, while the second section generates an accent pattern using the same mathematical approach. Both sections allow for independent control of steps, hits, rotation, and accents. The outputs of both patterns are then combined to produce a final sequence where steps can be silent, regular, or accented.</p>
 <p>The following diagram illustrates the data flow for both rhythm and accent layers:</p>
+</section>
+<section id="data-flow-6" class="level4" data-number="2.6.8.2">
+<h4 data-number="2.6.8.2" class="anchored" data-anchor-id="data-flow-6"><span class="header-section-number">2.6.8.2</span> Data Flow</h4>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
 <div>
@@ -1776,9 +1761,6 @@ div.csl-indent {
 </div>
 </div>
 </div>
-</section>
-<section id="data-flow-5" class="level4" data-number="2.6.8.2">
-<h4 data-number="2.6.8.2" class="anchored" data-anchor-id="data-flow-5"><span class="header-section-number">2.6.8.2</span> Data Flow</h4>
 <p>The process begins with the user setting the number of steps, hits, and rotation for the main rhythm using horizontal sliders. These parameters determine the length of the sequence, the number of pulses, and the rotation (offset) of the pattern. The patch uses a loop (<code>until</code>) and a counter to iterate through each step index. For each step, it calculates the value using the formula <code>((index + rotation) * hits) % steps</code>. This value is compared to the number of hits; if it is less, a pulse (1) is added to the main pattern, otherwise a rest (0).</p>
 <p>In parallel, the user can set the number of accents and their rotation using additional sliders. The accent pattern is generated in the same way as the main rhythm, but with its own independent parameters. The formula <code>((index + acc_rotation) * accents) % steps</code> is used to determine the placement of accents. The result is a second pattern of 1s (accent) and 0s (no accent).</p>
 <p>After both patterns are generated, they are combined step by step. If both the main pattern and the accent pattern have a 1 at the same step, the output for that step is set to 2 (indicating an accented hit). If only the main pattern has a 1, the output is 1 (regular hit). If neither has a 1, the output is 0 (rest). The final combined pattern is written to an array and displayed, allowing for visualization and further use in sequencing.</p>
@@ -1786,11 +1768,11 @@ div.csl-indent {
 <section id="example-combining-rhythm-and-accents" class="level4" data-number="2.6.8.3">
 <h4 data-number="2.6.8.3" class="anchored" data-anchor-id="example-combining-rhythm-and-accents"><span class="header-section-number">2.6.8.3</span> Example: Combining Rhythm and Accents</h4>
 <p>Suppose you set 8 steps, 3 hits, and 2 accents. The main rhythm might produce a pattern like:</p>
-<p><code>1 0 0 1 0 0 1 0</code></p>
+<p><span class="math display">\[1 0 0 1 0 0 1 0\]</span></p>
 <p>The accent pattern, with its own rotation, might produce:</p>
-<p><code>1 0 1 0 0 1 0 0</code></p>
+<p><span class="math display">\[1 0 1 0 0 1 0 0\]</span></p>
 <p>Combining these, the output would be:</p>
-<p><code>2 0 1 1 0 1 1 0</code></p>
+<p><span class="math display">\[2 0 1 1 0 1 1 0\]</span></p>
 <p>Here, “2” indicates an accented hit, “1” a regular hit, and “0” a rest.</p>
 </section>
 <section id="key-objects-and-their-roles-6" class="level4" data-number="2.6.8.4">
@@ -1870,10 +1852,8 @@ div.csl-indent {
 <h3 data-number="2.7.1" class="anchored" data-anchor-id="one-dimensional-cellular-automata-1dca"><span class="header-section-number">2.7.1</span> One-Dimensional Cellular Automata (1DCA)</h3>
 <p>The simplest option is <code>"nearest neighbors"</code>, where only the cells directly adjacent to a given cell can influence it at each time step. Two common neighborhoods in the case of a two-dimensional cellular automaton on a square grid are the so-called Moore neighborhood (a square neighborhood) and the von Neumann neighborhood (a diamond-shaped neighborhood).</p>
 <p>Cellular automata are considered as a vector. Each component of the vector is called a cell. Each cell is assumed to take only two states:</p>
-<ul>
-<li>[0] (white)</li>
-<li>[1] (black)</li>
-</ul>
+<p>[0] –&gt; white</p>
+<p>[1] –&gt; black</p>
 <p>This type of automaton is known as an elementary one-dimensional cellular automaton (1DCA). A dynamic process is performed, starting from an initial configuration C(0) of each of the cells (stage 0), and at each new stage, the state of each cell is calculated based on the state of the neighboring cells and the cell itself in the previous stage.</p>
 <p>The cellular automata that we study in this section are one-dimensional. A one-dimensional cellular automaton consists of:</p>
 <ul>
@@ -1894,19 +1874,9 @@ div.csl-indent {
 <li><p>The next generation of a cell is determined by the current state of the cell and the state of its two neighboring cells.</p></li>
 <li><p>There are 8 possible configurations of neighboring states (3^2), and for each, Rule 30 defines whether the cell lives or dies in the next generation.</p></li>
 </ol>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
+<blockquote class="blockquote">
 <p><strong>It is called Rule 30 because in binary, 00011110<sub>2</sub> = 30</strong></p>
-</div>
-</div>
+</blockquote>
 <p>For Rule 30, the set of rules that governs the automaton’s next state is:</p>
 <table class="caption-top table">
 <colgroup>
@@ -2168,6 +2138,9 @@ Note
 <p>The one-dimensional cellular automaton patch implements a comprehensive system for simulating elementary cellular automata, particularly focusing on Stephen Wolfram’s classification of 256 possible rules. The system operates by maintaining a linear array of cells, each containing a binary state (0 or 1), and applying transformation rules based on local neighborhoods of three consecutive cells. The patch provides sophisticated control over initial conditions (axioms), boundary behaviors, rule selection, and iteration management, making it suitable for both educational exploration and practical generative applications.</p>
 <p>The architecture follows a modular design pattern with distinct functional subsystems that handle different aspects of the cellular automaton simulation. The rule management subsystem converts numerical rule codes into binary lookup tables that define state transitions for all possible three-cell neighborhoods. The boundary condition handler manages edge cases when the automaton reaches the limits of its defined space, supporting both loop-around and reflection modes. The iteration engine coordinates the step-by-step evolution of the cellular array, maintaining state history and providing real-time feedback on the generation process.</p>
 <p>The patch interface accommodates various input methods for configuring the automaton parameters, including direct rule code entry (0-255), symbolic mode specification (loop, reflect, or fixed), and custom axiom definition through list messages. The system provides multiple output streams for accessing generated data, including real-time state information, complete iteration histories, and formatted data suitable for external analysis or visualization tools.</p>
+</section>
+<section id="data-flow-7" class="level4" data-number="2.7.3.2">
+<h4 data-number="2.7.3.2" class="anchored" data-anchor-id="data-flow-7"><span class="header-section-number">2.7.3.2</span> Data Flow</h4>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
 <div>
@@ -2194,9 +2167,6 @@ Note
 </div>
 </div>
 </div>
-</section>
-<section id="data-flow-6" class="level4" data-number="2.7.3.2">
-<h4 data-number="2.7.3.2" class="anchored" data-anchor-id="data-flow-6"><span class="header-section-number">2.7.3.2</span> Data Flow</h4>
 <p>The cellular automaton’s operation begins with initialization phase where the rule code, boundary mode, and initial axiom are processed and stored in the system’s internal data structures. The rule code undergoes binary conversion through a specialized subpatch that transforms decimal values (0-255) into their eight-bit binary representations, which correspond to the output states for all possible three-cell neighborhood configurations (000, 001, 010, 011, 100, 101, 110, 111).</p>
 <p>The axiom processing system accepts list-formatted initial conditions that define the starting configuration of the cellular array. This initial state is stored in a <code>text</code> object that serves as both the current generation reference and the foundation for subsequent iterations. The boundary mode configuration determines how the system handles edge conditions when calculating neighborhoods for cells at the array boundaries, with options for periodic (loop), reflective, or fixed boundary conditions.</p>
 <p>When an iteration is triggered through the iterate bang, the system enters its core evolution cycle. The current state array is processed through a neighborhood analysis routine that examines each cell in conjunction with its immediate neighbors. For each three-cell neighborhood, the system constructs a lookup key by treating the binary states as a three-bit number, which is then used to index into the previously generated rule table to determine the next state for the center cell.</p>
@@ -2300,19 +2270,9 @@ Note
 <p>The most well known cellular automaton is the Game of Life, a two-dimensional cellular automaton which has been invented by John Horton Conway in 1970. It is a simulation that describes the evolution of a population of cells across a two-dimensional grid of squares by three (or four, depending on the wording) simple rules. Every cell has one of the two states ”dead” and ”alive”, and the state changes of the cells depend on the number of living neighbor cells. When it was first published by Martin Gardner in the journal Scientific American in 1970, it was praised to have ”fantastic combinations” <span class="citation" data-cites="gardner1970">(<a href="#ref-gardner1970" role="doc-biblioref">Gardner 1970</a>)</span>. Since its invention, thousands of patterns have been found by many people, and there seems to be no end in sight. Even after more than 50 years of history, interesting new patterns are still discovered.</p>
 <p>The “game” is actually a zero-player game, meaning its evolution is determined by its initial state, requiring no further input from human players. One interacts with the Game of Life by creating an initial configuration and observing how it evolves.</p>
 <p><a href="https://ballyalley.com/articles_and_news/LIFE_Article_%28Scientific_American%29%28October_1970%29.pdf">View Original Article - MATHEMATICAL GAMES - The fantastic combinations of John Conway’s new solitaire game life (Martin Gardner)</a></p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
+<blockquote class="blockquote">
 <p><code>GOL</code> (Game of Life) and <code>CGOL</code> (Conway’s Game of Life) are commonly used acronyms.</p>
-</div>
-</div>
+</blockquote>
 <section id="rules" class="level4" data-number="2.7.5.1">
 <h4 data-number="2.7.5.1" class="anchored" data-anchor-id="rules"><span class="header-section-number">2.7.5.1</span> Rules</h4>
 <p>The universe of the Game of Life is an infinite two-dimensional orthogonal grid of square cells, each of which (at any given time) is in one of two possible states, <code>alive</code> (alternatively “on”) or <code>dead</code> (alternatively “off”). At each time step, the following transitions occur:</p>
@@ -2488,84 +2448,84 @@ Or summarized as
 </section>
 <section id="python-implementation-of-game-of-life" class="level3" data-number="2.7.8">
 <h3 data-number="2.7.8" class="anchored" data-anchor-id="python-implementation-of-game-of-life"><span class="header-section-number">2.7.8</span> Python Implementation of Game of Life</h3>
-<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pygame</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>COLOR_BG <span class="op">=</span> (<span class="dv">10</span>, <span class="dv">10</span>, <span class="dv">10</span>,)  <span class="co"># Color de fondo</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>COLOR_GRID <span class="op">=</span> (<span class="dv">40</span>, <span class="dv">40</span>, <span class="dv">40</span>)  <span class="co"># Color de la cuadrícula</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>COLOR_DIE_NEXT <span class="op">=</span> (<span class="dv">170</span>, <span class="dv">170</span>, <span class="dv">170</span>)  <span class="co"># Color de las células que mueren en la siguiente generación</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>COLOR_ALIVE_NEXT <span class="op">=</span> (<span class="dv">255</span>, <span class="dv">255</span>, <span class="dv">255</span>)  <span class="co"># Color de las células que siguen vivas en la siguiente generación</span></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>pygame.init()</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>pygame.display.set_caption(<span class="st">"conway's game of life"</span>)  <span class="co"># Título de la ventana del juego</span></span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Función para actualizar la pantalla con las células</span></span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> update(screen, cells, size, with_progress<span class="op">=</span><span class="va">False</span>):</span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    updated_cells <span class="op">=</span> np.zeros((cells.shape[<span class="dv">0</span>], cells.shape[<span class="dv">1</span>]))  <span class="co"># Matriz para almacenar las células actualizadas</span></span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> row, col <span class="kw">in</span> np.ndindex(cells.shape):</span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>        alive <span class="op">=</span> np.<span class="bu">sum</span>(cells[row<span class="op">-</span><span class="dv">1</span>:row<span class="op">+</span><span class="dv">2</span>, col<span class="op">-</span><span class="dv">1</span>:col<span class="op">+</span><span class="dv">2</span>]) <span class="op">-</span> cells[row, col]  <span class="co"># Cálculo de células vecinas vivas</span></span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>        color <span class="op">=</span> COLOR_BG <span class="cf">if</span> cells[row, col] <span class="op">==</span> <span class="dv">0</span> <span class="cf">else</span> COLOR_ALIVE_NEXT  <span class="co"># Color de la célula actual</span></span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> cells[row, col] <span class="op">==</span> <span class="dv">1</span>:  <span class="co"># Si la célula actual está viva</span></span>
-<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> alive <span class="op">&lt;</span> <span class="dv">2</span> <span class="kw">or</span> alive <span class="op">&gt;</span> <span class="dv">3</span>:  <span class="co"># Si tiene menos de 2 o más de 3 vecinos vivos, muere</span></span>
-<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> with_progress:</span>
-<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>                    color <span class="op">=</span> COLOR_DIE_NEXT</span>
-<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>            <span class="cf">elif</span> <span class="dv">2</span> <span class="op">&lt;=</span> alive <span class="op">&lt;=</span> <span class="dv">3</span>:  <span class="co"># Si tiene 2 o 3 vecinos vivos, sigue viva</span></span>
-<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>                updated_cells[row, col] <span class="op">=</span> <span class="dv">1</span></span>
-<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> with_progress:</span>
-<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>                    color <span class="op">=</span> COLOR_ALIVE_NEXT</span>
-<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:  <span class="co"># Si la célula actual está muerta</span></span>
-<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> alive <span class="op">==</span> <span class="dv">3</span>:  <span class="co"># Si tiene exactamente 3 vecinos vivos, revive</span></span>
-<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>                updated_cells[row, col] <span class="op">=</span> <span class="dv">1</span></span>
-<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> with_progress:</span>
-<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>                    color <span class="op">=</span> COLOR_ALIVE_NEXT</span>
-<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a>        pygame.draw.rect(screen, color, (col <span class="op">*</span> size, row <span class="op">*</span> size, size <span class="op">-</span> <span class="dv">1</span>, size <span class="op">-</span> <span class="dv">1</span>))  <span class="co"># Dibuja la célula en la pantalla</span></span>
-<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> updated_cells  <span class="co"># Devuelve las células actualizadas</span></span>
-<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a><span class="co"># Función principal del programa</span></span>
-<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> main():</span>
-<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a>    pygame.init()</span>
-<span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a>    screen <span class="op">=</span> pygame.display.set_mode((<span class="dv">800</span>, <span class="dv">600</span>))  <span class="co"># Crea la ventana del juego</span></span>
-<span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-44"><a href="#cb7-44" aria-hidden="true" tabindex="-1"></a>    cells <span class="op">=</span> np.zeros((<span class="dv">60</span>, <span class="dv">80</span>))  <span class="co"># Crea una matriz de células muertas</span></span>
-<span id="cb7-45"><a href="#cb7-45" aria-hidden="true" tabindex="-1"></a>    screen.fill(COLOR_GRID)  <span class="co"># Rellena la pantalla con el color de la cuadrícula</span></span>
-<span id="cb7-46"><a href="#cb7-46" aria-hidden="true" tabindex="-1"></a>    update(screen, cells, <span class="dv">10</span>)  <span class="co"># Actualiza la pantalla con las células</span></span>
-<span id="cb7-47"><a href="#cb7-47" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-48"><a href="#cb7-48" aria-hidden="true" tabindex="-1"></a>    pygame.display.flip()</span>
-<span id="cb7-49"><a href="#cb7-49" aria-hidden="true" tabindex="-1"></a>    pygame.display.update()</span>
-<span id="cb7-50"><a href="#cb7-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-51"><a href="#cb7-51" aria-hidden="true" tabindex="-1"></a>    running <span class="op">=</span> <span class="va">False</span>  <span class="co"># Variable para controlar si el juego está en ejecución</span></span>
-<span id="cb7-52"><a href="#cb7-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-53"><a href="#cb7-53" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="va">True</span>:</span>
-<span id="cb7-54"><a href="#cb7-54" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> Q <span class="kw">in</span> pygame.event.get():</span>
-<span id="cb7-55"><a href="#cb7-55" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> Q.<span class="bu">type</span> <span class="op">==</span> pygame.QUIT:  <span class="co"># Si se cierra la ventana, termina el programa</span></span>
-<span id="cb7-56"><a href="#cb7-56" aria-hidden="true" tabindex="-1"></a>                pygame.quit()</span>
-<span id="cb7-57"><a href="#cb7-57" aria-hidden="true" tabindex="-1"></a>                <span class="cf">return</span></span>
-<span id="cb7-58"><a href="#cb7-58" aria-hidden="true" tabindex="-1"></a>            <span class="cf">elif</span> Q.<span class="bu">type</span> <span class="op">==</span> pygame.KEYDOWN:</span>
-<span id="cb7-59"><a href="#cb7-59" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> Q.key <span class="op">==</span> pygame.K_SPACE:  <span class="co"># Si se presiona la tecla espacio, se inicia o pausa el juego</span></span>
-<span id="cb7-60"><a href="#cb7-60" aria-hidden="true" tabindex="-1"></a>                    running <span class="op">=</span> <span class="kw">not</span> running</span>
-<span id="cb7-61"><a href="#cb7-61" aria-hidden="true" tabindex="-1"></a>                    update(screen, cells, <span class="dv">10</span>)</span>
-<span id="cb7-62"><a href="#cb7-62" aria-hidden="true" tabindex="-1"></a>                    pygame.display.update()</span>
-<span id="cb7-63"><a href="#cb7-63" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> pygame.mouse.get_pressed()[<span class="dv">0</span>]:  <span class="co"># Si se presiona el botón izquierdo del ratón</span></span>
-<span id="cb7-64"><a href="#cb7-64" aria-hidden="true" tabindex="-1"></a>                pos <span class="op">=</span> pygame.mouse.get_pos()  <span class="co"># Obtiene la posición del ratón</span></span>
-<span id="cb7-65"><a href="#cb7-65" aria-hidden="true" tabindex="-1"></a>                cells[pos[<span class="dv">1</span>] <span class="op">//</span> <span class="dv">10</span>, pos[<span class="dv">0</span>] <span class="op">//</span> <span class="dv">10</span>] <span class="op">=</span> <span class="dv">1</span>  <span class="co"># Marca la célula correspondiente como viva</span></span>
-<span id="cb7-66"><a href="#cb7-66" aria-hidden="true" tabindex="-1"></a>                update(screen, cells, <span class="dv">10</span>)</span>
-<span id="cb7-67"><a href="#cb7-67" aria-hidden="true" tabindex="-1"></a>                pygame.display.update()</span>
-<span id="cb7-68"><a href="#cb7-68" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-69"><a href="#cb7-69" aria-hidden="true" tabindex="-1"></a>        screen.fill(COLOR_GRID)  <span class="co"># Rellena la pantalla con el color de la cuadrícula</span></span>
-<span id="cb7-70"><a href="#cb7-70" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-71"><a href="#cb7-71" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> running:  <span class="co"># Si el juego está en ejecución</span></span>
-<span id="cb7-72"><a href="#cb7-72" aria-hidden="true" tabindex="-1"></a>            cells <span class="op">=</span> update(screen, cells, <span class="dv">10</span>, with_progress<span class="op">=</span><span class="va">True</span>)  <span class="co"># Actualiza las células con progreso</span></span>
-<span id="cb7-73"><a href="#cb7-73" aria-hidden="true" tabindex="-1"></a>            pygame.display.update()</span>
-<span id="cb7-74"><a href="#cb7-74" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-75"><a href="#cb7-75" aria-hidden="true" tabindex="-1"></a>        time.sleep(<span class="fl">0.001</span>)  <span class="co"># Espera un breve tiempo para controlar la velocidad del juego</span></span>
-<span id="cb7-76"><a href="#cb7-76" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-77"><a href="#cb7-77" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">"__main__"</span>:</span>
-<span id="cb7-78"><a href="#cb7-78" aria-hidden="true" tabindex="-1"></a>    main()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pygame</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>COLOR_BG <span class="op">=</span> (<span class="dv">10</span>, <span class="dv">10</span>, <span class="dv">10</span>,)  <span class="co"># Color de fondo</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>COLOR_GRID <span class="op">=</span> (<span class="dv">40</span>, <span class="dv">40</span>, <span class="dv">40</span>)  <span class="co"># Color de la cuadrícula</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>COLOR_DIE_NEXT <span class="op">=</span> (<span class="dv">170</span>, <span class="dv">170</span>, <span class="dv">170</span>)  <span class="co"># Color de las células que mueren en la siguiente generación</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>COLOR_ALIVE_NEXT <span class="op">=</span> (<span class="dv">255</span>, <span class="dv">255</span>, <span class="dv">255</span>)  <span class="co"># Color de las células que siguen vivas en la siguiente generación</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>pygame.init()</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>pygame.display.set_caption(<span class="st">"conway's game of life"</span>)  <span class="co"># Título de la ventana del juego</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Función para actualizar la pantalla con las células</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> update(screen, cells, size, with_progress<span class="op">=</span><span class="va">False</span>):</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    updated_cells <span class="op">=</span> np.zeros((cells.shape[<span class="dv">0</span>], cells.shape[<span class="dv">1</span>]))  <span class="co"># Matriz para almacenar las células actualizadas</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> row, col <span class="kw">in</span> np.ndindex(cells.shape):</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>        alive <span class="op">=</span> np.<span class="bu">sum</span>(cells[row<span class="op">-</span><span class="dv">1</span>:row<span class="op">+</span><span class="dv">2</span>, col<span class="op">-</span><span class="dv">1</span>:col<span class="op">+</span><span class="dv">2</span>]) <span class="op">-</span> cells[row, col]  <span class="co"># Cálculo de células vecinas vivas</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>        color <span class="op">=</span> COLOR_BG <span class="cf">if</span> cells[row, col] <span class="op">==</span> <span class="dv">0</span> <span class="cf">else</span> COLOR_ALIVE_NEXT  <span class="co"># Color de la célula actual</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> cells[row, col] <span class="op">==</span> <span class="dv">1</span>:  <span class="co"># Si la célula actual está viva</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> alive <span class="op">&lt;</span> <span class="dv">2</span> <span class="kw">or</span> alive <span class="op">&gt;</span> <span class="dv">3</span>:  <span class="co"># Si tiene menos de 2 o más de 3 vecinos vivos, muere</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> with_progress:</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>                    color <span class="op">=</span> COLOR_DIE_NEXT</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>            <span class="cf">elif</span> <span class="dv">2</span> <span class="op">&lt;=</span> alive <span class="op">&lt;=</span> <span class="dv">3</span>:  <span class="co"># Si tiene 2 o 3 vecinos vivos, sigue viva</span></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>                updated_cells[row, col] <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> with_progress:</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>                    color <span class="op">=</span> COLOR_ALIVE_NEXT</span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:  <span class="co"># Si la célula actual está muerta</span></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> alive <span class="op">==</span> <span class="dv">3</span>:  <span class="co"># Si tiene exactamente 3 vecinos vivos, revive</span></span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>                updated_cells[row, col] <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> with_progress:</span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>                    color <span class="op">=</span> COLOR_ALIVE_NEXT</span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>        pygame.draw.rect(screen, color, (col <span class="op">*</span> size, row <span class="op">*</span> size, size <span class="op">-</span> <span class="dv">1</span>, size <span class="op">-</span> <span class="dv">1</span>))  <span class="co"># Dibuja la célula en la pantalla</span></span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> updated_cells  <span class="co"># Devuelve las células actualizadas</span></span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a><span class="co"># Función principal del programa</span></span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> main():</span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>    pygame.init()</span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>    screen <span class="op">=</span> pygame.display.set_mode((<span class="dv">800</span>, <span class="dv">600</span>))  <span class="co"># Crea la ventana del juego</span></span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a>    cells <span class="op">=</span> np.zeros((<span class="dv">60</span>, <span class="dv">80</span>))  <span class="co"># Crea una matriz de células muertas</span></span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a>    screen.fill(COLOR_GRID)  <span class="co"># Rellena la pantalla con el color de la cuadrícula</span></span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a>    update(screen, cells, <span class="dv">10</span>)  <span class="co"># Actualiza la pantalla con las células</span></span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a>    pygame.display.flip()</span>
+<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a>    pygame.display.update()</span>
+<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a>    running <span class="op">=</span> <span class="va">False</span>  <span class="co"># Variable para controlar si el juego está en ejecución</span></span>
+<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> Q <span class="kw">in</span> pygame.event.get():</span>
+<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> Q.<span class="bu">type</span> <span class="op">==</span> pygame.QUIT:  <span class="co"># Si se cierra la ventana, termina el programa</span></span>
+<span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a>                pygame.quit()</span>
+<span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a>                <span class="cf">return</span></span>
+<span id="cb4-58"><a href="#cb4-58" aria-hidden="true" tabindex="-1"></a>            <span class="cf">elif</span> Q.<span class="bu">type</span> <span class="op">==</span> pygame.KEYDOWN:</span>
+<span id="cb4-59"><a href="#cb4-59" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> Q.key <span class="op">==</span> pygame.K_SPACE:  <span class="co"># Si se presiona la tecla espacio, se inicia o pausa el juego</span></span>
+<span id="cb4-60"><a href="#cb4-60" aria-hidden="true" tabindex="-1"></a>                    running <span class="op">=</span> <span class="kw">not</span> running</span>
+<span id="cb4-61"><a href="#cb4-61" aria-hidden="true" tabindex="-1"></a>                    update(screen, cells, <span class="dv">10</span>)</span>
+<span id="cb4-62"><a href="#cb4-62" aria-hidden="true" tabindex="-1"></a>                    pygame.display.update()</span>
+<span id="cb4-63"><a href="#cb4-63" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> pygame.mouse.get_pressed()[<span class="dv">0</span>]:  <span class="co"># Si se presiona el botón izquierdo del ratón</span></span>
+<span id="cb4-64"><a href="#cb4-64" aria-hidden="true" tabindex="-1"></a>                pos <span class="op">=</span> pygame.mouse.get_pos()  <span class="co"># Obtiene la posición del ratón</span></span>
+<span id="cb4-65"><a href="#cb4-65" aria-hidden="true" tabindex="-1"></a>                cells[pos[<span class="dv">1</span>] <span class="op">//</span> <span class="dv">10</span>, pos[<span class="dv">0</span>] <span class="op">//</span> <span class="dv">10</span>] <span class="op">=</span> <span class="dv">1</span>  <span class="co"># Marca la célula correspondiente como viva</span></span>
+<span id="cb4-66"><a href="#cb4-66" aria-hidden="true" tabindex="-1"></a>                update(screen, cells, <span class="dv">10</span>)</span>
+<span id="cb4-67"><a href="#cb4-67" aria-hidden="true" tabindex="-1"></a>                pygame.display.update()</span>
+<span id="cb4-68"><a href="#cb4-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-69"><a href="#cb4-69" aria-hidden="true" tabindex="-1"></a>        screen.fill(COLOR_GRID)  <span class="co"># Rellena la pantalla con el color de la cuadrícula</span></span>
+<span id="cb4-70"><a href="#cb4-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-71"><a href="#cb4-71" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> running:  <span class="co"># Si el juego está en ejecución</span></span>
+<span id="cb4-72"><a href="#cb4-72" aria-hidden="true" tabindex="-1"></a>            cells <span class="op">=</span> update(screen, cells, <span class="dv">10</span>, with_progress<span class="op">=</span><span class="va">True</span>)  <span class="co"># Actualiza las células con progreso</span></span>
+<span id="cb4-73"><a href="#cb4-73" aria-hidden="true" tabindex="-1"></a>            pygame.display.update()</span>
+<span id="cb4-74"><a href="#cb4-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-75"><a href="#cb4-75" aria-hidden="true" tabindex="-1"></a>        time.sleep(<span class="fl">0.001</span>)  <span class="co"># Espera un breve tiempo para controlar la velocidad del juego</span></span>
+<span id="cb4-76"><a href="#cb4-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-77"><a href="#cb4-77" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">"__main__"</span>:</span>
+<span id="cb4-78"><a href="#cb4-78" aria-hidden="true" tabindex="-1"></a>    main()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <hr>
 <p>This Python script implements Conway’s Game of Life, a cellular automaton devised by British mathematician John Horton Conway. It is a zero-player game, meaning its evolution is determined entirely by its initial state, with no further input required.</p>
 <p>The script begins by importing the necessary modules: <code>time</code>, <code>pygame</code> for the graphical interface, and <code>numpy</code> to handle the game grid as a 2D matrix. It then defines color constants used for visualizing the game.</p>
@@ -3044,8 +3004,8 @@ Wolfram, Stephen. 1983. <span>“Statistical Mechanics of Cellular Automata.”<
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../chapters/sampling.html" class="pagination-link" aria-label="Sampling">
-        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Sampling</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../chapters/recplay.html" class="pagination-link" aria-label="Rec &amp; Play">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Rec &amp; Play</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
