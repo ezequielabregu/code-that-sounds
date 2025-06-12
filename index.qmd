@@ -170,9 +170,9 @@ flowchart LR
 If you would like to contribute to this book, please feel free to fork the repository and submit a pull request. I welcome any suggestions, corrections, or improvements to the content. You can also report issues or request features by opening an issue in the repository. You can find the source code for this book on [GitHub](https://github.com/ezequielabregu/code-that-sounds).
 
 ::: {.callout-note appearance="default"}
-Do not write me emails with questions about PD.  
+Do not write me emails with questions about Pd.  
 
-Please, if you have questions about PD, post them on the [Pure Data forum](https://forum.pdpatchrepo.info/), the [Pd mailing lists](https://lists.iem.at/postorius/lists/), or the [Facebook PD Group](https://www.facebook.com/groups/4729684494).
+Please, if you have questions about Pd, post them on the [Pure Data forum](https://forum.pdpatchrepo.info/), the [Pd mailing lists](https://lists.iem.at/postorius/lists/), or the [Facebook Pd Group](https://www.facebook.com/groups/4729684494).
 :::
 
 ## Acknowledgements

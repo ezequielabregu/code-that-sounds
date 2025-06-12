@@ -1149,15 +1149,21 @@ We can also summarize the rules in a table:
 | Stability | Survival | Alive | 2 or 3 | Alive |
 | Reproduction | Birth | Dead | 3 | Alive |
 
- 
+<br>
 
-Or summarized as:
+::: {.callout-note appearance="default"}
 
-0 → 3 live neighbors → 1 1 → \< 2 
-or 
-\> 3 live neighbors → 0
+# Or summarized as
 
-Where 0 represents a dead cell and 1 a live cell.
+`0` → 3 live neighbors → `1`
+
+`1` → < 2 or > 3 live neighbors → `0`
+
+Where `0` represents a dead cell and `1` a live cell.
+
+:::
+
+<br>
 
 ![Game of Life rules diagram illustrating cell state transitions based on the number of living neighbors in the Moore neighborhood.](/assets/images/sequencers/GameOfLife-rules.gif)
 

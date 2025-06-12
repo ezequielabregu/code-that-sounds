@@ -21,14 +21,12 @@
 - make Game of Life in Pure Data (take reference from the current Python version)
 - Check Creative Aplications section. Sometimes are quite long. Don't sell smoke!
   - Some code examples don't have Creative application section. Check it.
-- Change Pure Data to Pd in the book.
 - Check and change chapter's name in index.qmd book map.
 
 ###
 
 #### General
 
-- Add image captions and tables.
 - Numerate patches according to the chapter and section.
 - Numerate tables according to the chapter and section.
 
