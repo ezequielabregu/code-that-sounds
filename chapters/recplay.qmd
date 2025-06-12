@@ -385,7 +385,7 @@ The system operates through a dual-recording mechanism that alternates between t
 
 ### Unique Features of the [freeverb~] Version
 
-#### 1. Audio File Input
+#### Audio File Input
 
 Unlike the original patch that only uses microphone input, this version can:
 
@@ -401,7 +401,7 @@ flowchart LR
     freeverb --> send["s~ audio.input"]
 ```
 
-#### 2. Virtual Acoustic Environment
+#### Virtual Acoustic Environment
 
 Instead of relying on a physical room's acoustics, this patch uses `freeverb~` objects to create a simulated acoustic space:
 
@@ -409,7 +409,7 @@ Instead of relying on a physical room's acoustics, this patch uses `freeverb~` o
 - This creates consistent reverberation that can be adjusted and controlled
 - Multiple `freeverb~` objects process different stages of the audio for cumulative effects
 
-#### 3. Enhanced Control Flow
+#### Enhanced Control Flow
 
 The patch includes numbered controls for better workflow:
 
@@ -419,7 +419,7 @@ The patch includes numbered controls for better workflow:
 | 2 | Playback audio | Plays the speech.wav file through reverb into the system |
 | 3 | Stop recording | Stops the current recording process |
 
-#### 4. Multiple Send/Receive Paths
+#### Multiple Send/Receive Paths
 
 The patch uses additional send/receive pairs to manage signal routing:
 

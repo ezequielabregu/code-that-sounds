@@ -1,7 +1,5 @@
 # Sound Synthesis
 
-## Introduction
-
 Sound synthesis is the art and science of producing sound, whether by transforming existing recordings or by generating new audio signals electronically or mechanically. It can be grounded in mathematics, physics, or even biology, and it emerges at the intersection of creative expression and technical knowledge. As both a musical and computational process, synthesis enables the shaping of sound with precision and imagination, allowing for the creation of sonic textures that range from the familiar to the entirely new.
 
 At its core, synthesis is a process of construction—a method for bringing elements together into a cohesive whole. This notion of "making" is essential, as it signals not just assembly, but intention. Synthesis is inherently creative. While the tools and technologies involved—oscillators, filters, software environments like Pd—are increasingly accessible and powerful, they remain just that: tools. It is the skill, intuition, and aesthetic sensibility of the artist or programmer that gives them meaning.
@@ -10,27 +8,17 @@ Modern tools have made sound synthesis more available than ever. From high-fidel
 
 It is a common misconception to associate synthesis solely with complex or futuristic electronic timbres. In fact, synthesized sound spans a vast range—from simple sine waves to layered, expressive textures. The process itself is plural: it includes subtractive, additive, granular, physical modeling, and many other techniques. Each offers a different lens on how sound can be built and manipulated.
 
-Interestingly, the term "synthesis" has roots that extend beyond audio. It also refers to the creation of new compounds in chemistry or the combining of ideas into a theory. In sound, as in those other domains, synthesis implies thoughtful construction—a deliberate act of shaping something new from constituent parts.
+Interestingly, the term "synthesis" has roots that extend beyond audio. It also refers to the creation of new compounds in chemistry or the combining of ideas into a theory. In sound, as in those other domains, synthesis implies thoughtful construction—a deliberate act of shaping something new from constituent parts. Throughout this chapter, we will return often to the idea of synthesis not just as a technique, but as a mode of inquiry and expression. It invites experimentation, demands understanding, and rewards careful listening.
 
-Throughout this chapter, we will return often to the idea of synthesis not just as a technique, but as a mode of inquiry and expression. It invites experimentation, demands understanding, and rewards careful listening.
+Oscillatory motion will be analyzed in detail—not only in terms of technical implementation but also through its creative and conceptual applications. Using example Pd patches provided, we will explore how oscillation becomes an expressive tool in interactive works and live sound experiments. This approach will form the core of the module’s practical component, where students are encouraged to adapt the exercises to their own interests: whether by replicating existing works, developing new compositions, or analyzing the results of comparative experiments between different oscillators and their spectral behaviors.
 
-## Oscillatory Movements
+## Between Technique and Aesthetics
 
-Oscillatory motion will be analyzed in detail—not only in terms of technical implementation but also through its creative and conceptual applications. Using example patches provided in both Pd and VCV Rack, we will explore how oscillation becomes an expressive tool in interactive works and live sound experiments. This approach will form the core of the module’s practical component, where students are encouraged to adapt the exercises to their own interests: whether by replicating existing works, developing new compositions, or analyzing the results of comparative experiments between different oscillators and their spectral behaviors.
+This chapter begins with the idea of delving deeper into oscillatory movements from both a technical and aesthetic perspective. Building upon tools introduced in previous chapters we will work with oscillators and explore their many applications. Drawing on the text *The Poetics of Signal Processing* [@sterne2011], we will approach signal processing not merely as a set of mathematical operations, but as a form of artistic expression. We will explore what could be described as the “rawness” of analog oscillators—that tangible, organic quality inherent in their operation. We will examine how this rawness both contrasts with and complements the digital techniques we’ve developed so far. The use of oscillators in their various forms will serve as a starting point for a series of hands-on exercises, where theory and practice are deeply intertwined.
 
-### Between Technique and Aesthetics
+Through this combination of theory, practice, and critical reflection on signal processing, the module aims to open up new sonic possibilities. The references provided are intended not only to contextualize student work, but also to inspire expanded thinking about how these principles might inform personal projects. This practical and flexible framework is reflected in the module’s initial activity on oscillatory movement. Readers will have the freedom to choose their working environment and the context in which they wish to develop their experiments. Oscillator implementation can be approached from multiple angles: waveform manipulation, waveshaper design, or even the creation of interactive sound pieces. In this way, the module not only deepens our understanding of the technical aspects of signal processing, but also invites critical reflection on the role of these technologies in shaping meaning and sonic aesthetics. Special emphasis is placed on the oscillator’s capacity to act as a driver of creativity and expression.
 
-This chapter begins with the idea of delving deeper into oscillatory movements from both a technical and aesthetic perspective. Building upon tools introduced in previous chapters we will work with oscillators and explore their many applications. Drawing on the text The Poetics of Signal Processing by Jonathan Sterne and Tara Rodgers, we will approach signal processing not merely as a set of mathematical operations, but as a form of artistic expression. In this context, signal manipulation becomes more than just a means to produce sound—it becomes a way to articulate broader cultural ideas about sound in the digital age.
-
-We will explore what could be described as the “rawness” of analog oscillators—that tangible, organic quality inherent in their operation. We will examine how this rawness both contrasts with and complements the digital techniques we’ve developed so far. The use of oscillators in their various forms will serve as a starting point for a series of hands-on exercises, where theory and practice are deeply intertwined.
-
-Through this combination of theory, practice, and critical reflection on signal processing, the module aims to open up new sonic possibilities. The references provided are intended not only to contextualize student work, but also to inspire expanded thinking about how these principles might inform personal projects.
-
-This practical and flexible framework is reflected in the module’s initial activity on oscillatory movement. Students will have the freedom to choose their working environment and the context in which they wish to develop their experiments. Oscillator implementation can be approached from multiple angles: waveform manipulation, waveshaper design, or even the creation of interactive sound pieces. Each student will be invited to present a short description of their process, along with their code or patch, in order to foster dialogue between theory and practice.
-
-In this way, the module not only deepens our understanding of the technical aspects of signal processing, but also invites critical reflection on the role of these technologies in shaping meaning and sonic aesthetics. Special emphasis is placed on the oscillator’s capacity to act as a driver of creativity and expression.
-
-### Poetics of Signal Processing
+### Poetics of Signal Processing 
 
 One of the most important aspects of this chapter is the idea of “poetics” in signal processing. This concept is not just about the technical aspects of sound manipulation, but also about the cultural and artistic implications of these processes. The term “poetics” suggests a deeper engagement with the materiality of sound and its representation in various contexts. I’m going to talk a bit about my reflections and observations on the text Poetics of Signal Processing [@sterne2011]. First, I want to mention the authors, who I find very interesting. The first is Jonathan Sterne, a professor and director of the Culture and Technology program at McGill University in Canada. His work focuses on the cultural dimension of communication technologies, and he specializes in the history and theory of sound in the modern Western world. Then we have another author, a sound artist and musician named Tara Rodgers. She’s an electronic music composer, programmer, and historian of electronic music. She holds a PhD in Communication and has worked in the field of Women’s Studies. She created the platform [Pink Noises](http://www.pinknoises.com/), which is worth checking out—especially because it gathers a series of interviews with improvisers, composers, and instrument builders. There’s a cross-section of gender, sexuality, feminism, music, sound studies, theater, performance, and performative arts in general.
 
@@ -68,15 +56,20 @@ Oscillators are a fundamental component of sound synthesis and play a crucial ro
 
 ### Oscillators
 
-Sound sources in synthesizers are largely based on mathematics. There are two fundamental types: waveforms and random signals. Waveforms are typically described as simple geometric shapes—sawtooth, square, pulse, sine, and triangle being the most common. These shapes are mathematically straightforward and electronically feasible to generate. On the other hand, random waveforms produce noise, a constantly shifting mixture of all frequencies.
+Sound sources in synthesizers are largely based on mathematics. There are two fundamental types: 
+
+- waveforms 
+- random signals (noise) 
+ 
+Waveforms are typically described as simple geometric shapes—sawtooth, square, pulse, sine, and triangle being the most common. These shapes are mathematically straightforward and electronically feasible to generate. On the other hand, random waveforms produce noise, a constantly shifting mixture of all frequencies.
 
 ![Basic sound sources showing sine oscillator for tonal content and noise generator for random spectral content.](/assets/screenshots/synthesis/vco/sources.png)
 
-Oscillators are one of the core building blocks of synthesizers, often implemented as function generators. A function generator produces a waveform that may be continuous or triggered and can take arbitrary shapes. In a basic analog subtractive synthesizer, an oscillator usually outputs a few continuous waveforms, with frequency controlled by voltage. Since these sources typically output a continuous signal, modifiers must be applied to shape timbre or envelope the sound.
+Oscillators are one of the core building blocks of synthesizers, often implemented as function generators, which produces a waveform that may be continuous or triggered and can take arbitrary shapes. In a basic analog subtractive synthesizer, an oscillator usually outputs a few continuous waveforms, with frequency controlled by voltage. Since these sources typically output a continuous signal, modifiers must be applied to shape timbre or envelope the sound.
 
 ### Sine & Cosine
 
-A "pure tone" consists of a single frequency and is produced by a sine wave oscillator, which can be implemented using either the sine or cosine function. These functions take an angle value, or "phase," as input. Below, we see the angle "alpha," the sine’s amplitude value, and the cosine's output denoted as `x`.
+A *pure tone* consists of a single frequency and is produced by a sine wave oscillator, which can be implemented using either the sine or cosine function. These functions take an angle value, or "phase," as input. Below, we see the angle "alpha," the sine’s amplitude value, and the cosine's output denoted as `x`.
 
 ![Unit circle with angle alpha demonstrating the geometric foundation of sine and cosine functions](/assets/code/synthesis/oscillators/angle.gif){width="200px"}
 
@@ -84,7 +77,15 @@ In the resulting graph, amplitude is on the vertical axis and angle on the horiz
 
 ![Sine wave as the fundamental periodic waveform](/assets/screenshots/synthesis/vco/sine.gif)
 
-Pd's native `[sin]` and `[cos]` objects take angle values in radians (0 to 2π). However, the audio object `[cos~]` uses a linear range from 0 to 1 to represent a full cycle. The ELSE library provides the `[pi]` object, which outputs the constant π. This can be stored in a `[value]` object and accessed within `[expr]`. To convert a linear 0–1 range into radians, multiply it by `2 * pi`. Then, `[cos]` and `[sin]` yield amplitude values accordingly.
+Pd's native `[sin]` and `[cos]` objects take angle values in radians $(0 \text{ to } 2\pi)$. However, the audio object `[cos~]` uses a linear range from 0 to 1 to represent a full cycle. The ELSE library provides the `[pi]` object, which outputs the constant $\pi$. This can be stored in a `[value]` object and accessed within `[expr]`. To convert a linear 0–1 range into radians, multiply it by $2\pi$:
+
+$$\text{radians} = \text{linear\_input} \times 2\pi$$
+
+Then, `[cos]` and `[sin]` yield amplitude values accordingly:
+
+$$\text{amplitude} = \cos(\text{radians}) \text{ or } \sin(\text{radians})$$
+
+<br>
 
 ::: {style="text-align:center;"}
 ![Sine and cosine oscillators converting linear phase input to trigonometric waveform output](/assets/screenshots/synthesis/vco/sine-cosine.gif){width="70%"}
@@ -94,7 +95,7 @@ Pd's native `[sin]` and `[cos]` objects take angle values in radians (0 to 2π).
 
 In the following example, we implement a sine oscillator using the `[sin~]` object and the native `[phasor~]` object.
 
-![Linear phase ramp from phasor~ (top) converted to sine wave output (bottom), illustrating the basic oscillator construction using phase-to-amplitude conversion](/assets/screenshots/synthesis/vco/phasor-1.png)
+![Linear phase ramp from phasor\~ (top) converted to sine wave output (bottom), illustrating the basic oscillator construction using phase-to-amplitude conversion](/assets/screenshots/synthesis/vco/phasor-1.png)
 
 Two graphs illustrate this: in the top one, the horizontal axis is time, and the vertical axis shows a steadily increasing phase, forming a linear ramp. In the bottom graph, this ramp is transformed into a sine waveform, with amplitude on the vertical axis.
 
@@ -107,7 +108,7 @@ Note that `[phasor~]` never actually reaches 1—it wraps around to 0. Due to it
 The output of `[phasor~]` can be described as a “running phase.” It defines the angular increment applied to the phase at every audio sample.
 
 ::: {style="text-align:center;"}
-![Phasor~ object generating linear phase ramp from 0 to 1 at specified frequency](/assets/screenshots/synthesis/vco/phasor-2.gif){width="70%"}
+![Phasor\~ object generating linear phase ramp from 0 to 1 at specified frequency](/assets/screenshots/synthesis/vco/phasor-2.gif){width="70%"}
 :::
 
 ### Oscillator
@@ -133,7 +134,7 @@ How do we control these parameters in our model?
 
 In this example, `[phasor~]` and `[cos~]` form an oscillator. The `[cos~]` object outputs amplitude values from -1 to 1, yielding a maximum amplitude of 1 without additional gain control.
 
-![Phasor~ and cos~ oscillator combination with frequency control input, creating a basic VCO equivalent in the digital domain.](/assets/screenshots/synthesis/vco/vco-1.png)
+![Phasor\~ and cos\~ oscillator combination with frequency control input, creating a basic VCO equivalent in the digital domain.](/assets/screenshots/synthesis/vco/vco-1.png)
 
 The waveform produced is a cosine. While `[phasor~]` sets the frequency, it can also define the initial phase. Since sine and cosine are essentially phase-shifted versions of the same function, we can easily produce sine waves as well. However, the initial phase does not affect the perceived pitch of a pure tone.
 
@@ -157,25 +158,38 @@ A square wave contains only odd harmonics and produces a hollow, synthetic sound
 
 This section focuses on creating oscillators in Pd using the `[phasor~]` object. The only true oscillator in Pd Vanilla is `[osc~]`, a sine wave oscillator. Even standard waveforms must be built manually.
 
-As mentioned earlier, `[osc~]` is essentially `[phasor~]` connected to `[cos~]`. The `[phasor~]` object outputs a 0–1 ramp, functionally similar to a sawtooth wave with half the amplitude and an offset. `[cos~]` multiplies this ramp by 2π and computes its cosine. The result is a sine wave oscillator.
+As mentioned earlier, `[osc~]` is essentially `[phasor~]` connected to `[cos~]`. The `[phasor~]` object outputs a 0–1 ramp, functionally similar to a sawtooth wave with half the amplitude and an offset:
 
-![Mathematical approach to sine wave generation using expr~ with pi calculation stored in value object for educational clarity.](/assets/screenshots/synthesis/vco/waveshapers-sine.png){width="70%"}
+$$0 \leq \text{phasor output} < 1$$
+
+`[cos~]` multiplies this ramp by $2\pi$ and computes its cosine:
+
+$$\text{Output} = \cos(2\pi \times \text{phasor output})$$
+
+The result is a sine wave oscillator where the complete transformation can be expressed as:
+
+\begin{align*}
+\text{Phase} &= \text{phasor}(f) \\
+\text{Sine wave} &= \cos(2\pi \times \text{Phase})
+\end{align*}
+
+![Mathematical approach to sine wave generation using expr\~ with pi calculation stored in value object for educational clarity.](/assets/screenshots/synthesis/vco/waveshapers-sine.png){width="70%"}
 
 Another way to construct this oscillator is by using `[expr~]` and `[value]`. Here we use the `[pi]` abstraction to calculate π (or approximate it by sending 1 to `[atan]` and multiplying the result by 4). We then multiply by 2 and store it in a `[value]` object. `[value]` acts like a global variable: any object using the same name accesses the same value. `[expr~]` can then use this to calculate the cosine, just like `[cos~]`. While this approach may be more CPU-intensive, it helps deepen understanding of oscillator construction in Pd.
 
-![Basic sine oscillator implementation using phasor~ phase generator and cos~ waveshaper](/assets/screenshots/synthesis/vco/waveshapers-cosine.png){width="70%"}
+![Basic sine oscillator implementation using phasor\~ phase generator and cos\~ waveshaper](/assets/screenshots/synthesis/vco/waveshapers-cosine.png){width="70%"}
 
 #### Sawtooth Oscillator
 
 Since `[phasor~]` already produces a ramp, generating a sawtooth wave is straightforward. Simply multiply `[phasor~]` by 2 to get the correct amplitude, then subtract 1 to shift the range to -1 to 1.
 
-![Sawtooth oscillator using phasor~ with amplitude scaling and DC offset adjustment.](/assets/screenshots/synthesis/vco/waveshapers-saw.png){width="70%"}
+![Sawtooth oscillator using phasor\~ with amplitude scaling and DC offset adjustment.](/assets/screenshots/synthesis/vco/waveshapers-saw.png){width="70%"}
 
 #### Square Wave Oscillator
 
 To create a square wave, you can use `[expr~]` (included in Pd Vanilla), but `[>~]` is faster and more CPU-efficient. A square wave toggles between -1 and 1. The `[>~]` object compares its left input signal to a threshold (right input or argument). It outputs 1 if the input is greater than the threshold, and 0 otherwise. Using 0.5 as the threshold with a `[phasor~]` input yields a square wave: 0 for half the cycle, 1 for the other half.
 
-![Square wave generator using phasor~ input compared against 0.5 threshold with >~ object for efficient binary waveform creation.](/assets/screenshots/synthesis/vco/waveshapers-square.png){width="70%"}
+![Square wave generator using phasor\~ input compared against 0.5 threshold with \>\~ object for efficient binary waveform creation.](/assets/screenshots/synthesis/vco/waveshapers-square.png){width="70%"}
 
 #### Triangle Wave Oscillator
 
@@ -183,16 +197,16 @@ Among standard waveforms, the triangle wave is the most complex to construct. St
 
 Now we have both ascending and descending ramps. Sending both to `[min~]` (which outputs the smaller of two values) gives us a triangle waveform spanning 0 to 0.5. `[min~]` effectively splices the ascending and descending ramps to form a symmetric triangle wave.
 
-![Triangle oscillator construction using phasor~ and inverted ramp processed through min~ to create symmetric triangular waveform.](/assets/screenshots/synthesis/vco/waveshapers-triangle.png){width="70%"}
+![Triangle oscillator construction using phasor\~ and inverted ramp processed through min\~ to create symmetric triangular waveform.](/assets/screenshots/synthesis/vco/waveshapers-triangle.png){width="70%"}
 
 ### Frequency
 
 Frequency is presented here in terms of *angular velocity*! One common unit of measurement is the hertz (Hz), which equals "cycles per second." Frequency also determines a period of oscillation, which is simply the inverse of frequency. For example, a frequency of 100 Hz corresponds to a period of 0.01 seconds (or 10 milliseconds):
 
-```default
-Period = 1 / Frequency
-Period = 1 / 100 Hz = 0.01 s = 10 ms
-```
+$$\text{Period} = \frac{1}{\text{Frequency}}$$
+$$\text{Period} = \frac{1}{100 \text{ Hz}} = 0.01 \text{ s} = 10 \text{ ms}$$
+
+<br>
 
 ![](/assets/screenshots/synthesis/vco/frequency-1.png){width="70%"}
 
@@ -257,22 +271,22 @@ The simplest application of Fourier synthesis is the reconstruction of a sine wa
 
 ### Harmonics and Waveform Construction
 
-More complex waveforms are created by adding sine waves at integer multiples of the fundamental frequency. These multiples are called harmonics. If the fundamental frequency is denoted by \( f \), then the additional components will be \( 2f, 3f, 4f, \ldots \), corresponding to the second, third, fourth harmonics, and so on. This organization gives rise to the standard harmonic series found in many acoustic and electronic sounds.
+More complex waveforms are created by adding sine waves at integer multiples of the fundamental frequency. These multiples are called harmonics. If the fundamental frequency is denoted by ( f ), then the additional components will be ( 2f, 3f, 4f, \ldots ), corresponding to the second, third, fourth harmonics, and so on. This organization gives rise to the standard harmonic series found in many acoustic and electronic sounds.
 
 The terminology surrounding harmonics often overlaps with that of overtones. The first harmonic (fundamental) has no overtone. The second harmonic is the first overtone, the third harmonic is the second overtone, and so forth. This relationship is summarized in the following table:
 
 | Frequency | Harmonic | Overtone |
 |-----------|----------|----------|
-| \( f \)   | 1        | —        |
-| \( 2f \)  | 2        | 1        |
-| \( 3f \)  | 3        | 2        |
-| \( 4f \)  | 4        | 3        |
-| \( 5f \)  | 5        | 4        |
-| \( 6f \)  | 6        | 5        |
-| \( 7f \)  | 7        | 6        |
-| \( 8f \)  | 8        | 7        |
-| \( 9f \)  | 9        | 8        |
-| \( 10f \) | 10       | 9        |
+| ( f )     | 1        | —        |
+| ( 2f )    | 2        | 1        |
+| ( 3f )    | 3        | 2        |
+| ( 4f )    | 4        | 3        |
+| ( 5f )    | 5        | 4        |
+| ( 6f )    | 6        | 5        |
+| ( 7f )    | 7        | 6        |
+| ( 8f )    | 8        | 7        |
+| ( 9f )    | 9        | 8        |
+| ( 10f )   | 10       | 9        |
 
 ### Harmonic Synthesis
 
@@ -280,7 +294,7 @@ Although additive synthesis often begins with the goal of reconstructing a known
 
 For example, sine waves are considered perceptually pure. Introducing odd-numbered harmonics yields a triangular waveform, which retains a clean quality but feels richer than a pure sine. Square waves contain only odd harmonics, lending them a hollow timbre. If the second harmonic of a square wave is phase-shifted, the visual waveform changes, yet the auditory perception remains largely unaffected. Sawtooth waves, containing both even and odd harmonics, are brighter and richer in harmonic content. Modifying the phase of their components alters the shape without significantly changing the perceived sound.
 
-Pulse waves, derived from narrow square waves, introduce more harmonics as the duty cycle deviates from 50%. Interestingly, a 10% and a 90% pulse wave share identical harmonic content, illustrating the symmetry of their spectrum. The square wave (50% duty cycle) is unique in that it contains only odd harmonics. By contrast, a waveform composed exclusively of even harmonics resembles a square wave shifted up by an octave—its fundamental frequency is \( 2f \).
+Pulse waves, derived from narrow square waves, introduce more harmonics as the duty cycle deviates from 50%. Interestingly, a 10% and a 90% pulse wave share identical harmonic content, illustrating the symmetry of their spectrum. The square wave (50% duty cycle) is unique in that it contains only odd harmonics. By contrast, a waveform composed exclusively of even harmonics resembles a square wave shifted up by an octave—its fundamental frequency is ( 2f ).
 
 ### Practical Considerations
 
@@ -300,10 +314,10 @@ Perfect waveforms, such as ideal square waves, require an infinite number of har
 
 Real-world sounds often exhibit inharmonic components—frequencies that are not integer multiples of the fundamental. These include:
 
-- **Noise**: Broad-spectrum energy with no harmonic organization.
-- **Beat Frequencies**: Resulting from detuned harmonics, producing low-frequency amplitude modulations.
-- **Sidebands**: Occurring from modulation, producing spectral mirror images around a carrier frequency.
-- **Inharmonics**: Regularly structured but non-harmonic components, typical of metallic or bell-like sounds.
+-   **Noise**: Broad-spectrum energy with no harmonic organization.
+-   **Beat Frequencies**: Resulting from detuned harmonics, producing low-frequency amplitude modulations.
+-   **Sidebands**: Occurring from modulation, producing spectral mirror images around a carrier frequency.
+-   **Inharmonics**: Regularly structured but non-harmonic components, typical of metallic or bell-like sounds.
 
 Many additive synthesizers limit themselves to harmonic content, occasionally supplemented by noise generators. While deterministic in design, this approach overlooks the stochastic and dynamic nature of real-world sound phenomena.
 
@@ -323,16 +337,16 @@ One common configuration is the ADSR envelope—Attack, Decay, Sustain, Release�
 
 Additive synthesis provides a powerful framework for sound construction, especially when paired with modern computational tools. It invites a deep understanding of harmonic behavior and spectral composition, allowing composers and designers to sculpt timbre with surgical precision—layer by layer, sine by sine.
 
-The following example created by Miller Puckette [@puckette2007] encapsulate an ADSR envelope generator within a reusable Pd  abstraction named `adsr`. This design enables easy replication of the envelope generator and flexible parameter control, either through creation arguments or real-time updates via control inlets.
+The following example created by Miller Puckette [@puckette2007] encapsulate an ADSR envelope generator within a reusable Pd abstraction named `adsr`. This design enables easy replication of the envelope generator and flexible parameter control, either through creation arguments or real-time updates via control inlets.
 
 The abstraction accepts five creation arguments, corresponding respectively to the:
 
-- peak level
-- attack time 
-- decay time 
-- sustain level (expressed as a percentage of the peak), and 
-- release time 
- 
+-   peak level
+-   attack time
+-   decay time
+-   sustain level (expressed as a percentage of the peak), and
+-   release time
+
 For instance, the arguments `[adsr 1 100 200 50 300]` define a peak amplitude of 1.0, an attack time of 100 milliseconds, a decay time of 200 milliseconds, a sustain level at 50% of the peak, and a release time of 300 milliseconds.
 
 ![Miller Puckette's ADSR abstraction with creation arguments and control inlets for dynamic envelope parameter adjustment](/assets/screenshots/synthesis/additive/adsr-puckette.png)
@@ -349,15 +363,15 @@ The release segment is comparatively straightforward. Upon receiving a trigger v
 
 The trigger logic supports three types of behavior:
 
-- A **positive number** initiates an attack and decay cycle.
-- A **zero** triggers the release segment, allowing the envelope to fade back to zero.
-- A **negative number** functions as a reset, immediately sending the output to zero and initiating a new onset.
+-   A **positive number** initiates an attack and decay cycle.
+-   A **zero** triggers the release segment, allowing the envelope to fade back to zero.
+-   A **negative number** functions as a reset, immediately sending the output to zero and initiating a new onset.
 
 This flexibility enables the abstraction to support a variety of amplitude modulation scenarios in real-time audio synthesis, making it both pedagogically instructive and practically versatile for sound design tasks.
 
 ### Twenty-Oscillator Harmonic System
 
-This Pd patch implements a comprehensive additive synthesis engine that demonstrates the fundamental principles of harmonic spectrum construction through the controlled combination of multiple sine wave oscillators. The system employs twenty independent oscillator modules, each operating at harmonically related frequencies with individual amplitude envelope control, creating a powerful platform for exploring the timbral possibilities of additive synthesis while maintaining real-time performance capabilities.
+This Pd patch implements a comprehensive additive synthesis engine that shows the fundamental principles of harmonic spectrum construction through the controlled combination of multiple sine wave oscillators. The system employs twenty independent oscillator modules, each operating at harmonically related frequencies with individual amplitude envelope control, creating a powerful platform for exploring the timbral possibilities of additive synthesis while maintaining real-time performance capabilities.
 
 The patch architecture emphasizes modular design through the use of custom abstractions, enabling scalable harmonic control while providing educational insight into the mathematical relationships that govern harmonic series construction. By implementing individual envelope generators for each partial, the system demonstrates how complex timbral evolution can be achieved through coordinated amplitude control across multiple frequency components.
 
@@ -367,12 +381,22 @@ The patch architecture emphasizes modular design through the use of custom abstr
 
 The additive synthesis system implements a comprehensive harmonic generation pipeline consisting of four primary processing stages:
 
-1. **Global Parameter Control**: Manages fundamental frequency and timing coordination
-2. **Individual Oscillator Modules**: Twenty independent `oscilador` abstractions with harmonic frequency relationships
-3. **Amplitude Envelope Management**: Coordinated envelope generation across all partials
-4. **Audio Signal Summation**: Collection and mixing of all oscillator outputs
+1.  **Global Parameter Control**: Manages fundamental frequency and timing coordination
+2.  **Individual Oscillator Modules**: Twenty independent `oscilador` abstractions with harmonic frequency relationships
+3.  **Amplitude Envelope Management**: Coordinated envelope generation across all partials
+4.  **Audio Signal Summation**: Collection and mixing of all oscillator outputs
 
 The system demonstrates classic additive synthesis principles where complex timbres emerge from the controlled combination of simple sinusoidal components, each contributing specific harmonic content to the overall spectral composition.
+
+#### Critical Processing Components
+
+**oscilador Abstraction**: Each instance implements a complete harmonic partial with integrated envelope generation. The abstraction receives two arguments: harmonic number (1-20) and envelope duration in milliseconds, enabling independent control over both frequency relationships and temporal characteristics.
+
+**Global Parameter Distribution**: The send/receive system (`s freq`, `s timeScale`) ensures synchronized parameter updates across all oscillator instances while maintaining modular architecture that supports easy scaling to different numbers of partials.
+
+**Audio Signal Aggregation**: The `catch~ audio` object employs Pd's audio signal collection mechanism to sum all oscillator outputs without explicit connection cables, demonstrating efficient signal routing in complex patches.
+
+#### Data Flow
 
 ```{mermaid}
 flowchart TD
@@ -387,30 +411,9 @@ flowchart TD
     style C fill:#fff3e0
 ```
 
-#### Key Objects and Their Roles
-
-| Object | Function | Role in Additive Synthesis |
-|--------|----------|----------------------------|
-| `s freq` / `r freq` | Global frequency distribution | Distributes fundamental frequency to all oscillators |
-| `oscilador` | Harmonic oscillator abstraction | Implements individual partial with envelope control |
-| `catch~ audio` | Audio signal collection | Aggregates all oscillator outputs |
-| `hradio` | Duration control interface | Selects global envelope timing |
-| `s timeScale` / `r timeScale` | Timing distribution | Coordinates envelope durations across oscillators |
-| `out~` | Audio output | Final signal delivery |
-
-#### Critical Processing Components
-
-**oscilador Abstraction**: Each instance implements a complete harmonic partial with integrated envelope generation. The abstraction receives two arguments: harmonic number (1-20) and envelope duration in milliseconds, enabling independent control over both frequency relationships and temporal characteristics.
-
-**Global Parameter Distribution**: The send/receive system (`s freq`, `s timeScale`) ensures synchronized parameter updates across all oscillator instances while maintaining modular architecture that supports easy scaling to different numbers of partials.
-
-**Audio Signal Aggregation**: The `catch~ audio` object employs Pd's audio signal collection mechanism to sum all oscillator outputs without explicit connection cables, demonstrating efficient signal routing in complex patches.
-
-#### Data Flow
-
 The additive synthesis patch orchestrates a multi-oscillator system that transforms simple frequency and timing parameters into complex harmonic spectra through coordinated oscillator management and envelope control. This implementation demonstrates how additive synthesis principles can be systematically applied to create timbral complexity from elementary sinusoidal components while maintaining real-time performance and user control.
 
-The global parameter management stage establishes the foundation for harmonic spectrum generation through centralized control of fundamental frequency and timing coordination. When users adjust the frequency control, the new value propagates through the `s freq` send object to all twenty oscillator instances simultaneously, ensuring that harmonic relationships remain mathematically correct as the fundamental frequency changes. This distribution system maintains the precise frequency ratios that define harmonic series relationships, where each oscillator operates at an integer multiple of the fundamental frequency. The timing control system operates in parallel through the `s timeScale` mechanism, enabling users to adjust the overall temporal character of the synthesis while preserving the relative envelope timing relationships between different partials. The hradio interface provides discrete envelope duration options that range from brief percussive attacks to sustained harmonic evolutions, allowing for diverse timbral expressions within the additive framework.
+The global parameter management stage establishes the foundation for harmonic spectrum generation through centralized control of fundamental frequency and timing coordination. When users adjust the frequency control, the new value propagates through the `s freq` send object to all twenty oscillator instances simultaneously, ensuring that harmonic relationships remain mathematically correct as the fundamental frequency changes. This distribution system maintains the precise frequency ratios that define harmonic series relationships, where each oscillator operates at an integer multiple of the fundamental frequency. The timing control system operates in parallel through the `s timeScale`, enabling users to adjust the overall temporal character of the synthesis while preserving the relative envelope timing relationships between different partials. The `hradio` interface provides discrete envelope duration options that range from brief percussive attacks to sustained harmonic evolutions, allowing for diverse timbral expressions within the additive framework.
 
 The individual oscillator processing stage represents the core of the additive synthesis engine, where each `oscilador` abstraction implements a complete harmonic partial with sophisticated envelope control. Each oscillator instance receives two critical arguments during instantiation: the harmonic number (1, 2, 3... up to 20) and the base envelope duration in milliseconds. The harmonic number determines the frequency multiplication factor applied to the global fundamental frequency, creating the precise integer relationships that define harmonic spectra. Within each `oscilador` abstraction, the frequency calculation multiplies the received fundamental frequency by the harmonic number, generating frequencies such as 440 Hz (fundamental), 880 Hz (second harmonic), 1320 Hz (third harmonic), and so forth. The envelope duration argument provides each oscillator with its temporal characteristics, which are further modified by the global time scaling factor to enable coordinated timing adjustments across the entire harmonic spectrum.
 
@@ -430,7 +433,7 @@ flowchart LR
 The additive synthesis system maintains harmonic precision and temporal coordination through several interconnected processing stages:
 
 | Stage | Input | Process | Output |
-|-------|-------|---------|--------|
+|-----------------|-----------------|--------------------|------------------|
 | 1 | User Controls | Global parameter distribution | Synchronized frequency and timing |
 | 2 | Global Parameters | Harmonic frequency calculation | Twenty harmonic frequencies |
 | 3 | Harmonic Frequencies | Sine wave generation with envelopes | Individual partial signals |
@@ -439,7 +442,7 @@ The additive synthesis system maintains harmonic precision and temporal coordina
 #### Harmonic Frequency Distribution
 
 | Oscillator | Harmonic Number | Frequency Relationship | Example (440 Hz fundamental) |
-|------------|-----------------|------------------------|------------------------------|
+|----------------|----------------|------------------|-----------------------|
 | 1 | 1 | f × 1 | 440 Hz |
 | 2 | 2 | f × 2 | 880 Hz |
 | 3 | 3 | f × 3 | 1320 Hz |
@@ -455,12 +458,12 @@ The time scaling system provides proportional control over envelope durations:
 
 | hradio Setting | Time Scale Factor | Effect on 1000ms Base Duration |
 |----------------|-------------------|--------------------------------|
-| 0 | 0.1 | 100 ms (very fast attack) |
-| 1 | 0.25 | 250 ms (fast attack) |
-| 2 | 0.5 | 500 ms (medium attack) |
-| 3 | 1.0 | 1000 ms (normal attack) |
-| 4 | 2.0 | 2000 ms (slow attack) |
-| 5 | 5.0 | 5000 ms (very slow attack) |
+| 0              | 0.1               | 100 ms (very fast attack)      |
+| 1              | 0.25              | 250 ms (fast attack)           |
+| 2              | 0.5               | 500 ms (medium attack)         |
+| 3              | 1.0               | 1000 ms (normal attack)        |
+| 4              | 2.0               | 2000 ms (slow attack)          |
+| 5              | 5.0               | 5000 ms (very slow attack)     |
 
 #### Signal Architecture
 
@@ -470,18 +473,29 @@ The time scaling system provides proportional control over envelope durations:
 
 **Scalable Architecture**: The abstraction-based design supports easy addition or removal of harmonic partials without patch restructuring.
 
+#### Key Objects and Their Roles
+
+| Object | Function | Role in Additive Synthesis |
+|----------------|----------------|----------------------------------------|
+| `s freq` / `r freq` | Global frequency distribution | Distributes fundamental frequency to all oscillators |
+| `oscilador` | Harmonic oscillator abstraction | Implements individual partial with envelope control |
+| `catch~ audio` | Audio signal collection | Aggregates all oscillator outputs |
+| `hradio` | Duration control interface | Selects global envelope timing |
+| `s timeScale` / `r timeScale` | Timing distribution | Coordinates envelope durations across oscillators |
+| `out~` | Audio output | Final signal delivery |
+
 #### Creative Applications
 
-- **Classic Additive Synthesis**: Recreate the timbres of historical additive synthesizers like the Kawai K5000 or early computer music systems by manually adjusting individual harmonic amplitudes
-- **Spectral Animation**: Use external control data (MIDI, OSC, sensors) to modulate individual oscillator amplitudes, creating dynamic spectral evolution and movement
-- **Organ Stop Simulation**: Configure different combinations of harmonics to simulate pipe organ stops, drawbar organs, or other harmonic instruments
-- **Spectral Morphing**: Sequence different harmonic amplitude configurations to create smooth timbral transitions between distinct spectral shapes
-- **Microtonal Additive Synthesis**: Modify individual oscillator frequencies to explore non-harmonic spectra and microtonal intervals while maintaining the additive framework
-- **Algorithmic Composition**: Use mathematical functions or stochastic processes to control harmonic amplitudes over time, creating evolving textures with embedded structural logic
+-   **Classic Additive Synthesis**: Recreate the timbres of historical additive synthesizers like the Kawai K5000 or early computer music systems by manually adjusting individual harmonic amplitudes
+-   **Spectral Animation**: Use external control data (MIDI, OSC, sensors) to modulate individual oscillator amplitudes, creating dynamic spectral evolution and movement
+-   **Organ Stop Simulation**: Configure different combinations of harmonics to simulate pipe organ stops, drawbar organs, or other harmonic instruments
+-   **Spectral Morphing**: Sequence different harmonic amplitude configurations to create smooth timbral transitions between distinct spectral shapes
+-   **Microtonal Additive Synthesis**: Modify individual oscillator frequencies to explore non-harmonic spectra and microtonal intervals while maintaining the additive framework
+-   **Algorithmic Composition**: Use mathematical functions or stochastic processes to control harmonic amplitudes over time, creating evolving textures with embedded structural logic
 
 ### Additive Clone: Scalable Harmonic Synthesis
 
-This Pd patch demonstrates dynamic additive synthesis using Pd's `clone` object to create a scalable system of harmonic oscillators. Unlike fixed multi-oscillator systems, this implementation allows real-time adjustment of the number of active partials, from 1 to 20, while maintaining proper amplitude scaling to prevent clipping. The patch showcases advanced Pd programming techniques including dynamic object creation, parameter distribution, and automatic scaling based on psychoacoustic principles.
+This Pd patch implement a dynamic additive synthesis using Pd's `clone` object to create a scalable system of harmonic oscillators. Unlike fixed multi-oscillator systems, this implementation allows real-time adjustment of the number of active partials, from 1 to 20, while maintaining proper amplitude scaling to prevent clipping. The patch showcases advanced Pd programming techniques including dynamic object creation, parameter distribution, and automatic scaling based on psychoacoustic principles.
 
 The system emphasizes efficiency and modularity by using identical `harmonic` abstractions that receive initialization parameters and operate independently. This approach enables exploration of how partial count affects timbral complexity while demonstrating the relationship between harmonic density and perceived loudness.
 
@@ -491,12 +505,22 @@ The system emphasizes efficiency and modularity by using identical `harmonic` ab
 
 The additive clone system implements a dynamic harmonic generation pipeline consisting of four primary processing stages:
 
-1. **Partial Count Control**: Interface for selecting number of active harmonics (1-20)
-2. **Parameter Generation**: Algorithmic calculation of frequency multipliers and amplitude coefficients
-3. **Dynamic Instance Management**: Clone-based creation of harmonic oscillators with scaling
-4. **Audio Collection**: Signal aggregation with psychoacoustic amplitude compensation
+1.  **Partial Count Control**: Interface for selecting number of active harmonics (1-20)
+2.  **Parameter Generation**: Algorithmic calculation of frequency multipliers and amplitude coefficients
+3.  **Dynamic Instance Management**: Clone-based creation of harmonic oscillators with scaling
+4.  **Audio Collection**: Signal aggregation with psychoacoustic amplitude compensation
 
 The patch demonstrates how algorithmic parameter generation can control large numbers of synthesis components while maintaining musical coherence and preventing amplitude overflow.
+
+#### Critical Dynamic Components
+
+**Clone Object Management**: The `clone harmonic` object dynamically creates instances based on the resize message, enabling real-time adjustment of synthesis complexity without patch reconstruction.
+
+**Psychoacoustic Scaling**: The `expr~ pow($f2, -0.6)` calculation in each harmonic applies amplitude reduction based on the total number of active partials, using research-based scaling that matches human loudness perception.
+
+**Modular Parameter Generation**: The `until` and `mod` system creates a counting sequence that generates unique harmonic numbers for each clone instance while handling array wraparound.
+
+#### Data Flow
 
 ```{mermaid}
 flowchart TD
@@ -512,34 +536,13 @@ flowchart TD
     style E fill:#fff3e0
 ```
 
-#### Key Objects and Their Roles
+The additive clone patch implmenting a dynamic synthesis system that adapts the number of active harmonic oscillators in real-time while maintaining proper amplitude relationships and preventing audio clipping. This implementation demonstrates how Pd's clone object can be combined with algorithmic parameter generation to create scalable synthesis systems that remain musically coherent across different levels of harmonic complexity.
 
-| Object | Function | Role in Dynamic Synthesis |
-|--------|----------|---------------------------|
-| `hradio` | Partial count selector | Controls number of active harmonics (1-20) |
-| `clone harmonic` | Dynamic instance manager | Creates variable number of oscillator instances |
-| `until` | Parameter loop generator | Executes calculation sequence for each partial |
-| `mod` | Frequency calculation | Generates harmonic number sequence |
-| `expr~ pow($f2, -0.6)` | Amplitude scaling | Prevents clipping using psychoacoustic scaling |
-| `s n-partials` / `r n-partials` | Partial count distribution | Distributes active partial count to all instances |
-
-#### Critical Dynamic Components
-
-**Clone Object Management**: The `clone harmonic` object dynamically creates instances based on the resize message, enabling real-time adjustment of synthesis complexity without patch reconstruction.
-
-**Psychoacoustic Scaling**: The `expr~ pow($f2, -0.6)` calculation in each harmonic applies amplitude reduction based on the total number of active partials, using research-based scaling that matches human loudness perception.
-
-**Modular Parameter Generation**: The `until` and `mod` system creates a counting sequence that generates unique harmonic numbers for each clone instance while handling array wraparound.
-
-#### Data Flow
-
-The additive clone patch orchestrates a sophisticated dynamic synthesis system that adapts the number of active harmonic oscillators in real-time while maintaining proper amplitude relationships and preventing audio clipping. This implementation demonstrates how Pd's clone object can be combined with algorithmic parameter generation to create scalable synthesis systems that remain musically coherent across different levels of harmonic complexity.
-
-The partial count control stage establishes the foundation for dynamic synthesis through user interface management that directly controls system complexity. The hradio interface enables selection of partial counts from 1 to 20, with each selection triggering a complete reconfiguration of the synthesis system. The selected value propagates through two parallel pathways: immediate distribution via the `s n-partials` send system that informs all existing harmonic instances of the new partial count, and initiation of the parameter generation sequence that calculates appropriate settings for the requested number of oscillators. This dual distribution ensures that both the scaling calculations within individual harmonics and the overall system configuration remain synchronized as users adjust the synthesis complexity in real-time.
+The partial count control stage establishes the foundation for dynamic synthesis through user interface management that directly controls system complexity. The `hradio` interface enables selection of partial counts from 1 to 20, with each selection triggering a complete reconfiguration of the synthesis system. The selected value propagates through two parallel pathways: immediate distribution via the `s n-partials` send system that informs all existing harmonic instances of the new partial count, and initiation of the parameter generation sequence that calculates appropriate settings for the requested number of oscillators. This dual distribution ensures that both the scaling calculations within individual harmonics and the overall system configuration remain synchronized as users adjust the synthesis complexity in real-time.
 
 The algorithmic parameter generation stage transforms the simple partial count selection into comprehensive initialization data for each harmonic oscillator through systematic mathematical processing. The `until` object creates an iteration loop that executes the specified number of times, generating unique parameter sets for each harmonic instance. During each iteration, the counter value undergoes processing through the `mod` object, which provides frequency multiplier values that cycle through a predetermined sequence, enabling harmonic relationships that extend beyond simple integer multiples if desired. The counter value also serves directly as the harmonic number identifier, while the fundamental frequency received through `r freq` provides the base frequency reference. These three values combine in the `pack f f f` object to create complete initialization messages that contain all information necessary for each harmonic instance to configure its frequency relationships and amplitude characteristics.
 
-The dynamic instance management stage demonstrates Pd's advanced object creation capabilities through sophisticated implementation of the clone system that adapts to changing synthesis requirements. When the resize message reaches the `clone harmonic` object, it dynamically adjusts the number of active harmonic instances, creating new oscillators when the count increases or deactivating instances when the count decreases. Each parameter pack message generated by the algorithmic calculation stage initializes a harmonic instance with its specific frequency multiplier and amplitude coefficient. The clone system manages this distribution automatically, ensuring that each active instance receives appropriate initialization data while maintaining efficient resource utilization. This dynamic approach enables the system to scale from simple single-oscillator tones to complex 20-partial harmonic spectra without requiring manual patch reconfiguration or predetermined oscillator allocation.
+The dynamic instance management stage demonstrates Pd's advanced object creation capabilities through an implementation of the clone system that adapts to changing synthesis requirements. When the resize message reaches the `clone harmonic` object, it dynamically adjusts the number of active harmonic instances, creating new oscillators when the count increases or deactivating instances when the count decreases. Each parameter `pack` message generated by the algorithmic calculation stage initializes a harmonic instance with its specific frequency multiplier and amplitude coefficient. The clone system manages this distribution automatically, ensuring that each active instance receives appropriate initialization data while maintaining efficient resource utilization. This dynamic approach enables the system to scale from simple single-oscillator tones to complex 20-partial harmonic spectra without requiring manual patch reconfiguration or predetermined oscillator allocation.
 
 The individual harmonic processing stage occurs within each `harmonic` abstraction instance, where distributed parameters control sophisticated oscillator and envelope systems enhanced with automatic amplitude scaling. Each harmonic receives its frequency multiplier through the initialization message and combines it with the global fundamental frequency to generate its specific harmonic frequency. The critical innovation within each harmonic involves the `expr~ pow($f2, -0.6)` calculation that applies amplitude scaling based on the total number of active partials received through the `r n-partials` system. This scaling factor implements psychoacoustic research that shows how human loudness perception requires amplitude reduction as the number of harmonic components increases, preventing the perception of increased loudness as synthesis complexity grows. The power law exponent of -0.6 provides a compromise between mathematical precision and musical utility, ensuring that 20-partial synthesis produces manageable amplitude levels while maintaining sufficient dynamic range for musical expression.
 
@@ -551,10 +554,10 @@ flowchart LR
 
 #### Processing Chain Details
 
-The dynamic additive synthesis system maintains musical coherence through coordinated processing stages:
+The dynamic additive synthesis design maintains musical coherence through coordinated processing stages:
 
 | Stage | Input | Process | Output |
-|-------|-------|---------|--------|
+|-----------------|-----------------|--------------------|------------------|
 | 1 | User Selection | Partial count validation and distribution | System reconfiguration triggers |
 | 2 | Partial Count | Iterative parameter calculation | Harmonic initialization data |
 | 3 | Parameter Messages | Dynamic clone instance management | Active harmonic oscillators |
@@ -566,15 +569,14 @@ The dynamic additive synthesis system maintains musical coherence through coordi
 The psychoacoustic amplitude scaling prevents clipping while maintaining perceptual balance:
 
 | Active Partials | Scaling Factor | Individual Amplitude | Perceptual Effect |
-|-----------------|----------------|---------------------|-------------------|
+|-----------------|-----------------|--------------------|------------------|
 | 1 | 1.000 | 100% | Full single-tone amplitude |
 | 5 | 0.315 | 31.5% | Balanced complex tone |
 | 10 | 0.200 | 20.0% | Rich harmonic spectrum |
 | 15 | 0.151 | 15.1% | Dense harmonic texture |
 | 20 | 0.122 | 12.2% | Maximum complexity without clipping |
 
-#### Clone System Architecture
-
+#### Clone Abstraction Architecture
 
 **Dynamic Scalability**: Easy modification of maximum partial count through hradio range adjustment.
 
@@ -584,12 +586,22 @@ The psychoacoustic amplitude scaling prevents clipping while maintaining percept
 
 **Amplitude Safety**: Built-in scaling prevents output clipping across all partial count settings.
 
+#### Key Objects and Their Roles
+
+| Object | Function | Role in Dynamic Synthesis |
+|----------------|----------------|----------------------------------------|
+| `hradio` | Partial count selector | Controls number of active harmonics (1-20) |
+| `clone harmonic` | Dynamic instance manager | Creates variable number of oscillator instances |
+| `until` | Parameter loop generator | Executes calculation sequence for each partial |
+| `mod` | Frequency calculation | Generates harmonic number sequence |
+| `expr~ pow($f2, -0.6)` | Amplitude scaling | Prevents clipping using psychoacoustic scaling |
+| `s n-partials` / `r n-partials` | Partial count distribution | Distributes active partial count to all instances |
+
 #### Creative Applications
 
-- **Real-time Timbral Morphing**: Automate the partial count using LFOs or envelopes to create evolving timbres that transition between simple and complex harmonic structures
-- **Interactive Spectral Control**: Map external controllers or sensors to the partial count parameter, enabling performers to sculpt harmonic complexity through gesture or movement
-- **Spectral Analysis Tools**: Use the system to reconstruct and study natural instrument timbres by adjusting partial counts to match analyzed harmonic content
-
+-   **Real-time Timbral Morphing**: Automate the partial count using LFOs or envelopes to create evolving timbres that transition between simple and complex harmonic structures
+-   **Interactive Spectral Control**: Map external controllers or sensors to the partial count parameter, enabling performers to sculpt harmonic complexity through gesture or movement
+-   **Spectral Analysis Tools**: Use the system to reconstruct and study natural instrument timbres by adjusting partial counts to match analyzed harmonic content
 
 ### Spectral Melody
 
@@ -603,13 +615,23 @@ The implementation showcases advanced Pd programming techniques including dynami
 
 The patch implements a comprehensive harmonic generation pipeline consisting of five primary processing stages:
 
-1. **Parameter Management**: Global frequency and timing control with user interface
-2. **Algorithmic Partial Distribution**: Mathematical calculation of harmonic relationships and amplitude scaling
-3. **Dynamic Synthesis Engine**: Eight-instance clone system for parallel partial generation
-4. **Stochastic Envelope Control**: Randomized attack and decay timing for each partial
-5. **Audio Collection and Output**: Signal aggregation and final audio delivery
+1.  **Parameter Management**: Global frequency and timing control with user interface
+2.  **Algorithmic Partial Distribution**: Mathematical calculation of harmonic relationships and amplitude scaling
+3.  **Dynamic Synthesis Engine**: Eight-instance clone system for parallel partial generation
+4.  **Stochastic Envelope Control**: Randomized attack and decay timing for each partial
+5.  **Audio Collection and Output**: Signal aggregation and final audio delivery
 
 The patch demonstrates how mathematical relationships can be embedded within musical structures, where harmonic series principles guide frequency distribution while algorithmic processes control temporal evolution and spectral dynamics.
+
+#### Critical Algorithmic Components
+
+**Clone Object Architecture**: The `clone partial 8` object creates eight independent instances of the `partial` abstraction, each receiving unique initialization parameters. This approach enables parallel processing while maintaining individual control over each harmonic component.
+
+**Mathematical Amplitude Distribution**: The expression `(8 - $f1)/8` implements inverse amplitude scaling where lower harmonics receive higher amplitudes, following natural harmonic decay patterns found in acoustic instruments.
+
+**Parameter Pack System**: The `pack f f f` object bundles harmonic number, frequency multiplier, and amplitude coefficient into a unified message that initializes each partial instance with its specific characteristics.
+
+#### Data Flow
 
 ```{mermaid}
 flowchart TD
@@ -627,35 +649,14 @@ flowchart TD
     style F fill:#fff3e0
 ```
 
-#### Key Objects and Their Roles
 
-| Object | Function | Role in Spectral Synthesis |
-|--------|----------|----------------------------|
-| `clone partial 8` | Dynamic instance creation | Generates eight independent partial synthesizers |
-| `until` | Iteration control | Executes parameter calculation loop eight times |
-| `pack f f f` | Parameter bundling | Combines harmonic number, frequency multiplier, and amplitude |
-| `expr (8 - $f1)/8` | Amplitude calculation | Creates inverse amplitude scaling for higher harmonics |
-| `s root-freq` / `r root-freq` | Global frequency distribution | Distributes fundamental frequency to all partials |
-| `s total-time` / `r total-time` | Timing coordination | Coordinates envelope durations across all instances |
-| `catch~ audio` | Signal collection | Aggregates audio output from all partial instances |
-
-#### Critical Algorithmic Components
-
-**Clone Object Architecture**: The `clone partial 8` object creates eight independent instances of the `partial` abstraction, each receiving unique initialization parameters. This approach enables parallel processing while maintaining individual control over each harmonic component.
-
-**Mathematical Amplitude Distribution**: The expression `(8 - $f1)/8` implements inverse amplitude scaling where lower harmonics receive higher amplitudes, following natural harmonic decay patterns found in acoustic instruments.
-
-**Parameter Pack System**: The `pack f f f` object bundles harmonic number, frequency multiplier, and amplitude coefficient into a unified message that initializes each partial instance with its specific characteristics.
-
-#### Data Flow
-
-The spectral melody patch implement an algorithmic synthesis process that transforms simple user parameters into complex harmonic spectra through systematic mathematical calculations and dynamic object instantiation. This implementation demonstrates how Pd's cloning capabilities can be combined with algorithmic parameter generation to create scalable additive synthesis systems that maintain both mathematical precision and musical expressivity.
+The spectral melody patch implement an algorithmic synthesis process that transforms simple user parameters into complex harmonic spectra through systematic mathematical calculations and dynamic object instantiation. This implementation demonstrates how Pd's cloning capabilities can be combined with algorithmic parameter generation to create scalable additive synthesis systems that maintain both mathematical precision and timbral expressivity.
 
 The parameter initialization and distribution stage establishes the foundation for the entire synthesis process through coordinated management of fundamental frequency and timing parameters. When users adjust the frequency slider, the new value propagates through the `s root-freq` send object to all active partial instances, ensuring that harmonic relationships remain mathematically correct as the fundamental frequency changes. The duration control system operates in parallel, with the time slider feeding the `s total-time` distribution network that coordinates envelope timing across all eight partials. The bang trigger initiates the algorithmic calculation sequence that generates the specific parameters needed for each partial instance, creating a synchronized parameter update system that maintains harmonic coherence while enabling real-time musical control. This distribution architecture ensures that all synthesis components receive updated parameters simultaneously, preventing temporal misalignment that could compromise the spectral integrity of the additive synthesis process.
 
 The algorithmic parameter generation stage represents the mathematical core of the system, where simple counting operations become sophisticated harmonic calculations through coordinated processing chains. The `until` object creates an iteration loop that executes eight times, with each iteration generating the specific parameters needed for one partial instance. During each iteration, the counter value undergoes multiple simultaneous calculations: direct passage as the harmonic number, incrementation by one to create the frequency multiplier, and processing through the amplitude calculation expression `(8 - $f1)/8` to generate amplitude coefficients that follow natural harmonic decay patterns. This mathematical approach ensures that the first partial operates as the fundamental with maximum amplitude, while subsequent partials represent increasingly higher harmonics with proportionally reduced amplitudes. The `pack f f f` object collects these three calculated values into a unified parameter message that contains all information necessary for initializing each partial instance with its unique harmonic characteristics.
 
-The dynamic synthesis instantiation stage demonstrates Pd's advanced object creation capabilities through the sophisticated implementation of the `clone partial 8` system. Each parameter pack message generated by the algorithmic calculation stage triggers the creation and initialization of a partial instance with specific harmonic characteristics. The clone object manages eight independent instances of the `partial` abstraction, distributing the parameter messages to initialize each instance with its unique harmonic number, frequency multiplier, and amplitude coefficient. This distribution process creates a parallel processing architecture where eight independent synthesis units operate simultaneously, each contributing a specific harmonic component to the overall spectral composition. The modular design enables easy scaling to different numbers of partials by simply modifying the clone argument, demonstrating the flexibility inherent in this approach to additive synthesis system design.
+The dynamic synthesis instantiation stage demonstrates Pd's advanced object creation capabilities through the sophisticated implementation of the `clone partial 8` object. Each parameter pack message generated by the algorithmic calculation stage triggers the creation and initialization of a partial instance with specific harmonic characteristics. The `clone` object manages eight independent instances of the `partial` abstraction, distributing the parameter messages to initialize each instance with its unique harmonic number, frequency multiplier, and amplitude coefficient. This distribution process creates a parallel processing architecture where eight independent synthesis units operate simultaneously, each contributing a specific harmonic component to the overall spectral composition. The modular design enables easy scaling to different numbers of partials by simply modifying the clone argument, demonstrating the flexibility inherent in this approach to additive synthesis system design.
 
 The individual partial processing stage occurs within each `partial` abstraction instance, where the distributed parameters control sophisticated oscillator and envelope systems that generate the actual harmonic content. Each partial receives the global root frequency through the receive system and multiplies it by its assigned frequency multiplier to generate its specific harmonic frequency. The amplitude coefficient controls the maximum level for that partial's envelope system, while the total time parameter influences the temporal characteristics of the amplitude envelope. Within each partial, stochastic processes introduce controlled randomization into the envelope timing, creating complex temporal relationships between different harmonics that evolve organically over time. This combination of deterministic harmonic relationships with stochastic temporal control enables the system to generate spectra that maintain harmonic coherence while exhibiting natural variation and evolution that prevents static or mechanical sonic characteristics.
 
@@ -670,10 +671,10 @@ flowchart LR
 
 #### Processing Chain Details
 
-The spectral melody system maintains mathematical precision and musical coherence through several interconnected processing stages:
+The spectral melody system maintains mathematical precision and timbral coherence through several interconnected processing stages:
 
 | Stage | Input | Process | Output |
-|-------|-------|---------|--------|
+|-----------------|-----------------|--------------------|------------------|
 | 1 | User Controls | Parameter distribution to global sends | Synchronized control signals |
 | 2 | Bang Trigger | Iterative calculation loop (8 cycles) | Parameter packs for each partial |
 | 3 | Parameter Packs | Clone instance initialization | Eight active partial synthesizers |
@@ -685,58 +686,63 @@ The spectral melody system maintains mathematical precision and musical coherenc
 The mathematical relationships governing partial generation follow systematic patterns:
 
 | Partial Number | Frequency Multiplier | Amplitude Coefficient | Harmonic Function |
-|----------------|---------------------|----------------------|-------------------|
-| 1 | 1 | 1.000 | Fundamental |
-| 2 | 2 | 0.875 | Second harmonic |
-| 3 | 3 | 0.750 | Third harmonic |
-| 4 | 4 | 0.625 | Fourth harmonic |
-| 5 | 5 | 0.500 | Fifth harmonic |
-| 6 | 6 | 0.375 | Sixth harmonic |
-| 7 | 7 | 0.250 | Seventh harmonic |
-| 8 | 8 | 0.125 | Eighth harmonic |
+|-----------------|-------------------|--------------------|-----------------|
+| 1              | 1                    | 1.000                 | Fundamental       |
+| 2              | 2                    | 0.875                 | Second harmonic   |
+| 3              | 3                    | 0.750                 | Third harmonic    |
+| 4              | 4                    | 0.625                 | Fourth harmonic   |
+| 5              | 5                    | 0.500                 | Fifth harmonic    |
+| 6              | 6                    | 0.375                 | Sixth harmonic    |
+| 7              | 7                    | 0.250                 | Seventh harmonic  |
+| 8              | 8                    | 0.125                 | Eighth harmonic   |
 
-#### Parameter Distribution Network
 
-| Send/Receive Pair | Function | Scope |
-|-------------------|----------|-------|
-| `s/r root-freq` | Fundamental frequency | All partial instances |
-| `s/r total-time` | Envelope duration base | All partial instances |
-| `s/r bang` | Envelope trigger | All partial instances |
-
-#### Clone System Architecture
+#### Clone Abstraction Architecture
 
 The `clone partial 8` implementation provides:
 
-- **Scalable Instance Management**: Easy modification of partial count through argument change
-- **Parameter Distribution**: Automated routing of initialization data to instances
-- **Independent Processing**: Each instance operates with complete autonomy
-- **Efficient Signal Routing**: Built-in audio aggregation through throw~/catch~ system
+-   **Scalable Instance Management**: Easy modification of partial count through argument change
+-   **Parameter Distribution**: Automated routing of initialization data to instances
+-   **Independent Processing**: Each instance operates with complete autonomy
+-   **Efficient Signal Routing**: Built-in audio aggregation through throw~/catch~ system
+
+#### Key Objects and Their Roles
+
+| Object | Function | Role in Spectral Synthesis |
+|----------------|----------------|----------------------------------------|
+| `clone partial 8` | Dynamic instance creation | Generates eight independent partial synthesizers |
+| `until` | Iteration control | Executes parameter calculation loop eight times |
+| `pack f f f` | Parameter bundling | Combines harmonic number, frequency multiplier, and amplitude |
+| `expr (8 - $f1)/8` | Amplitude calculation | Creates inverse amplitude scaling for higher harmonics |
+| `s root-freq` / `r root-freq` | Global frequency distribution | Distributes fundamental frequency to all partials |
+| `s total-time` / `r total-time` | Timing coordination | Coordinates envelope durations across all instances |
+| `catch~ audio` | Signal collection | Aggregates audio output from all partial instances |
 
 #### Creative Applications
 
-- **Algorithmic Harmonic Composition**: Use external control data (MIDI, OSC, sensors) to modulate the root frequency and timing parameters, creating evolving harmonic progressions that maintain mathematical relationships
-- **Spectral Morphing Sequences**: Program sequences of different fundamental frequencies and timing values to create smooth transitions between distinct harmonic spectra, exploring timbral evolution over time
-- **Interactive Performance**: Map physical controllers to the frequency and timing parameters, enabling real-time spectral sculpting during live performance where harmonic content responds to performer gestures
-- **Stochastic Harmonic Exploration**: Modify the amplitude calculation algorithm or introduce randomization into the frequency multipliers to explore non-traditional harmonic relationships while maintaining the systematic approach
-- **Environmental Sound Synthesis**: Use the harmonic framework as a foundation for recreating natural sound textures by modifying the amplitude distribution to match spectral analysis of environmental recordings
-- **Collaborative Network Music**: Network multiple instances of the patch where different performers control different aspects of the spectral generation, creating collective harmonic compositions
-- **Temporal Spectral Counterpoint**: Create multiple simultaneous instances with different timing parameters to generate polyphonic textures where independent harmonic voices evolve at different rates
+-   **Algorithmic Harmonic Composition**: Use external control data (MIDI, OSC, sensors) to modulate the root frequency and timing parameters, creating evolving harmonic progressions that maintain mathematical relationships
+-   **Spectral Morphing Sequences**: Program sequences of different fundamental frequencies and timing values to create smooth transitions between distinct harmonic spectra, exploring timbral evolution over time
+-   **Interactive Performance**: Map physical controllers to the frequency and timing parameters, enabling real-time spectral sculpting during live performance where harmonic content responds to performer gestures
+-   **Stochastic Harmonic Exploration**: Modify the amplitude calculation algorithm or introduce randomization into the frequency multipliers to explore non-traditional harmonic relationships while maintaining the systematic approach
+-   **Environmental Sound Synthesis**: Use the harmonic framework as a foundation for recreating natural sound textures by modifying the amplitude distribution to match spectral analysis of environmental recordings
+-   **Collaborative Network Music**: Network multiple instances of the patch where different performers control different aspects of the spectral generation, creating collective harmonic compositions
+-   **Temporal Spectral Counterpoint**: Create multiple simultaneous instances with different timing parameters to generate polyphonic textures where independent harmonic voices evolve at different rates
 
 ## Amplitude & Ring Modulation
 
-Amplitude modulation (AM) and ring modulation (RM) are two techniques that manipulate the amplitude of a signal using another signal. While they share similarities, they produce distinct results and are used in different contexts. In this section, we will explore the differences between AM and RM, their applications, and how they can be implemented in sound synthesis.
+Amplitude Modulation (AM) and Ring Modulation (RM) are two techniques that manipulate the amplitude of a signal using another signal. While they share similarities, they produce distinct results and are used in different contexts. In this section, we will explore the differences between AM and RM, their applications, and how they can be implemented in sound synthesis.
 
-### Amplitude Modulation
+### Amplitude Modulation (AM)
 
 We can modulate the amplitude of any signal—referred to as the *carrier*—by multiplying it with an oscillating signal, called the *modulator*. The modulator is typically another oscillator, and its frequency determines the *modulation frequency*.
 
 ![Classic amplitude modulation with sine wave carrier and unipolar modulator, creating tremolo-like amplitude variation](/assets/screenshots/synthesis/am-rm/am.gif)
 
-In the example provided, both the carrier and modulator are sine wave oscillators. This is what we call "classic" amplitude modulation (AM), where the modulator signal includes a DC offset, making it *unipolar*, ranging only from 0 to 1. This unipolarity ensures that the carrier’s amplitude is scaled without ever becoming negative.
+In the example provided, both the carrier and modulator are sine wave oscillators. This is what we call "classic" AM, where the modulator signal includes a DC offset, making it *unipolar*, ranging only from 0 to 1. This unipolarity ensures that the carrier’s amplitude is scaled without ever becoming negative.
 
-### Ring Modulation
+### Ring Modulation (RM)
 
-Ring modulation is a particular form of amplitude modulation where both the carrier and modulator signals are *bipolar*, meaning they oscillate between -1 and 1 without any DC offset. In this configuration, there's no functional distinction between carrier and modulator—both behave symmetrically.
+RM is a particular form of AM where both the carrier and modulator signals are *bipolar*, meaning they oscillate between -1 and 1 without any DC offset. In this configuration, there's no functional distinction between carrier and modulator—both behave symmetrically.
 
 ![Ring modulation configuration with bipolar signals creating sidebands](/assets/screenshots/synthesis/am-rm/rm.png)
 
@@ -744,19 +750,17 @@ Nonetheless, in practical terms, the carrier is usually an audio signal such as 
 
 ### DC Offset
 
-Amplitude modulation schemes can involve various DC offset settings—not just limited to AM or RM. In our example, preset configurations for AM and RM are available, but one can also manually adjust peak levels and DC offset using sliders.
-
-Observe how, in the frequency spectrum of classic AM, we see two sidebands—above and below the carrier frequency—each at half the amplitude of the original carrier. These sidebands are spaced apart by the modulation frequency.
+AM schemes can involve various DC offset settings—not just limited to AM or RM. In our example, preset configurations for AM and RM are available, but one can also manually adjust peak levels and DC offset using sliders. Observe how, in the frequency spectrum of classic AM, we see two sidebands—above and below the carrier frequency—each at half the amplitude of the original carrier. These sidebands are spaced apart by the modulation frequency.
 
 ![DC offset control interface showing continuous transition between AM and RM modes with real-time spectral analysis of carrier and sideband frequencies.](/assets/screenshots/synthesis/am-rm/dc-offset.gif)
 
-In contrast, ring modulation removes the original carrier frequency entirely from the spectrum, leaving only the sidebands, which typically carry more energy than in AM.
+In contrast, RM removes the original carrier frequency entirely from the spectrum, leaving only the sidebands, which typically carry more energy than in AM.
 
 By adjusting amplitude and DC offset with sliders, we can morph continuously between AM and RM modes, gaining nuanced control over the presence of the original frequency component and the energy distribution in the sidebands.
 
 ### Audio Samples & Modulation
 
-In this example, an audio sample replaces the oscillator as the carrier signal. This demonstrates how amplitude modulation can function as an *audio effect processor* rather than just a *synthesis technique*. In fact, much of what we traditionally associate with synthesis techniques is often more accurately described as audio processing.
+In this example, an audio sample replaces the oscillator as the carrier signal. This demonstrates how AM can function as an *audio effect processor* rather than just a *synthesis technique*. In fact, much of what we traditionally associate with synthesis techniques is often more accurately described as audio processing.
 
 Conversely, many effects processors—such as filters—are integral to sound synthesis. The boundary between synthesis and processing is thus fluid and contextual.
 
@@ -766,7 +770,7 @@ Try both the classic AM and RM examples. In both cases, sidebands are generated 
 
 ### Other Waveforms
 
-Using more complex waveforms for the modulator signal leads to the creation of additional partials within any amplitude modulation patch—including ring modulation. Sine waves are typically favored as modulators since they offer clean and controlled results, especially when applying AM as an audio effect.
+Using more complex waveforms for the modulator signal leads to the creation of additional partials within any AM patch—including RM. Sine waves are typically favored as modulators since they offer clean and controlled results, especially when applying AM as an audio effect.
 
 ![Complex waveform modulation showing carrier and modulator waveform selection with spectral complexity progression from sine waves to sawtooth waves](/assets/screenshots/synthesis/am-rm/other-waveforms.png)
 
@@ -774,15 +778,15 @@ However, in synthesis contexts, more intricate and harmonically rich methods—s
 
 ### Tremolo
 
-Tremolo is essentially amplitude modulation using a *low-frequency* modulator. The key addition is a *depth* parameter, ranging from 0 to 1, which determines the modulation intensity. At 0, no modulation occurs (dry signal), while a depth of 1 results in full tremolo, where the carrier's amplitude is modulated across its full range.
+Tremolo is essentially AM using a *low-frequency* modulator (or a Low Frequency Oscilator - LFO). The key addition is a *depth* parameter, ranging from 0 to 1, which determines the modulation intensity. At 0, no modulation occurs (dry signal), while a depth of 1 results in full tremolo, where the carrier's amplitude is modulated across its full range.
 
 ![Tremolo effect with low-frequency modulation showing depth control from 0 (no effect) to 1 (full amplitude modulation)](/assets/screenshots/synthesis/am-rm/tremolo.gif)
 
-## Frequency Modulation
+## Frequency Modulation (FM)
 
 In general terms, to *modulate* a signal means to alter it in some way. In the context of this course, however, we refer specifically to using a *modulating signal* to control a parameter—such as amplitude, as previously discussed. We now turn to the basic structure of *frequency modulation* (FM), where an oscillator acts as the modulator.
 
-The signal being modulated is called the *carrier*; in the case of frequency modulation, it is also referred to as the *carrier frequency*. In contrast, we have the *modulating frequency*, which corresponds to the frequency of the modulating oscillator. The depth of frequency variation is determined by the amplitude of the modulator and is commonly referred to as the *modulation index*. The modulation process itself is straightforward: we add the modulating signal to the frequency input of the carrier oscillator. See the example on the right
+The signal being modulated is called the *carrier*; in the case of FM, it is also referred to as the *carrier frequency*. In contrast, we have the *modulating frequency*, which corresponds to the frequency of the modulating oscillator. The depth of frequency variation is determined by the amplitude of the modulator and is commonly referred to as the *modulation index*. The modulation process itself is straightforward: we add the modulating signal to the frequency input of the carrier oscillator. 
 
 ![FM synthesis with carrier oscillator, modulator input, and frequency deviation control, showing the fundamental structure of frequency modulation.](/assets/screenshots/synthesis/fm/intro.png){width="50%"}
 
@@ -794,11 +798,11 @@ We apply the same structure as before. Besides a vibrato example, this section i
 
 ![FM synthesis interface with carrier frequency, modulation frequency, and index controls, creating complex harmonic spectra through frequency modulation.](/assets/screenshots/synthesis/fm/fm.gif)
 
-The higher the modulation index, the greater the number of resulting partials—enabling the creation of dense and complex waveforms. When the carrier and modulator frequencies share a simple harmonic ratio, the resulting waveform is harmonic. Otherwise, it tends to be inharmonic. Click on the message boxes to hear the preset examples.
+The higher the modulation index, the greater the number of resulting partials—enabling the creation of dense and complex waveforms. When the carrier and modulator frequencies share a simple harmonic ratio, the resulting waveform is harmonic. Otherwise, it tends to be inharmonic. 
 
 ### Other Waveforms
 
-In this patch, we experiment with different oscillator combinations. Waveforms are arranged according to spectral complexity—from simple sine waves to rich sawtooth waves (the only waveform here containing both even and odd harmonics). The more complex the waveform used, the more intricate the FM result becomes.
+In this patch, we experiment with different oscillator combinations. Waveforms are arranged according to spectral complexity—from simple sine waves to rich sawtooth waves (the only waveform here containing both even and odd harmonics). The more complex the waveform used, the more intricate (and unpredectible) the FM result becomes.
 
 ![FM synthesis interface with waveform selection for carrier and modulator arranged by harmonic complexity](/assets/screenshots/synthesis/fm/other-waveforms.png)
 
@@ -826,10 +830,7 @@ Subtractive synthesis is frequently—and mistakenly—viewed as synonymous with
 
 ### Conceptual Model: Source and Modifier
 
-At the heart of subtractive synthesis lies a conceptual framework: the separation of sound production into three functional components:
-1. source, 
-2. modifier, and 
-3. controller. 
+At the heart of subtractive synthesis lies a conceptual framework: the separation of sound production into three functional components: 1. source, 2. modifier, and 3. controller.
 
 This framework mirrors the structure of many acoustic instruments, most clearly in wind instruments. Take, for example, the clarinet: its vibrating reed acts as the source, while the resonant body functions as a modifier. The reed alone produces a sharp, buzzing tone; the body of the clarinet, essentially a cylindrical tube, shapes this tone through its resonant properties, which are determined by physical dimensions like length and bore diameter. Together, they produce the rich timbral identity of the clarinet.
 
@@ -839,7 +840,7 @@ Despite such limitations, the core idea—modifying a source signal to shape its
 
 ### Sound Sources
 
-The primary sound sources in analog subtractive synthesizers are waveform generators and noise sources. Common waveforms include sawtooth, square, pulse, sine, and triangle waves—each chosen for their mathematical simplicity and electronic feasibility. These shapes carry predictable harmonic content: for instance, sawtooth waves contain both even and odd harmonics, while square waves contain only odd harmonics.
+The primary sound sources in analog subtractive synthesizers are waveform generators and noise sources. As mentioned, common waveforms include sawtooth, square, pulse, sine, and triangle waves—each chosen for their mathematical simplicity and electronic feasibility. These shapes carry predictable harmonic content: for instance, sawtooth waves contain both even and odd harmonics, while square waves contain only odd harmonics.
 
 Random waveforms, typically perceived as noise, include all frequencies and are often used to generate percussive or atmospheric textures. The devices that produce these waveforms—oscillators—are descendants of function generators. In subtractive synthesis, these oscillators produce continuous signals, with frequency typically controlled by voltage. These signals serve as raw material for further shaping via modifiers.
 
@@ -851,21 +852,19 @@ Filters play a central role in subtractive synthesis. At their core, filters are
 
 Filters are typically categorized by their frequency response—how they affect different parts of the frequency spectrum. There are four main types:
 
-* **Low-pass filters (LPF)** allow frequencies below a cutoff point to pass and attenuate higher frequencies. The **cutoff frequency** is defined as the point at which the signal is attenuated by 3 dB (the "half-power" point). The **slope** of attenuation is determined by the filter's design: a one-pole filter attenuates at 6 dB per octave, a two-pole at 12 dB, and so on. Filters with steeper slopes, such as four-pole filters (24 dB/octave), tend to sound more "synthetic" and dramatically alter timbre.
+-   **Low-pass filters (LPF)** allow frequencies below a cutoff point to pass and attenuate higher frequencies. The *cutoff frequency* is defined as the point at which the signal is attenuated by 3 dB (the "half-power" point). The *slope* of attenuation is determined by the filter's design: a one-pole filter attenuates at 6 dB per octave, a two-pole at 12 dB, and so on. Filters with steeper slopes, such as four-pole filters (24 dB/octave), tend to sound more "synthetic" and dramatically alter timbre.
 
-* **High-pass filters (HPF)** do the reverse, removing low frequencies and allowing higher frequencies to pass. This has the effect of "thinning" the sound by removing its fundamental or lower harmonics. HPFs are often used in combination with LPFs to further sculpt the timbre, especially when the goal is to mimic instruments with weak or missing fundamentals.
+-   **High-pass filters (HPF)** do the reverse, removing low frequencies and allowing higher frequencies to pass. This has the effect of "thinning" the sound by removing its fundamental or lower harmonics. HPFs are often used in combination with LPFs to further sculpt the timbre, especially when the goal is to mimic instruments with weak or missing fundamentals.
 
-* **Band-pass filters (BPF)** permit only a specified range of frequencies to pass. This is useful for emphasizing particular harmonic regions or simulating acoustic resonances. A BPF can be implemented by combining an HPF and an LPF in series. The central frequency of the pass-band is its resonant peak, and the width of the pass-band is termed the **bandwidth**.
+-   **Band-pass filters (BPF)** permit only a specified range of frequencies to pass. This is useful for emphasizing particular harmonic regions or simulating acoustic resonances. A BPF can be implemented by combining an HPF and an LPF in series. The central frequency of the pass-band is its resonant peak, and the width of the pass-band is termed the *bandwidth*.
 
-* **Notch filters**, or band-reject filters, remove a narrow band of frequencies, allowing all others to pass. These are useful for eliminating unwanted harmonics or resonant peaks, especially in applications such as feedback suppression or timbral correction.
+-   **Notch filters**, or band-reject filters, remove a narrow band of frequencies, allowing all others to pass. These are useful for eliminating unwanted harmonics or resonant peaks, especially in applications such as feedback suppression or timbral correction.
 
 Each filter type can be modulated dynamically, allowing timbral variation over time. For instance, sweeping the cutoff frequency of an LPF from high to low removes successive harmonics, gradually "closing" the filter and making the sound darker and more subdued.
 
 The subtractive model—source rich in harmonics, modified via filtering—forms the foundational paradigm for analog synthesis. While conceptually straightforward, it allows for a wide array of sonic possibilities. By carefully selecting waveforms, modulating filter parameters, and controlling amplitude envelopes, one can sculpt intricate, evolving timbres.
 
 This approach, despite its age, remains vital in modern synthesis. Its clarity, intuitiveness, and direct mapping between sound components and control structures make it an enduring framework for both education and creative practice. Whether one is emulating acoustic instruments or crafting entirely synthetic textures, subtractive synthesis offers a practical and powerful toolset for sonic exploration.
-
-
 
 ### Filters in Pd
 
@@ -879,7 +878,7 @@ The object `lop~` in Pd (short for "low-pass") implements a basic low-pass filte
 
 ![Low-pass filter with frequency cutoff control, attenuating higher frequencies at 6dB per octave slope](/assets/screenshots/synthesis/filters/lop.png)
 
-This filter is useful not only in audio synthesis but also in signal smoothing applications—such as envelope followers or data processing from physical sensors. At high cutoff frequencies (above ~5 kHz), the filter's response deviates slightly from this ideal behavior.
+This filter is useful not only in audio synthesis but also in signal smoothing applications—such as envelope followers or data processing from physical sensors. At high cutoff frequencies (above \~5 kHz), the filter's response deviates slightly from this ideal behavior.
 
 ### High-Pass Filtering
 
@@ -889,12 +888,12 @@ A high-pass filter, such as `hip~` in Pd, performs the inverse operation of a lo
 
 ### Resonant Filters
 
-A resonant filter emphasizes a specific frequency band over others. A typical example is the band-pass filter, which allows only a defined range of frequencies to pass while attenuating those outside the band. The center frequency of this band is commonly denoted as \( f_0 \), with \( f_1 \) and \( f_2 \) marking the -3 dB points below and above it, respectively.
+A resonant filter emphasizes a specific frequency band over others. A typical example is the band-pass filter, which allows only a defined range of frequencies to pass while attenuating those outside the band. The center frequency of this band is commonly denoted as ( f_0 ), with ( f_1 ) and ( f_2 ) marking the -3 dB points below and above it, respectively.
 
-The bandwidth of the filter is defined as the difference between these two frequencies:  
+The bandwidth of the filter is defined as the difference between these two frequencies:\
 $$ \text{Bandwidth} = f_2 - f_1 $$
 
-The musical interval between \( f_1 \) and \( f_2 \) can also be used to conceptualize the resonance more musically, especially when represented on a logarithmic scale like MIDI pitch.
+The musical interval between ( f_1 ) and ( f_2 ) can also be used to conceptualize the resonance more musically, especially when represented on a logarithmic scale like MIDI pitch.
 
 ![Band-pass filter frequency response showing center frequency f₀ with -3dB bandwidth points f₁ and f₂, illustrating the relationship between resonant peak and filter selectivity.](/assets/screenshots/synthesis/filters/bandwidth.png){width="50%"}
 
@@ -920,7 +919,7 @@ The `vcf~` object (short for "voltage-controlled filter") is another band-pass f
 
 ![VCF implementation with audio-rate frequency modulation capability, providing both standard and complementary phase outputs for enhanced filtering flexibility.](/assets/screenshots/synthesis/filters/vcf.png)
 
-This object has two outputs: the right outlet approximates a `bp~` filter’s frequency response, whereas the left outlet provides a complementary phase response. At low Q values, both outputs show a characteristically asymmetrical frequency curve, and deviations become more pronounced at higher frequencies (above ~7 kHz).
+This object has two outputs: the right outlet approximates a `bp~` filter’s frequency response, whereas the left outlet provides a complementary phase response. At low Q values, both outputs show a characteristically asymmetrical frequency curve, and deviations become more pronounced at higher frequencies (above \~7 kHz).
 
 ### Emulating the Moog Filter
 
@@ -937,6 +936,5 @@ To simplify this process, the `bicoeff` object from the ELSE library allows user
 ![Biquad filter interface with bicoeff object providing real-time frequency response visualization and interactive control](/assets/screenshots/synthesis/filters/biquad.png)
 
 Together, these filtering tools illustrate the conceptual and practical range of subtractive and resonant filtering in sound synthesis. Whether you are shaping a simple tone, cleaning up sensor data, or building complex timbral transformations, understanding how filters operate is essential. They not only alter the spectral content of signals but also engage with broader perceptual dimensions—allowing composers, performers, and designers to sculpt sound with nuance and precision.
-
 
 ## References {.unnumbered}
