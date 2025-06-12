@@ -835,8 +835,9 @@ The simplest option is `"nearest neighbors"`, where only the cells directly adja
 
 Cellular automata are considered as a vector. Each component of the vector is called a cell. Each cell is assumed to take only two states:
 
--   \[0\] (white)
--   \[1\] (black)
+[0] --> white
+
+[1] --> black
 
 This type of automaton is known as an elementary one-dimensional cellular automaton (1DCA). A dynamic process is performed, starting from an initial configuration C(0) of each of the cells (stage 0), and at each new stage, the state of each cell is calculated based on the state of the neighboring cells and the cell itself in the previous stage.
 
@@ -865,9 +866,9 @@ What it consists of:
 
 3.  There are 8 possible configurations of neighboring states (3\^2), and for each, Rule 30 defines whether the cell lives or dies in the next generation.
 
-:::{.callout-note}
-**It is called Rule 30 because in binary, 00011110<sub>2</sub> = 30**
-:::
+
+> **It is called Rule 30 because in binary, 00011110<sub>2</sub> = 30**
+
 
 For Rule 30, the set of rules that governs the automaton's next state is:
 
@@ -1060,9 +1061,9 @@ The "game" is actually a zero-player game, meaning its evolution is determined b
 
 [View Original Article - MATHEMATICAL GAMES - The fantastic combinations of John Conway's new solitaire game life (Martin Gardner)](https://ballyalley.com/articles_and_news/LIFE_Article_%28Scientific_American%29%28October_1970%29.pdf)
 
-:::{.callout-note}
-`GOL` (Game of Life) and `CGOL` (Conway's Game of Life) are commonly used acronyms.
-:::
+
+> `GOL` (Game of Life) and `CGOL` (Conway's Game of Life) are commonly used acronyms.
+
 
 #### Rules
 
