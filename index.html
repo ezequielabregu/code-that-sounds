@@ -404,16 +404,17 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p><a href="./assets/images/index/cover-5.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="./assets/images/index/cover-5.png" class="img-fluid" style="width:50.0%"></a></p>
+<p><a href="./assets/images/index/cover-5.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="./assets/images/index/cover-5.png" class="img-fluid" style="width:75.0%"></a></p>
 <section id="preface" class="level1 unnumbered">
 <h1 class="unnumbered">Preface</h1>
-<p>This book was born out of the classroom—but it does not stay there. It is the result of years of teaching creative coding and interactive media at public universities, engaging with students from a wide range of disciplines, backgrounds, and interests. Over time, a common thread emerged: the desire to bridge artistic expression and technical skill, to write code not just as a means to an end, but as a space of exploration, experimentation, and play.</p>
-<p>In these pages, you’ll find the distilled insights, exercises, and creative strategies that have shaped countless workshops and academic programs. The goal has always been twofold: to equip readers with the tools to build interactive digital systems, and to nurture a mindset where sound, movement, code, and structure can be explored as artistic materials. Whether it’s a generative soundscape, a data-driven artwork, or a custom tool built from scratch, the projects in this book are designed to foster technical growth while encouraging individual expression.</p>
-<p>This is not a manual in the traditional sense, nor is it a fixed curriculum. Instead, this book invites you to engage with Pure Data on your own terms, navigating its chapters in whatever order best suits your curiosity. The modular structure is intentional: it supports creative detours, sudden insights, and unexpected connections between ideas. You are encouraged to experiment, remix, and stretch the boundaries of the examples presented. Treat the book as both a guide and a sandbox—one where art, sound, code, and interactivity come alive through your engagement.</p>
-<p>Whether you’re an artist exploring new tools, a programmer seeking creative outlets, or a student diving into the world of interactive media, I hope this book helps you discover how code can become a language for imagination.</p>
+<p>The advent of computers has granted an unprecedented degree of precision and creative freedom in the manipulation of sound—freedom that remains unattainable with traditional acoustic instruments. In the digital realm, sound is no longer bound by the physical constraints of its sources; it becomes a malleable entity, capable of being shaped, transformed, and reimagined in virtually limitless ways. One could argue that while the traditional composer writes <em>with</em> sounds, the digital artist writes <em>the</em> sounds themselves, constructing sonic material from the ground up rather than selecting from preexisting timbres. This shift marks a fundamental transformation in the imaginary process, where the manipulation of sound at its structural level becomes a form of creative authorship. Over time, a common thread emerged: the desire to bridge artistic expression and technical skill, to write code not just as a means to an end, but as a space of exploration, experimentation, and play. These developments are made possible by the transition from analog to digital representation. In the digital domain, sounds are translated into numerical data, which can be systematically analyzed, modified, and recombined. This process—known as digitization—converts sensory or textual information (whether a sound, image, or written word) into discrete numerical sequences, enabling computers to process and transform them with extraordinary speed and flexibility.</p>
+<p>In these pages, you’ll find the distilled insights, exercises, and creative strategies that have shaped countless workshops and academic programs. The goal has always been twofold: to equip readers with the tools to build interactive digital systems, and to nurture a mindset where sound, code, and structure can be explored as artistic materials. Whether it’s a generative soundscape, a data-driven artwork, or a custom tool built from scratch, the projects in this book are designed to foster technical growth while encouraging individual expression.</p>
+<p>This is not a manual in the traditional sense, nor is it a fixed curriculum. Instead, this book invites you to engage on your own terms, navigating its chapters in whatever order best suits your curiosity. The modular structure is intentional: it supports creative detours, sudden insights, and unexpected connections between ideas. You are encouraged to experiment, remix, and stretch the boundaries of the examples presented. Treat the book as both a guide and a sandbox—one where art, sound, code, and interactivity come alive through your engagement. Whether you’re an artist exploring new tools, a programmer seeking creative outlets, or a student diving into the world of interactive media, I hope this book helps you discover how code can become a language for imagination.</p>
 <section id="who-am-i" class="level2">
 <h2 class="anchored" data-anchor-id="who-am-i">Who am I?</h2>
 <p>My name is <strong>Ezequiel Abregú</strong>, and I am a sound artist, composer, multi-instrumentalist, and researcher originally from Buenos Aires, Argentina. My artistic practice encompasses sound recordings, audio installations, performances, sound sculptures, sound design, and compositions for chamber music, choreography, and theater. I am particularly interested in the interplay between music, performance, sound art, live electronics, auditory and visual perception, interactive media, and the application of technology in art.</p>
+<p>I hold a Ph.D.&nbsp;focusing on the relationship between visual and auditory perception in sound art, and a degree in Composition with Electroacoustic Media from the National University of Quilmes (UNQ). My academic career includes teaching positions at several institutions<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>: I am a professor at the University of Quilmes (Computing Applied to Music area), the National University of Arts (Multimedia Arts area), and the University of Tres de Febrero (Electronic Arts area).</p>
+<p>My passion for programming and digital audio applications has led me to explore various programming languages and tools over the past two decades, including C, C++, Python, and Pure Data. I am an advocate of the open-source philosophy, regularly working with Linux and sharing my projects in publicly accessible repositories. My technical expertise extends to hardware development using microcontrollers and single-board computers, enabling me to adopt a hands-on approach in both my artistic and research endeavors.</p>
 <div style="text-align:center;">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -422,8 +423,6 @@ ul.task-list li input[type="checkbox"] {
 </figure>
 </div>
 </div>
-<p>I hold a Ph.D.&nbsp;focusing on the relationship between visual and auditory perception in sound art, and a degree in Composition with Electroacoustic Media from the National University of Quilmes (UNQ). My academic career includes teaching positions at several institutions: I am a professor at the University of Quilmes (Computing Applied to Music area), the National University of Arts (Multimedia Arts area), and the University of Tres de Febrero (Electronic Arts area).</p>
-<p>My passion for programming and digital audio applications has led me to explore various programming languages and tools over the past two decades, including C, C++, Python, and Pure Data. I am an advocate of the open-source philosophy, regularly working with Linux and sharing my projects in publicly accessible repositories. My technical expertise extends to hardware development using microcontrollers and single-board computers, enabling me to adopt a hands-on approach in both my artistic and research endeavors.</p>
 <div class="callout callout-style-simple callout-note no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -437,36 +436,36 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="what-is-this-book-about" class="level2">
 <h2 class="anchored" data-anchor-id="what-is-this-book-about">What is this book about?</h2>
-<p>The goal of this book is to support undergraduate and postgraduate students in exploring the intersection of creativity and technology alongside peers from diverse backgrounds. Building on years of teaching experience at several public universities<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>, this work encourages the integration of a creative mindset with programming skills to design original tools, algorithms, and artworks. Through this synthesis, the book invites students to engage with sound, interactivity, and control protocols in both technical and expressive dimensions.</p>
+<p>The goal of this book is to support readers in exploring the intersection of creativity and technology in collaboration with peers from diverse backgrounds. It encourages the development of a creative mindset alongside programming skills to design original tools, algorithms, and artistic works. Through this synthesis, the book invites readers to engage with sound, interactivity, and control protocols—addressing both their technical implementation and expressive potential.</p>
 <p>Rather than offering a fixed, linear progression, the structure of this book is deliberately open and modular. Readers are encouraged to navigate the content according to their interests, needs, or curiosity. This flexibility supports an experimental approach to learning, where exploration and play are not only welcome but essential.</p>
 <p>By approaching programming as a creative practice, this book invites you to think, make, and reflect through code. Whether you’re building an interactive sound installation, prototyping a digital instrument, or simply experimenting with new ideas, the goal is to empower you with the tools and concepts to express yourself in the digital domain—and to enjoy the process along the way.</p>
 </section>
 <section id="why-code-that-sounds" class="level2">
 <h2 class="anchored" data-anchor-id="why-code-that-sounds">Why <em>Code That Sounds</em>?</h2>
 <p>At first glance, the title <em>Code That Sounds</em> may seem literal—code that produces audio. But it also opens a conceptual field that reflects the spirit of this book: the convergence of computation, sound, and creative expression. We treat code not only as a functional tool for generating and processing sound, but as a medium for composition, experimentation, and discovery.</p>
-<p>The title highlights the immediate activity of coding to produce audio: from simple sine waves to complex interactive systems, tools like Pure Data turn logical structures into audible forms. But it also gestures toward a deeper, more poetic reading. In English, “sounds” doesn’t only refer to audio—it also implies resonance, meaning, and sensibility. A line of code can <em>sound right</em>, not just technically but aesthetically. This expressive quality reveals code as a language with tone, rhythm, and intention.</p>
+<p>The title emphasizes the act of coding as a means to produce sound—transforming logical structures into audible forms, from simple sine waves to complex interactive systems. But it also gestures toward a deeper, more poetic reading. In English, “sounds” doesn’t only refer to audio—it also implies resonance, meaning, and sensibility. A line of code can <em>sound right</em>, not just technically but aesthetically. This expressive quality reveals code as a language with tone, rhythm, and intention.</p>
 <p>Through this lens, <em>Code That Sounds</em> positions programming as a creative act—part design, part composition. It invites us to explore how code becomes an audible thought, a structure that lives and reacts, especially in interactive systems. The code doesn’t just <em>produce</em> sound—it <em>performs</em> it.</p>
 <p>This book is shaped by that ethos. We approach creative coding not simply as a technical challenge, but as a practice of listening, of composing with systems, of learning through making. <em>Code That Sounds</em> is both our method and our invitation: to write, to hear, and to imagine what code can become.</p>
 </section>
 <section id="from-problem-to-algorithm" class="level2">
 <h2 class="anchored" data-anchor-id="from-problem-to-algorithm">From Problem to Algorithm</h2>
-<p>One of the central ideas guiding this book is that programming begins not with a tool, but with a question. Before we concern ourselves with implementation, with lines of code or patching wires in Pure Data, we start by identifying a problem—something that needs to be understood, shaped, or transformed. This problem might be technical (how to generate a rhythm evenly distributed over time?), perceptual (how to spatialize a sound to suggest motion?), or poetic (how to evoke a sense of disorientation through modulation?). Each chapter begins with such a prompt, inviting us to investigate the mechanics and metaphors behind the systems we aim to build.</p>
+<p>One of the central ideas guiding this book is that programming begins not with a tool, but with a question. Before we concern ourselves with implementation, we start by identifying a problem—something that needs to be understood, shaped, or transformed. This problem might be technical (how to generate a rhythm evenly distributed over time?), perceptual (how to spatialize a sound to suggest motion?), or poetic (how to evoke a sense of disorientation through modulation?). Each chapter begins with such a prompt, inviting us to investigate the mechanics and metaphors behind the systems we aim to build.</p>
 <p>From this point, the process becomes analytical and compositional. We break down the problem into its smallest components, identify the parameters and constraints at play, and explore the structures—logical, mathematical, sonic—that underpin it. This leads us to design an algorithm: a set of steps, a conceptual model, or a generative rule that connects the problem to a potential solution. The algorithm is not just a procedure—it is a form of reasoning, a translation of intuition into system.</p>
-<p>Only once this conceptual groundwork has been laid do we turn to implementation. The choice of environment—Pure Data, in our case—becomes relevant, but always in service of the larger question. It is not simply learning how to use a tool; you are using the tool to articulate a thought. This means thinking through code, not just writing it. It means seeing your patch not as an end, but as a hypothesis, a sketch, an evolving structure open to revision.</p>
+<p>Only once this conceptual groundwork has been laid do we turn to implementation. The choice of environment becomes relevant, but always in service of the larger question. It is not simply learning how to use a tool; you are using the tool to articulate a thought. This means thinking through code, not just writing it. It means seeing your patch not as an end, but as a hypothesis, a sketch, an evolving structure open to revision.</p>
 <p>Throughout the book, I invite you to cultivate this mindset. When studying an example patch, don’t ask only what it does—ask how it solves a problem. What are the assumptions embedded in its logic? Could the same result be achieved differently? What happens if you modify the rules, invert the process, or apply the algorithm in another context?</p>
 <p>By working in this way, programming becomes more than an exercise in execution. It becomes a space of inquiry and invention—an extension of your thinking, your listening, your compositional practice.</p>
 </section>
 <section id="who-is-this-book-for" class="level2">
 <h2 class="anchored" data-anchor-id="who-is-this-book-for">Who is this book for?</h2>
-<p>This book is for anyone drawn to the idea that code can become an expressive, sonic, and artistic material. It is designed for students, artists, educators, and curious minds—regardless of their technical background—who wish to explore programming as a medium for crafting sound, interactivity, and performance. Whether you’re new to creative coding or already familiar with digital media, this book will guide you through approaches that treat code as more than just a set of instructions. Here, programming becomes a form of listening, composing, and experimenting. Pure Data serves as our primary environment, but our focus lies in cultivating a creative and critical practice with sound and code at its core.</p>
+<p>This book is for anyone drawn to the idea that code can become an expressive, sonic, and artistic material. It is designed for students, artists, educators, and curious minds—regardless of their technical background—who wish to explore programming as a medium for crafting sound, interactivity, and performance. Whether you’re new to creative coding or already familiar with digital media, this book will guide you through approaches that treat code as more than just a set of instructions. In this context, programming becomes a mode of listening, composing, and experimentation. While the programming language provides the technical environment, our primary focus is on developing a creative and critical practice centered on sound and code.</p>
 </section>
 <section id="what-are-you-going-to-learn" class="level2">
 <h2 class="anchored" data-anchor-id="what-are-you-going-to-learn">What are you going to learn?</h2>
-<p>Throughout this book, you will learn how to develop and shape sonic experiences using code. You will build interactive systems in Pure Data that respond, transform, and sound—systems that move beyond the screen and into space, time, and perception. Along the way, you will engage with fundamental techniques of sound synthesis, algorithmic thinking, and generative design, all within a context that values exploration, composition, and artistic intent. Beyond tools and syntax, you will learn to listen to your code, to let it surprise you, and to use it as a means for creative discovery and auditory expression.</p>
+<p>Throughout this book, you will learn how to develop and shape sonic experiences using code. You will build interactive systems that respond, transform, and sound—systems that move beyond the screen and into space, time, and perception. Along the way, you will engage with fundamental techniques of sound synthesis, algorithmic thinking, and generative design, all within a context that values exploration, composition, and artistic intent. Beyond tools and syntax, you will learn to listen to your code, to let it surprise you, and to use it as a means for creative discovery and auditory expression.</p>
 </section>
 <section id="what-are-you-not-going-to-learn" class="level2">
 <h2 class="anchored" data-anchor-id="what-are-you-not-going-to-learn">What are you not going to learn?</h2>
-<p>This book does not attempt to provide exhaustive coverage of Pure Data or its many technical details. It is not a manual or reference guide. Rather than aiming for completeness, we prioritize depth over breadth: we focus on specific concepts, practices, and case studies that support an artistic and experimental approach. You won’t find here every object or external library documented, nor step-by-step instructions for GUI design or audio engineering. Instead, you will find a flexible, hands-on framework to begin crafting systems that sound, and from there, make them your own. This book works best in dialogue with other resources—especially the official Pure Data documentation—and invites you to learn by making, remixing, and listening.</p>
+<p>This book is not a manual or reference guide. Rather than aiming for completeness, we prioritize depth over breadth: we focus on specific concepts, practices, and case studies that support an artistic and experimental approach. You won’t find here every object or external library documented, nor step-by-step instructions for GUI design or audio engineering. Instead, you will find a flexible, hands-on framework to begin crafting systems that sound, and from there, make them your own. This book works best in dialogue with other resources and invites you to learn by making, remixing, and listening.</p>
 </section>
 <section id="a-work-in-progress" class="level2">
 <h2 class="anchored" data-anchor-id="a-work-in-progress">A Work in Progress</h2>
@@ -476,7 +475,7 @@ ul.task-list li input[type="checkbox"] {
 <p><strong>This book is, by design, a work in progress.</strong></p>
 </blockquote>
 </div>
-<p>The intention is not to present a definitive compendium or a closed collection of recipes. Instead, what I offer here is a growing body of materials, case studies, and conceptual tools that evolve in parallel with the creative and technical challenges faced by artists and researchers working at the intersection of code, sound, and interactivity. The choice of Pure Data as the primary platform reflects both its openness and its suitability for rapid prototyping and conceptual clarity. But beyond that, this book aims to serve as a <em>framework for thinking</em>, not just for coding.</p>
+<p>The intention is not to present a definitive compendium or a closed collection of recipes. Instead, what I offer here is a growing body of materials, case studies, and conceptual tools that evolve in parallel with the creative and technical challenges faced by artists and researchers working at the intersection of code, sound, and interactivity. The tools used throughout this book are chosen for their openness, adaptability, and ability to support rapid prototyping with conceptual transparency. More importantly, this book aspires to offer a <em>framework for thinking</em>—an approach to creative problem-solving that extends beyond the act of coding itself.</p>
 </section>
 <section id="backend-first-leaving-the-gui-for-later" class="level2">
 <h2 class="anchored" data-anchor-id="backend-first-leaving-the-gui-for-later">Backend First: Leaving the GUI for Later</h2>
@@ -492,68 +491,68 @@ ul.task-list li input[type="checkbox"] {
 <p></p><figure class="figure"><p></p>
 <div>
 <pre class="mermaid mermaid-js">flowchart LR
-    A[Code that Sounds&lt;br/&gt;Creative Coding and Sonic Thinking with Pure Data] --&gt; B[Preface]
+    A[Code that Sounds] --&gt; B[Preface]
+    B --&gt; B1[Who am I?]
+    B --&gt; B2[What is this book about?]
+    B --&gt; B3[Why Code That Sounds?]
+    B --&gt; B4[From Problem to Algorithm]
+
     
-    A --&gt; C[Play and Rec]
-    C --&gt; C1[Arrays and Tables]
-    C --&gt; C2[readsf~ and writesf~]
-    C --&gt; C3[Basic Recording Concepts]
+    A --&gt; C[1 Introduction]
+    C --&gt; C1[What is Pure Data?]
+    C --&gt; C2[Why Pd?]
+    C --&gt; C3[What is Creative Coding?]
+    C --&gt; C4[Getting Started]
     
-    A --&gt; D[Synthesis]
-    D --&gt; D1[Oscillators]
-    D --&gt; D2[Additive Synthesis]
-    D --&gt; D3[Subtractive Synthesis]
-    D --&gt; D4[Modulation Techniques]
-    D4 --&gt; D4a[AM - Amplitude Modulation]
-    D4 --&gt; D4b[RM - Ring Modulation]
-    D4 --&gt; D4c[FM - Frequency Modulation]
+    A --&gt; D[2 Sequencing]
+    D --&gt; D1[Arrays and Sequencers]
+    D --&gt; D2[8-Step Sequencer Implementation]
+    D --&gt; D3[Random Step Sequencer]
+    D --&gt; D4[Piano Phase - Steve Reich]
+    D --&gt; D5[Random Melody Generator]
+    D --&gt; D6[Euclidean Algorithm]
+    D --&gt; D7[Cellular Automata]
     
-    A --&gt; E[Sonification]
-    E --&gt; E1[Electrocardiogram Step Sequencer]
-    E1 --&gt; E1a[ECG Data Processing]
-    E1 --&gt; E1b[Step Sequence Generation]
-    E1 --&gt; E1c[Creative Applications]
+    A --&gt; E[3 Sampling]
+    E --&gt; E1[I'm Sitting in a Room - Alvin Lucier]
+    E --&gt; E2[I am sitting in a freeverb~]
+    E --&gt; E3[Simple Audio Player]
+    E --&gt; E4[Audio Sampler with phasor~]
     
-    E --&gt; E2[Image Sonification with RGBA Data]
-    E2 --&gt; E2a[Image Loading and Analysis]
-    E2 --&gt; E2b[Pixel Data Extraction]
-    E2 --&gt; E2c[Audio Synthesis from Color]
+    A --&gt; F[4 Sound Synthesis]
+    F --&gt; F1[Introduction &amp; Oscillatory Movements]
+    F --&gt; F2[Sound Sources]
+    F --&gt; F3[Additive Synthesis]
+    F --&gt; F4[Amplitude &amp; Ring Modulation]
+    F --&gt; F5[Frequency Modulation]
+    F --&gt; F6[Subtractive Synthesis]
     
-    E --&gt; E3[Linear Image Scanner]
-    E3 --&gt; E3a[Static Image Scanning]
-    E3 --&gt; E3b[Dynamic Scan Points]
-    E3 --&gt; E3c[Frequency Mapping]
+    A --&gt; G[5 Sonification]
+    G --&gt; G1[Introduction &amp; Data Types]
+    G --&gt; G2[Sonification as Creative Framework]
+    G --&gt; G3[Data Sonification Artworks Database]
+    G --&gt; G4[Data Humanism - Giorgia Lupi]
+    G --&gt; G5[Electrocardiogram Data]
+    G --&gt; G6[ECG-Controlled Step Sequencer]
+    G --&gt; G7[Image Sonification with RGBA Data]
+    G --&gt; G8[Image Scanner]
+    G --&gt; G9[Camera Scanner]
     
-    E --&gt; E4[Live Camera Scanner]
-    E4 --&gt; E4a[Real-time Video Processing]
-    E4 --&gt; E4b[Enhanced Controls]
-    E4 --&gt; E4c[Interactive Applications]
+    A --&gt; H[6 Spatial Audio]
+    H --&gt; H1[The Music Sound Space]
+    H --&gt; H2[Spatial Localization of Sound]
+    H --&gt; H3[Hearing in Enclosed Spaces]
+    H --&gt; H4[Virtual Source Simulation]
+    H --&gt; H5[Stereo Spatialization Implementation]
+    H --&gt; H6[Simulating Distance]
+    H --&gt; H7[Enhanced Distance Modeling]
+    H --&gt; H8[Quadraphonic Spatialization: Chowning Model]
     
-    A --&gt; F[Space]
-    F --&gt; F1[Stereophonic Spatialization]
-    F1 --&gt; F1a[Intensity Panning]
-    F1 --&gt; F1b[Amplitude and Phase]
-    F1 --&gt; F1c[Trigonometric Implementation]
-    
-    F --&gt; F2[Quadraphonic Systems]
-    F2 --&gt; F2a[John Chowning Model]
-    F2 --&gt; F2b[Lookup Tables]
-    F2 --&gt; F2c[Phase Offsets]
-    F2 --&gt; F2d[Distance Modeling]
-    
-    F --&gt; F3[Reverberation Modeling]
-    F3 --&gt; F3a[Sabine Formula]
-    F3 --&gt; F3b[Absorption Coefficients]
-    F3 --&gt; F3c[Implementation Techniques]
-    
-    A --&gt; G[Bjorklund Algorithm]
-    G --&gt; G1[Euclidean Rhythms]
-    G --&gt; G2[Pure Data Implementation]
-    G --&gt; G3[External Development in C]
-    
-    A --&gt; H[Anexo]
-    H --&gt; H1[Sonification Artworks]
-    H --&gt; H2[Reference Materials]
+    A --&gt; I[7 Conclusion]
+    I --&gt; I1[A Synthesis of Themes]
+    I --&gt; I2[Sound, Code, and Interaction]
+    I --&gt; I3[Open Tools, Open Futures]
+    I --&gt; I4[Toward What Comes Next]
     
     style A fill:#e1f5fe
     style B fill:#f3e5f5
@@ -563,6 +562,7 @@ ul.task-list li input[type="checkbox"] {
     style F fill:#f1f8e9
     style G fill:#e0f2f1
     style H fill:#fafafa
+    style I fill:#ffebee
 </pre>
 </div>
 <p></p></figure><p></p>
@@ -583,19 +583,15 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Do not write me emails with questions about Pd.</p>
-<p>Please, if you have questions about Pd, post them on the <a href="https://forum.pdpatchrepo.info/">Pure Data forum</a>, the <a href="https://lists.iem.at/postorius/lists/">Pd mailing lists</a>, or the <a href="https://www.facebook.com/groups/4729684494">Facebook Pd Group</a>.</p>
+<p>Please, do not write me emails with questions!</p>
+<p>If you have questions, post them on the <a href="https://forum.pdpatchrepo.info/">Pure Data forum</a>, the <a href="https://lists.iem.at/postorius/lists/">Pd mailing lists</a>, or the <a href="https://www.facebook.com/groups/4729684494">Facebook Pd Group</a>.</p>
 </div>
 </div>
 </section>
 <section id="acknowledgements" class="level2">
 <h2 class="anchored" data-anchor-id="acknowledgements">Acknowledgements</h2>
 <p>I would like to express my gratitude to the following individuals and organizations for their support and contributions to this book:</p>
-<ul>
-<li><a href="https://puredata.info/">Pure Data</a> for providing a powerful and flexible platform for creative coding.</li>
-<li><a href="https://puredata.info/community">The Pd community</a> for their invaluable resources, tutorials, and support.</li>
-<li><a href="https://opensource.org/">The open-source community</a> for their dedication to sharing knowledge and tools for creative coding.</li>
-</ul>
+<p>Martín Matus Lerner, Pablo Freiberg.</p>
 </section>
 <section id="license" class="level2">
 <h2 class="anchored" data-anchor-id="license">License</h2>
