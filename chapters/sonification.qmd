@@ -190,15 +190,13 @@ Overall, Data Humanism advocates for data representations that embrace subjectiv
 
 ## Electrocardiogram Data  
 
-This Pd patch represents an approach to biomedical data sonification, transforming electrocardiogram (ECG) readings into audible waveforms. By treating physiological data as audio samples, the patch creates a unique intersection between medical diagnostics and sound synthesis, offering both artistic and analytical possibilities for exploring cardiac rhythms through auditory perception.
+This Pd patch represents an approach to biomedical data sonification, transforming electrocardiogram (ECG) readings into audible waveforms. By treating physiological data as audio samples, the patch creates an intersection between medical diagnostics and sound synthesis, offering both artistic and analytical possibilities for exploring cardiac rhythms through auditory perception.
 
 ![Electrocardiogram sonification patch converting physiological data into audio through array storage](/assets/screenshots/sonification/electrocardiogram.png)
 
 ### Patch Overview
 
-The electrocardiogram synthesis patch implements a complete data-to-audio pipeline that processes filtered ECG data stored in text format. The system loads cardiac waveform data into Pd arrays and uses audio synthesis techniques to render the biological signals as sound, enhanced with spatial reverberation effects.
-
-#### ECG Data Format and Structure
+The electrocardiogram synthesis patch implements a data-to-audio pipeline that processes filtered ECG data stored in text format. The system loads cardiac waveform data into Pd arrays and uses audio synthesis techniques to render the biological signals as sound, enhanced with spatial reverberation effects.
 
 The electrocardiogram.txt file contains preprocessed electrocardiogram (ECG) data representing cardiac electrical activity captured from a real patient or medical recording device.
 
