@@ -3,19 +3,13 @@
 In this chapter, we will explore the concept of sonification, its applications, and how it can be implemented using Pd. We will also discuss the importance of understanding data types and classifications in the context of sonification.
 
 ## Introduction
-Imagine hearing the changes in global temperature over the past thousand years. What does a brainwave sound like? How can sound be used to enhance a pilot’s performance in the cockpit? These intriguing questions, among many others, fall within the realm of **auditory display** and **sonification**.
+Imagine hearing the changes in global temperature over the past thousand years. What does a brainwave sound like? How can sound be used to enhance a pilot’s performance in the cockpit? These intriguing questions, among many others, fall within the realm of auditory display and sonification.
 
-Researchers in Auditory Display explore how the human auditory system can serve as a primary interface channel for communicating and conveying information. The goal of auditory display is to foster a deeper understanding or appreciation of the patterns and structures embedded in data beyond what is visible on the screen. 
+Researchers in Auditory Display explore how the human auditory system can serve as a primary interface channel for communicating and conveying information. The goal of auditory display is to foster a deeper understanding or appreciation of the patterns and structures embedded in data beyond what is visible on the screen. Auditory display encompasses all aspects of human-computer interaction systems, including the hardware setup (speakers or headphones), modes of interaction with the display system, and any technical solutions for data collection, processing, and computation needed to generate sound in response to data. 
 
-Auditory display encompasses all aspects of human-computer interaction systems, including the hardware setup (speakers or headphones), modes of interaction with the display system, and any technical solutions for data collection, processing, and computation needed to generate sound in response to data. 
+In contrast, sonification is a core technique within auditory display: the process of rendering sound from data and interactions. Unlike voice interfaces or artistic soundscapes, auditory displays have gained increasing attention in recent years and are becoming a standard method alongside visualization for presenting data across diverse contexts. The international research effort to understand every aspect of auditory display began with the founding of the **International Community for Auditory Display (ICAD)** in 1992. It is fascinating to observe how sonification and auditory display techniques have evolved in the relatively short time since their formal definition, with development accelerating steadily since 2011.
 
-In contrast, **sonification** is a core technique within auditory display: the process of rendering sound from data and interactions. Unlike voice interfaces or artistic soundscapes, auditory displays have gained increasing attention in recent years and are becoming a standard method alongside visualization for presenting data across diverse contexts.
-
-The international research effort to understand every aspect of auditory display began with the founding of the **International Community for Auditory Display (ICAD)** in 1992. It is fascinating to observe how sonification and auditory display techniques have evolved in the relatively short time since their formal definition, with development accelerating steadily since 2011.
-
-Auditory display and sonification are now employed across a wide range of fields. Applications include chaos theory, biomedicine, interfaces for visually impaired users, data mining, seismology, desktop and mobile computing interaction, among many others. 
-
-Equally diverse is the set of research disciplines required for successful sonification: physics, acoustics, psychoacoustics, perceptual research, sound engineering, and computer science form the core technical foundations. However, psychology, musicology, cognitive science, linguistics, pedagogy, social sciences, and philosophy are also essential for a comprehensive, multifaceted understanding of the description, technical implementation, usage, training, comprehension, acceptance, evaluation, and ergonomics of auditory displays and sonification in particular.
+Auditory display and sonification are now employed across a wide range of fields. Applications include chaos theory, biomedicine, interfaces for visually impaired users, data mining, seismology, desktop and mobile computing interaction, among many others. Equally diverse is the set of research disciplines required for successful sonification: physics, acoustics, psychoacoustics, perceptual research, sound engineering, and computer science form the core technical foundations. However, psychology, musicology, cognitive science, linguistics, pedagogy, social sciences, and philosophy are also essential for a comprehensive, multifaceted understanding of the description, technical implementation, usage, training, comprehension, acceptance, evaluation, and ergonomics of auditory displays and sonification in particular.
 
 ![Multidisciplinary landscape of sonification research encompassing technical, perceptual, and cultural domains essential for effective auditory display design and implementation.](/assets/images/sonification/sonification-disciplines.png)
 
@@ -186,17 +180,17 @@ Personalization plays a crucial role in enabling individuals to **define and str
 
 ### Sensemaking Process
 
-Data Humanism also foregrounds the importance of **deep, deliberate engagement** in the interpretive act of making sense of data. As Lupi [@lupi2017] observes, insight does not emerge from superficial scanning but from a sustained exploration of context and meaning. In this light, the process of data sensemaking is framed as **investigative, interpretive, and relational**, acknowledging the imperfection and approximation that are often intrinsic to human data.
+Data Humanism also foregrounds the importance of deep, deliberate engagement in the interpretive act of making sense of data. As Lupi [@lupi2017] observes, insight does not emerge from superficial scanning but from a sustained exploration of context and meaning. In this light, the process of data sensemaking is framed as investigative, interpretive, and relational, acknowledging the imperfection and approximation that are often intrinsic to human data.
 
-This approach encourages individuals to **participate actively** in the shaping of their own data narratives—through exploration, translation, and imaginative visualization—which in turn facilitates deeper personal connections and empathetic understanding of others. These practices resonate with the concept of **slow technology** [@hallnas2001], which posits that slower, more reflective interactions can enrich user experience, enabling more space for contemplation and insight. Here, “slowness” is not a limitation but a strategic feature, fostering sustained attention and interpretive depth.
+This approach encourages individuals to participate actively in the shaping of their own data narratives—through exploration, translation, and imaginative visualization—which in turn facilitates deeper personal connections and empathetic understanding of others. These practices resonate with the concept of slow technology [@hallnas2001], which posits that slower, more reflective interactions can enrich user experience, enabling more space for contemplation and insight. Here, “slowness” is not a limitation but a strategic feature, fostering sustained attention and interpretive depth.
 
-Recent work in personal visualization has explored how Data Humanism can be applied in practice. One avenue involves **sketch-based visualization tools**, which leverage the intuitive, open-ended nature of drawing to support the creation of personalized visual representations. Another involves **constructive visualizations**: physical, often non-digital artifacts that users assemble and manipulate to give form to data. Additionally, digital platforms have been developed that enable the design of expressive visualizations capable of capturing **qualitative aspects of personal context**, broadening the expressive range of data visual design.
+Recent work in personal visualization has explored how Data Humanism can be applied in practice. One avenue involves sketch-based visualization tools, which leverage the intuitive, open-ended nature of drawing to support the creation of personalized visual representations. Another involves constructive visualizations: physical, often non-digital artifacts that users assemble and manipulate to give form to data. Additionally, digital platforms have been developed that enable the design of expressive visualizations capable of capturing qualitative aspects of personal context, broadening the expressive range of data visual design.
 
-Overall, Data Humanism advocates for data representations that embrace **subjectivity and slowness** as virtues rather than limitations. It proposes that personal data is best understood not through abstract generalization, but through thoughtful, expressive, and often collaborative processes. In this book, we extend this line of inquiry by examining how **Data Humanism principles can be integrated into collaborative design practices** for personal visualization—exploring new ways to humanize, materialize, and narrativize the data that defines and reflects our lives.
+Overall, Data Humanism advocates for data representations that embrace subjectivity and slowness as virtues rather than limitations. It proposes that personal data is best understood not through abstract generalization, but through thoughtful, expressive, and often collaborative processes. In this book, we extend this line of inquiry by examining how Data Humanism principles can be integrated into collaborative design practices for personal visualization—exploring new ways to humanize, materialize, and narrativize the data that defines and reflects our lives.
 
 ## Electrocardiogram Data  
 
-This Pd patch represents an innovative approach to biomedical data sonification, transforming electrocardiogram (ECG) readings into audible waveforms. By treating physiological data as audio samples, the patch creates a unique intersection between medical diagnostics and sound synthesis, offering both artistic and analytical possibilities for exploring cardiac rhythms through auditory perception.
+This Pd patch represents an approach to biomedical data sonification, transforming electrocardiogram (ECG) readings into audible waveforms. By treating physiological data as audio samples, the patch creates a unique intersection between medical diagnostics and sound synthesis, offering both artistic and analytical possibilities for exploring cardiac rhythms through auditory perception.
 
 ![Electrocardiogram sonification patch converting physiological data into audio through array storage](/assets/screenshots/sonification/electrocardiogram.png)
 
@@ -204,33 +198,7 @@ This Pd patch represents an innovative approach to biomedical data sonification,
 
 The electrocardiogram synthesis patch implements a complete data-to-audio pipeline that processes filtered ECG data stored in text format. The system loads cardiac waveform data into Pd arrays and uses audio synthesis techniques to render the biological signals as sound, enhanced with spatial reverberation effects.
 
-### System Architecture
-
-```{mermaid}
-graph TD
-    A[electrocardiogram.txt] --> B[readtxt subpatch]
-    B --> C[Array Sizing]
-    A --> D[Array Loading]
-    D --> E[tabread4~ Audio Reader]
-    F[Phasor~ Oscillator] --> E
-    E --> G[freeverb~ Reverb]
-    G --> H[Audio Output]
-    B --> I[Data Count Output]
-```
-
-### Key Objects and Their Roles
-
-| Object | Function | Parameters |
-|--------|----------|------------|
-| `readtxt` | Subpatch for file analysis | Counts data points in text file |
-| `textfile` | File reading mechanism | Loads ECG data from external source |
-| `table/array` | Data storage buffer | Holds ECG samples for playback |
-| `phasor~` | Playback control oscillator | Sweeps through array data |
-| `tabread4~` | Audio sample interpolator | Reads array as continuous audio |
-| `freeverb~` | Spatial audio processor | Adds reverberation to output |
-
-
-### ECG Data Format and Structure
+#### ECG Data Format and Structure
 
 The electrocardiogram.txt file contains preprocessed electrocardiogram (ECG) data representing cardiac electrical activity captured from a real patient or medical recording device.
 
@@ -256,6 +224,19 @@ The high sample count (47,499 points) provides sufficient temporal resolution to
 
 ### Data Flow
 
+```{mermaid}
+graph TD
+    A[electrocardiogram.txt] --> B[readtxt subpatch]
+    B --> C[Array Sizing]
+    A --> D[Array Loading]
+    D --> E[tabread4~ Audio Reader]
+    F[Phasor~ Oscillator] --> E
+    E --> G[freeverb~ Reverb]
+    G --> H[Audio Output]
+    B --> I[Data Count Output]
+```
+
+
 The `readtxt` subpatch serves as a preprocessing module that:
 
 1. Opens the electrocardiogram.txt file
@@ -270,7 +251,7 @@ graph LR
     C --> D[Audio Conversion]
 ```
 
-The electrocardiogram sonification patch orchestrates a sophisticated data transformation pipeline that converts static physiological measurements into dynamic audio experiences. This process involves multiple interconnected stages of data handling, each contributing essential functionality to the overall system's ability to render cardiac rhythms as meaningful sonic representations.
+The electrocardiogram sonification patch implements a data transformation pipeline that converts static physiological measurements into dynamic audio experiences. This process involves multiple interconnected stages of data handling, each contributing essential functionality to the overall system's ability to render cardiac rhythms as meaningful sonic representations.
 
 The initial phase of data flow centers on the comprehensive analysis and preparation of the source electrocardiogram dataset. The `readtxt` subpatch performs a preliminary scan of the `electrocardiogram.txt` file, systematically counting the total number of individual data points contained within the text document. This preprocessing step proves crucial for subsequent memory allocation decisions, as Pd requires explicit array dimensioning before data can be loaded into memory buffers. The subpatch communicates the determined data quantity to the main patch, enabling dynamic array sizing that accommodates datasets of varying lengths without requiring manual configuration adjustments. Following this analysis phase, the system initiates the actual data transfer process, where numerical values representing cardiac electrical activity are systematically loaded from the text file into Pd's internal array structures. This loading operation transforms the static file-based data into a format suitable for real-time audio processing, creating a bridge between stored physiological measurements and live sonic synthesis.
 
@@ -294,6 +275,17 @@ The patch maintains signal integrity through:
 
 This electrocardiogram synthesis patch demonstrates Pd's versatility in scientific data visualization through sound, creating meaningful auditory representations of biological processes while maintaining the temporal and amplitude characteristics essential for medical interpretation.
 
+### Key Objects and Their Roles
+
+| Object | Function | Parameters |
+|--------|----------|------------|
+| `readtxt` | Subpatch for file analysis | Counts data points in text file |
+| `textfile` | File reading mechanism | Loads ECG data from external source |
+| `table/array` | Data storage buffer | Holds ECG samples for playback |
+| `phasor~` | Playback control oscillator | Sweeps through array data |
+| `tabread4~` | Audio sample interpolator | Reads array as continuous audio |
+| `freeverb~` | Spatial audio processor | Adds reverberation to output |
+
 
 ## ECG-Controlled Step Sequencer
 
@@ -303,36 +295,7 @@ This patch demonstrates an innovative approach to data-driven rhythm generation,
 
 ### Patch Overview
 
-The ECG-controlled step sequencer implements a rhythm generation system that uses cardiac data as the fundamental timing source for audio playback. Rather than sonifying the ECG waveform directly, this patch extracts temporal information from the physiological data to control the rhythmic structure of a step sequencer, creating polyrhythmic patterns that reflect the natural variability of human heartbeat intervals.
-
-### System Architecture
-
-```{mermaid}
-graph TD
-    A[electrocardiogram.txt] --> B[readtxt subpatch]
-    B --> C[counter subpatch]
-    C --> D[ECG Value Reader]
-    D --> E[BPM Scaling]
-    E --> F[Delay Object]
-    F --> G[Bang Trigger]
-    G --> H[Audio Playback]
-    I[Audio File] --> J[audiotable Array]
-    J --> K[tabplay~ Object]
-    G --> K
-    K --> L[Audio Output]
-```
-
-### Key Objects and Their Roles
-
-| Object | Function | Parameters |
-|--------|----------|------------|
-| `readtxt` | ECG data file reader | Loads and counts data points from text file |
-| `counter` | Sequential data access | Steps through ECG values line by line |
-| `tabread` | Array value retrieval | Reads individual ECG measurements |
-| `del` | Rhythmic timing control | Creates delays based on ECG-derived BPM |
-| `tabplay~` | Audio sample playback | Triggers audio file samples |
-| `soundfiler` | Audio file loader | Loads external audio into array |
-| `spigot` | Gate control | Enables/disables sequencer operation |
+The ECG-controlled step sequencer implements a rhythm generation algorithm that uses cardiac data as the fundamental timing source for audio playback. Rather than sonifying the ECG waveform directly, this patch extracts temporal information from the physiological data to control the rhythmic structure of a step sequencer, creating polyrhythmic patterns that reflect the natural variability of human heartbeat intervals.
 
 #### Data Processing Components
 
@@ -356,7 +319,22 @@ The counter mechanism implements sequential data traversal with automatic cyclin
 
 ### Data Flow
 
-The ECG-controlled step sequencer orchestrates a multi-stage data transformation process that converts static cardiac measurements into dynamic rhythmic triggers. This system demonstrates how biological timing patterns can be extracted and repurposed as musical control data, creating compositions that maintain organic temporal characteristics while serving structured musical functions.
+```{mermaid}
+graph TD
+    A[electrocardiogram.txt] --> B[readtxt subpatch]
+    B --> C[counter subpatch]
+    C --> D[ECG Value Reader]
+    D --> E[BPM Scaling]
+    E --> F[Delay Object]
+    F --> G[Bang Trigger]
+    G --> H[Audio Playback]
+    I[Audio File] --> J[audiotable Array]
+    J --> K[tabplay~ Object]
+    G --> K
+    K --> L[Audio Output]
+```
+
+The ECG-controlled step sequencer shows a multi-stage data transformation process that converts static cardiac measurements into dynamic rhythmic triggers. This system demonstrates how biological timing patterns can be extracted and repurposed as musical control data, creating compositions that maintain organic temporal characteristics while serving structured musical functions.
 
 The initial data preparation phase centers on the comprehensive loading and organization of the electrocardiogram dataset. The `readtxt` subpatch performs dual functions: it analyzes the text file structure to determine data quantity and simultaneously loads the numerical values into Pd's table system for efficient random access. This preprocessing ensures that the cardiac data becomes immediately available for real-time sequential reading without file system delays that would disrupt musical timing. The subpatch communicates essential metadata to the main patch, including total data point count and successful loading confirmation, enabling the counter system to establish appropriate cycling boundaries for continuous operation.
 
@@ -374,7 +352,7 @@ graph LR
 
 ### Processing Chain Details
 
-The patch maintains sonic coherence through several design considerations: the scaling factor allows adjustment of the overall tempo range to match musical contexts, the counter's cycling behavior ensures continuous operation without interruption, and the audio loading system supports various sample types from percussive hits to sustained tones. This flexibility enables the ECG step sequencer to function across diverse sound applications, from experimental compositions exploring biological rhythms to dance music productions requiring organic timing variations.
+The patch maintains sonic coherence through several design considerations: the scaling factor allows adjustment of the overall tempo range to match rhythmn contexts, the counter's cycling behavior ensures continuous operation without interruption, and the audio loading system supports various sample types from percussive hits to sustained tones. This flexibility enables the ECG step sequencer to function across diverse sound applications, from experimental compositions exploring biological rhythms to dance music productions requiring organic timing variations.
 
 | Stage | Input | Process | Output |
 |-------|-------|---------|--------|
@@ -383,6 +361,18 @@ The patch maintains sonic coherence through several design considerations: the s
 | 3 | ECG Values | Multiplication scaling | Delay times (ms) |
 | 4 | Delay Times | Temporal scheduling | Bang triggers |
 | 5 | Bang Triggers | Audio sample initiation | Sound output |
+
+### Key Objects and Their Roles
+
+| Object | Function | Parameters |
+|--------|----------|------------|
+| `readtxt` | ECG data file reader | Loads and counts data points from text file |
+| `counter` | Sequential data access | Steps through ECG values line by line |
+| `tabread` | Array value retrieval | Reads individual ECG measurements |
+| `del` | Rhythmic timing control | Creates delays based on ECG-derived BPM |
+| `tabplay~` | Audio sample playback | Triggers audio file samples |
+| `soundfiler` | Audio file loader | Loads external audio into array |
+| `spigot` | Gate control | Enables/disables sequencer operation |
 
 ### Creative Applications
 
@@ -414,6 +404,16 @@ The RGBA image sonification system consists of three main components working in 
 
 The patch workflow follows a clear data pipeline: images are loaded and decomposed into RGBA channels, pixel values are normalized and stored in arrays, and finally converted to audio samples with frequency and amplitude modulation capabilities.
 
+#### Critical Data Processing Objects
+
+**pix_dump**: This object serves as the bridge between GEM's visual processing and Pd's audio domain. It outputs a continuous stream of RGBA values (typically 0-255 range) that represent the complete image dataset.
+
+**Array Management**: Each RGBA channel requires its own array for independent manipulation. The arrays store normalized values (-1 to 1) making them suitable for direct audio interpretation.
+
+**tabread4~**: Provides crucial interpolation between array values, creating smooth audio transitions rather than harsh digital stepping when reading pixel data as audio samples.
+
+### Data Flow
+
 ```{mermaid}
 flowchart TD
     A[Image File] --> B[pix_dump]
@@ -431,30 +431,9 @@ flowchart TD
     style F fill:#fff3e0
 ```
 
-### Key Objects and Their Roles
+The RGBA image sonification patch implements a comprehensive data transformation pipeline that converts visual information into auditory experiences through multiple interconnected processing stages. This workflow demonstrates how digital image data can be systematically decomposed, analyzed, and reconstituted as meaningful sonic representations while preserving the essential characteristics of the original visual content.
 
-| Object | Function | Role in Sonification |
-|--------|----------|---------------------|
-| `pix_dump` | Pixel data extraction | Converts image to sequential RGBA values |
-| `array` | Data storage | Holds normalized pixel values for each channel |
-| `tabread4~` | Array interpolation | Smooth audio sample reading with interpolation |
-| `phasor~` | Timing control | Generates read position for array traversal |
-| `*~` | Audio mixing | Amplitude control and channel mixing |
-| `dac~` | Audio output | Final audio rendering |
-
-#### Critical Data Processing Objects
-
-**pix_dump**: This object serves as the bridge between GEM's visual processing and Pd's audio domain. It outputs a continuous stream of RGBA values (typically 0-255 range) that represent the complete image dataset.
-
-**Array Management**: Each RGBA channel requires its own array for independent manipulation. The arrays store normalized values (-1 to 1) making them suitable for direct audio interpretation.
-
-**tabread4~**: Provides crucial interpolation between array values, creating smooth audio transitions rather than harsh digital stepping when reading pixel data as audio samples.
-
-### Data Flow
-
-The RGBA image sonification patch orchestrates a comprehensive data transformation pipeline that converts visual information into auditory experiences through multiple interconnected processing stages. This sophisticated workflow demonstrates how digital image data can be systematically decomposed, analyzed, and reconstituted as meaningful sonic representations while preserving the essential characteristics of the original visual content.
-
-The initial image decomposition stage establishes the foundation for the entire sonification process through the critical function of the `pix_dump` object. When an image file is loaded into the system, whether in JPEG, PNG, TIFF, or other supported formats, the `pix_dump` object performs a comprehensive analysis that extracts every pixel's color information as a sequential stream of numerical values. This extraction process follows a systematic pattern where each pixel contributes four distinct values representing its Red, Green, Blue, and Alpha channel intensities. The resulting data stream takes the form of R1 G1 B1 A1 R2 G2 B2 A2 R3 G3 B3 A3, creating a linear representation of the two-dimensional visual information. This linearization process effectively flattens the spatial relationships of the image into a temporal sequence, transforming visual space into a time-based data structure suitable for audio processing. The pixel values extracted during this stage typically range from 0 to 255, representing the standard 8-bit color depth used in most digital image formats.
+The initial image decomposition stage establishes the foundation for the entire sonification process through the critical function of the `pix_dump` object. When an image file is loaded into the system, whether in JPEG, PNG, TIFF, or other supported formats, the `pix_dump` object performs a comprehensive analysis that extracts every pixel's color information as a sequential stream of numerical values. This extraction process follows a systematic pattern where each pixel contributes four distinct values representing its Red, Green, Blue, and Alpha channel intensities. The resulting data stream takes the form of `R1 G1 B1 A1 R2 G2 B2 A2 R3 G3 B3 A3`, creating a linear representation of the two-dimensional visual information. This linearization process effectively flattens the spatial relationships of the image into a temporal sequence, transforming visual space into a time-based data structure suitable for audio processing. The pixel values extracted during this stage typically range from 0 to 255, representing the standard 8-bit color depth used in most digital image formats.
 
 The channel separation and normalization stage represents a critical transformation where the raw pixel data becomes suitable for audio synthesis applications. The continuous RGBA stream generated by the image decomposition process undergoes systematic demultiplexing, where individual color channel values are separated and directed into dedicated processing pathways. This separation enables independent manipulation of each color channel, allowing for sophisticated sonic textures that can emphasize specific visual characteristics of the original image. The Red channel array captures the warm color information and often contains significant luminance data, while the Green channel typically holds the most visually sensitive information due to human perception characteristics. The Blue channel frequently contains fine detail and cooler color information, and the Alpha channel represents transparency data that may reveal composition and layering information within the original image. Each separated channel undergoes normalization processing that converts the original 0-255 range into the -1 to 1 range required for audio synthesis, ensuring that the pixel data can be directly interpreted as audio sample values without amplitude clipping or distortion.
 
@@ -502,6 +481,17 @@ The four audio channels (RGBA) are mixed using configurable amplitude controls, 
 - Weighted mixing of color information
 - Dynamic balance adjustment during playback
 
+### Key Objects and Their Roles
+
+| Object | Function | Role in Sonification |
+|--------|----------|---------------------|
+| `pix_dump` | Pixel data extraction | Converts image to sequential RGBA values |
+| `array` | Data storage | Holds normalized pixel values for each channel |
+| `tabread4~` | Array interpolation | Smooth audio sample reading with interpolation |
+| `phasor~` | Timing control | Generates read position for array traversal |
+| `*~` | Audio mixing | Amplitude control and channel mixing |
+| `dac~` | Audio output | Final audio rendering |
+
 ### Creative Applications
 
 
@@ -538,7 +528,7 @@ This sonification approach opens new possibilities for cross-modal artistic expr
 
 ## Image Scanner
 
-This patch implements a linear scanning sonification system that transforms visual image data into audio through systematic pixel sampling. By creating multiple scan points that traverse an image from left to right, the patch converts spatial color information into frequency-controlled oscillators, creating a real-time audio representation of visual content. This approach enables users to "hear" images through systematic exploration of pixel data across defined scan lines.
+This patch implements a linear scanning sonification that transforms visual image data into audio through systematic pixel sampling. By creating multiple scan points that traverse an image from left to right, the patch converts spatial color information into frequency-controlled oscillators, creating a real-time audio representation of visual content. This approach enables users to "hear" images through systematic exploration of pixel data across defined scan lines.
 
 The scanning process reveals the vertical distribution of visual information within images, where different scan lines capture distinct horizontal slices of the visual content. Each scan point operates independently, creating polyphonic textures that reflect the complexity and variation present in the source image.
 
@@ -554,6 +544,16 @@ The linear image scanner consists of four primary subsystems that work together 
 4. **Audio Synthesis**: Converts pixel data into frequency-controlled oscillators
 
 The patch employs dynamic patching techniques to generate scalable numbers of scan points, each implemented as an instance of the `linear-scan` abstraction. This modular approach enables flexible configuration while maintaining efficient processing of multiple simultaneous scan lines.
+
+#### Critical Processing Components
+
+**pix_data Object**: This GEM object serves as the core interface between visual and audio domains. It samples pixel color values at specified x,y coordinates within the loaded image. The normalize message controls coordinate interpretation: when enabled (default), coordinates range from (0.0, 0.0) at bottom-left to (1.0, 1.0) at top-right; when disabled, coordinates use actual pixel dimensions.
+
+**Dynamic Patch Generation**: The `generate-scanpoints` subpatch implements dynamic patching techniques to create configurable numbers of `linear-scan` instances. This system calculates y-position arguments for each scan line and generates the corresponding patch objects programmatically.
+
+**linear-scan Abstraction**: Each scan line is implemented as an abstraction that receives a y-position argument determining its vertical position within the image. The abstraction contains the pixel sampling logic and frequency mapping calculations specific to that scan line.
+
+### Data Flow
 
 ```{mermaid}
 flowchart TD
@@ -575,27 +575,6 @@ flowchart TD
     style F fill:#fff3e0
 ```
 
-### Key Objects and Their Roles
-
-| Object | Function | Role in Scanning |
-|--------|----------|------------------|
-| `pix_image` | Image loading | Loads image files into GEM processing chain |
-| `pix_texture` | Texture rendering | Enables visual display and pixel access |
-| `pix_data` | Pixel sampling | Extracts color values at specified coordinates |
-| `linear-scan` | Scan line abstraction | Implements individual scanning instances |
-| `osc~` | Audio oscillator | Generates frequency-controlled sine waves |
-| `line` | Temporal interpolation | Controls scanning position over time |
-| `metro` | Timing control | Coordinates scan timing across instances |
-
-#### Critical Processing Components
-
-**pix_data Object**: This GEM object serves as the core interface between visual and audio domains. It samples pixel color values at specified x,y coordinates within the loaded image. The normalize message controls coordinate interpretation: when enabled (default), coordinates range from (0.0, 0.0) at bottom-left to (1.0, 1.0) at top-right; when disabled, coordinates use actual pixel dimensions.
-
-**Dynamic Patch Generation**: The `generate-scanpoints` subpatch implements dynamic patching techniques to create configurable numbers of `linear-scan` instances. This system calculates y-position arguments for each scan line and generates the corresponding patch objects programmatically.
-
-**linear-scan Abstraction**: Each scan line is implemented as an abstraction that receives a y-position argument determining its vertical position within the image. The abstraction contains the pixel sampling logic and frequency mapping calculations specific to that scan line.
-
-### Data Flow
 
 The linear image scanner a real-time processing pipeline that transforms static visual information into dynamic audio representations through systematic pixel sampling and frequency mapping. This process demonstrates how spatial image data can be converted into temporal audio experiences while preserving meaningful relationships between visual characteristics and sonic parameters.
 
@@ -646,6 +625,18 @@ The patch implements sophisticated coordinate management that ensures proper spa
 
 **Temporal Synchronization**: All scan lines move simultaneously from left to right, maintaining spatial coherence while revealing temporal evolution of visual content.
 
+### Key Objects and Their Roles
+
+| Object | Function | Role in Scanning |
+|--------|----------|------------------|
+| `pix_image` | Image loading | Loads image files into GEM processing chain |
+| `pix_texture` | Texture rendering | Enables visual display and pixel access |
+| `pix_data` | Pixel sampling | Extracts color values at specified coordinates |
+| `linear-scan` | Scan line abstraction | Implements individual scanning instances |
+| `osc~` | Audio oscillator | Generates frequency-controlled sine waves |
+| `line` | Temporal interpolation | Controls scanning position over time |
+| `metro` | Timing control | Coordinates scan timing across instances |
+
 ### Creative Applications
 
 - **Musical Score Scanning**: Transform written musical notation into audio by scanning staff lines, converting note positions into corresponding pitches and rhythms
@@ -660,7 +651,7 @@ The patch implements sophisticated coordinate management that ensures proper spa
 
 ## Camera Scanner
 
-This patch extends the linear image scanning concept to real-time video input, creating dynamic sonification of live camera feeds. Unlike the static image scanner previously discussed, this system processes continuous video streams from web cameras, enabling real-time exploration of moving visual content through audio. The patch maintains the core scanning methodology while introducing temporal dynamics that reflect the changing nature of live video input.
+This patch extends the linear image scanning concept to real-time video input, creating dynamic sonification of live camera feeds. Unlike the static image scanner previously discussed, this patch processes continuous video streams from web cameras, enabling real-time exploration of moving visual content through audio. The patch maintains the core scanning methodology while introducing temporal dynamics that reflect the changing nature of live video input.
 
 The live camera scanner transforms the temporal dimension of video into immediate sonic feedback, where movements, lighting changes, and scene transitions become audible through frequency modulation across multiple scan lines. This creates an interactive relationship between the physical environment captured by the camera and the generated audio landscape.
 
@@ -677,19 +668,6 @@ The live camera scanner builds upon the established linear scanning framework wh
 
 The system maintains the same dynamic patching architecture and frequency mapping strategies established in the static image scanner, ensuring consistency in the sonification approach while adapting to the temporal nature of video input.
 
-### Key Objects and Their Roles
-
-Building upon the previously established scanning framework, the live camera scanner introduces several additional components:
-
-| Object | Function | Role in Live Scanning |
-|--------|----------|----------------------|
-| `pix_video` | Camera input capture | Provides continuous video stream from webcam |
-| `pix_contrast` | Image enhancement | Adjusts pixel intensity for better scanning contrast |
-| `pix_invert` | Color inversion | Creates alternative visual representations |
-| `pix_2grey` | Grayscale conversion | Simplifies color data for processing |
-| `random` | Stochastic positioning | Generates unpredictable scan patterns |
-| `spigot` | Control gating | Enables/disables random scanning behavior |
-
 #### Live Video Processing Components
 
 **pix_video Object**: Captures real-time video input from connected cameras, providing the continuous data stream that replaces static image loading. The object supports multiple camera devices and delivers frame-by-frame pixel data to the scanning system.
@@ -700,7 +678,7 @@ Building upon the previously established scanning framework, the live camera sca
 
 ### Data Flow
 
-The live camera scanner orchestrates a continuous real-time processing pipeline that transforms streaming video data into dynamic audio representations. While maintaining the core scanning methodology established in the static image scanner, this system introduces temporal continuity and enhanced control mechanisms that respond to the evolving nature of live video input.
+The live camera scanner use a continuous real-time processing pipeline that transforms streaming video data into dynamic audio representations. While maintaining the core scanning methodology established in the static image scanner, this system introduces temporal continuity and enhanced control mechanisms that respond to the evolving nature of live video input.
 
 The live video capture and preprocessing stage establishes a continuous data source through integrated camera management and image enhancement systems. The `pix_video` object maintains a persistent connection to the selected camera device, delivering frame-by-frame pixel data at standard video refresh rates. This continuous stream undergoes real-time preprocessing through a sophisticated image enhancement chain that optimizes the visual content for effective sonification. The `pix_2grey` object converts color video to grayscale, reducing computational complexity while preserving luminance information essential for frequency mapping. The `pix_contrast` object provides real-time contrast adjustment, enabling users to emphasize or diminish visual details based on scanning requirements. The optional `pix_invert` stage creates alternative visual representations that can reveal hidden patterns or provide aesthetic variations in the sonic output. This preprocessing chain ensures that the video data reaches the scanning system in an optimized format that maximizes the effectiveness of the pixel-to-frequency mapping process.
 
@@ -744,6 +722,19 @@ The live camera scanner maintains the established processing architecture while 
 **Adaptive Frequency Scaling**: Real-time adjustment capabilities enable the system to respond to varying lighting conditions and scene content, maintaining optimal frequency mapping across different visual environments.
 
 **Computational Efficiency**: The live processing requirements demand efficient algorithms that can maintain real-time performance while processing multiple scan lines simultaneously across continuous video streams.
+
+### Key Objects and Their Roles
+
+Building upon the previously established scanning framework, the live camera scanner introduces several additional components:
+
+| Object | Function | Role in Live Scanning |
+|--------|----------|----------------------|
+| `pix_video` | Camera input capture | Provides continuous video stream from webcam |
+| `pix_contrast` | Image enhancement | Adjusts pixel intensity for better scanning contrast |
+| `pix_invert` | Color inversion | Creates alternative visual representations |
+| `pix_2grey` | Grayscale conversion | Simplifies color data for processing |
+| `random` | Stochastic positioning | Generates unpredictable scan patterns |
+| `spigot` | Control gating | Enables/disables random scanning behavior |
 
 ### Creative Applications
 
