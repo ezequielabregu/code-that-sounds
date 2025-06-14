@@ -1,4 +1,4 @@
-![](/assets/images/index/cover-7.png){width="75%"}
+![](/assets/images/index/cover-7.png){width="65%"}
 
 # Preface {.unnumbered}
 
@@ -112,7 +112,7 @@ flowchart LR
     D --> D6[Euclidean Algorithm]
     D --> D7[Cellular Automata]
     
-    A --> E[3 Sampling]
+    A --> E[3 Rec & Play]
     E --> E1[I'm Sitting in a Room - Alvin Lucier]
     E --> E2[I am sitting in a freeverb~]
     E --> E3[Simple Audio Player]
@@ -176,7 +176,7 @@ If you have questions, post them on the [Pure Data forum](https://forum.pdpatchr
 
 ## Acknowledgements
 
-I would like to express my gratitude to the following individuals and organizations for their support and contributions to this book:
+I would like to express my gratitude to the following individuals and organizations for their support, feedback and contributions to this book:
 
 Martín Matus Lerner, Pablo Freiberg.
 

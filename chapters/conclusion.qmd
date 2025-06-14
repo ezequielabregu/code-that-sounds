@@ -1,4 +1,4 @@
-# Conclusion
+# Conclusion {.unnumbered}
 
 Writing this book has been, above all, an exercise in listening: listening to code, to sound, to problems waiting for solutions—and, perhaps most importantly, to the questions that emerge from the creative process itself. *Code That Sounds* was never intended to offer definitive answers or a closed system. Rather, it opens a space—a conceptual and practical territory—where sound, code, and imagination intersect. As such, this conclusion is not a full stop, but a resonance: a reflection on what we’ve learned, what remains unresolved, and what may yet be explored.
 

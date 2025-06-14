@@ -1,0 +1,7 @@
+#N canvas 555 91 800 598 16;
+#X obj 302 252 output~;
+#X obj 302 210 osc~;
+#X floatatom 302 171 5 0 0 2 Frequency\ Hz - - 0;
+#X connect 1 0 0 0;
+#X connect 1 0 0 1;
+#X connect 2 0 1 0;
