@@ -81,6 +81,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/bootstrap/bootstrap-1e81d527365e20b3495763033adbcf98.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="../site_libs/bootstrap/bootstrap-dark-8ab8b311eebd604b8865a9cbc6c08092.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <link href="../site_libs/bootstrap/bootstrap-1e81d527365e20b3495763033adbcf98.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -363,7 +366,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/conclusion.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Conclusion</span></span></a>
+ <span class="menu-text">Conclusion</span></a>
   </div>
 </li>
     </ul>
@@ -425,14 +428,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 data-number="1.1" class="anchored" data-anchor-id="what-is-pure-data"><span class="header-section-number">1.1</span> What is Pure Data?</h2>
 <p>Pure Data (or Pd) is a real-time graphical programming environment for audio, video, and graphical processing. Pd is commonly used for live music performance, VeeJaying, sound effects, composition, audio analysis, interfacing with sensors, using cameras, controlling robots or even interacting with websites. Because all of these various media are handled as digital data within the program, many fascinating opportunities for cross-synthesis between them exist. Sound can be used to manipulate video, which could then be streamed over the internet to another computer which might analyze that video and use it to control a motor-driven installation.</p>
 <p>Programming with Pd is a unique interaction that is much closer to the experience of manipulating things in the physical world. The most basic unit of functionality is a box, and the program is formed by connecting these boxes together into diagrams that both represent the flow of data while actually performing the operations mapped out in the diagram. The program itself is always running, there is no separation between writing the program and running the program, and each action takes effect the moment it is completed.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../assets/images/introduction/hello-world.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="A basic “Hello World” example in Pd"><img src="../assets/images/introduction/hello-world.png" class="img-fluid figure-img" style="width:25.0%" alt="A basic “Hello World” example in Pd"></a></p>
+<figcaption>A basic “Hello World” example in Pd</figcaption>
+</figure>
+</div>
 <p>The community of users and programmers around Pd have created additional functions (called “externals” or “external libraries”) which are used for a wide variety of other purposes, such as video processing, the playback and streaming of MP3s or Quicktime video, the manipulation and display of 3-dimensional objects and the modeling of virtual physical objects. There is a wide range of external libraries available which give Pd additional features. Just about any kind of programming is feasible using Pd as long as there are externals libraries which provide the most basic units of functionality required.</p>
 <p>The core of Pd written and maintained by <a href="http://crca.ucsd.edu/~msp/">Miller S. Puckette</a> and includes the work of <a href="http://www.puredata.org/">many developers</a>, making the whole package very much a community effort.</p>
 </section>
 <section id="why-pd" class="level2" data-number="1.2">
 <h2 data-number="1.2" class="anchored" data-anchor-id="why-pd"><span class="header-section-number">1.2</span> Why Pd?</h2>
 <p>Pd is a powerful, open-source environment for creative coding, offering a uniquely visual approach to programming that is especially suited for artists, musicians, and interactive media designers. Its intuitive interface and modular structure make it a flexible and accessible tool for developing real-time audio and visual projects—from live performances to experimental installations.</p>
-<p>One of Pd’s standout features is its <strong>graphical programming interface</strong>, which replaces traditional lines of code with visual objects and patch cords. This allows users to construct complex behaviors by connecting elements on screen, making it easier to prototype and refine creative ideas. <strong>Real-time processing</strong> capabilities mean that audio and visual data can be generated, modified, and responded to instantly—ideal for performances, generative art, or interactive systems that react to sensors or user input.</p>
-<p>Beyond its creative potential, Pd offers practical advantages: it is <strong>cross-platform</strong>, running on Windows, macOS, and Linux, and integrates easily with tools like <strong>Arduino</strong>, <strong>Raspberry Pi</strong>, and <strong>Max/MSP</strong>, enabling hybrid systems that combine digital and physical components. A rich ecosystem of <strong>external libraries</strong> supports advanced functions like synthesis, visualization, and computer vision. Its <strong>open-source nature</strong> encourages exploration and collaboration, with a supportive community, extensive documentation, and countless tutorials available. Because it’s <strong>free and widely used in education</strong>, Pd is not only an effective tool for artistic expression but also a valuable learning resource for developing a strong foundation in programming and multimedia design.</p>
+<p>One of Pd’s standout features is its graphical programming interface, which replaces traditional lines of code with visual objects and patch cords. This allows users to construct complex behaviors by connecting elements on screen, making it easier to prototype and refine creative ideas. Real-time processing capabilities mean that audio and visual data can be generated, modified, and responded to instantly—ideal for performances, generative art, or interactive systems that react to sensors or user input.</p>
+<p>Beyond its creative potential, Pd offers practical advantages: it is cross-platform, running on Windows, macOS, and Linux, and integrates easily with tools like Arduino, Raspberry Pi, and Max/MSP, enabling hybrid systems that combine digital and physical components. A rich ecosystem of <strong>external libraries</strong> supports advanced functions like synthesis, visualization, and computer vision. Its open-source nature encourages exploration and collaboration, with a supportive community, extensive documentation, and countless tutorials available. Because it’s free and widely used in education, Pd is not only an effective tool for artistic expression but also a valuable learning resource for developing a strong foundation in programming and multimedia design.</p>
 </section>
 <section id="what-is-creative-coding" class="level2" data-number="1.3">
 <h2 data-number="1.3" class="anchored" data-anchor-id="what-is-creative-coding"><span class="header-section-number">1.3</span> What is Creative Coding?</h2>
@@ -451,33 +460,142 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>To get the most out of this book, you should have a basic understanding of programming and some familiarity with the Pd language.</p>
 <section id="tools-manuals-and-resources" class="level3" data-number="1.4.1">
 <h3 data-number="1.4.1" class="anchored" data-anchor-id="tools-manuals-and-resources"><span class="header-section-number">1.4.1</span> Tools, Manuals, and Resources</h3>
-<p>If you are new to Pd or programming, there are several free online resources that can help you get started. Pd may initially appear intimidating—its blank, minimalistic interface offers no hints or prompts, and users are often left wondering where to begin. What objects are available? How do they function? This curated list of resources is intended to guide newcomers and experienced users alike by offering clear pathways into the Pd ecosystem.</p>
-<p><a href="http://floss.booktype.pro/pure-data/introduction2/">Pd FLOSS Manual</a> – A beginner-friendly and comprehensive guide. This manual offers a full introduction, covering everything from installation and configuration to more advanced programming techniques. A recommended first stop for new users.</p>
-<p><a href="https://msp.ucsd.edu/Pd_documentation/index.htm">Official Pd Documentation</a> – Authored by <strong>Miller Puckette</strong>, the creator of Pd, this manual is essential for serious exploration. While it can be technical and terse, it serves as the definitive reference, especially when third-party materials are lacking in detail. The documentation can also be accessed from within Pd via <code>Help → HTML Manual</code>.</p>
-<p><a href="https://msp.ucsd.edu/techniques/latest/book.pdf">Theory and Techniques of Electronic Music</a> – This canonical text by Miller Puckette accompanies Pd’s example patches (found via <code>Help → Browser → Audio Examples</code>). Although it has a steep learning curve, it is invaluable for those wishing to deepen their understanding of digital signal processing in the Pd environment.</p>
-<p><a href="https://msp.ucsd.edu/Pd_documentation/resources/chapter1.htm#s1.2">Pd Tutorials Browser</a> (Help → Browser → Manuals) – Within Pd, under the “Manuals” section of the browser, you’ll find a range of beginner-focused tutorials, including sections on audio, visuals, and networking. These are ideal for building a foundational understanding.</p>
-<p><a href="https://msp.ucsd.edu/Pd_documentation/resources/chapter1.htm#s1.2">Object Help Patches</a> – Right-clicking on any object in a patch and selecting “Help” will open a contextual help patch explaining how the object works, often with embedded examples. Right-clicking on the background of a patch will show a list of available objects—an excellent way to explore what’s possible in Pd.</p>
-<p><a href="http://www.puredata.org">puredata.org</a> – The official website for Pd. It offers current news, documentation, FAQs, and additional links and downloads. It’s also a great place to find updates and learn about the community.</p>
-<p><a href="https://www.youtube.com/playlist?list=PL12DC9A161D8DC5DC">YouTube and Vimeo Tutorials</a> – A large number of video tutorials can be found on platforms like <strong>YouTube</strong> and <strong>Vimeo</strong>. These visual resources are invaluable for those who prefer step-by-step demonstrations.</p>
-<p><a href="https://patchstorage.com/platform/pd-vanilla/">Patchstorage</a> – A community-driven platform for sharing and discovering Pd patches. From beginner-level exercises to full multimedia installations, Patchstorage is an inspiring and practical resource for real-world Pd applications.</p>
-<p><a href="https://puredata.info/downloads/workshop">Pd Workshop Files</a> – Patches and resources by Max Neupert and Frank Barknecht. These materials include motion detection examples (Pd/Gem), some annotated in German.</p>
-<p><a href="http://www.obiwannabe.co.uk/html/sound-design/sound-design-all.html">Andy Farnell – Designing Sound</a> – The author of <em>Designing Sound</em> (ISBN 0-262-01441-6) provides patches and tutorials focused on procedural audio and sound design in Pd.</p>
-<p><a href="http://www.pd-tutorial.com">Loadbang – Johannes Kreidler</a> – An online tutorial and book (ISBN 978-3-936000-57-3) offering practical guidance through creative coding projects in Pd.</p>
-<p><a href="https://pd.iem.sh/">Kunstuniversität Graz / Pd</a> – An extensive collection of tutorials and resources for learning Pd, including tutorials and example patches.</p>
-<p><a href="https://www.amazon.com/-/es/Multimedia-Programming-Pure-Bryan-Chung/dp/1782164642">Multimedia Programming with Pd (B. Chung)</a> – You will learn how to author various digital media, such as images, animations, audio, and videos. From simple to sophisticated interaction techniques, you will learn to apply these techniques in your practical multimedia projects with Pd.</p>
-<p><a href="https://www.amazon.com/Pure-Data-Electronic-Design-Practice/dp/889921221X">Pd: Electronic Music and Sound Design - Theory and Practice - Volume 1</a> - by Francesco Bianchi, Alessandro Cipriani and Maurizio Giri, the book is an overview of the theory and practice of Pd, with a glossary of terms and suggested tests that allow students to evaluate their progress.</p>
-<p><a href="https://github.com/porres/Live-Electronics-Tutorial">Live Electronics Tutorial by Alexandre Torres Porres</a> - This tutorial presents theory and practice of Live Electronics and computer music, synthesis/DSP (digital Signal Processing) topics without any prerequisite.</p>
-<p><a href="http://www.ekran.org/pd/">Ekran.org Gem Tutorials</a> – Additional tutorials on Gem for those interested in audiovisual composition and performance.</p>
+<p>If you are new to Pd or programming, there are many online resources that can help you get started. Pd may initially appear intimidating—its blank, minimalistic interface offers no hints or prompts, and users are often left wondering where to begin. What objects are available? How do they function? This curated list of resources is intended to guide newcomers and experienced users alike by offering clear pathways into the Pd ecosystem.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Resource</th>
+<th>Author/Source</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Pd Tutorials Browser</td>
+<td>Built-in</td>
+<td>Beginner tutorials within <code>Pd (Help → Browser → Manuals</code>) covering audio, visuals, networking</td>
+</tr>
+<tr class="even">
+<td>Object Help Patches</td>
+<td>Built-in</td>
+<td>Contextual help for any object via <code>right-click → Help</code>, with embedded examples</td>
+</tr>
+<tr class="odd">
+<td><a href="http://floss.booktype.pro/pure-data/introduction2/">Pd FLOSS Manual</a></td>
+<td>Community</td>
+<td>Beginner-friendly comprehensive guide covering installation to advanced techniques</td>
+</tr>
+<tr class="even">
+<td><a href="https://msp.ucsd.edu/Pd_documentation/index.htm">Official Pd Documentation</a></td>
+<td>Miller Puckette</td>
+<td>Definitive reference by Pd’s creator, accessible via Help → HTML Manual</td>
+</tr>
+<tr class="odd">
+<td><a href="https://msp.ucsd.edu/techniques/latest/book.pdf">Theory and Techniques of Electronic Music</a></td>
+<td>Miller Puckette</td>
+<td>Canonical text accompanying Pd’s audio examples, focuses on DSP concepts</td>
+</tr>
+<tr class="even">
+<td><a href="http://www.puredata.org">puredata.org</a></td>
+<td>Official</td>
+<td>Main website with news, documentation, FAQs, and community resources</td>
+</tr>
+<tr class="odd">
+<td><a href="https://www.youtube.com/playlist?list=PL12DC9A161D8DC5DC">YouTube/Vimeo Tutorials</a></td>
+<td>Various</td>
+<td>Video tutorials with step-by-step demonstrations</td>
+</tr>
+<tr class="even">
+<td><a href="https://patchstorage.com/platform/pd-vanilla/">Patchstorage</a></td>
+<td>Community</td>
+<td>Platform for sharing and discovering Pd patches from beginner to advanced</td>
+</tr>
+<tr class="odd">
+<td><a href="https://puredata.info/downloads/workshop">Pd Workshop Files</a></td>
+<td>Max Neupert, Frank Barknecht</td>
+<td>Workshop materials including motion detection examples</td>
+</tr>
+<tr class="even">
+<td><a href="http://www.obiwannabe.co.uk/html/sound-design/sound-design-all.html">Designing Sound</a></td>
+<td>Andy Farnell</td>
+<td>Patches and tutorials focused on procedural audio and sound design</td>
+</tr>
+<tr class="odd">
+<td><a href="http://www.pd-tutorial.com">Loadbang</a></td>
+<td>Johannes Kreidler</td>
+<td>Online tutorial and book with practical creative coding projects</td>
+</tr>
+<tr class="even">
+<td><a href="https://pd.iem.sh/">Kunstuniversität Graz</a></td>
+<td>IEM Graz</td>
+<td>Extensive collection of tutorials and example patches</td>
+</tr>
+<tr class="odd">
+<td><a href="https://www.amazon.com/-/es/Multimedia-Programming-Pure-Bryan-Chung/dp/1782164642">Multimedia Programming with Pd</a></td>
+<td>Bryan Chung</td>
+<td>Book covering digital media authoring: images, animations, audio, videos</td>
+</tr>
+<tr class="even">
+<td><a href="https://www.amazon.com/Pure-Data-Electronic-Design-Practice/dp/889921221X">Electronic Music and Sound Design Vol. 1</a></td>
+<td>Bianchi, Cipriani, Giri</td>
+<td>Theory and practice overview with glossary and student evaluation tests</td>
+</tr>
+<tr class="odd">
+<td><a href="https://github.com/porres/Live-Electronics-Tutorial">Live Electronics Tutorial</a></td>
+<td>Alexandre Torres Porres</td>
+<td>Theory and practice of live electronics and computer music synthesis/DSP</td>
+</tr>
+<tr class="even">
+<td><a href="https://pragprog.com/titles/thsound/programming-sound-with-pure-data/">Programming Sound with Pure Data</a></td>
+<td>Tony Hillerson</td>
+<td>Introduces and explores Pure Data, building understanding of sound design concepts along the way</td>
+</tr>
+<tr class="odd">
+<td><a href="http://www.ekran.org/pd/">Ekran.org Gem Tutorials</a></td>
+<td>Ekran.org</td>
+<td>Tutorials on Gem for audiovisual composition and</td>
+</tr>
+</tbody>
+</table>
 </section>
 <section id="recommended-pd-distributions" class="level3" data-number="1.4.2">
 <h3 data-number="1.4.2" class="anchored" data-anchor-id="recommended-pd-distributions"><span class="header-section-number">1.4.2</span> Recommended Pd distributions</h3>
-<p>This book is based on <strong>Pd Vanilla</strong> distribution, which is the most widely used version. You can download it from the <a href="https://puredata.info/downloads/pure-data"><strong>Pd official website</strong></a>. This version is maintained by the original author, Miller Puckette<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>, and is the most stable supported version of Pd. It includes all the core features and libraries needed for most projects, making it a great starting point for beginners and experienced users alike. <strong>Pd Vanilla</strong> is a free, open-source and available for Windows, macOS, and Linux operating systems.</p>
+<p>This book is based on <strong>Pd Vanilla</strong> distribution, which is the most widely used version. You can download it from the <a href="https://puredata.info/downloads/pure-data"><strong>Pd official website</strong></a>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../assets/images/introduction/pd-vanilla.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Pd Vanilla distribution"><img src="../assets/images/introduction/pd-vanilla.png" class="img-fluid figure-img" style="width:75.0%" alt="Pd Vanilla distribution"></a></p>
+<figcaption>Pd Vanilla distribution</figcaption>
+</figure>
+</div>
+<p>This version is maintained by the original author, Miller Puckette<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>, and is the most stable supported version of Pd. It includes all the core features and libraries needed for most projects, making it a great starting point for beginners and experienced users alike. <strong>Pd Vanilla</strong> is a free, open-source and available for Windows, macOS, and Linux operating systems.</p>
 <p>In addition to Pd Vanilla, there are several other distributions and versions of Pd that you may find useful:</p>
 <ul>
-<li><p><a href="https://agraef.github.io/purr-data/">Purr Data</a> – A fork of Pd-l2ork that focuses on usability and accessibility, with a more polished interface and additional features. Purr Data serves the same purpose, but offers a new and much improved graphical user interface and includes many 3rd party plug-ins. Like Pd, it runs on Linux, macOS and Windows, and is open-source throughout.</p></li>
-<li><p><a href="https://plugdata.org/">Plugdata</a> – plugdata is a plugin wrapper designed for Miller Puckette’s Pd, featuring an enhanced graphical user interface (GUI) created using JUCE, headed by Timothy Schoen. this project is still a work in progress, and may still have some bugs. By default, plugdata comes with the cyclone and ELSE collections of externals and abstractions.</p></li>
-<li><p><a href="https://ceammc.github.io/pd-help/">Pd Ceammc</a> - a general purpose Pd distribution and library that is used for performance, sound-design and education purposes in Centre of electroacoustic music of Moscow Conservatory (CEAM).</p></li>
+<li><a href="https://agraef.github.io/purr-data/"><strong>Purr Data</strong></a> – A fork of Pd-l2ork that focuses on usability and accessibility, with a more polished interface and additional features. Purr Data serves the same purpose, but offers a new and much improved graphical user interface and includes many 3rd party plug-ins. Like Pd, it runs on Linux, macOS and Windows, and is open-source throughout.</li>
 </ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../assets/images/introduction/purr-data.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Purr Data distribution"><img src="../assets/images/introduction/purr-data.png" class="img-fluid figure-img" style="width:75.0%" alt="Purr Data distribution"></a></p>
+<figcaption>Purr Data distribution</figcaption>
+</figure>
+</div>
+<ul>
+<li><a href="https://plugdata.org/"><strong>Plugdata</strong></a> – plugdata is a plugin wrapper designed for Miller Puckette’s Pd, featuring an enhanced graphical user interface (GUI) created using JUCE, headed by Timothy Schoen. this project is still a work in progress, and may still have some bugs. By default, plugdata comes with the cyclone and ELSE collections of externals and abstractions.</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../assets/images/introduction/plugdata.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="Plugdata distribution"><img src="../assets/images/introduction/plugdata.png" class="img-fluid figure-img" style="width:75.0%" alt="Plugdata distribution"></a></p>
+<figcaption>Plugdata distribution</figcaption>
+</figure>
+</div>
+<ul>
+<li><a href="https://ceammc.github.io/pd-help/"><strong>Pd Ceammc</strong></a> - a general purpose Pd distribution and library that is used for performance, sound-design and education purposes in Centre of electroacoustic music of Moscow Conservatory (CEAM).</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../assets/images/introduction/pd-ceammc.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-5" title="Pd Ceammc distribution"><img src="../assets/images/introduction/pd-ceammc.jpg" class="img-fluid figure-img" style="width:75.0%" alt="Pd Ceammc distribution"></a></p>
+<figcaption>Pd Ceammc distribution</figcaption>
+</figure>
+</div>
 </section>
 <section id="recommended-libraries-and-externals" class="level3" data-number="1.4.3">
 <h3 data-number="1.4.3" class="anchored" data-anchor-id="recommended-libraries-and-externals"><span class="header-section-number">1.4.3</span> Recommended libraries and externals</h3>
@@ -579,7 +697,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>After installation, open Pd from the Start Menu or desktop shortcut.</li>
 <li>The main Pd window should appear with a blank patch ready.</li>
 </ul>
-<hr>
 </section>
 </section>
 <section id="installing-on-macos" class="level3" data-number="1.4.6">
@@ -616,7 +733,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>If prompted, allow Pd to access the microphone.</li>
 <li>Open <code>System Preferences &gt; Security &amp; Privacy &gt; Microphone</code> and ensure Pd is enabled.</li>
 </ul>
-<hr>
 </section>
 </section>
 <section id="installing-on-linux" class="level3" data-number="1.4.7">
@@ -726,6 +842,12 @@ For example, to use the <code>counter</code> object from the <code>cyclone</code
 <section id="macos" class="level4" data-number="1.4.9.1">
 <h4 data-number="1.4.9.1" class="anchored" data-anchor-id="macos"><span class="header-section-number">1.4.9.1</span> macOS</h4>
 <p>macOS provides a native solution for virtual MIDI routing through the <strong>IAC Bus</strong> (Inter-Application Communication Bus), a built-in MIDI driver that allows you to create multiple virtual MIDI ports.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../assets/images/introduction/iac-driver.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6" title="Image of IAC Driver in MIDI Studio"><img src="../assets/images/introduction/iac-driver.png" class="img-fluid figure-img" style="width:75.0%" alt="Image of IAC Driver in MIDI Studio"></a></p>
+<figcaption>Image of IAC Driver in MIDI Studio</figcaption>
+</figure>
+</div>
 <p>To enable and configure the IAC Bus:</p>
 <ol type="1">
 <li><p>Open the <strong>Audio MIDI Setup</strong> application (found in <code>/Applications/Utilities</code>), then select <strong>Window → Show MIDI Studio</strong> from the top menu.</p></li>
@@ -740,8 +862,16 @@ For example, to use the <code>counter</code> object from the <code>cyclone</code
 <h4 data-number="1.4.9.2" class="anchored" data-anchor-id="windows"><span class="header-section-number">1.4.9.2</span> Windows</h4>
 <p>Unlike macOS, Windows does not include a built-in virtual MIDI bus. However, several reliable third-party tools are freely available:</p>
 <ul>
-<li><p><a href="https://www.tobias-erichsen.de/software/loopmidi.html"><strong>loopMIDI</strong></a>, developed by Tobias Erichsen, provides a robust solution for creating virtual MIDI ports and supports multiple concurrent buses. It is compatible with both 32-bit and 64-bit systems and is widely recommended for use with modern DAWs and programming environments.</p></li>
-<li><p><a href="http://www.midiox.com/"><strong>MIDI Yoke</strong></a> is a legacy solution bundled with MIDI-OX, offering basic virtual MIDI routing. However, MIDI Yoke is <strong>32-bit only</strong>, and therefore <strong>not compatible with 64-bit software</strong>, including Live 10 and later. Use with caution and only in legacy setups.</p></li>
+<li><a href="https://www.tobias-erichsen.de/software/loopmidi.html"><strong>loopMIDI</strong></a>, developed by Tobias Erichsen, provides a robust solution for creating virtual MIDI ports and supports multiple concurrent buses. It is compatible with both 32-bit and 64-bit systems and is widely recommended for use with modern DAWs and programming environments.</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../assets/images/introduction/loop-midi.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7" title="loopMIDI interface"><img src="../assets/images/introduction/loop-midi.png" class="img-fluid figure-img" style="width:75.0%" alt="loopMIDI interface"></a></p>
+<figcaption>loopMIDI interface</figcaption>
+</figure>
+</div>
+<ul>
+<li><a href="http://www.midiox.com/"><strong>MIDI Yoke</strong></a> is a legacy solution bundled with MIDI-OX, offering basic virtual MIDI routing. However, MIDI Yoke is <strong>32-bit only</strong>, and therefore <strong>not compatible with 64-bit software</strong>, including Live 10 and later. Use with caution and only in legacy setups.</li>
 </ul>
 <p>When setting up virtual MIDI buses in Windows, ensure that your audio software and any MIDI-routing utilities are operating with compatible bit-depths and permissions. Proper driver installation and restart may be necessary to expose the new virtual ports in your system’s MIDI routing options.</p>
 <p>Virtual MIDI buses are essential tools for building interactive sound systems, enabling communication between modular audio software, DAWs, and real-time instruments. Whether you are sending MIDI from Pd to a DAW, or routing control signals between applications, setting up a virtual MIDI infrastructure is a crucial foundational step.</p>
@@ -1200,6 +1330,38 @@ For example, to use the <code>counter</code> object from the <code>cyclone</code
     </div>
   </div>
 </footer>
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
 
 
 

@@ -355,7 +355,7 @@ div.csl-indent {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/conclusion.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Conclusion</span></span></a>
+ <span class="menu-text">Conclusion</span></a>
   </div>
 </li>
     </ul>
@@ -641,7 +641,7 @@ div.csl-indent {
 </section>
 <section id="electrocardiogram-data" class="level2" data-number="5.6">
 <h2 data-number="5.6" class="anchored" data-anchor-id="electrocardiogram-data"><span class="header-section-number">5.6</span> Electrocardiogram Data</h2>
-<p>This Pd patch represents an approach to biomedical data sonification, transforming electrocardiogram (ECG) readings into audible waveforms. By treating physiological data as audio samples, the patch creates a unique intersection between medical diagnostics and sound synthesis, offering both artistic and analytical possibilities for exploring cardiac rhythms through auditory perception.</p>
+<p>This Pd patch represents an approach to biomedical data sonification, transforming electrocardiogram (ECG) readings into audible waveforms. By treating physiological data as audio samples, the patch creates an intersection between medical diagnostics and sound synthesis, offering both artistic and analytical possibilities for exploring cardiac rhythms through auditory perception.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><a href="../assets/screenshots/sonification/electrocardiogram.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Electrocardiogram sonification patch converting physiological data into audio through array storage"><img src="../assets/screenshots/sonification/electrocardiogram.png" class="img-fluid figure-img" alt="Electrocardiogram sonification patch converting physiological data into audio through array storage"></a></p>
@@ -650,13 +650,10 @@ div.csl-indent {
 </div>
 <section id="patch-overview" class="level3" data-number="5.6.1">
 <h3 data-number="5.6.1" class="anchored" data-anchor-id="patch-overview"><span class="header-section-number">5.6.1</span> Patch Overview</h3>
-<p>The electrocardiogram synthesis patch implements a complete data-to-audio pipeline that processes filtered ECG data stored in text format. The system loads cardiac waveform data into Pd arrays and uses audio synthesis techniques to render the biological signals as sound, enhanced with spatial reverberation effects.</p>
-<section id="ecg-data-format-and-structure" class="level4" data-number="5.6.1.1">
-<h4 data-number="5.6.1.1" class="anchored" data-anchor-id="ecg-data-format-and-structure"><span class="header-section-number">5.6.1.1</span> ECG Data Format and Structure</h4>
+<p>The electrocardiogram synthesis patch implements a data-to-audio pipeline that processes filtered ECG data stored in text format. The system loads cardiac waveform data into Pd arrays and uses audio synthesis techniques to render the biological signals as sound, enhanced with spatial reverberation effects.</p>
 <p>The electrocardiogram.txt file contains preprocessed electrocardiogram (ECG) data representing cardiac electrical activity captured from a real patient or medical recording device.</p>
-</section>
-<section id="format-specification" class="level4" data-number="5.6.1.2">
-<h4 data-number="5.6.1.2" class="anchored" data-anchor-id="format-specification"><span class="header-section-number">5.6.1.2</span> Format Specification</h4>
+<section id="format-specification" class="level4" data-number="5.6.1.1">
+<h4 data-number="5.6.1.1" class="anchored" data-anchor-id="format-specification"><span class="header-section-number">5.6.1.1</span> Format Specification</h4>
 <ul>
 <li><strong>File Type</strong>: Plain text format (.txt)</li>
 <li><strong>Data Points</strong>: 47,499 individual samples</li>
@@ -665,8 +662,8 @@ div.csl-indent {
 <li><strong>Data Type</strong>: Integer values representing digitized voltage measurements</li>
 </ul>
 </section>
-<section id="signal-properties" class="level4" data-number="5.6.1.3">
-<h4 data-number="5.6.1.3" class="anchored" data-anchor-id="signal-properties"><span class="header-section-number">5.6.1.3</span> Signal Properties</h4>
+<section id="signal-properties" class="level4" data-number="5.6.1.2">
+<h4 data-number="5.6.1.2" class="anchored" data-anchor-id="signal-properties"><span class="header-section-number">5.6.1.2</span> Signal Properties</h4>
 <p>The ECG data exhibits characteristic patterns of cardiac electrical activity:</p>
 <table class="caption-top table">
 <colgroup>
