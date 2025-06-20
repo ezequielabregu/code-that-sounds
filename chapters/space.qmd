@@ -833,6 +833,168 @@ This function design creates the characteristic "phantom source" effect where vi
 - **Adaptive Concert Hall Simulation**: Use real-time reverberation control to simulate different acoustic environments during performance, from intimate chambers to vast cathedrals.
 - **Collaborative Virtual Environments**: Network multiple quadraphonic systems where remote participants can position sounds within shared virtual acoustic spaces for telepresence applications.
 
+## Mid/Side (M/S) Processing
+
+Mid/Side (M/S) processing is a fundamental stereo audio technique that transforms conventional left/right stereo signals into a representation consisting of mid (center) and side (stereo difference) components. This transformation enables precise independent manipulation of the central mono-compatible content and the peripheral stereo information, providing powerful creative control over stereo imaging and spatial characteristics. The technique finds extensive application in mixing, mastering, and sound design contexts where selective processing of spatial components is required.
+
+The M/S approach offers unique advantages over conventional stereo processing by separating spatial information into functionally distinct components. The mid channel contains the sum of left and right signals, representing content that appears centered in the stereo field, while the side channel contains the difference between left and right signals, representing the spatial width and ambience information. This separation enables processing strategies that would be impossible with conventional L/R stereo signals.
+
+![Mid/side stereo processing with adjustable "width" control.](/assets/screenshots/space/mid-side-stereo.png)
+
+### Patch Overview
+
+The *mid-side-stereo.pd* patch implements a complete M/S processing system that demonstrates both encoding and decoding stages within a single interface. The patch features a stereo audio file player (`drum.wav`) that feeds into an M/S encoder, followed by a stereo width control that manipulates the side channel amplitude, and finally an M/S decoder that reconstructs the stereo signal. This architecture enables real-time demonstration of how M/S processing affects stereo imaging while maintaining mathematical precision throughout the signal chain.
+
+The system incorporates a sophisticated stereo width control mechanism that allows users to adjust the prominence of the side channel from complete mono (width = 0) to exaggerated stereo enhancement (width > 1). This control provides immediate auditory feedback about how M/S processing affects spatial perception while demonstrating the mathematical relationships underlying stereo imaging manipulation.
+
+The patch design emphasizes educational clarity by implementing the encoding and decoding stages as separate processing blocks with clear signal flow visualization. The mathematical operations are implemented using `expr~` objects that execute the precise calculations required for M/S transformation while maintaining the amplitude relationships essential for accurate stereo reconstruction.
+
+### Data Flow
+
+```{mermaid}
+flowchart TD
+    A[Audio File Player] --> B[Stereo Input L/R]
+    B --> C[M/S Encoding]
+    C --> D[Mid Channel M = L + R]
+    C --> E[Side Channel S = L - R]
+    E --> F[Stereo Width Control]
+    F --> G[Modified Side Channel]
+    D --> H[M/S Decoding]
+    G --> H
+    H --> I[Left Output L = M + S * 0.7071]
+    H --> J[Right Output R = M - S * 0.7071]
+    I --> K[Stereo Audio Output]
+    J --> K
+    
+    style A fill:#e1f5fe
+    style K fill:#f3e5f5
+    style C fill:#fff3e0
+    style H fill:#fff3e0
+```
+
+The M/S processing patch orchestrates a comprehensive stereo transformation pipeline that demonstrates both the mathematical principles and practical applications of mid/side processing through systematic signal manipulation stages. This implementation provides real-time control over stereo imaging while maintaining the mathematical relationships essential for accurate audio reconstruction.
+
+The audio source and initialization stage establishes the foundation for M/S processing through automated stereo audio file playback that provides consistent source material for demonstration purposes. The `readsf~ 2` object loads and plays the stereo audio file `drum.wav`, providing left and right channel audio streams that serve as input to the M/S processing chain. The looping mechanism implemented through the bang connection from the third outlet of `readsf~` to the `s loop` send object ensures continuous playback that enables sustained observation of the M/S processing effects. The manual playback control through the `PLAY!` button provides user initiation of the audio source, while the file opening message `open drum.wav, 1` prepares the stereo audio file for processing. This source material selection proves particularly effective for M/S demonstration because drum recordings typically contain both centered elements (kick, snare) that appear prominently in the mid channel and peripheral elements (cymbals, room ambience) that contribute significantly to the side channel.
+
+The M/S encoding stage implements the fundamental mathematical transformation that separates stereo spatial information into functionally distinct mid and side components through parallel expression processing. The stereo input from the audio file feeds into two separate `expr~` objects that perform the essential M/S calculations: the mid channel calculation through `expr~ ($v1 + $v2) * 0.7071` creates the sum of left and right channels with appropriate amplitude scaling, while the side channel calculation through `expr~ ($v1 - $v2) * 0.7071` generates the difference between left and right channels similarly scaled. The scaling factor 0.7071 (1/√2) ensures proper amplitude relationships that prevent signal overflow while maintaining mathematical accuracy throughout the encoding process. This encoding stage transforms the conventional stereo signal into a representation where the mid channel contains all centered audio content and the side channel contains all spatial width information, enabling independent manipulation of these components.
+
+The stereo width control and side channel modification stage provides real-time manipulation of the spatial characteristics through user interface control that affects the prominence of the side channel information. The horizontal slider (`hsl`) interface element provides intuitive control over stereo width, with values ranging from 0 (complete mono) to 1 (original stereo width) and beyond for enhanced stereo effects. The slider output connects to a float atom display that provides numerical feedback of the current width setting, enabling precise control over the spatial manipulation amount. The width control value feeds into the `expr~ $v1 * $v2` expression that multiplies the side channel signal by the user-controlled width factor, directly affecting how much spatial information contributes to the final stereo reconstruction. This multiplication approach enables smooth transitions from mono (width = 0, side channel eliminated) through original stereo imaging (width = 1, side channel unaffected) to enhanced stereo width (width > 1, side channel emphasized).
+
+The M/S decoding and stereo reconstruction stage converts the processed mid and side components back into conventional left/right stereo format through mathematical operations that reverse the encoding transformation while incorporating the width modifications. The decoding process employs two `expr~` objects that implement the inverse M/S transformation: the left channel reconstruction through `expr~ ($v1 + $v2) * 0.7071` combines the mid channel with the width-modified side channel, while the right channel reconstruction through `expr~ ($v1 - $v2) * 0.7071` combines the mid channel with the inverted width-modified side channel. These calculations ensure that centered audio content (prominent in the mid channel) appears equally in both output channels while spatial content (contained in the side channel) contributes to the left-right differences that create stereo imaging. The 0.7071 scaling factor applied during decoding maintains proper amplitude relationships and prevents the signal amplification that would otherwise result from the mathematical operations.
+
+The output and monitoring stage delivers the processed stereo audio while providing visual feedback about the processing parameters through integrated display elements that enable users to understand the relationship between control input and audio output characteristics. The final stereo signal feeds into the `output~` object that manages audio interface connection and level control for monitoring purposes. The numerical displays connected to various processing stages show the current width parameter value and provide visual indication of the signal processing activity through the connected bang objects. This monitoring system enables users to observe how changes to the stereo width control immediately affect the audio output while providing confirmation that the M/S processing maintains proper signal levels and stereo relationships.
+
+```{mermaid}
+flowchart LR
+    A[Stereo Input] --> B[M/S Encode]
+    B --> C[Width Control]
+    C --> D[M/S Decode]
+    D --> E[Stereo Output]
+```
+
+### Processing Chain Details
+
+The M/S processing system maintains mathematical precision through coordinated processing stages:
+
+| Stage | Input | Process | Output |
+|-------|-------|---------|--------|
+| 1 | Stereo Audio File | File loading and playback | Left and right audio channels |
+| 2 | L/R Channels | M/S encoding with scaling | Mid and side channels |
+| 3 | Side Channel + Width Control | Amplitude multiplication | Modified side channel |
+| 4 | Mid + Modified Side | M/S decoding with scaling | Reconstructed L/R channels |
+| 5 | Processed Stereo | Audio interface output | Final stereo audio |
+
+### Mathematical Relationships
+
+The mathematical foundation of M/S processing is straightforward and relies on simple linear operations.
+
+To encode a standard left/right (L/R) stereo signal into mid and side channels, the following equations are used:
+
+$$
+\begin{align*}
+M &= L + R \\
+S &= L - R
+\end{align*}
+$$
+
+Here, $(M)$ (mid) represents the sum of the left and right channels, capturing the content that is common to both (centered in the stereo field), while $(S)$ (side) represents the difference, capturing the elements that are unique to each channel (the stereo width).
+
+To decode and return to the conventional stereo format, the inverse operation is performed:
+
+$$
+\begin{align*}
+L &= \frac{M + S}{2} \\
+R &= \frac{M - S}{2}
+\end{align*}
+$$
+
+The division by 2 in the decoding equations is crucial. Without this scaling, the amplitude of the reconstructed left and right channels would be doubled, potentially causing clipping or an unnatural increase in loudness. This scaling ensures that the energy of the signal remains consistent before and after the M/S transformation.
+
+In practice, instead of dividing by 2, it is common to apply a gain correction of $(-3\,\mathrm{dB})$, which corresponds to multiplying each channel by:
+
+$$
+\frac{1}{\sqrt{2}} \approx 0.7071
+$$
+
+This factor is used because when both channels are summed or differenced, their combined amplitude could reach up to twice the original value. By scaling each by \(0.7071\), the total energy is preserved:
+
+$$
+2 \times 0.7071 \times 0.7071 \approx 1
+$$
+
+This approach maintains amplitude consistency and prevents distortion, ensuring that a round-trip conversion (L/R \(\rightarrow\) M/S \(\rightarrow\) L/R) yields a signal with the same loudness as the original.
+
+M/S processing is widely used in mixing and mastering. It allows engineers to adjust the stereo width, enhance mono compatibility, or apply effects selectively to the mid or side components. For example, boosting the side channel can widen the stereo image, while attenuating it can make the mix more mono-compatible. Creative sound design often involves processing the mid and side channels differently, such as adding reverb only to the sides or compressing the mid for a punchier center.
+
+A notable feature of M/S processing is its symmetry: the same mathematical structure is used for both encoding and decoding, differing only by the scaling factor. This symmetry arises because the conversion matrix for M/S is its own inverse (up to scaling), which simplifies both implementation and modularity in digital audio environments like Pure Data, Max/MSP, or custom DSP code. This efficiency, combined with its creative flexibility, makes M/S processing a staple in modern audio production.
+
+The patch implements the fundamental M/S transformation equations with proper amplitude scaling:
+
+| Parameter | Mathematical Function | Audio Application |
+|-----------|----------------------|-------------------|
+| Mid Encoding | $M = (L + R) \times 0.7071$ | Sum channels with amplitude correction |
+| Side Encoding | $S = (L - R) \times 0.7071$ | Difference channels with amplitude correction |
+| Width Modification | $S' = S \times W$ | Apply user-controlled width factor |
+| Left Decoding | $L' = (M + S') \times 0.7071$ | Reconstruct left with processed side |
+| Right Decoding | $R' = (M - S') \times 0.7071$ | Reconstruct right with processed side |
+
+### Stereo Width Control Effects
+
+| Width Setting | Side Channel Scaling | Stereo Effect | Practical Application |
+|---------------|---------------------|---------------|----------------------|
+| 0.0 | Complete elimination | Mono (no stereo width) | Mono compatibility checking |
+| 0.5 | 50% reduction | Narrowed stereo image | Subtle width reduction |
+| 1.0 | Original level | Unchanged stereo width | Bypass/reference setting |
+| 1.5 | 50% enhancement | Widened stereo image | Stereo enhancement |
+| 2.0 | Double amplitude | Significantly widened | Extreme stereo effects |
+
+
+### Key Objects and Their Roles
+
+| Object | Function | Role in M/S Processing |
+|--------|----------|----------------------|
+| `readsf~ 2` | Stereo file player | Provides consistent stereo source material |
+| `expr~ ($v1 + $v2) * 0.7071` | Mid channel encoder | Calculates sum of L/R with amplitude scaling |
+| `expr~ ($v1 - $v2) * 0.7071` | Side channel encoder | Calculates difference of L/R with amplitude scaling |
+| `expr~ $v1 * $v2` | Width control multiplier | Applies user-controlled scaling to side channel |
+| `Width control` | Stereo width interface | Provides real-time control over spatial width |
+| `output~` | Stereo audio output | Delivers processed stereo audio for monitoring |
+
+### Creative Applications
+
+- **Stereo Width Control**: Use for dynamic stereo imaging effects in music production, from subtle width adjustments to dramatic spatial effects that respond to musical dynamics or external control sources.
+
+- **Mono Compatibility Optimization**: Employ during mixing and mastering to check how stereo mixes translate to mono playback systems, ensuring critical elements remain audible when stereo width is eliminated.
+
+- **Creative Sound Design**: Apply different processing to mid and side channels independently—for example, compress the mid channel for punchy center content while adding reverb only to the side channel for enhanced ambience.
+
+- **Live Performance Control**: Connect the width parameter to MIDI controllers or OSC input for real-time spatial manipulation during live electronic music performances or DJ sets.
+
+- **Mastering Enhancement**: Implement as part of mastering chains where precise control over stereo imaging enables correction of mix balance issues or enhancement of spatial characteristics.
+
+- **Installation Art**: Create responsive audio environments where visitor proximity or movement controls stereo width, creating intimate mono experiences that expand to full stereo as people move through the space.
+
+
 ## References {.unnumbered}
 
 
