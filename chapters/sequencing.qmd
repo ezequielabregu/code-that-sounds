@@ -92,9 +92,7 @@ The following table summarizes the essential objects used in the step sequencer 
 
 | Object | Purpose |
 |--------|---------|
-| `tgl` | Start/stop toggle switch for sequencer control |
 | `metro` | Timing engine that generates regular pulses |
-| `floatatom` | BPM input and step/note value display |
 | `expr 60000/$f1` | Converts BPM to milliseconds for metro timing |
 | `f` | Stores current step index value |
 | `+ 1` | Increments step counter on each pulse |
@@ -103,7 +101,6 @@ The following table summarizes the essential objects used in the step sequencer 
 | `makenote` | Creates MIDI note-on/off messages with velocity and duration |
 | `unpack f f` | Separates MIDI note and velocity values |
 | `noteout` | Transmits MIDI messages to specified channel |
-| `loadbang` | Initializes array with note sequence at patch startup |
 | `array midi_note` | Stores the sequence of MIDI note values |
 <br>
 The patch demonstrates several fundamental programming concepts, including the use of timing objects for rhythmic control, array manipulation for data storage and retrieval, mathematical operations for counter management, and MIDI message formatting for external communication. The modular design allows for easy modification of the note sequence, tempo range, and MIDI output parameters, making it a versatile foundation for more complex sequencing applications.
@@ -156,17 +153,13 @@ The following table summarizes the essential objects used in the random step seq
 
 | Object | Purpose |
 |--------|---------|
-| `tgl` | Start/stop toggle switch for sequencer control |
 | `metro` | Timing engine that generates regular pulses |
-| `floatatom` | BPM input and step/note value display |
 | `expr 60000/$f1` | Converts BPM to milliseconds for metro timing |
 | `expr random(0, 8)` | Generates random indices from 0 to 7 |
-| `bng` | Visual pulse indicator triggered by metro |
 | `tabread midi_note` | Reads MIDI note values from the array |
 | `makenote` | Creates MIDI note-on/off messages with velocity and duration |
 | `unpack f f` | Separates MIDI note and velocity values |
 | `noteout` | Transmits MIDI messages to specified channel |
-| `loadbang` | Initializes array with note sequence at patch startup |
 | `array midi_note` | Stores the sequence of MIDI note values |
 <br>
 
@@ -260,8 +253,6 @@ The core phasing effect emerges from the slight discrepancy in the `metro` inter
 | tabread sequence     | Reads the current note from the sequence |
 | makenote             | Generates MIDI note-on/off with duration |
 | noteout              | Sends MIDI notes to the output device    |
-| hradio               | Visualizes the current step position     |
-| loadbang             | Initializes sequence and metro intervals |
 
 
 ## Random Melody Generator
@@ -667,12 +658,10 @@ The following table summarizes the key objects used in the patch and their roles
 
 | Object                | Purpose                                              |
 |-----------------------|-----------------------------------------------------|
-| `hsl` (slider)        | Sets number of steps and hits                       |
 | `until`               | Loops through each step index                       |
 | `expr`                | Calculates `(index * hits) % steps`                 |
 | `<`                   | Compares result to hits, outputs 1 or 0             |
 | `add2`                | Appends each result to the output pattern list      |
-| `set`                 | Resets the output list for new calculations         |
 | `mod`                 | Ensures index wraps around for correct calculation  |
 
 ### Euclidean Rotation Generator
@@ -724,16 +713,13 @@ This allows you to experiment with different phase offsets and rhythmic feels.
 
 | Object         | Purpose                                                        |
 |----------------|---------------------------------------------------------------|
-| `hsl` (slider) | Sets number of steps, hits, and rotation                      |
 | `until`        | Loops through each step index                                 |
 | `counter`      | Increments the step index for each iteration                  |
 | `expr`         | Calculates the Euclidean formula with rotation                |
 | `<`            | Compares the formula result to hits, outputs 1 or 0           |
 | `add2`         | Appends each result to the output pattern list                |
-| `set`          | Resets the output list for new calculations                   |
 | `mod`          | Ensures index wraps around for correct calculation            |
 | `tabwrite`     | Writes the final pattern to an array for visualization        |
-| `print`        | Prints the final pattern to the console (for debugging)       |
 
 
 ### Euclidean Accents Generator
@@ -798,17 +784,14 @@ Here, "2" indicates an accented hit, "1" a regular hit, and "0" a rest.
 
 | Object         | Purpose                                                                 |
 |----------------|------------------------------------------------------------------------|
-| `hsl` (slider) | Sets number of steps, hits, rotation, accents, and accent rotation      |
 | `until`        | Loops through each step index                                           |
 | `counter`      | Increments the step index for each iteration                            |
 | `expr`         | Calculates the Euclidean formula for both rhythm and accent patterns    |
 | `<`            | Compares the formula result to hits or accents, outputs 1 or 0          |
 | `add2`         | Appends each result to the output pattern list                          |
-| `set`          | Resets the output list for new calculations                             |
 | `list-idx`     | Retrieves values from the generated lists for combination               |
 | `expr if($f1+$f2==2, 2, $f1)` | Combines main and accent patterns into a single output   |
 | `tabwrite`     | Writes the final pattern to an array for visualization                  |
-| `print`        | Prints the final pattern to the console (for debugging)                 |
 
 <br>
 <br>
@@ -1017,7 +1000,6 @@ The following table summarizes the essential objects and subsystems used in the 
 | `text get` | Retrieves rule outcomes and state information |
 | `boundary.mode` subpatch | Handles edge conditions and neighbor calculation |
 | `list append/prepend` | Manages array concatenation and state assembly |
-| `spigot` | Controls data flow during iteration cycles |
 | `route` | Directs messages to appropriate processing subsystems |
 | `v $0-iteration.n` | Tracks current iteration number and generation count |
 | `save` subpatch | Provides data export functionality for generated sequences |

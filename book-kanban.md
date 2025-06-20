@@ -16,7 +16,6 @@
 
 ## To do
 
-- Check note / important block comments
 - Check Mermaid diagrams legibility
 - make Game of Life in Pure Data (take reference from the current Python version)
 - Check Creative Aplications section. Sometimes are quite long. Don't sell smoke!

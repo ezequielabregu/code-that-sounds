@@ -480,7 +480,6 @@ The time scaling system provides proportional control over envelope durations:
 | `s freq` / `r freq` | Global frequency distribution | Distributes fundamental frequency to all oscillators |
 | `oscilador` | Harmonic oscillator abstraction | Implements individual partial with envelope control |
 | `catch~ audio` | Audio signal collection | Aggregates all oscillator outputs |
-| `hradio` | Duration control interface | Selects global envelope timing |
 | `s timeScale` / `r timeScale` | Timing distribution | Coordinates envelope durations across oscillators |
 | `out~` | Audio output | Final signal delivery |
 
@@ -590,7 +589,6 @@ The psychoacoustic amplitude scaling prevents clipping while maintaining percept
 
 | Object | Function | Role in Dynamic Synthesis |
 |----------------|----------------|----------------------------------------|
-| `hradio` | Partial count selector | Controls number of active harmonics (1-20) |
 | `clone harmonic` | Dynamic instance manager | Creates variable number of oscillator instances |
 | `until` | Parameter loop generator | Executes calculation sequence for each partial |
 | `mod` | Frequency calculation | Generates harmonic number sequence |

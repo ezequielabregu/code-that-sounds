@@ -56,18 +56,13 @@ The final audio generation stage employs the `tabread4~` object to retrieve audi
 
 | Object | Purpose |
 |--------|---------|
-| `loadbang` | Automatically initiates file loading when patch opens |
 | `soundfiler` | Loads audio files into arrays and reports sample count |
 | `array audio` | Stores audio waveform data with visual display |
 | `tabread4~` | Performs interpolated audio reading from the array |
 | `line~` | Generates smooth ramp signals for position scanning |
 | `pack f f f` | Combines start, stop, and time parameters |
 | `expr` | Performs mathematical calculations for position and timing |
-| `hsl` | Horizontal sliders for start, stop, and speed control |
-| `bng` | Play button for triggering playback |
-| `t f f` | Trigger objects for distributing values to multiple destinations |
 | `output~` | Provides stereo audio output with level control |
-| `f` | Float storage for maintaining current sample count |
 
 
 The patch demonstrates several key Pd programming concepts, including automatic patch initialization through loadbang, visual array management for waveform display, mathematical expression evaluation for parameter conversion, and smooth audio-rate interpolation for high-quality playback. The modular design separates user interface elements from audio processing components, making the system easy to understand and modify. This implementation serves as an excellent foundation for understanding basic audio playback principles and can be easily extended with additional features such as looping, multiple file support, or external control integration. The visual feedback provided by the waveform display and numeric readouts makes it particularly suitable for educational applications where understanding the relationship between interface controls and audio parameters is important.
@@ -141,12 +136,9 @@ Real-time monitoring and feedback systems track the current playback position an
 | `pack f f` | Combines value and interpolation time for line object |
 | `samplerate~` | Reports current system sample rate |
 | `unsig~` | Converts audio-rate signals to control-rate values |
-| `hsl` | Horizontal sliders for speed, interpolation, and phase control |
 | `s` / `r` | Send and receive objects for parameter distribution |
-| `loadbang` | Initializes system parameters at patch startup |
 | `*~` | Multiplies audio signals for speed and direction control |
 | `output~` | Provides stereo audio output with level control |
-| `nbx` | Numeric box for precise parameter display and input |
 
 <br>
  This implementation serves as a foundation for more complex sampling applications, including granular synthesis, multi-sample instruments, and advanced audio manipulation tools. The real-time control capabilities make it suitable for live performance contexts, while the precise parameter control enables detailed studio work and sound design applications.
@@ -355,8 +347,6 @@ The patch initialization and control ensures proper startup conditions through a
 | `readsf~`      | Play audio from a file                       |
 | `throw~`/`catch~` | Mix and route audio signals               |
 | `dac~`         | Audio output to speakers                     |
-| `bng`          | Button for triggering actions                |
-| `msg`          | Send commands to objects (open, start, stop) |
 
 ### How to Use the Patch
 

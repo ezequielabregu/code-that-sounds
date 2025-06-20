@@ -370,7 +370,6 @@ The patch maintains sonic coherence through several design considerations: the s
 | `del` | Rhythmic timing control | Creates delays based on ECG-derived BPM |
 | `tabplay~` | Audio sample playback | Triggers audio file samples |
 | `soundfiler` | Audio file loader | Loads external audio into array |
-| `spigot` | Gate control | Enables/disables sequencer operation |
 
 ### Creative Applications
 
@@ -732,7 +731,6 @@ Building upon the previously established scanning framework, the live camera sca
 | `pix_invert` | Color inversion | Creates alternative visual representations |
 | `pix_2grey` | Grayscale conversion | Simplifies color data for processing |
 | `random` | Stochastic positioning | Generates unpredictable scan patterns |
-| `spigot` | Control gating | Enables/disables random scanning behavior |
 
 ### Creative Applications
 

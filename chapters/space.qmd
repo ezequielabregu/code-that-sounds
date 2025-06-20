@@ -306,12 +306,10 @@ The patch maintains signal integrity through:
 
 | Object | Function | Role in Spatialization |
 |--------|----------|----------------------|
-| `hsl` | Horizontal slider | User interface for angle input (0-90 degrees) |
 | `* 0.0174533` | Conversion multiplier | Converts degrees to radians for trigonometric functions |
 | `expr cos($f1) \; sin($f1)` | Trigonometric processor | Calculates complementary amplitude values |
 | `phasor~ 220` | Audio oscillator | Generates test signal for spatialization demonstration |
 | `expr~ $v1*$v2 \; $v1*$v3` | Audio multiplier | Applies trigonometric amplitude control to audio |
-| `vsl` | Vertical slider | Visual feedback for calculated amplitude values |
 | `output~` | Audio output | Delivers spatialized stereo audio |
 
 
@@ -602,7 +600,6 @@ The frequency mapping implements realistic atmospheric absorption characteristic
 | `lop~` | Low-pass filter | Frequency-dependent air absorption simulation |
 | `expr (1 - $f1) * 7000 + 1000` | Cutoff frequency calculation | Maps distance to absorption characteristics |
 | `freeverb~` | Algorithmic reverberation | Environmental acoustic simulation |
-| `knob` | Reverb level control | Interactive reverberation amount adjustment |
 | `s~ dry` / `r~ dry` | Dry signal routing | Direct sound path management |
 | `expr~ $v1*$v2 \; $v3*$v4` | Spatial audio multiplier | Final stereo positioning with distance effects |
 
