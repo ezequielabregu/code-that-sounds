@@ -653,16 +653,8 @@ window.Quarto = {
 </thead>
 <tbody>
 <tr class="odd">
-<td><code>tgl</code></td>
-<td>Start/stop toggle switch for sequencer control</td>
-</tr>
-<tr class="even">
 <td><code>metro</code></td>
 <td>Timing engine that generates regular pulses</td>
-</tr>
-<tr class="odd">
-<td><code>floatatom</code></td>
-<td>BPM input and step/note value display</td>
 </tr>
 <tr class="even">
 <td><code>expr 60000/$f1</code></td>
@@ -697,10 +689,6 @@ window.Quarto = {
 <td>Transmits MIDI messages to specified channel</td>
 </tr>
 <tr class="even">
-<td><code>loadbang</code></td>
-<td>Initializes array with note sequence at patch startup</td>
-</tr>
-<tr class="odd">
 <td><code>array midi_note</code></td>
 <td>Stores the sequence of MIDI note values</td>
 </tr>
@@ -772,16 +760,8 @@ window.Quarto = {
 </thead>
 <tbody>
 <tr class="odd">
-<td><code>tgl</code></td>
-<td>Start/stop toggle switch for sequencer control</td>
-</tr>
-<tr class="even">
 <td><code>metro</code></td>
 <td>Timing engine that generates regular pulses</td>
-</tr>
-<tr class="odd">
-<td><code>floatatom</code></td>
-<td>BPM input and step/note value display</td>
 </tr>
 <tr class="even">
 <td><code>expr 60000/$f1</code></td>
@@ -792,28 +772,20 @@ window.Quarto = {
 <td>Generates random indices from 0 to 7</td>
 </tr>
 <tr class="even">
-<td><code>bng</code></td>
-<td>Visual pulse indicator triggered by metro</td>
-</tr>
-<tr class="odd">
 <td><code>tabread midi_note</code></td>
 <td>Reads MIDI note values from the array</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><code>makenote</code></td>
 <td>Creates MIDI note-on/off messages with velocity and duration</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><code>unpack f f</code></td>
 <td>Separates MIDI note and velocity values</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><code>noteout</code></td>
 <td>Transmits MIDI messages to specified channel</td>
-</tr>
-<tr class="odd">
-<td><code>loadbang</code></td>
-<td>Initializes array with note sequence at patch startup</td>
 </tr>
 <tr class="even">
 <td><code>array midi_note</code></td>
@@ -936,14 +908,6 @@ window.Quarto = {
 <tr class="even">
 <td>noteout</td>
 <td>Sends MIDI notes to the output device</td>
-</tr>
-<tr class="odd">
-<td>hradio</td>
-<td>Visualizes the current step position</td>
-</tr>
-<tr class="even">
-<td>loadbang</td>
-<td>Initializes sequence and metro intervals</td>
 </tr>
 </tbody>
 </table>
@@ -1578,28 +1542,20 @@ window.Quarto = {
 </thead>
 <tbody>
 <tr class="odd">
-<td><code>hsl</code> (slider)</td>
-<td>Sets number of steps and hits</td>
-</tr>
-<tr class="even">
 <td><code>until</code></td>
 <td>Loops through each step index</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><code>expr</code></td>
 <td>Calculates <code>(index * hits) % steps</code></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><code>&lt;</code></td>
 <td>Compares result to hits, outputs 1 or 0</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><code>add2</code></td>
 <td>Appends each result to the output pattern list</td>
-</tr>
-<tr class="even">
-<td><code>set</code></td>
-<td>Resets the output list for new calculations</td>
 </tr>
 <tr class="odd">
 <td><code>mod</code></td>
@@ -1673,32 +1629,24 @@ window.Quarto = {
 </thead>
 <tbody>
 <tr class="odd">
-<td><code>hsl</code> (slider)</td>
-<td>Sets number of steps, hits, and rotation</td>
-</tr>
-<tr class="even">
 <td><code>until</code></td>
 <td>Loops through each step index</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><code>counter</code></td>
 <td>Increments the step index for each iteration</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><code>expr</code></td>
 <td>Calculates the Euclidean formula with rotation</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><code>&lt;</code></td>
 <td>Compares the formula result to hits, outputs 1 or 0</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><code>add2</code></td>
 <td>Appends each result to the output pattern list</td>
-</tr>
-<tr class="odd">
-<td><code>set</code></td>
-<td>Resets the output list for new calculations</td>
 </tr>
 <tr class="even">
 <td><code>mod</code></td>
@@ -1707,10 +1655,6 @@ window.Quarto = {
 <tr class="odd">
 <td><code>tabwrite</code></td>
 <td>Writes the final pattern to an array for visualization</td>
-</tr>
-<tr class="even">
-<td><code>print</code></td>
-<td>Prints the final pattern to the console (for debugging)</td>
 </tr>
 </tbody>
 </table>
@@ -1790,32 +1734,24 @@ window.Quarto = {
 </thead>
 <tbody>
 <tr class="odd">
-<td><code>hsl</code> (slider)</td>
-<td>Sets number of steps, hits, rotation, accents, and accent rotation</td>
-</tr>
-<tr class="even">
 <td><code>until</code></td>
 <td>Loops through each step index</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><code>counter</code></td>
 <td>Increments the step index for each iteration</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><code>expr</code></td>
 <td>Calculates the Euclidean formula for both rhythm and accent patterns</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><code>&lt;</code></td>
 <td>Compares the formula result to hits or accents, outputs 1 or 0</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><code>add2</code></td>
 <td>Appends each result to the output pattern list</td>
-</tr>
-<tr class="odd">
-<td><code>set</code></td>
-<td>Resets the output list for new calculations</td>
 </tr>
 <tr class="even">
 <td><code>list-idx</code></td>
@@ -1828,10 +1764,6 @@ window.Quarto = {
 <tr class="even">
 <td><code>tabwrite</code></td>
 <td>Writes the final pattern to an array for visualization</td>
-</tr>
-<tr class="odd">
-<td><code>print</code></td>
-<td>Prints the final pattern to the console (for debugging)</td>
 </tr>
 </tbody>
 </table>
@@ -2230,18 +2162,14 @@ window.Quarto = {
 <td>Manages array concatenation and state assembly</td>
 </tr>
 <tr class="odd">
-<td><code>spigot</code></td>
-<td>Controls data flow during iteration cycles</td>
-</tr>
-<tr class="even">
 <td><code>route</code></td>
 <td>Directs messages to appropriate processing subsystems</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><code>v $0-iteration.n</code></td>
 <td>Tracks current iteration number and generation count</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><code>save</code> subpatch</td>
 <td>Provides data export functionality for generated sequences</td>
 </tr>

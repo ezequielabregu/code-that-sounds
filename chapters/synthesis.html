@@ -1181,16 +1181,11 @@ window.Quarto = {
 <td>Aggregates all oscillator outputs</td>
 </tr>
 <tr class="even">
-<td><code>hradio</code></td>
-<td>Duration control interface</td>
-<td>Selects global envelope timing</td>
-</tr>
-<tr class="odd">
 <td><code>s timeScale</code> / <code>r timeScale</code></td>
 <td>Timing distribution</td>
 <td>Coordinates envelope durations across oscillators</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><code>out~</code></td>
 <td>Audio output</td>
 <td>Final signal delivery</td>
@@ -1409,31 +1404,26 @@ window.Quarto = {
 </thead>
 <tbody>
 <tr class="odd">
-<td><code>hradio</code></td>
-<td>Partial count selector</td>
-<td>Controls number of active harmonics (1-20)</td>
-</tr>
-<tr class="even">
 <td><code>clone harmonic</code></td>
 <td>Dynamic instance manager</td>
 <td>Creates variable number of oscillator instances</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><code>until</code></td>
 <td>Parameter loop generator</td>
 <td>Executes calculation sequence for each partial</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><code>mod</code></td>
 <td>Frequency calculation</td>
 <td>Generates harmonic number sequence</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><code>expr~ pow($f2, -0.6)</code></td>
 <td>Amplitude scaling</td>
 <td>Prevents clipping using psychoacoustic scaling</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><code>s n-partials</code> / <code>r n-partials</code></td>
 <td>Partial count distribution</td>
 <td>Distributes active partial count to all instances</td>

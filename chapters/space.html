@@ -866,34 +866,24 @@ A_L = \cos(\theta)
 </thead>
 <tbody>
 <tr class="odd">
-<td><code>hsl</code></td>
-<td>Horizontal slider</td>
-<td>User interface for angle input (0-90 degrees)</td>
-</tr>
-<tr class="even">
 <td><code>* 0.0174533</code></td>
 <td>Conversion multiplier</td>
 <td>Converts degrees to radians for trigonometric functions</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><code>expr cos($f1) \; sin($f1)</code></td>
 <td>Trigonometric processor</td>
 <td>Calculates complementary amplitude values</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><code>phasor~ 220</code></td>
 <td>Audio oscillator</td>
 <td>Generates test signal for spatialization demonstration</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><code>expr~ $v1*$v2 \; $v1*$v3</code></td>
 <td>Audio multiplier</td>
 <td>Applies trigonometric amplitude control to audio</td>
-</tr>
-<tr class="even">
-<td><code>vsl</code></td>
-<td>Vertical slider</td>
-<td>Visual feedback for calculated amplitude values</td>
 </tr>
 <tr class="odd">
 <td><code>output~</code></td>
@@ -1523,16 +1513,11 @@ A_{\text{perceived}} = \frac{A_{\text{source}}}{d}
 <td>Environmental acoustic simulation</td>
 </tr>
 <tr class="even">
-<td><code>knob</code></td>
-<td>Reverb level control</td>
-<td>Interactive reverberation amount adjustment</td>
-</tr>
-<tr class="odd">
 <td><code>s~ dry</code> / <code>r~ dry</code></td>
 <td>Dry signal routing</td>
 <td>Direct sound path management</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><code>expr~ $v1*$v2 \; $v3*$v4</code></td>
 <td>Spatial audio multiplier</td>
 <td>Final stereo positioning with distance effects</td>
