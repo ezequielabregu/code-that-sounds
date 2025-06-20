@@ -24,8 +24,8 @@
 
 #### General
 
-- Numerate patches according to the chapter and section.
-- Numerate tables according to the chapter and section.
+- **Numerate patches according to the chapter and section.**
+- **Numerate tables according to the chapter and section.**
 
 #### Sequencers
 

@@ -835,11 +835,28 @@ This function design creates the characteristic "phantom source" effect where vi
 
 ## Mid/Side (M/S) Processing
 
-Mid/Side (M/S) processing is a fundamental stereo audio technique that transforms conventional left/right stereo signals into a representation consisting of mid (center) and side (stereo difference) components. This transformation enables precise independent manipulation of the central mono-compatible content and the peripheral stereo information, providing powerful creative control over stereo imaging and spatial characteristics. The technique finds extensive application in mixing, mastering, and sound design contexts where selective processing of spatial components is required.
+Mid/Side (M/S) processing is a stereo audio technique that transforms conventional left/right stereo signals into a representation consisting of mid (center) and side (stereo difference) components. This transformation enables precise independent manipulation of the central mono-compatible content and the peripheral stereo information, providing powerful creative control over stereo imaging and spatial characteristics. The technique finds extensive application in mixing, mastering, and sound design contexts where selective processing of spatial components is required.
 
 The M/S approach offers unique advantages over conventional stereo processing by separating spatial information into functionally distinct components. The mid channel contains the sum of left and right signals, representing content that appears centered in the stereo field, while the side channel contains the difference between left and right signals, representing the spatial width and ambience information. This separation enables processing strategies that would be impossible with conventional L/R stereo signals.
 
 ![Mid/side stereo processing with adjustable "width" control.](/assets/screenshots/space/mid-side-stereo.png)
+
+### Historical Context
+
+The Mid/Side (M/S) microphone recording technique is not a recent innovation. It was originally conceived by Alan Blumlein, a British engineer working at EMI and a pivotal figure in the development of stereophonic and surround sound. Blumlein patented the M/S technique in 1933, and it was implemented in some of the earliest stereophonic recordings, laying the foundation for much of what would follow in multichannel audio. Over time, M/S recording has found widespread adoption in broadcasting due to its inherent mono compatibility—a critical requirement in transmission environments where listeners may receive a downmixed signal. Its adaptability has also made it a mainstay in studio environments, where precise control over stereo width is valued, as well as in live recording scenarios, where on-site flexibility is essential.
+
+### Why Choose Mid/Side?
+
+One of the key advantages of M/S over traditional XY stereo techniques lies in its post-production flexibility. In XY configurations, the stereo image is fixed at the moment of recording. Any adjustments to the spatial field must be made prior to—or during—recording, leaving limited room for change afterward. Additionally, summing XY recordings to mono can result in undesirable phase cancellations, compromising audio quality.
+
+In contrast, the M/S technique allows for the stereo width to be manipulated even after the recording session. By adjusting the balance between the mid and side signals, engineers can widen, narrow, or even collapse the stereo image to mono without destructive artifacts. This makes M/S a powerful tool for both artistic control and technical resilience.
+
+![MS recording technique: The Mid mic acts as the center channel, while the Side mic signal creates the stereo ambience.](/assets/images/space/ms-stereo.png)
+
+The core concept of M/S recording is elegantly simple yet powerful. The Mid microphone captures the central, on-axis sound—essentially forming the mono-compatible core of the stereo image. The Side microphone, with its figure-8 pattern, captures ambient and directional information from either side of the soundstage.
+
+The critical feature of the Side mic is that its two lobes are 180 degrees out of phase. This means that a pressure increase on one side of the diaphragm results in an equivalent pressure decrease on the other. Conventionally, the positive lobe (+) is oriented to the left, while the negative lobe (−) faces the right side of the soundstage. When decoded into stereo, this phase relationship creates lateral cues that define the width and spatial depth of the stereo field.
+
 
 ### Patch Overview
 
@@ -942,7 +959,7 @@ $$
 2 \times 0.7071 \times 0.7071 \approx 1
 $$
 
-This approach maintains amplitude consistency and prevents distortion, ensuring that a round-trip conversion (L/R \(\rightarrow\) M/S \(\rightarrow\) L/R) yields a signal with the same loudness as the original.
+This approach maintains amplitude consistency and prevents distortion, ensuring that a round-trip conversion (L/R $\rightarrow$ M/S $\rightarrow$ L/R) yields a signal with the same loudness as the original.
 
 M/S processing is widely used in mixing and mastering. It allows engineers to adjust the stereo width, enhance mono compatibility, or apply effects selectively to the mid or side components. For example, boosting the side channel can widen the stereo image, while attenuating it can make the mix more mono-compatible. Creative sound design often involves processing the mid and side channels differently, such as adding reverb only to the sides or compressing the mid for a punchier center.
 
